@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "192.168.56.10" :web, :app, :db, :primary => true
+server "192.168.56.10", :web, :app, :db, :primary => true
 
 set :application, "onestep"
 set :user, "deployer"
@@ -8,9 +8,9 @@ set :deploy_to, "/home/#{user}/#{application}"
 #set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set: :scm, "git"
-set: :repository,  "git@github.com:happypeter/onestep.git"
-set: :branch, "master"
+set :scm, "git"
+set :repository,  "git@github.com:happypeter/onestep.git"
+set :branch, "master"
 
 default_run_options[:pty] = true
 
