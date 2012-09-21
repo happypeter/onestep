@@ -1,15 +1,15 @@
 require "bundler/capistrano"
 
-server "192.168.56.10" :web, :app, :db, primary:true
+server "192.168.56.10" :web, :app, :db, :primary => true
 
 set :application, "onestep"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/#{application}"
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set: :scm, "git"
-set: :repository,  "git://github.com/happypeter/onestep.gitdt"
+set: :repository,  "git@github.com:happypeter/onestep.git"
 set: :branch, "master"
 
 default_run_options[:pty] = true
@@ -39,8 +39,8 @@ namespace :deploy do
   after "deploy:finalize_update", "deploy:symlink_config"
 
   desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :app do
-    unless `git rev-parse HEADA` == `git rev-parse origin/master`
+  task :check_revision, roles: :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/master`
       puts "Warning: HEAD is not the same as origin/master"
       puts "Run `git push` to sync changes."
       exit
