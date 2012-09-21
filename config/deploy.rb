@@ -14,7 +14,7 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 
-after "deploy", "deploy:cleanup"
+#after "deploy", "deploy:cleanup"
 
 namespace :deploy do
   %w[start stop restart].each do |command|
