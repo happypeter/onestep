@@ -1,5 +1,11 @@
 Onestep::Application.routes.draw do
+  resources :users
   resources :items
+
+  match "login" => "users#login_form", :as => "login"  
+  match "submit_login_form" => "users#login"
+  match "logout" => "users#logout", :as => "logout"  
+  match "signup" => "users#signup", :as => "signup"  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
