@@ -7,18 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-  <% if current_user %>
-    logged in as <%= current_user.email %> | <%= link_to t("logout"), logout_path %>
-  <% else %>
-    <%= link_to t("signup"), signup_path %> or <%= link_to t("login"), login_path %>
-  <% end %>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
-
-  <%= yield %>
+  <div id="container">
+    <div id="navbar">
+      <%= image_tag "jeap-logo.png" %>
+      <% if current_user %>
+        logged in as <%= current_user.email %> | <%= link_to t("logout"), logout_path %>
+      <% else %>
+        <%= link_to t("signup"), signup_path %> or <%= link_to t("login"), login_path %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
 
 </body>
 </html>

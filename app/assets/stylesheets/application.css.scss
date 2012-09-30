@@ -9,5 +9,17 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
+
+$main_width: 960px;
+
+#container {
+  width:$main_width;
+  text-align:left;
+  margin:0 auto;
+}
+
+#navbar {
+  border-bottom: 2px solid #abc;
+  padding-bottom: 0.5em;
+}
