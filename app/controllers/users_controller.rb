@@ -1,4 +1,4 @@
-class UsersController < ApplicationController  
+class UsersController < ApplicationController
   #  FIXME: still need to implement "edit" "index" ...
   def login_form
     @user = User.new
@@ -9,11 +9,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])  
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])  
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'Profile was successfully updated.') }
@@ -23,9 +23,9 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
     end
-  end  
+  end
 
-  def create 
+  def create
     @user = User.new(params[:user])
     if @user.save
       cookies.permanent[:token] = @user.token
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by_email(params[:email])  
+    user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
       redirect_to root_url
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user == nil
-      redirect_to root_url, :notice => "no such user!"  
+      redirect_to root_url, :notice => "no such user!"
     else
       respond_to do |format|
         format.html # show.html.erb
