@@ -1,0 +1,10 @@
+zh-CN:
+  logout: "退出"
+  login: "登录"
+  signup: "注册"
+  comment: "评论"
+  edit: "编辑"
+  delete: "删除"
+  name: "用户名"
+  email: "邮箱"
+  create_account: "创建用户"
