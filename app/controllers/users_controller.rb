@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by_email(params[:email])
+    user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
       redirect_to root_url
@@ -59,7 +59,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:user_name]
+      @user = User.where(:name => params[:user_name]).first
+    else
+      @user = User.find(params[:id])
+    end
     if @user == nil
       redirect_to root_url, :notice => "no such user!"
     else

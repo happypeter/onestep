@@ -9,11 +9,11 @@
 <body>
   <div id="container">
     <div id="navbar">
-      <%= image_tag "jeap-logo.png" %>
+      <%= link_to image_tag("jeap-logo.png"), root_url %>
       <% if current_user %>
-        logged in as <%= current_user.email %> | <%= link_to t("logout"), logout_path %>
+        <%= current_user.name %> | <%= link_to t("logout"), logout_path %>
       <% else %>
-        <%= link_to t("signup"), signup_path %> or <%= link_to t("login"), login_path %>
+        <%= link_to t("signup"), signup_path %> | <%= link_to t("login"), login_path %>
       <% end %>
     </div>
     <%= yield %>

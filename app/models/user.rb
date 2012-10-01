@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :password, :password_confirmation, :admin
+  attr_accessible :name, :email, :password, :password_confirmation, :admin
 
   validates_uniqueness_of :email
+  validates_presence_of :name
 
   before_create { generate_token(:token) }
 
