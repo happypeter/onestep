@@ -1,9 +1,17 @@
 <div id="user_show">
   <div id="user_name">
     name: <%= @user.name %>
- </div>
+  </div>
   <div id="user_email">
     Email: <%= @user.email %>
- </div>
+  </div>
+  <div id="user_items">
+    Items:
+    <hr>
+    <% for item in  @user.items %>
+      <%= item.name %>
+      <hr>
+    <% end %>
+  </div>
 </div><!-- user_show -->
 

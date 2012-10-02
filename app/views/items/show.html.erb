@@ -3,6 +3,9 @@
 <p>
   <b>Name:</b>
   <%= @item.name %>
+  <br>
+  <b>Owner:</b>
+  <%= @item.user.name %>
 </p>
 
 <% if can? :edit, :item %>

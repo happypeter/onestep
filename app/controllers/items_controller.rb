@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = current_user.items.build(params[:item]);
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
