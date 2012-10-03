@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  #  FIXME: still need to implement "edit" "index" ...
+  load_and_authorize_resource
+
   def login_form
     @user = User.new
   end
@@ -9,11 +10,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'Profile was successfully updated.') }
@@ -52,7 +51,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
     respond_to do |format|
       format.html # index.html.erb
     end

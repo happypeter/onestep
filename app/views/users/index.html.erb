@@ -1,0 +1,32 @@
+<div id="user_no">
+  总共有<%= @users.count %> 个用户
+</div>
+
+<table>
+  <tr>
+     <th>姓名</th>
+     <th>Email</th>
+     <th>Item</th>
+  </tr>
+<% if !@users.empty? %>
+  <% @users.each do |user| %>
+  <p>
+    <tr>
+      <td>
+          <%= link_to user.name, user %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.items.count %>
+      </td>
+     </tr>
+  </p>
+  <% end %>
+<% else %>
+  <p>
+  No user found
+  </p>
+<% end %>
+</table>
