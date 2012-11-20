@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>Listing items</h1>
 
 <table>
@@ -24,6 +25,10 @@
 
 <br />
 
+<% if can? :create, :course  %>
+  <%= link_to 'New Course', new_course_path %>
+<% end %>
+  <br>
 <% if can? :create, :item  %>
   <%= link_to 'New Item', new_item_path %>
 <% end %>

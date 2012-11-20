@@ -7,6 +7,7 @@
      <th>姓名</th>
      <th>Email</th>
      <th>Item</th>
+     <th>Admin?</th>
   </tr>
 <% if !@users.empty? %>
   <% @users.each do |user| %>
@@ -20,6 +21,13 @@
       </td>
       <td>
         <%= user.items.count %>
+      </td>
+      <td>
+        <%if user.admin? %>
+          YES
+        <% else %>
+          NO
+        <% end %>
       </td>
      </tr>
   </p>

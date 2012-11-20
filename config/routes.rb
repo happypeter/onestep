@@ -1,4 +1,6 @@
 Onestep::Application.routes.draw do
+  resources :courses
+
   resources :users
   resources :items
 

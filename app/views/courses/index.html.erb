@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<div id="course_no">
+  总共有<%= @courses.count %> 个
+</div>
+
+<table>
+  <tr>
+     <th>Name</th>
+     <th>Cover</th>
+     <th>Desc</th>
+  </tr>
+<% if !@courses.empty? %>
+  <% @courses.each do |course| %>
+  <p>
+    <tr>
+      <td>
+          <%= link_to course.name, course %>
+      </td>
+      <td>
+        <%= course.cover %>
+      </td>
+      <td>
+        <%= course.description %>
+      </td>
+     </tr>
+  </p>
+  <% end %>
+<% else %>
+  <p>
+  No user found
+  </p>
+<% end %>
+</table>
+
