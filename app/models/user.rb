@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :items
+  has_many :comments
 
   attr_accessible :name, :email, :password, :password_confirmation, :admin
 

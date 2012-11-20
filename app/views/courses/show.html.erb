@@ -12,5 +12,26 @@
 </p>
 
 <% if can? :edit, :course %>
-  <%= link_to 'Edit', edit_course_path(@course) %> |
+  <%= link_to 'Edit', edit_course_path(@course) %>
 <% end %>
+
+
+<div id="comments">
+  <h3>Comments:</h3>
+  <%= render :partial => "comments/editable_comment", :collection => @course.comments %>
+</div>
+  <% if current_user %>
+    <div class="nice_comment">
+      <%= form_for(Comment.new(:course_id => @course.id, :user_id => current_user.id)) do |f| %>
+        <%= f.hidden_field :course_id %>
+        <%= f.hidden_field :user_id  %>
+        <%= f.text_area :content %>
+        <%= f.submit "publish_comment", :class=>"btn btn-success", :id => "comment_btn" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div id="login_buttons">
+      <%= link_to "login_and_comment", login_path(:return_to => request.url) ,:class => "btn btn-danger" %>
+    </div>
+    <br \>
+  <% end %>

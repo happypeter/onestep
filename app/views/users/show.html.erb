@@ -6,11 +6,11 @@
     Email: <%= @user.email %>
   </div>
   <%= link_to "edit profile", edit_user_path(@user) %>
-  <div id="user_items">
-    Items:
+  <div id="user_comments">
+    comments:
     <hr>
-    <% for item in  @user.items %>
-      <%= item.name %>
+    <% for comment in  @user.comments %>
+      <%= comment.content %>
       <hr>
     <% end %>
   </div>

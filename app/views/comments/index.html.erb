@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment.content %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if can? :create, :comment  %>
+  <%= link_to 'New Comment', new_comment_path %>
+<% end %>

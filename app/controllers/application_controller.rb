@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user # need this to access from the view
 
+  def redirect_to_target_or_default(default, *options)
+    redirect_to(session[:return_to] || default, *options)
+    session[:return_to] = nil
+  end
+
 end

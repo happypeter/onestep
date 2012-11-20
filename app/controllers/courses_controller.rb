@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    session[:return_to] = request.url
   end
 
   def edit
