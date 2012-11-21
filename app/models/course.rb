@@ -1,4 +1,4 @@
 class Course < ActiveRecord::Base
   has_many :comments
-  attr_accessible :cover, :description, :name
+  attr_accessible :cat, :description, :name
 end

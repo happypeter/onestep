@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+<b><%= t('course_name') %>:</b>
   <%= @course.name %>
   <br>
-  <b>Cover:</b>
-  <%= @course.cover %>
+  <b><%= t('cat') %>:</b>
+  <%= @course.cat %>
   <br>
-  <b>Desc:</b>
+  <b><%= t('description') %>:</b>
   <%= @course.description %>
 </p>
 
@@ -17,21 +17,23 @@
 
 
 <div id="comments">
-  <h3>Comments:</h3>
+  <h3><%= t("comment") %></h3>
   <%= render :partial => "comments/editable_comment", :collection => @course.comments %>
 </div>
   <% if current_user %>
-    <div class="nice_comment">
-      <%= form_for(Comment.new(:course_id => @course.id, :user_id => current_user.id)) do |f| %>
-        <%= f.hidden_field :course_id %>
-        <%= f.hidden_field :user_id  %>
-        <%= f.text_area :content %>
-        <%= f.submit "publish_comment", :class=>"btn btn-success", :id => "comment_btn" %>
-      <% end %>
+    <div class="comment">
+      <div id="comment_box">
+        <%= form_for(Comment.new(:course_id => @course.id, :user_id => current_user.id)) do |f| %>
+          <%= f.hidden_field :course_id %>
+          <%= f.hidden_field :user_id  %>
+          <%= f.text_area :content %>
+          <%= f.submit "#{t('publish_comment')}", :class => "btn btn-success", :id => "comment_btn" %>
+        <% end %>
+      </div>
     </div>
   <% else %>
     <div id="login_buttons">
-      <%= link_to "login_and_comment", login_path(:return_to => request.url) ,:class => "btn btn-danger" %>
+      <%= link_to "login_and_comment", login_path(:return_to => request.url) ,:class => "btn btn-success" %>
     </div>
     <br \>
   <% end %>

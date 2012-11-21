@@ -1,0 +1,30 @@
+$light-gray: #ececec;
+@mixin onestep-shadow {
+  -webkit-box-shadow: 0 0 6px $light-gray;
+  -moz-box-shadow: 0 0 6px $light-gray;
+  box-shadow: 0 0 6px $light-gray;
+}
+@mixin no-shadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin rounded-corners($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin textarea-style {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid darken($light-gray, 20%);
+  font-size: 120%;
+  @include rounded-corners(3px);
+  @include no-shadow;
+  &:focus
+  {
+    border: 1px solid darken($light-gray, 50%) ;
+    @include onestep-shadow;
+  }
+}

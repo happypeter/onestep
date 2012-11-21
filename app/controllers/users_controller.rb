@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
-      redirect_to root_url
+      redirect_to_target_or_default root_url
     else
       flash.alert = "Invalid name or password"
       redirect_to :action => "login_form"

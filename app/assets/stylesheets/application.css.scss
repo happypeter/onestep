@@ -13,6 +13,8 @@
 @import "vendor/twitter/style.css";
 @import "vendor/twitter/grid.css";
 @import "vendor/bootstrap";
+@import "global";
+@import "comment";
 
 $main_width: 960px;
 
@@ -40,6 +42,11 @@ $main_width: 960px;
 
 a {
   color: green;
+}
+
+a.btn-success {
+  color: white;
+  font-weight: bold;
 }
 
 #notice {
