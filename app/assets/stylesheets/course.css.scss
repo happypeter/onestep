@@ -1,0 +1,19 @@
+div#html5-player {
+  border: 1px solid $light-gray;
+  width: 768px;
+  margin: 0 auto;
+  video#videojs {
+    display: block;
+  }
+  #title_area {
+   padding: 10px;
+   border: 3px solid $light-blue;
+   h2 {
+     margin-bottom: -10px;
+   }
+   p.light {
+     font-size: 90%;
+     color: $light-green;
+   }
+  }
+}

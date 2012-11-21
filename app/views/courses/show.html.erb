@@ -1,20 +1,7 @@
 <p id="notice"><%= notice %></p>
+<script src="http://vjs.zencdn.net/c/video.js"></script>
 
-<p>
-<b><%= t('course_name') %>:</b>
-  <%= @course.name %>
-  <br>
-  <b><%= t('cat') %>:</b>
-  <%= @course.cat %>
-  <br>
-  <b><%= t('description') %>:</b>
-  <%= @course.description %>
-</p>
-
-<% if can? :edit, :course %>
-  <%= link_to 'Edit', edit_course_path(@course) %>
-<% end %>
-
+<%= render "video_player", :course => @course %>
 
 <div id="comments">
   <h3><%= t("comment") %></h3>
@@ -37,3 +24,4 @@
     </div>
     <br \>
   <% end %>
+
