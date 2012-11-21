@@ -10,6 +10,9 @@
  *
  *= require_self
  */
+@import "vendor/twitter/style.css";
+@import "vendor/twitter/grid.css";
+@import "vendor/bootstrap";
 
 $main_width: 960px;
 
@@ -22,6 +25,17 @@ $main_width: 960px;
 #navbar {
   border-bottom: 2px solid #abc;
   padding-bottom: 0.5em;
+  ul.pull-right{
+    list-style: none;
+    position: relative;
+    float: right;
+    margin-top: 40px;
+    li {
+      margin-left: 5px;
+      float: left;
+      display: block;
+    }
+  }
 }
 
 a {
@@ -30,4 +44,9 @@ a {
 
 #notice {
   color: green;
+}
+
+ol#repos {
+// by default, ol has padding-left: 40px for items, which is not I want
+  padding: 0px;
 }

@@ -1,34 +1,17 @@
 <p id="notice"><%= notice %></p>
-<div id="course_no">
-  <h3>TOTAL: <%= @courses.count %> Courses</h3>
+
+<%= link_to "Create New Course", new_course_path %>
+
+<div id="wrapper" class="grid clearfix">
+  <ol id="repos">
+    <% if !@courses.empty? %>
+      <% @courses.each do |course| %>
+        <%= render course %>
+      <% end %>
+    <% else %>
+      <p>
+      No Courses found
+      </p>
+    <% end %>
+  </ol>
 </div>
-
-<table>
-  <tr>
-     <th>Name</th>
-     <th>Cover</th>
-     <th>Desc</th>
-  </tr>
-<% if !@courses.empty? %>
-  <% @courses.each do |course| %>
-  <p>
-    <tr>
-      <td>
-          <%= link_to course.name, course %>
-      </td>
-      <td>
-        <%= course.cover %>
-      </td>
-      <td>
-        <%= course.description %>
-      </td>
-     </tr>
-  </p>
-  <% end %>
-<% else %>
-  <p>
-  No user found
-  </p>
-<% end %>
-</table>
-
