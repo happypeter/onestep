@@ -7,6 +7,17 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @course = Course.find_by_name(params[:name])
+    if @course.nil?
+      redirect_to(:root, :notice => 'No such course')
+    end
+    if params[:no].present?
+      @video = Video.where(:course_id => @course.id,:no => params[:no].to_i).first
+    elsif @course.videos.empty?
+      @video = nil
+    else
+      @video = Video.where(:course_id => @course.id,:no => 0).first
+    end
     session[:return_to] = request.url
   end
 

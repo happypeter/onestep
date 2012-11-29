@@ -12,7 +12,11 @@ zh-CN:
   email: "邮箱"
   create_account: "创建用户"
   course_name: "课程名称"
-
+  add_this_video: "添加"
+  video_title: "视频标题"
+  videos: "视频"
+  video_link: "视频链接"
+  create_course: "创建课程"
   datetime:
     distance_in_words:
       about_x_hours:

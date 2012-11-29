@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121073049) do
+ActiveRecord::Schema.define(:version => 20121130061759) do
 
   create_table "comments", :force => true do |t|
     t.string   "content"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(:version => 20121121073049) do
     t.string   "token"
     t.boolean  "admin"
     t.string   "name"
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "link"
+    t.integer  "course_id"
+    t.integer  "no"
   end
 
 end
