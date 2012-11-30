@@ -1,3 +1,21 @@
-<%= div_for videos do %>
-      <%= link_to videos.title, "/courses/" + videos.course.name + "/" + videos.no.to_s%>
-<% end %>
+<ul class="nav nav-pills nav-stacked">
+  <% videos.each do |video| %>
+    <% if video.no == current_video.no %>
+      <li class = "active">
+        <% if video.no == 0 %>
+          <%= link_to t("course_intro")+ " (#{t('playing')})", "/courses/" + video.course.name %>
+        <% else %>
+          <%= link_to " 第#{video.no}课: " + video.title + " (#{t('playing')})", "/courses/" + video.course.name + "/" + video.no.to_s %>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <% if video.no == 0 %>
+          <%= link_to t("course_intro"), "/courses/" + video.course.name %>
+        <% else %>
+          <%= link_to "第#{video.no}课:" + video.title, "/courses/" + video.course.name + "/" + video.no.to_s %>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

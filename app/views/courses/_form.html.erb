@@ -12,16 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label t('course_name') %>  (小写不能带空格)
+    <br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :cat %><br />
+    <%= f.label t('course_title') %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label t('cat') %><br />
     <%= f.text_field :cat %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.label t('course_description') %><br />
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
     <%= f.submit %>

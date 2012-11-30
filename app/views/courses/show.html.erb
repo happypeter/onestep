@@ -6,29 +6,16 @@
   <%= render "video_player", :video => @video %>
 
   <div id="videos">
-    <h3><%= t("videos") %></h3>
-    <%= render :partial => "videos", :collection => @course.videos.reorder('no') %>
+    <h3><%= t("all_videos") %></h3>
+    <%= render "videos", :videos  => @course.videos.reorder('no'), :current_video => @video %>
   </div>
 
 <% else %>
-  Plz upload video
+  <%= t('no_classes') %>
 <% end %>
 
-      <div class="videos">
-        <div id="video_create_box">
-          <%= form_for(Video.new(:course_id => @course.id)) do |f| %>
-            <%= f.select :no, ((0..20).map {|i| [i,i] } << ["no", nil]) %>
-            <%= f.hidden_field :course_id %>
-            <%= f.label t("video_title") %>
-            <%= f.text_field :title %>
-            <br>
-            <%= f.label t("video_link") %>
-            <%= f.text_field :link %>
-            <br>
-            <%= f.submit "#{t('add_this_video')}", :class => "btn btn-success", :id => "comment_btn" %>
-          <% end %>
-        </div>
-      </div>
+
+<%= render "add_class", :course => @course %>
 
 <div id="comments">
   <h3><%= t("comment") %></h3>
