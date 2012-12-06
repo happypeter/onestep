@@ -14,7 +14,7 @@
 @import "global";
 @import "comment";
 @import "course";
-@import "docs";
+@import "info";
 
 
 .masthead {
@@ -23,6 +23,26 @@
 ul {
   padding-left: 0px;
 }
+body {
+  position: relative;
+  padding-top: 40px;
+}
+
+body > .navbar {
+  font-size: 18px;
+}
+
+/* Faded out hr */
+hr.soften {
+  height: 1px;
+  margin: 70px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
 
 /* sticky footer */
 html,body {
@@ -49,4 +69,19 @@ html,body {
    a {
      color: white;
    }
+  p {
+    margin-bottom: 0;
+    color: #777;
+  }
+  .footer-links {
+    margin: 10px 0;
+  }
+  .footer-links li {
+    display: inline;
+    padding: 0 2px;
+  }
+  .footer-links li:first-child {
+    padding-left: 0;
+  }
 }
+
