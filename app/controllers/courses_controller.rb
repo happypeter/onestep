@@ -4,6 +4,13 @@ class CoursesController < ApplicationController
   end
 
   def index
+    @courses = Course.all.reverse
+    @course_groups = []
+    @courses.each_index do |i|
+      if i%3 == 0
+        @course_groups << @courses[i..i+2]
+      end
+    end
   end
 
   def show

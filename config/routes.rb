@@ -12,5 +12,5 @@ Onestep::Application.routes.draw do
   match "logout" => "users#logout", :as => "logout"
   match "signup" => "users#signup", :as => "signup"
 
-  root :to => 'courses#index'
+  root :to => 'info#marketing'
 end

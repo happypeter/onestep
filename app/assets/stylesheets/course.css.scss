@@ -17,7 +17,31 @@ div#html5-player {
    }
   }
 }
-  
 #video_create_box {
   padding-left: 40px;
+}
+
+.all_courses_container {
+  background-color: $light-gray;
+  padding-bottom: 50px;
+  padding-top: 50px;
+
+  .course_panel {
+    background-color: white;
+    &:hover {
+      border: 1px solid darken($light-gray, 60%);
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    width: 310px;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid darken($light-gray, 20%);
+    .course_info {
+      padding: 5px;
+      text-align: center;
+    }
+  }
 }

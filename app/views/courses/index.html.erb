@@ -1,17 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="all_courses_container">
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+    <%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
+    <br>
+    <br>
 
-<%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
-
-<div id="wrapper" class="grid clearfix">
-  <ol id="repos">
-    <% if !@courses.empty? %>
-      <% @courses.each do |course| %>
-        <%= render course %>
+    <% if !@course_groups.empty? %>
+      <% @course_groups.each do |row| %>
+        <div class="row-fluid">
+          <% row.each do |course| %>
+            <%= render course %>
+          <% end %>
+        </div>
+        <br>
+        <br>
       <% end %>
     <% else %>
       <p>
       No Courses found
       </p>
     <% end %>
-  </ol>
+  </div>
 </div>

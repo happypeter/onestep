@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="marketing">
+
+
+
+    <h1>课程分类</h1>
+    <p class="marketing-byline"><%= t('marketing_course_cat') %></p>
+    <div class="row-fluid">
+      <ul class="thumbnails example-sites">
+        <li class="span4">
+          <a class="thumbnail" href="#">
+            <img src="http://twitter.github.com/bootstrap/assets/img/bs-docs-responsive-illustrations.png" alt="SoundReady.fm">
+          </a>
+        </li>
+        <li class="span4">
+          <a class="thumbnail" href="#">
+            <img src="http://twitter.github.com/bootstrap/assets/img/bs-docs-responsive-illustrations.png" alt="SoundReady.fm">
+          </a>
+        </li>
+        <li class="span4">
+          <a class="thumbnail" href="#">
+            <img src="http://twitter.github.com/bootstrap/assets/img/bs-docs-responsive-illustrations.png" alt="SoundReady.fm">
+          </a>
+        </li>
+      </ul>
+     </div>
+
+    <hr class="soften">
+
+    <h1>最受欢迎课程/免费课程/最新课程</h1>
+    <p class="marketing-byline"><%= link_to t("all_courses"), courses_path %></p>
+
+    <div class="all_courses_container">
+      <div class="container">
+        <% if !@recent_courses.empty? %>
+          <div class="row-fluid">
+            <% @recent_courses.each do |course| %>
+              <%= render "courses/course", :course => course %>
+            <% end %>
+          </div>
+      <% else %>
+          <p>
+          No Courses found
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+

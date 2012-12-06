@@ -9,21 +9,53 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container">
-    <div id="navbar">
-          <%= link_to image_tag("logo.png"), root_url %>
 
-          <ul class="pull-right">
-            <% if current_user %>
-              <li> <%= link_to current_user.name, user_path(current_user) %> </li> 
-              <li> <%= link_to t("logout"), logout_path %></li>
-            <% else %>
-              <li><%= link_to t("signup"), signup_path %> </li>
-              <li><%= link_to t("login"), login_path %></li>
-            <% end %>
-          </ul>
+  <div id="wrapper">
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <%= link_to t("home"), root_url %>
+              </li>
+              <li class="">
+                <%= link_to t("all_courses"), courses_path %>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <% if current_user %>
+                <li> <%= link_to current_user.name, user_path(current_user) %> </li> 
+                <li> <%= link_to t("logout"), logout_path %></li>
+              <% else %>
+                <li><%= link_to t("signup"), signup_path %> </li>
+                <li><%= link_to t("login"), login_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+
     <%= yield %>
-  </div>
+
+<!-- Footer
+    ================================================== -->
+      <div id="footer-push"></div><!-- hack for sticky footer -->
+    </div><!-- end of wrapper - hack for sticky footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="#">Blog</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="#">About</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+    </footer>
 </body>
 </html>

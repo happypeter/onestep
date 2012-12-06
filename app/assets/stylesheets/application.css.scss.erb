@@ -10,51 +10,43 @@
  *
  *= require_self
  */
-@import "vendor/twitter/style.css";
-@import "vendor/twitter/grid.css";
 @import "vendor/bootstrap";
 @import "global";
 @import "comment";
 @import "course";
+@import "docs";
 
-$main_width: 960px;
 
-#container {
-  width:$main_width;
-  text-align:left;
-  margin:0 auto;
+.masthead {
+  background: url(<%= asset_path 'hero.jpg' %>) center -10px no-repeat;
+}
+ul {
+  padding-left: 0px;
 }
 
-#navbar {
-  border-bottom: 2px solid #abc;
-  padding-bottom: 0.5em;
-  ul.pull-right{
-    list-style: none;
-    position: relative;
-    float: right;
-    margin-top: 40px;
-    li {
-      margin-left: 5px;
-      float: left;
-      display: block;
-    }
+/* sticky footer */
+html,body {
+  margin:0;
+  border:0;
+  height:100%;
+}
+#wrapper {
+  min-height:100%;
+  height:auto!important;
+  height:100%;
+  margin:0;
+  margin-bottom:-160px;
+  #footer-push {
+    height:160px;
+    clear:both;
   }
 }
-
-a {
-  color: green;
-}
-
-a.btn-success {
-  color: white;
-  font-weight: bold;
-}
-
-#notice {
-  color: green;
-}
-
-ol#repos {
-// by default, ol has padding-left: 40px for items, which is not I want
-  padding: 0px;
+.footer {
+   background-color: #252525;
+   min-height: 160px;
+   clear:both;
+   color: white;
+   a {
+     color: white;
+   }
 }

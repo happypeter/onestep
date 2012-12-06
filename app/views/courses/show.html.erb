@@ -1,26 +1,27 @@
-<p id="notice"><%= notice %></p>
-<script src="http://vjs.zencdn.net/c/video.js"></script>
+<div class='container'>
+  <p id="notice"><%= notice %></p>
+  <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 
-<% if @video %>
-  <%= render "video_player", :video => @video %>
+  <% if @video %>
+    <%= render "video_player", :video => @video %>
 
-  <div id="videos">
-    <h3><%= t("all_videos") %></h3>
-    <%= render "videos", :videos  => @course.videos.reorder('no'), :current_video => @video %>
+    <div id="videos">
+      <h3><%= t("all_videos") %></h3>
+      <%= render "videos", :videos  => @course.videos.reorder('no'), :current_video => @video %>
+    </div>
+
+  <% else %>
+    <%= t('no_classes') %>
+  <% end %>
+
+
+  <%= render "add_class", :course => @course %>
+
+  <div id="comments">
+    <h3><%= t("comment") %></h3>
+    <%= render :partial => "comments/editable_comment", :collection => @course.comments %>
   </div>
-
-<% else %>
-  <%= t('no_classes') %>
-<% end %>
-
-
-<%= render "add_class", :course => @course %>
-
-<div id="comments">
-  <h3><%= t("comment") %></h3>
-  <%= render :partial => "comments/editable_comment", :collection => @course.comments %>
-</div>
   <% if current_user %>
     <div class="comment">
       <div id="comment_box">
@@ -38,4 +39,4 @@
     </div>
     <br \>
   <% end %>
-
+</div>

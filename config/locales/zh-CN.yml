@@ -1,5 +1,9 @@
 zh-CN:
+  home: "首页"
+  all_courses: "全部课程"
+  marketing_course_cat: "TODO"
   course_name: "课程英文名"
+  tagline: "当科技向往艺术，让我们一起学习 web 开发"
   course_title: "课程标题"
   logout: "退出"
   no_classes: "课程表中还没有课"
