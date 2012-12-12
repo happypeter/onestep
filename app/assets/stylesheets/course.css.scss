@@ -1,3 +1,6 @@
+.course-show {
+  margin-top: 40px;
+}
 div#html5-player {
   border: 1px solid $light-gray;
   width: 768px;
@@ -5,24 +8,8 @@ div#html5-player {
   video#videojs {
     display: block;
   }
-  #title_area {
-   padding: 10px;
-   border: 3px solid $light-blue;
-   h2 {
-     margin-bottom: -10px;
-   }
-   p.light {
-     font-size: 90%;
-     color: $light-green;
-   }
-  }
 }
-#video_create_box {
-  padding-left: 40px;
-}
-
 .all_courses_container {
-  background-color: $light-gray;
   padding-bottom: 50px;
   padding-top: 50px;
   margin-bottom: 30px;
@@ -45,4 +32,7 @@ div#html5-player {
       text-align: center;
     }
   }
+}
+#course_info {
+  margin-top: 30px;
 }

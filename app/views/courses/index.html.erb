@@ -1,7 +1,8 @@
 <div class="all_courses_container">
   <div class="container">
-    <p id="notice"><%= notice %></p>
-    <%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
+    <% if current_user && current_user.admin? %>
+      <%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
+    <% end %>
     <br>
     <br>
 

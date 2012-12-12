@@ -19,7 +19,6 @@ $light-blue: #7ac9de;
 }
 @mixin textarea-style {
   display: inline-block;
-  padding: 5px;
   border: 1px solid darken($light-gray, 20%);
   font-size: 120%;
   @include rounded-corners(3px);
@@ -30,3 +29,25 @@ $light-blue: #7ac9de;
     @include onestep-shadow;
   }
 }
+.box {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #E2E2E9;
+  margin-bottom: 20px;
+
+  .cell, .box-header {
+    padding: 10px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+
+  .inner {
+    padding: 10px;
+  }
+
+  .header {
+    padding: 10px;
+    border-bottom: 1px solid #E2E2E2;
+  }
+}
+

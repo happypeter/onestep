@@ -2,17 +2,5 @@
   <video id="videojs" class="video-js vjs-default-skin" controls autoplay width="768" height="576" poster="" preload="auto" data-setup="{}">
   <source src="<%= video.link %>" type="video/mp4"/ >
   </video>
-  <div id="title_area">
-    <h2>
-      <%= video.course.title %>
-    </h2>
-    <p class="light"><%=video.course.cat.titleize %><p>
-    <p><%= video.course.description %><p>
-    <p>
-    <% if can? :edit, :course %>
-      <%= link_to 'Edit', edit_course_path(@course) %>
-    <% end %>
-    </p>
-  </div>
 </div>
 

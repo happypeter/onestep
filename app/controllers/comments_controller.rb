@@ -23,9 +23,9 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html do
         if @comment.errors.present?
-          render :new
+          redirect_to_target_or_default root_url
         else
-          redirect_to(course_path(@comment.course))
+          redirect_to_target_or_default root_url
         end
       end
       format.js
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment.course, notice: 'comment was successfully updated.' }
+        format.html { redirect_to_target_or_default root_url, notice: 'comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

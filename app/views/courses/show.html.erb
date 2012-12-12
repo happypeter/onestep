@@ -1,22 +1,19 @@
-<div class='container'>
-  <p id="notice"><%= notice %></p>
+<div class='course-show container'>
   <script src="http://vjs.zencdn.net/c/video.js"></script>
-
 
   <% if @video %>
     <%= render "video_player", :video => @video %>
-
-    <div id="videos">
-      <h3><%= t("all_videos") %></h3>
-      <%= render "videos", :videos  => @course.videos.reorder('no'), :current_video => @video %>
-    </div>
-
+    <%= render "course_info", :course => @course, :video => @video %>
   <% else %>
-    <%= t('no_classes') %>
+    <div class="alert">
+      <%= t('no_classes') %>
+    </div>
   <% end %>
 
 
-  <%= render "add_class", :course => @course %>
+  <% if current_user && current_user.admin? %>
+    <%= render "add_class", :course => @course %>
+  <% end %>
 
   <div id="comments">
     <h3><%= t("comment") %></h3>
@@ -29,13 +26,14 @@
           <%= f.hidden_field :course_id %>
           <%= f.hidden_field :user_id  %>
           <%= f.text_area :content %>
+          <br>
           <%= f.submit "#{t('publish_comment')}", :class => "btn btn-success", :id => "comment_btn" %>
         <% end %>
       </div>
     </div>
   <% else %>
     <div id="login_buttons">
-      <%= link_to "login_and_comment", login_path(:return_to => request.url) ,:class => "btn btn-success" %>
+      <%= link_to t("login_and_comment"), login_path(:return_to => request.url) ,:class => "btn btn-success" %>
     </div>
     <br \>
   <% end %>

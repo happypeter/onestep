@@ -2,6 +2,7 @@ Onestep::Application.routes.draw do
   get "courses/:name/:no" => "courses#show"
   get "create_course" => "courses#new"
   get "courses/:name" => "courses#show"
+  get "edit/:course_name" => "courses#edit"
   resources :courses
   resources :videos
 

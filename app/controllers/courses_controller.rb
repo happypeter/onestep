@@ -29,12 +29,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course = Course.find_by_name(params[:course_name])
   end
 
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to(@course, :notice => 'Course was successfully updated.') }
+        format.html { redirect_to_target_or_default root_url, :success => 'Course was successfully updated.' }
       else
         format.html { render :action => "edit" }
       end
@@ -44,9 +45,9 @@ class CoursesController < ApplicationController
   def create
     course = Course.new(params[:course])
     if course.save
-      redirect_to :root, :notice => "New course created successfully!"
+      redirect_to_target_or_default :root, :notice => "New course created successfully!"
     else
-      redirect_to :root, :notice => "Failed to creat new course!"
+      redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
     end
   end
 end
