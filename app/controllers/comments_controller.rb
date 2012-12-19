@@ -36,11 +36,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         format.html { redirect_to_target_or_default root_url, notice: 'comment was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -49,7 +48,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to_target_or_default root_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end
