@@ -1,0 +1,2 @@
+$('#course_info').replaceWith("<%= escape_javascript render "course_info", :course => @course, :video => @video %>");
+$('#html5-player').replaceWith("<%= escape_javascript render "video_player", :video => @video %>");

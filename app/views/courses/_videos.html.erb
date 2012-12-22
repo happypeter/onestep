@@ -1,19 +1,19 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked" id="video_list">
   <% videos.each do |video| %>
     <% if video.no == current_video.no %>
       <li class = "active">
         <% if video.no == 0 %>
-          <%= link_to t("course_intro")+ " (#{t('playing')})", "/courses/" + video.course.name %>
+          <%= link_to t("course_intro")+ " (#{t('playing')})", "/courses/" + video.course.name, :remote => true %>
         <% else %>
-          <%= link_to " 第#{video.no}课: " + video.title + " (#{t('playing')})", "/courses/" + video.course.name + "/" + video.no.to_s %>
+          <%= link_to " 第#{video.no}课: " + video.title + " (#{t('playing')})", "/courses/" + video.course.name + "/" + video.no.to_s, :remote => true %>
         <% end %>
       </li>
     <% else %>
       <li>
         <% if video.no == 0 %>
-          <%= link_to t("course_intro"), "/courses/" + video.course.name %>
+          <%= link_to t("course_intro"), "/courses/" + video.course.name, :remote => true %>
         <% else %>
-          <%= link_to "第#{video.no}课:" + video.title, "/courses/" + video.course.name + "/" + video.no.to_s %>
+          <%= link_to "第#{video.no}课:" + video.title, "/courses/" + video.course.name + "/" + video.no.to_s, :remote => true %>
         <% end %>
       </li>
     <% end %>
