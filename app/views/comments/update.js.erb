@@ -3,3 +3,10 @@
 <% else %>
   $("#<%= dom_id(@comment) %>").replaceWith("<%= escape_javascript render :partial => "editable_comment", :object => @comment %> ");
 <% end %>
+
+$(".actions").hide()
+$(".comment_body").mouseover(function() {
+   $(this).find("ul.actions").show();
+ }).mouseout(function() {
+   $("ul.actions").hide();
+   });
