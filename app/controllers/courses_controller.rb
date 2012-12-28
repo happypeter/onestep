@@ -26,10 +26,6 @@ class CoursesController < ApplicationController
       @video = Video.where(:course_id => @course.id,:no => 0).first
     end
     session[:return_to] = request.url
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def edit
