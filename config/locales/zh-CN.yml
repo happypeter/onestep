@@ -1,4 +1,6 @@
 zh-CN:
+  create_blog: "创建博客"
+  update_blog: "更新博客"
   update_comment: "更新评论"
   login_and_comment: "登陆说几句"
   course_poster_url: "课程封面图片"

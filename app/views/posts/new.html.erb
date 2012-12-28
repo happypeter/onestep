@@ -1,0 +1,18 @@
+<div class= "container">
+  <div class="box">
+    <div class="box-header">
+      <%= link_to @current_user.name, @current_user%>
+      is writing...
+    </div>
+    <div class="inner">
+      <%= form_for @post do |f| %>
+        <%= f.text_field :title %>
+        <br>
+        <br>
+        <%= f.text_area :content %>
+        <br>
+        <%= f.submit t("create_blog"), :class=>"btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>

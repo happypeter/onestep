@@ -4,6 +4,10 @@ Onestep::Application.routes.draw do
   get "courses/:name" => "courses#show"
   get "edit/:course_name" => "courses#edit"
   get "about" => "info#about", :as => "about"
+  get "/blog" => "posts#index", :as => "blogs"
+  get "/blog/:id" => "posts#show"
+  get "/write_blog" => "posts#new"
+  resources :posts
   resources :courses
   resources :videos
 
