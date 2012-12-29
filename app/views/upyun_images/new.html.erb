@@ -1,0 +1,10 @@
+<div class="container">
+  <%= form_for @upyun_image, :html => {:multipart => true} do |f| %>
+    <p>
+      <%= f.file_field :asset %>
+      <br>
+      <br>
+      <%= f.submit "upload" %>
+    </p>
+  <% end %>
+</div>

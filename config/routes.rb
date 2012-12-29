@@ -9,6 +9,7 @@ Onestep::Application.routes.draw do
   get "/write_blog" => "posts#new"
   resources :posts
   resources :courses
+  resources :upyun_images
   resources :videos
 
   resources :users
