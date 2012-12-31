@@ -1,5 +1,4 @@
 Onestep::Application.routes.draw do
-  resources :blog, :controller => "posts"
   get "courses/:name/:no" => "courses#show"
   get "create_course" => "courses#new"
   get "courses/:name" => "courses#show"
