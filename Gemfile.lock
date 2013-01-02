@@ -56,13 +56,20 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    haml (3.1.7)
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-fileupload-rails (0.4.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (2.1.2)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (3.0.0)
+      jquery-rails
+      railties (>= 3.1.0)
     jruby-pageant (1.1.1)
     json (1.7.5)
     kgio (2.7.4)
@@ -150,7 +157,10 @@ DEPENDENCIES
   carrierwave (~> 0.6.2)
   carrierwave-upyun (~> 0.1.6)
   coffee-rails (~> 3.2.1)
+  haml
+  jquery-fileupload-rails
   jquery-rails
+  jquery-ui-rails
   mime-types
   mysql2
   rails (= 3.2.8)
