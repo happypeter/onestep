@@ -1,0 +1,12 @@
+.blog-post
+  .top-rule
+  .meta
+    = post.created_at.strftime('%b %d, %Y')
+    - if post.user
+      , by
+      = link_to post.user.name, post.user
+    %h2.title= link_to post.title, "/blog/#{post.id}"
+  .markdown-body
+    = markdown post.content
+    - if current_user && current_user.admin?
+      = link_to t("edit_blog"), edit_post_path(post), :class => "btn btn-small"

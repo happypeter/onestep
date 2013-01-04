@@ -17,6 +17,15 @@ $light-blue: #7ac9de;
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
+@mixin chinese-style {
+  font-family: 'Microsoft YaHei', 微软雅黑, 'SimSun', Arial, Lucida Grande, Tahoma, sans-serif;
+  text-align: left;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  color: rgb(102, 102, 102);
+  letter-spacing: 2px;
+}
 @mixin textarea-style {
   display: inline-block;
   border: 1px solid darken($light-gray, 20%);
@@ -78,4 +87,33 @@ code {
   border: 1px solid #EAEAEA;
   background-color: #F8F8F8;
   border-radius: 3px;
+}
+
+@mixin markdown-style {
+  ul {
+    padding-left: 30px;
+  }
+  h1 {
+    font-size: 18px;
+    font-weight: normal;
+    color: rgb(0, 153, 138);
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(0, 153, 138);
+  }
+  img {
+    padding: 1px;
+    border: 1px solid #EEE;
+  }
+  blockquote {
+    font-style: italic;
+    position: relative;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    padding-left: 1em;
+    border-left: 4px solid rgba(170, 170, 170, 0.5);
+
+  }
 }
