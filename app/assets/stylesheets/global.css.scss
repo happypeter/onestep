@@ -51,3 +51,31 @@ $light-blue: #7ac9de;
   }
 }
 
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: whiteSmoke;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  code {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+  }
+}
+code {
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F8F8;
+  border-radius: 3px;
+}

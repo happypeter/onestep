@@ -33,6 +33,59 @@ zh-CN:
   video_title: "标题"
   video_link: "链接"
   create_course: "创建课程"
+  date:
+    abbr_day_names:
+    - 日
+    - 一
+    - 二
+    - 三
+    - 四
+    - 五
+    - 六
+    abbr_month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 星期日
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%Y年%b%d日'
+      short: ! '%b%d日'
+    month_names:
+    - 
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
+    order:
+    - :year
+    - :month
+    - :day
   datetime:
     distance_in_words:
       about_x_hours:
@@ -69,3 +122,10 @@ zh-CN:
       x_seconds:
         one: 一秒
         other: ! '%{count} 秒'
+    prompts:
+      day: 日
+      hour: 时
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年

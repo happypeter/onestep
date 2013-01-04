@@ -9,4 +9,4 @@
         = render 'shared/fileupload_widget', :textarea_selector => "textarea#post_content" if Settings.upyun.switch == 'on'
         = f.text_area :content , :id => "post_content", :row => 5, :style => "width: 98%"
         <br>
-        = f.submit t("create_blog"), :class=>"btn"
+        = f.submit :class=>"btn"

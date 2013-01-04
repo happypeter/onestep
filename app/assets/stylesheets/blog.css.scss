@@ -1,0 +1,64 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blog-post {
+  width: 70%;
+  .box {
+    padding-left: 45%;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    .box-header{
+      padding-left: 0px;
+      .meta {
+        color: #999;
+        a {
+          color: #999;
+        }
+      }
+    }
+    .inner {
+      padding: 0;
+      padding-right: 10px;
+    }
+  }
+  h2.title {
+    margin-top: 10px;
+    color: #4183C4;
+    font-size: 30px;
+  }
+  font-family: 'Microsoft YaHei', 微软雅黑, 'SimSun', Arial, Lucida Grande, Tahoma, sans-serif;
+  text-align: left;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 22px;
+  color: rgb(102, 102, 102);
+  letter-spacing: 2px;
+}
+.markdown-body {
+  ul {
+    padding-left: 30px;
+  }
+  h1 {
+    font-size: 15px;
+    font-weight: normal;
+    color: rgb(0, 153, 138);
+  }
+  h2 {
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(0, 153, 138);
+  }
+  img {
+    padding: 1px;
+    border: 1px solid #EEE;
+  }
+  blockquote {
+    font-style: italic;
+    position: relative;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    padding-left: 1em;
+    border-left: 4px solid rgba(170, 170, 170, 0.5);
+  }
+}
