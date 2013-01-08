@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     post = Post.new(params[:post])
     post.user_id = current_user.id
     if post.save
-      redirect_to post_path(post), :notice => "New blog created successfully!"
+      redirect_to blog_path(post), :notice => "New blog created successfully!"
     else
       render "new"
     end

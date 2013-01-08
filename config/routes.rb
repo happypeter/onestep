@@ -5,7 +5,7 @@ Onestep::Application.routes.draw do
   get "edit/:course_name" => "courses#edit"
   get "about" => "info#about", :as => "about"
   get "/blog" => "posts#index", :as => "blogs"
-  get "/blog/:id" => "posts#show"
+  get "/blog/:id" => "posts#show", :as => "blog"
   get "/write_blog" => "posts#new"
   put "/upyun_images" => "upyun_images#create" #for file-upload on posts#edit
   resources :posts

@@ -5,7 +5,7 @@
     - if post.user
       , by
       = link_to post.user.name, post.user
-    %h2.title= link_to post.title, "/blog/#{post.id}"
+    %h2.title= link_to post.title, blog_path(post)
   .markdown-body
     = markdown post.content
     - if current_user && current_user.admin?
