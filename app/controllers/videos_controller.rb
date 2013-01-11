@@ -14,9 +14,9 @@ class VideosController < ApplicationController
   def create
     video = Video.new(params[:video])
     if video.save
-       redirect_to("/courses/" + @video.course.name, :notice => 'Video created.')
+       redirect_to course_path(video.course)
     else
-       redirect_to("/courses/" + @video.course.name, :notice => 'failed')
+       redirect_to course_path(video.course)
     end
   end
 end

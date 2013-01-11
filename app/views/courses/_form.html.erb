@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label t('course_name') %>  (小写不能带空格)
+    <%= f.label t('course_name') %>
     <br />
     <%= f.text_field :name %>
   </div>
@@ -32,7 +32,7 @@
     <%= f.label t('course_description') %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
+  <div>
     <%= f.submit %>
   </div>
 <% end %>

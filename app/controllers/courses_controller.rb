@@ -14,12 +14,12 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find_by_name(params[:name])
+    @course = Course.find(params[:course_name])
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     end
-    if params[:no].present?
-      @video = Video.where(:course_id => @course.id,:no => params[:no].to_i).first
+    if params[:video_no].present?
+      @video = Video.where(:course_id => @course.id,:no => params[:video_no].to_i).first
     elsif @course.videos.empty?
       @video = nil
     else
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
   def create
     course = Course.new(params[:course])
     if course.save
-      redirect_to_target_or_default :root, :notice => "New course created successfully!"
+      redirect_to course_url(course), :notice => "New course created successfully!"
     else
       redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
     end
