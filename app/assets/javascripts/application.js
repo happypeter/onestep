@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require jquery_at_caret
 //= require comments
-//= require_tree .
+//= require i_bootstrap

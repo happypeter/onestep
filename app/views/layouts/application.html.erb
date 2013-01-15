@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Hpcasts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= favicon_link_tag %>
   <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
@@ -26,6 +27,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="">
@@ -48,6 +54,7 @@
         </div>
       </div>
     </div>
+
     <%= yield %>
 
 <!-- Footer
