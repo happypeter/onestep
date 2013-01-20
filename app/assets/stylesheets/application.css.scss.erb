@@ -18,7 +18,34 @@
 @import "info";
 
 .masthead {
-  background: url(<%= asset_path 'hero.jpg' %>) center -10px no-repeat;
+  padding: 70px 0 80px;
+  background: url(<%= asset_path 'imac.jpg' %>) center -10px no-repeat;
+  position: relative;
+  height: 400px;
+  background-color: #DEDDE3;
+  #mini-player {
+    position: absolute;
+    top: 50%;
+    margin-top: -212px;
+    width: 446px;
+    margin-left: -417px;
+    left: 50%;
+    video#videojs {
+      display: block;
+      width:446px;
+    }
+  }
+  #site-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -222px;
+    margin-left: 90px;
+    background-color: white;
+    width: 330px;
+    height: 400px;
+    padding: 10px;
+  }
 }
 ul {
   padding-left: 0px;

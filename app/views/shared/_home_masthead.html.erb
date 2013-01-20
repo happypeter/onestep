@@ -1,17 +1,11 @@
-  <div class="jumbotron masthead">
+  <div class="masthead">
     <div class="container">
-      <h1>HPCASTS</h1>
-      <p>
-        <%= t('tagline') %>
-      </p>
-      <p>
-        <%= link_to t("signup"), signup_path, :class => "btn btn-success btn-large" %>
-      </p>
-      <ul class="masthead-links">
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
+      <%= render 'shared/mini_player' %>
+      <div id="site-info">
+        <h1>HPCASTS</h1>
+        <p>
+          <%= t('tagline') %>
+        </p>
+      </div>
     </div>
   </div>
-
