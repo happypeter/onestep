@@ -32,20 +32,18 @@
 
     <hr class="soften">
 
-    <div class="all_courses_container">
-      <div class="container">
-        <% if !@recent_courses.empty? %>
-          <div class="row-fluid">
-            <% @recent_courses.each do |course| %>
-              <%= render "courses/course", :course => course %>
-            <% end %>
-          </div>
+    <div class="container">
+      <% if !@recent_courses.empty? %>
+        <div class="row-fluid">
+          <% @recent_courses.each do |course| %>
+            <%= render "courses/course", :course => course %>
+          <% end %>
+        </div>
       <% else %>
-          <p>
-          No Courses found
-          </p>
-        <% end %>
-      </div>
+        <p>
+        No Courses found
+        </p>
+      <% end %>
     </div>
   </div>
 
