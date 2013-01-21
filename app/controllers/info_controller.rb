@@ -6,5 +6,11 @@ class InfoController < ApplicationController
   def about
   end
 
+  def team
+  end
+
+  def work 
+  end
+
 end
 
