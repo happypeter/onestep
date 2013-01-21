@@ -1,10 +1,11 @@
 <div class="span4">
-  <a href="<%= course_path(course) %>">
     <div class="course_panel">
-      <img src="<%= poster_link course %>"></img>
+      <a href="<%= course_path(course) %>">
+        <img src="<%= poster_link course %>"></img>
+      </a>
       <div class="course_info">
-        <h2> <%= course.title %> </h2>
+        <h4> <%= course.cat %> :</h4>
+         <%= link_to course.title, course %>
       </div>
     </div>
-  </a>
 </div>

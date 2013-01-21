@@ -1,25 +1,23 @@
-<div class="all_courses_container">
-  <div class="container">
-    <% if current_user && current_user.admin? %>
-      <%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
-    <% end %>
-    <br>
-    <br>
+<div class="container">
+  <% if current_user && current_user.admin? %>
+    <%= link_to t("create_course"), "/create_course", :class => "btn btn-success" %>
+  <% end %>
+  <br>
+  <br>
 
-    <% if !@course_groups.empty? %>
-      <% @course_groups.each do |row| %>
-        <div class="row-fluid">
-          <% row.each do |course| %>
-            <%= render course %>
-          <% end %>
-        </div>
-        <br>
-        <br>
-      <% end %>
-    <% else %>
-      <p>
-      No Courses found
-      </p>
+  <% if !@course_groups.empty? %>
+    <% @course_groups.each do |row| %>
+      <div class="row-fluid">
+        <% row.each do |course| %>
+          <%= render course %>
+        <% end %>
+      </div>
+      <br>
+      <br>
     <% end %>
-  </div>
+  <% else %>
+    <p>
+    No Courses found
+    </p>
+  <% end %>
 </div>

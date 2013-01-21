@@ -23,7 +23,7 @@
   <div id="wrapper">
     <!-- Navbar
     ================================================== -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
           <div class="nav-collapse collapse">
@@ -55,21 +55,42 @@
 
 <!-- Footer
     ================================================== -->
-      <div id="footer-push"></div><!-- hack for sticky footer -->
-    </div><!-- end of wrapper - hack for sticky footer -->
-    <footer class="footer">
-      <div class="container">
-        <ul class="footer-links">
-          <li><a href="/blog">Blog</a></li>
-          <li class="muted">&middot;</li>
-          <li><a href="/about">About</a></li>
-          <li class="muted">&middot;</li>
-          <li><a href="#">Roadmap</a></li>
-        </ul>
-      </div>
-    </footer>
+    <div id="footer-push"></div><!-- hack for sticky footer -->
+  </div><!-- end of wrapper - hack for sticky footer -->
+  <footer class="footer">
+    <div class="container">
+      <dl class="footer_nav">
+        <dt>This Site</dt>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/about">About</a></dd>
+      </dl>
+      <dl class="footer_nav">
+        <dt>This Site</dt>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/about">About</a></dd>
+      </dl>
+      <dl class="footer_nav">
+        <dt>This Site</dt>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/about">About</a></dd>
+      </dl>
+      <dl class="footer_nav">
+        <dt>This Site</dt>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/about">About</a></dd>
+      </dl>
+      <dl class="footer_nav">
+        <dt>This Site</dt>
+        <dd><a href="/blog">Blog</a></dd>
+        <dd><a href="/about">About</a></dd>
+      </dl>
+      <br>
+      <hr class="footer-divider">
+      <p class="right">© 2013 Hpcasts Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
   <%= javascript_include_tag "application" %>
   <%= yield :template_js %>
-
 </body>
 </html>

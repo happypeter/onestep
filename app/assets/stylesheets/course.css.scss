@@ -9,30 +9,32 @@ div#html5-player {
     display: block;
   }
 }
-.all_courses_container {
-  padding-bottom: 50px;
-  padding-top: 50px;
-  margin-bottom: 30px;
-
-  .course_panel {
-    background-color: white;
-    &:hover {
-      border: 1px solid darken($light-gray, 60%);
-    }
-    img {
-      display: block;
-      margin: 0 auto;
-    }
-    width: 310px;
+.course_panel {
+  background-color: white;
+  img {
+    display: block;
     margin: 0 auto;
-    padding: 5px;
     border: 1px solid darken($light-gray, 20%);
-    .course_info {
+    padding: 5px;
+  }
+  width: 310px;
+  margin: 0 auto;
+  .course_info {
+    width: 100%;
+    color: red;
+    bottom: 0;
+    overflow: hidden;
+    margin-bottom: 30px;
+    @include chinese-style;
+    h4 {
+      color: green;
       padding: 5px;
-      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 0px;
+    }
+    a {
+      display: block;
+      padding-left: 5px;
     }
   }
-}
-#course_info {
-  margin-top: 30px;
 }
