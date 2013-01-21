@@ -33,3 +33,9 @@
   display: block;
   margin: 0 auto 30px;
 }
+.teasers {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  text-align: center;
+}
