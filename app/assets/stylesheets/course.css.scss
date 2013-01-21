@@ -9,7 +9,7 @@ div#html5-player {
     display: block;
   }
 }
-.course_panel {
+.course-panel {
   background-color: white;
   img {
     display: block;
@@ -19,7 +19,7 @@ div#html5-player {
   }
   width: 310px;
   margin: 0 auto;
-  .course_info {
+  .course-info {
     width: 100%;
     color: red;
     bottom: 0;
@@ -27,13 +27,17 @@ div#html5-player {
     margin-bottom: 30px;
     @include chinese-style;
     h4 {
-      color: green;
       padding: 5px;
+      font-size: 25px;
       margin-top: 5px;
-      margin-bottom: 0px;
+      margin-bottom: 10px;
     }
     a {
       display: block;
+      font-size: 18px;
+      &:hover {
+        text-decoration: none;
+      }
       padding-left: 5px;
     }
   }
