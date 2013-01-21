@@ -121,26 +121,35 @@ html,body {
   }
 }
 .footer {
-   background-color: #252525;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(119, 119, 119);
+  text-shadow: 0 1px 0 white;
+  .container {
+    border-top: 1px solid rgb(229, 229, 229);
+    padding: 30px 0px;
+    .footer-divider {
+      margin: 0 0 20px;
+      border: 0;
+      border-top: 1px solid rgb(238, 238, 238);
+    }
+  }
    min-height: 160px;
    clear:both;
-   color: white;
-   a {
-     color: white;
-   }
-  p {
-    margin-bottom: 0;
-    color: #777;
-  }
   .footer-links {
     margin: 10px 0;
   }
-  .footer-links li {
-    display: inline;
-    padding: 0 2px;
-  }
-  .footer-links li:first-child {
-    padding-left: 0;
+  .footer_nav {
+    dt {
+      color: rgb(82, 89, 93);
+      font-weight: bold;
+    }
+    dd {
+      margin-left: 0;
+    }
+    width: 20%;
+    float: left;
+    margin-bottom: 20px;
   }
 }
 
