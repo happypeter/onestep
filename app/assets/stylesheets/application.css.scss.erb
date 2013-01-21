@@ -16,6 +16,7 @@
 @import "course";
 @import "blog"; //☃
 @import "info";
+@import "about";
 
 .masthead {
   padding: 200px 0 80px;
@@ -178,12 +179,12 @@ a.action_label {
   color: #666;
   border-bottom: none;
   text-decoration: none;
+  &:hover {
+    background-color: #ccc;
+    color: #333;
+  }
 }
 
-a.action_label:hover {
-  background-color: #ccc;
-  color: #333;
-}
 
 .btn-hpcasts {
   background-image: -webkit-linear-gradient(top, #509D5A, #31813B);
@@ -193,4 +194,12 @@ a.action_label:hover {
 
 .btn-hpcasts:hover {
   background-color: #000000;
+}
+
+a {
+  color: $logo-green;
+  &:hover {
+    color: $logo-light-green;
+    text-decoration: none;
+  }
 }
