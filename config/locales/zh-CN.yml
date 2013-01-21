@@ -16,6 +16,7 @@ zh-CN:
   cat: "分类"
   login: "登录"
   signup: "注册"
+  signup_free: "免费注册"
   comment: "评论"
   publish_comment: "发表评论"
   course_description: "课程描述"

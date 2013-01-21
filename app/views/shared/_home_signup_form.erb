@@ -1,0 +1,28 @@
+<%= form_for @user, :class => "home-signup" do |f|  %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <dl class="form">
+    <dd>
+      <%= f.text_field :name, :placeholder => "Pick a username" %>
+    </dd>
+  </dl>
+  <dl class="form">
+    <dd>
+      <%= f.text_field :email, :placeholder => "Email" %>
+    </dd>
+  </dl>
+  <dl class="form">
+    <dd>
+      <%= f.password_field :password, :placeholder => "Password"%>
+    </dd>
+  </dl>
+  <div class="action"><%= f.submit t("signup_free"), :class => "btn btn-success" %></div>
+<% end %>
