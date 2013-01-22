@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="modal" id="<%= course.id %>">
+<div class="modal" id="<%= course.id %>" style="display: none">
   <button class="close" data-dismiss="modal">×</button>
   <%= render 'shared/mini_player' %>
 </div>
@@ -22,8 +22,3 @@
   }
 </style>
 
-<%= content_for :template_js do %>
-  <script>
-    $('#<%= course.id %>').hide()
-  </script>
-<% end %>

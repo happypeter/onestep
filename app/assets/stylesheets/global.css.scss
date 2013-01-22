@@ -1,8 +1,8 @@
 $light-gray: #ececec;
-$light-green: #75AE07;
 $light-blue: #7ac9de;
-$logo-green: #529f86;
-$logo-light-green: #2fc897;
+$background-green: #529f86;
+$link-green: #008C7E; /* http://www.sunshine-library.org/q-a/ */
+
 @mixin onestep-shadow {
   -webkit-box-shadow: 0 0 6px $light-gray;
   -moz-box-shadow: 0 0 6px $light-gray;
@@ -124,4 +124,7 @@ hr {
 }
 .right {
   float: right;
+}
+.chinese {
+  @include chinese-style;
 }

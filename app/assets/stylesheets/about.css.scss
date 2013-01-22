@@ -1,3 +1,8 @@
 .thumbnail {
   text-align: center;
 }
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+  color: white;
+  background-color: $background-green;
+}
