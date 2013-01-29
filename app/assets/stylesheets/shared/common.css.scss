@@ -1,0 +1,84 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+body {
+  position: relative;
+  @include chinese-style;
+  font-size: 20px;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+a {
+  color: $link-green;
+  &:hover {
+    color: $link-green;
+    text-decoration: underline;
+  }
+}
+
+/* Faded out hr */
+hr.soften {
+  height: 1px;
+  margin: 70px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+/* Faded out hr for small top&bottom margin */
+hr.small_soften {
+  height: 1px;
+  margin: 2em 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: whiteSmoke;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  code {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+  }
+}
+
+code {
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F8F8;
+  border-radius: 3px;
+}
+
+hr {
+  clear: both;
+}
+
+.right {
+  float: right;
+}
+
+.chinese {
+  @include chinese-style;
+}

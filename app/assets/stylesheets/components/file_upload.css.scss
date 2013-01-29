@@ -1,0 +1,32 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.fileupload-btn {
+  position: relative;
+
+  input#fileupload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+
+  }
+}
+
+a.action_label {
+  border: 1px solid #CCC;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 5px 8px 2px;
+  color: #666;
+  border-bottom: none;
+  text-decoration: none;
+  &:hover {
+    background-color: #ccc;
+    color: #333;
+  }
+}
+
