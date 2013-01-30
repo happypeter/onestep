@@ -24,6 +24,10 @@
 @import "bootstrap-responsive";
 
 
+/////////////////////////
+
+@import "globals/variables";
+@import "globals/mixins";
 
 @mixin override_gradient_vertical() {
   background-color:transparent;
@@ -60,5 +64,16 @@
 
   // Prevent floats from breaking the navbar
   @include clearfix();
+  .brand {
+    a {
+      color: black;
+      font-weight: bold;
+      font-size: 25px;
+      &:hover {
+        color: $link-green;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
