@@ -1,4 +1,8 @@
+@import "globals/variables";
+@import "globals/mixins";
+
 $comment-color: #E0E8EC;
+
 div.comment {
   a {
     text-decoration:none;

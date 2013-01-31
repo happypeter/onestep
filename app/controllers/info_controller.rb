@@ -10,7 +10,7 @@ class InfoController < ApplicationController
   def team
   end
 
-  def work 
+  def work
   end
 
 end

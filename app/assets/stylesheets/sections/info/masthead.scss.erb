@@ -1,0 +1,60 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.masthead {
+  padding: 200px 0 80px;
+  background: url(<%= asset_path 'imac.jpg' %>) center no-repeat;
+  position: relative;
+  height: 400px;
+  background-color: rgb(250, 250, 250);
+  border-bottom: 1px solid rgb(229, 229, 229);
+  .mini-player {
+    position: absolute;
+    top: 50%;
+    margin-top: -252px;
+    margin-left: -417px;
+    left: 50%;
+  }
+  .home-signup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -232px;
+    margin-left: 90px;
+    .action {
+      margin-top: 30px;
+    }
+    .btn {
+      width: 100%;
+      padding: 19px 24px;
+      font-size: 24px;
+      font-weight: 200;
+      color: white;
+      border: 0;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),0 1px 5px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1),0 1px 5px rgba(0,0,0,0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),0 1px 5px rgba(0, 0, 0, 0.25);
+      -webkit-transition: none;
+      -moz-transition: none;
+      transition: none;
+    }
+  }
+  dl.form {
+    margin: 0 0 10px;
+    position: relative;
+    dd {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+  }
+  dl.form dd input {
+    padding: 9px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+}
+

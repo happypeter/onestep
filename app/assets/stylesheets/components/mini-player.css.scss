@@ -1,0 +1,10 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.mini-player {
+  video#videojs {
+    display: block;
+    width:446px;
+  }
+}
+

@@ -1,0 +1,40 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.marketing {
+  text-align: center;
+  color: $font-gray;
+  h1 {
+    margin: 60px 0 10px;
+    font-size: 60px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-weight: 200;
+    margin-bottom: 5px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .marketing-byline {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.25;
+    color: #999;
+  }
+  .teaser img {
+    display: block;
+    margin: 0 auto 30px;
+  }
+  .teasers {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-align: center;
+  }
+}
+
