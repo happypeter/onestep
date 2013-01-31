@@ -3,17 +3,29 @@
     <% if video.no == current_video.no %>
       <li class = "active">
         <% if video.no == 0 %>
-          <%= link_to t("course_intro")+ " (#{t('playing')})", course_path(video.course) %>
+          <a href="<%= course_path video.course %>">
+            <i class="icon-facetime-video"></i>
+            <%= t("course_intro") %>
+          </a>
         <% else %>
-          <%= link_to " 第#{video.no}课: " + video.title + " (#{t('playing')})", course_path(video.course) + "/" + video.no.to_s %>
+          <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
+            <i class="icon-facetime-video"></i>
+            第 <%= video.no %> 课
+          </a>
         <% end %>
       </li>
     <% else %>
       <li>
         <% if video.no == 0 %>
-          <%= link_to t("course_intro"), course_path(video.course) %>
+          <a href="<%= course_path video.course %>">
+            <i class="icon-facetime-video"></i>
+            <%= t("course_intro") %> 
+          </a>
         <% else %>
-          <%= link_to "第#{video.no}课:" + video.title, course_path(video.course) + "/" + video.no.to_s %>
+          <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
+            <i class="icon-facetime-video"></i>
+            第 <%= video.no %> 课
+          </a>
         <% end %>
       </li>
     <% end %>
