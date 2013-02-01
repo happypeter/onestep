@@ -7,7 +7,6 @@
 div#html5-player {
   border: 1px solid $light-gray;
   width: 768px;
-  margin: 0 auto;
   video#videojs {
     display: block;
   }
@@ -50,4 +49,28 @@ a.course-thumb {
       padding: 5px;
     }
   }
+}
+.left-part {
+  width: 30%;
+  float: left;
+  .play-list {
+    .nav-pills > .active > a, .nav-pills > .active > a:hover {
+      background-color: #eee;
+      color: darken($light-gray, 50%);
+      border-left: 1px solid #ccc;
+      padding: 20px;
+    }
+    .nav-pills.nav-stacked > li > a {
+      padding: 20px;
+      color: darken($light-gray, 50%);
+      &:hover {
+        color: $background-green;
+      }
+    }
+  }
+}
+.right-part {
+  border-left: 2px solid #ccc;
+  padding-left: 10px;
+  float: left;
 }

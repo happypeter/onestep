@@ -31,6 +31,7 @@ zh-CN:
   playing: "正在播放"
   video_no: "排序"
   video_title: "标题"
+  video_desc: "视频描述"
   video_link: "链接"
   create_course: "创建课程"
   date:

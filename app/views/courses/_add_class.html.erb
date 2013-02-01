@@ -17,6 +17,8 @@
       <% if not course.videos.empty? %>
         <%= f.label t("video_title") %>
         <%= f.text_field :title %>
+        <%= f.label t("video_desc") %>
+        <%= f.text_field :desc %>
         <br>
         <br>
       <% end %>

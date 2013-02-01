@@ -1,0 +1,7 @@
+  <div class="play-list">
+    <h3><%= course.title %></h3>
+    <div>
+      <%= render "videos", :videos  => course.videos.reorder('no'), :current_video => video %>
+    </div>
+  </div>
+
