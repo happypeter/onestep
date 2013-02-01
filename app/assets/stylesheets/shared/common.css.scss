@@ -82,3 +82,6 @@ hr {
 .chinese {
   @include chinese-style;
 }
+.clear-fix {
+  clear: both;
+}

@@ -1,23 +1,13 @@
-<div id="course_info" class="row-fluid">
-  <div class="course_intro box span4">
-    <h2 class="box-header">
-      <%= course.title %>
-    </h2>
-    <div class ="inner">
-      <p class="light"><%=course.cat.titleize %><p>
-      <p><%= course.description %><p>
-      <p>
+<div id="course-info" class="row-fluid">
+    <h3>
+      Course intro
+    </h3>
+    <p>
+      <%=course.cat.titleize %>
+      <%= course.description %>
       <% if current_user && current_user.admin? %>
         <%= link_to 'Edit', "/edit/#{course.name}"%>
       <% end %>
-      </p>
-    </div>
-  </div>
-  <div class="videos  box span8">
-    <h3 class="box-header"><%= t("all_videos") %></h3>
-    <div class ="inner">
-      <%= render "videos", :videos  => course.videos.reorder('no'), :current_video => video %>
-    </div>
-  </div>
+    </p>
 </div>
 
