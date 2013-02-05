@@ -1,0 +1,30 @@
+.tabnav {
+  margin: 10px 0;
+  border-bottom: 1px solid #DDD;
+  height: 35px;
+  .tabnav-tabs {
+    display: inline-block;
+    padding-left: 10px;
+    li {
+      display: inline-block;
+    }
+  }
+
+  .tabnav-tab {
+    display: inline-block;
+    margin-bottom: -1px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+  }
+  .tabnav-tab.selected {
+    border-color: #DDD;
+    border-radius: 3px 3px 0 0;
+    background-color: white;
+    color: #333;
+    font-weight: bold;
+  }
+}

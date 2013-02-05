@@ -1,17 +1,6 @@
-<%= div_for @comment, :class => "edit_comment_form" do %>
-  <div class="box">
-    <div class="box-header comment_head">
-      <%= link_to @comment.user.name, @comment.user%>
-      说
-      <span class="comment_time">
-        <%= time_ago_in_words @comment.created_at  %>前
-      </span>
-    </div>
-    <div class="inner comment_body">
-      <%= form_for @comment, :remote => true do |f| %>
-        <%= f.text_area :content %>
-        <%= f.submit t("update_comment"), :class=>"btn", :remote => true, :id => "comment_btn" %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+<div class="form-content">
+ <%= form_for @comment, :remote => true do |f| %>
+    <%= f.text_area :content %>
+    <%= f.submit t("update_comment"), :class=>"btn", :remote => true, :id => "comment_btn" %>
+  <% end %>
+</div>

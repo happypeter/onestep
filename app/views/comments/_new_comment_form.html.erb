@@ -1,0 +1,22 @@
+<div class="bubble">
+  <div class="bubble-inner">
+    <div class="previewable-comment-form">
+      <div class="comment-form-head tabnav">
+        <ul class="tabnav-tabs">
+          <li><a href="#" class="tabnav-tab selected">Write</a></li>
+          <li><a href="#" class="tabnav-tab">Preview</a></li>
+        </ul>
+      </div>
+      <div class="write-content">
+        <%= form_for(Comment.new(:video_id => @video.id, :user_id => current_user.id), :remote => true) do |f| %>
+          <%= f.hidden_field :video_id %>
+          <%= f.hidden_field :user_id  %>
+          <%= f.text_area :content %>
+          <br>
+          <%= f.submit "#{t('publish_comment')}", :class => "btn btn-success", :id => "comment_btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
