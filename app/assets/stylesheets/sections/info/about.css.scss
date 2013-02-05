@@ -1,6 +1,9 @@
 @import "globals/variables";
 @import "globals/mixins";
 
+.about-left-col {
+  padding-top: 30px;
+}
 .employee-container {
   .thumbnail {
     text-align: center;
