@@ -104,3 +104,16 @@
     resize: vertical;
   }
 }
+
+.preview-box {
+  margin: 5px;
+  border: 1px solid green;
+  padding: 10px;
+}
+.new-comment-content {
+  padding: 10px;
+}
+#comment-btn {
+  display: block;
+  float: right;
+}
