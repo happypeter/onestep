@@ -1,9 +1,2 @@
-$('#comments').append("<%= escape_javascript render :partial => "comments/editable_comment", :object => @comment %>");
+$('#comments').append("<%= escape_javascript render @comment %>");
 $('#new_comment textarea').val("");
-
-$(".comment_body .actions").hide()
-$(".comment_body").mouseover(function() {
-   $(this).find("ul.actions").show();
- }).mouseout(function() {
-   $("ul.actions").hide();
-   });

@@ -32,6 +32,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def preview
+    @content = params[:content]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def update
     respond_to do |format|
       if @comment.update_attributes(params[:comment])

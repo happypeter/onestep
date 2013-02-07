@@ -16,6 +16,7 @@ Onestep::Application.routes.draw do
   match "submit_login_form" => "users#login"
   match "logout" => "users#logout", :as => "logout"
   match "signup" => "users#signup", :as => "signup"
+  match "/comment_preview" => "comments#preview", :as => "comment_preview"
 
   root :to => 'info#marketing'
 
