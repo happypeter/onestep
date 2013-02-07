@@ -57,7 +57,7 @@ a.course-thumb {
     .nav-pills > .active > a, .nav-pills > .active > a:hover {
       background-color: #eee;
       color: darken($light-gray, 50%);
-      border-left: 1px solid #ccc;
+      border: 1px solid #ccc;
       padding: 20px;
     }
     .nav-pills.nav-stacked > li > a {

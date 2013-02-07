@@ -1,0 +1,38 @@
+.menu-container {
+  float: left;
+  width: 200px;
+  padding: 3px;
+  background: #EFEFEF;
+  border-radius: 2px;
+  .menu {
+    background: #FAFAFB;
+    border-radius: 2px;
+    border: 1px solid #D8D8D8;
+    list-style: none;
+    li {
+      &:first-child {
+        border-top: none;
+      }
+      border-bottom: 1px solid #EEE;
+      border-top: 1px solid white;
+    }
+    a {
+      display: block;
+      padding: 12px 10px 12px 8px;
+      text-shadow: 0 1px 0 white;
+      border-left: 2px solid #FAFAFB;
+      &:hover {
+        text-decoration: none;
+        background: #FDFDFE;
+      }
+    }
+    a.active{
+      background: white;
+      border-left: 2px solid #D26911;
+      font-weight: bold;
+      color: #222;
+      cursor: default;
+      box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
