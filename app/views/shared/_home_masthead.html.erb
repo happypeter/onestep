@@ -2,7 +2,9 @@
     <div class="container">
       <%= render 'shared/mini_player' %>
       <div class="home-signup">
-        <%= render 'shared/home_signup_form' %>
+	<% if !current_user %>
+        	<%= render 'shared/home_signup_form' %>
+	<% end %>
       </div>
     </div>
   </div>
