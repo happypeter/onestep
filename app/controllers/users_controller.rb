@@ -1,3 +1,4 @@
+#coding:utf-8
 class UsersController < ApplicationController
   load_and_authorize_resource
 
@@ -29,6 +30,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user_exist = User.find_by_name(@user.name)
+
+    if @user_exist
+      redirect_to "/signup" , :notice => "用户名已经存在"
+      return
+    end
+
     if @user.save
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => "signed up!"
