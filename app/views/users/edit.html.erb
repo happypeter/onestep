@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Edit Profile</h1>
 
-  <%= form_for @user do |f| %>
+  <%= form_for(@user,:url => member_path(@user.name)) do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
         <ul>

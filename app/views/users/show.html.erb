@@ -5,7 +5,7 @@
   <div id="user_email">
     Email: <%= @user.email %>
   </div>
-  <%= link_to "edit profile", edit_user_path(@user) %>
+  <%= link_to "edit profile", edit_member_path(@user.name) %>
   <div id="user_comments">
     comments:
     <hr>
