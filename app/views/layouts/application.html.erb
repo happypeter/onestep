@@ -37,7 +37,7 @@
             </ul>
             <ul class="nav pull-right">
               <% if current_user %>
-                <li> <%= link_to current_user.name, user_path(current_user) %> </li> 
+                <li> <%= link_to current_user.name, member_path(current_user.name) %> </li> 
                 <li> <%= link_to t("logout"), logout_path %></li>
               <% else %>
                 <li><%= link_to t("signup"), signup_path %> </li>

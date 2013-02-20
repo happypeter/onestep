@@ -10,12 +10,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user   = User.find_by_name(params[:name])
+    respond_to do |format|
+      format.html # edit.html.erb
+    end
   end
 
   def update
+    @user   = User.find_by_name(params[:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'Profile was successfully updated.') }
+        format.html { redirect_to(member_path(@user.name), :notice => 'Profile was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end
@@ -26,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       cookies.permanent[:token] = @user.token
-      redirect_to user_path(@user), :notice => "signed up!"
+      redirect_to member_path(@user.name), :notice => "signed up!"
     else
       render "signup"
     end
@@ -55,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by_name(params[:name])
     respond_to do |format|
       format.html # show.html.erb
     end
