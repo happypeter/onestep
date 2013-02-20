@@ -10,7 +10,12 @@ Onestep::Application.routes.draw do
   resources :upyun_images
   resources :videos
 
-  resources :users
+  get "/member/:name" => "users#show", :as => "member"
+  put "/member/:name" => "users#update", :as => "member"
+  get "/member/:name/edit" => "users#edit", :as => :edit_member 
+  get "/members" => "users#index"
+  post "/members" => "users#create"
+  #resources :users
   resources :comments
   match "login" => "users#login_form", :as => "login"
   match "submit_login_form" => "users#login"
