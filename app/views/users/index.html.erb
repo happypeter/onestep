@@ -6,7 +6,6 @@
   <tr>
      <th>姓名</th>
      <th>Email</th>
-     <th>Item</th>
      <th>Admin?</th>
   </tr>
 <% if !@users.empty? %>
@@ -14,13 +13,10 @@
   <p>
     <tr>
       <td>
-          <%= link_to user.name, user %>
+          <%= link_to user.name, member_path(user.name) %>
       </td>
       <td>
         <%= user.email %>
-      </td>
-      <td>
-        <%= user.items.count %>
       </td>
       <td>
         <%if user.admin? %>

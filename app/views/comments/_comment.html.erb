@@ -3,7 +3,7 @@
     <div class="comment">
       <div class="comment-header">
         <i class="icon-comment"></i>
-        <%= link_to comment.user.name, comment.user, :class => "comment-header-author" %>
+        <%= link_to comment.user.name, member_path(comment.user.name), :class => "comment-header-author" %>
          说
         <span class="comment-header-right">
           <span class="comment-header-date">
