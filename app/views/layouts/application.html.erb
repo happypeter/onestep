@@ -22,33 +22,12 @@
 <body>
 
   <div id="wrapper">
-    <!-- Navbar
-    ================================================== -->
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="nav-collapse collapse">
-            <div class="brand">
-              <%= link_to "HPCASTS", root_url %>
-            </div>
-            <ul class="nav">
-              <li class="">
-                <%= link_to t("all_courses"), all_courses_path %>
-              </li>
-            </ul>
-            <ul class="nav pull-right">
-              <% if current_user %>
-                <li> <%= link_to current_user.name, member_path(current_user.name) %> </li> 
-                <li> <%= link_to t("logout"), logout_path %></li>
-              <% else %>
-                <li><%= link_to t("signup"), signup_path %> </li>
-                <li><%= link_to t("login"), login_path %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% if current_user %>
+      <%= render "shared/header_logged_in" %>
+    <% else %>
+      <%= render "shared/header_logged_out" %>
+    <% end %>
+
     <%= yield %>
 
 <!-- Footer

@@ -32,19 +32,17 @@
 
     <hr class="soften">
 
-    <div class="container">
-      <% if !@recent_courses.empty? %>
-        <div class="row-fluid suggested-actions">
-          <% @recent_courses.each do |course| %>
-            <%= render "courses/course", :course => course %>
-          <% end %>
-        </div>
-      <% else %>
-        <p>
-        No Courses found
-        </p>
-      <% end %>
-    </div>
+    <% if !@recent_courses.empty? %>
+      <div class="row-fluid suggested-actions">
+        <% @recent_courses.each do |course| %>
+          <%= render "courses/course", :course => course %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+      No Courses found
+      </p>
+    <% end %>
   </div>
 
 </div>
