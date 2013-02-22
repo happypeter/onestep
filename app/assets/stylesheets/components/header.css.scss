@@ -8,6 +8,10 @@
 
 .header-logged-out {
   padding: 10px 0;
+  height: 48px;
+  a {
+    text-decoration: none;
+  }
 }
 .header-logo-wordmark {
   float: left;
@@ -53,6 +57,10 @@
 
 .header-logged-in {
   background-color: #F3F3F3;
+  height: 40px;
+  a {
+    text-decoration: none;
+  }
 }
 #user-links {
   float: right;

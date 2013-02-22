@@ -6,9 +6,6 @@
 @import "bootstrap/reset";
 
 // Grid system and page structure
-@import "bootstrap/scaffolding";
-@import "bootstrap/grid";
-@import "bootstrap/layouts";
 @import "bootstrap/labels-badges";  //labels and badges
 @import "bootstrap/sprites"; //icons
 @import "bootstrap/alerts";
@@ -20,7 +17,4 @@
 // Components: Popovers
 @import "bootstrap/modals";
 @import "bootstrap/tooltip";
-@import "bootstrap-responsive";
-
-
 

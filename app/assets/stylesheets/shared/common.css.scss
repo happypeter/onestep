@@ -15,12 +15,22 @@ ul {
 
 a {
   color: $link-green;
+  text-decoration: none;
   &:hover {
     color: $link-green;
     text-decoration: underline;
   }
 }
 
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #DDD;
+}
 /* Faded out hr */
 hr.soften {
   height: 1px;
@@ -112,4 +122,27 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
 
 .container {
   width: 1200px;
+  margin: 0 auto;
+}
+
+#footer {
+  margin: 40px 0 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #777;
+  text-shadow: 0 1px 0 white;
+  .footer_nav {
+    dt {
+      color: #52595D;
+      font-weight: bold;
+    }
+    dd {
+      margin-left: 0;
+    }
+  }
+}
+.footer-divider {
+  margin: 0 0 20px;
+  border: 0;
+  border-top: 1px solid #EEE;
 }
