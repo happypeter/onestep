@@ -1,10 +1,44 @@
 @import "globals/variables";
 @import "globals/mixins";
 
-.course-show {
-  margin-top: 40px;
+#tutorial-page {
+  min-width: 100%;
+  display: table;
+  padding: 0 19px;
+  .tutorial-nav {
+    display: table-cell;
+    vertical-align: top;
+    background-color: white;
+    min-width: 250px;
+    padding: 22px 0;
+    position: static;
+    width: 250px;
+    .play-list {
+      .nav-pills > .active > a, .nav-pills > .active > a:hover {
+        background-color: #eee;
+        color: darken($light-gray, 50%);
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+      .nav-pills.nav-stacked > li > a {
+        padding: 20px;
+        color: darken($light-gray, 50%);
+        &:hover {
+          color: $background-green;
+        }
+      }
+    }
+  }
+  .tutorial-content {
+    display: table-cell;
+    border-left: 1px solid #CCC;
+    padding: 22px 0 0 22px;
+    width: 100%;
+  }
 }
+
 div#html5-player {
+  margin: 0 auto;
   border: 1px solid $light-gray;
   width: 768px;
   video#videojs {
@@ -49,28 +83,4 @@ a.course-thumb {
       padding: 5px;
     }
   }
-}
-.left-part {
-  width: 30%;
-  float: left;
-  .play-list {
-    .nav-pills > .active > a, .nav-pills > .active > a:hover {
-      background-color: #eee;
-      color: darken($light-gray, 50%);
-      border: 1px solid #ccc;
-      padding: 20px;
-    }
-    .nav-pills.nav-stacked > li > a {
-      padding: 20px;
-      color: darken($light-gray, 50%);
-      &:hover {
-        color: $background-green;
-      }
-    }
-  }
-}
-.right-part {
-  border-left: 2px solid #ccc;
-  padding-left: 10px;
-  float: left;
 }

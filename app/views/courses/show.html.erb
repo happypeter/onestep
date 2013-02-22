@@ -1,28 +1,31 @@
-<div class='course-show container'>
+<div class='container'>
   <% if not @video %>
     <div class="alert">
       <%= t('no_classes') %>
     </div>
   <% else %>
-    <div class="left-part">
-      <%= render "play_list", :course => @course, :video => @video %>
-      <%= render "course_info", :course => @course %>
-    </div>
-    <div class="right-part">
-      <%= render "video_info", :video => @video %>
-      <%= render "video_player", :video => @video %>
-      <div id="comments">
-        <h3><%= t("comment") %></h3>
-        <%= render @video.comments %>
+
+    <div id="tutorial-page">
+      <div class="tutorial-nav">
+        <%= render "play_list", :course => @course, :video => @video %>
+        <%= render "course_info", :course => @course %>
       </div>
-      <% if current_user %>
-        <%= render "comments/new_comment_form" %>
-      <% else %>
-        <div id="login_buttons">
-          <%= link_to t("login_and_comment"), login_path(:return_to => request.url) ,:class => "btn btn-success" %>
+      <div class="tutorial-content">
+        <%= render "video_info", :video => @video %>
+        <%= render "video_player", :video => @video %>
+        <div id="comments">
+          <h3><%= t("comment") %></h3>
+          <%= render @video.comments %>
         </div>
-        <br \>
-      <% end %>
+        <% if current_user %>
+          <%= render "comments/new_comment_form" %>
+        <% else %>
+          <div id="login_buttons">
+            <%= link_to t("login_and_comment"), login_path(:return_to => request.url) ,:class => "btn btn-success" %>
+          </div>
+          <br \>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
