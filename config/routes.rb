@@ -1,7 +1,7 @@
 Onestep::Application.routes.draw do
-  get "about" => "info#about", :as => "about"
-  get "about/team" => "info#team"
-  get "about/work" => "info#work"
+  get "about" => "about#main", :as => "about"
+  get "about/team" => "about#team"
+  get "about/work" => "about#work"
   get "/blog" => "posts#index", :as => "blogs"
   get "/blog/:id" => "posts#show", :as => "blog"
   get "/write_blog" => "posts#new"

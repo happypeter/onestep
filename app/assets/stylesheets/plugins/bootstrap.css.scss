@@ -6,74 +6,15 @@
 @import "bootstrap/reset";
 
 // Grid system and page structure
-@import "bootstrap/scaffolding";
-@import "bootstrap/grid";
-@import "bootstrap/layouts";
 @import "bootstrap/labels-badges";  //labels and badges
 @import "bootstrap/sprites"; //icons
 @import "bootstrap/alerts";
 
 @import "bootstrap/buttons";
 @import "bootstrap/navs";
-@import "bootstrap/navbar";
 @import "bootstrap/progress-bars";
 
 // Components: Popovers
 @import "bootstrap/modals";
 @import "bootstrap/tooltip";
-@import "bootstrap-responsive";
-
-
-/////////////////////////
-
-@import "globals/variables";
-@import "globals/mixins";
-
-@mixin override_gradient_vertical() {
-  background-color:transparent;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-repeat: no-repeat;
-  filter: none;
-}
-
-@mixin override_box-shadow() {
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
-}
-
-
-.navbar-inner {
-  min-height: 48px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left:  60px;
-  padding-right: 20px;
-  @include gradient-vertical($navbarBackgroundHighlight, $navbarBackground);
-  @include override_gradient_vertical();
-  @include border-radius($baseBorderRadius);
-  @include box-shadow(0 1px 4px rgba(0,0,0,.065));
-  @include override_box-shadow();
-  border: 1px solid $navbarBorder;
-  border-bottom: 1px solid rgb(229, 229, 229);
-
-  // Prevent floats from breaking the navbar
-  @include clearfix();
-  .brand {
-    a {
-      color: black;
-      font-weight: bold;
-      font-size: 25px;
-      &:hover {
-        color: $link-green;
-        text-decoration: none;
-      }
-    }
-  }
-}
 

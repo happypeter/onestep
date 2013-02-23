@@ -1,0 +1,86 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.header {
+  text-shadow: 0 1px 0 white;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.header-logged-out {
+  padding: 10px 0;
+  height: 48px;
+  a {
+    text-decoration: none;
+  }
+}
+.header-logo-wordmark {
+  float: left;
+  position: relative;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  &:hover {
+    color: $link-green;
+    text-decoration: none;
+  }
+}
+
+.top-nav {
+  float: left;
+  list-style: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  a {
+    font-weight: normal;
+    display: block;
+    margin-left: 15px;
+    transition: all 0.1s ease-in;
+    -webkit-transition: all 0.1s ease-in 0;
+    color: #777;
+  }
+  li {
+    float: left;
+  }
+}
+
+.header-actions {
+  float: right;
+  .button {
+    margin-left: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-shadow: 0 1px 0 white;
+  }
+}
+
+.header-logged-in {
+  background-color: #F3F3F3;
+  height: 40px;
+  a {
+    text-decoration: none;
+  }
+}
+#user-links {
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    float: left;
+    margin-left: 10px;
+  }
+  .name {
+     font-weight: bold;
+     white-space: nowrap;
+  }
+  a {
+    display: block;
+    padding: 12px 5px 10px;
+    color: #777;
+    line-height: 16px;
+    transition: all 0.1s ease-in;
+    -webkit-transition: all 0.1s ease-in 0;
+  }
+}

@@ -22,41 +22,21 @@
 <body>
 
   <div id="wrapper">
-    <!-- Navbar
-    ================================================== -->
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="nav-collapse collapse">
-            <div class="brand">
-              <%= link_to "HPCASTS", root_url %>
-            </div>
-            <ul class="nav">
-              <li class="">
-                <%= link_to t("all_courses"), all_courses_path %>
-              </li>
-            </ul>
-            <ul class="nav pull-right">
-              <% if current_user %>
-                <li> <%= link_to current_user.name, member_path(current_user.name) %> </li> 
-                <li> <%= link_to t("logout"), logout_path %></li>
-              <% else %>
-                <li><%= link_to t("signup"), signup_path %> </li>
-                <li><%= link_to t("login"), login_path %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <%= yield %>
+    <% if current_user %>
+      <%= render "shared/header_logged_in" %>
+    <% else %>
+      <%= render "shared/header_logged_out" %>
+    <% end %>
+
+    <%= content_for?(:content) ? yield(:content) : yield %>
 
 <!-- Footer
     ================================================== -->
     <div id="footer-push"></div><!-- hack for sticky footer -->
   </div><!-- end of wrapper - hack for sticky footer -->
-  <footer class="footer">
+  <div id="footer">
     <div class="container">
+      <hr class="footer-divider">
       <dl class="footer_nav">
         <dt>This Site</dt>
         <dd><a href="/blog">Blog</a></dd>
@@ -66,7 +46,7 @@
       <hr class="footer-divider">
       <p class="right">© 2013 Hpcasts Inc. All rights reserved.</p>
     </div>
-  </footer>
+  </div>
 
   <%= javascript_include_tag "application" %>
   <%= yield :template_js %>

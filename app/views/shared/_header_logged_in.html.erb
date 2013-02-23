@@ -1,0 +1,16 @@
+<div class="header header-logged-in">
+  <div class="container clearfix">
+    <a class="header-logo-wordmark" href="/">
+      HPCASTS
+    </a>
+    <ul class="top-nav">
+      <li><a href="/course"><%= t("all_courses") %></a></li>
+      <li><a href="/blog"><%= t("blog") %></a></li>
+    </ul>
+    <ul id="user-links">
+      <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
+      <li> <%= link_to t("logout"), logout_path %></li>
+    </ul>
+  </div>
+</div>
+

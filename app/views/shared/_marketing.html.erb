@@ -2,17 +2,17 @@
 
   <div class="marketing">
 
-    <div class="row-fluid teasers">
+    <div class="teasers">
       <ul class="thumbnails example-sites">
-        <li class="span4 teaser">
-          <a class="thumbnail" href="#">
+        <li class="teaser">
+          <a href="#">
             <%= image_tag '1.png' %>
           </a>
           <h3> Web Design </h3>
           <p>科技与艺术结合， web 设计，以想象力为世界</p>
         </li>
-        <li class="span4 teaser">
-          <a class="thumbnail" href="#">
+        <li class="teaser">
+          <a href="#">
             <%= image_tag '2.png' %>
           </a>
           <h3> 移动应用开发 </h3>
@@ -20,8 +20,8 @@
             迎接移动互联新时代
           </p>
         </li>
-        <li class="span4 teaser">
-          <a class="thumbnail" href="#">
+        <li class="teaser">
+          <a href="#">
             <%= image_tag '3.png' %>
           </a>
           <h3> Web Development </h3>
@@ -32,19 +32,17 @@
 
     <hr class="soften">
 
-    <div class="container">
-      <% if !@recent_courses.empty? %>
-        <div class="row-fluid suggested-actions">
-          <% @recent_courses.each do |course| %>
-            <%= render "courses/course", :course => course %>
-          <% end %>
-        </div>
-      <% else %>
-        <p>
-        No Courses found
-        </p>
-      <% end %>
-    </div>
+    <% if !@recent_courses.empty? %>
+      <div class="suggested-actions">
+        <% @recent_courses.each do |course| %>
+          <%= render "courses/course", :course => course %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+      No Courses found
+      </p>
+    <% end %>
   </div>
 
 </div>

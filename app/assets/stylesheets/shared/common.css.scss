@@ -15,12 +15,22 @@ ul {
 
 a {
   color: $link-green;
+  text-decoration: none;
   &:hover {
     color: $link-green;
     text-decoration: underline;
   }
 }
 
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #DDD;
+}
 /* Faded out hr */
 hr.soften {
   height: 1px;
@@ -108,4 +118,31 @@ input[type="text"], #adv_code_search .search-page-label, input[type="password"],
 input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type="text"]:focus, .focused .drag-and-drop, #adv_code_search .search-page-label:focus, input[type="password"].focus, input[type="password"]:focus, input[type="email"].focus, input[type="email"]:focus, textarea.focus, textarea:focus {
   border-color: #51A7E8;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075),0 0 5px rgba(81, 167, 232, 0.5);
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#footer {
+  margin: 40px 0 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #777;
+  text-shadow: 0 1px 0 white;
+  .footer_nav {
+    dt {
+      color: #52595D;
+      font-weight: bold;
+    }
+    dd {
+      margin-left: 0;
+    }
+  }
+}
+.footer-divider {
+  margin: 0 0 20px;
+  border: 0;
+  border-top: 1px solid #EEE;
 }

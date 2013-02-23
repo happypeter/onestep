@@ -26,18 +26,26 @@
     line-height: 1.25;
     color: #999;
   }
-  .teaser img {
-    display: block;
-    margin: 0 auto 30px;
-  }
   .teasers {
     margin-top: 20px;
     margin-bottom: 30px;
     overflow: hidden;
     text-align: center;
+    .teaser {
+      float: left;
+      width: 400px;
+      img {
+        display: block;
+        margin: 0 auto 30px;
+      }
+    }
   }
   .suggested-actions {
     margin-bottom: 40px;
+    .suggested-action {
+      float: left;
+      width: 400px;
+    }
   }
 }
 
