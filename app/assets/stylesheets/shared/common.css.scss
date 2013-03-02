@@ -146,3 +146,11 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
   border: 0;
   border-top: 1px solid #EEE;
 }
+
+.green-box-shadow {
+  &:hover {
+    border-color: #C3CA7D;
+    -webkit-box-shadow: 0 0 10px $background-green;
+    text-decoration: none;
+  }
+}

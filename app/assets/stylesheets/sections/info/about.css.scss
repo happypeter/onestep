@@ -23,10 +23,6 @@
     -o-transition: box-shadow 0.2s ease-in-out;
     transition: box-shadow 0.2s ease-in-out;
     display: block;
-    &:hover, &:focus{
-      //box-shadow: 0 0 10px 2px #008C7E, inset 0 0 3px 1px green;
-      box-shadow: 0 0 10px 2px $background-green, inset 0 0 3px 1px green;
-    }
   }
   .thumbnail img {
     box-shadow: 0 0 0 5px #DFDFDF;

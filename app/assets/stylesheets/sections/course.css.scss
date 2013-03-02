@@ -49,11 +49,6 @@ div#html5-player {
 a.course-thumb {
   margin: 0 auto;
   display: block;
-  &:hover {
-    border-color: #C3CA7D;
-    -webkit-box-shadow: 0 0 10px $background-green;
-    text-decoration: none;
-  }
   .poster-area {
     margin: 0 auto;
     width: 310px;
