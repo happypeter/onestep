@@ -25,7 +25,7 @@ a {
 hr {
   clear: both;
   margin: 15px 0;
-  height: 0px;
+  height: 0;
   overflow: hidden;
   border: none;
   background: transparent;
@@ -69,15 +69,15 @@ pre {
   -moz-border-radius: 4px;
   border-radius: 4px;
   code {
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
+    margin: 0;
+    border: 0;
+    padding: 0;
   }
 }
 
 code {
   margin: 0 2px;
-  padding: 0px 5px;
+  padding: 0 5px;
   border: 1px solid #EAEAEA;
   background-color: #F8F8F8;
   border-radius: 3px;
