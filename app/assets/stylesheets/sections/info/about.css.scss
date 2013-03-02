@@ -2,6 +2,10 @@
 @import "globals/mixins";
 
 .about {
+  font-size: 14px;
+  .left-col, .about-content {
+    margin-top: 20px;
+  }
   .left-col {
     float: left;
     width: 200px;
@@ -12,20 +16,16 @@
   }
 }
 .employee-container {
-  .thumbnail {
+  .employee-thumbnail {
+    position: relative;
+    display: inline;
+    float: left;
+    width: 200px;
+    height: 200px;
+    padding: auto;
+    padding-bottom: 20px;
+    font-size: 12px;
     text-align: center;
-    margin: 0.5em 1em;
-  }
-  .thumbnail a img {
-    -webkit-transition: box-shadow 0.2s ease-in-out;
-    -moz-transition: box-shadow 0.2s ease-in-out;
-    -ms-transition: box-shadow 0.2s ease-in-out;
-    -o-transition: box-shadow 0.2s ease-in-out;
-    transition: box-shadow 0.2s ease-in-out;
-    display: block;
-  }
-  .thumbnail img {
-    box-shadow: 0 0 0 5px #DFDFDF;
   }
 }
 
