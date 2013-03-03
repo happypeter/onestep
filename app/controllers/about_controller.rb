@@ -8,5 +8,7 @@ class AboutController < ApplicationController
   def work
   end
 
+  def faq
+  end
 end
 
