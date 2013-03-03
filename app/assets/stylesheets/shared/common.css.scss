@@ -3,7 +3,6 @@
 
 body {
   position: relative;
-  @include chinese-style;
   font-size: 20px;
 }
 
@@ -92,8 +91,14 @@ hr {
 }
 
 .chinese {
-  @include chinese-style;
+  font-family: 'Microsoft YaHei', 微软雅黑, 'SimSun', Arial, Lucida Grande, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  color: $font-gray;
+  letter-spacing: 2px;
 }
+
 .clear-fix {
   clear: both;
 }

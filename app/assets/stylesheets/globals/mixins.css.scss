@@ -14,15 +14,6 @@
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
-@mixin chinese-style {
-  font-family: 'Microsoft YaHei', 微软雅黑, 'SimSun', Arial, Lucida Grande, Tahoma, sans-serif;
-  text-align: left;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 22px;
-  color: $font-gray;
-  letter-spacing: 2px;
-}
 @mixin textarea-style {
   display: inline-block;
   border: 1px solid darken($light-gray, 20%);

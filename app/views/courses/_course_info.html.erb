@@ -1,13 +1,12 @@
-<div id="course-info" class="row-fluid">
-    <h3>
-      Course intro
-    </h3>
-    <p>
-      <%=course.cat.titleize %>
-      <%= course.description %>
-      <% if current_user && current_user.admin? %>
-        <%= link_to 'Edit', "/edit/#{course.name}"%>
-      <% end %>
-    </p>
+<div class="course-intro">
+  <h3>
+    Course Intro
+  </h3>
+  <p>
+  <%= course.cat.titleize %>
+  <%= course.description %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to 'Edit', "/edit/#{course.name}"%>
+  <% end %>
+  </p>
 </div>
-
