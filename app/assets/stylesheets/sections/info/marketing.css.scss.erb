@@ -1,0 +1,94 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.marketing {
+  text-align: center;
+  color: $font-gray;
+  h1 {
+    margin: 60px 0 10px;
+    font-size: 60px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-weight: 200;
+    margin-bottom: 5px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .marketing-byline {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.25;
+    color: #999;
+  }
+  .teasers {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-align: center;
+    .teaser {
+      float: left;
+      width: 400px;
+      img {
+        display: block;
+        margin: 0 auto 30px;
+      }
+    }
+  }
+  .suggested-actions {
+    margin-bottom: 40px;
+    .suggested-action {
+      float: left;
+      width: 400px;
+    }
+  }
+}
+.tag-cloud {
+  clear: both;
+  h1 {
+    text-align: center;
+    padding: 60px 0;
+  }
+  ul {
+    list-style: none;
+    padding: auto;
+    .tag-rails {
+      background: url(<%= asset_path 'icons/72px-rails.png' %>) left top no-repeat;
+    }
+    .tag-html5 {
+      background: url(<%= asset_path 'icons/72px-html5.png' %>) left top no-repeat;
+    }
+    .tag-js {
+      background: url(<%= asset_path 'icons/72px-js.png' %>) left top no-repeat;
+    }
+    .tag-tdd {
+      background: url(<%= asset_path 'icons/72px-tdd.png' %>) left top no-repeat;
+    }
+    .tag-agile {
+      background: url(<%= asset_path 'icons/72px-agile.png' %>) left top no-repeat;
+    }
+    .tag-github {
+      background: url(<%= asset_path 'icons/72px-github.png' %>) left top no-repeat;
+    }
+    li {
+      .tag-text {
+        width: 300px;
+        float: right;
+        height: 180px;
+        padding: 0 10px 0 0;
+      }
+      width: 400px;
+      float: left;
+      h2 {
+        margin: 0 auto 0;
+        letter-spacing: 0;
+        padding: 0 0 10px 0;
+      }
+    }
+  }
+}
