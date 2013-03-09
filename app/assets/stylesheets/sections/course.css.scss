@@ -5,6 +5,12 @@
   min-width: 100%;
   display: table;
   padding: 0 19px;
+  h3 {
+    padding-top: 0;
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: normal;
+  }
   .tutorial-nav {
     display: table-cell;
     vertical-align: top;
@@ -18,10 +24,10 @@
         background-color: #eee;
         color: darken($light-gray, 50%);
         border: 1px solid #ccc;
-        padding: 20px;
+        padding: 15px;
       }
       .nav-pills.nav-stacked > li > a {
-        padding: 20px;
+        padding: 15px;
         color: darken($light-gray, 50%);
         &:hover {
           color: $background-green;
@@ -34,13 +40,27 @@
     border-left: 1px solid #CCC;
     padding: 22px 0 0 22px;
     width: 100%;
+    .tutorial-description {
+      margin-bottom: 20px;
+      p {
+        color: #a9c0d1;
+        display: block;
+        font-size: 13px;
+        line-height: 18px;
+        margin-top: 2px;
+        max-height: 80px;
+        max-width: inherit;
+        overflow-y: hidden;
+      }
+    }
   }
 }
 
 div#html5-player {
   margin: 0 auto;
-  border: 1px solid $light-gray;
-  width: 768px;
+  border: 1px solid #ccc;
+  height: 480px;
+  width: 854px;
   video#videojs {
     display: block;
   }
