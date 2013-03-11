@@ -1,12 +1,12 @@
 <div class="course-intro">
   <h3>
-    Course Intro
+    课程介绍
   </h3>
   <p>
   <%= course.cat.titleize %>
   <%= course.description %>
   <% if current_user && current_user.admin? %>
-    <%= link_to 'Edit', "/edit/#{course.name}"%>
+    <%= link_to '编辑', "/edit/#{course.name}"%>
   <% end %>
   </p>
 </div>
