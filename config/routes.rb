@@ -31,5 +31,6 @@ Onestep::Application.routes.draw do
   get "/course" => "courses#index", :as => "courses"
   post "/course" => "courses#create"
   get ":course_name/edit" => "courses#edit"
+  put ":course_name" => "courses#update"
   get ":course_name(/:video_no)" => "courses#show", :as => "course"
 end

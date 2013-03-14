@@ -29,10 +29,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find_by_name(params[:course_name])
+    @course = Course.find(params[:course_name])
   end
 
   def update
+    @course = Course.find(params[:course_name])
     respond_to do |format|
       if @course.update_attributes(params[:course])
         format.html { redirect_to_target_or_default root_url, :success => 'Course was successfully updated.' }
