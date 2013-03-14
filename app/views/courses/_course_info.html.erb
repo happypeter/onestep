@@ -6,7 +6,7 @@
   <%= course.cat.titleize %>
   <%= course.description %>
   <% if current_user && current_user.admin? %>
-    <%= link_to '编辑', "/edit/#{course.name}"%>
+    <%= link_to '编辑', "#{course_path course}/edit"%>
   <% end %>
   </p>
 </div>
