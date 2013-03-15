@@ -3,7 +3,7 @@ module ApplicationHelper
     if course.has_poster?
       course.poster_url
     else
-      "http://media.happycasts.net/hpcasts/screenshots/default.png"
+      "http://media.haoqicat.com/course_poster/default.png"
     end
   end
   def markdown(text)

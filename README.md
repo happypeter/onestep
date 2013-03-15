@@ -1,3 +1,7 @@
-[hpcasts.com](http://hpcasts.com) Source code here
+[haoqicat.com](http://haoqicat.com) Source code here
 
-`onestep` is the codename.
+`onestep` is codename.
+
+### Install
+
+- <https://github.com/happypeter/onestep/wiki/Deploy>
