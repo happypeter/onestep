@@ -37,16 +37,21 @@
     <div class="container">
       <hr class="footer-divider">
       <dl class="footer_nav">
-      <dt>关于本站</dt>
-      <dd><a href="/blog"><%= t('blog') %></a></dd>
-      <dd><a href="/about"><%= t('about') %></a></dd>
-      <dd><a href="http://weibo.com/u/3227150452"><%= t('weibo') %></a></dd>
+        <dt>关于本站</dt>
+        <dd><a href="/blog"><%= t('blog') %></a></dd>
+        <dd><a href="/about"><%= t('about') %></a></dd>
+        <dd><a href="http://weibo.com/u/3227150452"><%= t('weibo') %></a></dd>
+      </dl>
+      <dl class="footer_nav">
+        <dt>More</dt>
+        <dd><a href="/members"><%= t('members') %></a></dd>
       </dl>
       <br>
       <hr class="footer-divider">
       <p class="right">© 2013 Haoqicat Inc. All rights reserved.</p>
     </div>
   </div>
+  <!-- end of footer -->
 
   <%= javascript_include_tag "application" %>
   <%= yield :template_js %>
