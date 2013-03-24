@@ -132,11 +132,14 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
 
 #footer {
   margin: 40px 0 0 0;
+  padding-bottom: 50px;
   font-size: 14px;
   line-height: 1.5;
   color: #777;
   text-shadow: 0 1px 0 white;
   .footer_nav {
+    float: left;
+    width: 220px;
     dt {
       color: #52595D;
       font-weight: bold;
