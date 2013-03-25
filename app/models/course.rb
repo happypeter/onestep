@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :videos
-  attr_accessible :cat, :description, :name, :title, :poster_url
+  belongs_to :user
+  attr_accessible :cat, :description, :name, :title, :poster_url, :user_id
 
   def has_poster?
     self.read_attribute(:poster_url).present?

@@ -18,4 +18,7 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+  def course_path(course)
+     "/" + course.user.name + "/" + course.name
+  end
 end

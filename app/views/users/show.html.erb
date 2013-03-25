@@ -5,7 +5,13 @@
   <div id="user_email">
     Email: <%= @user.email %>
   </div>
-  <%= link_to "edit profile", edit_member_path(@user.name) %>
+  <div id="user_course">
+    Courses:
+    <% @user.courses.each do |c| %>
+      <%= link_to c.name, course_path(c) %>
+    <% end %>
+  </div>
+  <%= link_to "edit profile", account_path %>
   <div id="user_comments">
     comments:
     <hr>

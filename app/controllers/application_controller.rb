@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user # need this to access from the view
 
+  def course_path(course)
+     "/" + course.user.name + "/" + course.name
+  end
+  helper_method :course_path
+
   def redirect_to_target_or_default(default, *options)
     redirect_to(session[:return_to] || default, *options)
     session[:return_to] = nil
