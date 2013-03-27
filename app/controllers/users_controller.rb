@@ -30,9 +30,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user_exist = User.find_by_name(@user.name)
+    user_exist = User.find_by_name(@user.name)
+    black_list = ["write_blog", "submit_login_form", "account", "blog", "explore", "signup", "login", "about"]
 
-    if @user_exist
+    if black_list.include?(params[:user][:name])
+      redirect_to "/signup" , :notice => "Reseved word!"
+      return
+    end
+
+    if user_exist
       redirect_to "/signup" , :notice => "用户名已经存在"
       return
     end
