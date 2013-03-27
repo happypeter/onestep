@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to post_path(@post), :success => 'Blog was successfully updated.' }
+        format.html { redirect_to blog_path(@post), :success => 'Blog was successfully updated.' }
       else
         format.html { render :action => "edit" }
       end

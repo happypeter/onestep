@@ -11,14 +11,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user   = User.find_by_name(params[:name])
+    @user   = User.find_by_name(current_user.name)
     respond_to do |format|
       format.html # edit.html.erb
     end
   end
 
   def update
-    @user   = User.find_by_name(params[:name])
+    @user   = User.find_by_name(params[:user][:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(member_path(@user.name), :notice => 'Profile was successfully updated.') }
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_name(params[:name])
+    @user = User.find_by_name(params[:member_name])
     respond_to do |format|
       format.html # show.html.erb
     end

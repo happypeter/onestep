@@ -9,4 +9,4 @@
   .markdown-body
     = markdown post.content
     - if current_user && current_user.admin?
-      = link_to t("edit_blog"), edit_post_path(post), :class => "btn btn-small"
+      = link_to t("edit_blog"), edit_blog_path(post), :class => "btn btn-small"

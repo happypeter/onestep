@@ -1,36 +1,41 @@
 Onestep::Application.routes.draw do
+  root :to => 'info#marketing'
+
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"
   get "about/work" => "about#work"
   get "about/faq" => "about#faq"
+
   get "/blog" => "posts#index", :as => "blogs"
   get "/blog/:id" => "posts#show", :as => "blog"
+  get "/blog/:id/edit" => "posts#edit", :as => "edit_blog"
   get "/write_blog" => "posts#new"
   put "/upyun_images" => "upyun_images#create" #for file-upload on posts#edit
   resources :posts
   resources :upyun_images
   resources :videos
 
-  get "/member/:name" => "users#show", :as => "member"
-  put "/member/:name" => "users#update", :as => "member"
-  get "/member/:name/edit" => "users#edit", :as => :edit_member 
-  get "/members" => "users#index"
-  post "/members" => "users#create"
-  #resources :users
   resources :comments
+  match "/comment_preview" => "comments#preview", :as => "comment_preview"
+
   match "login" => "users#login_form", :as => "login"
   match "submit_login_form" => "users#login"
   match "logout" => "users#logout", :as => "logout"
   match "signup" => "users#signup", :as => "signup"
-  match "/comment_preview" => "comments#preview", :as => "comment_preview"
 
-  root :to => 'info#marketing'
-
-  get "create_course" => "courses#new"
-  get "all"=> "courses#index", :as => "all_courses"
+  put "/course" => "courses#update"
   get "/course" => "courses#index", :as => "courses"
   post "/course" => "courses#create"
-  get ":course_name/edit" => "courses#edit"
-  put ":course_name" => "courses#update"
-  get ":course_name(/:video_no)" => "courses#show", :as => "course"
+  get "/create_course" => "courses#new"
+
+  get "/member" => "users#index"
+  post "/member" => "users#create"
+
+  get "/account" => "users#edit", :as => "account"
+  put "/account" => "users#update"
+  get "/:member_name" => "users#show", :as => "member"
+
+  get "/:memeber_name/:course_name/edit" => "courses#edit"
+  get "/:memeber_name/:course_name(/:video_no)" => "courses#show", :constraints => {:video_no => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
+
 end
