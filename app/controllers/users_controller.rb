@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     black_list = ["write_blog", "submit_login_form", "account", "blog", "explore", "signup", "login", "about"]
 
     if black_list.include?(params[:user][:name])
-      redirect_to "/signup" , :notice => "用户名已经存在"
+      redirect_to "/signup" , :notice => "Reseved word!"
       return
     end
 
