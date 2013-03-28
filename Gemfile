@@ -32,7 +32,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails', '0.4.0'
 gem 'haml'
 
 # To use ActiveModel has_secure_password
