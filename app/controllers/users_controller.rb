@@ -31,15 +31,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     user_exist = User.find_by_name(@user.name)
+    email_exist = User.find_by_email(@user.email)
     black_list = ["write_blog", "submit_login_form", "account", "blog", "explore", "signup", "login", "about"]
 
     if black_list.include?(params[:user][:name])
-      redirect_to "/signup" , :notice => "Reseved word!"
+      flash[:error] = "Reserved Word!"
+      redirect_to :root
       return
     end
 
     if user_exist
-      redirect_to "/signup" , :notice => "用户名已经存在"
+      flash[:error] = "Name Taken!"
+      redirect_to :root
+      return
+    end
+    if email_exist
+      flash[:alert] = "Email Taken!"
+      redirect_to :root
       return
     end
 
@@ -47,7 +55,8 @@ class UsersController < ApplicationController
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => "signed up!"
     else
-      render "signup"
+      flash[:notice] = "Fields can not be blank!"
+      redirect_to :root
     end
   end
 

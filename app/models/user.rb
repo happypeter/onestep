@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation, :admin
 
-  validates_uniqueness_of :email
-  validates_presence_of :name
+  validates_presence_of :name, :email
 
   before_create { generate_token(:token) }
 
