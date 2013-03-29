@@ -21,4 +21,10 @@ module ApplicationHelper
   def course_path(course)
      "/" + course.user.name + "/" + course.name
   end
+
+  def avatar_url(user)
+    default_url = Settings.image.default_avatar
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=512&d=#{CGI.escape(default_url)}"
+  end
 end

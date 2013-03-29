@@ -2,6 +2,9 @@
   <div id="user_name">
     name: <%= @user.name %>
   </div>
+  <div class="avatared">
+    <%= image_tag avatar_url(@user),:alt => "Your Image", :size => "210x210"%>
+  </div>
   <div id="user_email">
     Email: <%= @user.email %>
   </div>
