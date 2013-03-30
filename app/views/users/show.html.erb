@@ -14,7 +14,9 @@
       <%= link_to c.name, course_path(c) %>
     <% end %>
   </div>
-  <%= link_to "edit profile", account_path %>
+  <% if current_user == @user %>
+    <%= link_to "edit profile", account_path %>
+  <% end %>
   <div id="user_comments">
     comments:
     <hr>
