@@ -28,6 +28,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_avatar
+    @user = current_user
+    if params[:user].present?
+      if @user.update_attributes(params[:user])
+        redirect_to account_path
+      else
+        flash[:error] = '头像更新失败'
+        render :edit
+      end
+    else
+      redirect_to '/account', :notice => '请选择要上传的头像'
+    end
+  end
+
   def create
     @user = User.new(params[:user])
     user_exist = User.find_by_name(@user.name)

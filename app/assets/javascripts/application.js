@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.tooltip
 //= require jquery_at_caret
 //= require comments
 //= require bootstrap
