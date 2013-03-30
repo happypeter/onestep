@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class UpyunVideoUploader < CarrierWave::Uploader::Base
+  include UploaderHelper
   storage :upyun
 
   self.upyun_username = Settings.upyun.operator_name
