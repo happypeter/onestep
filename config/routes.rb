@@ -15,6 +15,7 @@ Onestep::Application.routes.draw do
   resources :upyun_images
   resources :upyun_videos
   resources :videos
+  put 'update_avatar' => 'users#update_avatar', :as => :update_avatar
 
   resources :comments
   match "/comment_preview" => "comments#preview", :as => "comment_preview"

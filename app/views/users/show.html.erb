@@ -1,9 +1,20 @@
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+</script>
 <div id="user_show" class="container">
   <div id="user_name">
     name: <%= @user.name %>
   </div>
   <div class="avatared">
-    <%= image_tag avatar_url(@user),:alt => "Your Image", :size => "210x210"%>
+    <% if current_user == @user %>
+      <a href="/account" title="click to change a new avatar">
+    <% end %>
+      <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "210x210"%>
+    <% if current_user == @user %>
+      <a>
+    <% end %>
   </div>
   <div id="user_email">
     Email: <%= @user.email %>
