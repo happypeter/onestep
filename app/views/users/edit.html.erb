@@ -1,21 +1,23 @@
 <div class="container">
   <h1>Edit Profile</h1>
 
-  <%= image_tag @user.gavatar_url,:alt => "Your Image", :size => "50x50"%>
-  <%= link_to "Change your avatar at Gravatar.com", "http://www.gravatar.com" %>
+  <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50"%>
 
   <div>
-    Or if you don't have a Gravatar account, you can upload your avatar here.
-    <% if @user.has_avatar? %>
-      <img src=<%= @user.avatar_url %>></img>
-    <% end %>
-
+    <h3> Do not like the default avatar?</h1>
+    You can upload a avatar at
+    <%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+    We are using Email: <%= @user.email %>
+    <br>
+    <b>Or</b>
+    <br>
+    you can upload your avatar here at haoqicat(this one will hold higher priority).
     <%= form_for @user,:url => update_avatar_path, :html => {:multipart => true} do |f| %>
       <p>
       <%= f.file_field :avatar %>
       <br>
       <br>
-      <%= f.submit "upload" %>
+      <%= f.submit "upload image" %>
       </p>
     <% end %>
   </div>

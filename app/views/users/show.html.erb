@@ -11,7 +11,7 @@
     <% if current_user == @user %>
       <a href="/account" title="click to change a new avatar">
     <% end %>
-      <%= image_tag gavatar_url(@user),:alt => "Your Image", :size => "210x210"%>
+      <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "210x210"%>
     <% if current_user == @user %>
       <a>
     <% end %>
