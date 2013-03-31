@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130331015402) do
+ActiveRecord::Schema.define(:version => 20130401035222) do
 
   create_table "comments", :force => true do |t|
     t.string   "content"
@@ -74,12 +74,16 @@ ActiveRecord::Schema.define(:version => 20130331015402) do
 
   create_table "videos", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "link"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "course_id"
     t.integer  "no"
     t.string   "desc"
+    t.integer  "user_id"
+    t.integer  "size"
+    t.string   "filename"
+    t.string   "content_type"
+    t.string   "asset"
   end
 
 end

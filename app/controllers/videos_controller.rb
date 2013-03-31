@@ -2,11 +2,25 @@ class VideosController < ApplicationController
   load_and_authorize_resource
 
   def create
-    video = Video.new(params[:video])
-    if video.save
-       redirect_to course_path(video.course)
-    else
-       redirect_to course_path(video.course)
+    redirect_to root_path if Settings.upyun.switch != 'on'
+    respond_to do |f|
+      f.html do
+          redirect_to_target_or_default root_url
+      end
+      f.js do
+        @video = Video.new(params[:video])
+        @video.user_id = current_user.id
+        @video.save
+      end
+    end
+  end
+  def update
+    video = Video.find(params[:id])
+    video.update_attributes(params[:video])
+    respond_to do |f|
+      f.html do
+          redirect_to_target_or_default root_url
+      end
     end
   end
 end

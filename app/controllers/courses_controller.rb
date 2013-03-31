@@ -32,6 +32,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find_by_name(params[:course_name])
+    session[:return_to] = request.url
   end
 
   def update
@@ -48,7 +49,7 @@ class CoursesController < ApplicationController
   def create
     course = Course.new(params[:course])
     if course.save
-      redirect_to course_path(course), :notice => "New course created successfully!"
+      redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else
       redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
     end

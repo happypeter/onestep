@@ -28,10 +28,4 @@
       </div>
     </div>
   <% end %>
-
-  <div class="clear-fix"></div>
-  <% if current_user && current_user.admin? %>
-    <%= render "add_class", :course => @course %>
-  <% end %>
-
 </div>

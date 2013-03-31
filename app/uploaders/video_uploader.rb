@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class UpyunVideoUploader < CarrierWave::Uploader::Base
+class VideoUploader < CarrierWave::Uploader::Base
   include UploaderHelper
   storage :upyun
 

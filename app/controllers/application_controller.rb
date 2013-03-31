@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user # need this to access from the view
 
+  def edit_course_path(course)
+     "/" + course.user.name + "/" + course.name + "/edit"
+  end
+  helper_method :edit_course_path
+
   def course_path(course)
      "/" + course.user.name + "/" + course.name
   end

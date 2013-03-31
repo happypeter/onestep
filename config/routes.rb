@@ -13,7 +13,6 @@ Onestep::Application.routes.draw do
   put "/upyun_images" => "upyun_images#create" #for file-upload on posts#edit
   resources :posts
   resources :upyun_images
-  resources :upyun_videos
   resources :videos
   put 'update_avatar' => 'users#update_avatar', :as => :update_avatar
 
