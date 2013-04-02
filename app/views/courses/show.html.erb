@@ -8,7 +8,7 @@
     <div id="tutorial-page">
       <div class="tutorial-nav">
         <% if current_user %>
-          <%= link_to '编辑Course', edit_course_path(@course) %>
+          <%= link_to 'Edit Course', edit_course_path(@course), class: "minibutton" %>
         <% end %>
         <%= render "play_list", :course => @course, :video => @video %>
         <%= render "course_info", :course => @course %>

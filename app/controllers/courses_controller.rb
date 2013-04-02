@@ -15,7 +15,8 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find_by_name(params[:course_name])
+    user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     else
@@ -31,12 +32,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find_by_name(params[:course_name])
+    user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     session[:return_to] = request.url
   end
 
   def update
-    @course = Course.find_by_name(params[:course][:name])
+    @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
     respond_to do |format|
       if @course.update_attributes(params[:course])
         format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }

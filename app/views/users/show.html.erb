@@ -28,7 +28,7 @@
   <% if current_user == @user %>
     <%= link_to "edit profile", account_path %>
     <br>
-    <%= link_to "create a course", create_course_path %>
+    <%= link_to "create a course", create_course_path, :class => "button" %>
   <% end %>
   <div id="user_comments">
     comments:
