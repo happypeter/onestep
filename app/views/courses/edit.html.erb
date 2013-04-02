@@ -1,8 +1,8 @@
 <div class="container">
-  <h1> Edit</h1>
-  <%= render 'form', :course => @course %>
-  <div class="clear-fix"></div>
-  <% if current_user && current_user.admin? %>
+  <% if current_user %>
     <%= render "add_video", :course => @course %>
   <% end %>
+  <h1> Edit Course Info</h1>
+  <%= render 'form', :course => @course %>
+  <div class="clear-fix"></div>
 </div>

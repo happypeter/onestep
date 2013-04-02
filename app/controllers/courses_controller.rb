@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
     @course = Course.find_by_name(params[:course][:name])
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to_target_or_default root_url, :success => 'Course was successfully updated.' }
+        format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }
       else
         format.html { render :action => "edit" }
       end

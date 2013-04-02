@@ -1,7 +1,6 @@
 <div class="course-intro">
   <% if current_user && current_user.admin? %>
     <h3 style="display:inline;">课程介绍</h3>
-    <%= link_to '编辑', "#{course_path course}/edit"%>
   <% else %>
     <h3>课程介绍</h3>
   <% end %>
