@@ -34,22 +34,6 @@
         }
       }
     }
-    .course-intro {
-      margin-right: 10px;
-      dl {
-        dt {
-          clear: left;
-          float: left;
-          color: #999;
-          width: 80px;
-          padding: 1px 0;
-        }
-        dd {
-          float: left;
-          padding: 1px 0;
-        }
-      }
-    }
   }
   .tutorial-content {
     display: table-cell;
@@ -114,4 +98,8 @@ a.course-thumb {
       padding: 5px;
     }
   }
+}
+.edit-course-info-area {
+  border: 1px solid red;
+  text-align: center;
 }

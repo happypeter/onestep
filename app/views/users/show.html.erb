@@ -19,19 +19,23 @@
   <div id="user_email">
     Email: <%= @user.email %>
   </div>
-  <div id="user_course">
-    Courses:
-    <% @user.courses.each do |c| %>
-      <%= link_to c.name, course_path(c) %>
-    <% end %>
-  </div>
   <% if current_user == @user %>
     <%= link_to "edit profile", account_path %>
     <br>
     <%= link_to "create a course", create_course_path, :class => "button" %>
   <% end %>
+  <div id="user_course">
+    <h1>
+      My Courses:
+    </h1>
+    <% @user.courses.each do |c| %>
+      <%= render c %>
+    <% end %>
+  </div>
   <div id="user_comments">
-    comments:
+    <h1>
+      Comments:
+    </h1>
     <hr>
     <% for comment in  @user.comments %>
       <%= comment.content %>

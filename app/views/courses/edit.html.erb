@@ -7,7 +7,6 @@
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
-      <%= render 'form', :course => @course %>
     </div>
     <div class="tutorial-content">
       <% if current_user %>
@@ -15,4 +14,8 @@
       <% end %>
     </div>
   </div>
+
+   <div class="edit-course-info-area">
+     <%= render 'form', :course => @course %>
+   </div>
 </div>

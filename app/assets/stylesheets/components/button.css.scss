@@ -52,7 +52,10 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  color: black;
   &:hover {
+    opacity: 0.65;
+    color: black;
     background-color: #EAEAEA;
     border: 1px solid #DDD;
   }
