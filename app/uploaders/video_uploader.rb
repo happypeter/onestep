@@ -9,4 +9,8 @@ class VideoUploader < CarrierWave::Uploader::Base
   self.upyun_bucket = Settings.upyun.video_bucket
   self.upyun_bucket_domain = Settings.upyun.video_bucket_domain
 
+
+  def store_dir
+    "course/"
+  end
 end
