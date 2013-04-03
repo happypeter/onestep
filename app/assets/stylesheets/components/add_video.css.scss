@@ -1,0 +1,23 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+
+.add-video-box {
+  border: 2px solid $link-green;
+  height: 300px;
+  padding: 30px;
+}
+.secondary-info {
+  width: 300px;
+  float: left;
+  h1 {
+    font-weight: lighter;
+  }
+}
+.primary-info {
+  width: 300px;
+  float: right;
+  h1 {
+    font-weight: lighter;
+  }
+}

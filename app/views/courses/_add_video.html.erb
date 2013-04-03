@@ -10,43 +10,46 @@
           maxFileSize: 1024 * 1024 * 5,
           acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
           start: function(e) {
-            _tip.html('上传中&nbsp;&middot;&middot;&middot;');
+            _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
           },
           done: function (e, data) {
-            alert('upload complete');
-          },
-          always: function(e) {
-            _tip.html("上传");
+            _tip.html("Upload done!");
           },
       });
     });
   </script>
 <% end %>
 
-<div class="box">
+<div class="add-video-box">
   <% if course.videos.empty? %>
     <% this_video_no = 0 %>
   <% else %>
     <% this_video_no = course.videos.reorder('no').last.no + 1 %>
   <% end  %>
-  <h3 class="box-header"><%= "add video NO." + this_video_no.to_s %></h3>
-  <a class= "fileupload-btn action_label">
-    <span id="upload-tip"> 上传</span>
-    <input id="fileupload" name="video[asset]" type="file">
-  </a>
 
-  <div class="inner">
+
+  <div class="secondary-info">
+    <h1> <%= "Upload video NO." + this_video_no.to_s %> </h1>
+    <a class= "fileupload-btn button">
+      <span id="upload-tip">Select a Video to Upload</span>
+      <input id="fileupload" name="video[asset]" type="file">
+    </a>
+  </div>
+
+  <div class="primary-info">
+    <h1> Edit the Details </h1>
     <%= form_for(Video.new(:course_id => course.id, :no => this_video_no)) do |f| %>
       <br>
       <%= f.hidden_field :course_id %>
       <%= f.hidden_field :no %>
       <%= f.label t("video_title") %>
       <%= f.text_field :title %>
+      <br>
       <%= f.label t("video_desc") %>
       <%= f.text_field :desc %>
       <br>
       <br>
-      <%= f.submit "#{t('add_this_video')}", :class => "btn btn-success", :disabled => true,  data: {disable_with: "submitting"},:id => "submit_video_info" %>
+      <%= f.submit "Upload a Video to Save", :class => "minibutton", :disabled => true,  data: {disable_with: "submitting"},:id => "submit_video_info" %>
     <% end %>
   </div>
 </div>

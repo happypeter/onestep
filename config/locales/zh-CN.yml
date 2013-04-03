@@ -29,7 +29,6 @@ zh-CN:
   name: "用户名"
   email: "邮箱"
   create_account: "创建用户"
-  add_this_video: "添加"
   add_video: "添加一节视频"
   videos: "视频"
   all_videos: "课程表"
