@@ -1,5 +1,6 @@
 <%= form_for(@course, :url => "/course") do |f| %>
   <%= f.hidden_field :user_id %>
+  <%= flash[:notice] %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this item from being saved:</h2>

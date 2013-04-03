@@ -101,6 +101,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
     end
+    session[:return_to] = request.url
   end
 end
 

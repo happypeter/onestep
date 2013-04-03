@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   load_and_authorize_resource
   def new
     @course = Course.new(:user_id => current_user.id)
+    session[:return_to] = request.url
   end
 
   def index
@@ -62,6 +63,16 @@ class CoursesController < ApplicationController
   end
 
   def create
+    user = User.find(params[:course][:user_id])
+    user.courses.each do |c|
+      if c.name == params[:course][:name]
+        @name_exsits = true
+      end
+    end
+    if defined? @name_exsits
+      redirect_to_target_or_default :root, :notice => "You already created this course"
+      return
+    end
     course = Course.new(params[:course])
     if course.save
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
