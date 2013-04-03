@@ -17,5 +17,17 @@
 
    <div class="edit-course-info-area">
      <%= render 'form', :course => @course %>
+     <hr>
+     <h1><%= t('course_poster') %></h1>
+     <%= form_for @course,:url => update_poster_path, :html => {:multipart => true} do |f| %>
+       <p>
+       <%= f.hidden_field :id %>
+       <%= f.file_field :poster %>
+       <br>
+       <br>
+       <%= f.submit "upload poster" %>
+       </p>
+     <% end %>
+     <%= image_tag @course.poster_url %>
    </div>
 </div>
