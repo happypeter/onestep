@@ -1,7 +1,29 @@
+<% content_for :template_js do %>
+  <%= javascript_include_tag 'i_fileupload'%>
+  <script>
+    jQuery(function($) {
+      var _tip = $("#upload-tip");
+      $('#fileupload').fileupload({
+          dataType: 'script',
+          autoUpload: true,
+          url: '/update_avatar',
+          maxFileSize: 1024 * 1024 * 5,
+          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+          start: function(e) {
+            _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+          },
+          done: function (e, data) {
+            _tip.html("Upload done!");
+          },
+      });
+    });
+  </script>
+<% end %>
+
 <div class="container">
   <h1>Edit Profile</h1>
 
-  <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50"%>
+  <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50", :id => "avatar"%>
 
   <div>
     <h3> Do not like the default avatar?</h1>
@@ -12,14 +34,11 @@
     <b>Or</b>
     <br>
     you can upload your avatar here at haoqicat(this one will hold higher priority).
-    <%= form_for @user,:url => update_avatar_path, :html => {:multipart => true} do |f| %>
-      <p>
-      <%= f.file_field :avatar %>
-      <br>
-      <br>
-      <%= f.submit "upload image" %>
-      </p>
-    <% end %>
+    <br>
+    <a class= "fileupload-btn button">
+      <span id="upload-tip">Select a Avatar to Upload</span>
+      <input id="fileupload" name="user[avatar]" type="file">
+    </a>
   </div>
   <%= form_for(@user,:url =>"/account" ) do |f| %>
     <% if @user.errors.any? %>
