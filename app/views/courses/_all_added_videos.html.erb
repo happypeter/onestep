@@ -1,10 +1,12 @@
-<% course.videos.each do |video| %>
-  <ul>
-    <li>
-    <b>
-      NO. <%= video.no %>
-    </b>
-    <%= video.title %>
-    </li>
+<div class="play-list">
+  <ul class="nav nav-pills nav-stacked">
+    <% course.videos.each do |video| %>
+      <li>
+      <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
+        <i class="icon-facetime-video"></i>
+        第 <%= video.no %> 课
+      </a>
+      </li>
+    <% end %>
   </ul>
-<% end %>
+</div>
