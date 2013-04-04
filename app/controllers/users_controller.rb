@@ -93,6 +93,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_name(params[:member_name])
+    if @user.nil?
+      raise ActiveRecord::RecordNotFound
+    end
     respond_to do |format|
       format.html # show.html.erb
     end

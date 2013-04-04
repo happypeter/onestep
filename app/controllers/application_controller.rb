@@ -29,4 +29,12 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    case request.format.to_sym
+    when :html
+      redirect_to "/404"
+    when :js
+      redirect_to "/404"
+    end
+  end
 end
