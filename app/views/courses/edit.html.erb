@@ -1,3 +1,24 @@
+<% content_for :template_js do %>
+  <%= javascript_include_tag 'i_fileupload'%>
+  <script>
+    jQuery(function($) {
+      var _tip = $("#poster-upload-tip");
+      $('#poster-fileupload').fileupload({
+          dataType: 'script',
+          autoUpload: true,
+          url: '/update_poster/<%= @course.id %>',
+          maxFileSize: 1024 * 1024 * 5,
+          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+          start: function(e) {
+            _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+          },
+          done: function (e, data) {
+            _tip.html("Upload done!");
+          },
+      });
+    });
+  </script>
+<% end %>
 <div class='container'>
   <div id="tutorial-page">
     <div class="tutorial-nav">
@@ -19,15 +40,10 @@
      <%= render 'form', :course => @course %>
      <hr>
      <h1><%= t('course_poster') %></h1>
-     <%= form_for @course,:url => update_poster_path, :html => {:multipart => true} do |f| %>
-       <p>
-       <%= f.hidden_field :id %>
-       <%= f.file_field :poster %>
-       <br>
-       <br>
-       <%= f.submit "upload poster" %>
-       </p>
-     <% end %>
-     <%= image_tag @course.poster_url %>
+     <a class= "fileupload-btn button">
+       <span id="poster-upload-tip">Select a Poster to Upload</span>
+       <input id="poster-fileupload" name="course[poster]" type="file">
+     </a>
+     <%= image_tag @course.poster_url , :id => 'poster'%>
    </div>
 </div>

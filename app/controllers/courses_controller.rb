@@ -49,16 +49,11 @@ class CoursesController < ApplicationController
     end
   end
   def update_poster
-    @course = Course.find(params[:course][:id])
-    if params[:course].present?
-      if @course.update_attributes(params[:course])
-        redirect_to edit_course_path @course
-      else
-        flash[:error] = 'Update Poster Failed'
-        redirect_to edit_course_path @course
+    @course = Course.find(params[:course_id])
+    respond_to do |format|
+      format.js do
+        @course.update_attributes(params[:course])
       end
-    else
-      redirect_to edit_course_path @course
     end
   end
 
