@@ -1,0 +1,43 @@
+<script>
+  jQuery(function($) {
+    var _tip = $("#upload-tip");
+    $('#fileupload').fileupload({
+      autoUpload: true,
+      url: '/update_video/<%= video.id %>',
+      maxFileSize: 1024 * 1024 * 5,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+      start: function(e) {
+        _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+      },
+      done: function (e, data) {
+        _tip.html("Upload done!");
+      },
+    });
+  });
+</script>
+
+<div class="add-video-box">
+  <div class="secondary-info">
+    <h1> <%= "Reupload video NO." + video.no.to_s %> </h1>
+    <a class= "fileupload-btn button">
+      <span id="upload-tip">Select a Video to Upload</span>
+      <input id="fileupload" name="video[asset]" type="file">
+    </a>
+  </div>
+
+  <div class="primary-info">
+    <h1> Edit the Details </h1>
+    <%= form_for video do |f| %>
+      <br>
+      <%= f.hidden_field :id %>
+      <%= f.label t("video_title") %>
+      <%= f.text_field :title %>
+      <br>
+      <%= f.label t("video_desc") %>
+      <%= f.text_field :desc %>
+      <br>
+      <br>
+      <%= f.submit "Save", :class => "minibutton", data: {disable_with: "saving..."},:id => "submit_video_info" %>
+    <% end %>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <ul class="nav nav-pills nav-stacked">
     <% course.videos.each do |video| %>
       <li>
-      <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
+      <a href="<%= course_path(video.course) + '/' + video.no.to_s + '/edit.js'  %> " data-remote='true'>
         <i class="icon-facetime-video"></i>
         第 <%= video.no %> 课
       </a>

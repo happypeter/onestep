@@ -48,6 +48,15 @@ class CoursesController < ApplicationController
       end
     end
   end
+  def edit_video
+    respond_to do |format|
+      format.js {
+        user = User.find_by_name(params[:member_name])
+        course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+        @video = Video.where(:course_id => course.id, :no => params[:video_no]).first
+      }
+    end
+  end
   def update_poster
     @course = Course.find(params[:course_id])
     respond_to do |format|

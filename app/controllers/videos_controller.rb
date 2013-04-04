@@ -15,7 +15,11 @@ class VideosController < ApplicationController
     end
   end
   def update
-    video = Video.find(params[:id])
+    if params[:id]
+      video = Video.find(params[:id])
+    else
+      video = Video.find(params[:video][:id])
+    end
     video.update_attributes(params[:video])
     respond_to do |f|
       f.html do

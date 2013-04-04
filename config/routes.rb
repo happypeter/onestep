@@ -39,5 +39,7 @@ Onestep::Application.routes.draw do
 
   get "/:member_name/:course_name/edit" => "courses#edit"
   get "/:member_name/:course_name(/:video_no)" => "courses#show", :constraints => {:video_no => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
+  get "/:member_name/:course_name/:video_no/edit" => "courses#edit_video"
+  match "/update_video/:id" => "videos#update"
 
 end
