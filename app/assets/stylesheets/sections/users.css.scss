@@ -1,6 +1,9 @@
 @import "globals/variables";
 @import "globals/mixins";
 
+#user-show {
+  padding-top: 30px;
+}
 .avatared {
   img {
     padding: 5px;
@@ -10,4 +13,49 @@
     height: 210px;
     border: 1px solid #DDD;
   }
+}
+
+.profilecols {
+  .first {
+    width: 220px;
+    float: left;
+  }
+  .last {
+    width: 960px;
+    float: right;
+    .tabnav-right {
+      float: right;
+    }
+  }
+  h1 {
+    color: $font-gray;
+    span {
+      line-height: 1;
+      display: inline-block;
+      width: 100%;
+      line-height: 26px;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      padding-bottom: 4px;
+    }
+    em {
+      display: inline-block;
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      font-family: "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 24px;
+      color: #666;
+      position: relative;
+      top: -2px;
+      margin-bottom: 12px;
+      vertical-align: top;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
 }
