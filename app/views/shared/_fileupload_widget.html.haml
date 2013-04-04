@@ -6,10 +6,20 @@
       var _tip = $("#upload-tip");
       $('#fileupload').fileupload({
           dataType: 'json',
-          autoUpload: true,
           url: '/upyun_images.json',
           maxFileSize: 1024 * 1024 * 5,
-          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+          add: function(e, data){
+            types = /(\.|\/)(gif|jpe?g|png)$/i;
+            file = data.files[0];
+            if (types.test(file.type) || types.test(file.name))
+            {
+              data.submit();
+            }
+            else
+            {
+              alert(file.name + " is not a image file");
+            }
+          },
           start: function(e) {
             _tip.html('图片上传中&nbsp;&middot;&middot;&middot;');
           },

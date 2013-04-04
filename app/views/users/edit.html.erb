@@ -5,10 +5,19 @@
       var _tip = $("#upload-tip");
       $('#fileupload').fileupload({
           dataType: 'script',
-          autoUpload: true,
           url: '/update_avatar',
-          maxFileSize: 1024 * 1024 * 5,
-          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+          add: function(e, data){
+            types = /(\.|\/)(gif|jpe?g|png)$/i;
+            file = data.files[0];
+            if (types.test(file.type) || types.test(file.name))
+            {
+              data.submit();
+            }
+            else
+            {
+              alert(file.name + " is not a image file");
+            }
+          },
           start: function(e) {
             _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
           },
