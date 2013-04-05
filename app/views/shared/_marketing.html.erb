@@ -5,7 +5,7 @@
     <hr class="soften">
 
     <% if !@recent_courses.empty? %>
-      <div class="suggested-actions">
+      <div class="courses">
         <% @recent_courses.each do |course| %>
           <%= render "courses/course", :course => course %>
         <% end %>

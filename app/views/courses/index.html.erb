@@ -2,7 +2,7 @@
 
   <% if !@course_groups.empty? %>
     <% @course_groups.each do |row| %>
-      <div class="suggested-actions">
+      <div class="courses">
         <% row.each do |course| %>
           <%= render course %>
         <% end %>

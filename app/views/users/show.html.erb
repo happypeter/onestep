@@ -32,19 +32,27 @@
           <%= link_to "edit profile", account_path, :class => "button" %>
         </div>
       <% end %>
-      <hr class="soften">
-      <div id="user-course">
-        <h1>
-          Courses:
-        </h1>
-        <% if current_user == @user %>
-          <%= link_to "create a course", create_course_path, :class => "button" %>
-        <% end %>
-        <% @user.courses.each do |c| %>
-          <%= render c %>
+    </div>
+  </div>
+  <hr class="soften">
+  <div id="user-course">
+    <h1>
+      Courses:
+    </h1>
+    <% if current_user == @user %>
+      <%= link_to "create a course", create_course_path, :class => "button" %>
+    <% end %>
+    <% if @user.courses.present? %>
+      <div class="courses">
+        <% @user.courses.each do |course| %>
+          <%= render "courses/course", :course => course %>
         <% end %>
       </div>
-    </div>
-  </class="profilecols">
+    <% else %>
+      <p>
+      No Courses found
+      </p>
+    <% end %>
+  </div>
 </div><!-- user-show -->
 
