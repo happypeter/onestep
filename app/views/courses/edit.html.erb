@@ -37,6 +37,15 @@
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
+      <div class="edit-course-info-area">
+          <h1><%= t('course_poster') %></h1>
+          <a class= "fileupload-btn button">
+            <span id="poster-upload-tip">Select a Poster to Upload</span>
+            <input id="poster-fileupload" name="course[poster]" type="file">
+          </a>
+          <%= image_tag @course.poster_url , :id => 'poster'%>
+          <%= render 'update_form', :course => @course %>
+      </div>
     </div>
     <div class="tutorial-content">
       <% if current_user %>
@@ -45,14 +54,4 @@
     </div>
   </div>
 
-   <div class="edit-course-info-area">
-     <%= render 'form', :course => @course %>
-     <hr>
-     <h1><%= t('course_poster') %></h1>
-     <a class= "fileupload-btn button">
-       <span id="poster-upload-tip">Select a Poster to Upload</span>
-       <input id="poster-fileupload" name="course[poster]" type="file">
-     </a>
-     <%= image_tag @course.poster_url , :id => 'poster'%>
-   </div>
 </div>

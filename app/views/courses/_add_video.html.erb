@@ -31,7 +31,7 @@
 
 <div class="add-video-box">
   <% if course.videos.empty? %>
-    <% this_video_no = 0 %>
+    <% this_video_no = 1 %>
   <% else %>
     <% this_video_no = course.videos.reorder('no').last.no + 1 %>
   <% end  %>
@@ -39,6 +39,7 @@
 
   <div class="secondary-info">
     <h1> <%= "Upload video NO." + this_video_no.to_s %> </h1>
+    Less than 50M/video in size, please!
     <a class= "fileupload-btn button">
       <span id="upload-tip">Select a Video to Upload</span>
       <input id="fileupload" name="video[asset]" type="file">

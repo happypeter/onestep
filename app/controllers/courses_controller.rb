@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
       elsif @course.videos.empty?
         @video = nil
       else
-        @video = Video.where(:course_id => @course.id,:no => 0).first
+        @video = Video.where(:course_id => @course.id,:no => 1).first
       end
       session[:return_to] = request.url
     end
@@ -78,6 +78,8 @@ class CoursesController < ApplicationController
       return
     end
     course = Course.new(params[:course])
+    input_name = params[:course][:name]
+    course.name = input_name.split.join('-').downcase
     if course.save
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else

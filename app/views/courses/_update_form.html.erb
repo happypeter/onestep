@@ -1,5 +1,6 @@
 <%= form_for(@course, :url => "/course") do |f| %>
   <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :name %>
   <%= flash[:notice] %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
@@ -15,12 +16,6 @@
 
 
   <div class="field">
-    <%= f.label t('course_name') %>
-
-    <br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
     <%= f.label t('course_title') %><br />
     <%= f.text_field :title %>
   </div>
@@ -32,3 +27,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+

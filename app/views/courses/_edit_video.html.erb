@@ -17,9 +17,13 @@
       },
       start: function(e) {
         _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+        $('#submit_video_info').attr('value', 'Uploading...plz wait');
+        $('#submit_video_info').attr('disabled', 'true');
       },
       done: function (e, data) {
         _tip.html("Upload done!");
+        $('#submit_video_info').attr('value', 'Save');
+        $('#submit_video_info').removeAttr('disabled');
       },
     });
   });
