@@ -15,5 +15,6 @@
 //= require jquery.ui.tooltip
 //= require jquery_at_caret
 //= require comments
+//= require jquery.NobleCount
 //= require bootstrap
 //= require_tree .

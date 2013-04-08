@@ -1,3 +1,11 @@
+<% content_for :template_js do %>
+  <script>
+    $('#course_desc').NobleCount('#desc_count',{
+      on_negative: 'go_red',
+      on_positive: 'go_green',
+      max_chars: 33});
+  </script>
+<% end %>
 <%= form_for(@course, :url => "/course") do |f| %>
   <%= f.hidden_field :user_id %>
   <%= flash[:notice] %>
@@ -25,8 +33,10 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label t('course_description') %><br />
-    <%= f.text_area :description %>
+    <%= f.label t('course_description') %>
+    (<span id='desc_count'></span> characters remaining)
+    <br>
+    <%= f.text_area :description, :size => "30x10", :id => "course_desc" %>
   </div>
   <div>
     <%= f.submit %>
