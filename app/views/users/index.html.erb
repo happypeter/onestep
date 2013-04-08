@@ -7,6 +7,7 @@
     <tr>
        <th>姓名</th>
        <th>Admin?</th>
+       <th>Course</th>
     </tr>
   <% if !@users.empty? %>
     <% @users.each do |user| %>
@@ -21,6 +22,9 @@
           <% else %>
             NO
           <% end %>
+        </td>
+        <td>
+          <%= user.courses.count %>
         </td>
        </tr>
     </p>
