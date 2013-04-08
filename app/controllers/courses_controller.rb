@@ -68,8 +68,10 @@ class CoursesController < ApplicationController
 
   def create
     user = User.find(params[:course][:user_id])
+    input_name = params[:course][:name]
+    snake_name = input_name.split.join('-').downcase
     user.courses.each do |c|
-      if c.name == params[:course][:name]
+      if c.name == snake_name
         @name_exsits = true
       end
     end
@@ -78,8 +80,7 @@ class CoursesController < ApplicationController
       return
     end
     course = Course.new(params[:course])
-    input_name = params[:course][:name]
-    course.name = input_name.split.join('-').downcase
+    course.name = snake_name
     if course.save
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else
