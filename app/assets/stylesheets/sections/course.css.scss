@@ -95,9 +95,10 @@ a.course-thumb {
   padding-top: 5px;
   padding-bottom: 5px;
   .course-info {
+    position: relative;
     text-align: left;
     border-top: 1px solid $background-green;
-    width: 320;
+    height:150px;
     bottom: 0;
     padding: 5px;
     overflow: hidden;
@@ -111,6 +112,10 @@ a.course-thumb {
     p {
       margin-top: 0px;
       padding: 0 5px;
+    }
+    .author {
+      position: absolute;
+      bottom: 3px;
     }
   }
 }
