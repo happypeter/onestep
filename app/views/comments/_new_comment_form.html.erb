@@ -1,3 +1,14 @@
+<%= content_for :template_js do %>
+  <script>
+    $("#comment-btn").click(function() {
+      if ($.trim($('.new-comment-content textarea').val()) == "")
+      {
+        $('.new-comment-content .error').show();
+        return false;
+      }
+    });
+  </script>
+<% end %>
 <div class="bubble">
   <div class="bubble-inner">
     <div class="previewable-comment-form">
@@ -8,6 +19,9 @@
         </ul>
       </div>
       <div class="comment-content new-comment-content">
+        <div class="error" style="display: none;">
+          Input something first plz.
+        </div>
         <%= form_for(Comment.new(:video_id => @video.id, :user_id => current_user.id), :remote => true) do |f| %>
           <%= f.hidden_field :video_id %>
           <%= f.hidden_field :user_id  %>
@@ -20,4 +34,3 @@
     </div>
   </div>
 </div>
-
