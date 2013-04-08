@@ -4,14 +4,14 @@
       <li>
       <a href="<%= course_path(video.course) + '/' + video.no.to_s + '/edit.js'  %> " data-remote='true'>
         <i class="icon-facetime-video"></i>
-        第 <%= video.no %> 课
+        <%= video.title %>
       </a>
       </li>
     <% end %>
       <li class="active">
       <a href="<%= request.url%>">
         <i class="icon-facetime-video"></i>
-        New 课
+        New Video
       </a>
       </li>
   </ul>

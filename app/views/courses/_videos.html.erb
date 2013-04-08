@@ -1,19 +1,10 @@
 <ul class="nav nav-pills nav-stacked">
   <% videos.each do |video| %>
-    <% if video.no == current_video.no %>
-      <li class = "active">
+    <li <%= 'class = active' if video.no == current_video.no %>>
           <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
             <i class="icon-facetime-video"></i>
-            第 <%= video.no %> 课
+            <%= video.title %>
           </a>
       </li>
-    <% else %>
-      <li>
-          <a href="<%= course_path(video.course) + "/" + video.no.to_s %>">
-            <i class="icon-facetime-video"></i>
-            第 <%= video.no %> 课
-          </a>
-      </li>
-    <% end %>
   <% end %>
 </ul>
