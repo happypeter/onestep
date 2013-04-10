@@ -3,13 +3,15 @@
 
 .masthead {
   padding: 200px 0 80px;
-  background: url(<%= asset_path 'imac.jpg' %>) center no-repeat;
   position: relative;
   height: 400px;
   background-color: rgb(250, 250, 250);
   border-bottom: 1px solid rgb(229, 229, 229);
   .mini-player {
     position: absolute;
+    padding: 10px;
+    border: 5px solid $link-green;
+    background: lighten($link-green, 10%);
     top: 50%;
     margin-top: -252px;
     margin-left: -417px;
