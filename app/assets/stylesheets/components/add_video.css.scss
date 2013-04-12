@@ -21,3 +21,16 @@
     font-weight: lighter;
   }
 }
+.upload {
+  width: 400px;
+  margin-top: 10px;
+  .progress {
+    height: 20px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      background: $link-green;
+      height:20px;
+    }
+  }
+}

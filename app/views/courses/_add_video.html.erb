@@ -11,7 +11,13 @@
             file = data.files[0];
             if (types.test(file.type) || types.test(file.name))
             {
-              data.submit();
+              if(file.size > 500000000){
+                alert("Max filesize 50M!");
+              }
+              else {
+                $('#filesize').html("Filesize:" + "<span class='number'>" + (file.size/(1024*1024)).toFixed(2) + "</span>" + "M");
+                data.submit();
+              }
             }
             else
             {
@@ -19,15 +25,36 @@
             }
           },
           start: function(e) {
+            var filesize = parseFloat($('#filesize .number').text()); // in M.
+            var step = 2;
+            var progress = step;
+            var timeForOneM = 10000;
+            var timeDalay = 2000;
+            function changeProgress(){
+              progress = progress + step;
+              $('.bar').css('width', progress + '%');
+            }
+            var intId = setInterval(changeProgress, (timeForOneM*filesize)/(100/step));
+            var uploadDone = function(){
+              clearInterval(intId);
+              var changeTip = function() {
+                _tip.html('Porcessing&nbsp;&middot;&middot;&middot;');
+                $('.upload').append("<h3>Processing....Plz Wait!</h3>");
+              }
+              setTimeout(changeTip, timeDalay);
+            }
+            setTimeout(uploadDone, timeForOneM*filesize);//5000 is the time consumed to upload 1M data.
             _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
           },
           done: function (e, data) {
             _tip.html("Upload done!");
+             $('.upload h3').text('Process Done!');
           },
       });
     });
   </script>
 <% end %>
+
 
 <div class="add-video-box">
   <% if course.videos.empty? %>
@@ -39,11 +66,19 @@
 
   <div class="secondary-info">
     <h1> <%= "Upload video NO." + this_video_no.to_s %> </h1>
-    Less than 50M/video in size, please!
+    <div id="filesize">
+      Note: Max video size 50M.
+    </div>
     <a class= "fileupload-btn button">
       <span id="upload-tip">Select a Video to Upload</span>
       <input id="fileupload" name="video[asset]" type="file">
     </a>
+    <div class="upload">
+      <div class="progress">
+        <div class="bar">
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="primary-info">
