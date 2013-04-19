@@ -5,10 +5,17 @@
     <div class="course-info">
       <h4> <%= course.title %></h4>
       <p>  <%= course.description %> </p>
-      <div class="author">
-        <%= t('author') %>: <%= course.user.name %>
-      </div>
     </div>
   </a>
-</div>
+  <div class="author">
+    <%= t('author') %>
+    <%= link_to course.user.name, member_path(course.user.name) %>
+  </div>
 
+  <% if current_user && current_user == course.user %>
+    <ul class="course-actions">
+      <li><%= link_to t("edit"), edit_course_path(course) %></li>
+      <li><%= link_to t("delete"), course, :confirm => "Are you sure you want to delete?", :method => :delete %></li>
+    </ul>
+  <% end %>
+</div>

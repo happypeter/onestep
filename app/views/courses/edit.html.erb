@@ -32,7 +32,8 @@
   <div id="tutorial-page">
     <div class="tutorial-nav">
       <% if current_user %>
-        <%= link_to "Cancel", @course, :class => "minibutton" %>
+        <%= link_to "Go Back", @course, :class => "minibutton" %>
+        <%= link_to 'Delete This Course', @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
       <% end %>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>

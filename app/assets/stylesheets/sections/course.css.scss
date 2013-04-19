@@ -95,7 +95,6 @@ a.course-thumb {
   padding-top: 5px;
   padding-bottom: 5px;
   .course-info {
-    position: relative;
     text-align: left;
     border-top: 1px solid $background-green;
     height:150px;
@@ -113,10 +112,6 @@ a.course-thumb {
       margin-top: 0px;
       padding: 0 5px;
     }
-    .author {
-      position: absolute;
-      bottom: 3px;
-    }
   }
 }
 .edit-course-info-area {
@@ -125,7 +120,25 @@ a.course-thumb {
 .courses {
   margin-bottom: 40px;
   .course {
+    position: relative;
     float: left;
     width: 400px;
+    ul.course-actions {
+      position: absolute;
+      top: 160px;
+      right: 50px;
+      border: 1px solid #ccc;
+      width: 80px;
+      li {
+        list-style: none;
+        width: 40px;
+        float: left;
+      }
+    }
+    .author {
+      position: absolute;
+      bottom: 5px;
+      left: 50px;
+    }
   }
 }
