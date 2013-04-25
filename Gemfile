@@ -14,6 +14,7 @@ gem 'carrierwave-upyun', '~> 0.1.6'
 gem 'rmagick'
 gem 'mime-types'
 gem 'settingslogic'
+gem 'ruby-pinyin'
 
 
 # Gems used only for assets and not required

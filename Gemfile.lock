@@ -179,6 +179,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-pinyin (0.1.0)
     rubyzip (0.9.9)
     sass (3.2.6)
     sass-rails (3.2.6)
@@ -243,6 +244,7 @@ DEPENDENCIES
   redcarpet
   rmagick
   rspec-rails
+  ruby-pinyin
   sass-rails (~> 3.2.3)
   settingslogic
   therubyracer

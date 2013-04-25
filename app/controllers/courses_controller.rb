@@ -40,8 +40,13 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+    title = params[:course][:title]
+    name = PinYin.of_string(title).join('-').downcase
+    @course.name = name
+    @course.title = title
+    @course.description = params[:course][:description]
     respond_to do |format|
-      if @course.update_attributes(params[:course])
+      if @course.save
         format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }
       else
         format.html { render :action => "edit" }
@@ -68,10 +73,10 @@ class CoursesController < ApplicationController
 
   def create
     user = User.find(params[:course][:user_id])
-    input_name = params[:course][:name]
-    snake_name = input_name.split.join('-').downcase
+    title = params[:course][:title]
+    name = PinYin.of_string(title).join('-').downcase
     user.courses.each do |c|
-      if c.name == snake_name
+      if c.name == name
         @name_exsits = true
       end
     end
@@ -80,7 +85,7 @@ class CoursesController < ApplicationController
       return
     end
     course = Course.new(params[:course])
-    course.name = snake_name
+    course.name = name
     if course.save
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else
