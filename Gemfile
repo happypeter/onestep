@@ -15,6 +15,7 @@ gem 'rmagick'
 gem 'mime-types'
 gem 'settingslogic'
 gem 'ruby-pinyin'
+gem 'acts_as_list'
 
 
 # Gems used only for assets and not required

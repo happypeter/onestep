@@ -4,6 +4,7 @@
     jQuery(function($) {
       var _tip = $("#upload-tip");
       $('#fileupload').fileupload({
+          formData: {course_id: <%= course.id %>},
           dataType: 'script',
           url: '/videos.js',
           add: function(e, data){
@@ -30,10 +31,11 @@
             var progress = step;
             var timeForOneM = 10000;
             var timeDalay = 2000;
-            function changeProgress(){
+            var changeProgress = function(){
               progress = progress + step;
               $('.bar').css('width', progress + '%');
             }
+            $('a').bind('click', false);
             var intId = setInterval(changeProgress, (timeForOneM*filesize)/(100/step));
             var uploadDone = function(){
               clearInterval(intId);
@@ -49,6 +51,7 @@
           done: function (e, data) {
             _tip.html("Upload done!");
              $('.upload h3').text('Process Done!');
+            $('a').unbind('click', false);
           },
       });
     });
@@ -57,15 +60,8 @@
 
 
 <div class="add-video-box">
-  <% if course.videos.empty? %>
-    <% this_video_no = 1 %>
-  <% else %>
-    <% this_video_no = course.videos.reorder('no').last.no + 1 %>
-  <% end  %>
-
-
   <div class="secondary-info">
-    <h1> <%= "Upload video NO." + this_video_no.to_s %> </h1>
+    <h1 id="upload-new-video"> <%= "Upload New Video" %> </h1>
     <div id="filesize">
       Note: Max video size 50M.
     </div>
@@ -83,10 +79,8 @@
 
   <div class="primary-info">
     <h1> Edit the Details </h1>
-    <%= form_for(Video.new(:course_id => course.id, :no => this_video_no)) do |f| %>
+    <%= form_for(Video.new) do |f| %>
       <br>
-      <%= f.hidden_field :course_id %>
-      <%= f.hidden_field :no %>
       <%= f.label t("video_title") %>
       <br>
       <%= f.text_field :title %>

@@ -31,7 +31,7 @@
 
 <div class="add-video-box">
   <div class="secondary-info">
-    <h1> <%= "Reupload video NO." + video.no.to_s %> </h1>
+    <h1 id="edit-a-video"> <%= "Reupload video NO." + video.position.to_s %> </h1>
     <a class= "fileupload-btn button">
       <span id="upload-tip">Select a Video to Upload</span>
       <input id="fileupload" name="video[asset]" type="file">
@@ -53,6 +53,7 @@
       <br>
       <br>
       <%= f.submit "Save", :class => "minibutton", data: {disable_with: "saving..."},:id => "submit_video_info" %>
+      <%= link_to "Cancel", edit_course_path(video.course), :class => "minibutton"%>
     <% end %>
   </div>
 </div>

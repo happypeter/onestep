@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  has_many :videos
+  has_many :videos, order: :position
   belongs_to :user
   attr_accessible :description, :name, :title, :poster, :user_id
   validates_presence_of :title

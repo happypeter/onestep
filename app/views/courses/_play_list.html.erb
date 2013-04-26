@@ -1,7 +1,13 @@
-<div class="play-list">
+<div class="playlist-container">
   <h3><%= course.title %></h3>
-  <div>
-    <%= render "videos", :videos  => course.videos.reorder('no'), :current_video => video %>
-  </div>
+  <ul class="playlist">
+    <% course.videos.each do |v| %>
+      <li>
+      <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
+        <i class="icon-facetime-video"></i>
+        <%= v.title %>
+      </a>
+      </li>
+    <% end %>
+  </ul>
 </div>
-

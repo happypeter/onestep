@@ -15,7 +15,7 @@
         <% if @course.user == current_user %>
           <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
         <% end %>
-        <%= render "play_list", :course => @course, :video => @video %>
+        <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
       </div>
       <div class="tutorial-content">

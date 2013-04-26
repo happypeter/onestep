@@ -19,21 +19,6 @@
     padding: 22px 0;
     position: static;
     width: 250px;
-    .play-list {
-      .nav-pills > .active > a, .nav-pills > .active > a:hover {
-        background-color: #eee;
-        color: darken($light-gray, 50%);
-        border: 1px solid #ccc;
-        padding: 15px;
-      }
-      .nav-pills.nav-stacked > li > a {
-        padding: 15px;
-        color: darken($light-gray, 50%);
-        &:hover {
-          color: $background-green;
-        }
-      }
-    }
     .course-intro {
       margin-right: 10px;
       dl {

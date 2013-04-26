@@ -1,18 +1,27 @@
-<div class="play-list">
-  <ul class="nav nav-pills nav-stacked">
+<div class="playlist-container">
+  <ul id="play-list" class="playlist" data-update-url="/sort_videos">
     <% course.videos.each do |video| %>
-      <li>
-      <a href="<%= course_path(video.course) + '/' + video.no.to_s + '/edit.js'  %> " data-remote='true'>
-        <i class="icon-facetime-video"></i>
-        <%= video.title %>
-      </a>
-      </li>
+      <%= content_tag_for :li, video do %>
+        <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
+          <i class="icon-facetime-video"></i>
+          <%= video.title %>
+        </a>
+        <%= link_to "delete", video, :method =>"delete", :class => "delete-action", :confirm => "Are you sure?" %>
+      <% end %>
     <% end %>
-      <li class="active">
-      <a href="<%= request.url%>">
-        <i class="icon-facetime-video"></i>
-        New Video
-      </a>
-      </li>
   </ul>
 </div>
+
+<%= content_for :template_js do %>
+  <script>
+    jQuery(function() {
+      return $('#play-list').sortable({
+        axis: 'y',
+        update: function() {
+          $.post($(this).data('update-url'), $(this).sortable('serialize'));
+          location.reload();// to update all the position value
+        }
+      });
+    });
+  </script>
+<% end %>

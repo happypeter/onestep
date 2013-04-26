@@ -9,6 +9,7 @@ class VideosController < ApplicationController
       end
       f.js do
         @video = Video.new(params[:video])
+        @video.course_id = params[:course_id]
         @video.user_id = current_user.id
         @video.save
       end
@@ -26,5 +27,18 @@ class VideosController < ApplicationController
           redirect_to_target_or_default root_url
       end
     end
+  end
+
+  def sort
+    params[:video].each_with_index do |id, index|
+      Video.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
+  def destroy
+    video = Video.find(params[:id])
+    video.destroy
+    redirect_to edit_course_path(video.course)
   end
 end

@@ -21,12 +21,12 @@ class CoursesController < ApplicationController
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     else
-      if params[:video_no].present?
-        @video = Video.where(:course_id => @course.id,:no => params[:video_no].to_i).first
+      if params[:position].present?
+        @video = Video.where(:course_id => @course.id,:position => params[:position].to_i).first
       elsif @course.videos.empty?
         @video = nil
       else
-        @video = Video.where(:course_id => @course.id,:no => 1).first
+        @video = Video.where(:course_id => @course.id,:position => 1).first
       end
       session[:return_to] = request.url
     end
@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
       format.js {
         user = User.find_by_name(params[:member_name])
         course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-        @video = Video.where(:course_id => course.id, :no => params[:video_no]).first
+        @video = Video.where(:course_id => course.id, :position => params[:position]).first
       }
     end
   end

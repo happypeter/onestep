@@ -37,9 +37,10 @@ Onestep::Application.routes.draw do
   put "/account" => "users#update"
   get "/:member_name" => "users#show", :as => "member"
   delete "/:member_name/:course_name" => "courses#destroy"
-  get "/:member_name/:course_name/edit" => "courses#edit"
-  get "/:member_name/:course_name(/:video_no)" => "courses#show", :constraints => {:video_no => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
-  get "/:member_name/:course_name/:video_no/edit" => "courses#edit_video"
+  get "/:member_name/:course_name/edit" => "courses#edit" , :as => "edit_course"
+  get "/:member_name/:course_name(/:position)" => "courses#show", :constraints => {:position => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
+  get "/:member_name/:course_name/:position/edit" => "courses#edit_video"
   match "/update_video/:id" => "videos#update"
+  post "/sort_videos" => "videos#sort"
 
 end

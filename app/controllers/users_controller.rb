@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user   = User.find_by_name(current_user.name)
+    @user = User.find_by_name(current_user.name)
     respond_to do |format|
       format.html # edit.html.erb
     end
