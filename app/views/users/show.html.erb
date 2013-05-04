@@ -45,7 +45,9 @@
     <% if @user.courses.present? %>
       <div class="courses">
         <% @user.courses.each do |course| %>
-          <%= render "courses/course", :course => course %>
+          <% if course.public? || current_user == @user %>
+            <%= render "courses/course", :course => course %>
+          <% end %>
         <% end %>
       </div>
     <% else %>

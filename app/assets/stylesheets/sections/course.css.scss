@@ -79,6 +79,11 @@ a.course-thumb {
   width: 320px;
   padding-top: 5px;
   padding-bottom: 5px;
+  .private-label {
+    color: green;
+    font-size: 18px;
+    font-weight: normal;
+  }
   .course-info {
     text-align: left;
     border-top: 1px solid $background-green;

@@ -40,11 +40,8 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
-    title = params[:course][:title]
-    name = PinYin.of_string(title).join('-').downcase
-    @course.name = name
-    @course.title = title
-    @course.description = params[:course][:description]
+    @course.update_attributes(params[:course])
+    @course.name = PinYin.of_string(params[:course][:title]).join('-').downcase
     respond_to do |format|
       if @course.save
         format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }

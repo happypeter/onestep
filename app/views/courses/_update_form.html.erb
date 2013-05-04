@@ -24,6 +24,10 @@
 
 
   <div class="field">
+    <%= f.label t('public') %>
+    <%= f.check_box :public %>
+  </div>
+  <div class="field">
     <%= f.label t('course_title') %><br />
     <%= f.text_field :title %>
   </div>
