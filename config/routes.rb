@@ -26,11 +26,11 @@ Onestep::Application.routes.draw do
   match "signup" => "users#signup", :as => "signup"
 
   put "/course" => "courses#update"
-  get "/course" => "courses#index", :as => "courses"
+  get "/course" => "courses#index", :as => "course_index"
   post "/course" => "courses#create"
   get "/create_course" => "courses#new", :as => :create_course
 
-  get "/member" => "users#index"
+  get "/member" => "users#index", :as => "user_index"
   post "/member" => "users#create"
 
   get "/account" => "users#edit", :as => "account"

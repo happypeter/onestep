@@ -2,9 +2,10 @@
   <div class="container">
     <%= render 'shared/mini_player' %>
     <div class="home-signup">
-      <% if !current_user %>
-        <%= render 'shared/home_signup_form' %>
-      <% end %>
+      <%= render 'shared/home_signup_form' %>
+    </div>
+    <div id="ego-line">
+      <h1><%= link_to "#{pluralize User.count, 'person'}", user_index_path %> sharing <%= link_to "#{pluralize Course.where(public: true).count, 'course'}", course_index_path %></h1>
     </div>
   </div>
 </div>

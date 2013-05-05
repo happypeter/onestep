@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.all.reverse
+    @courses = Course.where(public: true).reverse
     @course_groups = []
     @courses.each_index do |i|
       if i%3 == 0
