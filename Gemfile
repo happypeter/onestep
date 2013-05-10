@@ -16,6 +16,7 @@ gem 'mime-types'
 gem 'settingslogic'
 gem 'ruby-pinyin'
 gem 'acts_as_list'
+gem "mediaelement_rails"
 
 
 # Gems used only for assets and not required

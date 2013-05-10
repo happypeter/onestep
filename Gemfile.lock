@@ -118,6 +118,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mediaelement_rails (0.5.1)
+      jquery-rails (>= 1.0)
+      railties (>= 3.1)
     method_source (0.8.1)
     mime-types (1.21)
     multi_json (1.7.2)
@@ -241,6 +244,7 @@ DEPENDENCIES
   jquery-fileupload-rails (= 0.4.0)
   jquery-rails
   jquery-ui-rails
+  mediaelement_rails
   mime-types
   mysql2
   rails (= 3.2.8)

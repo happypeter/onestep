@@ -17,3 +17,4 @@
 //= require comments
 //= require jquery.NobleCount
 //= require bootstrap
+//= require mediaelement_rails
