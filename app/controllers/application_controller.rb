@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_locale
+  before_filter :set_locale_to_zh
 
-  def set_locale
-    I18n.locale = params[:locale] || "zh-CN" # default to chinese, need http://casts.sme.com/?locale=en to switch to English
+  def set_locale_to_zh
+    I18n.locale = cookies[:locale] || "zh-CN"
   end
 
   private

@@ -5,6 +5,7 @@ Onestep::Application.routes.draw do
   get "about/team" => "about#team"
   get "about/work" => "about#work"
   get "about/faq" => "about#faq"
+  get "/set_locale/:locale" => "info#set_locale"
 
   get "/blog" => "posts#index", :as => "blogs"
   get "/blog/:id" => "posts#show", :as => "blog"

@@ -6,6 +6,11 @@
     <ul class="top-nav">
       <li><a href="/about"><%= t("about") %></a></li>
       <li><a href="/blog"><%= t("blog") %></a></li>
+      <% if cookies[:locale] == 'en' %>
+        <li><%= link_to t('chinese'), "/set_locale/zh-CN" %></li>
+      <% else %>
+        <li><%= link_to t('english'), "/set_locale/en" %></li>
+      <% end %>
     </ul>
     <ul id="user-links">
       <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
