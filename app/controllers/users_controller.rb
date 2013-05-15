@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_name(current_user.name)
+    @user = User.find_by_name(current_user.name) if current_user
+    if @user.nil?
+      redirect_to_target_or_default :root, :notice => "login first plz"
+      return
+    end
     respond_to do |format|
       format.html # edit.html.erb
     end
