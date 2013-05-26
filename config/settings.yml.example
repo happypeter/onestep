@@ -5,11 +5,16 @@ default: &default
     servers: ["127.0.0.1:11211"]
     namespace: "example"
   upyun:
-    switch: 'off' # to support file upload, change this to 'on'
+    switch: 'on' # to support file upload, change this to 'on'
     operator_name: ''
     operator_password: ''
     bucket: ''
     bucket_domain: ''
+    video_bucket: ''
+    video_bucket_domain: ''
+  image:
+    default_avatar: 'http://media.haoqicat.com/avatar/default_avatar420x.png'
+    default_poster: 'http://media.haoqicat.com/course_poster/default.png'
 
 production:
   <<: *default
@@ -19,5 +24,4 @@ development:
 
 test:
   <<: *default
-  default_password: 'project_rabel'
-
+  default_password: ''
