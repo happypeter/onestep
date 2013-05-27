@@ -3,29 +3,44 @@
 
 #user-show {
   padding-top: 30px;
-}
-.avatared {
-  img {
-    padding: 5px;
-    background: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    width: 210px;
-    height: 210px;
-    border: 1px solid #DDD;
-  }
-}
-
-.profilecols {
-  .first {
-    width: 220px;
-    float: left;
-  }
-  .last {
-    width: 960px;
-    float: right;
-    .tabnav-right {
-      float: right;
+  display: table;
+  ul {
+    list-style: none;
+    li {
+      float: left;
     }
+  }
+  #user-info {
+    min-width: 250px;
+    width: 250px;
+    display: table-cell;
+    background-color: white;
+  }
+  #user-course {
+    width: 900px;
+    border-left: 1px solid #CCC;
+    display: table-cell;
+    .user-course-header {
+      margin-left: 30px;
+      width: 714px;
+      background: $background-gray;
+      padding: 3px 10px;
+      h2 {
+        vertical-align: middle;
+        display: inline-block;
+        color: white;
+      }
+      .button {
+        float: right;
+        top: 10px;
+      }
+    }
+    .courses {
+      margin-left: 30px;
+      .course-thumb {
+        margin-left: 0;
+      }
+  }
   }
   h1 {
     color: $font-gray;
@@ -57,5 +72,16 @@
       -webkit-font-smoothing: antialiased;
     }
   }
+}
 
+.avatared {
+  img {
+    padding: 5px;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    width: 160px;
+    height: 160px;
+    border: 1px solid #DDD;
+  }
 }

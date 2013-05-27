@@ -6,42 +6,30 @@
   </script>
 <% end %>
 <div id="user-show" class="container">
-  <div class="profilecols">
-    <div class="first">
-      <div class="avatared">
-        <% if current_user == @user %>
-          <a href="/account" title="click to change a new avatar">
-        <% end %>
-          <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "210x210", :id => "avatar" %>
-        <% if current_user == @user %>
-          </a>
-        <% end %>
-      </div>
-      <h1>
-         <span>
-           <%= @user.name %>
-         </span>
-         <em>
-           <%= @user.email %>
-         </em>
-      </h1>
-    </div>
-    <div class="last">
+  <ul>
+    <li id="user-info">
+    <div class="avatared">
       <% if current_user == @user %>
-        <div class="tabnav-right">
-          <%= link_to "edit profile", account_path, :class => "button" %>
-        </div>
+        <a href="/account" title="click to change a new avatar">
+        <% end %>
+        <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "210x210", :id => "avatar" %>
+        <%= link_to t('edit_profile'), account_path, :class => "button" %>
+        <% if current_user == @user %>
+        </a>
       <% end %>
     </div>
-  </div>
-  <hr class="soften">
-  <div id="user-course">
     <h1>
-      Courses:
+      <span><%= @user.name %></span>
+      <em><%= @user.email %></em>
     </h1>
-    <% if current_user == @user %>
-      <%= link_to "create a course", create_course_path, :class => "button" %>
-    <% end %>
+    </li><!--end user-info -->
+    <li id="user-course">
+    <div class="user-course-header">
+      <h2><%= t('my_courses') %>:</h2>
+      <% if current_user == @user %>
+        <%= link_to t('create_course'), create_course_path, :class => "button" %>
+      <% end %>
+    </div>
     <% if @user.courses.present? %>
       <div class="courses">
         <% @user.courses.each do |course| %>
@@ -51,10 +39,8 @@
         <% end %>
       </div>
     <% else %>
-      <p>
-      No Courses found
-      </p>
+      <p><%= t('no_courses_found') %></p>
     <% end %>
-  </div>
+    </li><!--end user-course -->
+  </ul>
 </div><!-- user-show -->
-
