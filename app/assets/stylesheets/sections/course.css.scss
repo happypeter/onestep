@@ -64,7 +64,7 @@ div#html5-player {
 }
 
 a.course-thumb {
-  margin: 0 auto;
+  margin: 0 auto 10px;
   display: block;
   .poster-area {
     margin: 0 auto;
@@ -86,7 +86,7 @@ a.course-thumb {
   .course-info {
     text-align: left;
     border-top: 1px solid $background-green;
-    height:100px;
+    height: 100px;
     bottom: 0;
     padding: 10px;
     overflow: hidden;
@@ -115,12 +115,13 @@ a.course-thumb {
   margin-bottom: 40px;
   .course {
     position: relative;
+    margin-top: 15px;
     float: left;
     width: 400px;
     ul.course-actions {
       position: absolute;
-      top: 325px;
-      right: 50px;
+      top: 290px;
+      right: 70px;
       width: 80px;
       li {
         list-style: none;
@@ -130,8 +131,8 @@ a.course-thumb {
     }
     .author {
       position: absolute;
-      bottom: 5px;
-      left: 50px;
+      bottom: 10px;
+      left: 10px;
     }
   }
 }
