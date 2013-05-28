@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :check_admin, :except => [:index, :show]
+
   def index
     @posts = Post.recent
   end

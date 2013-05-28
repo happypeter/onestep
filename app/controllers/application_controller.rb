@@ -12,11 +12,13 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
   end
+
   helper_method :current_user # need this to access from the view
 
   def edit_course_path(course)
-     "/" + course.user.name + "/" + course.name + "/edit"
+    "/" + course.user.name + "/" + course.name + "/edit"
   end
+
   helper_method :edit_course_path
 
   def course_path(course)
@@ -27,6 +29,12 @@ class ApplicationController < ActionController::Base
   def redirect_to_target_or_default(default, *options)
     redirect_to(session[:return_to] || default, *options)
     session[:return_to] = nil
+  end
+
+  def check_admin
+    unless current_user && current_user.admin?
+      redirect_to :root, :notice => "Only admin can do this."
+    end
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
