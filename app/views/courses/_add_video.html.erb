@@ -61,12 +61,12 @@
 
 <div class="add-video-box">
   <div class="secondary-info">
-    <h1 id="upload-new-video"> <%= "Upload New Video" %> </h1>
+    <h1 id="upload-new-video"> <%= t('upload_new_video') %> </h1>
     <div id="filesize">
-      Note: Max video size 50M.
+      <%= t('note_max_video_size_50m') %>
     </div>
     <a class= "fileupload-btn button">
-      <span id="upload-tip">Select a Video to Upload</span>
+      <span id="upload-tip"><%= t('click_to_upload_a_video') %></span>
       <input id="fileupload" name="video[asset]" type="file">
     </a>
     <div class="upload">
@@ -78,7 +78,7 @@
   </div>
 
   <div class="primary-info">
-    <h1> Edit the Details </h1>
+    <h1><%= t('enter_video_info') %></h1>
     <%= form_for(Video.new) do |f| %>
       <br>
       <%= f.label t("video_title") %>
@@ -90,7 +90,7 @@
       <%= f.text_field :desc %>
       <br>
       <br>
-      <%= f.submit "Upload a Video to Save", :class => "minibutton", :disabled => true,  data: {disable_with: "submitting"},:id => "submit_video_info" %>
+      <%= f.submit t('confirm_to_upload_the_video'), :class => "minibutton", :disabled => true,  data: {disable_with: "submitting"},:id => "submit_video_info" %>
     <% end %>
   </div>
 </div>
