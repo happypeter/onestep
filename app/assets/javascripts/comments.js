@@ -5,7 +5,7 @@ $(".preview-tab").click(function() {
   var b = $(".previewable-comment-form .comment-content");
   var preview_content = b.find("textarea").val();
   b.find("textarea").hide();
-  b.prepend("<div class='preview-box'>Loading ...</div>");
+  b.prepend("<div class='preview-box markdown-body'>Loading ...</div>");
   $.ajax({type: "POST",url: "/comment_preview",data: {content: preview_content }});
 
   return false;
