@@ -162,3 +162,10 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
     text-decoration: none;
   }
 }
+.flash-message {
+  background: $flash-background;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}

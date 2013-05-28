@@ -24,6 +24,9 @@
     <% else %>
       <%= render "shared/header_logged_out" %>
     <% end %>
+    <div class="flash-message">
+      <%= flash[:notice] %>
+    </div>
 
     <%= content_for?(:content) ? yield(:content) : yield %>
 
