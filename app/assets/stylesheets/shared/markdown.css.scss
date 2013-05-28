@@ -1,5 +1,7 @@
+@import "globals/mixins";
 .markdown-body {
   font-size: 14px;
   line-height: 1.6;
   overflow: hidden;
+  @include markdown-style;
 }
