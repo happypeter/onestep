@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
-
   def login_form
     @user = User.new
   end
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user   = User.find_by_name(params[:user][:name])
+    @user = User.find_by_name(params[:user][:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(member_path(@user.name), :notice => 'Profile was successfully updated.') }

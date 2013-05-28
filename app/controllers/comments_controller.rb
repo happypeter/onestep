@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
   def index
+    @comments = Comment.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }
@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @comment = Comment.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def create
@@ -40,6 +42,7 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @comment = Comment.find(params[:id])
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         format.html { redirect_to_target_or_default root_url, notice: 'comment was successfully updated.' }
@@ -51,6 +54,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|

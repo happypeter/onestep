@@ -1,6 +1,4 @@
 class VideosController < ApplicationController
-  load_and_authorize_resource
-
   def create
     redirect_to root_path if Settings.upyun.switch != 'on'
     respond_to do |f|

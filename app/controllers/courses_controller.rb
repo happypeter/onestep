@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  load_and_authorize_resource
   def new
     @course = Course.new(:user_id => current_user.id)
     session[:return_to] = request.url

@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource
-
   def index
     @posts = Post.recent
   end
 
   def new
+    @post = Post.new
   end
 
   def create
@@ -22,6 +21,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
     title = params[:post][:title]
     name = PinYin.of_string(title).join('-').downcase
     @post.name = name
@@ -39,6 +39,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
 end

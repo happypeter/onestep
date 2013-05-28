@@ -35,7 +35,6 @@ GEM
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.0.4)
-    cancan (1.6.9)
     capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
@@ -230,7 +229,6 @@ DEPENDENCIES
   acts_as_list
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
-  cancan
   capistrano
   capybara
   carrierwave (~> 0.6.2)

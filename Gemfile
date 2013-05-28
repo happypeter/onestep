@@ -6,7 +6,6 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem "cancan"
 gem 'unicorn'
 gem 'redcarpet'
 gem 'carrierwave', "~> 0.6.2"
