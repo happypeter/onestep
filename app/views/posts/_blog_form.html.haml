@@ -3,12 +3,8 @@
     .box-header
     .inner
       = form_for @post do |f|
-        = f.text_field :english_title
-        英文标题，例如 Good News, 未来会出现在链接中成为 0234-good-news
-        <br>
-        <br>
         = f.text_field :title
-        文章真正的标题，中英文均可
+        文章标题
         <br>
         <br>
         = render 'shared/fileupload_widget', :textarea_selector => "textarea#post_content" if Settings.upyun.switch == 'on'
