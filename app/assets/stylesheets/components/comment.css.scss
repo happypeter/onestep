@@ -107,6 +107,7 @@
   margin: 5px;
   border: 1px solid green;
   padding: 10px;
+  @include markdown-style;
 }
 .new-comment-content {
   padding: 10px;
