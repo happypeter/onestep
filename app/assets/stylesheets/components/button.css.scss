@@ -1,6 +1,26 @@
 .button, .minibutton {
   outline: none;
 }
+.button.primary, .minibutton.primary {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #60B044;
+  background-image: -moz-linear-gradient(#8ADD6D, #60B044);
+  background-image: -webkit-linear-gradient(#8ADD6D, #60B044);
+  background-image: linear-gradient(#8ADD6D, #60B044);
+  background-repeat: repeat-x;
+  border-color: #5CA941;
+
+  &:hover {
+    color: white;
+    background-color: #569E3D;
+    background-image: -moz-linear-gradient(#79D858, #569E3D);
+    background-image: -webkit-linear-gradient(#79D858, #569E3D);
+    background-image: linear-gradient(#79D858, #569E3D);
+    background-repeat: repeat-x;
+    border-color: #4A993E;
+  }
+}
 
 
 .button, .minibutton {

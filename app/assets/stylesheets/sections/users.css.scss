@@ -17,21 +17,33 @@
     background-color: white;
   }
   #user-course {
-    width: 900px;
+    width: 800px;
     border-left: 1px solid #CCC;
     display: table-cell;
     .user-course-header {
-      margin-left: 30px;
-      width: 714px;
-      background: $background-gray;
-      padding: 3px 10px;
+      background-color: #EAEAEA;
+      background-image: -moz-linear-gradient(#FAFAFA, #EAEAEA);
+      background-image: -webkit-linear-gradient(#FAFAFA, #EAEAEA);
+      background-image: linear-gradient(#FAFAFA, #EAEAEA);
+      background-repeat: repeat-x;
+      border: 1px solid #DDD;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom: 1px solid #DDD;
       h2 {
-        vertical-align: middle;
-        display: inline-block;
-        color: white;
+        margin: 0;
+        height: 58px;
+        line-height: 58px;
+        padding: 0 30px;
+        font-size: 18px;
+        letter-spacing: 3px;
+        color: lighten(#52595D, 10%);
+        font-weight: 800;
       }
-      .button {
+      .new-course {
         float: right;
+        letter-spacing: 3px;
+        margin: 4px 20px 0 0;
         top: 10px;
       }
     }

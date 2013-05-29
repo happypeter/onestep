@@ -26,7 +26,7 @@ zh-CN:
   all_courses: "全部课程"
   my_courses: "我的课程"
   edit_course: "编辑课程"
-  create_course: "创建课程 > >"
+  create_course: "创建课程"
   no_courses_found: "无任何课程"
 
   no_classes: "课程表中还没有课"
