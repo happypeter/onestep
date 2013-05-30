@@ -29,8 +29,18 @@
   </div>
   <br>
   <div class="field">
+<<<<<<< Updated upstream
     <%= f.label t('course_title') %><br />
     <%= f.text_field :title %>
+=======
+    <p>
+      <%= f.label t('course_description') %>
+      (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
+    </p>
+    <p>
+      <%= f.text_area :description, :size => "24x4", :id => "course_desc" %>
+    </p>
+>>>>>>> Stashed changes
   </div>
   <br>
   <div class="field">
