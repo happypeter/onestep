@@ -15,14 +15,14 @@
             }
             else
             {
-              alert(file.name + " is not a image file");
+              alert(file.name + " 不是图片，请重新选择！");
             }
           },
           start: function(e) {
-            _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+            _tip.html('上传中&nbsp;&middot;&middot;&middot;');
           },
           done: function (e, data) {
-            _tip.html("Upload done!");
+            _tip.html("课程封面修改成功!");
           },
       });
     });
@@ -31,11 +31,12 @@
 <div class='container'>
   <div id="tutorial-page">
     <div class="tutorial-nav">
+      <h1><%= @course.title %></h1>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
       <div class="edit-course-info-area">
-          <h1><%= t('course_poster') %></h1>
+          <p><%= t('course_poster') %></p>
           <a class= "fileupload-btn button">
             <span id="poster-upload-tip"><%= t('change_poster') %></span>
             <input id="poster-fileupload" name="course[poster]" type="file">
@@ -45,7 +46,7 @@
       </div>
       <% if current_user %>
         <%= link_to t('go_back'), @course, :class => "minibutton" %>
-        <%= link_to t('delete_this_course'), @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
+        <%= link_to t('delete_this_course'), @course, :confirm => '确定要删除吗?', :method => :delete, :class => "minibutton" %>
       <% end %>
     </div>
     <div class="tutorial-content">

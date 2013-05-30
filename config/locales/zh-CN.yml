@@ -35,6 +35,8 @@ zh-CN:
   change_poster: "更换课程封面"
   click_to_upload_a_video: "点击上传视频"
   note_max_video_size_50m: "请注意视频大小不能超过50M！"
+  wait_upload: "上传可能会花几分钟时间，请耐心等待哦"
+  supported_video_format: "视频格式目前支持mov和mp4"
   enter_video_info: "输入视频信息"
   confirm_to_upload_the_video: "确认上传视频"
   upload_new_video: "上传视频"

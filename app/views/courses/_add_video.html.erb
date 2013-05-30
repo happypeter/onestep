@@ -13,16 +13,16 @@
             if (types.test(file.type) || types.test(file.name))
             {
               if(file.size > 500000000){
-                alert("Max filesize 50M!");
+                alert("上传失败：文件大小不能超过50M。请重新上传。");
               }
               else {
-                $('#filesize').html("Filesize:" + "<span class='number'>" + (file.size/(1024*1024)).toFixed(2) + "</span>" + "M");
+                $('#filesize').html("文件大小： " + "<span class='number'>" + (file.size/(1024*1024)).toFixed(2) + "</span>" + "M");
                 data.submit();
               }
             }
             else
             {
-              alert(file.name + " is not a mov or mp4 file");
+              alert("上传失败：" + file.name + " 视频格式错误，请上传mov或mp4文件");
             }
           },
           start: function(e) {
@@ -40,17 +40,17 @@
             var uploadDone = function(){
               clearInterval(intId);
               var changeTip = function() {
-                _tip.html('Porcessing&nbsp;&middot;&middot;&middot;');
-                $('.upload').append("<h3>Processing....Plz Wait!</h3>");
+                _tip.html('处理中&nbsp;&middot;&middot;&middot;');
+                $('.upload').append("<h3>处理中...请稍等</h3>");
               }
               setTimeout(changeTip, timeDalay);
             }
             setTimeout(uploadDone, timeForOneM*filesize);//5000 is the time consumed to upload 1M data.
-            _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
+            _tip.html('上传中&nbsp;&middot;&middot;&middot;');
           },
           done: function (e, data) {
-            _tip.html("Upload done!");
-             $('.upload h3').text('Process Done!');
+            _tip.html("视频已上传到服务器，并等待处理！");
+             $('.upload h3').text('处理完毕，视频上传成功！');
             $('a').unbind('click', false);
           },
       });
@@ -63,7 +63,9 @@
   <div class="secondary-info">
     <h1 id="upload-new-video"> <%= t('upload_new_video') %> </h1>
     <div id="filesize">
-      <%= t('note_max_video_size_50m') %>
+      <p><%= t('note_max_video_size_50m') %></p>
+      <p><%= t('supported_video_format') %></p>
+      <p><%= t('wait_upload') %></p>
     </div>
     <a class= "fileupload-btn button">
       <span id="upload-tip"><%= t('click_to_upload_a_video') %></span>
