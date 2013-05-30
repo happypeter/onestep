@@ -21,16 +21,29 @@ zh-CN:
   course_name: "课程英文名(用来生成一个精美的 URL, 不可修改)"
   course_title: "课程标题(中英文均可)"
   course_intro: "课程介绍"
-  course_poster: "课程封面图片"
   course_description: "课程描述"
   all_courses: "全部课程"
   my_courses: "我的课程"
   edit_course: "编辑课程"
+  update_course: "更新课程"
   create_course: "创建课程"
   no_courses_found: "无任何课程"
 
+  course_poster: "课程封面"
+  go_back: "取消修改"
+  delete_this_course: "删除本课程（慎重！）"
+  change_poster: "更换课程封面"
+  click_to_upload_a_video: "点击上传视频"
+  note_max_video_size_50m: "请注意视频大小不能超过50M！"
+  enter_video_info: "输入视频信息"
+  confirm_to_upload_the_video: "确认上传视频"
+  upload_new_video: "上传视频"
+
   no_classes: "课程表中还没有课"
   cat: "分类"
+
+  characters: "个字"
+  remaining: "还可输入"
 
   # video
   add_video: "添加视频"
