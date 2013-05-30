@@ -31,22 +31,22 @@
 <div class='container'>
   <div id="tutorial-page">
     <div class="tutorial-nav">
-      <% if current_user %>
-        <%= link_to "Go Back", @course, :class => "minibutton" %>
-        <%= link_to 'Delete This Course', @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
-      <% end %>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
       <div class="edit-course-info-area">
           <h1><%= t('course_poster') %></h1>
           <a class= "fileupload-btn button">
-            <span id="poster-upload-tip">Select a Poster to Upload</span>
+            <span id="poster-upload-tip"><%= t('change_poster') %></span>
             <input id="poster-fileupload" name="course[poster]" type="file">
           </a>
           <%= image_tag @course.poster_url , :id => 'poster'%>
           <%= render 'update_form', :course => @course %>
       </div>
+      <% if current_user %>
+        <%= link_to t('go_back'), @course, :class => "minibutton" %>
+        <%= link_to t('delete_this_course'), @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
+      <% end %>
     </div>
     <div class="tutorial-content">
       <% if current_user %>

@@ -27,18 +27,21 @@
     <%= f.label t('public') %>
     <%= f.check_box :public %>
   </div>
+  <br>
   <div class="field">
     <%= f.label t('course_title') %><br />
     <%= f.text_field :title %>
   </div>
+  <br>
   <div class="field">
     <%= f.label t('course_description') %>
-    (<span id='desc_count'></span> characters remaining)
+    (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
     <br>
     <%= f.text_area :description, :size => "30x10", :id => "course_desc" %>
   </div>
+  <br>
   <div>
-    <%= f.submit %>
+    <%= f.submit t('update_course'), :class => "minibutton" %>
   </div>
 <% end %>
 

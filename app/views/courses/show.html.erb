@@ -5,7 +5,7 @@
       <%= t('no_classes') %>
       <% if @course.user == current_user %>
         <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
-        <%= link_to 'Delete This Course', @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
+        <%= link_to t('delete_this_course'), @course, :confirm => 'Are you sure?', :method => :delete, :class => "minibutton" %>
       <% end %>
     </div>
   <% else %>
