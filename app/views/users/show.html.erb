@@ -13,15 +13,18 @@
         <a href="/account" title="click to change a new avatar">
         <% end %>
         <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "210x210", :id => "avatar" %>
-        <%= link_to t('edit_profile'), account_path, :class => "button" %>
         <% if current_user == @user %>
+          <%= link_to t('edit_profile'), account_path, :class => "button" %>
         </a>
       <% end %>
     </div>
     <h1>
       <span><%= @user.name %></span>
-      <em><%= @user.email %></em>
     </h1>
+    <p>
+    <span> <i class="icon-envelope"></i> <a href="mailto:2411mail@gmail.com"> 2411mail@gmail.com </a> </span>
+    </p>
+
     </li><!--end user-info -->
     <li id="user-course">
     <div class="user-course-header">
