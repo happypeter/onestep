@@ -6,7 +6,7 @@
           <i class="icon-facetime-video"></i>
           <%= video.title %>
         </a>
-        <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => "确定删除吗?" %>
+        <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => t('confirm_delete') %>
       <% end %>
     <% end %>
   </ul>

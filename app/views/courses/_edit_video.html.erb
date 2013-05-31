@@ -12,17 +12,17 @@
         }
         else
         {
-          alert(file.name + " is not a mov or mp4 file");
+          alert("上传失败：" + file.name + " 视频格式错误，请上传mov或mp4文件");
         }
       },
       start: function(e) {
-        _tip.html('Uploading&nbsp;&middot;&middot;&middot;');
-        $('#submit_video_info').attr('value', 'Uploading...plz wait');
+        _tip.html('上传中&nbsp;&middot;&middot;&middot;');
+        $('#submit_video_info').attr('value', '上传中...请稍等');
         $('#submit_video_info').attr('disabled', 'true');
       },
       done: function (e, data) {
-        _tip.html("Upload done!");
-        $('#submit_video_info').attr('value', 'Save');
+        _tip.html("视频上传成功！");
+        $('#submit_video_info').attr('value', '保存');
         $('#submit_video_info').removeAttr('disabled');
       },
     });
@@ -31,15 +31,15 @@
 
 <div class="add-video-box">
   <div class="secondary-info">
-    <h1 id="edit-a-video"> <%= "Reupload video NO." + video.position.to_s %> </h1>
+    <h1 id="edit-a-video"> <%= t('reupload_video') + video.position.to_s %> </h1>
     <a class= "fileupload-btn button">
-      <span id="upload-tip">Select a Video to Upload</span>
+      <span id="upload-tip"><%= t('click_to_upload_a_video') %></span>
       <input id="fileupload" name="video[asset]" type="file">
     </a>
   </div>
 
   <div class="primary-info">
-    <h1> Edit the Details </h1>
+    <h1><%= t('enter_video_info') %></h1>
     <%= form_for video do |f| %>
       <br>
       <%= f.hidden_field :id %>
@@ -49,11 +49,11 @@
       <br>
       <%= f.label t("video_desc") %>
       <br>
-      <%= f.text_field :desc %>
+      <%= f.text_area :desc, :size => "24x4" %>
       <br>
       <br>
-      <%= f.submit "Save", :class => "minibutton", data: {disable_with: "saving..."},:id => "submit_video_info" %>
-      <%= link_to "Cancel", edit_course_path(video.course), :class => "minibutton"%>
+      <%= f.submit t('save'), :class => "minibutton", data: {disable_with: t('saving') + "..."},:id => "submit_video_info" %>
+      <%= link_to t('cancel'), edit_course_path(video.course), :class => "minibutton"%>
     <% end %>
   </div>
 </div>
