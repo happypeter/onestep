@@ -24,31 +24,21 @@
 
 
   <div class="field">
-    <%= f.label t('public') %>
-    <%= f.check_box :public %>
-  </div>
-  <br>
-  <div class="field">
-    <%= f.label t('course_title') %><br />
+    <%= f.label t('course_title') %>
     <%= f.text_field :title %>
-    <p>
+  </div>
+  <div class="field">
       <%= f.label t('course_description') %>
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
-    </p>
-    <p>
       <%= f.text_area :description, :size => "24x4", :id => "course_desc" %>
-    </p>
   </div>
-  <br>
   <div class="field">
-    <%= f.label t('course_description') %>
-    (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
-    <br>
-    <%= f.text_area :description, :size => "30x10", :id => "course_desc" %>
+      <%= f.label t('public') %>
+      <%= f.check_box :public %>
   </div>
-  <br>
   <div>
-    <%= f.submit t('update_course'), :class => "minibutton" %>
+    <%= f.submit t('update_course'), :class => "minibutton primary" %>
+    <%= link_to t('go_back'), @course, :class => "minibutton" %>
   </div>
 <% end %>
 
