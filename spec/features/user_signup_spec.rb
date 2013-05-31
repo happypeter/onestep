@@ -43,3 +43,10 @@ describe "User features" do
     end
   end
 end
+
+describe "users#index page" do
+  it "should show member list" do
+    visit '/member'
+    page.should have_content '姓名'
+  end
+end
