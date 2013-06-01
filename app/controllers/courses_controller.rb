@@ -1,4 +1,19 @@
 class CoursesController < ApplicationController
+  before_filter :check_owner, :only => [:edit, :update, :destory]
+
+  def check_owner
+    if current_user.nil?
+      redirect_to :root, :notice => "login first plz!"
+      return
+    end
+    user = User.find_by_name(params[:member_name])
+    course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    if course.user != current_user
+      redirect_to :root, :notice => "only the course owner can do this"
+      return
+    end
+  end
+
   def new
     @course = Course.new(:user_id => current_user.id)
     session[:return_to] = request.url
