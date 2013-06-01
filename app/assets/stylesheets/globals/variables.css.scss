@@ -9,6 +9,9 @@ $custom-green: #008C7E; /* http://www.sunshine-library.org/q-a/ */
 $custom-green-a: #529f86;
 $flatui-peter-river: #3498db;
 $github-blockquote-gray: #777;
+//this 2 lines are used for course poster
+$length-ratio-16: 320px;
+$lenght-ratio-9: 175px;
 
 
 
@@ -19,3 +22,6 @@ $background-green: $custom-green-a;
 $background-gray: $dark-gray-a;
 $flash-background: $flatui-peter-river;
 $blockquote-color: $github-blockquote-gray;
+//this 2 lines are used for course poster
+$course-poster-width: $length-ratio-16;
+$course-poster-height: $lenght-ratio-9;

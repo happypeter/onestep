@@ -31,23 +31,30 @@
 <div class='container'>
   <div id="tutorial-page">
     <div class="tutorial-nav">
-      <h1><%= @course.title %></h1>
+      <h1>
+        <%= @course.title %>
+        <% if current_user %>
+          <span id="edit-course-delete">
+            <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton" %>
+          </span>
+        <% end %>
+      </h1>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
       <div class="edit-course-info-area">
-          <p><%= t('course_poster') %></p>
-          <a class= "fileupload-btn button">
+        <div id="edit-course-poster">
+          <p><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</p>
+          <div class="poster-preview"><%= image_tag @course.poster_url , :id => 'poster'%></div>
+          <a class= "fileupload-btn button primary">
             <span id="poster-upload-tip"><%= t('change_poster') %></span>
             <input id="poster-fileupload" name="course[poster]" type="file">
           </a>
-          <%= image_tag @course.poster_url , :id => 'poster'%>
+        </div>
+        <div id="edit-course-desc">
           <%= render 'update_form', :course => @course %>
+        </div>
       </div>
-      <% if current_user %>
-        <%= link_to t('go_back'), @course, :class => "minibutton" %>
-        <%= link_to t('delete_this_course'), @course, :confirm => '确定要删除吗?', :method => :delete, :class => "minibutton" %>
-      <% end %>
     </div>
     <div class="tutorial-content">
       <% if current_user %>

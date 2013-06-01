@@ -6,11 +6,10 @@
       <h4>
         <%= course.title %>
         <% if !course.public? %>
-          <span class="private-label">PRIVATE</span>
+          <span class="private-label"><%= t('course_private') %></span>
         <% end %>
       </h4>
-      <p>  <%= course.description %> 
-      </p>
+      <p><%= course.description %></p>
     </div>
   </a>
   <div class="author">
@@ -20,8 +19,8 @@
 
   <% if current_user && current_user == course.user %>
     <ul class="course-actions">
-      <li><%= link_to t("edit"), edit_course_path(course) %></li>
-      <li><%= link_to t("delete"), course, :confirm => "Are you sure you want to delete?", :method => :delete %></li>
+      <li><%= link_to t('edit'), edit_course_path(course) %></li>
+      <li><%= link_to t('delete'), course, :confirm => t('confirm_delete'), :method => :delete %></li>
     </ul>
   <% end %>
 </div>
