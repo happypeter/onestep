@@ -6,8 +6,13 @@ class CoursesController < ApplicationController
       redirect_to :root, :notice => "login first plz!"
       return
     end
-    user = User.find_by_name(params[:member_name])
-    course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    if params[:course_name]
+      user = User.find_by_name(params[:member_name])
+      course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    else
+      # for update
+      course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+    end
     if course.user != current_user
       redirect_to :root, :notice => "only the course owner can do this"
       return
