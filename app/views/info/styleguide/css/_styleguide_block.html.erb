@@ -1,0 +1,31 @@
+<div class="styleguide-example">
+  <h3>
+    <%= @section.section %>
+    <em>
+      <%= link_to @section.filename, "https://github.com/happypeter/onestep/tree/master/app/assets/stylesheets/components/#{@section.filename}"%>
+    </em>
+  </h3>
+  <div class="styleguide-description markdown-body">
+    <p><%= markdown h(@section.description) %></p>
+    <% if @section.modifiers.any? %>
+      <ul class="styleguide-modifier">
+        <% modifiers.each do |modifier| %>
+          <li><strong><%= modifier.name %></strong> - <%= modifier.description %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="styleguide-element">
+    <%= @example_html.gsub('$modifier_class', '').html_safe %>
+  </div>
+  <% modifiers.each do |modifier| %>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name"><%= modifier.name %></span>
+      <%= @example_html.gsub('$modifier_class', " #{modifier.class_name}").html_safe %>
+    </div>
+  <% end %>
+  <div class="styleguide-html">
+    <%= show_code @example_html %>
+  </div>
+</div>
