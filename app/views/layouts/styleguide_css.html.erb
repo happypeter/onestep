@@ -1,0 +1,11 @@
+<% content_for :content do %>
+  <div class="container styleguide">
+    <div class="left-col ">
+      <%= render 'info/styleguide/css/aside' %>
+    </div>
+    <div class="styleguide-content">
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+<%= render :template => 'layouts/application' %>

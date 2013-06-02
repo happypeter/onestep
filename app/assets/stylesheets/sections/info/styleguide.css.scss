@@ -1,0 +1,17 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.styleguide {
+  font-size: 14px;
+  .left-col, .styleguide-content {
+    margin-top: 20px;
+  }
+  .left-col {
+    float: left;
+    width: 200px;
+  }
+  .styleguide-content {
+    float: right;
+    width: 80%;
+  }
+}
