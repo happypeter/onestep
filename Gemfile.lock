@@ -110,6 +110,7 @@ GEM
       railties (>= 3.1.0)
     json (1.7.7)
     kgio (2.8.0)
+    kss (0.4.0)
     libv8 (3.11.8.13)
     listen (0.7.3)
     lumberjack (1.0.2)
@@ -242,6 +243,7 @@ DEPENDENCIES
   jquery-fileupload-rails (= 0.4.0)
   jquery-rails
   jquery-ui-rails
+  kss
   mediaelement_rails
   mime-types
   mysql2

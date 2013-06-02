@@ -1,3 +1,13 @@
+/*
+`.button` for primary page actions.
+
+.primary    - For the main form action, use whenever creating something.
+.disabled   - Dims the button to indicate it cannot be used.
+.danger     - For potentially bad or destructive actions.
+
+Styleguide 1.1.
+*/
+
 .button, .minibutton {
   outline: none;
 }
