@@ -1,5 +1,5 @@
 /*
-`.button` for primary page actions.
+`.button` for form actions and primary page actions.
 
 .primary    - For the main form action, use whenever creating something.
 .disabled   - Dims the button to indicate it cannot be used.
@@ -7,7 +7,6 @@
 
 Styleguide 1.1.
 */
-
 .button, .minibutton {
   outline: none;
 }
@@ -32,6 +31,27 @@ Styleguide 1.1.
   }
 }
 
+.button.danger:active, .minibutton.danger:active {
+  color: white;
+  background-color: #B33630;
+  background-image: none;
+  border-color: #9F312C;
+}
+
+.button.danger, .minibutton.danger {
+  color: #900;
+}
+
+.button.danger:hover, .minibutton.danger:hover {
+  color: white;
+  text-shadow: 0px -1px 0 rgba(0, 0, 0, 0.3);
+  background-color: #B33630;
+  background-image: -moz-linear-gradient(#DC5F59, #B33630);
+  background-image: -webkit-linear-gradient(#DC5F59, #B33630);
+  background-image: linear-gradient(#DC5F59, #B33630);
+  background-repeat: repeat-x;
+  border-color: #CD504A;
+}
 
 .button, .minibutton {
   position: relative;
@@ -62,17 +82,43 @@ Styleguide 1.1.
   -webkit-appearance: none;
 }
 
-.button:hover, .button:active, .minibutton:hover, .minibutton:active {
-  color: white;
-  text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #3072B3;
-  background-image: -moz-linear-gradient(#599BCD, #3072B3);
-  background-image: -webkit-linear-gradient(#599BCD, #3072B3);
-  background-image: linear-gradient(#599BCD, #3072B3);
-  background-repeat: repeat-x;
-  border-color: #2A65A0;
+.button:active, .minibutton:active {
+  background-color: #DADADA;
+  background-image: none;
+  border-color: #B5B5B5;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.15);
 }
+
+.button.blue:active, .minibutton.blue:active {
+  background-color: #3072B3;
+  background-image: none;
+  border-color: #25588C;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover, .button:active, .minibutton:hover, .minibutton:active {
+  text-decoration: none;
+  background-color: #DADADA;
+  background-image: -moz-linear-gradient(#EAEAEA, #DADADA);
+  background-image: -webkit-linear-gradient(#EAEAEA, #DADADA);
+  background-image: linear-gradient(#EAEAEA, #DADADA);
+  background-repeat: repeat-x;
+  border-color: #CCC #CCC #B5B5B5;
+}
+
+.button.primary:active, .minibutton.primary:active {
+  background-color: #569E3D;
+  background-image: none;
+  border-color: #418737;
+}
+
+.button.danger:active, .minibutton.danger:active {
+  color: white;
+  background-color: #B33630;
+  background-image: none;
+  border-color: #9F312C;
+}
+
 .button.disabled, .button[disabled], .minibutton.disabled,
 .minibutton[disabled] {
   cursor: default;
@@ -91,3 +137,17 @@ Styleguide 1.1.
   }
 }
 
+/*
+`.minibutton` is used for linking to sth else.
+
+.primary    - For the main form action, use whenever creating something.
+.disabled   - Dims the button to indicate it cannot be used.
+.danger     - For potentially bad or destructive actions.
+
+Styleguide 1.2.
+*/
+.minibutton {
+  padding: 0 10px;
+  line-height: 24px;
+  box-shadow: none;
+}
