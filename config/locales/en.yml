@@ -23,5 +23,6 @@ en:
   logout: "Sign Out"
   sharing: "sharing"
   confirm_delete: "Are you sure?"
+  publish_comment: "Publish"
 
   reupload_video: "Reupload video NO."
