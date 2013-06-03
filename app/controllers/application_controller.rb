@@ -45,4 +45,12 @@ class ApplicationController < ActionController::Base
       redirect_to "/404"
     end
   end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
+  def auth
+    redirect_to :root if logged_in?
+  end
 end
