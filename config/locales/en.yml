@@ -22,5 +22,6 @@ en:
   sign_in: "Sign In"
   logout: "Sign Out"
   sharing: "sharing"
+  confirm_delete: "Are you sure?"
 
   reupload_video: "Reupload video NO."
