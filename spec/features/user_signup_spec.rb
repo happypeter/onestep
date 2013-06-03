@@ -52,3 +52,5 @@ describe "users#index page" do
     page.should have_content '姓名'
   end
 end
+
+
