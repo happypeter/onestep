@@ -46,19 +46,29 @@ class UsersController < ApplicationController
     email_exist = User.find_by_email(@user.email)
     black_list = ["write_blog", "submit_login_form", "account", "blog", "explore", "signup", "login", "about"]
 
+    if params[:user][:name].empty? || \
+       params[:user][:email].empty? || \
+       params[:user][:password].empty?
+
+      flash[:notice] = "Fields can not be blank!"
+      redirect_to :root
+      return
+    end
+
+
     if black_list.include?(params[:user][:name])
-      flash[:error] = "Reserved Word!"
+      flash[:notice] = "#{params[:user][:name]} is Reserved Word!"
       redirect_to :root
       return
     end
 
     if user_exist
-      flash[:error] = "Name Taken!"
+      flash[:notice] = "Name Taken!"
       redirect_to :root
       return
     end
     if email_exist
-      flash[:alert] = "Email Taken!"
+      flash[:notice] = "Email Taken!"
       redirect_to :root
       return
     end
@@ -67,8 +77,8 @@ class UsersController < ApplicationController
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => "signed up!"
     else
-      flash[:notice] = "Fields can not be blank!"
       redirect_to :root
+      flash[:notice] = "Failed to save user"
     end
   end
 

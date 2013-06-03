@@ -3,21 +3,11 @@
     <dd>
       <%= f.text_field :name, :placeholder => "Pick a username" %>
     </dd>
-    <% if flash[:error].present? %>
-      <dd class="error">
-        <%= flash[:error] %>
-      </dd>
-    <% end %>
   </dl>
   <dl class="form">
     <dd>
       <%= f.text_field :email, :placeholder => "Email" %>
     </dd>
-    <% if flash[:alert].present? %>
-      <dd class="error">
-        <%= flash[:alert] %>
-      </dd>
-    <% end %>
   </dl>
   <dl class="form">
     <dd>

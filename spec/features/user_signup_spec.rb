@@ -6,7 +6,9 @@ describe "User features" do
     visit root_path
   end
   describe "Registration" do
+
     it "should allow registration" do
+      # this will fail if you aleady have foobar in test db
 
       fill_in "user[name]", :with => 'foobar'
       fill_in "user[email]", :with => 'hi@gmail.com'
