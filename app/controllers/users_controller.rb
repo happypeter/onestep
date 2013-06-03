@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :auth, only: [:signup, :login_form]
+
   def login_form
     @user = User.new
   end
