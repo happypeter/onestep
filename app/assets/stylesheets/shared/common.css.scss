@@ -168,3 +168,13 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
   text-align: center;
   font-size: 20px;
 }
+
+.field {
+  margin: 15px 0;
+  &>dt {
+    margin: 0 0 6px 0;
+  }
+  &>dd {
+    margin-left: 0;
+  }
+}

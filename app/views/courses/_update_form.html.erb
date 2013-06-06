@@ -23,15 +23,23 @@
   <% end %>
 
 
-  <div class="field">
-    <%= f.label t('course_title') %>
+  <dl class="field">
+    <dt>
+      <%= f.label t('course_title') %>
+    </dt>
+    <dd>
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
+    </dd>
+  </dl>
+  <dl class="field">
+    <dt>
       <%= f.label t('course_description') %>
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
+    </dt>
+    <dd>
       <%= f.text_area :description, :size => "24x4", :id => "course_desc" %>
-  </div>
+    </dd>
+  </dl>
   <div class="field">
       <%= f.label t('public') %>
       <%= f.check_box :public %>

@@ -82,16 +82,22 @@
   <div class="primary-info">
     <h1><%= t('enter_video_info') %></h1>
     <%= form_for(Video.new) do |f| %>
-      <br>
-      <%= f.label t("video_title") %>
-      <br>
-      <%= f.text_field :title %>
-      <br>
-      <%= f.label t("video_desc") %>
-      <br>
-      <%= f.text_area :desc, :size => "24x4", :id => "video_desc" %>
-      <br>
-      <br>
+      <dl class="field">
+        <dt>
+          <%= f.label t("video_title") %>
+        </dt>
+        <dd>
+          <%= f.text_field :title %>
+        </dd>
+      </dl>
+      <dl class="field">
+        <dt>
+        <%= f.label t("video_desc") %>
+        </dt>
+        <dd>
+        <%= f.text_area :desc, :size => "24x4", :id => "video_desc" %>
+        </dd>
+      </dl>
       <%= f.submit t('submit_video_info'), :class => "minibutton", :disabled => true, data: {disable_with: t('saving') + "..."}, :id => "submit_video_info" %>
     <% end %>
   </div>
