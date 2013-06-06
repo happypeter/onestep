@@ -27,3 +27,13 @@ en:
 
   reupload_video: "Reupload video NO."
   edit_profile: "Edit Profile"
+  dislike_default_avatar: "Do not like the default avatar?"
+  upload_avatar: "to search if there is any avatar available. Do not know what is Gravatar? "
+  go_avatar: "go and see: "
+  avatar_email: "We are using your Email:"
+  haoqicat_avatar: "you can upload your avatar here at haoqicat(this one will hold higher priority)."
+  or: "Or"
+  select_avatar: "Select a Avatar to Upload"
+
+  new_password: "New Password"
+  password_confirm: "Password Confirm"

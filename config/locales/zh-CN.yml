@@ -93,6 +93,17 @@ zh-CN:
   email: "邮箱"
   create_account: "创建用户"
   edit_profile: "编辑个人信息"
+  dislike_default_avatar: "对默认的头像不满意？"
+  avatar_email: "我们会去Gravatar上根据你的Email: "
+  upload_avatar: "搜索是否有可用的头像。不知道Gravatar是什么？"
+  go_avatar: "可以去他们网站看看： "
+  haoqicat_avatar: "你也可以从本地上传头像，这种方式上传的头像会优先显示： "
+  or: "或者"
+  select_avatar: "点击上传头像"
+
+  new_password: "新密码"
+  password_confirm: "密码确认"
+
   date:
     abbr_day_names:
     - 日
