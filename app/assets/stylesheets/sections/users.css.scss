@@ -80,6 +80,28 @@
     }
   }
 }
+#setting-container {
+  display: table;
+  margin: 23px auto;
+  h1 {
+    display: table-caption;
+  }
+  #setting-avatar {
+    min-width: 400px;
+    width: 400px;
+    display: table-cell;
+    background-color: white;
+    padding-right: 35px;
+  }
+  .setting-content {
+    display: table-cell;
+    width: 300px;
+    margin-left: 10px;
+    vertical-align: bottom;
+    padding-left: 35px;
+  }
+
+}
 
 .avatared {
   img {
