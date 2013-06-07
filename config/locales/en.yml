@@ -20,6 +20,7 @@ en:
   what_to_learn: "What We Will Offer"
   cool: "ImgCool"
   sign_in: "Sign In"
+  login: "Log In"
   logout: "Sign Out"
   sharing: "sharing"
   confirm_delete: "Are you sure?"
@@ -38,5 +39,6 @@ en:
   new_password: "New Password"
   password_confirm: "Password Confirm"
 
+  username: "Username"
   signup_username: "Pick a username"
   password: "Password"

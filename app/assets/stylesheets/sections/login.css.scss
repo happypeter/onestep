@@ -1,0 +1,26 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.auth-form {
+  margin: 60px auto;
+  width: 350px;
+  .auth-form-header {
+    padding: 1px 15px;
+    margin: 0;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    border-radius: 5px 5px 0 0;
+    background-color: #6c8393;
+    background-image: -moz-linear-gradient(#7f95a5, #6c8393);
+    background-image: -webkit-linear-gradient(#7f95a5, #6c8393);
+    background-image: linear-gradient(#7f95a5, #6c8393);
+    background-repeat: repeat-x;
+    border: 1px solid #6e8290;
+    border-bottom-color: #586873;
+  }
+  .auth-form-body {
+    padding: 15px;
+    border: 1px solid #d8dee2;
+    border-radius: 0 0 5px 5px;
+  }
+}
