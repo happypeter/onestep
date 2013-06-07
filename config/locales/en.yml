@@ -37,3 +37,6 @@ en:
 
   new_password: "New Password"
   password_confirm: "Password Confirm"
+
+  signup_username: "Pick a username"
+  password: "Password"

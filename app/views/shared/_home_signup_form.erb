@@ -1,7 +1,7 @@
 <%= form_for(@user,:url => "/member", :class => "home-signup") do |f|  %>
   <dl class="form">
     <dd>
-      <%= f.text_field :name, :placeholder => "Pick a username" %>
+      <%= f.text_field :name, :placeholder => t('signup_username') %>
     </dd>
   </dl>
   <dl class="form">
@@ -11,7 +11,7 @@
   </dl>
   <dl class="form">
     <dd>
-      <%= f.password_field :password, :placeholder => "Password"%>
+      <%= f.password_field :password, :placeholder => t('password') %>
     </dd>
   </dl>
   <div class="action"><%= f.submit t("signup_free"), :class => "btn btn-success" %></div>

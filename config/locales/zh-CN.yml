@@ -104,6 +104,9 @@ zh-CN:
   new_password: "新密码"
   password_confirm: "密码确认"
 
+  signup_username: "用户名"
+  password: "密码"
+
   date:
     abbr_day_names:
     - 日
