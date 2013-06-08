@@ -21,6 +21,8 @@ class InfoController < ApplicationController
       render :template => "info/styleguide/css/colors"
     when 3.0
       render :template => "info/styleguide/css/comments"
+    when 4.0
+      render :template => "info/styleguide/css/menus"
     end
   end
 
