@@ -108,6 +108,9 @@ zh-CN:
   signup_username: "用户名"
   password: "密码"
 
+  about_haoqicat: "关于好奇猫"
+  more: "更多"
+
   date:
     abbr_day_names:
     - 日
