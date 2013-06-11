@@ -36,12 +36,10 @@
       <% end %>
       <h2><%= t('my_courses') %>:</h2>
     </div>
-    <% if @user.courses.present? %>
+    <% if @courses.present? %>
       <div class="courses">
-        <% @user.courses.each do |course| %>
-          <% if course.public? || current_user == @user %>
-            <%= render "courses/course", :course => course %>
-          <% end %>
+        <% @courses.each do |course| %>
+          <%= render "courses/course", :course => course %>
         <% end %>
       </div>
     <% else %>

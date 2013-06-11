@@ -29,8 +29,6 @@ class User < ActiveRecord::Base
       self.gravatar_url
     end
   end
-
-
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

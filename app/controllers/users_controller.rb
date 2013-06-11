@@ -110,6 +110,11 @@ class UsersController < ApplicationController
     if @user.nil?
       raise ActiveRecord::RecordNotFound
     end
+    @courses = if (@user == current_user)
+      @user.courses
+    else
+      @user.courses.pub    
+    end
     respond_to do |format|
       format.html # show.html.erb
     end
