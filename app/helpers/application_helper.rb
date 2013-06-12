@@ -27,9 +27,8 @@ module ApplicationHelper
       :modifiers => modifiers})
   end
 
-  # dirty hack to escape a html_safe string
   def show_code(string)
-    string[0..-1]
+    markdown  "```\n#{string}```\n"
   end
 
 end

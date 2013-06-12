@@ -71,6 +71,13 @@
     background: #EDF6F8;
     border-top: 1px solid #DDE7EA;
     overflow: auto;
+    pre {
+      border: none;
+      background-color: #EDF6F8;
+      code {
+        background-color: #EDF6F8;
+      }
+    }
   }
   .styleguide-description {
     padding: 1px 10px;
