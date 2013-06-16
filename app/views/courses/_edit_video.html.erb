@@ -41,17 +41,23 @@
   <div class="primary-info">
     <h1><%= t('enter_video_info') %></h1>
     <%= form_for video do |f| %>
-      <br>
-      <%= f.hidden_field :id %>
-      <%= f.label t("video_title") %>
-      <br>
-      <%= f.text_field :title %>
-      <br>
-      <%= f.label t("video_desc") %>
-      <br>
-      <%= f.text_area :desc, :size => "24x4" %>
-      <br>
-      <br>
+      <dl class="field">
+        <dt>
+          <%= f.hidden_field :id %>
+          <%= f.label t("video_title") %>
+        </dt>
+        <dd>
+          <%= f.text_field :title %>
+        </dd>
+      </dl>
+      <dl class="field">
+        <dt>
+        <%= f.label t("video_desc") %>
+        </dt>
+        <dd>
+        <%= f.text_area :desc, :size => "18x4", :id => "video_desc" %>
+        </dd>
+      </dl>
       <%= f.submit t('save'), :class => "minibutton", data: {disable_with: t('saving') + "..."},:id => "submit_video_info" %>
       <%= link_to t('cancel'), edit_course_path(video.course), :class => "minibutton"%>
     <% end %>
