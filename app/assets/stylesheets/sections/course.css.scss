@@ -80,6 +80,7 @@ a.course-thumb {
     background-size: cover;
     width: $course-poster-width;
     height: $course-poster-height;
+    border: inherit;
   }
   .private-label {
     color: red;
