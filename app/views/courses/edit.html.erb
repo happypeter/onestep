@@ -31,12 +31,12 @@
 <div class='container'>
   <div id="tutorial-page">
     <div class="tutorial-nav">
-      <h1>
+      <h3>
         <%= @course.title %>
         <span id="edit-course-delete">
           <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
         </span>
-      </h1>
+      </h3>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
       <% end %>
