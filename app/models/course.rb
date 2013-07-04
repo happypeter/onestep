@@ -5,6 +5,6 @@ class Course < ActiveRecord::Base
   validates_presence_of :title
 
   mount_uploader :poster, PosterUploader
-  
+
   scope :pub, where(public: true)
 end

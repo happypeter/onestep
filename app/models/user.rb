@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
   has_many :courses
+  has_many :notifications
 
   attr_accessible :name, :email, :avatar, :password, :password_confirmation, :admin
 
@@ -11,8 +12,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email
 
   before_create { generate_token(:token) }
-
-
 
   def has_avatar?
     self.read_attribute(:avatar).present?

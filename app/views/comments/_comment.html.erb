@@ -1,27 +1,25 @@
 <div class="bubble">
   <%= div_for comment do %>
-    <div class="comment">
-      <div class="comment-header">
-        <i class="icon-comment"></i>
-        <%= link_to comment.user.name, member_path(comment.user.name), :class => "comment-header-author" %>
-         说
-        <span class="comment-header-right">
-          <span class="comment-header-date">
-            <%= time_ago_in_words comment.created_at %>前
-          </span>
-          <% if current_user.try(:id) == comment.user.id %>
-            <ul class="comment-header-actions">
-              <li><%= link_to t("edit"), edit_comment_path(comment), :remote => true %></li>
-              <li><%= link_to t("delete"), comment, :confirm => "Are you sure you want to delete?", :method => :delete, :remote => true %></li>
-            </ul>
-          <% end %>
+    <div class="comment-header">
+      <i class="icon-comment"></i>
+      <%= link_to comment.user.name, member_path(comment.user.name), :class => "comment-header-author" %>
+      <%= link_to "说", video_comment_path(comment.id) %>
+      <span class="comment-header-right">
+        <span class="comment-header-date">
+          <%= time_ago_in_words comment.created_at %>前
         </span>
-      </div>
-      <div class="comment-content ">
-        <div class="edit-comment-hide">
-          <div class="comment-body markdown-body">
-            <%= markdown comment.content %>
-          </div>
+        <% if current_user.try(:id) == comment.user.id %>
+          <ul class="comment-header-actions">
+            <li><%= link_to t("edit"), edit_comment_path(comment), :remote => true %></li>
+            <li><%= link_to t("delete"), comment, :confirm => "Are you sure you want to delete?", :method => :delete, :remote => true %></li>
+          </ul>
+        <% end %>
+      </span>
+    </div>
+    <div class="comment-content ">
+      <div class="edit-comment-hide">
+        <div class="comment-body markdown-body">
+          <%= markdown comment.content %>
         </div>
       </div>
     </div>

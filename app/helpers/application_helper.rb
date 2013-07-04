@@ -31,4 +31,9 @@ module ApplicationHelper
     markdown  "```\n#{string}```\n"
   end
 
+  def video_comment_path(comment_id)
+    comment = Comment.find(comment_id)
+    course_path(comment.video.course) + '/' + comment.video.position.to_s  + "#comment_#{comment_id}"
+  end
+
 end
