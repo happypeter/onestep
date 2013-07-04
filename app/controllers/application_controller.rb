@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_locale_to_zh
+  before_filter :init
+
+  def init
+    set_locale_to_zh
+    count_unread_notification
+  end
 
   def set_locale_to_zh
     I18n.locale = cookies[:locale] || "zh-CN"
@@ -53,4 +58,13 @@ class ApplicationController < ActionController::Base
   def auth
     redirect_to :root if logged_in?
   end
+
+  def count_unread_notification
+    if current_user
+      @unread_count = current_user.notifications.where(unread: true).count
+    else
+      @unread_count = 0
+    end
+  end
+
 end
