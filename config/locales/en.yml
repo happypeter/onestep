@@ -45,3 +45,12 @@ en:
 
   about_haoqicat: "About Haoqicat"
   more: "More"
+  course_description: "Course Description"
+  public: "Public"
+  update_course: "Update Course"
+  course_title: "Course Title"
+  video_title: "Video Title"
+  video_desc: "Video Description"
+  submit_video_info: "Submit Video Info"
+  saving: "Saving"
+  save: "Save"
