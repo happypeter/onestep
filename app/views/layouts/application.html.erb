@@ -48,6 +48,18 @@
         <dd><a href="/member"><%= t('member') %></a></dd>
         <dd><a href="http://cool.haoqicat.com"><%= t('cool') %></a></dd>
       </dl>
+      <dl class="footer_nav">
+        <dt><%= t('International') %></dt>
+        <dt>
+        <form action="/set_locale">
+          <select id="language-picker" name="locale" onchange="this.form.submit()">
+            <option value="zh-CN" <%= "selected" if not cookies[:locale] == 'en' %>> Chinese </option>
+            <option value="en" <%= "selected" if cookies[:locale] == 'en' %>> English</option>
+          </select>
+          <noscript><input type="submit" value="submit"></noscript>
+        </form>
+        </dt>
+      </dl>
       <br>
       <hr class="footer-divider">
       <p class="right">© 2013 Haoqicat Inc. All rights reserved.</p>
