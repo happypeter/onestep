@@ -9,6 +9,9 @@
 *.swp
 
 public/assets/
+public/course/
+public/poster/
+public/avatar/
 unicorn/
 # Ignore the default SQLite database.
 db/*.sqlite3

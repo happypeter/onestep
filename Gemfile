@@ -10,7 +10,6 @@ gem 'mysql2'
 gem 'unicorn'
 gem 'redcarpet'
 gem 'carrierwave', "~> 0.6.2"
-gem 'carrierwave-upyun', '~> 0.1.6'
 gem 'rmagick'
 gem 'mime-types'
 gem 'settingslogic'
@@ -33,7 +32,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.1.2'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails', '0.4.0'
 gem 'haml'
