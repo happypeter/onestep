@@ -6,7 +6,7 @@
       var _tip = $("#upload-tip");
       $('#fileupload').fileupload({
           dataType: 'json',
-          url: '/upyun_images.json',
+          url: '/blog_images.json',
           maxFileSize: 1024 * 1024 * 5,
           add: function(e, data){
             types = /(\.|\/)(gif|jpe?g|png)$/i;
@@ -38,4 +38,4 @@
 .pull-right
   %a.fileupload-btn.action_label
     %span#upload-tip 上传图片
-    %input#fileupload{:type => 'file', :multiple => true, :name => "upyun_image[asset][]"}
+    %input#fileupload{:type => 'file', :multiple => true, :name => "blog_image[asset][]"}

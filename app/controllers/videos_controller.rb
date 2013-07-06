@@ -1,6 +1,5 @@
 class VideosController < ApplicationController
   def create
-    redirect_to root_path if Settings.upyun.switch != 'on'
     respond_to do |f|
       f.html do
           redirect_to_target_or_default root_url

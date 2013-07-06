@@ -9,6 +9,7 @@
 *.swp
 
 public/assets/
+public/uploads/
 unicorn/
 # Ignore the default SQLite database.
 db/*.sqlite3
