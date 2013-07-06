@@ -16,6 +16,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
     Settings.image.default_avatar
   end
   def store_dir
-    "avatar/"
+    "uploads/avatar/"
   end
 end

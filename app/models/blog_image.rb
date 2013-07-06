@@ -1,8 +1,8 @@
-class UpyunImage < ActiveRecord::Base
+class BlogImage < ActiveRecord::Base
   belongs_to :user
   attr_accessible :asset
 
-  mount_uploader :asset, UpyunImageUploader
+  mount_uploader :asset, BlogImageUploader
 
   validates :asset, :content_type, :size, :filename, :presence => true
   validates_integrity_of :asset

@@ -17,6 +17,6 @@ class PosterUploader < CarrierWave::Uploader::Base
     Settings.image.default_poster
   end
   def store_dir
-    "poster/"
+    "uploads/poster/"
   end
 end

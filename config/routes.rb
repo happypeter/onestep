@@ -12,9 +12,9 @@ Onestep::Application.routes.draw do
   get "/blog/:id" => "posts#show", :as => "blog"
   get "/blog/:id/edit" => "posts#edit", :as => "edit_blog"
   get "/write_blog" => "posts#new"
-  put "/upyun_images" => "upyun_images#create" #for file-upload on posts#edit
+  put "/blog_images" => "blog_images#create" #for file-upload on posts#edit
   resources :posts
-  resources :upyun_images
+  resources :blog_images
   resources :videos
   resources :notifications
   match 'update_avatar' => 'users#update_avatar', :as => :update_avatar

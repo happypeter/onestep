@@ -1,18 +1,11 @@
-class UpyunImagesController < ApplicationController
-  def show
-    @img = UpyunImage.find(params[:id])
-  end
-
-
+class BlogImagesController < ApplicationController
   def create
-    redirect_to root_path if Settings.upyun.switch != 'on'
-
     respond_to do |f|
       f.json {
         result = []
 
-        params[:upyun_image][:asset].each do |file|
-          img = UpyunImage.new(:asset => file)
+        params[:blog_image][:asset].each do |file|
+          img = BlogImage.new(:asset => file)
           img.filename = file.original_filename
           img.user = current_user
           if img.save
@@ -21,7 +14,7 @@ class UpyunImagesController < ApplicationController
               :size => img.size,
               :url => img.asset.url,
               :thumbnail_url => img.asset.url,
-              :delete_url => upyun_image_path(img),
+              :delete_url => blog_image_path(img),
               :delete_type => 'DELETE'
             }
           end

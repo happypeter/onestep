@@ -4,6 +4,6 @@ class VideoUploader < CarrierWave::Uploader::Base
   include UploaderHelper
   storage :file
   def store_dir
-    "course/"
+    "uploads/course/"
   end
 end
