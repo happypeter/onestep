@@ -18,7 +18,7 @@
   }
   #user-course {
     width: 800px;
-    border-left: 1px solid #CCC;
+    border-left: 1px solid $border-color-c;
     border-top-left-radius: 5px;
     display: table-cell;
     .user-course-header {
@@ -27,10 +27,10 @@
       background-image: -webkit-linear-gradient(#FAFAFA, #EAEAEA);
       background-image: linear-gradient(#FAFAFA, #EAEAEA);
       background-repeat: repeat-x;
-      border: 1px solid #DDD;
+      border: 1px solid $border-color-d;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      border-bottom: 1px solid #DDD;
+      border-bottom: 1px solid $border-color-d;
       h2 {
         margin: 0;
         height: 58px;
@@ -81,26 +81,43 @@
   }
 }
 #setting-container {
-  display: table;
-  margin: 23px auto;
-  h1 {
-    display: table-caption;
+  width: 650px;
+  margin: 50px auto 60px;
+  h3 {
+    margin-top: 0;
   }
-  #setting-avatar {
-    min-width: 400px;
-    width: 400px;
-    display: table-cell;
-    background-color: white;
-    padding-right: 35px;
+  .setting-header {
+    font-size: 25px;
+    border-bottom: 1px solid $border-color-c;
+    padding-bottom: 12px;
   }
-  .setting-content {
-    display: table-cell;
-    width: 300px;
-    margin-left: 10px;
-    vertical-align: bottom;
-    padding-left: 35px;
+  .setting-section {
+    position: relative;
+    border-top: 1px solid $border-color-d;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    &:first-child {
+      border-top: 0;
+    }
   }
-
+  .avatar-upload.avatared {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 20px;
+      a {
+        position: absolute;
+        left: 0;
+        top: 210px;
+        margin-bottom: 30px;
+      }
+  }
+  .avatared-content {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .actions .button {
+    width: 230px;
+  }
 }
 
 .avatared {
@@ -111,6 +128,11 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     width: 160px;
     height: 160px;
-    border: 1px solid #DDD;
+    border: 1px solid $border-color-c;
+  }
+  a.button {
+    width: 140px;
+    text-align: center;
+    line-height: normal;
   }
 }
