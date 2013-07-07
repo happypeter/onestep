@@ -27,7 +27,7 @@
     background: white;
     padding: 5px;
     border-radius: 50%;
-    border: 1px solid #DDD;
+    border: 1px solid $border-color-d;
     margin-right: 40px;
     box-shadow: 0 0 0 1px #DFDFDF;
     a img {
@@ -56,7 +56,7 @@
   }
 }
 .about-fieldset {
-  border: 1px solid #DDD;
+  border: 1px solid $border-color-d;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;

@@ -19,7 +19,7 @@
 .styleguide-example {
   margin: 15px auto;
   background: rgba(255, 255, 255, 0.5);
-  border: 1px solid #DDD;
+  border: 1px solid $border-color-d;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   .styleguide-element {
     position: relative;
@@ -82,7 +82,7 @@
   .styleguide-description {
     padding: 1px 10px;
     background: #F1F1F1;
-    border-bottom: 1px solid #DDD;
+    border-bottom: 1px solid $border-color-d;
   }
 }
 
