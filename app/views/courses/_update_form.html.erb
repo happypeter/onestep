@@ -24,12 +24,8 @@
 
 
   <dl class="field">
-    <dt>
-      <%= f.label t('course_title') %>
-    </dt>
-    <dd>
-    <%= f.text_field :title %>
-    </dd>
+    <dt> <%= f.label t('course_title') %> </dt>
+    <dd> <%= f.text_field :title %> </dd>
   </dl>
   <dl class="field">
     <dt>
@@ -37,12 +33,12 @@
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
     </dt>
     <dd>
-      <%= f.text_area :description, :size => "18x4", :id => "course_desc" %>
+      <%= f.text_area :description, :size => "14x4", :id => "course_desc" %>
     </dd>
   </dl>
   <div class="field">
-      <%= f.label t('public') %>
-      <%= f.check_box :public %>
+    <%= f.check_box :public %>
+    <%= f.label t('public') %>
   </div>
   <div>
     <%= f.submit t('update_course'), :class => "minibutton primary" %>
