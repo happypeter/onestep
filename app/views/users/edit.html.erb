@@ -9,12 +9,9 @@
           add: function(e, data){
             types = /(\.|\/)(gif|jpe?g|png)$/i;
             file = data.files[0];
-            if (types.test(file.type) || types.test(file.name))
-            {
+            if (types.test(file.type) || types.test(file.name)) {
               data.submit();
-            }
-            else
-            {
+            } else {
               alert(file.name + " 不是图片，请重新选择！");
             }
           },
@@ -31,30 +28,23 @@
 
   <div class="container">
     <div id="setting-container">
-      <h1><%= t('edit_profile') %></h1>
-      <div id="setting-avatar">
-        <div class="avatared">
-          <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50", :id => "avatar" %>
-        </div>
-        <div>
-          <div class="field">
-            <h3><%= t('dislike_default_avatar') %></h3>
-            <%= t('avatar_email') %> <%= @user.email %><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
-            <p>
-            <b><%= t('or') %></b>
-            </p>
-            <p>
-            <%= t('haoqicat_avatar') %>
-            </p>
-          </div>
-          <a class= "fileupload-btn button primary">
-            <span id="upload-tip"><%= t('select_avatar') %></span>
-            <input id="fileupload" name="user[avatar]" type="file">
-          </a>
-        </div>
-      </div>
-
+      <h1 class="setting-header"><%= t('edit_profile') %></h1>
       <div class="setting-content">
+        <div class="setting-section">
+          <div class="avatar-upload avatared">
+            <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50", :id => "avatar" %>
+            <a class= "fileupload-btn button primary">
+              <span id="upload-tip"><%= t('select_avatar') %></span>
+              <input id="fileupload" name="user[avatar]" type="file">
+            </a>
+          </div>
+          <div class="avatared-content">
+            <h3><%= t('dislike_default_avatar') %></h3>
+            <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+            <p> <b><%= t('or') %></b> </p>
+            <p> <%= t('haoqicat_avatar') %> </p>
+          </div>
+        </div><!-- end setting-section -->
         <%= form_for(@user,:url =>"/account" ) do |f| %>
           <% if @user.errors.any? %>
             <div class="error_messages">
@@ -66,32 +56,22 @@
             </div>
           <% end %>
           <%= f.hidden_field :name %>
-          <dl class="field">
-            <dt>
-              <%= f.label :email %><br />
-            </dt>
-            <dd>
-              <%= f.text_field :email %>
-            </dd>
-          </dl>
-          <dl class="field">
-            <dt>
-              <%= f.label t('new_password')%><br />
-            </dt>
-            <dd>
-              <%= f.password_field :password %>
-            </dd>
-          </dl>
-          <dl class="field">
-            <dt>
-            <%= f.label t('password_confirm') %><br />
-            </dt>
-            <dd>
-            <%= f.password_field :password_confirmation %>
-            </dd>
-          </dl>
-          <div class="actions">
-            <%= f.submit t('save'), :class => "button primary" %>
+          <div class="setting-section">
+            <dl class="field">
+              <dt> <%= f.label :email %> </dt>
+              <dd> <%= f.text_field :email %> </dd>
+            </dl>
+            <dl class="field">
+              <dt> <%= f.label t('new_password')%> </dt>
+              <dd> <%= f.password_field :password %> </dd>
+            </dl>
+            <dl class="field">
+              <dt> <%= f.label t('password_confirm') %> </dt>
+              <dd> <%= f.password_field :password_confirmation %> </dd>
+            </dl>
+            <div class="actions">
+              <%= f.submit t('save'), :class => "button primary" %>
+            </div>
           </div>
         <% end %>
       </div>

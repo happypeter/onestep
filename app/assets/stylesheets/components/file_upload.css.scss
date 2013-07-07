@@ -17,7 +17,7 @@
 }
 
 a.action_label {
-  border: 1px solid #CCC;
+  border: 1px solid $border-color-c;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   padding: 5px 8px 2px;
@@ -25,7 +25,7 @@ a.action_label {
   border-bottom: none;
   text-decoration: none;
   &:hover {
-    background-color: #ccc;
+    background-color: $background-color-c;
     color: #333;
   }
 }

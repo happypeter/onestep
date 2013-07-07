@@ -38,7 +38,7 @@
   }
   .tutorial-content {
     display: table-cell;
-    border-left: 1px solid #CCC;
+    border-left: 1px solid $border-color-c;
     padding-left: 20px;
     width: 100%;
     .tutorial-description {
@@ -59,7 +59,7 @@
 
 div#html5-player {
   margin: 0 auto;
-  border: 1px solid #ccc;
+  border: 1px solid $border-color-c;
   width: 800px;
 }
 
