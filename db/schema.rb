@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707031754) do
-
-  create_table "blog_images", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "asset"
-    t.integer  "size"
-    t.string   "content_type"
-    t.string   "filename"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130704065315) do
 
   create_table "comments", :force => true do |t|
     t.string   "content"
@@ -59,17 +49,25 @@ ActiveRecord::Schema.define(:version => 20130707031754) do
     t.string   "name"
   end
 
+  create_table "upyun_images", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "asset"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "token"
     t.boolean  "admin"
     t.string   "name"
     t.string   "avatar"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
   end
 
   create_table "videos", :force => true do |t|
