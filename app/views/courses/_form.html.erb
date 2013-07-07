@@ -20,19 +20,20 @@
       </ul>
     </div>
   <% end %>
+  <dl class="field">
+    <dt> <%= f.label t('course_title') %> </dt>
+    <dd> <%= f.text_field :title %> </dd>
+  </dl>
+  <dl class="field">
+    <dt>
+      <%= f.label t('course_description') %>
+      (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
+    </dt>
+    <dd>
+      <%= f.text_area :description, :size => "14x4", :id => "course_desc" %>
+    </dd>
+  </dl>
 
-  <div class="field">
-    <%= f.label t('course_title') %><br />
-    <%= f.text_field :title %>
-  </div>
-  <br>
-  <div class="field">
-    <%= f.label t('course_description') %>
-    (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
-    <br>
-    <%= f.text_area :description, :size => "30x10", :id => "course_desc" %>
-  </div>
-  <br>
   <div>
     <%= f.submit t('create_course'), :class => "minibutton" %>
   </div>

@@ -97,7 +97,7 @@ zh-CN:
   avatar_email: "我们会去Gravatar上根据你的Email: "
   upload_avatar: "搜索是否有可用的头像。不知道Gravatar是什么？"
   go_avatar: "可以去他们网站看看： "
-  haoqicat_avatar: "你也可以从本地上传头像，这种方式上传的头像会优先显示： "
+  haoqicat_avatar: "你也可以从本地上传头像，这种方式上传的头像会优先显示。 "
   or: "或者"
   select_avatar: "点击上传头像"
 
