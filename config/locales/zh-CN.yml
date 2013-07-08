@@ -77,6 +77,7 @@ zh-CN:
   tagline: "当科技向往艺术，让我们一起学习 web 开发"
   edit: "编辑"
   delete: "删除"
+  preview: "预览"
 
   # comment things
   comment: "评论"
@@ -100,6 +101,7 @@ zh-CN:
   haoqicat_avatar: "你也可以从本地上传头像，这种方式上传的头像会优先显示。 "
   or: "或者"
   select_avatar: "点击上传头像"
+  your_avatar: "你的头像"
 
   new_password: "新密码"
   password_confirm: "密码确认"
@@ -110,6 +112,12 @@ zh-CN:
 
   about_haoqicat: "关于好奇猫"
   more: "更多"
+
+  #error message
+  error_blank_content: "内容不能为空！"
+
+  forgot_password: "忘记密码？"
+  reset_password: "重置密码"
 
   date:
     abbr_day_names:

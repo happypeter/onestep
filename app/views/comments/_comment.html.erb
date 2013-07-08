@@ -11,7 +11,7 @@
         <% if current_user.try(:id) == comment.user.id %>
           <ul class="comment-header-actions">
             <li><%= link_to t("edit"), edit_comment_path(comment), :remote => true %></li>
-            <li><%= link_to t("delete"), comment, :confirm => "Are you sure you want to delete?", :method => :delete, :remote => true %></li>
+            <li><%= link_to t("delete"), comment, :confirm => t('confirm_delete'), :method => :delete, :remote => true %></li>
           </ul>
         <% end %>
       </span>

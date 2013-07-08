@@ -22,7 +22,7 @@
           <%= password_field_tag :password %>
           </dd>
         </dl>
-        <p><%= link_to "forgotten password?", new_password_reset_path %></p>
+        <p><%= link_to t('forget_password'), new_password_reset_path %></p>
         <div> <%= submit_tag t('login'), :class => "btn" %> </div>
       <% end %>
     </div>

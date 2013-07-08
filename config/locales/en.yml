@@ -35,6 +35,7 @@ en:
   haoqicat_avatar: "you can upload your avatar here at haoqicat(this one will hold higher priority)."
   or: "Or"
   select_avatar: "Select a Avatar to Upload"
+  your_avatar: "Your Avatar"
 
   new_password: "New Password"
   password_confirm: "Password Confirm"
@@ -54,3 +55,8 @@ en:
   submit_video_info: "Submit Video Info"
   saving: "Saving"
   save: "Save"
+
+  error_blank_content: "Input something first please."
+
+  forgot_password: "forgot password?"
+  reset_password: "Reset Password"
