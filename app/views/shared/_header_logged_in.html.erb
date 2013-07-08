@@ -9,8 +9,7 @@
     </ul>
     <ul id="user-links">
       <li><%= link_to notifications_path do %>
-        <i class="icon-envelope"></i>
-        ( <%= @unread_count %> )
+        <span class="label"><%= @unread_count %></span>
       <% end %>
       </li>
       <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
