@@ -55,8 +55,9 @@ en:
   submit_video_info: "Submit Video Info"
   saving: "Saving"
   save: "Save"
-
   error_blank_content: "Input something first please."
 
   forgot_password: "forgot password?"
   reset_password: "Reset Password"
+  supported_video_format: "Supported Format: MOV/MP4"
+  note_max_video_size_50m: "Max Video Size: 50M"
