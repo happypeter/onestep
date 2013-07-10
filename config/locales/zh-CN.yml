@@ -1,4 +1,6 @@
 zh-CN:
+  people: "个会员"
+  courses: "套课程"
   ror: "Ruby on Rails"
   ror_des: "一个优秀的web开发框架作为开发工具，我们可以快速地搭建出web应用"
   h_c: "HTML5 & CSS"

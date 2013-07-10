@@ -5,7 +5,11 @@
       <%= render 'shared/home_signup_form' %>
     </div>
     <div id="ego-line">
-      <h1><%= link_to "#{pluralize User.count, 'person'}", user_index_path %> <%= t('sharing') %> <%= link_to "#{pluralize Course.where(public: true).count, 'course'}", course_index_path %></h1>
+      <h1>
+        <%= link_to "#{User.count}" + "#{t('people')}", user_index_path %> 
+        <%= t('sharing') %> 
+        <%= link_to "#{Course.where(public: true).count}" +  "#{t('courses')}", course_index_path %>
+      </h1>
     </div>
   </div>
 </div>
