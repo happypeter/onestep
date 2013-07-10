@@ -6,7 +6,7 @@
       , by
       = link_to post.user.name, member_path(post.user.name)
     %h2.title= link_to post.title, blog_path(post)
-  .markdown-body
+  .blog-markdown-body.markdown-format
     = markdown post.content
     - if current_user && current_user.admin?
       = link_to t("edit_blog"), edit_blog_path(post), :class => "btn btn-small"

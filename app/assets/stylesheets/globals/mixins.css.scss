@@ -26,34 +26,3 @@
     @include onestep-shadow;
   }
 }
-
-@mixin markdown-style {
-  ul {
-    padding-left: 30px;
-  }
-  h1 {
-    font-size: 18px;
-    font-weight: normal;
-    color: rgb(0, 153, 138);
-  }
-  h2 {
-    font-size: 14px;
-    font-weight: normal;
-    color: rgb(0, 153, 138);
-  }
-  img {
-    padding: 1px;
-    border: 1px solid #EEE;
-  }
-  blockquote {
-    position: relative;
-    font-size: 1.2em;
-    color: $blockquote-color;
-    line-height: 1.5em;
-    padding-left: 1em;
-    border-left: 4px solid rgba(170, 170, 170, 0.5);
-    margin: 15px 0;
-
-  }
-}
-
