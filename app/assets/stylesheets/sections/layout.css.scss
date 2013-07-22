@@ -100,6 +100,9 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
   }
+  .notification-indicator-unread {
+    background-color: $notification-green;
+  }
 }
 
 
