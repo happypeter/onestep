@@ -9,7 +9,7 @@
     </ul>
     <ul id="user-links">
       <li><%= link_to notifications_path do %>
-        <span class="notification-indicator"><%= @unread_count %></span>
+        <span class="notification-indicator <%= 'notification-indicator-unread' if @unread_count > 0 %>"><%= @unread_count %></span>
       <% end %>
       </li>
       <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
