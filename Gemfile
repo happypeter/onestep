@@ -58,3 +58,6 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+# use for alipay
+gem 'alipay_dualfun'

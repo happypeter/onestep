@@ -2,6 +2,11 @@ Onestep::Application.routes.draw do
 
   root :to => 'info#marketing'
 
+  post '/checkout' => "orders#checkout"
+  get '/orders/done' => "orders#done"
+  post '/orders/notify' => "orders#notify"
+  resources :orders
+
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"
   get "about/work" => "about#work"
