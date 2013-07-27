@@ -51,6 +51,14 @@ class OrdersController < ApplicationController
     @course = Course.find(@course_id)
     @quantity = 1
     @total_fee = @course.price * @quantity
+    @trade_status = @order.trade_status
+    if @order.trade_status == 'TRADE_FINISHED'
+      @trade_status = t('trade_finished')
+      @notify_time = @order.notify_time.strftime('%F %H:%M')
+    else
+      @trade_status = t('wait_buyer_pay')
+      @notify_time = '-'
+    end
   end
 
   def checkout

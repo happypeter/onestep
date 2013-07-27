@@ -21,9 +21,11 @@ zh-CN:
   public: "公开本课程"
 
   #order
-  trade_finished: "付款成功!"
+  trade_finished: "付款成功"
+  wait_buyer_pay: "等待付款"
   out_trade_no: "订单号"
   pay_for_course_please: "此课程需要付费才能观看"
+  checkout: "去支付宝付款"
 
   # course
   course_name: "课程英文名(用来生成一个精美的 URL, 不可修改)"

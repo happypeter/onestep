@@ -1,0 +1,38 @@
+@import "globals/variables";
+@import "globals/mixins";
+
+.order-container {
+  width: 940px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.order-title {
+  color: $custom-green;
+}
+
+.table thead {
+  background-color: #f7f7f7;
+  background-image: -moz-linear-gradient(top, #fff, #ebebeb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#ebebeb));
+  background-image: -webkit-linear-gradient(top, #fff, #ebebeb);
+  background-image: -o-linear-gradient(top, #fff, #ebebeb);
+  background-image: linear-gradient(to bottom, #fff, #ebebeb);
+  background-repeat: repeat-x;
+}
+
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #ddd;
+}
+
+.table th, .table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+.payment-form strong {
+  color: $custom-green;
+}
