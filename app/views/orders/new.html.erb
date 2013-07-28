@@ -1,0 +1,34 @@
+<h1> 购买课程 </h1>
+<div class="new_order">
+  <table>
+    <tr>
+      <th>名称</th> <!-- Subject -->
+      <th>course id</th>
+      <th>价格</th>
+      <th>数量</th>
+      <th>合计</th>
+      <th><%= t('out_trade_no') %>(out_trade_no)</th>
+      <th>trade_status</th>
+    </tr>
+    <tr>
+      <td> <%= @course.title %></td>
+      <td> <%= @course.id %></td>
+      <td> <%= @price %></td>
+      <td><%= @quantity %></td>
+      <td><%= @total_fee %></td>
+      <td><%= @order.out_trade_no %></td>
+      <td> <%= @order.trade_status %> </td>
+    </tr>
+  </table>
+</div>
+
+
+
+<%= form_tag "/checkout" do %>
+  <%= hidden_field_tag :price, @price %>
+  <%= hidden_field_tag :quantity, '1' %>
+  <%= hidden_field_tag :subject, @subject %>
+  <%= hidden_field_tag :out_trade_no, @order.out_trade_no %>
+  <%= submit_tag("去支付宝结账") %>
+<% end %>
+
