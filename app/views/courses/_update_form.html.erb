@@ -9,6 +9,7 @@
 <%= form_for(@course, :url => "/course") do |f| %>
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :name %>
+  <%= f.hidden_field :price %>
   <%= flash[:notice] %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
@@ -23,6 +24,10 @@
   <% end %>
 
 
+  <dl class="field">
+    <dt> <%= f.label "课程价格" %> </dt>
+    <dd> <%= f.text_field :price %> </dd>
+  </dl>
   <dl class="field">
     <dt> <%= f.label t('course_title') %> </dt>
     <dd> <%= f.text_field :title %> </dd>
