@@ -1,7 +1,9 @@
 class Course < ActiveRecord::Base
   has_many :videos, order: :position
+  has_many :orders
   belongs_to :user
-  attr_accessible :description, :name, :title, :poster, :user_id, :public
+  attr_accessible :description, :name, :title, :poster, :user_id, :public,
+                  :price
   validates_presence_of :title
 
   mount_uploader :poster, PosterUploader

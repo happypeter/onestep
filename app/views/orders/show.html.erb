@@ -1,0 +1,25 @@
+<h1> 订单详情 </h1>
+<div class="order-container">
+  <table>
+    <tr>
+      <th>名称</th> <!-- Subject -->
+      <th>course id</th>
+      <th>价格</th>
+      <th>数量</th>
+      <th>合计(total fee)</th>
+      <th><%= t('out_trade_no') %>(out_trade_no)</th>
+      <th>order id</th>
+      <th>trade_status</th>
+    </tr>
+    <tr>
+      <td> <%= @course.title %></td>
+      <td> <%= @course.id %></td>
+      <td> <%= @price %></td>
+      <td>1</td>
+      <td><%= @total_fee %></td>
+      <td><%= @order.out_trade_no %></td>
+      <td> <%= @order.id %> </td>
+      <td> <%= @order.trade_status %> </td>
+    </tr>
+  </table>
+</div>
