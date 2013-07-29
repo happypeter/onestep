@@ -13,7 +13,7 @@
     <tr>
       <td> <%= @course.title %></td>
       <td> <%= @course.id %></td>
-      <td> <%= @price %></td>
+      <td> <%= @course.price %></td>
       <td><%= @quantity %></td>
       <td><%= @total_fee %></td>
       <td><%= @order.out_trade_no %></td>
@@ -25,7 +25,7 @@
 
 
 <%= form_tag "/checkout" do %>
-  <%= hidden_field_tag :price, @price %>
+  <%= hidden_field_tag :price, @course.price %>
   <%= hidden_field_tag :quantity, '1' %>
   <%= hidden_field_tag :subject, @subject %>
   <%= hidden_field_tag :out_trade_no, @order.out_trade_no %>

@@ -136,6 +136,10 @@ zh-CN:
         email: "Email"
         password: "密码"
         password_confirmation: "密码确认"
+      course:
+        price: "价格"
+        title: "课程标题(中英文均可)"
+        description: "课程描述"
 
   about_haoqicat: "关于好奇猫"
   more: "更多"
