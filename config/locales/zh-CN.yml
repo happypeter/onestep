@@ -98,6 +98,14 @@ zh-CN:
 
   # personal info
   logout: "退出"
+  logged_out: "你已经退出登录"
+  invalid_name_or_password: "无效的用户名或密码，请重新输入"
+  fields_can_not_be_blank: "字段不能为空，请填写完整的信息"
+  name_taken: "该用户名已被占用，请重新选择"
+  email_taken: "该email已经注册了一个用户，请重新选择"
+  is_reserved_word: "已被占用，请重新选择"
+  fail_save_user: "保存用户失败，请确认信息填写正确"
+  signed_up: "注册成功"
   login: "登录"
   signup: "注册"
   signup_free: "免费注册"
@@ -120,6 +128,14 @@ zh-CN:
   username: "用户名"
   signup_username: "用户名"
   password: "密码"
+
+  helpers:
+    label:
+      user:
+        name: "用户名"
+        email: "Email"
+        password: "密码"
+        password_confirmation: "密码确认"
 
   about_haoqicat: "关于好奇猫"
   more: "更多"
