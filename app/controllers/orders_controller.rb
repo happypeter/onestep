@@ -1,18 +1,22 @@
 class OrdersController < ApplicationController
   def new
-    @course = Course.find(params[:course_id])
-    @subject = @course.title
-    @quantity = 1
-    @price = 0.1
-    @total_fee = @price * @quantity
+    if !current_user
+      redirect_to :login, :notice => t('login_first_plz')
+    else
+      @course = Course.find(params[:course_id])
+      @subject = @course.title
+      @quantity = 1
+      @price = 0.1
+      @total_fee = @price * @quantity
 
-    # if this user has unpaid order for this course, should not create a new order, should use that unpaid order
-    @order = Order.where(:course_id => @course.id, :user_id => current_user.id).first
-    if @order.nil?
-      @out_trade_no = Time.now.to_i.to_s
-      @order = Order.new(user_id: current_user.id, course_id: @course.id,
-                        subject: @subject, out_trade_no: @out_trade_no)
-      @order.save!
+      # if this user has unpaid order for this course, should not create a new order, should use that unpaid order
+      @order = Order.where(:course_id => @course.id, :user_id => current_user.id).first
+      if @order.nil?
+        @out_trade_no = Time.now.to_i.to_s
+        @order = Order.new(user_id: current_user.id, course_id: @course.id,
+                          subject: @subject, out_trade_no: @out_trade_no)
+        @order.save!
+      end
     end
   end
 

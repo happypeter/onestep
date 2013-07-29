@@ -93,6 +93,9 @@ zh-CN:
   publish_comment: "发表评论"
   login_and_comment: "登陆说几句"
 
+  # notice
+  login_first_plz: "请先登录"
+
   # personal info
   logout: "退出"
   login: "登录"
