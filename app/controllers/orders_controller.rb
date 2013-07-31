@@ -5,8 +5,9 @@ class OrdersController < ApplicationController
     else
       @course = Course.find(params[:course_id])
       @subject = @course.title
+      @price = @course.price
       @quantity = 1
-      @total_fee = @course.price * @quantity
+      @total_fee = @price * @quantity
 
       # if this user has unpaid order for this course, should not create a new order, should use that unpaid order
       @order = Order.where(:course_id => @course.id, :user_id => current_user.id).first
@@ -49,8 +50,10 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @course_id =@order.course_id
     @course = Course.find(@course_id)
+    @subject = @course.title
+    @price = @course.price
     @quantity = 1
-    @total_fee = @course.price * @quantity
+    @total_fee = @price * @quantity
     @trade_status = @order.trade_status
     if @order.trade_status == 'TRADE_FINISHED'
       @trade_status = t('trade_finished')

@@ -59,7 +59,6 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
-    @course.price = params[:price].blank?? 0 : params[:price]
     @course.update_attributes(params[:course])
     @course.name = PinYin.of_string(params[:course][:title]).join('-').downcase
     respond_to do |format|

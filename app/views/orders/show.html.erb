@@ -7,7 +7,7 @@
           <th>名称</th> <!-- Subject -->
           <th>价格</th>
           <th>数量</th>
-          <th>合计(total fee)</th>
+          <th>合计</th>
           <th><%= t('out_trade_no') %></th>
           <th>付款时间</th>
           <th>订单状态</th>
@@ -15,8 +15,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @course.title %></td>
-          <td>￥<%= @course.price %></td>
+          <td><%= @subject %></td>
+          <td>￥<%= @price %></td>
           <td>1</td>
           <td>￥<%= @total_fee %></td>
           <td><%= @order.out_trade_no %></td>
