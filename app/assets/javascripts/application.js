@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.atwho
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery_at_caret
@@ -18,3 +19,13 @@
 //= require jquery.NobleCount
 //= require bootstrap
 //= require mediaelement_rails
+
+var commenter = [];
+var commenter_exist= [];
+$('.comment-header-author').each(function() {
+  if($.inArray($(this).text(), commenter_exist) < 0){
+      commenter.push($(this).text());
+      commenter_exist.push($(this).text());
+    }
+});
+$('textarea').atWho('@', {data: commenter});
