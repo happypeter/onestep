@@ -37,3 +37,12 @@
     </div>
   <% end %>
 </div>
+<% content_for :template_js do %>
+  <script>
+    $("textarea#comment_content").keydown(function(e) {
+      if (e.ctrlKey && e.keyCode == 13) {
+        $("input[type=submit]").click();
+      }
+    });
+  </script>
+<% end %>
