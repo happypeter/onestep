@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   def check_owner
     if current_user.nil?
-      redirect_to :root, :notice => "login first plz!"
+      redirect_to :root, :notice => t('login_first_plz')
       return
     end
     if params[:course_name]
@@ -37,9 +37,14 @@ class CoursesController < ApplicationController
   def show
     user = User.find_by_name(params[:member_name])
     @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+
+
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     else
+      if !@course.free? && (!current_user || !@course.can_watch_video?(current_user))
+        flash[:notice] = t('pay_for_course_please')
+      end
       if params[:position].present?
         @video = Video.where(:course_id => @course.id,:position => params[:position].to_i).first
       elsif @course.videos.empty?
