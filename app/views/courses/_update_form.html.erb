@@ -24,12 +24,16 @@
 
 
   <dl class="field">
-    <dt> <%= f.label t('course_title') %> </dt>
+    <dt> <%= f.label :price %> </dt>
+    <dd> <%= f.text_field :price %> </dd>
+  </dl>
+  <dl class="field">
+    <dt> <%= f.label :title %> </dt>
     <dd> <%= f.text_field :title %> </dd>
   </dl>
   <dl class="field">
     <dt>
-      <%= f.label t('course_description') %>
+      <%= f.label :description %>
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
     </dt>
     <dd>

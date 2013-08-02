@@ -15,6 +15,8 @@
         <% if @course.user == current_user %>
           <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
         <% end %>
+        <%= link_to t('buy_this_course'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
+        <p> 价格：<%= @course.price %> </p>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
       </div>
