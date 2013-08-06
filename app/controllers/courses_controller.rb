@@ -42,9 +42,6 @@ class CoursesController < ApplicationController
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     else
-      if !@course.free? && (!current_user || !@course.can_watch_video?(current_user))
-        flash[:notice] = t('pay_for_course_please')
-      end
       if params[:position].present?
         @video = Video.where(:course_id => @course.id,:position => params[:position].to_i).first
       elsif @course.videos.empty?

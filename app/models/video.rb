@@ -12,7 +12,6 @@ class Video < ActiveRecord::Base
   def open_to_user?(user)
      return true if user == self.user
      return true if self.free?
-     # return true if user.paid_for_the_course?
      false
   end
 
