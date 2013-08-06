@@ -1,13 +1,20 @@
 class Video < ActiveRecord::Base
   belongs_to :course
   has_many :comments
-  attr_accessible :user_id, :title, :course_id, :position, :desc
+  attr_accessible :user_id, :title, :course_id, :position, :desc, :free
   belongs_to :user
   attr_accessible :asset
   acts_as_list scope: :course
 
   mount_uploader :asset, VideoUploader
   before_create :set_metadata
+
+  def open_to_user?(user)
+     return true if user == self.user
+     return true if self.free?
+     # return true if user.paid_for_the_course?
+     false
+  end
 
   private
   def set_metadata

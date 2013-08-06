@@ -24,7 +24,11 @@
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
-        <%= render "video_player", :video => @video %>
+        <% if @video.open_to_user?(current_user) %>
+          <%= render "video_player", :video => @video %>
+        <% else %>
+          <%= link_to t('pay_for_course_please'), "#", class: "button primary" %>
+        <% end %>
         <div id="comments">
           <h3><%= t("comment") %></h3>
           <%= render @video.comments %>

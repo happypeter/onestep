@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727124352) do
+ActiveRecord::Schema.define(:version => 20130806014343) do
 
   create_table "blog_images", :force => true do |t|
     t.integer  "user_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130727124352) do
     t.string   "filename"
     t.string   "content_type"
     t.string   "asset"
+    t.boolean  "free"
   end
 
 end
