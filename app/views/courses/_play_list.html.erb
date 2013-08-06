@@ -6,7 +6,7 @@
       <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
         <i class="icon-facetime-video"></i>
         <%= v.title %>
-        <%= "free" if v.free? %>
+        <%= "(free)" if v.free? %>
       </a>
       </li>
     <% end %>

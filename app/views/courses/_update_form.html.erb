@@ -45,8 +45,10 @@
     <%= f.label t('public') %>
   </div>
   <div>
-    <%= f.submit t('update_course'), :class => "minibutton primary" %>
-    <%= link_to t('go_back'), @course, :class => "minibutton" %>
+    <%= f.submit t('update_course'), :class => "button primary" %>
+    <span id="edit-course-delete">
+      <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
+    </span>
   </div>
 <% end %>
 

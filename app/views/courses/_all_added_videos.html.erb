@@ -5,7 +5,7 @@
         <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
           <i class="icon-facetime-video"></i>
           <%= video.title %>
-          <%= "free" if video.free? %>
+          <%= "(free)" if video.free? %>
         </a>
         <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => t('confirm_delete') %>
       <% end %>

@@ -42,7 +42,7 @@ zh-CN:
 
   course_poster: "课程封面"
   course_poster_dimension: "最佳宽高比为16：9"
-  go_back: "取消修改"
+  go_back: "返回课程页面"
   delete_this_course: "删除本课程"
   confirm_delete: "确定要删除吗?"
   change_poster: "更换课程封面"
