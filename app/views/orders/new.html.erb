@@ -28,6 +28,7 @@
     <div class="payment-form">
       <h3 class="order-title"> 支付方式 </h3>
       <p> 点击右侧按钮，前往支付宝付款，交易方式请选择<strong>即时到帐交易</strong>。 </p>
+      <%= image_tag "choose_payment.png" %>
       <p> 付款完成后，请不要关闭支付宝窗口，将自动跳回本订单，方便您继续操作。 </p>
       <%= form_tag "/checkout" do %>
         <%= hidden_field_tag :price, @price %>
