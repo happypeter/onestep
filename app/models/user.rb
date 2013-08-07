@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   def paid_courses
     courses = []
     for order in self.orders
-      courses.push order.course
+      courses.push order.course if order.trade_status == "TRADE_FINISHED"
     end
     courses.uniq
   end
