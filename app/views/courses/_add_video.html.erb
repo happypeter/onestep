@@ -33,6 +33,7 @@
             if(data.context) {
               progress = parseInt(data.loaded / data.total * 100, 10);
               data.context.find('.bar').css('width', progress + '%');
+              $('#progress-bar').html("<span class='progress-text'>" + progress + '%' + "</span>");
             }
           },
           done: function (e, data) {
@@ -58,7 +59,9 @@
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
         {%=o.name%}
-        <div class="progress"><div class="bar" style="width: 0%"></div></div>
+        <div class="progress">
+          <div class="bar" id="progress-bar" style="width: 0%"></div>
+        </div>
       </div>
     </script>
   </div>
@@ -81,6 +84,12 @@
         <dd>
         <%= f.text_area :desc, :size => "14x4", :id => "video_desc" %>
         </dd>
+      </dl>
+      <dl class="field">
+        <dt>
+        <%= f.check_box :free %>
+        <%= f.label t('free') %>
+        </dt>
       </dl>
       <%= f.submit t('submit_video_info'), :class => "minibutton", :disabled => true, data: {disable_with: t('saving') + "..."}, :id => "submit_video_info" %>
     <% end %>

@@ -1,6 +1,4 @@
 <div class="container">
-  <h1>Sign Up</h1>
-
   <%= form_for(@user,:url =>"/member") do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
@@ -12,22 +10,29 @@
         </ul>
       </div>
     <% end %>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
+    <div class="auth-form">
+      <div class="auth-form-header">
+        <h1><%= t('signup') %></h1>
+      </div>
+      <div class="auth-form-body">
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.text_field :email %>
+        </div>
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <div><%= f.submit t('signup'), :class => "btn btn-primary" %></div>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div><%= f.submit "Sign Up", :class => "btn" %></div>
   <% end %>
 </div>

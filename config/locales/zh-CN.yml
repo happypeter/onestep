@@ -19,7 +19,16 @@ zh-CN:
   english: "ENGLISH"
   author: "作者"
   public: "公开本课程"
+
+  #order
+  trade_finished: "付款成功"
+  wait_buyer_pay: "等待付款"
+  out_trade_no: "订单号"
+  pay_for_course_please: "此课程需要付费才能观看"
+  checkout: "去支付宝付款"
+
   # course
+  paid: "已购买"
   course_name: "课程英文名(用来生成一个精美的 URL, 不可修改)"
   course_title: "课程标题(中英文均可)"
   course_intro: "课程介绍"
@@ -34,7 +43,7 @@ zh-CN:
 
   course_poster: "课程封面"
   course_poster_dimension: "最佳宽高比为16：9"
-  go_back: "取消修改"
+  go_back: "返回课程页面"
   delete_this_course: "删除本课程"
   confirm_delete: "确定要删除吗?"
   change_poster: "更换课程封面"
@@ -51,7 +60,7 @@ zh-CN:
 
   characters: "个字"
   remaining: "还可输入"
-
+  buy_this_course: "购买本课程"
   # video
   add_video: "添加视频"
   videos: "视频"
@@ -65,6 +74,7 @@ zh-CN:
   saving: "保存中"
   cancel: "取消"
   reupload_video: "重新上传视频NO."
+  free: "免费"
 
   #blog things
   blog: "好奇博客"
@@ -87,8 +97,19 @@ zh-CN:
   publish_comment: "发表评论"
   login_and_comment: "登陆说几句"
 
+  # notice
+  login_first_plz: "请先登录"
+
   # personal info
   logout: "退出"
+  logged_out: "你已经退出登录"
+  invalid_name_or_password: "无效的用户名或密码，请重新输入"
+  fields_can_not_be_blank: "字段不能为空，请填写完整的信息"
+  name_taken: "该用户名已被占用，请重新选择"
+  email_taken: "该email已经注册了一个用户，请重新选择"
+  is_reserved_word: "已被占用，请重新选择"
+  fail_save_user: "保存用户失败，请确认信息填写正确"
+  signed_up: "注册成功"
   login: "登录"
   signup: "注册"
   signup_free: "免费注册"
@@ -111,6 +132,18 @@ zh-CN:
   username: "用户名"
   signup_username: "用户名"
   password: "密码"
+
+  helpers:
+    label:
+      user:
+        name: "用户名"
+        email: "Email"
+        password: "密码"
+        password_confirmation: "密码确认"
+      course:
+        price: "价格"
+        title: "课程标题(中英文均可)"
+        description: "课程描述"
 
   about_haoqicat: "关于好奇猫"
   more: "更多"

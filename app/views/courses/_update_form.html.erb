@@ -24,12 +24,16 @@
 
 
   <dl class="field">
-    <dt> <%= f.label t('course_title') %> </dt>
+    <dt> <%= f.label :price %> </dt>
+    <dd> <%= f.text_field :price %> </dd>
+  </dl>
+  <dl class="field">
+    <dt> <%= f.label :title %> </dt>
     <dd> <%= f.text_field :title %> </dd>
   </dl>
   <dl class="field">
     <dt>
-      <%= f.label t('course_description') %>
+      <%= f.label :description %>
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
     </dt>
     <dd>
@@ -41,8 +45,10 @@
     <%= f.label t('public') %>
   </div>
   <div>
-    <%= f.submit t('update_course'), :class => "minibutton primary" %>
-    <%= link_to t('go_back'), @course, :class => "minibutton" %>
+    <%= f.submit t('update_course'), :class => "button primary" %>
+    <span id="edit-course-delete">
+      <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
+    </span>
   </div>
 <% end %>
 
