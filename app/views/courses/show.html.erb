@@ -19,6 +19,11 @@
           <%= link_to t('buy_this_course'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
           <p> 价格：<%= @course.price %> </p>
         <% end %>
+        <% if @course.is_paid_user?(current_user) %>
+          <div class="label">
+            <%= t('paid') %>
+          </div>
+        <% end %>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
       </div>

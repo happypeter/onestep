@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
   has_many :courses
+  has_many :orders
   has_many :notifications
 
   attr_accessible :name, :email, :avatar, :password, :password_confirmation, :admin
@@ -12,6 +13,14 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email
 
   before_create { generate_token(:token) }
+
+  def paid_courses
+    courses = []
+    for order in self.orders
+      courses.push order.course
+    end
+    courses.uniq
+  end
 
   def send_password_reset
     generate_token(:password_reset_token)

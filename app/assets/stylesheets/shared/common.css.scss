@@ -168,3 +168,11 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+
+.label {
+  background-color: $background-green;
+  padding: 8px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}

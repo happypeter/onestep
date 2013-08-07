@@ -113,8 +113,11 @@ class UsersController < ApplicationController
     @courses = if (@user == current_user)
       @user.courses
     else
-      @user.courses.pub    
+      @user.courses.pub
     end
+
+    @paid_courses = @user.paid_courses
+
     respond_to do |format|
       format.html # show.html.erb
     end

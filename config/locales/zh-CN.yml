@@ -28,6 +28,7 @@ zh-CN:
   checkout: "去支付宝付款"
 
   # course
+  paid: "已购买"
   course_name: "课程英文名(用来生成一个精美的 URL, 不可修改)"
   course_title: "课程标题(中英文均可)"
   course_intro: "课程介绍"
