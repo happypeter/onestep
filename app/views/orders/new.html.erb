@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="order-container">
+    <h3 class="order-title"> 订单信息 </h3>
+    <p> <%= t('out_trade_no') %>: <%= @order.out_trade_no %> </p>
+    <h3 class="order-title"> 商品信息 </h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>名称</th> <!-- Subject -->
+          <th>价格</th>
+          <th>数量</th>
+          <th>合计</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @subject %></td>
+          <td>￥<%= @price %></td>
+          <td><%= @quantity %></td>
+          <td>￥<%= @total_fee %></td>
+        </tr>
+        <tr>
+          <th colspan="3">合计</th>
+          <td>￥<%= @total_fee %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="payment-form">
+      <h3 class="order-title"> 支付方式 </h3>
+      <p> 点击右侧按钮，前往支付宝付款，交易方式请选择<strong>即时到帐交易</strong>。 </p>
+      <%= image_tag "choose_payment.png" %>
+      <p> 付款完成后，请不要关闭支付宝窗口，将自动跳回本订单，方便您继续操作。 </p>
+      <%= form_tag "/checkout" do %>
+        <%= hidden_field_tag :price, @price %>
+        <%= hidden_field_tag :quantity, '1' %>
+        <%= hidden_field_tag :subject, @subject %>
+        <%= hidden_field_tag :out_trade_no, @order.out_trade_no %>
+        <%= submit_tag t('checkout'), :class => "button primary large right" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

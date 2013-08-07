@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707031754) do
+ActiveRecord::Schema.define(:version => 20130806014343) do
 
   create_table "blog_images", :force => true do |t|
     t.integer  "user_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130707031754) do
     t.string   "poster"
     t.integer  "user_id"
     t.boolean  "public"
+    t.float    "price"
   end
 
   create_table "notifications", :force => true do |t|
@@ -48,6 +49,19 @@ ActiveRecord::Schema.define(:version => 20130707031754) do
     t.boolean  "unread",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "notify_id"
+    t.float    "total_fee"
+    t.string   "trade_status"
+    t.string   "out_trade_no"
+    t.datetime "notify_time"
+    t.string   "subject"
+    t.integer  "user_id"
+    t.integer  "course_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -84,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130707031754) do
     t.string   "filename"
     t.string   "content_type"
     t.string   "asset"
+    t.boolean  "free"
   end
 
 end

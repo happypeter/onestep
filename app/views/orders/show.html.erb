@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="order-container">
+    <h3 class="order-title"> 订单详情 </h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>名称</th> <!-- Subject -->
+          <th>价格</th>
+          <th>数量</th>
+          <th>合计</th>
+          <th><%= t('out_trade_no') %></th>
+          <th>付款时间</th>
+          <th>订单状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @subject %></td>
+          <td>￥<%= @price %></td>
+          <td>1</td>
+          <td>￥<%= @total_fee %></td>
+          <td><%= @order.out_trade_no %></td>
+          <td><%= @notify_time %></td>
+          <td><%= @trade_status %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to t("go_back"), course_path(@course), class: "button primary" %>
+</div>

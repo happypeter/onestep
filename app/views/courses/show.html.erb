@@ -15,12 +15,25 @@
         <% if @course.user == current_user %>
           <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
         <% end %>
+        <% if not @course.open_to_user?(current_user) %>
+          <%= link_to t('buy_this_course'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
+          <p> 价格：<%= @course.price %> </p>
+        <% end %>
+        <% if @course.is_paid_user?(current_user) %>
+          <div class="label">
+            <%= t('paid') %>
+          </div>
+        <% end %>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
-        <%= render "video_player", :video => @video %>
+        <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
+          <%= render "video_player", :video => @video %>
+        <% else %>
+          <%= link_to t('pay_for_course_please'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
+        <% end %>
         <div id="comments">
           <h3><%= t("comment") %></h3>
           <%= render @video.comments %>

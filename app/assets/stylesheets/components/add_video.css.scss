@@ -26,11 +26,26 @@
   margin-top: 10px;
   .progress {
     height: 20px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    background: #eaeaea;
     .bar {
       background: $link-green;
-      height:20px;
+      height: 100%;
+      -moz-border-top-left-radius: 3px;
+      -webkit-border-top-left-radius: 3px;
+      border-top-left-radius: 3px;
+      -moz-border-bottom-left-radius: 3px;
+      -webkit-border-bottom-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .progress-text {
+      color: #333;
+      font-weight: bold;
+      text-shadow: 0 0px 1px #999;
+      margin-left: 176px;
     }
   }
 }

@@ -50,35 +50,35 @@ class UsersController < ApplicationController
        params[:user][:email].empty? || \
        params[:user][:password].empty?
 
-      flash[:notice] = "Fields can not be blank!"
-      redirect_to :root
+      flash[:notice] = t('fields_can_not_be_blank')
+      redirect_to :signup
       return
     end
 
 
     if black_list.include?(params[:user][:name])
-      flash[:notice] = "#{params[:user][:name]} is Reserved Word!"
-      redirect_to :root
+      flash[:notice] = "#{params[:user][:name]}" + t('is_reserved_word')
+      redirect_to :signup
       return
     end
 
     if user_exist
-      flash[:notice] = "Name Taken!"
-      redirect_to :root
+      flash[:notice] = t('name_taken')
+      redirect_to :signup
       return
     end
     if email_exist
-      flash[:notice] = "Email Taken!"
-      redirect_to :root
+      flash[:notice] = t('email_taken')
+      redirect_to :signup
       return
     end
 
     if @user.save
       cookies.permanent[:token] = @user.token
-      redirect_to member_path(@user.name), :notice => "signed up!"
+      redirect_to member_path(@user.name), :notice => t('signed_up')
     else
-      redirect_to :root
-      flash[:notice] = "Failed to save user"
+      redirect_to :signup
+      flash[:notice] = t('fail_save_user')
     end
   end
 
@@ -88,14 +88,14 @@ class UsersController < ApplicationController
       cookies.permanent[:token] = user.token
       redirect_to_target_or_default root_url
     else
-      flash[:notice] = "Invalid name or password"
+      flash[:notice] = t('invalid_name_or_password')
       redirect_to :action => "login_form"
     end
   end
 
   def logout
     cookies.delete(:token)
-    redirect_to root_url, :notice => "You have been logged out."
+    redirect_to root_url, :notice => t('logged_out')
   end
 
   def index
@@ -113,8 +113,11 @@ class UsersController < ApplicationController
     @courses = if (@user == current_user)
       @user.courses
     else
-      @user.courses.pub    
+      @user.courses.pub
     end
+
+    @paid_courses = @user.paid_courses
+
     respond_to do |format|
       format.html # show.html.erb
     end

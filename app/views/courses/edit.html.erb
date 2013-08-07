@@ -33,9 +33,7 @@
     <div class="tutorial-nav">
       <h3>
         <%= @course.title %>
-        <span id="edit-course-delete">
-          <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
-        </span>
+        <%= link_to t('go_back'), @course, :class => "button" %>
       </h3>
       <% if @course.videos %>
         <%= render "all_added_videos", :course => @course %>
