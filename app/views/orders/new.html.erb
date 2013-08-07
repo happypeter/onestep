@@ -1,7 +1,5 @@
 <div class="container">
   <div class="order-container">
-    <h3 class="order-title"> 订单信息 </h3>
-    <p> <%= t('out_trade_no') %>: <%= @order.out_trade_no %> </p>
     <h3 class="order-title"> 商品信息 </h3>
     <table class="table table-bordered">
       <thead>
@@ -34,7 +32,7 @@
         <%= hidden_field_tag :price, @price %>
         <%= hidden_field_tag :quantity, '1' %>
         <%= hidden_field_tag :subject, @subject %>
-        <%= hidden_field_tag :out_trade_no, @order.out_trade_no %>
+        <%= hidden_field_tag :out_trade_no, @out_trade_no %>
         <%= submit_tag t('checkout'), :class => "button primary large right" %>
       <% end %>
     </div>
