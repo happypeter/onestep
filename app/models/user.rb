@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   def paid_courses
     courses = []
     for order in self.orders
-      courses.push order.course if order.trade_status == "TRADE_FINISHED"
+      courses.push order.course if order.trade_status == "TRADE_FINISHED" && order.course.present?
+      # some courses maybe deleted
     end
     courses.uniq
   end
