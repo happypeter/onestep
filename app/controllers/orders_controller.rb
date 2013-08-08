@@ -9,14 +9,16 @@ class OrdersController < ApplicationController
       @quantity = 1
       @total_fee = @price * @quantity
 
-      # if this user has unpaid order for this course, should not create a new order, should use that unpaid order
+      # delete unpaid order
       @order = Order.where(:course_id => @course.id, :user_id => current_user.id).first
-      if @order.nil?
-        @out_trade_no = Time.now.to_i.to_s
-        @order = Order.new(user_id: current_user.id, course_id: @course.id,
-                          subject: @subject, out_trade_no: @out_trade_no)
-        @order.save!
+      if @order.present?
+        @order.destroy
       end
+      # generate new order
+      @out_trade_no = Time.now.to_i.to_s
+      @order = Order.new(user_id: current_user.id, course_id: @course.id,
+                        subject: @subject, out_trade_no: @out_trade_no)
+      @order.save!
     end
   end
 
