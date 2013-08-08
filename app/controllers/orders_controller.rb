@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def new
     if !current_user
       redirect_to :login, :notice => t('login_first_plz')
@@ -28,7 +29,7 @@ class OrdersController < ApplicationController
       order.update_attributes(notify_id: params[:notify_id], trade_status: params[:trade_status], notify_time: params[:notify_time])
     end
     flash[:notice] = t('trade_finished')
-    redirect_to order_path(order)
+    redirect_to order_path(:out_trade_no => order.out_trade_no)
   end
 
   def notify
@@ -47,9 +48,16 @@ class OrdersController < ApplicationController
     end
   end
 
-  #TODO:need auth check
   def show
-    @order = Order.find(params[:id])
+    if current_user.nil?
+      redirect_to :root, :notice => t('login_first_plz')
+      return
+    end
+    @order = Order.where(:out_trade_no => params[:out_trade_no],
+                         :user_id => current_user.id).first
+    if @order.nil?
+      return
+    end
     @course_id =@order.course_id
     @course = Course.find(@course_id)
     @subject = @course.title
