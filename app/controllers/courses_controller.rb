@@ -65,6 +65,7 @@ class CoursesController < ApplicationController
     @course.name = PinYin.of_string(params[:course][:title]).join('-').downcase
     respond_to do |format|
       if @course.save
+        track_activity @course
         format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }
       else
         format.html { render :action => "edit" }
@@ -105,6 +106,7 @@ class CoursesController < ApplicationController
     course = Course.new(params[:course])
     course.name = name
     if course.save
+      track_activity course
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else
       redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
@@ -114,6 +116,7 @@ class CoursesController < ApplicationController
     user = User.find_by_name(params[:member_name])
     course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     course.destroy
+    track_activity course
     redirect_to member_path(user.name)
   end
 end
