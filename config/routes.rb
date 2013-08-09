@@ -1,5 +1,7 @@
 Onestep::Application.routes.draw do
 
+  resources :activities
+
   root :to => 'info#marketing'
 
   post '/checkout' => "orders#checkout"
