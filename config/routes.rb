@@ -1,6 +1,6 @@
 Onestep::Application.routes.draw do
 
-  resources :activities
+  get "/activities" => "activities#index", :as => "activities"
 
   root :to => 'info#marketing'
 
