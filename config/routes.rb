@@ -5,7 +5,8 @@ Onestep::Application.routes.draw do
   post '/checkout' => "orders#checkout"
   get '/orders/done' => "orders#done"
   post '/orders/notify' => "orders#notify"
-  resources :orders
+  resources :orders, except: :show
+  get '/orders/:out_trade_no' => "orders#show", :as => "order"
 
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"

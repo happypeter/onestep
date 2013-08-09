@@ -14,17 +14,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= @subject %></td>
-          <td>￥<%= @price %></td>
-          <td>1</td>
-          <td>￥<%= @total_fee %></td>
-          <td><%= @order.out_trade_no %></td>
-          <td><%= @notify_time %></td>
-          <td><%= @trade_status %></td>
-        </tr>
+        <% if @order.present? %>
+          <tr>
+            <td><%= @subject %></td>
+            <td>￥<%= @price %></td>
+            <td>1</td>
+            <td>￥<%= @total_fee %></td>
+            <td><%= @order.out_trade_no %></td>
+            <td><%= @notify_time %></td>
+            <td><%= @trade_status %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td colspan="7"> 没有已付款记录 </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
-  <%= link_to t("go_back"), course_path(@course), class: "button primary" %>
+  <% if @order.present? %>
+    <%= link_to t("go_back"), course_path(@course), class: "button primary" %>
+  <% end %>
 </div>
