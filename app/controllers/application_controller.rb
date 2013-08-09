@@ -66,8 +66,7 @@ class ApplicationController < ActionController::Base
       @unread_count = 0
     end
   end
-  def track_activity(trackable, action = params[:action])
-    current_user.activities.create! action: action, trackable: trackable
+  def track_activity(trackable, course_id, action = params[:action])
+    current_user.activities.create! action: action, trackable: trackable, course_id: course_id
   end
-
 end
