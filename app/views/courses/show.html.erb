@@ -28,7 +28,12 @@
         <%= render "course_info", :course => @course %>
       </div>
       <div class="tutorial-content">
-        <%= render "video_info", :video => @video %>
+        <div class="timeline_block">
+          <%= render "video_info", :video => @video %>
+          <div class="timeline_bt minibutton">
+            <%= link_to "timeline", activities_path + "?course_id=#{@course.id}" %>
+          </div>
+        </div>
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
           <%= render "video_player", :video => @video %>
         <% else %>
