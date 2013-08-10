@@ -1,5 +1,7 @@
 Onestep::Application.routes.draw do
 
+  get "/activities" => "activities#index", :as => "activities"
+
   root :to => 'info#marketing'
 
   post '/checkout' => "orders#checkout"

@@ -1,0 +1,7 @@
+updated course
+<% course = activity.trackable %>
+<% if course %>
+<%= link_to course.title, course %>
+<% else %>
+  that does not exist.
+<% end %>
