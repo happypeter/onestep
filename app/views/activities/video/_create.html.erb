@@ -1,0 +1,7 @@
+created a new video
+<% video = activity.trackable %>
+<% if video %>
+  <%= link_to video.title, video %>
+<% else %>
+  which does not exist anymore
+<% end %>
