@@ -1,0 +1,9 @@
+updated video
+<% video = activity.trackable %>
+<% if video && video.course %>
+  <%= link_to video.title, video %>
+  on course
+  <%= link_to video.course.title, video.course %>
+<% else %>
+  that does not exist.
+<% end %>
