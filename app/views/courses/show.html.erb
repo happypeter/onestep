@@ -28,7 +28,7 @@
         <%= render "course_info", :course => @course %>
       </div>
       <div class="tutorial-content">
-        <div class="timeline_block">
+        <div class="block">
           <%= render "video_info", :video => @video %>
           <div class="timeline_bt minibutton">
             <%= link_to "timeline", activities_path + "?course_id=#{@course.id}" %>
