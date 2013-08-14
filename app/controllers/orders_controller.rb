@@ -27,8 +27,9 @@ class OrdersController < ApplicationController
     if params[:trade_status] == 'TRADE_FINISHED' && order.trade_status != 'TRADE_FINISHED'
       order.update_attributes(notify_id: params[:notify_id], trade_status: params[:trade_status], notify_time: params[:notify_time])
     end
+    course = Course.find(order.course_id)
     flash[:notice] = t('trade_finished')
-    redirect_to order_path(order)
+    redirect_to course_path(course)
   end
 
   def notify
@@ -44,25 +45,6 @@ class OrdersController < ApplicationController
                               trade_status: params[:trade_status],
                               notify_time: params[:notify_time])
       render text: 'success'
-    end
-  end
-
-  #TODO:need auth check
-  def show
-    @order = Order.find(params[:id])
-    @course_id =@order.course_id
-    @course = Course.find(@course_id)
-    @subject = @course.title
-    @price = @course.price
-    @quantity = 1
-    @total_fee = @price * @quantity
-    @trade_status = @order.trade_status
-    if @order.trade_status == 'TRADE_FINISHED'
-      @trade_status = t('trade_finished')
-      @notify_time = @order.notify_time.strftime('%F %H:%M')
-    else
-      @trade_status = t('wait_buyer_pay')
-      @notify_time = '-'
     end
   end
 

@@ -5,7 +5,7 @@ Onestep::Application.routes.draw do
   post '/checkout' => "orders#checkout"
   get '/orders/done' => "orders#done"
   post '/orders/notify' => "orders#notify"
-  resources :orders
+  get "/orders/new" => "orders#new",  :as => "new_order"
 
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"
