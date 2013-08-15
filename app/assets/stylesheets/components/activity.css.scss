@@ -1,0 +1,74 @@
+.timeline-page {
+  margin: 40px 0 0 0;
+  padding: 0;
+  font-size: 13px;
+  #timeline {
+    width: 851px !important;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+  }
+}
+
+.content, .tag {
+  width: 851px !important;
+  float: left;
+  display: block;
+  position: relative;
+}
+.year {
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #c4cde0;
+  width: 100px;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #e7ebf2;
+}
+
+.line {
+  background: image-url("line.png") repeat-y center top;
+  margin: 0;
+  padding: 15px 0;
+}
+
+.activity {
+  border: 1px solid #c4cde0;
+  width: 409px;
+  background: #fff;
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+.pointer {
+  background-image: image-url("fstimeline.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -805px -27px;
+  height: 15px;
+  width: 19px;
+  position: absolute;
+  top: 10px;
+  left: -19px;
+}
+
+.left .pointer {
+  background-image: image-url("fstimeline.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -825px -27px;
+  left: auto;
+  right: -19px;
+}
+.right .pointer {
+  top: 20px;
+}
+.left {
+  clear: left !important;
+  float: left;
+}
+.right {
+  clear: right !important;
+  float: right;
+}

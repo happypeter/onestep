@@ -149,6 +149,15 @@ a.course-thumb {
   }
 }
 
+.tutorial-content .block {
+  position: relative;
+  .timeline_bt {
+    position: absolute;
+    top: 0px;
+    left: 100px;
+  }
+}
+
 .courses {
   margin-bottom: 40px;
   .course {

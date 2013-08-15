@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :videos, order: :position
   has_many :orders
+  has_many :activities
   belongs_to :user
   attr_accessible :description, :name, :title, :poster, :user_id, :public,
                   :price

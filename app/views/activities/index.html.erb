@@ -1,0 +1,36 @@
+<div class="timeline-page">
+  <div id="timeline">
+    <div class="tag">
+      <div class="year">
+       2013
+      </div>
+    </div>
+    <div class="content line">
+      <% @activities.each do |activity| %>
+        <%= div_for(activity, class: "clearfix") do %>
+          <i class="pointer"></i>
+          <div class="activity-date"> <%= activity.created_at %> </div>
+          <%= link_to activity.user.name, member_path(activity.user.name) %>
+          <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :template_js do %>
+  <script>
+    $(function() {
+      var left_column_height = 0;
+      var right_column_height = 0;
+      var items = $('.activity');
+      for (var i = 0; i < items.length; i++) {
+        if (left_column_height > right_column_height) {
+          right_column_height += items.eq(i).addClass('right').outerHeight(true);
+          } else {
+          left_column_height += items.eq(i).addClass('left').outerHeight(true);
+        }
+      }
+    });
+  </script>
+<% end %>
