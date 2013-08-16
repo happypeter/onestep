@@ -19,7 +19,12 @@ class VideosController < ApplicationController
     else
       video = Video.find(params[:video][:id])
     end
+    old_asset = video.asset.to_s.split('/').last
     video.update_attributes(params[:video])
+    new_asset = video.asset.to_s.split('/').last
+    if old_asset != new_asset
+      track_activity video, video.course.id
+    end
     track_activity video, video.course.id
     respond_to do |f|
       f.html do
