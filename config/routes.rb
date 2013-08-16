@@ -1,6 +1,6 @@
 Onestep::Application.routes.draw do
 
-  get "/activities" => "activities#index", :as => "activities"
+  get "/:member_name/:course_name/timeline" => "activities#index" , :as => "timeline_course"
 
   root :to => 'info#marketing'
 

@@ -1,4 +1,4 @@
-<h1> Activities </h1>
+<h1> Course Activities </h1>
 <% @activities.each do |activity| %>
   <%= div_for activity do %>
     <%= link_to activity.user.name, member_path(activity.user.name) %>
