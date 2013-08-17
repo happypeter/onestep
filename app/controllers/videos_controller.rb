@@ -9,6 +9,7 @@ class VideosController < ApplicationController
         @video.course_id = params[:course_id]
         @video.user_id = current_user.id
         @video.save
+        track_activity @video, @video.course.id
       end
     end
   end
@@ -18,7 +19,12 @@ class VideosController < ApplicationController
     else
       video = Video.find(params[:video][:id])
     end
+    old_asset = video.asset.to_s.split('/').last
     video.update_attributes(params[:video])
+    new_asset = video.asset.to_s.split('/').last
+    if old_asset != new_asset
+      track_activity video, video.course.id
+    end
     respond_to do |f|
       f.html do
           redirect_to_target_or_default root_url
@@ -36,6 +42,7 @@ class VideosController < ApplicationController
   def destroy
     video = Video.find(params[:id])
     video.destroy
+    track_activity video, video.course.id
     redirect_to edit_course_path(video.course)
   end
 end

@@ -1,0 +1,7 @@
+<%= t 'reupload_a_video' %>
+<% video = activity.trackable %>
+<% if video %>
+  <%= link_to video.title, course_path(video.course) + "/" + video.position.to_s %>
+<% else %>
+  <%= t 'video_deleted' %>
+<% end %>

@@ -105,6 +105,7 @@ class CoursesController < ApplicationController
     course = Course.new(params[:course])
     course.name = name
     if course.save
+      track_activity course, course.id
       redirect_to edit_course_path(course), :notice => "New course created successfully!"
     else
       redirect_to_target_or_default :root, :notice => "Failed to creat new course!"

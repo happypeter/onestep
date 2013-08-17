@@ -1,0 +1,11 @@
+<%= t 'upload_a_video' %>
+<% video = activity.trackable %>
+<% if video %>
+  <% if video.title.present? %>
+    <%= link_to video.title, course_path(video.course) + "/" + video.position.to_s %>
+  <% else %>
+    <%= link_to t('author_forgot_title'), course_path(video.course) + "/" + video.position.to_s %>
+  <% end %>
+<% else %>
+  <%= t 'video_deleted' %>
+<% end %>
