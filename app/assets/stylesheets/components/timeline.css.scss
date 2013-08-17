@@ -1,0 +1,41 @@
+.timeline-title {
+  padding-bottom: 17px;
+  margin: 32px 0 20px;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 22px;
+}
+
+.activity {
+  margin-bottom: 26px;
+  padding-left: 45px;
+  position: relative;
+}
+
+@mixin icon-background {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  padding: 3px;
+  width: 32px;
+  height: 32px;
+  background: {
+    position: center center;
+    size: 32px auto;
+    repeat: no-repeat;
+  }
+}
+.activity .icon-update {
+  @include icon-background;
+  background-image: image-url("pen.svg");
+}
+.activity .icon-create {
+  @include icon-background;
+  background-image: image-url("plus.svg");
+}
+.activity .icon-destroy {
+  @include icon-background;
+  background-image: image-url("bin.svg");
+}
+.activity .content {
+  padding: 10px 10px 0;
+}
