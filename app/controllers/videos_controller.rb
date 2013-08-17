@@ -25,7 +25,6 @@ class VideosController < ApplicationController
     if old_asset != new_asset
       track_activity video, video.course.id
     end
-    track_activity video, video.course.id
     respond_to do |f|
       f.html do
           redirect_to_target_or_default root_url

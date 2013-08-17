@@ -1,10 +1,10 @@
 <div class="container">
-  <h1 class="timeline-title"> Course Activities </h1>
+  <h1 class="timeline-title"> <%= t "course_timeline" %></h1>
   <% @activities.each do |activity| %>
     <%= div_for activity do %>
       <div class="icon-<%= activity.action %>"></div>
       <div class="content">
-        <div class="date"><%= time_ago_in_words activity.created_at %> ago</div>
+        <div class="date"><%= time_ago_in_words activity.created_at %><%= t 'ago' %></div>
         <%= link_to activity.user.name, member_path(activity.user.name) %>
         <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
       </div>
