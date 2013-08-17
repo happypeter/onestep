@@ -1,0 +1,47 @@
+<% content_for :template_js do %>
+  <%= stylesheet_link_tag "plugins/jquery.Jcrop" %>
+  <%= javascript_include_tag "vendor/jquery.Jcrop.min" %>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      $('#cropbox').Jcrop({
+        onChange: update_crop,
+        onSelect: update_crop,
+        setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
+        // minSize: [64, 36],  //选择区最小尺寸
+        aspectRatio: <%= AvatarUploader::AVATAR_NW %>/<%= AvatarUploader::AVATAR_NH %>,  //设置选择框高宽比,默认为任意
+      });
+    });
+
+    function update_crop(coords) {
+      var rx = <%= AvatarUploader::AVATAR_NW %>/coords.w;
+      var ry = <%= AvatarUploader::AVATAR_NH %>/coords.h;
+      $('#preview').css({
+        width: Math.round(rx * <%= @user.avatar.get_geometry(:large)[:width] %>) + 'px',
+        height: Math.round(ry * <%= @user.avatar.get_geometry(:large)[:height] %>) + 'px',
+        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+      });
+
+      var ratio = <%= @user.avatar.get_geometry(:original)[:width] %> / <%= @user.avatar.get_geometry(:large)[:width] %>;
+      $("#crop_x").val(Math.round(coords.x * ratio));
+      $("#crop_y").val(Math.round(coords.y * ratio));
+      $("#crop_w").val(Math.round(coords.w * ratio));
+      $("#crop_h").val(Math.round(coords.h * ratio));
+    }
+  </script>
+<% end %>
+
+<%= image_tag @user.avatar_url(:large), :id => "cropbox" %>
+
+<h3><%= t('preview') %></h3>
+<div style="width:<%= AvatarUploader::AVATAR_NW %>px; height:<%= AvatarUploader::AVATAR_NH %>px; overflow:hidden">
+  <%= image_tag @user.avatar_url(:large), :id => "preview" %>
+</div>
+
+<%= form_for(@user, :url =>"/crop") do |f| %>
+  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+    <%= f.hidden_field attribute, :id => attribute %>
+  <% end %>
+
+  <p><%= f.submit t('crop'), :id => "crop-form", :class => "button primary" %></p>
+<% end %>

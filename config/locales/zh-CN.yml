@@ -133,6 +133,7 @@ zh-CN:
   or: "或者"
   select_avatar: "点击上传头像"
   your_avatar: "你的头像"
+  crop: "裁剪"
 
   new_password: "新密码"
   password_confirm: "密码确认"
