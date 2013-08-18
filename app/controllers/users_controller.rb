@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       return
     end
     respond_to do |format|
-      format.html # edit.html.erb
+      format.html
     end
   end
 
@@ -99,9 +99,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.reverse
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
@@ -119,7 +119,7 @@ class UsersController < ApplicationController
     @paid_courses = @user.paid_courses
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
     session[:return_to] = request.url
   end

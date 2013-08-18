@@ -1,5 +1,7 @@
 zh-CN:
   people: "个会员"
+  no_user_found: "没有用户注册为会员"
+  member_count: "群英荟萃"
   course_timeline: "课程时间线"
   create_a_course: "创建了一门课程"
   upload_a_video: "上传了一个新视频"
