@@ -63,57 +63,6 @@ div#html5-player {
   width: 800px;
 }
 
-a.course-thumb {
-  margin: 0 auto 10px;
-  display: block;
-  width: 330px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.4);
-  border-radius: 3px;
-  .poster-area {
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: $course-poster-width;
-    height: $course-poster-height;
-    border: inherit;
-  }
-  .private-label {
-    color: red;
-    font-size: 12px;
-    font-weight: normal;
-    vertical-align: super;
-    letter-spacing: -1px;
-  }
-  .course-info {
-    text-align: left;
-    height: 100px;
-    bottom: 0;
-    padding: 10px;
-    overflow: hidden;
-    margin-top: 5px;
-    h4 {
-      font-size: 20px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      color: $font-gray;
-    }
-    p {
-      margin-top: 0px;
-      height: 44px;
-      overflow: hidden;
-      color: $font-gray;
-      font-size: 14px;
-    }
-    .author {
-      position: absolute;
-      bottom: 3px;
-      color: $font-gray;
-    }
-  }
-}
 
 #edit-course-delete {
   margin-left: 5px;
@@ -166,11 +115,6 @@ a.course-thumb {
         width: 40px;
         float: left;
       }
-    }
-    .author {
-      position: absolute;
-      bottom: 15px;
-      left: 45px;
     }
   }
 }
