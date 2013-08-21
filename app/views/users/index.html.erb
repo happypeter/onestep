@@ -1,38 +1,30 @@
-
 <div class="container">
-  <div id="user_no">
-    总共有<%= @users.count %> 个用户
-  </div>
-  <table>
-    <tr>
-       <th>姓名</th>
-       <th>Admin?</th>
-       <th>Course</th>
-    </tr>
-  <% if !@users.empty? %>
-    <% @users.each do |user| %>
-    <p>
-      <tr>
-        <td>
-            <%= link_to user.name, member_path(user.name) %>
-        </td>
-        <td>
-          <%if user.admin? %>
-            YES
-          <% else %>
-            NO
+  <div id="member-page">
+    <div class="title">
+      <%= t 'member_count' %> <%= @users.count %>
+    </div>
+    <% if !@users.empty? %>
+      <ol class="member-list">
+        <% @users.each do |user| %>
+          <li class="member-list-item">
+          <%= link_to member_path(user.name) do %>
+            <%= image_tag user.avatar, alt: "uprofile", size: "76x76", :class => "gavatar" %>
           <% end %>
-        </td>
-        <td>
-          <%= user.courses.count %>
-        </td>
-       </tr>
-    </p>
+          <div class="member-list-container">
+            <h3 class="username">
+              <%= link_to member_path(user.name) do %>
+                <%= user.name.truncate(16) %>
+              <% end %>
+            </h3>
+            <p class="courses">courses: <%= user.courses.count %></p>
+            <p class="comments">comments: <%= user.comments.count %></p>
+            <p class="join-date">joined: <%= user.created_at.strftime("%Y-%d-%m") %></p>
+          </div>
+          </li>
+        <% end %>
+      </ol>
+    <% else %>
+      <%= t 'no_user_found' %>
     <% end %>
-  <% else %>
-    <p>
-    No user found
-    </p>
-  <% end %>
-  </table>
+  </div>
 </div>
