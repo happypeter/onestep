@@ -11,9 +11,28 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
   validates_presence_of :name, :email
 
   before_create { generate_token(:token) }
+
+  after_update :reprocess_avatar, :if => :cropping?
+
+  def reprocess_avatar
+    avatar.recreate_versions!
+
+    current_version = self.avatar.current_path
+    large_version =  self.avatar.get_version(:large)
+
+    FileUtils.rm(current_version)
+    FileUtils.cp(large_version, current_version)
+  end
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
 
   def paid_courses
     courses = []

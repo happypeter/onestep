@@ -44,6 +44,7 @@ Onestep::Application.routes.draw do
 
   get "/member" => "users#index", :as => "user_index"
   post "/member" => "users#create"
+  put "/crop" => "users#crop", :as => "crop"
 
   get "/account" => "users#edit", :as => "account"
   put "/account" => "users#update"

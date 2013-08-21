@@ -20,6 +20,7 @@
           },
           done: function (e, data) {
             _tip.html("上传成功！");
+            window.location.replace("/account");
           },
         });
       });
@@ -45,6 +46,9 @@
             <p> <%= t('haoqicat_avatar') %> </p>
           </div>
         </div><!-- end setting-section -->
+
+        <%= render 'crop' if @user.avatar.present? %>
+
         <%= form_for(@user,:url =>"/account" ) do |f| %>
           <% if @user.errors.any? %>
             <div class="error_messages">
