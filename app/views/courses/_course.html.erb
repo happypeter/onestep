@@ -1,5 +1,5 @@
-<div class="course">
-  <a class="course-thumb green-box-shadow" href="<%= course_path course %>">
+<div class="course-thumb">
+  <%= link_to course_path(course), :class => "course-detail" do %>
     <div class="poster-area" style="background-image: url(<%= course.poster_url %>);">
     </div>
     <div class="course-info">
@@ -11,9 +11,8 @@
       </h4>
       <p><%= course.description %></p>
     </div>
-  </a>
+  <% end %>
   <div class="author">
-    <%= t('author') %>
     <%= link_to course.user.name, member_path(course.user.name) %>
   </div>
 
