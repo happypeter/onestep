@@ -3,7 +3,7 @@
   <%= javascript_include_tag "vendor/jquery.Jcrop.min" %>
   <script type="text/javascript" charset="utf-8">
     $(function() {
-      $('#cropbox').Jcrop({
+      $('#avatar-cropbox').Jcrop({
         onChange: update_crop,
         onSelect: update_crop,
         setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
@@ -34,15 +34,15 @@
 <div class="media-preview-wrapper">
   <div class="media-preview">
     <div class="media">
-      <div class="crop-box">
-        <%= image_tag @user.avatar_url(:large), :id => "cropbox" %>
+      <div class="avatar-crop-box">
+        <%= image_tag @user.avatar_url(:large), :id => "avatar-cropbox" %>
       </div>
     </div>
   </div>
   <h3><%= t('preview') %></h3>
   <div class="media-preview">
     <div class="media">
-      <div class="crop-preview">
+      <div class="avatar-crop-preview">
         <div style="width:<%= AvatarUploader::AVATAR_NW %>px; height:<%= AvatarUploader::AVATAR_NH %>px; overflow:hidden">
           <%= image_tag @user.avatar_url(:large), :id => "preview" %>
         </div>
@@ -57,6 +57,6 @@
       <%= f.hidden_field attribute, :id => attribute %>
     <% end %>
 
-    <p><%= f.submit t('crop'), :id => "crop-form", :class => "button primary right" %></p>
+    <p><%= f.submit t('crop'), :id => "avatar-crop-form", :class => "button primary right" %></p>
   <% end %>
 </div>
