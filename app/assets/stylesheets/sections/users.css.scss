@@ -137,6 +137,24 @@
   }
 }
 
+.avatar-crop-box {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.avatar-crop-preview {
+  width: 172px;
+  height: 172px;
+  margin: 0 auto;
+}
+
+#avatar-crop-form {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 #member-page {
   .title {
     margin: 49px auto;
