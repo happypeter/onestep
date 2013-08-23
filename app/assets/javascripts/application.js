@@ -17,6 +17,7 @@
 //= require jquery_at_caret
 //= require comments
 //= require vendor/jquery_hotkeys
+//= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
 //= require bootstrap
 //= require mediaelement_rails
