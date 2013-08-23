@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :auth, only: [:signup, :login_form]
 
   def login_form
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
     @user.crop_h = params[:user][:crop_h]
     @user.avatar = @user.avatar
     @user.save
-    redirect_to account_path
+    redirect_to edit_avatar_path
   end
 
   def edit
@@ -49,6 +50,13 @@ class UsersController < ApplicationController
         @user = current_user
         @user.update_attributes(params[:user])
       end
+    end
+  end
+
+  def edit_avatar
+    @user = current_user
+    respond_to do |format|
+      format.html
     end
   end
 

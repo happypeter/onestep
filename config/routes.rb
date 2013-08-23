@@ -27,6 +27,7 @@ Onestep::Application.routes.draw do
   resources :password_resets
   resources :notifications
   match 'update_avatar' => 'users#update_avatar', :as => :update_avatar
+  match "edit-avatar" => "users#edit_avatar", :as => "edit_avatar"
   match 'update_poster/:course_id' => 'courses#update_poster', :as => :update_poster
 
   resources :comments

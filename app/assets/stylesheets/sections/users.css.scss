@@ -80,24 +80,30 @@
     }
   }
 }
-#setting-container {
-  width: 650px;
-  margin: 50px auto 60px;
-  h3 {
-    margin-top: 0;
+.setting-container {
+  margin-top: 20px;
+  .left-col {
+    float: left;
+    width: 200px;
   }
-  .setting-header {
-    font-size: 25px;
-    border-bottom: 1px solid $border-color-c;
-    padding-bottom: 12px;
-  }
-  .setting-section {
-    position: relative;
-    border-top: 1px solid $border-color-d;
-    padding-top: 30px;
-    margin-bottom: 30px;
-    &:first-child {
-      border-top: 0;
+  .setting-content {
+    float: right;
+    width: 80%;
+    h3 {
+      margin-top: 0;
+    }
+    .setting-header {
+      font-size: 25px;
+      padding-bottom: 12px;
+    }
+    .setting-section {
+      position: relative;
+      border-top: 1px solid $border-color-d;
+      padding-top: 30px;
+      margin-bottom: 30px;
+      &:first-child {
+        border-top: 0;
+      }
     }
   }
   .avatar-upload.avatared {
