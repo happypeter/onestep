@@ -100,21 +100,7 @@ div#html5-player {
 
 .courses {
   margin-bottom: 40px;
-  .course-thumb {
-    position: relative;
-    margin-top: 15px;
+  .course {
     float: left;
-    width: 400px;
-    ul.course-actions {
-      position: absolute;
-      top: 285px;
-      right: 70px;
-      width: 80px;
-      li {
-        list-style: none;
-        width: 40px;
-        float: left;
-      }
-    }
   }
 }
