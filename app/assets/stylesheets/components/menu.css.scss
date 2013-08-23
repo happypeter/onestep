@@ -1,3 +1,12 @@
+/*
+`.menu-container` for menu styles.
+
+Styleguide 4.1
+*/
+
+@import "globals/variables";
+@import "globals/mixins";
+
 .menu-container {
   float: left;
   width: 200px;
