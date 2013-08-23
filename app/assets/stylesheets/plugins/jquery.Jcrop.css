@@ -1,8 +1,4 @@
 /* Fixes issue here http://code.google.com/p/jcrop/issues/detail?id=1 */
-img {
-  max-width: none;
-}
-
 .jcrop-holder { text-align: left; }
 
 .jcrop-vline, .jcrop-hline

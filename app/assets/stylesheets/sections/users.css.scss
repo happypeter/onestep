@@ -137,6 +137,50 @@
   }
 }
 
+.media-preview-wrapper {
+  background: #fff;
+  border: 1px solid #A9A9A9;
+  border-radius: 3px 3px 3px 3px;
+  box-shadow: 0 2px 0 rgba(255, 255, 255, 0.63), 0 1px 2px rgba(0, 0, 0, 0.15) inset;
+  padding: 18px;
+  position: relative;
+  .media-preview {
+    background: #EEF4FD;
+    border: 1px solid #D1D8E4;
+    padding: 2px;
+    margin-bottom: 10px;
+    .media {
+      border: 1px dotted #C2CBD7;
+      overflow: hidden;
+      padding: 2px;
+      .avatar-crop-box {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        img { max-width: none; }
+      }
+      .avatar-crop-preview {
+        width: 172px;
+        height: 172px;
+        margin: 0 auto;
+        img { max-width: none; }
+      }
+    }
+  }
+  .tip {
+    color: #444;
+    margin-top: 10px;
+    font-size: smaller;
+    text-shadow: #fff 0px 1px 0px;
+  }
+}
+
+#avatar-crop-form {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 #member-page {
   .title {
     margin: 49px auto;
