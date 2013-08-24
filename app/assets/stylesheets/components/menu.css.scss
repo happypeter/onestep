@@ -18,6 +18,34 @@ Styleguide 4.1
     border-radius: 2px;
     border: 1px solid #D8D8D8;
     list-style: none;
+    .section {
+      border-top: 1px solid #d8d8d8;
+      &:first-child {
+        border-top: none;
+      }
+      a.section-head {
+        background-color: #e0e0e0;
+        background-image: -moz-linear-gradient(#fafafa, #e0e0e0);
+        background-image: -webkit-linear-gradient(#fafafa, #e0e0e0);
+        background-image: linear-gradient(#fafafa, #e0e0e0);
+        background-repeat: repeat-x;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        color: #222;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+        border-left: 0 none;
+        img {
+          float: left;
+          margin: 0 10px 0 0;
+          border-radius: 2px;
+        }
+      }
+    }
     li {
       &:first-child {
         border-top: none;
