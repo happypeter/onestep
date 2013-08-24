@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by_name(current_user.name) if current_user
     if @user.nil?
-      redirect_to_target_or_default :root, :notice => "login first plz"
+      redirect_to_target_or_default :root, :notice => t('login_first_plz')
       return
     end
     respond_to do |format|
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find_by_name(params[:user][:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(member_path(@user.name), :notice => 'Profile was successfully updated.') }
+        format.html { redirect_to(member_path(@user.name), :notice => t('profile_updated')) }
       else
         format.html { render :action => "edit" }
       end
