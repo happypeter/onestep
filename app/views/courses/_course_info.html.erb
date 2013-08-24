@@ -1,10 +1,12 @@
 <div class="course-intro">
-  <h3>课程介绍</h3>
+  <h3><%= t('course_intro') %></h3>
   <p><%= course.description %></p>
   <dl>
-    <dt>作者</dt>
+    <dt><%= t('author') %></dt>
     <dd><%= link_to course.user.name, member_path(course.user.name) %></dd>
-    <dt>发布时间</dt>
+    <dt><%= t('publish_time') %></dt>
     <dd><%= course.created_at.strftime(t('date.formats.default')) %></dd>
+    <dt><%= t('update_time') %></dt>
+    <dd><%= course.updated_at.strftime(t('date.formats.default')) %></dd>
   </dl>
 </div>

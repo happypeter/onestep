@@ -29,6 +29,8 @@ zh-CN:
   english: "ENGLISH"
   author: "作者"
   public: "公开本课程"
+  publish_time: "发布时间"
+  update_time: "更新时间"
 
   #order
   trade_finished: "付款成功"
