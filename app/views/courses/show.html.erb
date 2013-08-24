@@ -17,7 +17,7 @@
         <% end %>
         <% if not @course.open_to_user?(current_user) %>
           <%= link_to t('buy_this_course'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
-          <p> 价格：<%= @course.price %> </p>
+          <p> <%= t('helpers.label.course.price') %>：<%= @course.price %> </p>
         <% end %>
         <% if @course.is_paid_user?(current_user) %>
           <div class="label">
@@ -26,11 +26,9 @@
         <% end %>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
+        <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
       </div>
       <div class="tutorial-content">
-        <div class="timeline minibutton">
-          <%= link_to "timeline", timeline_course_path %>
-        </div>
         <%= render "video_info", :video => @video %>
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
           <%= render "video_player", :video => @video %>
