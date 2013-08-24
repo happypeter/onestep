@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :auth, only: [:signup, :login_form]
 
   def login_form
@@ -18,13 +19,13 @@ class UsersController < ApplicationController
     @user.crop_h = params[:user][:crop_h]
     @user.avatar = @user.avatar
     @user.save
-    redirect_to account_path
+    redirect_to edit_avatar_path
   end
 
   def edit
     @user = User.find_by_name(current_user.name) if current_user
     if @user.nil?
-      redirect_to_target_or_default :root, :notice => "login first plz"
+      redirect_to_target_or_default :root, :notice => t('login_first_plz')
       return
     end
     respond_to do |format|
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find_by_name(params[:user][:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(member_path(@user.name), :notice => 'Profile was successfully updated.') }
+        format.html { redirect_to(member_path(@user.name), :notice => t('profile_updated')) }
       else
         format.html { render :action => "edit" }
       end
@@ -49,6 +50,13 @@ class UsersController < ApplicationController
         @user = current_user
         @user.update_attributes(params[:user])
       end
+    end
+  end
+
+  def edit_avatar
+    @user = current_user
+    respond_to do |format|
+      format.html
     end
   end
 

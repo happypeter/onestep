@@ -1,0 +1,47 @@
+<% content_for :template_js do %>
+  <%= javascript_include_tag 'i_fileupload'%>
+  <script>
+    jQuery(function($) {
+      var _tip = $("#upload-tip");
+      $('#fileupload').fileupload({
+          dataType: 'script',
+          url: '/update_avatar',
+          add: function(e, data){
+            types = /(\.|\/)(gif|jpe?g|png)$/i;
+            file = data.files[0];
+            if (types.test(file.type) || types.test(file.name)) {
+              data.submit();
+            } else {
+              alert(file.name + " 不是图片，请重新选择！");
+            }
+          },
+          start: function(e) {
+            _tip.html('上传中&nbsp;&middot;&middot;&middot;');
+          },
+          done: function (e, data) {
+            _tip.html("上传成功！");
+            window.location.replace("/edit-avatar");
+          },
+        });
+      });
+  </script>
+<% end %>
+
+<div class="boxed-group">
+  <h3><%= t('change_avatar') %></h3>
+  <div class="boxed-group-inner">
+    <p>
+      <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+    </p>
+    <p> <b><%= t('or') %></b> </p>
+    <p> <%= t('haoqicat_avatar') %> </p>
+    <p>
+      <a class= "fileupload-btn button primary">
+        <span id="upload-tip"><%= t('select_avatar') %></span>
+        <input id="fileupload" name="user[avatar]" type="file">
+      </a>
+    </p>
+  </div>
+</div>
+
+<%= render 'crop' if @user.avatar.present? %>

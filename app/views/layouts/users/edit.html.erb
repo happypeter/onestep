@@ -1,0 +1,13 @@
+<% content_for :content do %>
+  <div class="container">
+    <div class="setting-container">
+      <div class="left-col ">
+        <%= render 'users/aside' %>
+      </div>
+      <div class="setting-content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= render :template => 'layouts/application' %>

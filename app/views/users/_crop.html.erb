@@ -29,32 +29,40 @@
   </script>
 <% end %>
 
-<div class="media-preview-wrapper">
-  <div class="media-preview">
-    <div class="media">
-      <div class="avatar-crop-box">
-        <%= image_tag @user.avatar_url(:large), :id => "avatar-cropbox" %>
-      </div>
-    </div>
-  </div>
-  <h3><%= t('preview') %></h3>
-  <div class="media-preview">
-    <div class="media">
-      <div class="avatar-crop-preview">
-        <div style="width:<%= AvatarUploader::AVATAR_NW %>px; height:<%= AvatarUploader::AVATAR_NH %>px; overflow:hidden">
-          <%= image_tag @user.avatar_url(:large), :id => "preview" %>
+<div class="boxed-group">
+  <h3><%= t('crop_avatar') %></h3>
+  <div class="boxed-group-inner">
+    <div class="media-preview-wrapper">
+      <h3><%= t('select_crop_area') %></h3>
+      <div class="media-preview">
+        <div class="media">
+          <div class="avatar-crop-box">
+            <%= image_tag @user.avatar_url(:large), :id => "avatar-cropbox" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="tip">
-    <p><b>提示：</b> 为达到好的显示效果，建议上传的图片尺寸大于200x200像素</p>
-  </div>
-  <%= form_for(@user, :url =>"/crop") do |f| %>
-    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-      <%= f.hidden_field attribute, :id => attribute %>
-    <% end %>
+    <div class="media-preview-wrapper">
+      <h3><%= t('preview') %></h3>
+      <div class="media-preview">
+        <div class="media">
+          <div class="avatar-crop-preview">
+            <div style="width:<%= AvatarUploader::AVATAR_NW %>px; height:<%= AvatarUploader::AVATAR_NH %>px; overflow:hidden">
+              <%= image_tag @user.avatar_url(:large), :id => "preview" %>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end media-preview -->
+    <div class="tip">
+      <p><b>提示：</b> 为达到好的显示效果，建议上传的图片尺寸大于200x200像素</p>
+    </div>
+    <%= form_for(@user, :url =>"/crop") do |f| %>
+      <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+        <%= f.hidden_field attribute, :id => attribute %>
+      <% end %>
 
-    <p><%= f.submit t('crop'), :id => "avatar-crop-form", :class => "button primary right" %></p>
-  <% end %>
+      <p><%= f.submit t('crop'), :id => "avatar-crop-form", :class => "button primary right" %></p>
+    <% end %>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,12 @@
+<div class="menu-container">
+  <ul class="menu">
+    <li class="section">
+    <a class="section-head" href="/account">
+    <%= image_tag @user.final_avatar_url, :alt => "头像", :size => "20x20", :id => "avatar" %>
+     <%= @user.name %>
+    </a>
+    </li>
+    <li><a class="<%= request.path == "/account"? "active":"" %>" href="/account">帐户</a></li>
+    <li><a class="<%= request.path == "/edit-avatar"? "active":"" %>" href="/edit-avatar">头像</a></li>
+  </ul>
+</div>
