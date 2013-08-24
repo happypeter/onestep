@@ -1,3 +1,6 @@
+  <div class="avatared">
+    <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50", :id => "avatar" %>
+  </div>
 <div class="menu-container">
   <ul class="menu">
     <li><a class="<%= request.path == "/account"? "active":"" %>" href="/account">帐户</a></li>

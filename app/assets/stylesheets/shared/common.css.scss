@@ -142,6 +142,7 @@ input[type="text"].focus, #adv_code_search .focus.search-page-label, input[type=
   margin: 15px 0;
   &>dt {
     margin: 0 0 6px 0;
+    label { font-weight: bold; }
   }
   &>dd {
     margin-left: 0;

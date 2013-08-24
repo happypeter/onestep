@@ -1,6 +1,6 @@
-  <h1 class="setting-header"><%= t('edit_profile') %></h1>
-
-  <div class="setting-section">
+<div class="boxed-group">
+  <h3><%= t('edit_profile') %></h3>
+  <div class="boxed-group-inner">
     <%= form_for(@user,:url =>"/account" ) do |f| %>
       <% if @user.errors.any? %>
         <div class="error_messages">
@@ -12,20 +12,19 @@
         </div>
       <% end %>
       <%= f.hidden_field :name %>
-        <dl class="field">
-          <dt> <%= f.label :email %> </dt>
-          <dd> <%= f.text_field :email %> </dd>
-        </dl>
-        <dl class="field">
-          <dt> <%= f.label t('new_password')%> </dt>
-          <dd> <%= f.password_field :password %> </dd>
-        </dl>
-        <dl class="field">
-          <dt> <%= f.label t('password_confirm') %> </dt>
-          <dd> <%= f.password_field :password_confirmation %> </dd>
-        </dl>
-        <div class="actions">
-          <%= f.submit t('save'), :class => "button primary" %>
-        </div>
+      <dl class="field">
+        <dt> <%= f.label :email %> </dt>
+        <dd> <%= f.text_field :email %> </dd>
+      </dl>
+      <dl class="field">
+        <dt> <%= f.label t('new_password')%> </dt>
+        <dd> <%= f.password_field :password %> </dd>
+      </dl>
+      <dl class="field">
+        <dt> <%= f.label t('password_confirm') %> </dt>
+        <dd> <%= f.password_field :password_confirmation %> </dd>
+      </dl>
+      <p> <%= f.submit t('save'), :class => "button primary" %> </p>
     <% end %>
-  </div><!-- end setting-section -->
+  </div>
+</div>

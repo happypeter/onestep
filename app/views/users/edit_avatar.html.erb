@@ -24,26 +24,24 @@
           },
         });
       });
-    </script>
-  <% end %>
+  </script>
+<% end %>
 
-<div class="setting-section">
-  <div class="avatar-upload avatared">
-    <%= image_tag @user.final_avatar_url,:alt => "Your Image", :size => "50x50", :id => "avatar" %>
-    <a class= "fileupload-btn button primary">
-      <span id="upload-tip"><%= t('select_avatar') %></span>
-      <input id="fileupload" name="user[avatar]" type="file">
-    </a>
-  </div>
-  <div class="avatared-content">
-    <h3><%= t('dislike_default_avatar') %></h3>
-    <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+<div class="boxed-group">
+  <h3><%= t('change_avatar') %></h3>
+  <div class="boxed-group-inner">
+    <p>
+      <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+    </p>
     <p> <b><%= t('or') %></b> </p>
     <p> <%= t('haoqicat_avatar') %> </p>
+    <p>
+      <a class= "fileupload-btn button primary">
+        <span id="upload-tip"><%= t('select_avatar') %></span>
+        <input id="fileupload" name="user[avatar]" type="file">
+      </a>
+    </p>
   </div>
-</div><!-- end setting-section -->
+</div>
 
-<div class="setting-section">
-  <%= render 'crop' if @user.avatar.present? %>
-</div><!-- end setting-section -->
-
+<%= render 'crop' if @user.avatar.present? %>
