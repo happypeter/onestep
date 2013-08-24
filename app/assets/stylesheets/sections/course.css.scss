@@ -35,6 +35,16 @@
         }
       }
     }
+    .timeline-btn {
+      margin: 20px 0;
+      .timeline-label {
+        color: black;
+        letter-spacing: 1px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
   }
   .tutorial-content {
     display: table-cell;
