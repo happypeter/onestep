@@ -1,7 +1,16 @@
+/*
+`.course-thumb` for course cards styles.
+
+Styleguide 5.1
+*/
+
 @import "globals/variables";
 @import "globals/mixins";
 
 .course-thumb {
+  position: relative;
+  margin-top: 15px;
+  width: 400px;
   .course-detail {
     margin: 0 auto 10px;
     display: block;
@@ -23,7 +32,7 @@
     .private-label {
       color: red;
       font-size: 12px;
-      font-weight: normal;
+      font-weight: bold;
       vertical-align: super;
       letter-spacing: -1px;
     }
@@ -53,13 +62,29 @@
       }
     }
   }
-  .author {
+  .course-author {
     position: absolute;
     right: 40px;
     bottom: 15px;
     color: $font-gray;
   }
-  a:hover {
-    text-decoration: none;
+  .green-box-shadow {
+    &:hover {
+      border-color: #c3ca7d;
+      -webkit-box-shadow: 0 0 10px $background-green;
+      text-decoration: none;
+    }
+  }
+  .course-actions {
+    position: absolute;
+    bottom: 15px;
+    left: 40px;
+    width: 80px;
+    text-align: left;
+    li {
+      list-style: none;
+      width: 40px;
+      float: left;
+    }
   }
 }

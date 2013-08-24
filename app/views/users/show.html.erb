@@ -37,7 +37,9 @@
     <% if @courses.present? %>
       <div class="courses">
         <% @courses.each do |course| %>
-          <%= render "courses/course", :course => course %>
+          <div class="course">
+            <%= render "courses/course", :course => course %>
+          </div>
         <% end %>
       </div>
     <% else %>

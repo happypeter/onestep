@@ -7,7 +7,9 @@
     <% if !@recent_courses.empty? %>
       <div class="courses">
         <% @recent_courses.each do |course| %>
-          <%= render "courses/course", :course => course %>
+          <div class="course">
+            <%= render "courses/course", :course => course %>
+          </div>
         <% end %>
       </div>
     <% else %>
