@@ -16,10 +16,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   AVATAR_NW = 172
   AVATAR_NH = 172
 
-  version :original_size do
-    process :crop
-    process :resize_to_fit => [AVATAR_LW,AVATAR_LH]
-  end
+  process :crop
+  process :resize_to_fit => [AVATAR_LW,AVATAR_LH]
 
   def crop
     return unless model.cropping?
