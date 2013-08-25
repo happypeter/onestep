@@ -14,13 +14,15 @@
       var rx = <%= AvatarUploader::AVATAR_NW %>/coords.w;
       var ry = <%= AvatarUploader::AVATAR_NH %>/coords.h;
       $('#preview').css({
-        width: Math.round(rx * <%= @user.avatar.get_geometry(:large)[:width] %>) + 'px',
-        height: Math.round(ry * <%= @user.avatar.get_geometry(:large)[:height] %>) + 'px',
+        width: Math.round(rx * <%= @user.avatar.get_geometry(:original)[:width] %>) + 'px',
+        height: Math.round(ry * <%= @user.avatar.get_geometry(:original)[:height] %>) + 'px',
         marginLeft: '-' + Math.round(rx * coords.x) + 'px',
         marginTop: '-' + Math.round(ry * coords.y) + 'px'
       });
 
-      var ratio = <%= @user.avatar.get_geometry(:original)[:width] %> / <%= @user.avatar.get_geometry(:large)[:width] %>;
+      // ratio = original_width / actual_width_of_other_version
+      // here no other version, use original, so ratio is 1
+      var ratio = 1;
       $("#crop_x").val(Math.round(coords.x * ratio));
       $("#crop_y").val(Math.round(coords.y * ratio));
       $("#crop_w").val(Math.round(coords.w * ratio));
@@ -37,7 +39,7 @@
       <div class="media-preview">
         <div class="media">
           <div class="avatar-crop-box">
-            <%= image_tag @user.avatar_url(:large), :id => "avatar-cropbox" %>
+            <%= image_tag @user.avatar_url, :id => "avatar-cropbox" %>
           </div>
         </div>
       </div>
@@ -48,7 +50,7 @@
         <div class="media">
           <div class="avatar-crop-preview">
             <div style="width:<%= AvatarUploader::AVATAR_NW %>px; height:<%= AvatarUploader::AVATAR_NH %>px; overflow:hidden">
-              <%= image_tag @user.avatar_url(:large), :id => "preview" %>
+              <%= image_tag @user.avatar_url, :id => "preview" %>
             </div>
           </div>
         </div>

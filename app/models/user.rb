@@ -22,12 +22,6 @@ class User < ActiveRecord::Base
 
   def reprocess_avatar
     avatar.recreate_versions!
-
-    current_version = self.avatar.current_path
-    large_version =  self.avatar.get_version(:large)
-
-    FileUtils.rm(current_version)
-    FileUtils.cp(large_version, current_version)
   end
 
   def cropping?
