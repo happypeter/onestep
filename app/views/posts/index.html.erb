@@ -1,0 +1,13 @@
+<div class="blog">
+  <div class="container">
+    <div class="post-listing">
+      <% if @posts.empty? %>
+        <p>
+          目前还没有任何文章
+        </p>
+      <% else %>
+        <%= render @posts %>
+      <% end %>
+    </div>
+  </div>
+</div>

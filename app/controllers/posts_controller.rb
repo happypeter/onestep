@@ -1,3 +1,4 @@
+# encoding: utf-8
 class PostsController < ApplicationController
   before_filter :check_admin, :except => [:index, :show]
 
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
     post.user_id = current_user.id
     post.name = name
     if post.save
-      redirect_to blog_path(post), :notice => "New blog created successfully!"
+      redirect_to blog_path(post), :notice => "博客创建成功"
     else
       render "new"
     end
@@ -29,7 +30,7 @@ class PostsController < ApplicationController
     @post.name = name
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to blog_path(@post), :success => 'Blog was successfully updated.' }
+        format.html { redirect_to blog_path(@post), :success => '博客更新成功' }
       else
         format.html { render :action => "edit" }
       end
