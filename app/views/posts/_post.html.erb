@@ -1,0 +1,23 @@
+<div class="blog-post">
+  <h2 class="blog-post-title">
+    <%= link_to post.title, blog_path(post) %>
+  </h2>
+  <ul class="blog-post-meta">
+    <li>
+    <i class="icon-calendar"></i>
+    <%= post.created_at.strftime('%Y-%m-%d') %>
+    </li>
+    <li>
+    <%= image_tag post.user.final_avatar_url, :alt => "头像", :size => "18x18", :class => "author-avatar" %>
+    <% if post.user %>
+      <%= link_to post.user.name, member_path(post.user.name) %>
+    <% end %>
+    </li>
+  </ul>
+  <div class="blog-markdown-body markdown-format">
+    <%= markdown post.content %>
+    <% if current_user && current_user.admin? %>
+      <%= link_to t("edit_blog"), edit_blog_path(post), :class => "btn btn-small" %>
+    <% end %>
+  </div>
+</div>
