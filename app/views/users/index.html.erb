@@ -8,7 +8,7 @@
         <% @users.each do |user| %>
           <li class="member-list-item">
           <%= link_to member_path(user.name) do %>
-            <%= image_tag user.avatar, alt: "uprofile", :class => "gavatar" %>
+            <%= image_tag user.final_avatar_url, alt: "uprofile", :class => "gavatar" %>
           <% end %>
           <div class="member-list-container">
             <h3 class="username">
