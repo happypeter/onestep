@@ -18,7 +18,7 @@
   }
   #user-course {
     width: 800px;
-    border-left: 1px solid $border-color-c;
+    border-left: 1px solid #ccc;
     border-top-left-radius: 5px;
     display: table-cell;
     .user-course-header {
@@ -27,10 +27,10 @@
       background-image: -webkit-linear-gradient(#FAFAFA, #EAEAEA);
       background-image: linear-gradient(#FAFAFA, #EAEAEA);
       background-repeat: repeat-x;
-      border: 1px solid $border-color-d;
+      border: 1px solid #ddd;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      border-bottom: 1px solid $border-color-d;
+      border-bottom: 1px solid #ddd;
       h2 {
         margin: 0;
         height: 58px;
@@ -100,7 +100,7 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     width: 160px;
     height: 160px;
-    border: 1px solid $border-color-c;
+    border: 1px solid #ccc;
   }
   a.button {
     width: 140px;
