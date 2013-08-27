@@ -141,6 +141,7 @@ zh-CN:
   crop: "裁剪"
   crop_avatar: "裁剪头像"
   select_crop_area: "选择裁剪区域"
+  crop_and_save: "裁剪并保存"
 
   new_password: "新密码"
   password_confirm: "密码确认"
