@@ -131,6 +131,7 @@ zh-CN:
   edit_profile: "编辑个人信息"
   profile_updated: "个人信息更新成功"
   change_avatar: "更换头像"
+  avatar_updated: "头像更新成功"
   avatar_email: "我们会去Gravatar上根据你的Email: "
   upload_avatar: "搜索是否有可用的头像。不知道Gravatar是什么？"
   go_avatar: "可以去他们网站看看： "
@@ -141,6 +142,7 @@ zh-CN:
   crop: "裁剪"
   crop_avatar: "裁剪头像"
   select_crop_area: "选择裁剪区域"
+  crop_and_save: "裁剪并保存"
 
   new_password: "新密码"
   password_confirm: "密码确认"

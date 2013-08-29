@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user.crop_h = params[:user][:crop_h]
     @user.avatar = @user.avatar
     @user.save
-    redirect_to edit_avatar_path
+    redirect_to edit_avatar_path, :notice => t('avatar_updated')
   end
 
   def edit
@@ -37,9 +37,7 @@ class UsersController < ApplicationController
     @user = User.find_by_name(params[:user][:name])
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(member_path(@user.name), :notice => t('profile_updated')) }
-      else
-        format.html { render :action => "edit" }
+        format.html { redirect_to(account_path, :notice => t('profile_updated')) }
       end
     end
   end
