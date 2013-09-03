@@ -1,6 +1,5 @@
 default: &default
   image:
-    default_avatar: 'http://media.haoqicat.com/avatar/default_avatar420x.png'
     default_poster: 'http://media.haoqicat.com/course_poster/default.png'
   alipay:
     pid: '2088402465243298'

@@ -48,9 +48,8 @@ class User < ActiveRecord::Base
     self.read_attribute(:avatar).present?
   end
   def gravatar_url
-    default_url = Settings.image.default_avatar
     gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=512&d=#{CGI.escape(default_url)}"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=512&d=retro"
   end
   def final_avatar_url
     if self.has_avatar?
