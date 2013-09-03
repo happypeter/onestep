@@ -12,15 +12,15 @@
         </div>
       <% end %>
       <%= f.hidden_field :name %>
-      <dl class="field">
+      <dl class="form">
         <dt> <%= f.label :email %> </dt>
         <dd> <%= f.text_field :email %> </dd>
       </dl>
-      <dl class="field">
+      <dl class="form">
         <dt> <%= f.label t('new_password')%> </dt>
         <dd> <%= f.password_field :password %> </dd>
       </dl>
-      <dl class="field">
+      <dl class="form">
         <dt> <%= f.label t('password_confirm') %> </dt>
         <dd> <%= f.password_field :password_confirmation %> </dd>
       </dl>

@@ -171,6 +171,7 @@ zh-CN:
 
   forgot_password: "忘记密码？"
   reset_password: "重置密码"
+  send_reset_password_email: "发送重置密码邮件"
 
   date:
     abbr_day_names:

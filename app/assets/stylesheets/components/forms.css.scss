@@ -1,6 +1,8 @@
 /*
 Froms are the ears of my site.
 
+.short   - A short version
+
 Styleguide 8.1.
 */
 
@@ -23,6 +25,18 @@ dl.form {
       width: 440px;
       background-position-x: 98%;
     }
+    input[type="text"].short, input[type="password"].short, input[type="email"].short {
+      width: 250px;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      min-height: 200px;
+    }
+    textarea.short {
+      height: 50px;
+      min-height: 50px;
+    }
   }
   input[type="text"], input[type="password"], input[type="email"], textarea {
     background-color: #FAFAFA;
@@ -31,6 +45,8 @@ dl.form {
     }
   }
 }
+
+
 
 /*
 Whole form with submit button. You can put this into a boxed_group.

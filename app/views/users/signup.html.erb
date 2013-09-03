@@ -1,4 +1,4 @@
-<div class="container">
+<div class="single-form-container">
   <%= form_for(@user,:url =>"/member") do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
@@ -10,24 +10,22 @@
         </ul>
       </div>
     <% end %>
-    <div class="auth-form">
-      <div class="auth-form-header">
-        <h1><%= t('signup') %></h1>
-      </div>
-      <div class="auth-form-body">
-        <div class="field">
-          <%= f.label :name %><br />
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.text_field :email %>
-        </div>
-        <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password %>
-        </div>
-        <div><%= f.submit t('signup'), :class => "btn btn-primary" %></div>
+    <div class="boxed-group">
+      <h3><%= t('signup') %></h3>
+      <div class="boxed-group-inner">
+        <dl class="form">
+          <dt><%= f.label :name %></dt>
+          <dd><%= f.text_field :name, class: "short" %></dd>
+        </dl>
+        <dl class="form">
+          <dt> <%= f.label :email %></dt>
+          <dd> <%= f.text_field :email, class: "short" %> </dd>
+        </dl>
+        <dl class="form">
+          <dt> <%= f.label :password %> </dt>
+          <dd> <%= f.password_field :password, class: "short" %> </dd>
+        </dl>
+        <p><%= f.submit t('signup'), :class => "button primary" %></p>
       </div>
     </div>
   <% end %>

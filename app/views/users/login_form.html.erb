@@ -1,32 +1,29 @@
-<div class="container">
-  <div class="auth-form" id="login">
-    <div class="auth-form-header">
-      <h1><%= t('login') %></h1>
-    </div>
-
-    <div class="auth-form-body">
+<div class="single-form-container">
+  <div class="boxed-group" id="login">
+    <h3><%= t('login') %></h3>
+    <div class="boxed-group-inner">
       <%= form_tag "/submit_login_form" do %>
-        <dl class="field">
+        <dl class="form">
           <dt>
-          <%= label_tag t('username') %><br />
+          <%= label_tag t('username') %>
           </dt>
           <dd>
-          <%= text_field_tag :name, params[:name] %>
+          <%= text_field_tag :name, params[:name], :class => "short" %>
           </dd>
         </dl>
-        <dl class="field">
+        <dl class="form">
           <dt>
-          <%= label_tag t('password') %><br />
+          <%= label_tag t('password') %>
           </dt>
           <dd>
-          <%= password_field_tag :password %>
+          <%= password_field_tag :password, params[:password], :class => "short" %>
           </dd>
         </dl>
         <p>
           <a href="/signup"><%= t('signup') %></a>
           <%= link_to t('forgot_password'), new_password_reset_path %>
         </p>
-        <div> <%= submit_tag t('login'), :class => "btn" %> </div>
+        <p> <%= submit_tag t('login'), :class => "button" %> </p>
       <% end %>
     </div>
   </div>

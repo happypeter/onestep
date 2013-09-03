@@ -23,15 +23,15 @@
   <% end %>
 
 
-  <dl class="field">
+  <dl class="form">
     <dt> <%= f.label :price %> </dt>
-    <dd> <%= f.text_field :price %> </dd>
+    <dd> <%= f.text_field :price, :class => "short" %> </dd>
   </dl>
-  <dl class="field">
+  <dl class="form">
     <dt> <%= f.label :title %> </dt>
-    <dd> <%= f.text_field :title %> </dd>
+    <dd> <%= f.text_field :title, :class => "short" %> </dd>
   </dl>
-  <dl class="field">
+  <dl class="form">
     <dt>
       <%= f.label :description %>
       (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
@@ -40,7 +40,7 @@
       <%= f.text_area :description, :size => "14x4", :id => "course_desc" %>
     </dd>
   </dl>
-  <div class="field">
+  <div class="form">
     <%= f.check_box :public %>
     <%= f.label t('public') %>
   </div>

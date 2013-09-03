@@ -1,4 +1,4 @@
-<div class="container">
+<div class="single-form-container">
   <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
@@ -10,14 +10,22 @@
         </ul>
       </div>
     <% end %>
-    <div class="field">
-      New Password:
-      <%= f.password_field :password %>
+    <dl class="form">
+      <dt>
+        New Password:
+      </dt>
+      <dd>
+        <%= f.password_field :password %>
+      </dd>
     </div>
-    <div class="field">
-      Type Again:
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div class="actions"><%= f.submit "Update Password" %></div>
+    <dl class="form">
+      <dt>
+        Type Again:
+      </dt>
+      <dd>
+        <%= f.password_field :password_confirmation %>
+      </dd>
+    </dl>
+    <p><%= f.submit "Update Password", :class => "button primary" %></p>
   <% end %>
 </div>

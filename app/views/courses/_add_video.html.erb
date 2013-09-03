@@ -69,23 +69,23 @@
   <div class="primary-info">
     <h1><%= t('enter_video_info') %></h1>
     <%= form_for(Video.new) do |f| %>
-      <dl class="field">
+      <dl class="form">
         <dt>
           <%= f.label t("video_title") %>
         </dt>
         <dd>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, :class => "short" %>
         </dd>
       </dl>
-      <dl class="field">
+      <dl class="form">
         <dt>
         <%= f.label t("video_desc") %>
         </dt>
         <dd>
-        <%= f.text_area :desc, :size => "14x4", :id => "video_desc" %>
+        <%= f.text_area :desc, :size => "14x4", :id => "video_desc", :class => "short" %>
         </dd>
       </dl>
-      <dl class="field">
+      <dl class="form">
         <dt>
         <%= f.check_box :free %>
         <%= f.label t('free') %>
