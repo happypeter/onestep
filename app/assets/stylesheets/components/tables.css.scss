@@ -1,0 +1,47 @@
+/*
+`.table` for basic table styles.
+
+.table-bordered   - Add a border to the basic tables.
+
+Styleguide 6.1
+*/
+
+@import "globals/variables";
+@import "globals/mixins";
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+}
+.table thead {
+  background-color: #f7f7f7;
+  background-image: -moz-linear-gradient(top, #fff, #ebebeb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#ebebeb));
+  background-image: -webkit-linear-gradient(top, #fff, #ebebeb);
+  background-image: -o-linear-gradient(top, #fff, #ebebeb);
+  background-image: linear-gradient(to bottom, #fff, #ebebeb);
+  background-repeat: repeat-x;
+}
+
+.table th, .table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #ddd;
+}
+
+
+
+.table-bordered {
+  border: 1px solid #ddd;
+  border-collapse: separate;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
