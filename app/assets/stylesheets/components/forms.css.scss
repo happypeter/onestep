@@ -1,0 +1,61 @@
+/*
+Froms are the ears of my site.
+
+Styleguide 8.1.
+*/
+
+@import "globals/variables";
+@import "globals/mixins";
+
+dl.form {
+  margin: 15px 0;
+  &> dt {
+    label {
+      font-weight: bold;
+    }
+    margin: 0 0 6px 0;
+  }
+
+  dd {
+    margin-left: 0;
+    input[type="text"], input[type="password"], input[type="email"] {
+      margin-right: 5px;
+      width: 440px;
+      background-position-x: 98%;
+    }
+  }
+  input[type="text"], input[type="password"], input[type="email"], textarea {
+    background-color: #FAFAFA;
+    &:focus {
+      background-color: white;
+    }
+  }
+}
+
+/*
+Whole form with submit button. You can put this into a boxed_group.
+
+Styleguide 8.2.
+*/
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"], input[type="url"], textarea {
+  min-height: 34px;
+  padding: 7px 8px;
+  outline: none;
+  color: #333;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: right center;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: all 0.15s ease-in;
+  -webkit-transition: all 0.15s ease-in 0;
+  vertical-align: middle;
+  &:focus {
+    border-color: #51A7E8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075),0 0 5px rgba(81, 167, 232, 0.5);
+  }
+}

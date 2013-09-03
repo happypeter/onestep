@@ -29,6 +29,8 @@ class InfoController < ApplicationController
       render :template => "info/styleguide/css/tables"
     when 7.0
       render :template => "info/styleguide/css/boxed_groups"
+    when 8.0
+      render :template => "info/styleguide/css/forms"
     end
   end
 
