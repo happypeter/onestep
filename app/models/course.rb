@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
   has_many :orders
   has_many :activities
   has_many :watchings, :dependent => :destroy
-  has_many :watchers, :through => :watchings
+  has_many :watchers, :through => :watchings, :source => :user
   belongs_to :user
   attr_accessible :description, :name, :title, :poster, :user_id, :public,
                   :price

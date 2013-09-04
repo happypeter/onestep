@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :notifications
   has_many :watchings, :dependent => :destroy
-  has_many :watched_courses, :through => :watchings
+  has_many :watched_courses, :through => :watchings, :source => :course
 
   attr_accessible :name, :email, :avatar, :password, :password_confirmation, :admin
 
