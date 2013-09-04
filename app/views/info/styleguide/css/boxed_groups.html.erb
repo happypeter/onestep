@@ -1,10 +1,31 @@
 <% kss_block '7.1' do %>
-<div class="boxed-group $modifier_class">
-  <h3>HEADING</h3>
-  <div class="boxed-group-inner">
-    <p>
+  <div class="boxed-group $modifier_class">
+    <h3>HEADING</h3>
+    <div class="boxed-group-inner">
+      <p>
       Some content here.
-    </p>
+      </p>
+    </div>
   </div>
-</div>
+<% end %>
+
+<% kss_block '7.2' do %>
+  <div class="boxed-group">
+    <h3>HEADING</h3>
+    <div class="boxed-group-inner">
+      <form>
+        <dl class="form ">
+          <dt><label>Name</label></dt>
+          <dd> <input type="text" value="Peter Wang"> </dd>
+        </dl>
+        <dl class="form">
+          <dt><label>New password</label></dt>
+          <dd><input type="password"></dd>
+        </dl>
+        <p>
+        <button class="button">Update Password</button>
+        </p>
+      </form>
+    </div>
+  </div>
 <% end %>
