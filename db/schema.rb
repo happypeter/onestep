@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809150806) do
+ActiveRecord::Schema.define(:version => 20130904014218) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -114,5 +114,15 @@ ActiveRecord::Schema.define(:version => 20130809150806) do
     t.string   "asset"
     t.boolean  "free"
   end
+
+  create_table "watchings", :force => true do |t|
+    t.integer  "watcher_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "watchings", ["course_id"], :name => "index_watchings_on_course_id"
+  add_index "watchings", ["watcher_id"], :name => "index_watchings_on_watcher_id"
 
 end
