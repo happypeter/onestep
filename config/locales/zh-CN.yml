@@ -3,6 +3,8 @@ zh-CN:
   no_user_found: "没有用户注册为会员"
   member_count: "群英荟萃"
   course_timeline: "课程时间线"
+  watch_course: "关注课程"
+  unwatch_course: "取消关注课程"
   create_a_course: "创建了一门课程"
   upload_a_video: "上传了一个新视频"
   delete_a_video: "删除了一个视频"
