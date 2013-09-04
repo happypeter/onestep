@@ -27,4 +27,15 @@ class Course < ActiveRecord::Base
     false
   end
 
+  def add_watcher(user)
+    return false if user == self.user
+    return false if self.watchers.include?(user)
+    self.watchers << user
+  end
+
+  def delete_watcher(user)
+    return false if user == self.user
+    self.watchers.delete(user)
+  end
+
 end
