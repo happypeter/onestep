@@ -40,6 +40,9 @@ Styleguide 7.1.
     color: #666;
     font-size: 13px;
   }
+  .boxed-group-inner.seamless {
+    padding: 0;
+  }
 }
 
 .boxed-group.dangerzone > h3 {
@@ -58,3 +61,29 @@ A box grouped form is very useful.
 
 Styleguide 7.2.
 */
+
+  // depend on form.css.scss
+
+
+/*
+A box grouped table is very beautiful.
+
+Styleguide 7.3.
+*/
+
+  // depend on table.css.scss
+
+.boxed-group-table {
+  width: 100%;
+  text-align: left;
+  th{
+    background-color: #FAFAFA;
+  }
+  .boxed-group-table td {
+    vertical-align: top;
+  }
+  th, td {
+    padding: 9px;
+    border-bottom: 1px solid #EEE;
+  }
+}
