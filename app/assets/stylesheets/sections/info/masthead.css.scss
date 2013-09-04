@@ -4,12 +4,10 @@
 .masthead {
   padding: 50px 0 80px;
   height: 300px;
-  background-color: rgb(250, 250, 250);
-  border-bottom: 1px solid rgb(229, 229, 229);
+  background-color:black;
   .mini-player {
     display: inline-block;
     padding: 10px;
-    background: lighten($link-green, 10%);
     width: 446px;
     margin-left: 150px;
   }
@@ -18,46 +16,39 @@
     display: inline-block;
     margin-right: 150px;
     float: right;
-    .action {
-      margin-top: 30px;
+    .button {
+      padding: 11px;
     }
-    .btn {
-      width: 100%;
-      padding: 19px 24px;
-      font-size: 24px;
-      font-weight: 200;
-      color: white;
-      border: 0;
-      -webkit-border-radius: 6px;
-      -moz-border-radius: 6px;
-      border-radius: 6px;
-      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),0 1px 5px rgba(0, 0, 0, 0.25);
-      -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1),0 1px 5px rgba(0,0,0,0.25);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),0 1px 5px rgba(0, 0, 0, 0.25);
-      -webkit-transition: none;
-      -moz-transition: none;
-      transition: none;
+    .text-muted {
+      color: #999;
     }
-  }
-  dl.form {
-    margin: 0 0 10px;
-    position: relative;
-    dd {
-      margin: 0;
-      padding: 0;
-      border: 0;
+
+    dl.form {
+      margin: 0 0 10px;
+      position: relative;
+      dd {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        input {
+          padding: 9px;
+          font-size: 16px;
+          border-radius: 5px;
+        }
+      }
+    }
+    .button, dl.form input[type="text"], input[type="password"] {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
     }
   }
 
-  dl.form dd input {
-    padding: 9px;
-    font-size: 16px;
-    border-radius: 5px;
-  }
   #ego-line {
-    text-align: center;
     margin-top: 40px;
+    text-align: center;
     font-weight: normal !important;
+    color: white;
     a {
       &:hover {
         text-decoration: none;
@@ -65,4 +56,3 @@
     }
   }
 }
-

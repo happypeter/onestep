@@ -4,6 +4,7 @@
 .primary    - For the main form action, use whenever creating something.
 .disabled   - Dims the button to indicate it cannot be used.
 .danger     - For potentially bad or destructive actions.
+.button-block - To get a big button.
 
 Styleguide 1.1.
 */
@@ -136,6 +137,15 @@ Styleguide 1.1.
     border: 1px solid #DDD;
   }
 }
+
+.button.button-block, .minibutton.button-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 
 /*
 `.minibutton` is used for linking to sth else.
