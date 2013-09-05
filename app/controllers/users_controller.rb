@@ -141,6 +141,7 @@ class UsersController < ApplicationController
     end
 
     @paid_courses = @user.paid_courses
+    @watched_courses = @user.watched_courses
 
     respond_to do |format|
       format.html

@@ -111,10 +111,25 @@ class CoursesController < ApplicationController
       redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
     end
   end
+
   def destroy
     user = User.find_by_name(params[:member_name])
     course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     course.destroy
     redirect_to member_path(user.name)
+  end
+
+  def watch
+    user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    @course.add_watcher(current_user)
+    render :text => "1"
+  end
+
+  def unwatch
+    user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    @course.delete_watcher(current_user)
+    render :text => "1"
   end
 end

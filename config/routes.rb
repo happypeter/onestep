@@ -1,7 +1,5 @@
 Onestep::Application.routes.draw do
 
-  get "/:member_name/:course_name/timeline" => "activities#index" , :as => "timeline_course"
-
   root :to => 'info#marketing'
 
   post '/checkout' => "orders#checkout"
@@ -46,6 +44,11 @@ Onestep::Application.routes.draw do
   get "/member" => "users#index", :as => "user_index"
   post "/member" => "users#create"
   put "/crop" => "users#crop", :as => "crop"
+
+  get "/:member_name/:course_name/timeline" => "activities#index" , :as => "timeline_course"
+
+  post "/:member_name/:course_name/watch" => "courses#watch"
+  post "/:member_name/:course_name/unwatch" => "courses#unwatch"
 
   get "/account" => "users#edit", :as => "account"
   put "/account" => "users#update"
