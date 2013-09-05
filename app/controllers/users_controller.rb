@@ -1,3 +1,4 @@
+# encoding:utf-8
 class UsersController < ApplicationController
   layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :auth, only: [:signup, :login_form]
@@ -73,6 +74,11 @@ class UsersController < ApplicationController
       return
     end
 
+    if @user.signup_name_invalid?
+      flash[:notice] = "用户名不能包含@, 横线, 斜线, 句点或空格"
+      redirect_to :signup
+      return
+    end
 
     if black_list.include?(params[:user][:name])
       flash[:notice] = "#{params[:user][:name]}" + t('is_reserved_word')

@@ -1,3 +1,4 @@
+# encoding:utf-8
 class User < ActiveRecord::Base
   has_secure_password
   has_many :activities
@@ -62,5 +63,17 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def signup_name_invalid?
+    if self.name.present? and (self.name.include?('@') or
+                               self.name.include?('-') or
+                               self.name.include?(' ') or
+                               self.name.include?('.') or
+                               self.name.include?('/') or
+                               self.name.include?('\\')
+                              )
+      errors.add(:name, "不能包含@, 横线, 斜线, 句点或空格")
+    end
   end
 end
