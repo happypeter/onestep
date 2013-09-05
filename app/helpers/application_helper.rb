@@ -36,4 +36,9 @@ module ApplicationHelper
     course_path(comment.video.course) + '/' + comment.video.position.to_s  + "#comment_#{comment_id}"
   end
 
+  def owner?(item)
+    return false if item.blank? or current_user.blank?
+    item.user_id == current_user.id
+  end
+
 end

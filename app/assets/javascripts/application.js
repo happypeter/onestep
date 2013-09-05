@@ -16,6 +16,7 @@
 //= require jquery.ui.all
 //= require jquery_at_caret
 //= require comments
+//= require courses
 //= require vendor/jquery_hotkeys
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount

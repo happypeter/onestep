@@ -2,6 +2,8 @@ class Course < ActiveRecord::Base
   has_many :videos, order: :position
   has_many :orders
   has_many :activities
+  has_many :watchings, :dependent => :destroy
+  has_many :watchers, :through => :watchings, :source => :user
   belongs_to :user
   attr_accessible :description, :name, :title, :poster, :user_id, :public,
                   :price
@@ -25,4 +27,14 @@ class Course < ActiveRecord::Base
     false
   end
 
+  def add_watcher(user)
+    return false if user == self.user
+    return false if self.watchers.include?(user)
+    self.watchers << user
+  end
+
+  def delete_watcher(user)
+    return false if user == self.user
+    self.watchers.delete(user)
+  end
 end
