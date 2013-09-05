@@ -18,7 +18,7 @@
           type: "POST"
         });
         $(el).data("watched", true);
-        $(el).html("取消关注课程");
+        $(el).html("取消关注");
       }
       return false;
     }

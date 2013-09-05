@@ -24,10 +24,12 @@
             <%= t('paid') %>
           </div>
         <% end %>
+        <%= course_watch_tag(@course) %>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
-        <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
-        <%= course_watch_tag(@course) %>
+        <div class="course-timeline">
+          <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
+        </div>
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
