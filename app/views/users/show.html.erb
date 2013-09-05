@@ -59,6 +59,18 @@
     <% else %>
       <p><%= t('no_courses_found') %></p>
     <% end %>
+    <div class="user-course-header clearfix">
+      <h2><%= t('watched') %>:</h2>
+    </div>
+    <% if @watched_courses.present? %>
+      <div class="courses">
+        <% @watched_courses.each do |course| %>
+          <%= render "courses/course", :course => course %>
+        <% end %>
+      </div>
+    <% else %>
+      <p><%= t('no_courses_found') %></p>
+    <% end %>
     </li><!--end user-course -->
   </ul>
 </div><!-- user-show -->
