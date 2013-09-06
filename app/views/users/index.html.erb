@@ -18,7 +18,7 @@
             </h3>
             <p class="courses">courses: <%= user.courses.count %></p>
             <p class="comments">comments: <%= user.comments.count %></p>
-            <p class="join-date">joined: <%= user.created_at.strftime("%Y-%d-%m") %></p>
+            <p class="join-date">joined: <%= user.created_at.strftime("%Y-%m-%d") %></p>
           </div>
           </li>
         <% end %>
