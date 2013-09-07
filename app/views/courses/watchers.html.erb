@@ -1,0 +1,12 @@
+<div class="container">
+  <div id="watcher-page">
+    <div class="title">
+      <%= t 'watchers' %> <%= @watchers.count %>
+    </div>
+    <% if @watchers.blank? %>
+      <%= t 'no_watcher_found' %>
+    <% else %>
+      <%= render :partial => "shared/member_list", :locals => {:members => @watchers} %>
+    <% end %>
+  </div>
+</div>

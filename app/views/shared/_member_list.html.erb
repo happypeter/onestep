@@ -1,0 +1,19 @@
+<ol class="member-list">
+  <% members.each do |member| %>
+    <li class="member-list-item">
+      <%= link_to member_path(member.name) do %>
+        <%= image_tag member.final_avatar_url, alt: "uprofile", :class => "gavatar" %>
+      <% end %>
+      <div class="member-list-container">
+        <h3 class="member-name">
+          <%= link_to member_path(member.name) do %>
+            <%= member.name.truncate(16) %>
+          <% end %>
+        </h3>
+        <p class="courses">courses: <%= member.courses.count %></p>
+        <p class="comments">comments: <%= member.comments.count %></p>
+        <p class="join-date">joined: <%= member.created_at.strftime("%Y-%m-%d") %></p>
+      </div>
+    </li>
+  <% end %>
+</ol>
