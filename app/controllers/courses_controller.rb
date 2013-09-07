@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
+  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers]
 
   def check_owner
     if current_user.nil?
@@ -35,10 +36,6 @@ class CoursesController < ApplicationController
   end
 
   def show
-    user = User.find_by_name(params[:member_name])
-    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-
-
     if @course.nil?
       redirect_to(:root, :notice => 'No such course')
     else
@@ -54,8 +51,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    user = User.find_by_name(params[:member_name])
-    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     session[:return_to] = request.url
   end
 
@@ -71,6 +66,7 @@ class CoursesController < ApplicationController
       end
     end
   end
+
   def edit_video
     respond_to do |format|
       format.js {
@@ -80,6 +76,7 @@ class CoursesController < ApplicationController
       }
     end
   end
+
   def update_poster
     @course = Course.find(params[:course_id])
     respond_to do |format|
@@ -120,16 +117,22 @@ class CoursesController < ApplicationController
   end
 
   def watch
-    user = User.find_by_name(params[:member_name])
-    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     @course.add_watcher(current_user)
     render :text => "1"
   end
 
   def unwatch
-    user = User.find_by_name(params[:member_name])
-    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     @course.delete_watcher(current_user)
     render :text => "1"
+  end
+
+  def watchers
+    @watchers = @course.watchers
+  end
+
+  private
+  def find_course
+    user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
   end
 end
