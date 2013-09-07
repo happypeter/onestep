@@ -1,0 +1,29 @@
+.member-list {
+  list-style-type: none;
+  padding: none;
+  .member-list-item {
+    width: 256px;
+    float: left;
+    padding-bottom: 20px;
+    margin: 20px 0 20px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .gavatar {
+    border: 1px solid #eee;
+    float: left;
+    display: block;
+    width: 76px !important;
+    height: 76px !important;
+  }
+  .member-list-container {
+    margin-left: 90px;
+    margin-top: -5px;
+    line-height: 20px;
+    p {
+      margin: 0;
+    }
+    .member-name {
+      margin: 0 0 5px;
+    }
+  }
+}
