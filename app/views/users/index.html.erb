@@ -3,28 +3,10 @@
     <div class="title">
       <%= t 'member_count' %> <%= @users.count %>
     </div>
-    <% if !@users.empty? %>
-      <ol class="member-list">
-        <% @users.each do |user| %>
-          <li class="member-list-item">
-          <%= link_to member_path(user.name) do %>
-            <%= image_tag user.final_avatar_url, alt: "uprofile", :class => "gavatar" %>
-          <% end %>
-          <div class="member-list-container">
-            <h3 class="username">
-              <%= link_to member_path(user.name) do %>
-                <%= user.name.truncate(16) %>
-              <% end %>
-            </h3>
-            <p class="courses">courses: <%= user.courses.count %></p>
-            <p class="comments">comments: <%= user.comments.count %></p>
-            <p class="join-date">joined: <%= user.created_at.strftime("%Y-%m-%d") %></p>
-          </div>
-          </li>
-        <% end %>
-      </ol>
-    <% else %>
+    <% if @users.blank? %>
       <%= t 'no_user_found' %>
+    <% else %>
+      <%= render :partial => "shared/member_list", :locals => {:members => @users} %>
     <% end %>
   </div>
 </div>
