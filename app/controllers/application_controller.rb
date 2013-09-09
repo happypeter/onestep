@@ -70,4 +70,8 @@ class ApplicationController < ActionController::Base
   def track_activity(trackable, course_id, action = params[:action])
     current_user.activities.create! action: action, trackable: trackable, course_id: course_id
   end
+
+  def send_notification_to_author(user, notifiable, executor, action = params[:action])
+    Notification.notify user, notifiable, executor, action
+  end
 end

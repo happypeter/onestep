@@ -40,5 +40,4 @@ module ApplicationHelper
     return false if item.blank? or current_user.blank?
     item.user_id == current_user.id
   end
-
 end

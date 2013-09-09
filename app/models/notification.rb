@@ -4,7 +4,7 @@ class Notification < ActiveRecord::Base
   belongs_to :notifiable, :polymorphic => true
   scope :recent, order("created_at DESC")
 
-  attr_accessible :action, :unread, :notifiable, :user
+  attr_accessible :action, :unread, :notifiable, :user, :executor
 
   def self.notify(user, notifiable, executor, unread = true, action)
     n = Notification.new user: user, notifiable: notifiable

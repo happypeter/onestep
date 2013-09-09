@@ -1,6 +1,29 @@
-<% comment = notification.notifiable %>
-<% if not comment.nil? %>
-  <div <%= "class=highlight" if notification.unread %>>
-    <%= render comment %>
-  </div>
-<% end %>
+<% executor = notification.executor %>
+<td class="face">
+  <%= link_to member_path(executor.name) do %>
+    <%= image_tag executor.final_avatar_url, alt: "uprofile", :class => "gavatar", :width => "48x48" %>
+  <% end %>
+</td>
+<td>
+    <%= link_to member_path(executor.name) do %>
+      <span><%= executor.name %></span>
+    <% end %>
+
+    <% case notification.action %>
+    <% when "watch" %>
+      <% course = notification.notifiable %>
+      <span class="annotate">关注了你的课程: </span>
+      <%= link_to course.name, course_path(course) %>
+      <%= time_ago_in_words notification.created_at %>前
+    <% when "comment" %>
+      <% comment = notification.notifiable %>
+      <span class="annotate">回复了你评论过的课程章节: </span>
+      <%= link_to comment.video.title, video_comment_path(comment.id) %>
+      <%= time_ago_in_words notification.created_at %>前
+      <%- if comment.present? -%>
+        <div class="comment-body markdown-format">
+          <%= markdown comment.content %>
+        </div>
+      <%- end -%>
+    <% end %>
+</td>
