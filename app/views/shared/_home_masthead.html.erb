@@ -1,15 +1,6 @@
 <div class="masthead">
-  <div class="container">
-    <%= render 'shared/mini_player' %>
-    <div class="home-signup">
-      <%= render 'shared/home_signup_form' %>
-    </div>
-    <div id="ego-line">
-      <h1>
-        <%= link_to "#{User.count}" + "#{t('people')}", user_index_path %> 
-        <%= t('sharing') %> 
-        <%= link_to "#{Course.where(public: true).count}" +  "#{t('courses')}", course_index_path %>
-      </h1>
-    </div>
+  <div class="home-signup">
+    <%= render 'shared/home_signup_form' %>
   </div>
+  <%= render 'shared/tagline' %>
 </div>
