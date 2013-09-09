@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :videos, order: :position
   has_many :orders
-  has_many :activities
+  has_many :activities, :dependent => :destroy
   has_many :watchings, :dependent => :destroy
   has_many :watchers, :through => :watchings, :source => :user
   belongs_to :user

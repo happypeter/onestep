@@ -1,6 +1,16 @@
 class Notification < ActiveRecord::Base
-  attr_accessible :user_id, :comment_id, :unread
   belongs_to :user
-  belongs_to :comment
+  belongs_to :executor, :class_name => 'User'
+  belongs_to :notifiable, :polymorphic => true
   scope :recent, order("created_at DESC")
+
+  attr_accessible :action, :unread, :notifiable, :user
+
+  def self.notify(user, notifiable, executor, unread = true, action)
+    n = Notification.new user: user, notifiable: notifiable
+    n.action = action
+    n.unread = unread
+    n.executor = executor
+    n.save
+  end
 end

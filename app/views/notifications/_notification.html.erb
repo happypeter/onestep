@@ -1,4 +1,4 @@
-<% comment = notification.comment %>
+<% comment = notification.notifiable %>
 <% if not comment.nil? %>
   <div <%= "class=highlight" if notification.unread %>>
     <%= render comment %>
