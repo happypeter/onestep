@@ -2,19 +2,29 @@
 @import "globals/mixins";
 
 .masthead {
-  padding: 50px 0 80px;
-  height: 300px;
-  background-color:black;
-  .mini-player {
+  padding: 80px 150px;
+  text-shadow: 0 1px 3px #222;
+  background: #1F4044 url(<%= asset_path 'bg_masthead.png' %>) center repeat;
+  .tagline {
     display: inline-block;
-    padding: 10px;
-    width: 446px;
-    margin-left: 150px;
+    .heading {
+      margin-top: 0;
+      padding-top: 10px;
+      font-size: 70px;
+      font-weight: normal;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .subheading {
+      margin: 10px 0 0;
+      font-size: 21px;
+      line-height: 1.5;
+      color: #fff;
+    }
   }
   .home-signup {
-    padding-top: 20px;
     display: inline-block;
-    margin-right: 150px;
     float: right;
     .button {
       padding: 11px;
@@ -43,16 +53,6 @@
       border-radius: 5px;
     }
   }
-
-  #ego-line {
-    margin-top: 40px;
-    text-align: center;
-    font-weight: normal !important;
-    color: white;
-    a {
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
 }
+
+
