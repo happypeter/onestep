@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904024600) do
+ActiveRecord::Schema.define(:version => 20130909060450) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -59,11 +59,17 @@ ActiveRecord::Schema.define(:version => 20130904024600) do
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "comment_id"
-    t.boolean  "unread",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.boolean  "unread",          :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "action"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "executor_id"
   end
+
+  add_index "notifications", ["unread"], :name => "index_notifications_on_unread"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "orders", :force => true do |t|
     t.datetime "created_at",   :null => false
