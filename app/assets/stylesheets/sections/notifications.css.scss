@@ -5,7 +5,18 @@
     width: 960px;
     margin: 0 auto;
     .title {
+      line-height: 60px;
       margin-top: 30px;
+      .clear-all {
+        float: left;
+      }
+      .total {
+        float: right;
+      }
+    }
+    .no-content {
+      border-top: 1px solid #ddd;
+      clear: both;
     }
   }
   table {
@@ -28,6 +39,9 @@
   .annotate {
     font-size: 14px;
     font-weight: bold;
+  }
+  td.last {
+    text-align: right;
   }
   .highlight {
     border-top: 2px solid $notification-green;

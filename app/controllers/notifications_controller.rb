@@ -4,6 +4,19 @@ class NotificationsController < ApplicationController
   def index
     @notifications = current_user.notifications.recent
   end
+  def destroy
+    @notification = current_user.notifications.find(params[:id])
+    @notification.destroy
+    respond_to do |format|
+      format.html { redirect_to notifications_path }
+    end
+  end
+  def clear
+    current_user.notifications.delete_all
+    respond_to do |format|
+      format.html { redirect_to notifications_path }
+    end
+  end
   def mark_read
     current_user.notifications.update_all(unread: false)
   end
