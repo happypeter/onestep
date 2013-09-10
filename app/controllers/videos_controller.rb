@@ -45,7 +45,6 @@ class VideosController < ApplicationController
     video = Video.find(params[:id])
     video.destroy
     track_activity video, video.course.id
-    send_notification_to_course_watchers video
     redirect_to edit_course_path(video.course)
   end
 end

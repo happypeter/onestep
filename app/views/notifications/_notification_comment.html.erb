@@ -1,6 +1,6 @@
+<% comment = notification.notifiable %>
 <% case notification.action %>
 <% when "comment" %>
-  <% comment = notification.notifiable %>
   <td class="notificon"><i class="icon-comments icon-2x"></i></td>
   <td>
     <%= render :partial => "notification_executor", :locals => { :executor => executor} %>

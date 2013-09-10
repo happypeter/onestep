@@ -1,12 +1,20 @@
-<% case notification.action %>
-<% when "create" %>
-  <% video = notification.notifiable %>
-  <td class="notificon"><i class="icon-play-circle icon-2x"></i></td>
-  <td>
-    <%= render :partial => "notification_executor", :locals => { :executor => executor} %>
-    <span class="annotate">为你关注的课程： </span>
-    <%= link_to video.course.name, course_path(video.course) %>
-    <span class="annotate"> 添加了新视频： </span>
-    <%= video.title %>
-  </td>
-<% end %>
+<% video = notification.notifiable %>
+<% action = notification.action %>
+<td class="notificon">
+  <i class="icon-<%= action == "create" ? "plus-sign" : "refresh" %> icon-2x"></i>
+</td>
+<td>
+  <%= render :partial => "notification_executor", :locals => { :executor => executor} %>
+  <span class="annotate">为你关注的课程： </span>
+  <%= link_to video.course.name, course_path(video.course) %>
+  <% if action == "create" %>
+    <span class="annotate"> 上传一个新视频： </span>
+  <% else %>
+    <span class="annotate"> 更新了视频： </span>
+  <% end %>
+  <% if video.title.present? %>
+    <%= link_to video.title, course_path(video.course) + "/" + video.position.to_s %>
+  <% else %>
+    <%= link_to t('author_forgot_title'), course_path(video.course) + "/" + video.position.to_s %>
+  <% end %>
+</td>
