@@ -10,6 +10,7 @@ class VideosController < ApplicationController
         @video.user_id = current_user.id
         @video.save
         track_activity @video, @video.course.id
+        send_notification_to_course_watchers @video
       end
     end
   end
@@ -24,6 +25,7 @@ class VideosController < ApplicationController
     new_asset = video.asset.to_s.split('/').last
     if old_asset != new_asset
       track_activity video, video.course.id
+      send_notification_to_course_watchers video
     end
     respond_to do |f|
       f.html do
@@ -43,6 +45,7 @@ class VideosController < ApplicationController
     video = Video.find(params[:id])
     video.destroy
     track_activity video, video.course.id
+    send_notification_to_course_watchers video
     redirect_to edit_course_path(video.course)
   end
 end

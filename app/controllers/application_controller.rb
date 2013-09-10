@@ -71,7 +71,14 @@ class ApplicationController < ActionController::Base
     current_user.activities.create! action: action, trackable: trackable, course_id: course_id
   end
 
-  def send_notification_to_author(user, notifiable, executor, action = params[:action])
+  def send_notification_to_user(user, notifiable, executor, action = params[:action])
     Notification.notify user, notifiable, executor, action
+  end
+
+  def send_notification_to_course_watchers(video, action = params[:action])
+    executor = video.course.user
+    video.course.watchers.each do |u|
+      send_notification_to_user u, video, executor, action
+    end
   end
 end

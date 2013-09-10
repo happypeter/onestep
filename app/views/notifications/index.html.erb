@@ -11,7 +11,12 @@
       <table class="content">
         <tbody>
           <% for notification in @notifications %>
-            <tr <%= "class=highlight" if notification.unread %>><%= render notification %></tr>
+            <% type = notification.notifiable.class.name.underscore %>
+            <% executor = notification.executor %>
+            <tr <%= "class=highlight" if notification.unread %>>
+              <%= render :partial => "notification_#{type}", :locals => { :notification => notification, :executor => executor }%>
+              <td><%= time_ago_in_words notification.created_at %>前</td>
+            </tr>
           <% end %>
         </tbody>
       </table>
