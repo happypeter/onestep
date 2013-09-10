@@ -8,7 +8,7 @@
       <li><a href="/blog"><%= t("blog") %></a></li>
     </ul>
     <ul id="user-links">
-      <li><%= link_to notifications_path do %>
+      <li><%= link_to notifications_path(current_user.name) do %>
         <span class="notification-indicator <%= 'notification-indicator-unread' if @unread_count > 0 %>"><%= @unread_count %></span>
       <% end %>
       </li>
