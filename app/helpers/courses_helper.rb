@@ -1,4 +1,4 @@
-# coding: utf-8
+# encoding: utf-8
 module CoursesHelper
   def course_watch_tag(course)
     return "" if course.blank?
@@ -11,7 +11,7 @@ module CoursesHelper
       text = t('unwatch_course')
     end
     link_to text, "#", :onclick => "return Courses.watch(this);",
-            class: "minibutton watch_tag",
+            class: "minibutton with-count",
             'data-user' => course.user.name,
             'data-course' => course.name,
             'data-watched' => (class_name == "watched")
