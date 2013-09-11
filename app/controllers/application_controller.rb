@@ -81,4 +81,8 @@ class ApplicationController < ActionController::Base
       send_notification_to_user u, video, executor, action
     end
   end
+
+  def destroy_notifications(notifiable)
+    Notification.where(:notifiable_id => notifiable.id, :notifiable_type => notifiable.class.name).delete_all
+  end
 end

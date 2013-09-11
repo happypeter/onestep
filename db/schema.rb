@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909060450) do
+ActiveRecord::Schema.define(:version => 20130911061307) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130909060450) do
     t.integer  "executor_id"
   end
 
+  add_index "notifications", ["notifiable_id", "notifiable_type"], :name => "index_notifications_on_notifiable_id_and_notifiable_type"
   add_index "notifications", ["unread"], :name => "index_notifications_on_unread"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 

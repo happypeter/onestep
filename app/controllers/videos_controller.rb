@@ -44,6 +44,7 @@ class VideosController < ApplicationController
   def destroy
     video = Video.find(params[:id])
     video.destroy
+    destroy_notifications video
     track_activity video, video.course.id
     redirect_to edit_course_path(video.course)
   end
