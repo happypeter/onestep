@@ -1,3 +1,37 @@
+<div class="pagehead coursehead">
+  <div class="container">
+    <ul class="pagehead-actions">
+      <% if @course.user == current_user %>
+        <li>
+        <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
+        </li>
+      <% end %>
+      <% if not @course.open_to_user?(current_user) %>
+        <li>
+        <%= link_to t('buy_this_course') + "（￥" + @course.price.to_s + "）", new_order_path + "?course_id=#{@course.id}", class: "minibutton primary" %>
+        </li>
+      <% end %>
+      <li class="course-timeline">
+      <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
+      </li>
+      <li>
+      <%= course_watch_tag(@course) %>
+      <% if owner?(@course) %>
+        <%= link_to "关注人数", course_watchers_path, :class => "social-count-title" %>
+      <% end %>
+      <%= link_to @course.watchers.count, course_watchers_path, :class => "social-count" %>
+      </li>
+    </ul>
+    <h1 class="pagehead-heading">
+      <div class="course-image" style="background-image: url(<%= @course.poster_url %>);"> </div>
+      <span class="author">
+        <%= link_to @course.user.name, member_path(@course.user.name) %>
+      </span>
+      <span class="pagehead-name-divider">/</span>
+      <strong><%= link_to @course.title, course_path(@course) %></strong>
+    </h1>
+  </div>
+</div>
 <div class='container'>
   <% if not @video %>
     <h1><%= @course.title %></h1>
@@ -12,24 +46,8 @@
 
     <div id="tutorial-page">
       <div class="tutorial-nav">
-        <% if @course.user == current_user %>
-          <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
-        <% end %>
-        <% if not @course.open_to_user?(current_user) %>
-          <%= link_to t('buy_this_course'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
-          <p> <%= t('helpers.label.course.price') %>：<%= @course.price %> </p>
-        <% end %>
-        <% if @course.is_paid_user?(current_user) %>
-          <div class="label">
-            <%= t('paid') %>
-          </div>
-        <% end %>
-        <%= course_watch_tag(@course) %>
         <%= render "play_list", :course => @course, :current_video => @video %>
         <%= render "course_info", :course => @course %>
-        <div class="course-timeline">
-          <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
-        </div>
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>

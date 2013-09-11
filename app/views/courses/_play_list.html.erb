@@ -1,12 +1,11 @@
 <div class="playlist-container">
-  <h3><%= course.title %></h3>
   <ul class="playlist">
     <% course.videos.each do |v| %>
       <li>
       <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
         <i class="icon-facetime-video"></i>
         <%= v.title %>
-        <%= "(free)" if v.free? %>
+        <%= "(免费)" if v.free? %>
       </a>
       </li>
     <% end %>
