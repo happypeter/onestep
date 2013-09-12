@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :video
 
-  after_create :send_notifications
+  after_create :send_notification_to_commenters
 
   private
   def here_users
@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
     all << self.video.user
     all.uniq
   end
-  def send_notifications
+  def send_notification_to_commenters
     here_users.each do |u|
       Notification.notify(u, self, self.user, "comment") unless u.id == self.user.id
     end

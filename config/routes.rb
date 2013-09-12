@@ -26,7 +26,7 @@ Onestep::Application.routes.draw do
 
   get "notifications" => "notifications#index", :as => "notifications"
   delete "notifications/:id" => "notifications#destroy", :as => "notification"
-  post "notifications" => "notifications#clear", :as => "clear_notifications"
+  delete "notifications" => "notifications#clear", :as => "clear_notifications"
 
   match 'update_avatar' => 'users#update_avatar', :as => :update_avatar
   match "edit-avatar" => "users#edit_avatar", :as => "edit_avatar"
