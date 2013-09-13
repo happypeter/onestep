@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  belongs_to :course
+  belongs_to :course, :touch => true
   has_many :comments
   attr_accessible :user_id, :title, :course_id, :position, :desc, :free
   belongs_to :user
