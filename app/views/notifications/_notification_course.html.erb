@@ -1,0 +1,11 @@
+<% case notification.action %>
+<% when "watch" %>
+  <td class="notificon"><i class="icon-eye-open icon-2x"></i></td>
+  <td>
+    <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
+
+    <% course = notification.notifiable %>
+    <span class="annotate">关注了你的课程: </span>
+    <%= link_to course.name, course_path(course) %>
+  </td>
+<% end %>

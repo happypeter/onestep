@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :courses
   has_many :orders
-  has_many :notifications
+  has_many :notifications, :dependent => :destroy
   has_many :watchings, :dependent => :destroy
   has_many :watched_courses, :through => :watchings, :source => :course
 

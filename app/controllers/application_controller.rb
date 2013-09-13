@@ -66,7 +66,12 @@ class ApplicationController < ActionController::Base
       @unread_count = 0
     end
   end
+
   def track_activity(trackable, course_id, action = params[:action])
     current_user.activities.create! action: action, trackable: trackable, course_id: course_id
+  end
+
+  def destroy_notifications(notifiable)
+    Notification.where(:notifiable_id => notifiable.id, :notifiable_type => notifiable.class.name).delete_all
   end
 end

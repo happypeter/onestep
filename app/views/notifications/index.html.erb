@@ -1,5 +1,28 @@
-<div class="notifications container">
-  <% for notification in @notifications %>
-    <%= render notification %>
-  <% end %>
+<div id="notifications">
+  <div class="container details">
+    <div class="title">
+      <div class="clear-all">
+        <%= link_to "清空", clear_notifications_path, :method => "post", :class => "minibutton danger" %>
+      </div>
+      <div class="total">通知提醒<small> (<%= @notifications.count  %> 条)</small></div>
+    </div>
+    <% if @notifications.blank? %>
+      <div class="no-content">
+        暂无通知
+      </div>
+    <% else %>
+      <table class="content">
+        <tbody>
+          <% for notification in @notifications %>
+              <% type = notification.notifiable_type.underscore %>
+              <tr <%= "class=highlight" if notification.unread %>>
+                <%= render :partial => "notification_#{type}", :locals => { :notification => notification }%>
+                <td><%= time_ago_in_words notification.created_at %>前</td>
+                <td class="last"><%= link_to "删除", notification_path(notification), :method => "delete", :class => "label" %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 </div>

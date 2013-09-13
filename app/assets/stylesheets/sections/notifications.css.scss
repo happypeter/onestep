@@ -1,7 +1,49 @@
 @import "globals/variables";
-.highlight {
-  .bubble {
-    border-top: 6px solid $notification-green;
+
+#notifications {
+  .details {
+    width: 960px;
+    margin: 0 auto;
+    .title {
+      line-height: 60px;
+      margin-top: 30px;
+      .clear-all {
+        float: left;
+      }
+      .total {
+        float: right;
+      }
+    }
+    .no-content {
+      border-top: 1px solid #ddd;
+      clear: both;
+    }
+  }
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: transparent;
+  }
+  table td {
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 18px;
+    border-top: 1px solid #ddd;
+  }
+  td.face {
+    width: 48px;
+  }
+  .annotate {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  td.last {
+    text-align: right;
+  }
+  .highlight {
+    border-top: 2px solid $notification-green;
   }
 }
-

@@ -1,0 +1,11 @@
+<% executor = notification.executor %>
+<%= link_to member_path(executor.name) do %>
+  <%= image_tag executor.final_avatar_url, :class => "gavatar", :width => "30x30" %>
+<% end %>
+<%= link_to member_path(executor.name) do %>
+  <span><%= executor.name %></span>
+<% end %>
+<% if notification.notifiable_type == "Activity" %>
+  <span class="annotate">为你关注的课程： </span>
+  <%= course_name_tag(notification.notifiable.course_id) %>
+<% end %>
