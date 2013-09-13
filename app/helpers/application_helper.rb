@@ -41,4 +41,16 @@ module ApplicationHelper
     item.user_id == current_user.id
   end
 
+  def course_name_tag(course_id)
+    course = Course.find_by_id(course_id)
+    link_to course.name, course_path(course)
+  end
+
+  def video_course_path(video)
+    if video.title.present?
+      link_to video.title, course_path(video.course) + "/" + video.position.to_s
+    else
+      link_to t('author_forgot_title'), course_path(video.course) + "/" + video.position.to_s
+    end
+  end
 end

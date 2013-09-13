@@ -1,0 +1,15 @@
+<% comment = notification.notifiable %>
+<% case notification.action %>
+<% when "comment" %>
+  <td class="notificon"><i class="icon-comments icon-2x"></i></td>
+  <td>
+    <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
+    <span class="annotate">回复了你评论过的课程章节: </span>
+    <%= link_to comment.video.title, video_comment_path(comment.id) %>
+    <%- if comment.present? -%>
+      <div class="comment-body markdown-format">
+        <%= markdown comment.content %>
+      </div>
+    <%- end -%>
+  </td>
+<% end %>
