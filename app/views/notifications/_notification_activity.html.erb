@@ -1,0 +1,25 @@
+<% activity = notification.notifiable %>
+<% action = notification.notifiable.action%>
+<% case action %>
+<% when "destroy" %>
+<td class="notificon">
+  <i class="icon-trash icon-2x"></i>
+  <%= render :partial => "notification_executor", :locals => { :notification => notification} %>
+  <span class="annotate"> 删除了一个视频</span>
+</td>
+<% when "create", "update" %>
+  <% if activity.trackable.present? %>
+    <td class="notificon">
+      <i class="icon-<%= action == "create" ? "plus-sign" : "refresh" %> icon-2x"></i>
+    </td>
+    <td>
+      <%= render :partial => "notification_executor", :locals => { :notification => notification} %>
+      <% if action == "create" %>
+        <span class="annotate"> 上传一个新视频： </span>
+      <% else %>
+        <span class="annotate"> 更新了视频： </span>
+      <% end %>
+      <%= video_course_path(activity.trackable) %>
+    </td>
+  <% end %>
+<% end %>
