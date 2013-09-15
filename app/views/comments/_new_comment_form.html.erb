@@ -18,7 +18,7 @@
           <li><%= link_to t('preview'), "#" , :class => "tabnav-tab preview-tab" %></li>
         </ul>
       </div>
-      <div class="comment-content new-comment-content">
+      <div class="comment-content new-comment-content clearfix">
         <div class="error" style="display: none;">
           <%= t('error_blank_content') %>
         </div>
@@ -29,7 +29,6 @@
           <br>
           <%= f.submit "#{t('publish_comment')}", :class => "btn btn-success", :id => "comment-btn", :disable_with => "sending..." %>
         <% end %>
-        <div class="clearfix"></div>
       </div>
     </div>
   </div>

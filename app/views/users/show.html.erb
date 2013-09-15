@@ -27,50 +27,60 @@
 
     </li><!--end user-info -->
     <li id="user-course">
-    <div class="user-course-header">
-      <% if current_user == @user %>
-        <%= link_to create_course_path, :class => "button primary new-course" do %>
-          <%= t('create_course') %>
-          <i class='icon-hand-right icon-large'></i>
+    <div class="owned-course-section clearfix">
+      <div class="user-course-header">
+        <% if current_user == @user %>
+          <%= link_to create_course_path, :class => "button primary new-course" do %>
+            <%= t('create_course') %>
+            <i class='icon-hand-right icon-large'></i>
+          <% end %>
         <% end %>
+        <h2><%= t('my_courses') %>:</h2>
+      </div>
+      <% if @courses.present? %>
+        <div class="courses">
+          <% @courses.each do |course| %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p><%= t('no_courses_found') %></p>
       <% end %>
-      <h2><%= t('my_courses') %>:</h2>
     </div>
-    <% if @courses.present? %>
-      <div class="courses">
-        <% @courses.each do |course| %>
-          <div class="course">
-            <%= render "courses/course", :course => course %>
-          </div>
-        <% end %>
+    <div class="paid-course-section clearfix">
+      <div class="user-course-header">
+        <h2><%= t('paid') %>:</h2>
       </div>
-    <% else %>
-      <p><%= t('no_courses_found') %></p>
-    <% end %>
-    <div class="user-course-header clearfix">
-      <h2><%= t('paid') %>:</h2>
+      <% if @paid_courses.present? %>
+        <div class="courses">
+          <% @paid_courses.each do |course| %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p><%= t('no_courses_found') %></p>
+      <% end %>
     </div>
-    <% if @paid_courses.present? %>
-      <div class="courses">
-        <% @paid_courses.each do |course| %>
-          <%= render "courses/course", :course => course %>
-        <% end %>
+    <div class="watched-course-section clearfix">
+      <div class="user-course-header">
+        <h2><%= t('watched') %>:</h2>
       </div>
-    <% else %>
-      <p><%= t('no_courses_found') %></p>
-    <% end %>
-    <div class="user-course-header clearfix">
-      <h2><%= t('watched') %>:</h2>
+      <% if @watched_courses.present? %>
+        <div class="courses">
+          <% @watched_courses.each do |course| %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p><%= t('no_courses_found') %></p>
+      <% end %>
     </div>
-    <% if @watched_courses.present? %>
-      <div class="courses">
-        <% @watched_courses.each do |course| %>
-          <%= render "courses/course", :course => course %>
-        <% end %>
-      </div>
-    <% else %>
-      <p><%= t('no_courses_found') %></p>
-    <% end %>
     </li><!--end user-course -->
   </ul>
 </div><!-- user-show -->
