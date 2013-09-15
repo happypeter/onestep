@@ -9,7 +9,7 @@ Onestep::Application.routes.draw do
 
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"
-  get "about/work" => "about#work"
+  get "about/jobs" => "about#jobs"
   get "about/faq" => "about#faq"
   get "/set_locale" => "info#set_locale"
   get "/styleguide/css(/:ref)" => "info#styleguide"

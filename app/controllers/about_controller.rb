@@ -5,7 +5,7 @@ class AboutController < ApplicationController
   def team
   end
 
-  def work
+  def jobs
   end
 
   def faq
