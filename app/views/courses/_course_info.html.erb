@@ -2,12 +2,6 @@
   <h3><%= t('course_intro') %></h3>
   <p><%= course.description %></p>
   <dl>
-    <dt><%= t('author') %></dt>
-    <dd><%= link_to course.user.name, member_path(course.user.name) %></dd>
-    <dt><%= t('watchers') %></dt>
-    <dd class="course-watchers">
-      <%= link_to course.watchers.count, course_watchers_path %>
-    </dd>
     <dt><%= t('publish_time') %></dt>
     <dd><%= course.created_at.strftime(t('date.formats.default')) %></dd>
     <dt><%= t('update_time') %></dt>

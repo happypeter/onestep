@@ -1,14 +1,14 @@
 @import "globals/variables";
 @import "globals/mixins";
 
-#tutorial-page {
+.tutorial-page {
   min-width: 100%;
   display: table;
-  padding-top: 40px;
+  margin-top: 30px;
   h3 {
     padding-top: 0;
     font-size: 22px;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
     font-weight: normal;
   }
   .tutorial-nav {
@@ -21,6 +21,7 @@
     position: static;
     .course-intro {
       margin-right: 10px;
+      margin-top: 20px;
       dl {
         dt {
           clear: left;
@@ -34,10 +35,6 @@
           padding: 1px 0;
         }
       }
-    }
-    .course-timeline {
-      float: left;
-      margin: 20px 0;
     }
   }
   .tutorial-content {
@@ -57,6 +54,9 @@
         max-width: inherit;
         overflow-y: hidden;
       }
+    }
+    #comments {
+      margin-top: 20px;
     }
   }
 }
@@ -106,5 +106,68 @@ div#html5-player {
   margin-bottom: 40px;
   .course {
     float: left;
+  }
+}
+
+.pagehead {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  .pagehead-actions {
+    margin: 0;
+    float: right;
+    &>li {
+      list-style-type: none;
+      font-size: 13px;
+      color: #333;
+      margin: 0 10px 0 0;
+      float: left;
+      &:last-child { margin-right: 0; }
+      .social-count-title {
+        padding: 0 10px;
+        line-height: 24px;
+        float: left;
+        font-size: 13px;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+        border-radius: 3px;
+        border: 1px solid #DDD;
+        vertical-align: middle;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        &:hover {
+          color: $link-green;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .pagehead-heading {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 26px;
+    color: #666;
+    position: relative;
+    float: left;
+    .course-image {
+      float: left;
+      width: 48px;
+      height: 27px;
+      border-radius: 3px;
+      background-position: center;
+      background-size: cover;
+      border: 1px solid #666;
+      margin-right: 10px;
+      margin-top: -6px;
+    }
+    .pagehead-name-divider {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
   }
 }

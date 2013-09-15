@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
   before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers]
@@ -15,7 +16,7 @@ class CoursesController < ApplicationController
       course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
     end
     if course.user != current_user
-      redirect_to :root, :notice => "only the course owner can do this"
+      redirect_to :root, :notice => "抱歉，只有课程所有者才有此权限"
       return
     end
   end
@@ -37,7 +38,7 @@ class CoursesController < ApplicationController
 
   def show
     if @course.nil?
-      redirect_to(:root, :notice => 'No such course')
+      redirect_to(:root, :notice => '抱歉，你访问的课程不存在')
     else
       if params[:position].present?
         @video = Video.where(:course_id => @course.id,:position => params[:position].to_i).first
@@ -96,16 +97,16 @@ class CoursesController < ApplicationController
       end
     end
     if defined? @name_exsits
-      redirect_to_target_or_default :root, :notice => "You already created this course"
+      redirect_to_target_or_default :root, :notice => "你已经创建了这门课程"
       return
     end
     course = Course.new(params[:course])
     course.name = name
     if course.save
       track_activity course, course.id
-      redirect_to edit_course_path(course), :notice => "New course created successfully!"
+      redirect_to edit_course_path(course), :notice => "新课程创建成功！"
     else
-      redirect_to_target_or_default :root, :notice => "Failed to creat new course!"
+      redirect_to_target_or_default :root, :notice => "新课程创建失败！"
     end
   end
 
