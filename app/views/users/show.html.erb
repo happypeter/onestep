@@ -25,9 +25,9 @@
     <p>
       <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
     </p>
-    <ul>
-      <li><%= @user.follower_count %> followers</li>
-      <li><%= @user.followed_user_count %> following</li>
+    <ul class="stats">
+      <li><strong><%= @user.follower_count %></strong> followers</li>
+      <li><strong><%= @user.followed_user_count %></strong> following</li>
     </ul>
     </li><!--end user-info -->
     <li id="user-course">
