@@ -84,4 +84,14 @@ class User < ActiveRecord::Base
       errors.add(:name, "不能包含@, 横线, 斜线, 句点或空格")
     end
   end
+  def add_follower(user)
+    return false if self == user
+    return false if self.followers.include?(user)
+    self.followers << user
+  end
+
+  def delete_follower(user)
+    return false if self == user
+    self.followers.delete(user)
+  end
 end

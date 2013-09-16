@@ -55,6 +55,9 @@ Onestep::Application.routes.draw do
   post "/:member_name/:course_name/unwatch" => "courses#unwatch"
   get "/:member_name/:course_name/watchers" => "courses#watchers", :as => "course_watchers"
 
+  post "/:member_name/follow" => "users#follow"
+  post "/:member_name/unfollow" => "users#unfollow"
+
   get "/account" => "users#edit", :as => "account"
   put "/account" => "users#update"
   get "/:member_name" => "users#show", :as => "member"

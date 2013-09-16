@@ -148,5 +148,14 @@ class UsersController < ApplicationController
     end
     session[:return_to] = request.url
   end
-end
 
+  def follow
+    user = User.find_by_name(params[:member_name])
+    user.add_follower(current_user)
+  end
+
+  def unfollow
+    user = User.find_by_name(params[:member_name])
+    user.delete_follower(current_user)
+  end
+end

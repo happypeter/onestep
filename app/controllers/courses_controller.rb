@@ -128,10 +128,6 @@ class CoursesController < ApplicationController
     render :text => "1"
   end
 
-  def watchers
-    @watchers = @course.watchers
-  end
-
   private
   def find_course
     user = User.find_by_name(params[:member_name])

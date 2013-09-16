@@ -16,6 +16,7 @@
         <%= link_to t('edit_profile'), account_path, :class => "button" %>
       <% else %>
         <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+        <%= follow_user_tag(@user) %>
       <% end %>
     </div>
     <h1>

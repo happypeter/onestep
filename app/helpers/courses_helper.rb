@@ -7,7 +7,7 @@ module CoursesHelper
     text = t('watch_course')
     if current_user.blank?
       title = "您必须登录后才能关注课程"
-     return link_to text, login_url, :class => "minibutton with-count", :title => title, :rel => "twipsy"
+      return link_to text, login_url, :class => "minibutton with-count", :title => title, :rel => "twipsy"
     end
     if course.watchers.include?(current_user)
       class_name = "watched"
