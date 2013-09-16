@@ -5,7 +5,7 @@ module UsersHelper
     if current_user.blank?
       return link_to text, login_url, :class => "minibutton"
     end
-    if user.followers.include?(current_user)
+    if current_user.following?(user)
       class_name = "followed"
       text = "unfollow"
     end

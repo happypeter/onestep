@@ -23,9 +23,12 @@
       <span><%= @user.name %></span>
     </h1>
     <p>
-    <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
+      <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
     </p>
-
+    <ul>
+      <li><%= @user.follower_count %> followers</li>
+      <li><%= @user.followed_user_count %> following</li>
+    </ul>
     </li><!--end user-info -->
     <li id="user-course">
     <div class="owned-course-section clearfix">

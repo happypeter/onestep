@@ -151,11 +151,11 @@ class UsersController < ApplicationController
 
   def follow
     user = User.find_by_name(params[:member_name])
-    user.add_follower(current_user)
+    current_user.follow!(user)
   end
 
   def unfollow
     user = User.find_by_name(params[:member_name])
-    user.delete_follower(current_user)
+    current_user.unfollow!(user)
   end
 end
