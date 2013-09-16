@@ -119,7 +119,7 @@ class CoursesController < ApplicationController
 
   def watch
     @course.add_watcher(current_user)
-    Notification.notify @course.user, @course, current_user
+    Notification.notify @course.user, @course, current_user, "watch"
     render :text => "1"
   end
 

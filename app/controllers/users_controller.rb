@@ -152,10 +152,12 @@ class UsersController < ApplicationController
   def follow
     user = User.find_by_name(params[:member_name])
     current_user.follow!(user)
+    render :text => "1"
   end
 
   def unfollow
     user = User.find_by_name(params[:member_name])
     current_user.unfollow!(user)
+    render :text => "1"
   end
 end
