@@ -29,8 +29,9 @@
       <div class="user-course-header">
         <% if current_user == @user %>
           <%= link_to create_course_path, :class => "button primary new-course" do %>
-          <%= t('create_course') %>
-          <i class='icon-hand-right icon-large'></i>
+            <%= t('create_course') %>
+            <i class='icon-hand-right icon-large'></i>
+          <% end %>
         <% end %>
         <h2><%= t('my_courses') %>:</h2>
       </div>
