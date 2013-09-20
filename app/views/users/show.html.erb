@@ -6,12 +6,11 @@
   </script>
 <% end %>
 <div id="user-show" class="container">
-  <ul>
-    <li id="user-info">
+  <div id="user-info">
     <div class="avatared">
       <% if current_user == @user %>
         <a href="/account" title="点击编辑个人信息">
-        <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+          <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
         </a>
         <%= link_to t('edit_profile'), account_path, :class => "button" %>
       <% else %>
@@ -22,18 +21,16 @@
       <span><%= @user.name %></span>
     </h1>
     <p>
-    <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
+      <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
     </p>
-
-    </li><!--end user-info -->
-    <li id="user-course">
+  </div><!--end user-info -->
+  <div id="user-course">
     <div class="owned-course-section clearfix">
       <div class="user-course-header">
         <% if current_user == @user %>
           <%= link_to create_course_path, :class => "button primary new-course" do %>
-            <%= t('create_course') %>
-            <i class='icon-hand-right icon-large'></i>
-          <% end %>
+          <%= t('create_course') %>
+          <i class='icon-hand-right icon-large'></i>
         <% end %>
         <h2><%= t('my_courses') %>:</h2>
       </div>
@@ -76,11 +73,10 @@
               <%= render "courses/course", :course => course %>
             </div>
           <% end %>
-        </div>
+      </div>
       <% else %>
         <p><%= t('no_courses_found') %></p>
       <% end %>
     </div>
-    </li><!--end user-course -->
-  </ul>
+  </div><!--end user-course -->
 </div><!-- user-show -->

@@ -9,10 +9,13 @@
   .left-col {
     float: left;
     width: 200px;
+    h3 {
+      margin-top: 10px;
+    }
   }
   .about-content {
     float: right;
-    width: 80%;
+    width: 950px;
   }
 }
 .employee-container {
@@ -45,11 +48,7 @@
 }
 
 .about-main, .about-team, .about-jobs, .about-faq {
-  float: left;
-  width: 650px;
-  background-color: white;
   padding: 10px 0;
-  position: relative;
   margin-bottom: 20px;
   ul{
     padding-left: inherit;
