@@ -5,19 +5,29 @@
       user = $(el).data("user");
       followed = $(el).data("followed");
       if (followed) {
+        path = "/" + user + "/unfollow",
         $.ajax({
-          url: "/" + user + "/unfollow",
+          url: path,
           type: "post"
         });
-        $(el).data("followed", false);
-        $(el).html("follow");
+        $(document).ajaxSuccess(function(event, xhr, settings){
+          if (settings.url == path) {
+            $(el).data("followed", false);
+            $(el).html("follow");
+          }
+        });
       } else {
+        path = "/" + user + "/follow",
         $.ajax({
-          url: "/" + user + "/follow",
+          url: path,
           type: "post"
         })
-        $(el).data("followed", true);
-        $(el).html("unfollow");
+        $(document).ajaxSuccess(function(event, xhr, settings){
+          if (settings.url == path) {
+            $(el).data("followed", true);
+            $(el).html("unfollow");
+          }
+        });
       }
       return false;
     }
