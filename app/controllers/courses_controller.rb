@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers]
+  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch]
 
   def check_owner
     if current_user.nil?
