@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
   belongs_to :course, :touch => true
 
   has_many :comments, dependent: :destroy
-  has_many :activities, as: :tackable, dependent: :destroy
+  has_many :activities, as: :tackable
 
   acts_as_list scope: :course
 

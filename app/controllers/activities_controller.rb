@@ -6,6 +6,6 @@ class ActivitiesController < ApplicationController
   end
 
   def timeline
-    @activities = Activity.all
+    @activities = Activity.all.reverse
   end
 end
