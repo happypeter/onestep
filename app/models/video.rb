@@ -1,12 +1,16 @@
 class Video < ActiveRecord::Base
-  belongs_to :course, :touch => true
-  has_many :comments
-  attr_accessible :user_id, :title, :course_id, :position, :desc, :free
+  attr_accessible :user_id, :title, :course_id, :position, :desc, :free, :asset
+
   belongs_to :user
-  attr_accessible :asset
+  belongs_to :course, :touch => true
+
+  has_many :comments, dependent: :destroy
+  has_many :activities, as: :tackable
+
   acts_as_list scope: :course
 
   mount_uploader :asset, VideoUploader
+
   before_create :set_metadata
 
   def open_to_user?(user)

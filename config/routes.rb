@@ -2,6 +2,8 @@ Onestep::Application.routes.draw do
 
   root :to => 'info#marketing'
 
+  get 'timeline' => "activities#timeline", as: "timeline"
+
   post '/checkout' => "orders#checkout"
   get '/orders/done' => "orders#done"
   post '/orders/notify' => "orders#notify"
