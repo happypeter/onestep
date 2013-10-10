@@ -2,19 +2,33 @@
 @import "globals/mixins";
 
 .about {
-  font-size: 14px;
   .left-col, .about-content {
     margin-top: 20px;
   }
   .left-col {
     float: left;
     width: 200px;
+    h3 {
+      margin-top: 10px;
+    }
   }
   .about-content {
     float: right;
-    width: 80%;
+    width: 950px;
   }
 }
+
+.about-main, .about-team, .about-jobs, .about-faq {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.65em;
+  padding-top: 10px;
+  padding-right: 250px;
+  &>*:first-child {
+    margin-top: 0 !important;
+  }
+}
+
 .employee-container {
   .employee-thumbnail {
     position: relative;
@@ -42,25 +56,4 @@
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
   color: white;
   background-color: $background-green;
-}
-
-.about-main, .about-team, .about-jobs, .about-faq {
-  float: left;
-  width: 650px;
-  background-color: white;
-  padding: 10px 0;
-  position: relative;
-  margin-bottom: 20px;
-  ul{
-    padding-left: inherit;
-  }
-}
-.about-fieldset {
-  border: 1px solid #DDD;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 20px;
-  legend h3 span {
-    vertical-align: text-top;
-  }
 }

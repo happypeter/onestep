@@ -4,14 +4,7 @@
 #user-show {
   padding-top: 23px;
   display: table;
-  ul {
-    list-style: none;
-    li {
-      float: left;
-    }
-  }
   #user-info {
-    min-width: 250px;
     width: 250px;
     display: table-cell;
     background-color: white;
@@ -29,9 +22,11 @@
         strong { display: block; }
       }
     }
+    float: left;
   }
   #user-course {
-    width: 800px;
+    width: 900px;
+    float: right;
     border-left: 1px solid #ccc;
     border-top-left-radius: 5px;
     display: table-cell;

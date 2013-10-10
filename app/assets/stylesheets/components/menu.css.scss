@@ -1,6 +1,8 @@
 /*
 `.menu-container` for menu styles.
 
+.menu-narrow  - set the width to 200px
+
 Styleguide 4.1
 */
 
@@ -8,8 +10,6 @@ Styleguide 4.1
 @import "globals/mixins";
 
 .menu-container {
-  float: left;
-  width: 200px;
   padding: 3px;
   background: #EFEFEF;
   border-radius: 2px;
@@ -74,4 +74,8 @@ Styleguide 4.1
       box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.1);
     }
   }
+}
+
+.menu-container.menu-narrow {
+  width: 200px;
 }

@@ -4,11 +4,11 @@
     <% @course_groups.each do |row| %>
       <div class="courses">
         <% row.each do |course| %>
-          <%= render course %>
+          <div class="course">
+            <%= render course %>
+          </div>
         <% end %>
       </div>
-      <br>
-      <br>
     <% end %>
   <% else %>
     <p>

@@ -6,12 +6,11 @@
   </script>
 <% end %>
 <div id="user-show" class="container">
-  <ul>
-    <li id="user-info">
+  <div id="user-info">
     <div class="avatared">
       <% if current_user == @user %>
         <a href="/account" title="点击编辑个人信息">
-        <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+          <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
         </a>
         <%= link_to t('edit_profile'), account_path, :class => "button" %>
       <% else %>
@@ -29,8 +28,8 @@
       <li><strong><%= @user.follower_count %></strong> followers</li>
       <li><strong><%= @user.followed_user_count %></strong> following</li>
     </ul>
-    </li><!--end user-info -->
-    <li id="user-course">
+  </div><!--end user-info -->
+  <div id="user-course">
     <div class="owned-course-section clearfix">
       <div class="user-course-header">
         <% if current_user == @user %>
@@ -80,11 +79,10 @@
               <%= render "courses/course", :course => course %>
             </div>
           <% end %>
-        </div>
+      </div>
       <% else %>
         <p><%= t('no_courses_found') %></p>
       <% end %>
     </div>
-    </li><!--end user-course -->
-  </ul>
+  </div><!--end user-course -->
 </div><!-- user-show -->

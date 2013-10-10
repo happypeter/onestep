@@ -8,7 +8,7 @@
     <%= post.created_at.strftime('%Y-%m-%d') %>
     </li>
     <li>
-    <%= image_tag post.user.final_avatar_url, :alt => "头像", :size => "18x18", :class => "author-avatar" %>
+    <%= image_tag post.user.final_avatar_url, :alt => "头像", :class => "author-avatar" %>
     <% if post.user %>
       <%= link_to post.user.name, member_path(post.user.name) %>
     <% end %>
