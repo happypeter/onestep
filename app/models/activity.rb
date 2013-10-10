@@ -1,8 +1,9 @@
 class Activity < ActiveRecord::Base
+  attr_accessible :action, :trackable, :course_id
+
   belongs_to :user
   belongs_to :course
   belongs_to :trackable, polymorphic: true
-  attr_accessible :action, :trackable, :course_id
 
   after_create :send_notification_to_watchers
 
