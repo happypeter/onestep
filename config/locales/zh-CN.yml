@@ -3,6 +3,7 @@ zh-CN:
   no_user_found: "没有用户注册为会员"
   no_watcher_found: "没有用户关注这门课程"
   member_count: "群英荟萃"
+  site_timeline: "站内动态"
   course_timeline: "课程时间线"
   watch_course: "关注课程"
   unwatch_course: "取消关注"
