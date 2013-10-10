@@ -8,21 +8,22 @@
     width: 250px;
     display: table-cell;
     background-color: white;
+    float: left;
     .stats {
       width: 210px;
       height: 60px;
       margin-top: 20px;
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
+      list-style-type: none;
       li {
-        display: block;
+        float: left;
         padding-top: 5px;
         padding-left: 30px;
         text-align: center;
         strong { display: block; }
       }
     }
-    float: left;
   }
   #user-course {
     width: 900px;
