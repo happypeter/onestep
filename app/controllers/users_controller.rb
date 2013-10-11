@@ -98,6 +98,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
+      UserMailer.welcome(@user).deliver
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => t('signed_up')
     else
