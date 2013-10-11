@@ -24,15 +24,7 @@
     <dt> <%= f.label t('course_title') %> </dt>
     <dd> <%= f.text_field :title %> </dd>
   </dl>
-  <dl class="form">
-    <dt>
-      <%= f.label t('course_description') %>
-      (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
-    </dt>
-    <dd>
-      <%= f.text_area :description, :id => "course_desc" %>
-    </dd>
-  </dl>
+  
 
   <div>
     <%= f.submit t('create_course'), :class => "minibutton primary" %>
