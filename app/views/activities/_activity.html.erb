@@ -6,7 +6,7 @@
       <%= link_to activity.user.name, member_path(activity.user.name) %>
       <% if params[:action] == "timeline" and activity.trackable_type != "Course"%>
         为课程
-        <%= link_to activity.course.name, course_path(activity.course) %>
+        <%= link_to activity.course.title, course_path(activity.course) %>
       <% end %>
       <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
     </div>

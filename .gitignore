@@ -22,3 +22,5 @@ tmp/
 # Ignore database.yml
 
 config/database.yml
+
+lib/tasks/activity.rake
