@@ -1,4 +1,8 @@
 <div class="container">
   <h1 class="timeline-title"> <%= t "site_timeline" %></h1>
-  <%= render 'activity' %>
+  <% @activities.each do |activity| %>
+    <% if activity.course.public %>
+      <%= render 'activity', :activity => activity %>
+    <% end %>
+  <% end %>
 </div>
