@@ -44,6 +44,8 @@
     text-align: right;
   }
   .highlight {
-    border-top: 2px solid $notification-green;
+    [class^="icon-"], [class*=" icon-"]{
+      color: teal;
+    }
   }
 }
