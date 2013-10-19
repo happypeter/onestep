@@ -13,7 +13,7 @@ zh-CN:
   delete_a_video: "删除了一个视频"
   reupload_a_video: "更新了视频"
   video_deleted: "(这个视频已被删除)"
-  author_forgot_title: "作者忘了填写视频标题"
+  author_forgot_title: "(作者忘了填写视频标题)"
   ago: "以前"
   courses: "套课程"
   sign_in: "登录"
