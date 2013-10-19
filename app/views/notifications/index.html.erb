@@ -18,7 +18,7 @@
               <tr <%= "class=highlight" if notification.unread %>>
                 <%= render :partial => "notification_#{type}", :locals => { :notification => notification }%>
                 <td><%= time_ago_in_words notification.created_at %>前</td>
-                <td class="last"><%= link_to "删除", notification_path(notification), :method => "delete", :class => "label" %></td>
+                <td class="last"><%= link_to "删除", notification_path(notification), :method => "delete", :class => "minibuton danger" %></td>
               </tr>
           <% end %>
         </tbody>
