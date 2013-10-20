@@ -19,22 +19,11 @@
     min-width: 250px;
     padding-right: 10px;
     position: static;
-    .course-intro {
+    .course-update-time {
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
       margin-right: 10px;
-      margin-top: 20px;
-      dl {
-        dt {
-          clear: left;
-          float: left;
-          color: #999;
-          width: 80px;
-          padding: 1px 0;
-        }
-        dd {
-          float: left;
-          padding: 1px 0;
-        }
-      }
+      margin-top: 30px;
     }
   }
   .tutorial-content {
@@ -144,6 +133,11 @@ div#html5-player {
         }
       }
     }
+  }
+  .course-desc {
+    width: 75%;
+    margin-top: 30px;
+    margin-left: 60px;
   }
   .pagehead-heading {
     margin-top: 0;

@@ -22,7 +22,7 @@ zh-CN:
   author: "作者"
   public: "公开本课程"
   publish_time: "发布时间"
-  update_time: "更新时间"
+  update_time: "最近更新:"
 
   #order
   trade_finished: "付款成功"
@@ -36,7 +36,6 @@ zh-CN:
   watched: "已关注"
   course_name: "课程英文名(用来生成一个精美的 URL, 不可修改)"
   course_title: "课程标题(中英文均可)"
-  course_intro: "课程介绍"
   course_description: "课程描述"
   course_private: "课程未公开"
   all_courses: "全部课程"

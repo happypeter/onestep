@@ -136,3 +136,14 @@ hr {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+
+.circular.label {
+  min-height: 1em;
+  max-height: 2em;
+  padding: 0.5em !important;
+  line-height: 1em;
+  text-align: center;
+  -webkit-border-radius: 500rem;
+  -moz-border-radius: 500rem;
+  border-radius: 500rem;
+}

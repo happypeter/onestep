@@ -11,9 +11,6 @@
         <%= link_to t('buy_this_course') + "（￥" + @course.price.to_s + "）", new_order_path + "?course_id=#{@course.id}", class: "minibutton primary" %>
         </li>
       <% end %>
-      <li class="course-timeline">
-      <%= link_to t('course_timeline'), timeline_course_path, class: "minibutton" %>
-      </li>
       <li>
       <%= course_watch_tag(@course) %>
       <% if owner?(@course) %>
@@ -25,11 +22,13 @@
     <h1 class="pagehead-heading">
       <div class="course-image" style="background-image: url(<%= @course.poster_url %>);"> </div>
       <span class="author">
-        <%= link_to @course.user.name, member_path(@course.user.name) %>
+        <%= link_to @course.user.name, member_path(@course.user.name), class: "author"%>
       </span>
-      <span class="pagehead-name-divider">/</span>
+      <span class="pagehead-name-divider">/</sapn>
       <strong><%= link_to @course.title, course_path(@course) %></strong>
     </h1>
+    <br>
+    <p class="course-desc"><%= @course.description %></p>
   </div>
 </div>
 <div class='container'>
@@ -47,7 +46,11 @@
     <div class="tutorial-page">
       <div class="tutorial-nav">
         <%= render "play_list", :course => @course, :current_video => @video %>
-        <%= render "course_info", :course => @course %>
+        <div class="course-update-time">
+          <i class="icon-time"></i>
+          <span><%= t('update_time') %></span>
+          <span><%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %></span>
+        </div>
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>

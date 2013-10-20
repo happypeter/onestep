@@ -5,6 +5,10 @@
     list-style: none;
     li {
       position: relative;
+      .video-pos {
+        width: 15px;
+        height: 100%;
+      }
       a.video {
         display: block;
         color: darken($light-gray, 50%);
@@ -17,8 +21,7 @@
         }
       }
       a.video.active {
-        background-color: #eee;
-        border: 1px solid #ccc;
+        background-color: #ddd;
       }
       a.delete-action {
         position: absolute;
@@ -26,6 +29,9 @@
         padding: 12px 10px 12px 8px;
         top: 0px;
         right: 0px;
+      }
+      .video-info {
+        padding: 10px;
       }
     }
   }
