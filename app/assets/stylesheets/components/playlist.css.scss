@@ -6,8 +6,13 @@
     li {
       position: relative;
       .video-pos {
-        width: 15px;
-        height: 100%;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        border-radius: 16px;
       }
       a.video {
         display: block;
@@ -22,6 +27,7 @@
       }
       a.video.active {
         background-color: #ddd;
+        color: $link-green;
       }
       a.delete-action {
         position: absolute;
@@ -31,7 +37,9 @@
         right: 0px;
       }
       .video-info {
-        padding: 10px;
+        padding: 5px;
+        margin-left: 30px;
+        margin-top: -30px;
       }
     }
   }
