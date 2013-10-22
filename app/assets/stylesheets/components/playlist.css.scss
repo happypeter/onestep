@@ -17,8 +17,8 @@
         }
       }
       a.video.active {
-        background-color: #eee;
-        border: 1px solid #ccc;
+        background-color: #ddd;
+        color: $link-green;
       }
       a.delete-action {
         position: absolute;
@@ -26,6 +26,23 @@
         padding: 12px 10px 12px 8px;
         top: 0px;
         right: 0px;
+      }
+      .video-pos {
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        border-radius: 16px;
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        margin-top: -14px;
+      }
+      .video-info {
+        display: table-cell;
+        padding-left: 40px;
       }
     }
   }
