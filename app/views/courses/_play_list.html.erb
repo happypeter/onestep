@@ -4,11 +4,11 @@
       <li>
       <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
         <div class="circular label video-pos"><%= v.position %></div>
-        <div class="video-info">
+        <span class="video-info">
           <i class="icon-facetime-video"></i>
           <%= v.title %>
           <%= "(免费)" if v.free? %>
-        </div>
+        </span>
       </a>
       </li>
     <% end %>

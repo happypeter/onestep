@@ -5,15 +5,6 @@
     list-style: none;
     li {
       position: relative;
-      .video-pos {
-        width: 16px;
-        height: 16px;
-        text-align: center;
-        line-height: 16px;
-        -webkit-border-radius: 16px;
-        -moz-border-radius: 16px;
-        border-radius: 16px;
-      }
       a.video {
         display: block;
         color: darken($light-gray, 50%);
@@ -36,10 +27,22 @@
         top: 0px;
         right: 0px;
       }
+      .video-pos {
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        line-height: 16px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        border-radius: 16px;
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        margin-top: -14px;
+      }
       .video-info {
-        padding: 5px;
-        margin-left: 30px;
-        margin-top: -30px;
+        display: table-cell;
+        padding-left: 40px;
       }
     }
   }
