@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023024341) do
+ActiveRecord::Schema.define(:version => 20131030021443) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20131023024341) do
     t.string   "content_type"
     t.string   "asset"
     t.boolean  "free"
+    t.float    "ratio"
   end
 
   create_table "watchings", :force => true do |t|

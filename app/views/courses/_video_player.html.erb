@@ -1,5 +1,5 @@
 <div id="html5-player">
-  <video preload width="800px" height="600px"
+  <video preload width="800px" height="<%= (800 / video.ratio).to_i %>px"
   src="<%= video.asset_url %>"
   type="video/mp4"
   controls="controls">
