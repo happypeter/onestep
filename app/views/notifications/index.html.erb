@@ -2,7 +2,7 @@
   <div class="container details">
     <div class="title">
       <div class="clear-all">
-        <%= link_to "清空", clear_notifications_path, :method => "post", :class => "minibutton danger" %>
+        <%= link_to "清空", clear_notifications_path, :method => "delete", :class => "minibutton danger" %>
       </div>
       <div class="total">通知提醒<small> (<%= @notifications.count  %> 条)</small></div>
     </div>
