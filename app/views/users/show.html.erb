@@ -75,9 +75,11 @@
       <% if @watched_courses.present? %>
         <div class="courses">
           <% @watched_courses.each do |course| %>
-            <div class="course">
-              <%= render "courses/course", :course => course %>
-            </div>
+            <% if course.public %>
+              <div class="course">
+                <%= render "courses/course", :course => course %>
+              </div>
+            <% end %>
           <% end %>
       </div>
       <% else %>

@@ -5,7 +5,7 @@
     <div class="course-info">
       <h4>
         <%= course.title %>
-        <% if !course.public? %>
+        <% if !course.public %>
           <span class="private-label"><%= t('course_private') %></span>
         <% end %>
       </h4>

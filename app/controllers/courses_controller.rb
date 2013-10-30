@@ -38,7 +38,9 @@ class CoursesController < ApplicationController
 
   def show
     if @course.nil?
-      redirect_to(:root, :notice => '抱歉，你访问的课程不存在')
+      redirect_to(:root, :notice => '抱歉，您访问的课程不存在')
+    elsif !@course.public && (current_user.blank? || @course.user_id != current_user.id)
+      redirect_to(:root, :notice => '您访问的课程未公开!')
     else
       if params[:position].present?
         @video = Video.where(:course_id => @course.id,:position => params[:position].to_i).first
