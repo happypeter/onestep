@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+
   def create
     respond_to do |f|
       f.html do

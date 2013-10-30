@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessible :user_id, :title, :course_id, :position, :desc, :free, :asset
+  attr_accessible :user_id, :title, :course_id, :position, :desc, :free, :asset, :ratio
 
   belongs_to :user
   belongs_to :course, :touch => true
@@ -19,10 +19,19 @@ class Video < ActiveRecord::Base
      false
   end
 
+  def set_ratio
+    out = `ffmpeg -i #{asset_url} 2>&1`
+    if out =~ /([\d]+x[\d]+)/
+      a = $1.split('x')
+      return ratio = a[0].to_f / a[1].to_f
+    end
+  end
+
   private
   def set_metadata
     self.content_type = asset.file.content_type
     self.size = asset.file.size
     self.filename = asset.file.original_filename
+    self.ratio = set_ratio
   end
 end
