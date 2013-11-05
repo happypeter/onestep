@@ -75,13 +75,11 @@
       <% if @watched_courses.present? %>
         <div class="courses">
           <% @watched_courses.each do |course| %>
-            <% if course.public %>
-              <div class="course">
-                <%= render "courses/course", :course => course %>
-              </div>
-            <% end %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
           <% end %>
-      </div>
+        </div>
       <% else %>
         <p><%= t('no_courses_found') %></p>
       <% end %>
