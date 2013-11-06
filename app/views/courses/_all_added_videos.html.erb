@@ -3,9 +3,13 @@
     <% course.videos.each do |video| %>
       <%= content_tag_for :li, video do %>
         <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
-          <i class="icon-facetime-video"></i>
-          <%= video.title %>
-          <%= "(free)" if video.free? %>
+          <div class="video-icon">
+            <i class="icon-facetime-video"></i>
+          </div>
+          <span class="video-info">
+            <%= video.title %>
+            <%= "(free)" if video.free? %>
+          </span>
         </a>
         <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => t('confirm_delete') %>
       <% end %>

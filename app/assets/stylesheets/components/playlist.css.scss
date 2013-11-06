@@ -27,22 +27,16 @@
         top: 0px;
         right: 0px;
       }
-      .video-pos {
-        width: 16px;
-        height: 16px;
-        text-align: center;
-        line-height: 16px;
-        -webkit-border-radius: 16px;
-        -moz-border-radius: 16px;
-        border-radius: 16px;
+      .video-icon {
         position: absolute;
         top: 50%;
         bottom: auto;
-        margin-top: -14px;
+        line-height: 14px;
+        margin-top: -7px;
       }
       .video-info {
         display: table-cell;
-        padding-left: 40px;
+        padding-left: 30px;
       }
     }
   }

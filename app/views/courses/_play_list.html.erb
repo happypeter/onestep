@@ -3,9 +3,10 @@
     <% course.videos.each do |v| %>
       <li>
       <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
-        <div class="circular label video-pos"><%= v.position %></div>
-        <span class="video-info">
+        <div class="video-icon">
           <i class="icon-facetime-video"></i>
+        </div>
+        <span class="video-info">
           <%= v.title %>
           <%= "(免费)" if v.free? %>
         </span>
