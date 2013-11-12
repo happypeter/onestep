@@ -135,19 +135,9 @@ class UsersController < ApplicationController
     if @user.nil?
       raise ActiveRecord::RecordNotFound
     end
-    @courses = if (@user == current_user)
-                 @user.courses
-               else
-                 @user.courses.pub
-               end
-
+    @courses =  @user == current_user ? @user.courses : @user.courses.pub
     @paid_courses = @user.paid_courses
-    @watched_courses = if (@user == current_user)
-                         @user.watched_courses
-                       else
-                         @user.watched_courses.pub
-                       end
-
+    @watched_courses = @user == current_user ? @user.watched_courses : @user.watched_courses.pub
     respond_to do |format|
       format.html
     end
