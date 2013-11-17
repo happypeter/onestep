@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
-  def signup_name_invalid?
+  def has_illegal_character?
     if self.name.present? and (self.name.include?('@') or
                                self.name.include?('-') or
                                self.name.include?(' ') or

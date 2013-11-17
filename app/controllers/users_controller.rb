@@ -61,8 +61,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    user_exist = User.find_by_name(@user.name)
-    email_exist = User.find_by_email(@user.email)
     black_list = ["write_blog", "submit_login_form", "account", "blog", "explore", "signup", "login", "about"]
 
     if params[:user][:name].empty? || \
@@ -74,25 +72,25 @@ class UsersController < ApplicationController
       return
     end
 
-    if @user.signup_name_invalid?
+    if @user.has_illegal_character?
       flash[:notice] = "用户名不能包含@, 横线, 斜线, 句点或空格"
       redirect_to :signup
       return
     end
 
-    if black_list.include?(params[:user][:name])
-      flash[:notice] = "#{params[:user][:name]}" + t('is_reserved_word')
+    if black_list.include?(@user.name)
+      flash[:notice] = "#{@user.name}" + t('is_reserved_word')
       redirect_to :signup
       return
     end
 
-    if user_exist
+    if User.exists? username: @user.name
       flash[:notice] = t('name_taken')
       redirect_to :signup
       return
     end
 
-    if email_exist
+    if User.exists? user: @user.email
       flash[:notice] = t('email_taken')
       redirect_to :signup
       return
