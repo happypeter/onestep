@@ -91,6 +91,7 @@ class UsersController < ApplicationController
       redirect_to :signup
       return
     end
+
     if email_exist
       flash[:notice] = t('email_taken')
       redirect_to :signup
