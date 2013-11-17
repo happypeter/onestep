@@ -73,17 +73,6 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
-  def has_illegal_character?
-    if self.name.present? and (self.name.include?('@') or
-                               self.name.include?('-') or
-                               self.name.include?(' ') or
-                               self.name.include?('.') or
-                               self.name.include?('/') or
-                               self.name.include?('\\')
-                              )
-      errors.add(:name, "不能包含@, 横线, 斜线, 句点或空格")
-    end
-  end
   def follow!(user)
     self.followed_relationships.create!(followed_user_id: user.id)
   end
