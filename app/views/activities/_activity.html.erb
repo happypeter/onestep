@@ -1,12 +1,7 @@
-<%= div_for activity do %>
-  <div class="icon-<%= activity.action %>"></div>
-  <div class="content">
-    <div class="date"><%= time_ago_in_words activity.created_at %><%= t 'ago' %></div>
-    <%= link_to activity.user.name, member_path(activity.user.name) %>
-    <% if params[:action] == "timeline" and activity.trackable_type != "Course"%>
-      为课程
-      <%= link_to activity.course.title, course_path(activity.course) %>
-    <% end %>
+<li>
+  <span class="icon-<%= activity.action %>"></span>
+  <span class="desc">
     <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
-  </div>
-<% end %>
+  </span>
+  <span class="time"><%= time_ago_in_words activity.created_at %><%= t 'ago' %></span>
+</li>

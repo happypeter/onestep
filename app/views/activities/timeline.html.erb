@@ -1,8 +1,32 @@
 <div class="container">
   <h1 class="timeline-title"> <%= t "site_timeline" %></h1>
-  <% @activities.each do |activity| %>
-    <% if activity.course.public %>
-      <%= render 'activity', :activity => activity %>
-    <% end %>
-  <% end %>
+  <div class="tl-wrap">
+    <div class="timestamp">
+      <div class="date">
+        <div class="month"><%= Time.now.month.to_s %></div>
+        <span class="tag">Today</span>
+      </div>
+    </div>
+    <main class="content clear">
+      <% @groups.each do |group| %>
+          <% group.each do |key, value| %>
+            <% p = Course.find(key) %>
+            <% if p.public %>
+              <div class= "<%= cycle("pull-left", "pull-right") %>">
+                <div class="project">
+                  <%= image_tag p.user.final_avatar_url %>
+                  <%= p.user.name  %>
+                  <%= Course.find(key).title %>
+                </div>
+                <ul>
+                  <% value.each do |activity|%>
+                    <%= render 'activity', :activity => activity %>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          <% end %>
+      <% end %>
+    </main>
+  </div>
 </div>
