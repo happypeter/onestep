@@ -22,7 +22,6 @@
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
 //= require bootstrap
-//= require mediaelement_rails
 
 var commenter = [];
 var commenter_exist= [];

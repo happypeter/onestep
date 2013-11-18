@@ -1,13 +1,5 @@
-<div id="html5-player">
-  <video preload width="920px" height="<%= (920 / video.ratio).to_i %>px"
-  src="<%= video.asset_url %>"
-  type="video/mp4"
-  controls="controls">
-  </video>
-</div>
-
-<% content_for :template_js do %>
-  <script>
-    $('video').mediaelementplayer();
-  </script>
-<% end %>
+   <video id="html5-player" class="video-js vjs-default-skin" controls
+    preload="auto" width="920" height="<%= (920 / video.ratio).to_i %>" poster="my_video_poster.png"
+    data-setup="{}">
+    <source src="<%= video.asset_url %>" type='video/mp4'>
+    </video>

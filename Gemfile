@@ -15,7 +15,6 @@ gem 'mime-types'
 gem 'settingslogic'
 gem 'ruby-pinyin'
 gem 'acts_as_list'
-gem "mediaelement_rails"
 gem "rails_autolink"
 
 gem "jquery-atwho-rails", "0.1.6"
