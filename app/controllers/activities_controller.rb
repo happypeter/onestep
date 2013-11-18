@@ -7,11 +7,17 @@ class ActivitiesController < ApplicationController
 
   def timeline
     @groups = []
+    @date = []
     first = Activity.first.created_at
     date = Time.zone.now
     while first < date do
-      @groups << Activity.within_range(date).reverse.group_by(&:course_id)
+      group = Activity.within_range(date).reverse.group_by(&:course_id)
+      if group.present?
+        @groups << group
+        @date << date
+      end
       date -= 30.days
     end
+    @date << date
   end
 end

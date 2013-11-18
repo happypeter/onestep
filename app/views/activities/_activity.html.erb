@@ -3,5 +3,5 @@
   <span class="desc">
     <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
   </span>
-  <span class="time"><%= time_ago_in_words activity.created_at %><%= t 'ago' %></span>
+  <span class="time"><%= activity.created_at.month %>.<%= activity.created_at.day %></span>
 </li>
