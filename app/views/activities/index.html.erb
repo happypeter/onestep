@@ -1,6 +1,33 @@
 <div class="container">
   <h1 class="timeline-title"> <%= t "course_timeline" %></h1>
-  <% @activities.each do |activity| %>
-    <%= render 'activity', :activity => activity %>
-  <% end %>
+  <div class="tl-wrap tl-course">
+    <div class="timestamp">
+      <div class="date">
+        <div class="year"><%= Time.now.year %></div>
+        <span class="month"><%= Time.now.month %>.<%= Time.now.day %></span>
+      </div>
+    </div>
+    <main class="tl-content clear">
+    <% i = 0 %>
+      <% @groups.each do |group| %>
+        <% group.each do |activity| %>
+        <div class= "<%= cycle("pull-left", "pull-right") %>">
+          <div class="project"></div>
+          <ul>
+            <%= render 'activity', :activity => activity %>
+          </ul>
+        </div>
+      <% end %>
+        <div class="timestamp">
+          <div class="date">
+            <div class="year">
+              <%= @date[i+1].year unless @date[i].year == @date[i+1].year %>
+            </div>
+            <span class="month"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
+          </div>
+        </div>
+        <% i = i + 1 %>
+      <% end %>
+    </main>
+  </div>
 </div>

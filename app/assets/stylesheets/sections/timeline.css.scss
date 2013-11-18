@@ -126,3 +126,18 @@
     }
   }
 }
+.tl-course main {
+  .pull-left {
+    width: 550px;
+    margin-top: 10px;
+  }
+  .pull-right {
+    width: 550px;
+    span img {
+      padding-left: 130px;
+    }
+    span.desc {
+      padding-left: 30px;
+    }
+  }
+}
