@@ -2,7 +2,7 @@ class InfoController < ApplicationController
   layout 'styleguide_css', :only => [:styleguide]
 
   def marketing
-    @recent_courses = Course.where(public: true).limit(3).order('id desc')
+    @recent_courses = Course.where(public: true).limit(6).order('id desc')
     @user = User.new
     session[:return_to] = request.url
   end
