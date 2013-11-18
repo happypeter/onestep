@@ -34,14 +34,11 @@
     .tutorial-description {
       margin-bottom: 20px;
       p {
-        color: #a9c0d1;
         display: block;
-        font-size: 13px;
-        line-height: 18px;
+        font-size: 15px;
+        line-height: 21px;
         margin-top: 2px;
-        max-height: 80px;
         max-width: inherit;
-        overflow-y: hidden;
       }
     }
     #comments {
@@ -134,8 +131,6 @@ div#html5-player {
   }
   .course-desc {
     width: 75%;
-    margin-top: 30px;
-    margin-left: 100px;
   }
   .pagehead-heading {
     margin-top: 0;

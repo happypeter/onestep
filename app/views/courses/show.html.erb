@@ -28,7 +28,7 @@
       <strong><%= link_to @course.title, course_path(@course) %></strong>
     </h1>
     <br>
-    <p class="course-desc"><%= @course.description %></p>
+    <p class="course-desc"><%= auto_link @course.description %></p>
   </div>
 </div>
 <div class='container'>
