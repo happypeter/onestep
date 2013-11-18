@@ -7,16 +7,17 @@
         <span class="tag">Today</span>
       </div>
     </div>
-    <main class="content clear">
+    <main class="tl-content clear">
       <% @groups.each do |group| %>
+        <% if group.present? %>
           <% group.each do |key, value| %>
             <% p = Course.find(key) %>
             <% if p.public %>
               <div class= "<%= cycle("pull-left", "pull-right") %>">
                 <div class="project">
                   <%= image_tag p.user.final_avatar_url %>
-                  <%= p.user.name  %>
-                  <%= Course.find(key).title %>
+                  <%= link_to p.user.name, member_path(p.user.name) %> /
+                  <%= link_to Course.find(key).title, course_path(Course.find(key)) %>
                 </div>
                 <ul>
                   <% value.each do |activity|%>
@@ -26,6 +27,13 @@
               </div>
             <% end %>
           <% end %>
+          <div class="timestamp">
+            <div class="date">
+              <div class="month"><%= Time.now.month.to_s %></div>
+              <span class="tag">Today</span>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </main>
   </div>

@@ -5,32 +5,6 @@
   font-size: 22px;
 }
 
-@mixin icon-background {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  padding: 3px;
-  width: 32px;
-  height: 32px;
-  background: {
-    position: center center;
-    size: 32px auto;
-    repeat: no-repeat;
-  }
-}
-.icon-update {
-  @include icon-background;
-  background-image: image-url("pen.svg");
-}
-.icon-create {
-  @include icon-background;
-  background-image: image-url("plus.svg");
-}
-.icon-destroy {
-  @include icon-background;
-  background-image: image-url("trash.svg");
-}
-
 .tl-wrap {
   width: 960px;
   min-width: 960px !important;
@@ -42,8 +16,12 @@
     li {
       position: relative;
       padding: 0 5px 30px 0;
-      span {
+      li>span {
         vertical-align: top;
+      }
+      img {
+        width: 20px !important;
+        height: 20px !important;
       }
     }
   }
@@ -54,16 +32,10 @@
   .clear:after {
     clear: both;
   }
-  .container {
-    width: 960px;
-    min-width: 960px;
-    padding: 10px;
-    margin: 10px auto;
-  }
-  .content {
+  .tl-content {
     position: relative;
   }
-  .content:before {
+  .tl-content:before {
     position: absolute;
     content: '';
     border-left: 6px solid #dcd9d4;
@@ -91,6 +63,7 @@
       .tag {
         font-size: 12px;
         color: #ccc;
+        display: inline;
       }
     }
     .month {
@@ -104,16 +77,14 @@
       border-bottom: 6px solid #dcd9d4;
       font-weight: bold;
       padding-bottom: 2px;
+      margin-bottom: 20px;
       img {
         width: 30px !important;
-        height: 30px !important
+        height: 30px !important;
       }
     }
     .timestamp {
       clear: both;
-    }
-    span {
-      display: table-cell;
     }
     .pull-left {
       width: 477px;
@@ -142,11 +113,11 @@
         top: 0;
         padding-left: 5px;
       }
-      li span img {
-        padding-left: 90px;
+      span img {
+        padding-left: 110px;
       }
       span.desc {
-        padding-left: 30px;
+        padding-left: 10px;
       }
     }
   }

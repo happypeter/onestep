@@ -1,5 +1,5 @@
 <li>
-  <span class="icon-<%= activity.action %>"></span>
+  <span><%= image_tag "#{activity.action}.svg" %></span>
   <span class="desc">
     <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
   </span>
