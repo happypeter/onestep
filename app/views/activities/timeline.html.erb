@@ -3,8 +3,8 @@
   <div class="tl-wrap">
     <div class="timestamp">
       <div class="date">
-        <div class="month"><%= Time.now.year %></div>
-        <span class="tag"><%= Time.now.month %>.<%= Time.now.day %></span>
+        <div class="year"><%= Time.now.year %></div>
+        <span class="month"><%= Time.now.month %>.<%= Time.now.day %></span>
       </div>
     </div>
     <main class="tl-content clear">
@@ -29,10 +29,10 @@
         <% end %>
         <div class="timestamp">
           <div class="date">
-            <div class="month">
+            <div class="year">
               <%= @date[i+1].year unless @date[i].year == @date[i+1].year %>
             </div>
-            <span class="tag"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
+            <span class="month"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
           </div>
         </div>
         <% i = i + 1 %>

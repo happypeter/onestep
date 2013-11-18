@@ -34,6 +34,7 @@
   }
   .tl-content {
     position: relative;
+    padding-bottom: 50px;
   }
   .tl-content:before {
     position: absolute;
@@ -44,8 +45,8 @@
     height: 100%;
   }
   .timestamp {
-    width: 100px;
-    height: 100px;
+    width: 92px;
+    height: 92px;
     background-color: #dcd9d4;
     border-radius: 50px;
     margin: 0 auto;
@@ -57,18 +58,18 @@
       margin: 0 auto;
       border-radius: 40px;
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 6px;
+      left: 6px;
       text-align: center;
-      .tag {
-        font-size: 12px;
+      .month {
+        font-size: 14px;
         color: #ccc;
         display: inline;
       }
     }
-    .month {
+    .year {
       margin-top: 22px;
-      color: teal;
+      font-weight: bold;
       font-size: 16px;
     }
   }
@@ -89,6 +90,7 @@
     .pull-left {
       width: 477px;
       float: left;
+      margin-top: -10px;
       span.desc {
         padding-left: 30px;
         padding-right: 80px;
@@ -98,12 +100,13 @@
         right: 0;
         top: 0;
         padding-right: 5px;
+        color: #ccc;
       }
     }
     .pull-right {
       width: 477px;
       float: right;
-      margin-top: 40px;
+      margin-top: 0;
       .project {
         text-align: right;
       }
@@ -112,9 +115,10 @@
         left: 0;
         top: 0;
         padding-left: 5px;
+        color: #ccc;
       }
       span img {
-        padding-left: 110px;
+        padding-left: 100px;
       }
       span.desc {
         padding-left: 10px;
