@@ -24,7 +24,7 @@ class ActivitiesController < ApplicationController
     first = Activity.first.created_at
     date = Time.zone.now
     while first < date do
-      group = Activity.within_range(date).reverse.group_by(&:course_id)
+      group = Activity.within_range(date).reverse.cluster{ |activity| activity.course_id}
       if group.present?
         @groups << group
         @date << date
