@@ -15,7 +15,7 @@
     padding-left: 0;
     li {
       position: relative;
-      padding: 0 5px 30px 0;
+      padding: 0 5px 20px 0;
       span {
         display: table-cell;
         vertical-align: top;
@@ -50,6 +50,8 @@
     height: 92px;
     background-color: #dcd9d4;
     border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
     margin: 0 auto;
     position: relative;
     .date {
@@ -58,6 +60,8 @@
       background-color: #fff;
       margin: 0 auto;
       border-radius: 40px;
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
       position: absolute;
       top: 6px;
       left: 6px;
@@ -78,11 +82,15 @@
     .project {
       border-bottom: 6px solid #dcd9d4;
       font-weight: bold;
+      font-size: 16px;
       padding-bottom: 2px;
       margin-bottom: 20px;
       img {
-        width: 30px !important;
-        height: 30px !important;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        width: 40px !important;
+        height: 40px !important;
       }
     }
     .timestamp {
@@ -91,7 +99,7 @@
     .pull-left {
       width: 650px;
       float: left;
-      margin-top: -30px;
+      margin-top: -40px;
       ul {
         padding-left: 30px;
       }
@@ -110,7 +118,7 @@
     .pull-right {
       width: 650px;
       float: right;
-      margin-top: -30px;
+      margin-top: -40px;
       .project {
         text-align: right;
       }
