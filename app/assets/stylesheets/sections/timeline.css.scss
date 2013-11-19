@@ -89,28 +89,28 @@
       clear: both;
     }
     .pull-left {
-      width: 598px;
+      width: 650px;
       float: left;
-      margin-top: -10px;
+      margin-top: -30px;
       ul {
         padding-left: 30px;
       }
       span.desc {
         padding-left: 30px;
-        padding-right: 80px;
+        padding-right: 150px;
       }
       span.time {
         position: absolute;
         right: 0;
         top: 0;
-        padding-right: 5px;
+        padding-right: 60px;
         color: #ccc;
       }
     }
     .pull-right {
-      width: 598px;
+      width: 650px;
       float: right;
-      margin-top: 0;
+      margin-top: -30px;
       .project {
         text-align: right;
       }
@@ -118,30 +118,34 @@
         position: absolute;
         left: 0;
         top: 0;
-        padding-left: 5px;
+        padding-left: 60px;
         color: #ccc;
       }
       span img {
-        padding-left: 100px;
+        padding-left: 150px;
       }
       span.desc {
         padding-left: 30px;
       }
     }
+    .pull-left.first, .pull-right.first {
+      margin-top: 0;
+    }
   }
 }
 .tl-course main {
   .pull-left {
-    width: 550px;
+    width: 650px;
     margin-top: 10px;
-    span.desc {
-      padding-right: 140px;
+    ul {
+      padding-bottom: 0;
     }
   }
   .pull-right {
-    width: 550px;
-    span img {
-      padding-left: 130px;
+    width: 650px;
+    margin-top: 0;
+    ul {
+      padding-bottom: 0;
     }
     span.desc {
       padding-left: 30px;

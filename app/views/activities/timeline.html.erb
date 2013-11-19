@@ -13,7 +13,7 @@
         <% group.each do |value| %>
           <% p = value.first.course %>
           <% if p.public %>
-            <div class= "<%= cycle("pull-left", "pull-right") %>">
+            <div class= "<%= cycle("pull-left", "pull-right") %> <%= "first" if group.index(value) == 0 %>">
               <div class="project">
                 <%= image_tag p.user.final_avatar_url %>
                 <%= link_to p.user.name, member_path(p.user.name) %> /
