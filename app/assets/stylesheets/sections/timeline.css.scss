@@ -6,8 +6,8 @@
 }
 
 .tl-wrap {
-  width: 960px;
-  min-width: 960px !important;
+  width: 1200px;
+  min-width: 1200px !important;
   padding: 10px;
   margin: 10px auto;
   ul {
@@ -36,7 +36,6 @@
   }
   .tl-content {
     position: relative;
-    padding-bottom: 50px;
   }
   .tl-content:before {
     position: absolute;
@@ -90,9 +89,12 @@
       clear: both;
     }
     .pull-left {
-      width: 477px;
+      width: 598px;
       float: left;
       margin-top: -10px;
+      ul {
+        padding-left: 30px;
+      }
       span.desc {
         padding-left: 30px;
         padding-right: 80px;
@@ -106,7 +108,7 @@
       }
     }
     .pull-right {
-      width: 477px;
+      width: 598px;
       float: right;
       margin-top: 0;
       .project {
@@ -123,7 +125,7 @@
         padding-left: 100px;
       }
       span.desc {
-        padding-left: 10px;
+        padding-left: 30px;
       }
     }
   }
