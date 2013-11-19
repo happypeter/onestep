@@ -16,10 +16,12 @@
     li {
       position: relative;
       padding: 0 5px 30px 0;
-      li>span {
+      span {
+        display: table-cell;
         vertical-align: top;
       }
       img {
+        max-width: none;
         width: 20px !important;
         height: 20px !important;
       }
@@ -130,6 +132,9 @@
   .pull-left {
     width: 550px;
     margin-top: 10px;
+    span.desc {
+      padding-right: 140px;
+    }
   }
   .pull-right {
     width: 550px;
