@@ -7,38 +7,42 @@
         <span class="month"><%= Time.now.month %>.<%= Time.now.day %></span>
       </div>
     </div>
-    <main class="tl-content clear">
-      <% i = 0 %>
-      <% @groups.each do |group| %>
-        <% flag = 0 %>
-        <% group.each do |value| %>
-          <% p = value.first.course %>
-          <% if p.public %>
-            <div class= "<%= cycle("pull-left", "pull-right") %> <%= " first" if flag == 0 %>">
-              <div class="project">
-                <%= image_tag p.user.final_avatar_url %>
-                <%= link_to p.user.name, member_path(p.user.name) %> /
-                <%= link_to p.title, course_path(p) %>
-              </div>
-              <ul>
-                <% value.each do |activity|%>
-                  <%= render 'activity', :activity => activity %>
-                <% end %>
-              </ul>
-            </div>
-            <% flag = 1 %>
-          <% end %>
-        <% end %>
-        <div class="timestamp">
-          <div class="date">
-            <div class="year">
-              <%= @date[i+1].year unless @date[i].year == @date[i+1].year %>
-            </div>
-            <span class="month"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
+    <div class="tl-content clearfix">
+      <div class="tl-middleline">
+        <% i = 0 %>
+        <% @groups.each do |group| %>
+          <% flag = 0 %>
+          <div class="month-group clearfix">
+            <% group.each do |value| %>
+              <% p = value.first.course %>
+              <% if p.public %>
+                <div class= "<%= cycle("pull-left", "pull-right") %> <%= " first" if flag == 0 %>">
+                  <div class="project">
+                    <%= image_tag p.user.final_avatar_url %>
+                    <%= link_to p.user.name, member_path(p.user.name) %> /
+                    <%= link_to p.title, course_path(p) %>
+                  </div>
+                  <ul>
+                    <% value.each do |activity|%>
+                      <%= render 'activity', :activity => activity %>
+                    <% end %>
+                  </ul>
+                </div>
+                <% flag = 1 %>
+              <% end %>
+            <% end %>
           </div>
-        </div>
-        <% i = i + 1 %>
-      <% end %>
-    </main>
+          <div class="timestamp">
+            <div class="date">
+              <div class="year">
+                <%= @date[i+1].year unless @date[i].year == @date[i+1].year %>
+              </div>
+              <span class="month"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
+            </div>
+          </div>
+          <% i = i + 1 %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
