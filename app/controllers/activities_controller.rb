@@ -1,10 +1,11 @@
 class ActivitiesController < ApplicationController
   def index
-    user = User.find_by_name(params[:member_name])
-    course = Course.where(user_id: user.id, name: params[:course_name]).first
+    @user = User.find_by_name(params[:member_name])
+    course = Course.where(user_id: @user.id, name: params[:course_name]).first
     @groups = []
     @date = []
-    activities = Activity.where(course_id: course.id).reverse
+    activities = Activity.where(course_id: course.id)
+    @count = activities.count
     first = activities.first.created_at
     date = Time.zone.now
     while first < date do

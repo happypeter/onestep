@@ -1,5 +1,8 @@
 <div class="container">
-  <h1 class="timeline-title"> <%= t "course_timeline" %></h1>
+  <div class="timeline-title">
+    <%= image_tag @user.final_avatar_url %>
+    <%= @user.name %> 为您倾情更新 <%= @count %> 次
+  </div>
   <div class="tl-wrap tl-course">
     <div class="timestamp">
       <div class="date">
@@ -11,14 +14,16 @@
       <div class="tl-middleline">
         <% i = 0 %>
         <% @groups.each do |group| %>
+          <% first = true %>
           <div class="month-group clearfix">
             <% group.each do |activity| %>
-              <div class= "<%= cycle("pull-left", "pull-right") %>">
+              <div class= "<%= cycle("pull-left", "pull-right") %><%= " first" if first %>">
                 <div class="project"></div>
                 <ul>
                   <%= render 'activity', :activity => activity %>
                 </ul>
               </div>
+              <% first = false %>
             <% end %>
           </div>
           <div class="timestamp">
