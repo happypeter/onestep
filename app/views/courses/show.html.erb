@@ -47,7 +47,7 @@
       <div class="tutorial-nav">
         <%= render "play_list", :course => @course, :current_video => @video %>
         <div class="course-update-time">
-          <i class="icon-time"></i>
+          <i class="fa fa-clock-o"></i>
           <span><%= t('update_time') %></span>
           <span><%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %></span>
         </div>

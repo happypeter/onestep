@@ -1,7 +1,7 @@
 <div class="bubble">
   <%= div_for comment do %>
     <div class="comment-header">
-      <i class="icon-comment"></i>
+      <i class="fa fa-comment"></i>
       <%= link_to comment.user.name, member_path(comment.user.name), :class => "comment-header-author" %>
       <%= link_to "说", video_comment_path(comment.id) %>
       <span class="comment-header-right">

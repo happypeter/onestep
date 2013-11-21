@@ -22,7 +22,7 @@
       <span><%= @user.name %></span>
     </h1>
     <p>
-      <span> <i class="icon-envelope"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
+      <span> <i class="fa fa-envelope-o"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
     </p>
     <ul class="stats">
       <li><strong><%= @user.follower_count %></strong> followers</li>
@@ -35,7 +35,7 @@
         <% if current_user == @user %>
           <%= link_to create_course_path, :class => "button primary new-course" do %>
             <%= t('create_course') %>
-            <i class='icon-hand-right icon-large'></i>
+            <i class='fa fa-hand-o-right fa-lg'></i>
           <% end %>
         <% end %>
         <h2><%= t('my_courses') %>:</h2>

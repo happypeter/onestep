@@ -1,7 +1,7 @@
 <% comment = notification.notifiable %>
 <% case notification.action %>
 <% when "comment" %>
-  <td class="notificon"><i class="icon-comments icon-2x"></i></td>
+  <td class="notificon"><i class="fa fa-comments fa-2x"></i></td>
   <td>
     <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
     <span class="annotate">回复了你评论过的课程章节: </span>

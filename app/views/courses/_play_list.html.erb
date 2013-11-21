@@ -4,7 +4,7 @@
       <li>
       <a class="video <%= p "active" if v.position == current_video.position %>" href="<%= course_path(v.course) + "/" + v.position.to_s %>">
         <div class="video-icon">
-          <i class="icon-facetime-video"></i>
+          <i class="fa fa-video-camera fa-lg"></i>
         </div>
         <span class="video-info">
           <%= v.title %>
