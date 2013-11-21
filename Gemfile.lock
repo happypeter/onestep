@@ -79,8 +79,8 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.4.0)
-    font-awesome-rails (3.0.2.0)
-      railties (>= 3.1)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     fssm (0.2.10)
     guard (1.6.2)
       listen (>= 0.6.0)
@@ -233,7 +233,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   factory_girl_rails
-  font-awesome-rails
+  font-awesome-rails (= 4.0.3.0)
   guard-rspec
   haml
   jquery-atwho-rails (= 0.1.6)
