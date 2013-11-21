@@ -1,5 +1,13 @@
 <li>
-  <span><%= image_tag "#{activity.action}.svg" %></span>
+  <span>
+    <% if activity.action == "create" %>
+      <i class="fa fa-plus fa-2x"></i>
+    <% elsif activity.action == "update" %>
+      <i class="fa fa-edit fa-2x"></i>
+    <% else %>
+      <i class="fa fa-trash-o fa-2x"></i>
+    <% end %>
+  </span>
   <span class="desc">
     <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
   </span>
