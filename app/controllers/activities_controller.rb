@@ -19,6 +19,14 @@ class ActivitiesController < ApplicationController
   end
 
   def timeline
+    @author_count = 0
+    @activity_count = 0
+    Activity.all.collect(&:course_id).uniq.each do |c|
+      if Course.find(c).public
+        @author_count += 1
+        @activity_count += Activity.where(course_id: c).count
+      end
+    end
     @groups = []
     @date = []
     first = Activity.first.created_at
