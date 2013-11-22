@@ -12,6 +12,9 @@ $private-label: #2c3e50;
 a.course-thumb-container {
   width: 395px;
   display: block;
+  &:hover {
+    text-decoration: none;
+  }
   .center-course-thumb {
     margin: 0 auto;
   }
@@ -55,8 +58,8 @@ a.course-thumb-container {
     width: 80%;
     padding: 10px;
     padding-bottom: 0;
-    line-height: 20px;
-    height: 80px;
+    line-height: 22px;
+    height: 88px;
     overflow: hidden;
     font-weight: normal;
     color: #666;
