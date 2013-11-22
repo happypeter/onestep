@@ -56,7 +56,7 @@
       <div class="user-course-header">
         <h2><%= t('paid') %>:</h2>
       </div>
-      <% if @paid_courses.present? %>
+      <% if @paid_courses.present? and current_user == @user%>
         <div class="courses">
           <% @paid_courses.each do |course| %>
             <div class="course">
