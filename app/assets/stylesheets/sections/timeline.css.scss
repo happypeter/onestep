@@ -29,6 +29,13 @@
         display: table-cell;
         vertical-align: top;
       }
+      .time {
+        font-size: 15px;
+      }
+      .desc {
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
       img {
         max-width: none;
         width: 20px !important;
@@ -48,36 +55,40 @@
     }
   }
   .timestamp {
-    width: 92px;
-    height: 92px;
+    width: 82px;
+    height: 82px;
     background-color: #dcd9d4;
-    border-radius: 50px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     margin: 0 auto;
     position: relative;
     .date {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       background-color: #fff;
       margin: 0 auto;
-      border-radius: 40px;
-      -webkit-border-radius: 50px;
-      -moz-border-radius: 50px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
       position: absolute;
       top: 6px;
       left: 6px;
       text-align: center;
       .month {
-        font-size: 14px;
-        color: #ccc;
+        font-size: 16px;
+        font-weight: bold;
+        color: #bbb;
         display: inline;
       }
     }
     .year {
-      margin-top: 22px;
+      margin-top: 14px;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 18px;
+    }
+    .noyear {
+      margin-top: 22px;
     }
   }
   .tl-content {
@@ -111,7 +122,8 @@
         right: 0;
         top: 0;
         padding-right: 60px;
-        color: #ccc;
+        color: #bbb;
+        font-weight: bold;
       }
     }
     .pull-right {
@@ -126,7 +138,8 @@
         left: 0;
         top: 0;
         padding-left: 60px;
-        color: #ccc;
+        color: #bbb;
+        font-weight: bold;
       }
       span i {
         padding-left: 150px;

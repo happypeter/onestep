@@ -1,13 +1,13 @@
 <div class="container">
   <div class="timeline-title">
     <%= image_tag @user.final_avatar_url %>
-    <%= @user.name %> 为您倾情更新 <%= @count %> 次
+    <%= link_to @user.name, member_path(@user.name) %> 为您倾情更新 <%= @count %> 次
   </div>
   <div class="tl-wrap tl-course">
     <div class="timestamp">
       <div class="date">
         <div class="year"><%= Time.now.year %></div>
-        <span class="month"><%= Time.now.month %>.<%= Time.now.day %></span>
+        <span class="month"><%= Time.now.strftime("%B").slice(0..2) %> <%= Time.now.day %></span>
       </div>
     </div>
     <div class="tl-content clearfix">
@@ -17,7 +17,7 @@
           <% first = true %>
           <div class="month-group clearfix">
             <% group.each do |activity| %>
-              <div class= "<%= cycle("pull-left", "pull-right") %><%= " first" if first %>">
+              <div class="<%= cycle("pull-left", "pull-right") %><%= " first" if first %>">
                 <div class="project"></div>
                 <ul>
                   <%= render 'activity', :activity => activity %>
@@ -28,10 +28,11 @@
           </div>
           <div class="timestamp">
             <div class="date">
-              <div class="year">
-                <%= @date[i+1].year unless @date[i].year == @date[i+1].year %>
+              <% flag = @date[i].year == @date[i+1].year %>
+              <div class="<%= flag ? "noyear" : "year" %>">
+                <%= @date[i+1].year unless flag %>
               </div>
-              <span class="month"><%= @date[i+1].month %>.<%= @date[i+1].day %></span>
+              <span class="month"><%= @date[i+1].strftime("%B").slice(0..2) %> <%= @date[i+1].day %></span>
             </div>
           </div>
           <% i = i + 1 %>
