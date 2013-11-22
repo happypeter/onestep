@@ -20,14 +20,16 @@ class ActivitiesController < ApplicationController
   end
 
   def timeline
-    @author_count = 0
+    authors = []
     @activity_count = 0
-    Activity.all.collect(&:course_id).uniq.each do |c|
-      if Course.find(c).public
-        @author_count += 1
-        @activity_count += Activity.where(course_id: c).count
+    Activity.all.collect(&:course_id).uniq.sort.each do |i|
+      c = Course.find(i)
+      if c.public
+        authors << c.user.name
+        @activity_count += Activity.where(course_id: i).count
       end
     end
+    @author_count = authors.uniq.count
     @groups = []
     @date = []
     first = Activity.first.created_at
