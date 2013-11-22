@@ -1,25 +1,21 @@
-<div class="course-thumb">
-  <%= link_to course_path(course), :class => "course-detail green-box-shadow" do %>
-    <div class="poster-area" style="background-image: url(<%= course.poster_url %>);">
-    </div>
-    <div class="course-info">
-      <h4>
-        <%= course.title %>
-        <% if !course.public %>
-          <span class="private-label"><%= t('course_private') %></span>
-        <% end %>
-      </h4>
-      <p><%= course.description %></p>
-    </div>
-  <% end %>
-  <div class="course-author">
-    <%= link_to course.user.name, member_path(course.user.name) %>
-  </div>
 
-  <% if current_user && current_user == course.user %>
-    <ul class="course-actions">
-      <li><%= link_to t('edit'), edit_course_path(course) %></li>
-      <li><%= link_to t('delete'), course, :confirm => t('confirm_delete'), :method => :delete %></li>
-    </ul>
-  <% end %>
+<%= link_to course_path(course), class: "course-thumb-container clearfix" do %>
+<div class="course-thumb center-course-thumb light-shadow">
+  <div class="course-main">
+    <%= image_tag course.poster_url %>
+    <div class="course-title">
+      <%= course.title %>
+      <% if !course.public %>
+      <div class="course-private-label"><i class="fa fa-lock fa-2x"></i></div>
+      <% end %>
+   </div>
+   <div class="course-desc">
+      <%= course.description %>
+  </div>
+  <div class="course-author">
+    <%= image_tag course.user.avatar, class: "course-thumb-avatar"  %>
+    <%= course.user.name %>
+  </div>
 </div>
+</div>
+<% end %>

@@ -91,6 +91,18 @@ hr {
   float: right;
 }
 
+.left {
+  float: left;
+}
+
+.light-shadow {
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+}
+
+
+
 .chinese {
   font-family: 'Microsoft YaHei', 微软雅黑, 'SimSun', Arial, Lucida Grande, Tahoma, sans-serif;
   font-size: 14px;

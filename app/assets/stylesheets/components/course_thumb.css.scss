@@ -7,84 +7,77 @@ Styleguide 5.1
 @import "globals/variables";
 @import "globals/mixins";
 
+$course-name-blue: #3499D3;
+$private-label: #2c3e50;
+a.course-thumb-container {
+  width: 395px;
+  display: block;
+  .center-course-thumb {
+    margin: 0 auto;
+  }
+  padding: 20px 0;
+}
 .course-thumb {
   position: relative;
-  margin-top: 15px;
-  width: 400px;
-  .course-detail {
-    margin: 0 auto 10px;
-    display: block;
-    width: 340px;
-    height: 350px;
-    padding-top: 9px;
-    padding-bottom: 5px;
-    box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
-    border-radius: 3px;
-    .poster-area {
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      width: $course-poster-width;
-      height: $course-poster-height;
-      border: 3px solid #eee;
+  width: 310px;
+  height: 380px;
+  background: white;
+  &:hover {
+    cursor: pointer;
+    .course-title {
+      background: darken($course-name-blue, 10%);
     }
-    .private-label {
-      color: red;
-      font-size: 12px;
-      font-weight: bold;
-      vertical-align: super;
-      letter-spacing: -1px;
-    }
-    .course-info {
-      text-align: left;
-      height: 200px;
-      bottom: 0;
-      overflow: hidden;
-      margin-top: 5px;
-      letter-spacing: 1px;
-      h4 {
-        font-size: 18px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color: #fff;
-        background-color: black;
-        text-align: center;
-        padding: 8px 0;
-      }
-      p {
-        margin-top: 0px;
-        height: 44px;
-        overflow: hidden;
-        color: $font-gray;
-        font-size: 14px;
-        padding: 10px;
+  }
+
+  .course-title {
+    background: $course-name-blue;
+    color: white;
+    padding: 10px;
+    line-height: 40px;
+    font-weight: normal;
+    font-size: 140%;
+    .course-private-label {
+      float: right;
+      .fa-lock {
+        line-height: 40px;
+        color: $private-label;
       }
     }
+  }
+
+  .course-main {
+    img {
+      margin: 0;
+      border: 0;
+    }
+  }
+  .course-desc {
+    width: 80%;
+    padding: 10px;
+    padding-bottom: 0;
+    line-height: 20px;
+    height: 80px;
+    overflow: hidden;
+    font-weight: normal;
+    color: #666;
   }
   .course-author {
+    font-size: 80%;
     position: absolute;
-    right: 40px;
-    bottom: 15px;
-    color: $font-gray;
-  }
-  .green-box-shadow {
-    &:hover {
-      border-color: #c3ca7d;
-      -webkit-box-shadow: 0 0 10px $background-green;
-      text-decoration: none;
-    }
-  }
-  .course-actions {
-    position: absolute;
-    bottom: 15px;
-    left: 40px;
-    width: 80px;
-    text-align: left;
-    li {
-      list-style: none;
-      width: 40px;
+    left: 10px;
+    bottom: 10px;
+    line-height: 25px;
+    .course-thumb-avatar {
+      width: 25px;
+      height: 25px;
+      display: block;
+      margin-right: 5px;
       float: left;
+      border-radius: 50%;
     }
   }
 }
+
+
+
+
