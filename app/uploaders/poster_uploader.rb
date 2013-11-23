@@ -14,7 +14,7 @@ class PosterUploader < CarrierWave::Uploader::Base
 
    # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    Settings.image.default_poster
+    Settings.image.default_posters_dir + "default_poster_do_not_delete.jpg"
   end
   def store_dir
     "uploads/poster/"
