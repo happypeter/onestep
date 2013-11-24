@@ -1,9 +1,9 @@
 # encoding:utf-8
 class UsersController < ApplicationController
   layout 'users/edit', :only => [:edit, :edit_avatar]
-  before_filter :auth, only: [:signup, :login_form]
+  before_filter :redirect_to_root_if_logged_in, only: [:signup, :login]
 
-  def login_form
+  def login
     @user = User.new
   end
 
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    black_list = ["write_blog", "submit_login_form", \
+    black_list = ["write_blog", "create_login_seesion", \
                   "account", "blog", "explore", "signup", \
                   "login", "about"]
 
@@ -113,14 +113,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
+  def create_login_session
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
       redirect_to_target_or_default root_url
     else
       flash[:notice] = t('invalid_name_or_password')
-      redirect_to :action => "login_form"
+      redirect_to :login
     end
   end
 

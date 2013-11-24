@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
-  def auth
+  def redirect_to_root_if_logged_in
     redirect_to :root if logged_in?
   end
 

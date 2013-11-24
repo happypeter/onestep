@@ -37,10 +37,10 @@ Onestep::Application.routes.draw do
   resources :comments
   match "/comment_preview" => "comments#preview", :as => "comment_preview"
 
-  match "login" => "users#login_form", :as => "login"
-  match "submit_login_form" => "users#login"
-  match "logout" => "users#logout", :as => "logout"
-  match "signup" => "users#signup", :as => "signup"
+  get "login" => "users#login", :as => "login"
+  get "signup" => "users#signup", :as => "signup"
+  post "create_login_session" => "users#create_login_session"
+  delete "logout" => "users#logout", :as => "logout"
 
   put "/course" => "courses#update"
   get "/course" => "courses#index", :as => "course_index"

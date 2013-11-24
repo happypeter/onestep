@@ -14,7 +14,7 @@
       <% end %>
       </li>
       <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
-      <li> <%= link_to t("logout"), logout_path %></li>
+      <li> <%= link_to t("logout"), logout_path, method: "delete" %></li>
     </ul>
   </div>
 </div>
