@@ -102,6 +102,9 @@ class CoursesController < ApplicationController
     end
     course = Course.new(params[:course])
     course.name = name
+    # get a random poster
+    all_posters = Dir["app/assets/images/" + Settings.image.default_posters_dir + "*"]
+    course.poster = open(all_posters[rand(all_posters.length)])
     if course.save
       track_activity course, course.id
       redirect_to edit_course_path(course), :notice => "新课程创建成功！"
