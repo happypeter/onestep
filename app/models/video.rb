@@ -11,8 +11,7 @@ class Video < ActiveRecord::Base
 
   mount_uploader :asset, VideoUploader
 
-  before_create :set_metadata
-  before_update :set_metadata
+  before_filter :set_metadata, only: [:create, :update]
 
   def open_to_user?(user)
      return true if user == self.user
