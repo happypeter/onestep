@@ -21,10 +21,17 @@ class Video < ActiveRecord::Base
   end
 
   def set_ratio
-    out = `ffmpeg -i #{asset_url} 2>&1`
-    if out =~ /([\d]+x[\d]+)/
+    if self.new_record?
+      # creating a video, asset_url is '/tmp/xxxx/xxx.mov'
+      path = asset_url
+    else
+      #updating a video, asset_url is '/uploads/xxx.mov'
+      path = File.join(Rails.root, "public", asset_url)
+    end
+    out = `ffmpeg -i #{path} 2>&1`
+    if out =~ /(\b[\d]{3,4}x[\d]{3,4}\b)/
       a = $1.split('x')
-      return ratio = a[0].to_f / a[1].to_f
+      a[0].to_f / a[1].to_f
     end
   end
 
