@@ -28,6 +28,7 @@
     });
   </script>
 <% end %>
+<!-- course header -->
 <div class="pagehead clearfix">
   <div class="container">
     <ul class="pagehead-actions">
@@ -50,33 +51,45 @@
     <br>
     <p class="course-desc"><%= auto_link @course.description %></p>
   </div>
-</div>
+</div><!--   end course header -->
 <div class='container'>
   <div class="tutorial-page">
-    <div class="tutorial-nav">
-      <h3>
-        <%= @course.title %>
-        <%= link_to t('go_back'), @course, :class => "button" %>
-      </h3>
-      <% if @course.videos %>
-        <%= render "all_added_videos", :course => @course %>
-      <% end %>
-      <div class="edit-course-info-area">
-        <div id="edit-course-poster">
-          <p><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</p>
-          <div class="poster-preview"><%= image_tag @course.poster_url , :id => 'poster'%></div>
-          <a class= "fileupload-btn button primary">
-            <span id="poster-upload-tip"><%= t('change_poster') %></span>
-            <input id="poster-fileupload" name="course[poster]" type="file">
-          </a>
+    <div class="boxed-group">
+      <h3>课程信息</h3>
+      <div class="boxed-group-inner">
+
+        <div class="tutorial-nav">
+          <div class="edit-course-info-area">
+            <div id="edit-course-poster">
+              <p><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</p>
+              <div class="poster-preview"><%= image_tag @course.poster_url , :id => 'poster'%></div>
+              <a class= "fileupload-btn button primary">
+                <span id="poster-upload-tip"><%= t('change_poster') %></span>
+                <input id="poster-fileupload" name="course[poster]" type="file">
+              </a>
+            </div>
+          </div>
+        </div><!-- end tutorial-nav -->
+        <div class="tutorial-content">
+          <div id="edit-course-desc">
+            <%= render 'update_form', :course => @course %>
+          </div>
         </div>
-        <div id="edit-course-desc">
-          <%= render 'update_form', :course => @course %>
+      </div>  <!-- boxed-group-inner -->
+    </div> <!-- boxed-group -->
+
+    <div class="boxed-group">
+      <h3>视频</h3>
+      <div class="boxed-group-inner">
+        <div class="tutorial-nav">
+          <% if @course.videos %>
+            <%= render "all_added_videos", :course => @course %>
+          <% end %>
+        </div><!-- end tutorial-nav -->
+        <div class="tutorial-content">
+          <%= render "add_video", :course => @course %>
         </div>
-      </div>
-    </div>
-    <div class="tutorial-content">
-      <%= render "add_video", :course => @course %>
-    </div>
-  </div>
+      </div>  <!-- boxed-group-inner -->
+    </div> <!-- boxed-group -->
+  </div><!-- end tutorial-page -->
 </div>
