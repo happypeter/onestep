@@ -20,7 +20,7 @@ dl.form {
 
   dd {
     margin-left: 0;
-    input[type="text"], input[type="password"], input[type="email"] {
+    textarea.long, input[type="text"], input[type="password"], input[type="email"] {
       margin-right: 5px;
       width: 440px;
       background-position-x: 98%;
