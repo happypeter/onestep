@@ -61,7 +61,7 @@
         <div class="tutorial-nav">
           <div class="edit-course-info-area">
             <div id="edit-course-poster">
-              <p><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</p>
+              <p><strong><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</strong></p>
               <div class="poster-preview"><%= image_tag @course.poster_url , :id => 'poster'%></div>
               <a class= "fileupload-btn button primary">
                 <span id="poster-upload-tip"><%= t('change_poster') %></span>
@@ -82,8 +82,12 @@
       <h3>视频</h3>
       <div class="boxed-group-inner">
         <div class="tutorial-nav">
-          <% if @course.videos %>
+          <% if @course.videos.present? %>
             <%= render "all_added_videos", :course => @course %>
+          <% else %>
+            <p>
+            目前还没有视频，点击右侧的<strong>上传视频</strong>按钮上传视频吧。
+            </p>
           <% end %>
         </div><!-- end tutorial-nav -->
         <div class="tutorial-content">

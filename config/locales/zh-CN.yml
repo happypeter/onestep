@@ -51,7 +51,7 @@ zh-CN:
   delete_this_course: "删除本课程"
   confirm_delete: "确定要删除吗?"
   change_poster: "更换课程封面"
-  click_to_upload_a_video: "点击上传视频"
+  upload_video: "上传视频"
   note_max_video_size_50m: "请注意视频大小不能超过50M！"
   wait_upload: "上传可能会花几分钟时间，请耐心等待哦"
   supported_video_format: "视频格式目前支持mov和mp4"

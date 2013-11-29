@@ -34,16 +34,18 @@
   <dl class="form">
     <dt>
       <%= f.label :description %>
-      (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
+      <strong>(<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)</strong>
     </dt>
     <dd>
       <%= f.text_area :description, :id => "course_desc", :class => "long short", :placeholder => "这是一门实用的课程" %>
     </dd>
   </dl>
-  <div class="form">
+  <dl class="form">
+    <dt>
     <%= f.check_box :public %>
     <%= f.label t('public') %>
-  </div>
+    </dt>
+  </dl>
   <div>
     <%= f.submit t('update_course'), :class => "button primary" %>
     <span id="edit-course-delete">
