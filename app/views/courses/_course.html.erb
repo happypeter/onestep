@@ -1,21 +1,20 @@
-
 <%= link_to course_path(course), class: "course-thumb-container clearfix" do %>
-<div class="course-thumb center-course-thumb light-shadow">
-  <div class="course-main">
-    <%= image_tag course.poster_url %>
-    <div class="course-title">
-      <%= course.title %>
-      <% if !course.public %>
-      <div class="course-private-label"><i class="fa fa-lock fa-2x"></i></div>
-      <% end %>
-   </div>
-   <div class="course-desc">
-      <%= course.description %>
+  <div class="course-thumb center-course-thumb light-shadow">
+    <div class="course-main">
+      <%= image_tag course.poster_url %>
+      <div class="course-title">
+        <%= course.title %>
+        <% if !course.public %>
+          <div class="course-private-label"><i class="fa fa-lock fa-2x"></i></div>
+        <% end %>
+      </div>
+      <div class="course-desc">
+        <%= course.description %>
+      </div>
+      <div class="course-author">
+        <%= image_tag course.user.final_avatar_url, class: "course-thumb-avatar" %>
+        <%= course.user.name %>
+      </div>
+    </div>
   </div>
-  <div class="course-author">
-    <%= image_tag course.user.avatar, class: "course-thumb-avatar"  %>
-    <%= course.user.name %>
-  </div>
-</div>
-</div>
 <% end %>
