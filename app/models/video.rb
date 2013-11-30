@@ -21,14 +21,7 @@ class Video < ActiveRecord::Base
   end
 
   def set_ratio
-    if self.new_record?
-      # creating a video, asset_url is '/tmp/xxxx/xxx.mov'
-      path = asset_url
-    else
-      #updating a video, asset_url is '/uploads/xxx.mov'
-      path = File.join(Rails.root, "public", asset_url)
-    end
-    out = `ffmpeg -i #{path} 2>&1`
+    out = `ffmpeg -i #{asset_url} 2>&1`
     if out =~ /(\b[\d]{3,4}x[\d]{3,4}\b)/
       a = $1.split('x')
       a[0].to_f / a[1].to_f
@@ -37,9 +30,11 @@ class Video < ActiveRecord::Base
 
   private
   def set_metadata
-    self.content_type = asset.file.content_type
-    self.size = asset.file.size
-    self.filename = asset.file.original_filename
-    self.ratio = set_ratio
+    if asset_url.split('/')[1] != 'uploads'
+      self.content_type = asset.file.content_type
+      self.size = asset.file.size
+      self.filename = asset.file.original_filename
+      self.ratio = set_ratio
+    end
   end
 end

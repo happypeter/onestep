@@ -24,4 +24,4 @@ tmp/
 config/database.yml
 
 lib/tasks/activity.rake
-onestep.sublime-project
+onestep.sublime-workspace
