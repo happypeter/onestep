@@ -8,7 +8,7 @@
           </div>
           <span class="video-info edit-video-info">
             <%= video.title %>
-            <%= "(free)" if video.free? %>
+            <%= "(免费)" if video.free? %>
           </span>
         </a>
         <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => t('confirm_delete') %>

@@ -25,30 +25,29 @@
 
   <dl class="form">
     <dt> <%= f.label :price %> </dt>
-    <dd> <%= f.text_field :price, :class => "short" %> </dd>
+    <dd> <%= f.text_field :price, :placeholder => "根据你的课程制定一个合理的价格" %> </dd>
   </dl>
   <dl class="form">
     <dt> <%= f.label :title %> </dt>
-    <dd> <%= f.text_field :title, :class => "short" %> </dd>
+    <dd> <%= f.text_field :title, :placeholder => "不求惊世骇俗，但求意义明确" %> </dd>
   </dl>
   <dl class="form">
     <dt>
       <%= f.label :description %>
-      (<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)
+      <strong>(<%= t('remaining') %><span id='desc_count'></span> <%= t('characters') %>)</strong>
     </dt>
     <dd>
-      <%= f.text_area :description, :size => "14x4", :id => "course_desc" %>
+      <%= f.text_area :description, :id => "course_desc", :class => "long short", :placeholder => "这是一门实用的课程" %>
     </dd>
   </dl>
-  <div class="form">
+  <dl class="form">
+    <dt>
     <%= f.check_box :public %>
     <%= f.label t('public') %>
-  </div>
+    </dt>
+  </dl>
   <div>
-    <%= f.submit t('update_course'), :class => "button primary" %>
-    <span id="edit-course-delete">
-      <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
-    </span>
+    <%= f.submit t('update_course'), :class => "button update-course-button" %>
   </div>
 <% end %>
 
