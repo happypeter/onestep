@@ -72,8 +72,8 @@ zh-CN:
   video_link: "链接"
   save: "保存"
   saving: "保存中"
+  video_saving: "视频保存中"
   cancel: "取消"
-  reupload_video: "重新上传视频NO."
   free: "免费"
 
   #blog things

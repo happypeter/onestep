@@ -112,6 +112,11 @@ hr {
   letter-spacing: 0;
 }
 
+//use same input line height, add this line due to button height style
+input {
+  line-height: 22px;
+}
+
 .clearfix {
   *zoom: 1;
 }
