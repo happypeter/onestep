@@ -47,10 +47,7 @@
     </dt>
   </dl>
   <div>
-    <%= f.submit t('update_course'), :class => "button" %>
-    <span id="edit-course-delete">
-      <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
-    </span>
+    <%= f.submit t('update_course'), :class => "button update-course-button" %>
   </div>
 <% end %>
 

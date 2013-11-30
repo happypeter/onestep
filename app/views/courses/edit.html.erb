@@ -39,6 +39,11 @@
         <span class="label">课程未公开</span>
       <% end %>
       </li>
+      <li>
+      <span id="edit-course-delete">
+        <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton danger" %>
+      </span>
+      </li>
     </ul>
     <h1 class="pagehead-heading">
       <div class="course-image" style="background-image: url(<%= @course.poster_url %>);"> </div>
