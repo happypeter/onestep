@@ -40,7 +40,23 @@
     font-size: 14px;
     font-weight: bold;
   }
+  td.notificon {
+    width: 60px;
+  }
+  img.gavatar {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  td.time {
+    width: 100px;
+    color: black;
+    padding-top: 12px;
+    padding-left: 20px;
+  }
   td.last {
+    width: 50px;
     text-align: right;
   }
   .highlight {
