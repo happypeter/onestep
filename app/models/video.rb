@@ -29,8 +29,11 @@ class Video < ActiveRecord::Base
   end
 
   private
+  # uploading a video, asset_url = '/tmp/xxx/xxx.mov'
+  # when video is created, asset_url = '/uploads/xxxx.mov'
   def set_metadata
     if asset_url.split('/')[1] != 'uploads'
+      # the above is used to check if you are uploading a new video or not
       self.content_type = asset.file.content_type
       self.size = asset.file.size
       self.filename = asset.file.original_filename
