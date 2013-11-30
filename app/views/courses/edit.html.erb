@@ -63,7 +63,7 @@
             <div id="edit-course-poster">
               <p><strong><%= t('course_poster') %>(<%= t('course_poster_dimension') %>)</strong></p>
               <div class="poster-preview"><%= image_tag @course.poster_url , :id => 'poster'%></div>
-              <a class= "fileupload-btn button primary">
+              <a class= "fileupload-btn button">
                 <span id="poster-upload-tip"><%= t('change_poster') %></span>
                 <input id="poster-fileupload" name="course[poster]" type="file">
               </a>

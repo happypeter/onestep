@@ -3,44 +3,58 @@
 
 .add-video-box {
   height: 300px;
-  .secondary-info {
-    float: left;
-    margin-left: 40px;
-    h1 {
-      font-weight: lighter;
-    }
-  }
   .primary-info {
+    position: relative;
     float: left;
-    h1 {
-      font-weight: lighter;
+    #submit_video_info {
+      position: absolute;
+      right: -232px;
+      bottom: -50px;
     }
   }
-  .upload {
-    width: 400px;
-    margin-top: 10px;
-    .progress {
-      height: 20px;
+  .secondary-info {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    border-left: 1px solid #CCC;
+    padding-left: 10px;
+    .upload-tip {
+      margin: 5px 0;
+    }
+    .upload {
+      width: 300px;
+      margin-top: 5px;
+      height: 32px;
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border-radius: 5px;
       border: 1px solid #aaa;
       background: #eaeaea;
-      .bar {
-        background: $link-green;
+      .progress {
+        position: relative;
         height: 100%;
-        -moz-border-top-left-radius: 3px;
-        -webkit-border-top-left-radius: 3px;
-        border-top-left-radius: 3px;
-        -moz-border-bottom-left-radius: 3px;
-        -webkit-border-bottom-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-      }
-      .progress-text {
-        color: #333;
-        font-weight: bold;
-        text-shadow: 0 0px 1px #999;
-        margin-left: 176px;
+        .bar {
+          height: 100%;
+          background: $link-green;
+          -moz-border-top-left-radius: 3px;
+          -webkit-border-top-left-radius: 3px;
+          border-top-left-radius: 3px;
+          -moz-border-bottom-left-radius: 3px;
+          -webkit-border-bottom-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+        #progress-text {
+          position: absolute;
+          color: #FFF;
+          font-weight: bold;
+          text-shadow: 0 0px 1px #999;
+          margin-left: -40px;
+          margin-top: -11px;
+          left: 50%;
+          top: 50%;
+        }
       }
     }
   }
