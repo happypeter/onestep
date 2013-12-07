@@ -14,10 +14,10 @@ dl.form {
   &> dt {
     label {
       font-weight: bold;
+      cursor: default;
     }
     margin: 0 0 6px 0;
   }
-
   dd {
     margin-left: 0;
     textarea.long, input[type="text"], input[type="password"], input[type="email"] {
@@ -45,8 +45,6 @@ dl.form {
     }
   }
 }
-
-
 
 /*
 Whole form with submit button. You can put this into a boxed_group.

@@ -11,7 +11,11 @@
             <%= "(免费)" if video.free? %>
           </span>
         </a>
-        <%= link_to t('delete'), video, :method =>"delete", :class => "delete-action", :confirm => t('confirm_delete') %>
+        <%= link_to video, :method => "delete", :confirm => t('confirm_delete') do %>
+          <div class="trash-icon">
+             <i class="fa fa-trash-o"></i>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </ul>
@@ -19,9 +23,20 @@
 
 <%= content_for :template_js do %>
   <script>
-    jQuery(function() {
-      return $('#play-list').sortable({
+    $("ul.playlist > li").hover(
+      function() { 
+        var text = "<div class='list-icon'><i class='fa fa-th-list'></i></div>";
+        $(this).prepend(text);
+      },
+      function() {
+        $("div.list-icon").remove();
+      }
+    );
+
+    $(function() {
+      $('#play-list').sortable({
         axis: 'y',
+        cancel: 'a',
         update: function() {
           $.post($(this).data('update-url'), $(this).sortable('serialize'));
           location.reload();// to update all the position value
