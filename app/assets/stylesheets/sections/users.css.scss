@@ -119,48 +119,15 @@
   }
 }
 
-
-.media-preview-wrapper {
-  background: #fff;
-  margin-right: 30px;
-  border-radius: 3px 3px 3px 3px;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  .media-preview {
-    background: #EEF4FD;
-    border: 1px solid #D1D8E4;
-    padding: 2px;
-    margin-bottom: 10px;
-    .media {
-      border: 1px dotted #C2CBD7;
-      overflow: hidden;
-      padding: 2px;
-      .avatar-crop-box {
-        width: 300px;
-        height: 300px;
-        margin: 0 auto;
-        img { max-width: none; }
-      }
-      .avatar-crop-preview {
-        width: 172px;
-        height: 172px;
-        margin: 0 auto;
-        img { max-width: none; }
-      }
-    }
-  }
-  .tip {
-    color: #444;
-    font-size: smaller;
-    text-shadow: #fff 0px 1px 0px;
-    position: absolute;
-  }
+.avatar-crop-box {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  img { max-width: none; }
 }
-
-#avatar-crop-form {
-  position: absolute;
-  bottom: -115px;
+.tip {
+  color: #444;
+  text-shadow: #fff 0px 1px 0px;
 }
 
 #member-page, #watcher-page {

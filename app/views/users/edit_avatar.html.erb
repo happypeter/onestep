@@ -19,12 +19,42 @@
             _tip.html('上传中&nbsp;&middot;&middot;&middot;');
           },
           done: function (e, data) {
-            _tip.html("上传成功！");
-            window.location.replace("/edit-avatar");
+            $('#avatar-crop-modal').modal('show');
+            _tip.html("点击上传头像");
           },
         });
       });
   </script>
+  <script type="text/javascript" charset="utf-8">
+    var jcrop_api; // Holder for the API
+    initJcrop();
+
+    function initJcrop() {
+      $('#avatar-cropbox').Jcrop({  //options
+        onChange: update_crop,
+        onSelect: update_crop,
+        setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
+        aspectRatio: <%= AvatarUploader::AVATAR_NW %>/<%= AvatarUploader::AVATAR_NH %>,  //设置选择框高宽比,默认为任意
+        }, function(){
+          jcrop_api = this;
+        }
+      );
+    };
+
+    function update_crop(coords) {
+      var rx = <%= AvatarUploader::AVATAR_NW %>/coords.w;
+      var ry = <%= AvatarUploader::AVATAR_NH %>/coords.h;
+
+      // ratio = original_width / actual_width_of_other_version
+      // here no other version, use original, so ratio is 1
+      var ratio = 1;
+      $("#crop_x").val(Math.round(coords.x * ratio));
+      $("#crop_y").val(Math.round(coords.y * ratio));
+      $("#crop_w").val(Math.round(coords.w * ratio));
+      $("#crop_h").val(Math.round(coords.h * ratio));
+    }
+  </script>
+
 <% end %>
 
 <div class="boxed-group">
@@ -44,4 +74,27 @@
   </div>
 </div>
 
-<%= render 'crop' if @user.avatar.present? %>
+<!-- Modal -->
+<div id="avatar-crop-modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" style="display: none;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="modal-label"><%= t('crop_avatar') %></h3>
+  </div>
+  <div class="modal-body">
+    <div class="tip">
+      <p><b>提示：</b> 为达到好的显示效果，建议上传的图片尺寸大于200x200像素</p>
+    </div>
+    <div class="avatar-crop-box">
+      <%= image_tag @user.avatar_url, :id => "avatar-cropbox" %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= form_for(@user, :url =>"/crop") do |f| %>
+      <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+        <%= f.hidden_field attribute, :id => attribute %>
+      <% end %>
+
+      <%= f.submit t('crop_and_save'), :id => "avatar-crop-form", :class => "button primary right" %>
+    <% end %>
+  </div>
+</div>
