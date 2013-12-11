@@ -38,6 +38,9 @@ gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails', '0.4.0'
 gem 'haml'
 
+# modal
+gem "colorbox-rails", "~> 0.1.0"
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
