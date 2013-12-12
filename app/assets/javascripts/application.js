@@ -19,6 +19,7 @@
 //= require courses
 //= require users
 //= require vendor/jquery_hotkeys
+//= require colorbox-rails
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
 //= require bootstrap

@@ -1,0 +1,39 @@
+#colorbox {
+  outline: none;
+  #cboxClose {
+    outline: none;
+    border: none;
+    top: 0;
+  }
+  #cboxLoadedContent{ margin-bottom: 0; }
+}
+
+.modal-box {
+  .modal-header {
+    padding: 9px 15px;
+    border-bottom: 1px solid #EEE;
+    h3 {
+      margin: 0;
+      line-height: 30px;
+    }
+  }
+  .modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+  }
+  .modal-footer {
+    padding: 14px 15px 15px;
+    margin-bottom: 0;
+    text-align: right;
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDD;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: inset 0 1px 0 #FFF;
+    -moz-box-shadow: inset 0 1px 0 white;
+    box-shadow: inset 0 1px 0 #FFF;
+  }
+}
