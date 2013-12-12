@@ -39,6 +39,7 @@
           onSelect: update_crop,
           setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
           aspectRatio: <%= AvatarUploader::AVATAR_NW %>/<%= AvatarUploader::AVATAR_NH %>,  //设置选择框高宽比,默认为任意
+          bgColor: 'white'
           }, function(){
           jcrop_api = this;
         });
