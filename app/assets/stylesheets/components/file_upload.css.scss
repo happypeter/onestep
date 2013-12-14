@@ -3,25 +3,33 @@
 
 .fileupload-video {
   position: relative;
-  display: inline-block;
-  background: #008C7E;
-  width: 85px;
-  height: 85px;
-  padding: 0;
-  border-radius: 50%;
-  margin-top: 10px;
+  display: block;
+  width: 250px;
+  height: 110px;
+  padding: 20px;
+  margin: 5px auto 0;
+  &:hover {
+    .fileupload-icon { color: #008C7E; }
+    text-decoration: none;
+    #upload-button-text {
+      color: #444;
+    }
+  }
+  .fileupload-icon {
+    color: #aaa;
+    font-size: 6.5em;
+  }
+  #upload-button-text {
+    display: block;
+    margin: 15px 0 9px;
+    font-size: 20px;
+    color: #666;
+    font-weight: normal;
+  }
 }
 
 .fileupload-btn {
   position: relative;
-  .fileupload-icon {
-    position: absolute;
-    margin: -30px 0 0 -26px;
-    left: 50%;
-    top: 50%;
-    color: #FFF;
-  }
-
   input#fileupload, input#poster-fileupload {
     position: absolute;
     top: 0;

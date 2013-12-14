@@ -63,7 +63,7 @@
       <dl class="form">
         <dt>
         <%= f.check_box :free %>
-        <%= f.label t('free') %>
+        <%= f.label :free %>
         </dt>
       </dl>
       <div class="video-button-group">
@@ -73,11 +73,12 @@
   </div>
   <div class="secondary-info">
     <a class= "fileupload-btn fileupload-video">
-      <i class="fileupload-icon fa fa-plus fa-5x"></i>
+      <i class="fileupload-icon fa fa-upload fa-5x"></i>
       <input id="fileupload" name="video[asset]" type="file">
+      <span id="upload-button-text">选择要上传的文件</span>
     </a>
-    <p class='upload-tip'>上传视频：格式支持mov和mp4<br>
-    视频编码：h.264，声音编码：aac
+    <p class='upload-tip'>
+    格式支持mov和mp4。视频编码支持：h.264，声音编码支持：aac
     </p>
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">

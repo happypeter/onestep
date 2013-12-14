@@ -150,6 +150,9 @@ zh-CN:
         price: "价格"
         title: "课程标题(中英文均可)"
         description: "课程描述"
+        public: "公开本课程"
+      video:
+        free: "免费"
 
   about_haoqicat: "关于好奇猫"
   more: "更多"

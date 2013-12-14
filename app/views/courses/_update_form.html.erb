@@ -25,7 +25,9 @@
 
   <dl class="form">
     <dt> <%= f.label :price %> </dt>
-    <dd> <%= f.text_field :price, :placeholder => "根据你的课程制定一个合理的价格" %> </dd>
+    <dd class="embed-icon">
+      <span class="input-fixed-content">￥/元</span>
+      <%= f.text_field :price, :placeholder => "根据你的课程制定一个合理的价格" %> </dd>
   </dl>
   <dl class="form">
     <dt> <%= f.label :title %> </dt>
@@ -40,14 +42,12 @@
       <%= f.text_area :description, :id => "course_desc", :class => "long short", :placeholder => "这是一门实用的课程" %>
     </dd>
   </dl>
-  <dl class="form">
-    <dt>
+  <div class="public-course-action">
     <%= f.check_box :public %>
-    <%= f.label t('public') %>
-    </dt>
-  </dl>
-  <div>
-    <%= f.submit t('update_course'), :class => "button update-course-button" %>
+    <%= f.label :public %>
+  </div>
+  <div class="update-course-actions">
+    <%= f.submit t('update_course'), :class => "button" %>
   </div>
 <% end %>
 
