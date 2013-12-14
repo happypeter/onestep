@@ -11,14 +11,19 @@
             <%= "(免费)" if video.free? %>
           </span>
         </a>
-        <%= link_to video, :method => "delete", :confirm => t('confirm_delete') do %>
-          <div class="trash-icon">
-             <i class="fa fa-trash-o"></i>
+        <a href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
+          <div class="pencil-icon">
+             <i class="fa fa-pencil"></i>
           </div>
-        <% end %>
+        </a>
       <% end %>
     <% end %>
   </ul>
+</div>
+<div class="add-video-bt">
+  <%= link_to edit_course_path(course), class: "button" do %>
+    <i class="fa fa-plus"> 添加新视频</i>
+  <% end %>
 </div>
 
 <%= content_for :template_js do %>

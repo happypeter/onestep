@@ -15,9 +15,8 @@
             display: block;
           }
         }
-        .trash-icon {
+        .pencil-icon {
           display: block;
-          color: red;
         }
       }
       a.video {
@@ -32,14 +31,14 @@
         background-color: #ddd;
         color: $link-green;
       }
-      .list-icon, .video-icon, .trash-icon {
+      .list-icon, .video-icon, .pencil-icon {
         position: absolute;
         top: 50%;
         bottom: auto;
         line-height: 14px;
         margin-top: -7px;
       }
-      .trash-icon {
+      .pencil-icon {
         padding-right: 6px;
         right: 0;
         display: none;
@@ -59,4 +58,8 @@
       }
     }
   }
+}
+.add-video-bt {
+  margin-top: 60px;
+  text-align: center;
 }
