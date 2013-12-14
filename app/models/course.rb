@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
 
   def is_paid_user?(user)
     return false if user.nil?
-    order = Order.where(:course_id => self.id, :user_id => user.id).first
+    order = Order.where(:course_id => self.id, :user_id => user.id, trade_status: "TRADE_FINISHED").first
     return true if !order.nil? && order.trade_status == 'TRADE_FINISHED'
     false
   end

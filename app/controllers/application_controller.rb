@@ -42,6 +42,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_login
+    unless current_user
+      redirect_to :login, :notice => t('login_first_plz')
+    end
+  end
+
   rescue_from ActiveRecord::RecordNotFound do |exception|
     case request.format.to_sym
     when :html
