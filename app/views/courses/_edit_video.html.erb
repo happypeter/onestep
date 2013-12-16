@@ -7,8 +7,7 @@
         file = data.files[0];
         if (types.test(file.type) || types.test(file.name))
         {
-          $('#filesize').html("文件大小： " + "<span class='number'>" + (file.size/(1024*1024)).toFixed(2) + "</span>" + "M");
-          file = data.files[0];
+           file = data.files[0];
           data.context = $(tmpl("template-upload", file));
           $('.secondary-info').append(data.context);
           data.submit();
@@ -74,17 +73,19 @@
   </div>
   <div class="secondary-info">
     <a class= "fileupload-btn fileupload-video">
-      <i class="fileupload-icon fa fa-plus fa-5x"></i>
+      <i class="fileupload-icon fa fa-upload fa-5x"></i>
       <input id="fileupload" name="video[asset]" type="file">
+      <span id="upload-button-text">选择要上传的文件</span>
     </a>
-    <p class='upload-tip'>重新上传视频：格式支持mov和mp4<br>
-    视频编码：h.264，声音编码：aac
+    <p class='upload-tip'>
+    格式支持mov和mp4。视频编码支持：h.264，声音编码支持：aac
     </p>
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
         <div class="progress">
           <span id="progress-text"></span>
           <div class="bar" id="progress-bar">
+          </div>
         </div>
       </div>
     </script>
