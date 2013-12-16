@@ -153,6 +153,8 @@ zh-CN:
         public: "公开本课程"
       video:
         free: "免费"
+        title: "视频标题"
+        desc: "视频描述"
 
   about_haoqicat: "关于好奇猫"
   more: "更多"

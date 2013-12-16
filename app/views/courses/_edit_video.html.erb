@@ -49,12 +49,12 @@
       <dl class="form">
         <dt>
           <%= f.hidden_field :id %>
-          <%= f.label t("video_title") %>
+          <%= f.label :title %>
         </dt>
         <dd><%= f.text_field :title %></dd>
       </dl>
       <dl class="form">
-        <dt><%= f.label t("video_desc") %></dt>
+        <dt><%= f.label :desc %></dt>
         <dd>
           <%= f.text_area :desc, :id => "video_desc", :class => "long short" %>
         </dd>
@@ -62,7 +62,7 @@
       <dl class="form">
         <dt>
           <%= f.check_box :free %>
-          <%= f.label t('free') %>
+          <%= f.label :free %>
         </dt>
       </dl>
       <div class="video-button-group">

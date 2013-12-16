@@ -46,7 +46,7 @@
     <%= form_for(Video.new) do |f| %>
       <dl class="form">
         <dt>
-        <%= f.label t("video_title") %>
+        <%= f.label :title %>
         </dt>
         <dd>
         <%= f.text_field :title %>
@@ -54,7 +54,7 @@
       </dl>
       <dl class="form">
         <dt>
-        <%= f.label t("video_desc") %>
+        <%= f.label :desc %>
         </dt>
         <dd>
         <%= f.text_area :desc, :id => "video_desc", :class => "long short" %>
