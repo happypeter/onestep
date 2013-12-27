@@ -1,15 +1,34 @@
 @import "globals/variables";
 @import "globals/mixins";
 
+.added-videos-wrap {
+  padding-right: 0 !important;
+}
+.add-video-wrap {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 30px !important;
+}
 .add-video-box {
-  height: 300px;
+  .video-delete-btn {
+    float: right;
+  }
   .primary-info {
     position: relative;
     float: left;
+    padding-top: 10px;
+    #video-title, #video-desc {
+      width: 380px !important;
+    }
+    #video-desc {
+      height: 200px;
+    }
     .video-button-group {
-      position: absolute;
-      right: -65px;
-      bottom: -70px;
+      margin: 30px -80px 20px 0;
+      text-align: right;
+      .cancel {
+        margin-left: 20px;
+      }
     }
   }
   .secondary-info {
@@ -17,9 +36,8 @@
     height: 220px;
     text-align: center;
     float: left;
-    margin-left: 10px;
-    border-left: 1px solid #CCC;
-    padding-left: 10px;
+    padding-top: 40px;
+    padding-left: 30px;
     position: relative;
     .upload-tip {
       margin: 5px 0;

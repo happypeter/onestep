@@ -37,12 +37,10 @@
     });
   });
 </script>
-<div class="add-video-box">
-  <div>
-    <%= link_to video, :method => "delete", class: "danger minibutton",
-      :confirm => t('confirm_delete') do %>
-        <i class="fa fa-trash-o"> 删除视频</i>
-    <% end %>
+<div class="add-video-box clearfix">
+  <div class="video-delete-btn">
+    <%= link_to "删除本视频", video, :method => "delete", class: "danger minibutton",
+      :confirm => t('confirm_delete') %>
   </div>
   <div class="primary-info">
     <%= form_for video do |f| %>
@@ -51,12 +49,12 @@
           <%= f.hidden_field :id %>
           <%= f.label :title %>
         </dt>
-        <dd><%= f.text_field :title %></dd>
+        <dd><%= f.text_field :title, id: "video-title" %></dd>
       </dl>
       <dl class="form">
         <dt><%= f.label :desc %></dt>
         <dd>
-          <%= f.text_area :desc, :id => "video_desc", :class => "long short" %>
+          <%= f.text_area :desc, id: "video-desc", class: "long short", rows: '8' %>
         </dd>
       </dl>
       <dl class="form">
@@ -66,8 +64,8 @@
         </dt>
       </dl>
       <div class="video-button-group">
-        <%= f.submit t('submit_video_info'), :class => "button ", data: {disable_with: t('video_saving') + "..."},:id => "submit_video_info" %>
-        <%= link_to t('cancel'), edit_course_path(video.course), :class => "button"%>
+        <%= f.submit t('submit_video_info'), class: "button", data: {disable_with: t('video_saving') + "..."}, id: "submit_video_info" %>
+        <%= link_to t('cancel'), edit_course_path(video.course), class: "cancel" %>
       </div>
     <% end %>
   </div>

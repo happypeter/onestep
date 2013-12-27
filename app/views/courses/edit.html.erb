@@ -38,7 +38,7 @@
     <div class="boxed-group">
       <h3>视频</h3>
       <div class="boxed-group-inner">
-        <div class="tutorial-nav">
+        <div class="tutorial-nav added-videos-wrap">
           <% if @course.videos.present? %>
             <%= render "all_added_videos", :course => @course %>
           <% else %>
@@ -47,7 +47,7 @@
             </p>
           <% end %>
         </div><!-- end tutorial-nav -->
-        <div class="tutorial-content">
+        <div class="tutorial-content add-video-wrap">
           <%= render "add_video", :course => @course %>
         </div>
       </div>  <!-- boxed-group-inner -->
