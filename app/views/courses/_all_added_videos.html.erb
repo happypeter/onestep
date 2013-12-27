@@ -18,8 +18,8 @@
         </a>
       <% end %>
     <% end %>
-    <li class="add-video-bt">
-      <%= link_to edit_course_path(course), class: "video active" do %>
+    <li class="add-video-bnt">
+      <%= link_to course_path(course) + '/add_video.js', class: "video active", remote: true do %>
         <div class="video-icon">
           <i class="fa fa-plus fa-lg"></i>
         </div>

@@ -54,3 +54,6 @@
     </div> <!-- boxed-group -->
   </div><!-- end tutorial-page -->
 </div>
+<% content_for :template_js do %>
+  <%= render "add_video_js", course: @course %>
+<% end %>
