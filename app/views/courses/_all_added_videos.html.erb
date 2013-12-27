@@ -18,12 +18,15 @@
         </a>
       <% end %>
     <% end %>
+    <li class="add-video-bt">
+      <%= link_to edit_course_path(course), class: "video active" do %>
+        <div class="video-icon">
+          <i class="fa fa-plus fa-lg"></i>
+        </div>
+        <span class="video-info edit-video-info"> 添加新视频</span>
+      <% end %>
+    </li>
   </ul>
-</div>
-<div class="add-video-bt">
-  <%= link_to edit_course_path(course), class: "button" do %>
-    <i class="fa fa-plus"> 添加新视频</i>
-  <% end %>
 </div>
 
 <%= content_for :template_js do %>
@@ -31,7 +34,10 @@
     $("ul.playlist > li").hover(
       function() { 
         var text = "<div class='list-icon'><i class='fa fa-th-list'></i></div>";
-        $(this).prepend(text);
+        var a = $(this).hasClass('video');
+        if(a == true) {
+          $(this).prepend(text);
+        }
       },
       function() {
         $("div.list-icon").remove();
