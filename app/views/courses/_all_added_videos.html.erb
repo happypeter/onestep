@@ -2,7 +2,7 @@
   <ul id="play-list" class="playlist" data-update-url="/sort_videos">
     <% course.videos.each do |video| %>
       <%= content_tag_for :li, video do %>
-        <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
+        <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %>" data-remote='true'>
           <div class="video-icon">
             <i class="fa fa-video-camera fa-lg"></i>
           </div>
@@ -10,20 +10,27 @@
             <%= video.title %>
             <%= "(免费)" if video.free? %>
           </span>
+          <div class="arrow">
+            <i class="fa fa-long-arrow-right fa-2x"></i>
+          </div>
         </a>
-        <a href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js'  %> " data-remote='true'>
+        <a href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js' %>"
+          data-remote='true'>
           <div class="pencil-icon">
              <i class="fa fa-pencil"></i>
           </div>
         </a>
       <% end %>
     <% end %>
-    <li class="add-video-bnt">
+    <li class="add-video-btn">
       <%= link_to course_path(course) + '/add_video.js', class: "video active", remote: true do %>
         <div class="video-icon">
           <i class="fa fa-plus fa-lg"></i>
         </div>
         <span class="video-info edit-video-info"> 添加新视频</span>
+        <div class="arrow">
+          <i class="fa fa-long-arrow-right fa-2x"></i>
+        </div>
       <% end %>
     </li>
   </ul>

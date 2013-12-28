@@ -42,9 +42,22 @@
           <% if @course.videos.present? %>
             <%= render "all_added_videos", :course => @course %>
           <% else %>
-            <p>
-            目前还没有视频，点击右侧的<strong>上传视频</strong>按钮上传视频吧。
-            </p>
+          <div class="playlist-container">
+            <ul class="playlist">
+              <li class="add-video-btn no-video">
+                <%= link_to course_path(@course) + '/add_video.js',
+                  class: "video active", remote: true do %>
+                <div class="video-icon">
+                  <i class="fa fa-plus fa-lg"></i>
+                </div>
+                <span class="video-info edit-video-info"> 添加新视频</span>
+                <% end %>
+                <div class="arrow">
+                  <i class="fa fa-long-arrow-right fa-2x"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
           <% end %>
         </div><!-- end tutorial-nav -->
         <div class="tutorial-content add-video-wrap">

@@ -1,3 +1,5 @@
 $('.add-video-box').replaceWith("<%= escape_javascript render 'edit_video', :video => @video %>");
 $('.playlist li a.video').removeClass('active');
+$('.playlist li').removeClass('selected');
 $('.playlist li a.video').eq(<%= @video.position - 1 %>).addClass('active');
+$('.playlist li').eq(<%= @video.position - 1 %>).addClass('selected');
