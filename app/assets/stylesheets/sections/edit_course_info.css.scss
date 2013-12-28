@@ -88,4 +88,94 @@ $course-name-blue: #3499D3;
       box-shadow: -1px 0 0 0 rgba(0,0,0,0.05) inset;
     }
   }
+  .ui.checkbox {
+    position: relative;
+    display: inline-block;
+    min-width: 1em;
+    height: 1.25em;
+    line-height: 1em;
+    outline: 0;
+    vertical-align: middle;
+    font-size: 1em;
+  }
+  .ui.checkbox input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    outline: 0;
+  }
+  .ui.toggle.checkbox {
+    cursor: pointer;
+  }
+  .ui.checkbox label {
+    color: rgba(0,0,0,.6);
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+  }
+  .ui.checkbox label {
+    cursor: pointer;
+    outline: 0;
+  }
+  .ui.toggle.checkbox label {
+    padding-left: 4em;
+  }
+  .ui.checkbox label:before {
+    line-height: 1;
+    background: #FFF;
+    -webkit-transition: background-color .3s ease,-webkit-box-shadow .3s ease;
+    transition: background-color .3s ease,box-shadow .3s ease;
+  }
+  .ui.toggle.checkbox label:before {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    content: '';
+    top: -.25em;
+    left: 0;
+    z-index: 1;
+    background-color: #FFF;
+    width: 3em;
+    height: 1.5em;
+    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    border-radius: 50rem;
+  }
+  .ui.checkbox label:after {
+    -ms-filter: "alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    background: transparent;
+    border-top: 0;
+    border-right: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .ui.toggle.checkbox label:after {
+    opacity: 1;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    content: '';
+    position: absolute;
+    top: .15em;
+    left: .5em;
+    z-index: 2;
+    border: 0;
+    width: .75em;
+    height: .75em;
+    background-color: #D95C5C;
+    border-radius: 50rem;
+    -webkit-transition: background .3s ease 0s,left .3s ease 0s;
+    transition: background .3s ease 0s,left .3s ease 0s;
+  }
+  .ui.toggle.checkbox input:checked+label:after {
+    left: 1.75em;
+    background-color: #89B84C;
+  }
+  .ui.checkbox input:checked+label:after {
+    -ms-filter: "alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+  }
 }

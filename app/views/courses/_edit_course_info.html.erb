@@ -1,9 +1,15 @@
 <% content_for :template_js do %>
   <script>
-    $('#course_desc').NobleCount('#desc_count',{
-      on_negative: 'go_red',
-      on_positive: 'go_green',
-      max_chars: 33});
+    $(".toggle label").click(function() {
+      var token = $(".toggle label i").hasClass("fa-lock");
+      var lock = '<i class="fa fa-lock fa-lg"> 课程未发布</i>';
+      var unlock = '<i class="fa fa-unlock-alt fa-lg"> 课程已发布</i>';
+      if (token) {
+        $(".toggle label i").replaceWith(unlock);
+      }else{
+        $(".toggle label i").replaceWith(lock);
+      }
+    });
   </script>
 <% end %>
 
@@ -45,9 +51,15 @@
           <%= f.text_field :price, :placeholder => "根据你的课程制定一个合理的价格" %>
         </div>
       </div>
-      <div class="item">
+      <div class="item ui toggle checkbox">
         <%= f.check_box :public %>
-        <%= f.label :public %>
+        <label for="course_public">
+          <% if course.public == true %>
+            <i class="fa fa-unlock-alt fa-lg"> 课程已发布</i>
+          <% else %>
+            <i class="fa fa-lock fa-lg"> 课程未发布</i>
+          <% end %>
+        </label>
       </div>
       <div class="item">
         <%= f.submit t('update_course'), :class => "button" %>
