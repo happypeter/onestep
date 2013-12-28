@@ -35,6 +35,7 @@ $course-name-blue: #3499D3;
       border: none;
       border-radius: 0;
     }
+
     #course-title {
       background: $course-name-blue;
       color: white;
@@ -58,7 +59,7 @@ $course-name-blue: #3499D3;
     width: 500px;
     padding-top: 50px;
     .item {
-      margin-top: 20px;
+      margin-top: 30px;
       .cancel {
         margin-left: 20px;
       }
@@ -69,6 +70,7 @@ $course-name-blue: #3499D3;
       input {
         padding-left: 3.5em !important;
         border: 1px solid #ddd;
+        width: 150px;
       }
     }
     .input-fixed-content {
@@ -88,6 +90,7 @@ $course-name-blue: #3499D3;
       box-shadow: -1px 0 0 0 rgba(0,0,0,0.05) inset;
     }
   }
+  /* http://semantic-ui.com/modules/checkbox.html */
   .ui.checkbox {
     position: relative;
     display: inline-block;

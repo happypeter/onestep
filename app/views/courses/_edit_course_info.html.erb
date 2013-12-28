@@ -2,8 +2,8 @@
   <script>
     $(".toggle label").click(function() {
       var token = $(".toggle label i").hasClass("fa-lock");
-      var lock = '<i class="fa fa-lock fa-lg"> 课程未发布</i>';
-      var unlock = '<i class="fa fa-unlock-alt fa-lg"> 课程已发布</i>';
+      var lock = '<i class="fa fa-lock fa-lg"> 私有</i>';
+      var unlock = '<i class="fa fa-unlock-alt fa-lg"> 公开</i>';
       if (token) {
         $(".toggle label i").replaceWith(unlock);
       }else{
@@ -48,16 +48,16 @@
         <%= f.label :price %>
         <div class="price-sign">
           <span class="input-fixed-content">￥/元</span>
-          <%= f.text_field :price, :placeholder => "根据你的课程制定一个合理的价格" %>
+          <%= f.text_field :price, :placeholder => "0.0" %>
         </div>
       </div>
       <div class="item ui toggle checkbox">
         <%= f.check_box :public %>
         <label for="course_public">
           <% if course.public == true %>
-            <i class="fa fa-unlock-alt fa-lg"> 课程已发布</i>
+            <i class="fa fa-unlock-alt fa-lg"> 公开</i>
           <% else %>
-            <i class="fa fa-lock fa-lg"> 课程未发布</i>
+            <i class="fa fa-lock fa-lg"> 私有</i>
           <% end %>
         </label>
       </div>
