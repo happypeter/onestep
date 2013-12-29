@@ -16,7 +16,7 @@
   .primary-info {
     position: relative;
     float: left;
-    padding-top: 10px;
+    padding-top: 30px;
     #video-title, #video-desc {
       width: 380px !important;
     }
@@ -37,10 +37,17 @@
     text-align: center;
     float: left;
     padding-top: 40px;
-    padding-left: 30px;
+    padding-left: 40px;
     position: relative;
     .upload-tip {
-      margin: 5px 0;
+      margin: 0;
+      text-align: left;
+      background-color: #E6F4F9;
+      color: #4D8796;
+      padding: 5px;
+      li {
+        margin-left: 20px;
+      }
     }
     .upload {
       width: 300px;
@@ -66,7 +73,8 @@
         }
         #progress-text {
           position: absolute;
-          color: #333;
+          color: white;
+          letter-spacing: 1px;
           font-weight: bold;
           text-shadow: 0 0px 1px #999;
           margin-left: -40px;

@@ -90,6 +90,7 @@ $course-name-blue: #3499D3;
       box-shadow: -1px 0 0 0 rgba(0,0,0,0.05) inset;
     }
   }
+  
   /* http://semantic-ui.com/modules/checkbox.html */
   .ui.checkbox {
     position: relative;
@@ -119,6 +120,9 @@ $course-name-blue: #3499D3;
   .ui.checkbox label {
     cursor: pointer;
     outline: 0;
+  }
+  .ui.checkbox label:hover {
+    color: rgba(0,0,0,.8);
   }
   .ui.toggle.checkbox label {
     padding-left: 4em;

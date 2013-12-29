@@ -2,8 +2,8 @@
   <script>
     $(".toggle label").click(function() {
       var token = $(".toggle label i").hasClass("fa-lock");
-      var lock = '<i class="fa fa-lock fa-lg"> 私有</i>';
-      var unlock = '<i class="fa fa-unlock-alt fa-lg"> 公开</i>';
+      var lock = '<i class="fa fa-lock"> 私有</i>';
+      var unlock = '<i class="fa fa-unlock-alt"> 公开</i>';
       if (token) {
         $(".toggle label i").replaceWith(unlock);
       }else{
@@ -55,9 +55,9 @@
         <%= f.check_box :public %>
         <label for="course_public">
           <% if course.public == true %>
-            <i class="fa fa-unlock-alt fa-lg"> 公开</i>
+            <i class="fa fa-unlock-alt"> 公开</i>
           <% else %>
-            <i class="fa fa-lock fa-lg"> 私有</i>
+            <i class="fa fa-lock"> 私有</i>
           <% end %>
         </label>
       </div>

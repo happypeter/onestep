@@ -33,6 +33,7 @@
         },
         done: function (e, data) {
           $('#progress-text').html("上传成功！");
+          $('#video-filename').html("视频文件名： " + "<strong>" + file.name + "</strong>");
         },
     });
   });

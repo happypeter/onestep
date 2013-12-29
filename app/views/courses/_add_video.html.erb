@@ -25,14 +25,17 @@
     <% end %>
   </div>
   <div class="secondary-info">
-    <a class= "fileupload-btn fileupload-video">
-      <i class="fileupload-icon fa fa-upload fa-5x"></i>
+    <ul class='upload-tip'>
+      <li>视频格式支持：mov, mp4</li>
+      <li>视频编码支持：h.264</li>
+      <li>声音编码支持：aac</li>
+    </ul>
+    <p id="video-filename"></p>
+    <a class="fileupload-btn fileupload-video">
+      <i class="fileupload-icon fa fa-upload"></i>
       <input id="fileupload" name="video[asset]" type="file">
-      <span id="upload-button-text">选择要上传的文件</span>
+      <span id="upload-button-text">上传视频</span>
     </a>
-    <p class='upload-tip'>
-    格式支持mov和mp4。视频编码支持：h.264，声音编码支持：aac
-    </p>
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
         <div class="progress">
