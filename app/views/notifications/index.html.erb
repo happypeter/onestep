@@ -15,7 +15,7 @@
         <tbody>
           <% for notification in @notifications %>
               <% type = notification.notifiable_type.underscore %>
-              <tr <%= "class=highlight" if notification.unread %>>
+              <tr class=<%= "highlight" if notification.unread %>>
                 <%= render :partial => "notification_#{type}", :locals => { :notification => notification }%>
                 <td class="time"><%= time_ago_in_words notification.created_at %>前</td>
                 <td class="last"><%= link_to "删除", notification_path(notification),
