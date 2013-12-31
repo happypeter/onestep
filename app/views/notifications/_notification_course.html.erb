@@ -6,6 +6,6 @@
 
     <% course = notification.notifiable %>
     <span class="annotate">关注了你的课程: </span>
-    <%= link_to course.name, course_path(course) %>
+    <%= link_to course.title, course_path(course) %>
   </td>
 <% end %>
