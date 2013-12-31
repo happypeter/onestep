@@ -49,7 +49,9 @@
         <div class="course-update-time">
           <i class="fa fa-clock-o"></i>
           <span><%= t('update_time') %></span>
-          <span><%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %></span>
+          <span>
+            <%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %>
+          </span>
         </div>
       </div>
       <div class="tutorial-content">

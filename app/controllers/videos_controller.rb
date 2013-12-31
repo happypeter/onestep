@@ -35,7 +35,7 @@ class VideosController < ApplicationController
 
   def sort
     params[:video].each_with_index do |id, index|
-      Video.update_all({position: index+1}, {id: id})
+      Video.update_all({position: index + 1}, {id: id})
     end
     render nothing: true
   end

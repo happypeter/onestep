@@ -3,41 +3,43 @@
     <%= image_tag @user.final_avatar_url %>
     <%= link_to @user.name, member_path(@user.name) %> 为您倾情更新 <%= @count %> 次
   </div>
-  <div class="tl-wrap tl-course">
-    <div class="timestamp">
-      <div class="date">
-        <div class="year"><%= Time.now.year %></div>
-        <span class="month"><%= Time.now.strftime("%B").slice(0..2) %> <%= Time.now.day %></span>
+  <% if @count != 0 %>
+    <div class="tl-wrap tl-course">
+      <div class="timestamp">
+        <div class="date">
+          <div class="year"><%= Time.now.year %></div>
+          <span class="month"><%= Time.now.strftime("%B").slice(0..2) %> <%= Time.now.day %></span>
+        </div>
       </div>
-    </div>
-    <div class="tl-content clearfix">
-      <div class="tl-middleline">
-        <% i = 0 %>
-        <% @groups.each do |group| %>
-          <% first = true %>
-          <div class="month-group clearfix">
-            <% group.each do |activity| %>
-              <div class="<%= cycle("pull-left", "pull-right") %><%= " first" if first %>">
-                <div class="project"></div>
-                <ul>
-                  <%= render 'activity', :activity => activity %>
-                </ul>
-              </div>
-              <% first = false %>
-            <% end %>
-          </div>
-          <div class="timestamp">
-            <div class="date">
-              <% flag = @date[i].year == @date[i+1].year %>
-              <div class="<%= flag ? "noyear" : "year" %>">
-                <%= @date[i+1].year unless flag %>
-              </div>
-              <span class="month"><%= @date[i+1].strftime("%B").slice(0..2) %> <%= @date[i+1].day %></span>
+      <div class="tl-content clearfix">
+        <div class="tl-middleline">
+          <% i = 0 %>
+          <% @groups.each do |group| %>
+            <% first = true %>
+            <div class="month-group clearfix">
+              <% group.each do |activity| %>
+                <div class="<%= cycle("pull-left", "pull-right") %><%= " first" if first %>">
+                  <div class="project"></div>
+                  <ul>
+                    <%= render 'activity', :activity => activity %>
+                  </ul>
+                </div>
+                <% first = false %>
+              <% end %>
             </div>
-          </div>
-          <% i = i + 1 %>
-        <% end %>
+            <div class="timestamp">
+              <div class="date">
+                <% flag = @date[i].year == @date[i+1].year %>
+                <div class="<%= flag ? "noyear" : "year" %>">
+                  <%= @date[i+1].year unless flag %>
+                </div>
+                <span class="month"><%= @date[i+1].strftime("%B").slice(0..2) %> <%= @date[i+1].day %></span>
+              </div>
+            </div>
+            <% i = i + 1 %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

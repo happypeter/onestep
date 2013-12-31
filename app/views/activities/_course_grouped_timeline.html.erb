@@ -9,12 +9,12 @@
     <div class="tl-middleline">
       <% i = 0 %>
       <% groups.each do |group| %>
-        <% flag = 0 %>
+        <% first = true %>
         <div class="month-group clearfix">
           <% group.each do |value| %>
             <% p = value.first.course %>
             <% if p.public %>
-              <div class= "<%= cycle("pull-left", "pull-right") %> <%= " first" if flag == 0 %>">
+              <div class= "<%= cycle("pull-left", "pull-right") %> <%= " first" if first %>">
                 <div class="project">
                   <%= image_tag p.user.final_avatar_url %>
                   <%= link_to p.user.name, member_path(p.user.name) %> /
@@ -26,7 +26,7 @@
                   <% end %>
                 </ul>
               </div>
-              <% flag = 1 %>
+              <% first = false %>
             <% end %>
           <% end %>
         </div>

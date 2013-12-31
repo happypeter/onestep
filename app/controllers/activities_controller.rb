@@ -6,17 +6,19 @@ class ActivitiesController < ApplicationController
     @date = []
     activities = Activity.where(course_id: course.id)
     @count = activities.count
-    first = activities.first.created_at
-    date = Time.zone.now
-    while first < date do
-      group = Activity.where(course_id: course.id).within_range(date).reverse
-      if group.present?
-        @groups << group
-        @date << date
+    if @count != 0
+      first = activities.first.created_at
+      date = Time.zone.now
+      while first < date do
+        group = Activity.where(course_id: course.id).within_range(date).reverse
+        if group.present?
+          @groups << group
+          @date << date
+        end
+        date -= 30.days
       end
-      date -= 30.days
+      @date << date
     end
-    @date << date
   end
 
   def timeline
