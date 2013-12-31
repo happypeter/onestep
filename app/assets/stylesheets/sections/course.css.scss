@@ -43,6 +43,43 @@ div#html5-player {
   border: 1px solid #ccc;
 }
 
+
+.download-btn {
+  float: right;
+  padding: 10px 0;
+}
+
+#edit-course-delete {
+  margin-left: 5px;
+  .minibutton {
+    padding: 2px 10px;
+    vertical-align: bottom;
+  }
+}
+
+.edit-course-info-area {
+  padding-top: 5px;
+  p {
+    margin-bottom: 5px;
+  }
+  #edit-course-poster {
+    margin-bottom: 35px;
+    .poster-preview {
+      margin: 5px 0 20px;
+      width: $course-poster-width;
+      height: $course-poster-height;
+      #poster {
+        margin: 0 auto;
+        padding: 5px;
+        height: 100%;
+        max-width: $course-poster-width;
+        max-height: $course-poster-height;
+        border: 1px solid darken($light-gray, 20%);
+      }
+    }
+  }
+}
+
 .courses {
   margin-bottom: 40px;
   .course {

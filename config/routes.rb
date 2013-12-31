@@ -9,6 +9,7 @@ Onestep::Application.routes.draw do
   get '/orders/done' => "orders#done"
   post '/orders/notify' => "orders#notify"
   get "/orders/new" => "orders#new",  :as => "new_order"
+  get "/download" => "videos#download"
 
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"

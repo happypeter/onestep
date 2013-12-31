@@ -47,4 +47,13 @@ class VideosController < ApplicationController
     track_activity video, video.course.id
     redirect_to edit_course_path(video.course)
   end
+
+  def download
+    video = Video.find_by_asset(params[:secure_download] + ".mov") #FIXME: could be other extention here
+    video_path = Rails.root.to_s + "/public" + video.asset_url
+    send_file video_path,
+              :filename => video.filename,
+              :type => "video/quicktime",
+              :disposition => 'attachment'
+  end
 end

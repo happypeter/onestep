@@ -2,3 +2,6 @@
   width="840" height="<%= (840 / video.ratio).to_i %>" data-setup="{}">
   <source src="<%= video.asset_url %>" type='video/mp4'>
 </video>
+<div class="download-btn">
+  <%= link_to "Download Video", "/download?secure_download=#{@video.asset_url.split("/")[3].split(".")[0]}", class: "minibutton primary" %>
+</div>
