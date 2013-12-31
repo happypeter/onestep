@@ -33,8 +33,6 @@ GEM
     alipay_dualfun (0.4)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.0.1)
-      sass (~> 3.2)
     builder (3.0.4)
     capistrano (2.14.2)
       highline
@@ -229,7 +227,6 @@ DEPENDENCIES
   acts_as_list
   alipay_dualfun
   bcrypt-ruby (~> 3.0.0)
-  bootstrap-sass
   capistrano
   capybara
   carrierwave (~> 0.6.2)

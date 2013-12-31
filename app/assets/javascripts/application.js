@@ -22,7 +22,6 @@
 //= require colorbox-rails
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
-//= require bootstrap
 
 var commenter = [];
 var commenter_exist= [];
