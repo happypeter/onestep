@@ -1,0 +1,9 @@
+<div class="container">
+  <% if @groups.present? %>
+    <div class="timeline-title">
+      <%= image_tag @user.final_avatar_url %>
+      <%= link_to @user.name, member_path(@user.name) %> 为您倾情更新 <%= @activity_count %> 次
+    </div>
+    <%= render 'course_grouped_timeline', groups: @groups, date: @date %>
+  <% end %>
+</div>

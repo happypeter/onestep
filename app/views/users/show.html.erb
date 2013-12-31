@@ -21,6 +21,7 @@
       <li><strong><%= @user.follower_count %></strong> followers</li>
       <li><strong><%= @user.followed_user_count %></strong> following</li>
     </ul>
+    <%= link_to "个人动态", member_story_path(@user.name), class: "minibutton" %>
   </div><!--end user-info -->
   <div id="user-course">
     <div class="owned-course-section clearfix">
