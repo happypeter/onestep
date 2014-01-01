@@ -29,9 +29,6 @@ class UsersController < ApplicationController
       redirect_to_target_or_default :root, :notice => t('login_first_plz')
       return
     end
-    respond_to do |format|
-      format.html
-    end
   end
 
   def update
@@ -54,9 +51,6 @@ class UsersController < ApplicationController
 
   def edit_avatar
     @user = current_user
-    respond_to do |format|
-      format.html
-    end
   end
 
   def create
@@ -130,22 +124,20 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.reverse
-    respond_to do |format|
-      format.html
-    end
   end
 
   def show
     @user = User.find_by_name(params[:member_name])
-    if @user.nil?
-      raise ActiveRecord::RecordNotFound
-    end
-    @courses =  @user == current_user ? @user.courses : @user.courses.pub
-    @paid_courses = @user.paid_courses
+
+    raise ActiveRecord::RecordNotFound if @user.nil?
+
+    @courses = @user == current_user ? @user.courses : @user.courses.pub
     @watched_courses = @user == current_user ? @user.watched_courses : @user.watched_courses.pub
-    respond_to do |format|
-      format.html
-    end
+    @paid_courses = @user.paid_courses
+
+    @activities = []
+    @user.activities.reverse.each { |a| @activities << a if Course.find(a.course_id).public }
+
     session[:return_to] = request.url
   end
 

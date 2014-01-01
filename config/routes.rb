@@ -3,7 +3,6 @@ Onestep::Application.routes.draw do
   root :to => 'info#marketing'
 
   get 'timeline' => "activities#timeline", as: "timeline"
-  get '/:member_name/timeline' => "activities#member_story", as: "member_story"
 
   post '/checkout' => "orders#checkout"
   get '/orders/done' => "orders#done"
