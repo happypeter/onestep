@@ -61,12 +61,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    black_list = ["write_blog", "create_login_seesion", \
-                  "account", "blog", "explore", "signup", \
-                  "login", "about"]
 
-    if params[:user][:name].empty? || \
-       params[:user][:email].empty? || \
+    black_list = %w(write_blog create_login_seesion account blog explore signup login about)
+
+    if params[:user][:name].empty? ||
+       params[:user][:email].empty? ||
        params[:user][:password].empty?
 
       flash[:notice] = t('fields_can_not_be_blank')
@@ -86,7 +85,7 @@ class UsersController < ApplicationController
     end
 
     if black_list.include? user_name
-      flash[:notice] = "#{user_name}" + t('is_reserved_word')
+      flash[:notice] = "#{user_name} #{t('is_reserved_word')}"
       redirect_to :signup
       return
     end
