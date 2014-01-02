@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
     I18n.locale = cookies[:locale] || "zh-CN"
   end
 
-  private
 
+  private
   def current_user
     @current_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
   end

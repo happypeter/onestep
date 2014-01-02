@@ -3,6 +3,9 @@
     <%= image_tag @user.final_avatar_url %>
     <%= link_to @user.name, member_path(@user.name) %> 为您倾情更新 <%= @count %> 次
   </div>
+  <div class="tl-course-title">
+    <%= @course.title %>
+  </div>
   <% if @count != 0 %>
     <div class="tl-wrap tl-course">
       <div class="timestamp">

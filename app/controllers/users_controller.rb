@@ -68,10 +68,10 @@ class UsersController < ApplicationController
     end
 
     user_name = @user.name
-    if user_name.include?('-') or
-       user_name.include?(' ') or
-       user_name.include?('.') or
-       user_name.include?('/') or
+    if user_name.include?('-') ||
+       user_name.include?(' ') ||
+       user_name.include?('.') ||
+       user_name.include?('/') ||
        user_name.include?('\\')
       flash[:notice] = "用户名不能包含横线, 斜线, 句点或空格"
       redirect_to :signup

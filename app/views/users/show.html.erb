@@ -3,11 +3,11 @@
     <div class="avatared">
       <% if current_user == @user %>
         <a href="/account" title="点击编辑个人信息">
-          <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+          <%= image_tag @user.final_avatar_url, :alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
         </a>
         <%= link_to t('edit_profile'), account_path, :class => "button" %>
       <% else %>
-        <%= image_tag @user.final_avatar_url,:alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+        <%= image_tag @user.final_avatar_url, :alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
         <%= follow_user_tag(@user) %>
       <% end %>
     </div>
@@ -15,7 +15,10 @@
       <span><%= @user.name %></span>
     </h1>
     <p>
-      <span> <i class="fa fa-envelope-o"></i> <a href="mailto:<%= @user.email %>"> <%= @user.email %> </a> </span>
+      <span>
+        <i class="fa fa-envelope-o"></i>
+        <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+      </span>
     </p>
     <ul class="stats">
       <li><strong><%= @user.follower_count %></strong> followers</li>
