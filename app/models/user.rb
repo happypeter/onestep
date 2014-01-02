@@ -12,10 +12,14 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :avatar, :password, :password_confirmation, :admin
 
-  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_user_id", :dependent => :destroy
+  has_many :follower_relationships, :class_name => "Relationship",
+           :foreign_key => "followed_user_id", :dependent => :destroy
+
   has_many :followers, :through => :follower_relationships
 
-  has_many :followed_relationships, class_name: "Relationship", foreign_key: "follower_id", :dependent => :destroy
+  has_many :followed_relationships, :class_name => "Relationship",
+           :foreign_key => "follower_id", :dependent => :destroy
+           
   has_many :followed_users, :through => :followed_relationships
 
   mount_uploader :avatar, AvatarUploader
@@ -56,17 +60,16 @@ class User < ActiveRecord::Base
   def has_avatar?
     self.read_attribute(:avatar).present?
   end
+
   def gravatar_url
     gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=512&d=retro"
   end
+
   def final_avatar_url
-    if self.has_avatar?
-      self.avatar_url
-    else
-      self.gravatar_url
-    end
+    self.has_avatar? ? self.avatar_url : self.gravatar_url
   end
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
