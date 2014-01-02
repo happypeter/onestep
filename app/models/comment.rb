@@ -8,15 +8,12 @@ class Comment < ActiveRecord::Base
   private
   def here_users
     all = []
-    self.video.comments.each do |c|
-      all << c.user
-    end
+    self.video.comments.each { |c| all << c.user }
     all << self.video.user
     all.uniq
   end
+
   def send_notification_to_commenters
-    here_users.each do |u|
-      Notification.notify(u, self, self.user, "comment") unless u.id == self.user.id
-    end
+    here_users.each { |u| Notification.notify(u, self, self.user, "comment") if u.id != self.user.id }
   end
 end

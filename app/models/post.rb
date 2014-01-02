@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   attr_accessible :content, :title, :name
+
   belongs_to :user
 
   scope :recent, order('id DESC')

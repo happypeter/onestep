@@ -38,5 +38,4 @@ class Course < ActiveRecord::Base
     return false if user == self.user
     self.watchers.delete(user)
   end
-
 end
