@@ -28,19 +28,20 @@
   <% end %>
   <div class="course-wrap clearfix">
     <div id="edit-course-delete">
-      <%= link_to t('delete_this_course'), course, :confirm => t('confirm_delete'),
+      <%= link_to t("delete_this_course"), course, :confirm => t("confirm_delete"),
       :method => :delete, :class => "minibutton danger" %>
+      <%= link_to t("go_back"), course, :class => "minibutton" %>
     </div>
     <div class="course-card">
       <div class="poster">
-        <%= image_tag course.poster_url, id: 'poster'%>
+        <%= image_tag course.poster_url, :id => "poster" %>
         <a class= "fileupload-btn button">
           <i class="fa fa-edit"></i>
           <input id="poster-fileupload" name="course[poster]" type="file">
         </a>
       </div>
-      <%= f.text_field :title, placeholder: "不求惊世骇俗，但求意义明确", id: "course-title" %>
-      <%= f.text_area :description, rows: '6', id: "course-desc", placeholder: "这是一门实用的课程" %>
+      <%= f.text_field :title, :placeholder => "不求惊世骇俗，但求意义明确", :id => "course-title" %>
+      <%= f.text_area :description, :rows => "6", :id => "course-desc", :placeholder => "这是一门实用的课程" %>
     </div>
     
     <div class="course-extra-info">
@@ -62,7 +63,7 @@
         </label>
       </div>
       <div class="item">
-        <%= f.submit t('update_course'), :class => "button" %>
+        <%= f.submit t("update_course"), :class => "button" %>
         <span class="cancel"><%= link_to "取消", edit_course_path(course) %></span>
       </div>
     </div>

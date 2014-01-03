@@ -42,9 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_login
-    unless current_user
-      redirect_to :login, :notice => t('login_first_plz')
-    end
+    redirect_to :login, :notice => t('login_first_plz') if current_user.blank?
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -65,11 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def count_unread_notification
-    if current_user
-      @unread_count = current_user.notifications.where(unread: true).count
-    else
-      @unread_count = 0
-    end
+    @unread_count = current_user ? current_user.notifications.where(:unread => true).count : 0
   end
 
   def track_activity(trackable, course_id, action = params[:action])
