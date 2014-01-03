@@ -16,8 +16,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   AVATAR_NW = 172
   AVATAR_NH = 172
 
+  process :resize_to_fit => [AVATAR_LW, AVATAR_LH], :if => :large_image?
   process :crop
-  process :resize_to_fit => [AVATAR_LW,AVATAR_LH]
 
   def crop
     return unless model.cropping?
@@ -31,16 +31,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def get_version(version = :original)
-    current_version = self.current_path
-    other_version = File.dirname(current_version) + "/" + version.to_s + "_" + File.basename(current_version)
-
-    final_version = (version == :original) ? current_version : other_version
-  end
-
-  def get_geometry(version = :original)
-    img = Magick::Image::read(get_version(version)).first
-    @geometry = { :width => img.columns, :height => img.rows }
+  def large_image? file
+    if @file
+      img = ::Magick::Image::read(@file.file).first
+      return img.rows > AVATAR_LW || img.columns > AVATAR_LH
+    end
   end
 
    # Provide a default URL as a default if there hasn't been a file uploaded:
