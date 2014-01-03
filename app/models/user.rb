@@ -33,6 +33,33 @@ class User < ActiveRecord::Base
 
   after_update :reprocess_avatar, :if => :cropping?
 
+  # define class that extends IO with methods that are required by carrierwave
+  class CarrierStringIO < StringIO
+    def original_filename
+      # the real name does not matter
+      "photo.jpeg"
+    end
+
+    def content_type
+      # real content type, "image/png" or "image/jpeg"
+      # data.match(/data:(.*);/)[1]
+      "image/jpeg"
+    end
+  end
+
+  # this method will be called during standard assignment in your controller
+  # (like `update_attributes`)
+  def image_data=(data)
+    regex = /data:(.*);(.*),/
+    realdata = regex.match(data).post_match
+
+    # decode data and create stream on them
+    io = CarrierStringIO.new(Base64.decode64(realdata))
+
+    # this will do the thing (avatar is mounted carrierwave uploader)
+    self.avatar = io
+  end
+
   def reprocess_avatar
     avatar.recreate_versions!
   end

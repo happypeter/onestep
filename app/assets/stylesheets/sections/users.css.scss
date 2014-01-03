@@ -123,7 +123,7 @@
   width: 300px;
   height: 300px;
   margin: 0 auto;
-  img { max-width: none; }
+  img { max-width: 300px; max-height: 300px; }
 }
 
 #member-page, #watcher-page {

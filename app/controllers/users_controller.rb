@@ -14,6 +14,12 @@ class UsersController < ApplicationController
   # PUT
   def crop
     @user = User.find_by_name(current_user.name) if current_user
+
+    dataurl = params[:user][:avatar]
+
+    # mothod to convert base64 image data url to binary image
+    @user.image_data= dataurl
+
     @user.crop_x = params[:user][:crop_x]
     @user.crop_y = params[:user][:crop_y]
     @user.crop_w = params[:user][:crop_w]
