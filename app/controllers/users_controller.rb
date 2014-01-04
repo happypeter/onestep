@@ -129,7 +129,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.reverse
+    @count = User.all.count
+    @users = User.limit(60).order('id desc')
   end
 
   def show

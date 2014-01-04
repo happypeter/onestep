@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :followed_relationships, :class_name => "Relationship",
            :foreign_key => "follower_id", :dependent => :destroy
-           
+
   has_many :followed_users, :through => :followed_relationships
 
   mount_uploader :avatar, AvatarUploader
