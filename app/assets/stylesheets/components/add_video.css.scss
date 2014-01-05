@@ -1,17 +1,28 @@
 @import "globals/variables";
 @import "globals/mixins";
 
+.videos-section {
+  background: #ececec !important;
+}
 .added-videos-wrap {
   padding-right: 0 !important;
+  background-color: #ececec !important;
+  .playlist-container {
+    background: #f2f2f2;
+  }
 }
 .add-video-wrap {
   display: table-cell;
   vertical-align: middle;
   padding-left: 30px !important;
+  padding-right: 30px;
+  background: white;
 }
 .add-video-box {
   .video-delete-btn {
     float: right;
+    padding-top: 10px;
+    margin-right: -20px;
   }
   .primary-info {
     position: relative;

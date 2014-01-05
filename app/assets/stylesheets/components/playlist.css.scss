@@ -10,7 +10,7 @@
       &:hover {
         a.video {
           text-decoration: none;
-          background-color: #eee;
+          background-color: #ddd;
           .video-icon {
             display: block;
           }
@@ -22,17 +22,17 @@
       a.video {
         display: block;
         margin-left: 16px;
-        color: darken($light-gray, 50%);
+        color: $link-green;
         padding: 12px 10px 12px 6px;
-        margin-bottom: 2px;
-        border-radius: 3px;
+        margin-bottom: -1px;
+        border-bottom: 1px solid #ddd;
+      }
+      a.video:last-child {
+        border-bottom: none;
       }
       a.video.active {
-        background-color: #ddd;
-        color: $link-green;
-        .arrow {
-          visibility: visible;
-        }
+        background-color: white;
+        color: darken($light-gray, 50%);
       }
       .list-icon, .video-icon, .pencil-icon {
         position: absolute;
@@ -45,14 +45,6 @@
         padding-right: 6px;
         right: 0;
         display: none;
-      }
-      .arrow {
-        visibility: hidden;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        margin-top: -13px;
-        color: $link-green;
       }
       .list-icon {
         color: teal;
@@ -74,9 +66,6 @@
           visibility: hidden;
         }
       }
-    }
-    .no-video .arrow {
-      visibility: visible;
     }
   }
 }

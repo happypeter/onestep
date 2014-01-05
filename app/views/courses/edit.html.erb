@@ -37,14 +37,14 @@
   <div class="tutorial-page">  
     <div class="boxed-group">
       <h3>视频</h3>
-      <div class="boxed-group-inner">
+      <div class="boxed-group-inner videos-section">
         <div class="tutorial-nav added-videos-wrap">
           <% if @course.videos.present? %>
             <%= render "all_added_videos", :course => @course %>
           <% else %>
           <div class="playlist-container">
             <ul class="playlist">
-              <li class="add-video-btn no-video">
+              <li class="add-video-btn">
                 <%= link_to course_path(@course) + '/add_video.js',
                   class: "video active", remote: true do %>
                 <div class="video-icon">
@@ -52,9 +52,6 @@
                 </div>
                 <span class="video-info edit-video-info"> 添加新视频</span>
                 <% end %>
-                <div class="arrow">
-                  <i class="fa fa-long-arrow-right fa-2x"></i>
-                </div>
               </li>
             </ul>
           </div>
