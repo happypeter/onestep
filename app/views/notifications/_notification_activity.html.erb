@@ -4,6 +4,8 @@
 <% when "destroy" %>
 <td class="notificon">
   <i class="fa fa-trash-o fa-2x"></i>
+</td>
+<td>
   <%= render :partial => "notification_executor", :locals => { :notification => notification} %>
   <span class="annotate"> 删除了一个视频</span>
 </td>
