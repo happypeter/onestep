@@ -3,9 +3,6 @@
     <% course.videos.each do |video| %>
       <%= content_tag_for :li, video do %>
         <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js' %>" data-remote='true'>
-          <div class="video-icon">
-            <i class="fa fa-video-camera fa-lg"></i>
-          </div>
           <span class="video-info edit-video-info">
             <%= video.title %>
             <%= "(免费)" if video.free? %>
@@ -24,7 +21,7 @@
         <div class="video-icon">
           <i class="fa fa-plus fa-lg"></i>
         </div>
-        <span class="video-info edit-video-info"> 添加新视频</span>
+        <span class="video-info"> 添加新视频</span>
       <% end %>
     </li>
   </ul>

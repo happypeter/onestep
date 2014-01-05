@@ -22,17 +22,18 @@
       a.video {
         display: block;
         margin-left: 16px;
-        color: $link-green;
-        padding: 12px 10px 12px 6px;
-        margin-bottom: -1px;
-        border-bottom: 1px solid #ddd;
+        color: darken($light-gray, 50%);
+        padding: 10px 10px 10px 6px;
+        margin-bottom: 2px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
       }
       a.video:last-child {
         border-bottom: none;
       }
       a.video.active {
-        background-color: white;
-        color: darken($light-gray, 50%);
+        background-color: #ddd;
+        color: $link-green;
       }
       .list-icon, .video-icon, .pencil-icon {
         position: absolute;
@@ -58,6 +59,7 @@
       }
       .edit-video-info {
         padding-right: 30px;
+        padding-left: 10px;
       }
     }
     li.selected {

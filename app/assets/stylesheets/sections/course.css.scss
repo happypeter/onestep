@@ -22,6 +22,7 @@
   }
   .tutorial-content {
     display: table-cell;
+    border-left: 1px solid #ccc;
     padding-left: 20px;
     width: 100%;
     .tutorial-description {
@@ -44,7 +45,7 @@ div#html5-player {
 
 .download-btn {
   float: right;
-  padding: 10px 0;
+    padding: 10px 0;
 }
 
 #edit-course-delete {
