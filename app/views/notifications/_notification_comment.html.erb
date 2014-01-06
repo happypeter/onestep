@@ -6,7 +6,7 @@
     <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
     <% course = comment.video.course %>
     <span class="annotate">
-      <%= course.user == current_user ? '评论了之前你点评过的课程' : '评论了你的课程' %>
+      <%= course.user == current_user ? '评论了你的课程' : '评论了之前你点评过的课程' %>
       (<%= link_to course.title, course_path(course) %>)的第
       <%= comment.video.position %>个视频
       <%= link_to comment.video.title, video_comment_path(comment.id) %>

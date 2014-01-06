@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def course_name_tag(course_id)
     course = Course.find_by_id(course_id)
-    link_to course.name, course_path(course)
+    link_to course.title, course_path(course)
   end
 
   def video_course_path(video)
