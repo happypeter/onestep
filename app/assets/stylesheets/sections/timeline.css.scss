@@ -6,15 +6,20 @@
   border-bottom: 1px solid #eeeeee;
   font-size: 22px;
   text-align: center;
-  line-height: 60px;
-  img {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+  .author {
+    margin-top: 10px;
+    img {
+      width: 30px;
+      height: 30px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      margin-bottom: -10px;
+    }
+    .update-count {
+      font-size: 13px;
+    }
   }
-}
-.tl-course-title {
-  display: none;
 }
 .tl-wrap {
   width: 1200px;
