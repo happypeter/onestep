@@ -1,6 +1,7 @@
 Onestep::Application.routes.draw do
 
   root :to => 'info#marketing'
+  get '/api/money'  => 'api#money'
 
   get 'timeline' => "activities#timeline", as: "timeline"
 
