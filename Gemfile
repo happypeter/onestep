@@ -61,3 +61,6 @@ end
 
 # use for alipay
 gem 'alipay_dualfun'
+
+# use for pagination
+gem 'kaminari'

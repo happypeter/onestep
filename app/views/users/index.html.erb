@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="member-page">
+  <div id="member-page" class="clearfix">
     <div class="title">
       <%= t 'member_count' %> <%= @count %>
     </div>
@@ -9,4 +9,5 @@
       <%= render :partial => "shared/member_list", :locals => {:members => @users} %>
     <% end %>
   </div>
+  <%= paginate @users, :window => 2 %>
 </div>

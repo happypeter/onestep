@@ -130,7 +130,7 @@ class UsersController < ApplicationController
 
   def index
     @count = User.all.count
-    @users = User.limit(60).order('id desc')
+    @users = User.order('id desc').page(params[:page]).per(60)
   end
 
   def show
