@@ -5,6 +5,8 @@ class Activity < ActiveRecord::Base
   belongs_to :course
   belongs_to :trackable, :polymorphic => true
 
+  has_many :notifications, :as => :notifiable, :dependent => :destroy
+
   scope :within_range, lambda{ |args| where(created_at: (args - 30.days)..args) }
 
   after_create :send_notification_to_watchers

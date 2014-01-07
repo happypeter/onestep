@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :content, :video_id, :user_id
   belongs_to :user
   belongs_to :video
+  has_many  :notifications, :as => :notifiable, :dependent => :destroy
 
   after_create :send_notification_to_commenters
 

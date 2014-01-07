@@ -55,7 +55,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    destroy_notifications @comment
     @comment.destroy
 
     respond_to do |format|

@@ -125,6 +125,7 @@ class CoursesController < ApplicationController
   def destroy
     user = User.find_by_name(params[:member_name])
     course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    destroy_notifications course
     course.destroy
     redirect_to member_path(user.name)
   end

@@ -73,10 +73,14 @@ class ApplicationController < ActionController::Base
   def destroy_notifications(notifiable)
     id = notifiable.id
     type = notifiable.class.name
-    Activity.where(:trackable_id => id, :trackable_type => type).each do |a|
-      if a.action != "destroy"
-        Notification.where(:notifiable_id => a.id, :notifiable_type => a.class.name).delete_all
+    if type == "Video"
+      Activity.where(:trackable_id => id, :trackable_type => type).each do |a|
+        if a.action != "destroy"
+          Notification.where(:notifiable_id => a.id, :notifiable_type => a.class.name).delete_all
+        end
       end
+    else
+      Notification.where(:notifiable_id => id, :notifiable_type => type).delete_all
     end
   end
 end
