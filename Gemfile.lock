@@ -109,6 +109,9 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
+    kaminari (0.15.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.8.0)
     kss (0.4.0)
     libv8 (3.11.8.13)
@@ -241,6 +244,7 @@ DEPENDENCIES
   jquery-fileupload-rails (= 0.4.0)
   jquery-rails (= 2.1.2)
   jquery-ui-rails
+  kaminari
   kss
   mime-types
   mysql2
