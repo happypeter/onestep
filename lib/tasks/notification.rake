@@ -15,6 +15,17 @@ namespace :db do
         puts "Type y/n to delete the notification"
         flag = STDIN.gets.chomp
         v.delete if flag == "y"
+      elsif v.notifiable_type == "Activity" && v.action != "destroy"
+        if v.notifiable.trackable.blank?
+          a << v.id
+          puts "Type y/n to show the notification"
+          option = STDIN.gets.chomp
+          puts "#{v.id}: #{v.notifiable_type}" if option == "y"
+
+          puts "Type y/n to delete the notification"
+          flag = STDIN.gets.chomp
+          v.delete if flag == "y"
+        end
       end
     end
     puts "notifications with empty notifiable object: #{a}"
