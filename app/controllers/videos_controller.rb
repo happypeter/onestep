@@ -1,5 +1,4 @@
 class VideosController < ApplicationController
-
   def create
     respond_to do |f|
       f.html do
@@ -14,6 +13,7 @@ class VideosController < ApplicationController
       end
     end
   end
+
   def update
     if params[:id]
       video = Video.find(params[:id])
@@ -23,9 +23,8 @@ class VideosController < ApplicationController
     old_asset = video.asset.to_s.split('/').last
     video.update_attributes(params[:video])
     new_asset = video.asset.to_s.split('/').last
-    if old_asset != new_asset
-      track_activity video, video.course.id
-    end
+    track_activity video, video.course.id if old_asset != new_asset
+
     respond_to do |f|
       f.html do
           redirect_to_target_or_default root_url
@@ -49,8 +48,8 @@ class VideosController < ApplicationController
   end
 
   def download
-    video = Video.find_by_asset(params[:secure_download] + ".mov") #FIXME: could be other extention here
-    video_path = Rails.root.to_s + "/public" + video.asset_url
+    video = Video.find_by_asset("#{params[:serial]}.#{params[:type]}")
+    video_path ="#{Rails.root.to_s}/public#{video.asset_url}"
     send_file video_path,
               :filename => video.filename,
               :type => "video/quicktime",
