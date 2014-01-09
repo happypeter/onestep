@@ -50,11 +50,11 @@ class OrdersController < ApplicationController
       if order.trade_status != "TRADE_FINISHED"
         if params[:trade_status] == 'TRADE_FINISHED'
           # for direct pay
-          order.update_attributes(trade_status: params[:trade_status])
+          order.update_attributes(trade_status: params[:trade_status], total_fee: params[:total_fee])
         elsif params[:trade_status] == "WAIT_SELLER_SEND_GOODS"
           # for danbao pay
           AlipayDualfun.send_goods_confirm_by_platform(options)
-          order.update_attributes(trade_status: "TRADE_FINISHED")
+          order.update_attributes(trade_status: "TRADE_FINISHED",  total_fee: params[:total_fee])
         end
       end
     end
