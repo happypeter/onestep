@@ -7,6 +7,7 @@
     .title {
       line-height: 60px;
       margin-top: 30px;
+      height: 60px; // fix section title and talbe overlap error in firefox
       .clear-all {
         float: left;
       }
