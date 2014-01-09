@@ -1,4 +1,5 @@
 $("#<%= dom_id(@comment) %> .edit-comment-hide").hide();
+$("#<%= dom_id(@comment) %> .form-content").remove();
 
 $("<%= j render('form') %>").appendTo("#<%= dom_id(@comment) %> .form-section")
 
