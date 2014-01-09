@@ -49,7 +49,6 @@ Styleguide 3.1.
       text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
     }
 
-
     .comment-header-actions {
       display: inline-block;
       vertical-align: middle;
@@ -86,6 +85,17 @@ Styleguide 3.1.
         max-width: 100%;
         height: 100px;
         min-height: 100px;
+      }
+      .form-actions {
+        margin-top: 10px;
+      }
+      .comment-cancel-btn {
+        display: block;
+        float: left;
+      }
+      #comment_btn {
+        display: block;
+        float: right;
       }
     }
   }
