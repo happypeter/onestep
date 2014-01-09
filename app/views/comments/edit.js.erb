@@ -1,1 +1,9 @@
-$("#<%= dom_id(@comment) %> .edit-comment-hide").replaceWith("<%= escape_javascript render('form') %>");
+$("#<%= dom_id(@comment) %> .edit-comment-hide").hide();
+
+$("<%= j render('form') %>").appendTo("#<%= dom_id(@comment) %> .form-section")
+
+$("#<%= dom_id(@comment) %> .comment-cancel-btn").click(function( event ) {
+  event.preventDefault();
+  $("#<%= dom_id(@comment) %> .form-content").remove();
+  $("#<%= dom_id(@comment) %> .edit-comment-hide").show();
+});

@@ -1,6 +1,11 @@
 <div class="form-content">
  <%= form_for @comment, :remote => true do |f| %>
     <%= f.text_area :content %>
-    <%= f.submit t("update_comment"), :class=>"minibutton", :remote => true, :id => "comment_btn" %>
+    <div class="form-actions">
+      <%= link_to "Cancel", '#', :class => "minibutton danger comment-cancel-btn" %>
+      <%= f.submit t("update_comment"), :class => "minibutton",
+                                        :remote => true,
+                                        :id => "comment_btn" %>
+    </div>
   <% end %>
 </div>
