@@ -11,7 +11,7 @@ class ApiController < ApplicationController
           :date => order.created_at.strftime(t('date.formats.default'))
         }
       end
-      render :json => result
+      render :json => result, :callback => params[:callback]
     }
     end
   end
