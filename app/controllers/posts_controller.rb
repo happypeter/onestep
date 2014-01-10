@@ -39,10 +39,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    session[:return_to] = request.url
   end
 
   def edit
     @post = Post.find(params[:id])
   end
-
 end

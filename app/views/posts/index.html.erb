@@ -1,5 +1,10 @@
-<div class="blog">
-  <div class="container">
+<div class="container">
+  <div class="blog">
+    <% if current_user && current_user.admin? %>
+      <div class="minibutton">
+        <%= link_to "写文章", "/write_blog" %>
+      </div>
+    <% end %>
     <div class="post-listing">
       <% if @posts.empty? %>
         <p>
