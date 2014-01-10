@@ -1,8 +1,10 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :content, :video_id, :user_id
+  attr_accessible :content, :commentable_id, :commentable_type, :user_id
+
   belongs_to :user
   belongs_to :video
-  has_many  :notifications, :as => :notifiable, :dependent => :destroy
+  belongs_to :commentable, :polymorphic => true
+  has_many   :notifications, :as => :notifiable, :dependent => :destroy
 
   after_create :send_notification_to_commenters
 
