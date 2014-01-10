@@ -4,8 +4,9 @@ class Video < ActiveRecord::Base
   belongs_to :user
   belongs_to :course, :touch => true
 
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :activities, :as => :trackable
+
   acts_as_list scope: :course
 
   mount_uploader :asset, VideoUploader

@@ -31,13 +31,18 @@ module ApplicationHelper
     markdown  "```\n#{string}```\n"
   end
 
-  def video_comment_path(comment_id)
-    comment = Comment.find(comment_id)
-    course_path(comment.video.course) + '/' + comment.video.position.to_s  + "#comment_#{comment_id}"
+  def commentable_comment_path(comment_id)
+    commentable = Comment.find(comment_id).commentable
+    case commentable.class.name.underscore
+    when "video"
+      "#{course_path(commentable.course)}/#{commentable.position.to_s}#comment_#{comment_id}"
+    when "post"
+      "#{blog_path(commentable)}/#comment_#{comment_id}"
+    end
   end
 
   def owner?(item)
-    return false if item.blank? or current_user.blank?
+    return false if item.blank? || current_user.blank?
     item.user_id == current_user.id
   end
 
@@ -48,9 +53,9 @@ module ApplicationHelper
 
   def video_course_path(video)
     if video.title.present?
-      link_to video.title, course_path(video.course) + "/" + video.position.to_s
+      link_to video.title, "#{course_path(video.course)}/#{video.position.to_s}"
     else
-      link_to t('author_forgot_title'), course_path(video.course) + "/" + video.position.to_s
+      link_to t('author_forgot_title'), "#{course_path(video.course)}/#{video.position.to_s}"
     end
   end
 end

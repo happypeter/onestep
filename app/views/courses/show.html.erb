@@ -1,14 +1,14 @@
-<div class="pagehead clearfix">
+  <div class="pagehead clearfix">
   <div class="container">
     <ul class="pagehead-actions">
       <% if @course.user == current_user %>
         <li>
-        <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
+          <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
         </li>
       <% end %>
       <% if not @course.open_to_user?(current_user) %>
         <li>
-        <%= link_to t('buy_this_course') + "（￥" + @course.price.to_s + "）", new_order_path + "?course_id=#{@course.id}", class: "minibutton primary" %>
+          <%= link_to t('buy_this_course') + "（￥" + @course.price.to_s + "）", new_order_path + "?course_id=#{@course.id}", :class => "minibutton primary" %>
         </li>
       <% end %>
       <li>
@@ -20,9 +20,9 @@
       </li>
     </ul>
     <h1 class="pagehead-heading">
-      <div class="course-image" style="background-image: url(<%= @course.poster_url %>);"> </div>
+      <div class="course-image" style="background-image: url(<%= @course.poster_url %>);"></div>
       <span class="author">
-        <%= link_to @course.user.name, member_path(@course.user.name), class: "author"%>
+        <%= link_to @course.user.name, member_path(@course.user.name), :class => "author" %>
       </span>
       <span class="pagehead-name-divider">/</span>
       <strong><%= link_to @course.title, course_path(@course) %></strong>
@@ -37,8 +37,9 @@
     <div class="alert">
       <%= t('no_classes') %>
       <% if @course.user == current_user %>
-        <%= link_to t('edit_course'), edit_course_path(@course), class: "minibutton" %>
-        <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'), :method => :delete, :class => "minibutton" %>
+        <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
+        <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'),
+          :method => :delete, :class => "minibutton" %>
       <% end %>
     </div>
   <% else %>
@@ -59,19 +60,21 @@
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
           <%= render "video_player", :video => @video %>
         <% else %>
-          <%= link_to t('pay_for_course_please'), new_order_path + "?course_id=#{@course.id}", class: "button primary" %>
+          <%= link_to t('pay_for_course_please'), new_order_path + "?course_id=#{@course.id}",
+            :class => "button primary" %>
         <% end %>
         <div id="comments">
           <h3><%= t("comment") %></h3>
           <%= render @video.comments %>
         </div>
         <% if current_user %>
-          <%= render "comments/new_comment_form" %>
+          <%= render "comments/new_comment_form", :commentable => @video %>
         <% else %>
           <div id="login_buttons">
-            <%= link_to t("login_and_comment"), login_path(:return_to => request.url) ,:class => "minibutton primary" %>
+            <%= link_to t("login_and_comment"), login_path(:return_to => request.url),
+              :class => "minibutton primary" %>
           </div>
-          <br \>
+          <br>
         <% end %>
       </div>
     </div>

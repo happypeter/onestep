@@ -37,7 +37,6 @@ Styleguide 3.1.
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-
     .comment-header-date {
       display: inline-block;
       margin: 0;
@@ -48,7 +47,6 @@ Styleguide 3.1.
       color: #777;
       text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
     }
-
     .comment-header-actions {
       display: inline-block;
       vertical-align: middle;
@@ -92,6 +90,7 @@ Styleguide 3.1.
       .comment-cancel-btn {
         display: block;
         float: left;
+        text-decoration: none;
       }
       #comment_btn {
         display: block;

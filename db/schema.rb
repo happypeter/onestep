@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107032853) do
+ActiveRecord::Schema.define(:version => 20140109152651) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -38,11 +38,14 @@ ActiveRecord::Schema.define(:version => 20140107032853) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "user_id"
-    t.integer  "video_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "courses", :force => true do |t|
     t.string   "name"

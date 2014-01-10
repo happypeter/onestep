@@ -3,7 +3,7 @@
     <div class="comment-header">
       <i class="fa fa-comment"></i>
       <%= link_to comment.user.name, member_path(comment.user.name), :class => "comment-header-author" %>
-      <%= link_to "说", video_comment_path(comment.id) %>
+      <%= link_to "说", commentable_comment_path(comment.id) %>
       <span class="comment-header-right">
         <span class="comment-header-date">
           <%= time_ago_in_words comment.created_at %>前
