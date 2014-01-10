@@ -15,4 +15,16 @@
       <%= markdown notification.notifiable.content %>
     </div>
   </td>
+  <% when "post" %>
+  <td class="notificon"><i class="fa fa-comments-o fa-2x"></i></td>
+  <td>
+    <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
+    <span class="annotate">
+      <%= commentable.user == current_user ? '评论了你的文章' : '评论了你点评过的文章' %>
+      <%= link_to commentable.title, blog_path(commentable) %>
+    </span>
+    <div class="comment-body markdown-format">
+      <%= markdown notification.notifiable.content %>
+    </div>
+  </td>
 <% end %>

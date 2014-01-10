@@ -6,8 +6,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   has_many   :notifications, :as => :notifiable, :dependent => :destroy
 
-  after_create :send_notification_to_commenters,
-               :if => Proc.new { self.commentable.class.name == "Video" }
+  after_create :send_notification_to_commenters
 
   private
   def here_users
