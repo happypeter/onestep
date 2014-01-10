@@ -11,8 +11,8 @@ class Comment < ActiveRecord::Base
   private
   def here_users
     all = []
-    self.video.comments.each { |c| all << c.user }
-    all << self.video.user
+    self.commentable.comments.each { |c| all << c.user }
+    all << self.commentable.user
     all.uniq
   end
 
