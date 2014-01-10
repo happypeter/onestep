@@ -31,9 +31,14 @@ module ApplicationHelper
     markdown  "```\n#{string}```\n"
   end
 
-  def video_comment_path(comment_id)
-    comment = Comment.find(comment_id)
-    "#{course_path(comment.commentable.course)}/#{comment.commentable.position.to_s}#comment_#{comment_id}"
+  def commentable_comment_path(comment_id)
+    commentable = Comment.find(comment_id).commentable
+    case commentable.class.name.underscore
+    when "video"
+      "#{course_path(commentable.course)}/#{commentable.position.to_s}#comment_#{comment_id}"
+    when "post"
+      "#{blog_path(commentable)}/#comment_#{comment_id}"
+    end
   end
 
   def owner?(item)

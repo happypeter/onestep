@@ -1,20 +1,18 @@
-<% comment = notification.notifiable %>
-<% case notification.action %>
-<% when "comment" %>
+<% commentable = notification.notifiable.commentable %>
+<% case commentable.class.name.underscore %>
+<% when "video" %>
   <td class="notificon"><i class="fa fa-comments fa-2x"></i></td>
   <td>
     <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
-    <% course = comment.commentable.course %>
+    <% course = commentable.course %>
     <span class="annotate">
       <%= course.user == current_user ? '评论了你的课程' : '评论了你点评过的课程' %>
       (<%= link_to course.title, course_path(course) %>)的第
-      <%= comment.commentable.position %>个视频
-      <%= link_to comment.commentable.title, video_comment_path(comment.id) %>
+      <%= commentable.position %>个视频
+      <%= link_to commentable.title, commentable_comment_path(notification.notifiable.id) %>
     </span>
-    <% if comment.present? %>
-      <div class="comment-body markdown-format">
-        <%= markdown comment.content %>
-      </div>
-    <% end %>
+    <div class="comment-body markdown-format">
+      <%= markdown notification.notifiable.content %>
+    </div>
   </td>
 <% end %>

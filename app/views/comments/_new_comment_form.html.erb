@@ -15,19 +15,19 @@
       <div class="comment-form-head tabnav">
         <ul class="tabnav-tabs">
           <li><a href="#" class="tabnav-tab write-tab selected"><%= t('edit') %></a></li>
-          <li><%= link_to t('preview'), "#" , :class => "tabnav-tab preview-tab" %></li>
+          <li><%= link_to t('preview'), "#", :class => "tabnav-tab preview-tab" %></li>
         </ul>
       </div>
       <div class="comment-content new-comment-content clearfix">
         <div class="error" style="display: none;">
           <%= t('error_blank_content') %>
         </div>
-        <%= form_for(Comment.new(:commentable_id => @video.id,
-                                 :commentable_type => "Video",
+        <%= form_for(Comment.new(:commentable_id => commentable.id,
+                                 :commentable_type => "#{commentable.class.name}",
                                  :user_id => current_user.id), :remote => true) do |f| %>
           <%= f.hidden_field :commentable_id %>
           <%= f.hidden_field :commentable_type %>
-          <%= f.hidden_field :user_id  %>
+          <%= f.hidden_field :user_id %>
           <%= f.text_area :content %>
           <br>
           <%= f.submit "#{t('publish_comment')}", :class => "minibutton", :id => "comment-btn", :disable_with => "正在发表" %>
