@@ -10,7 +10,7 @@ Styleguide 5.1
 $course-name-blue: #3499D3;
 $private-label: #2c3e50;
 a.course-thumb-container {
-  width: 400px;
+  width: 310px;
   display: block;
   &:hover {
     text-decoration: none;
@@ -18,7 +18,6 @@ a.course-thumb-container {
   .center-course-thumb {
     margin: 0 auto;
   }
-  padding: 20px 0;
 }
 .course-thumb {
   position: relative;
