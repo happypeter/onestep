@@ -4,4 +4,23 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Onestep::Application.config.secret_token = '798fb3270b4dd1da232ad5e774c4a2188cec31f850bfc8b64ae8a38dbef2ad16fb64cd9bd24c8dab30534401d08af6a454233faec3efa87b1c57dd3279c013a0'
+
+# You can use `rake secret` to generate a secure secret key.
+# Make sure your secret_key_base is kept private
+# if you're sharing your code publicly.
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Onestep::Application.config.secret_key_base = secure_token
