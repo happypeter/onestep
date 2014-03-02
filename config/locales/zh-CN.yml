@@ -50,7 +50,7 @@ zh-CN:
   edit_course: "编辑课程"
   update_course: "更新课程"
   create_course: "创建课程"
-  no_courses_found: "无任何课程"
+  no_courses_found: "木有课程！"
 
   course_poster: "课程封面"
   course_poster_dimension: "最佳宽高比为16：9"

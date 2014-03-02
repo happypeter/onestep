@@ -28,65 +28,65 @@
   #user-course {
     width: 900px;
     float: right;
-    border-left: 1px solid #ccc;
-    border-top-left-radius: 5px;
-    display: table-cell;
-    .user-course-header {
-      background-color: #EAEAEA;
-      background-image: -moz-linear-gradient(#FAFAFA, #EAEAEA);
-      background-image: -webkit-linear-gradient(#FAFAFA, #EAEAEA);
-      background-image: linear-gradient(#FAFAFA, #EAEAEA);
-      background-repeat: repeat-x;
-      border: 1px solid #ddd;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      border-bottom: 1px solid #ddd;
-      h2 {
-        margin: 0;
-        height: 58px;
-        line-height: 58px;
-        padding: 0 30px;
+    .main-nav {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ededed;
+      text-align: center;
+      li {
+        display: inline-block;
+      }
+      li a {
+        color: #888;
+        font-weight: 400;
+        border: 0px;
+        padding: 10px 40px;
         font-size: 18px;
-        letter-spacing: 3px;
-        color: lighten(#52595D, 10%);
-        font-weight: 800;
+        position: relative;
+        display: block;
+        margin-right: 2px;
+        line-height: 1.43;
+        -webkit-transition: color 0.25s linear;
+        -moz-transition: color 0.25s linear;
+        -ms-transition: color 0.25s linear;
+        -o-transition: color 0.25s linear;
+        transition: color 0.25s linear;
+        &:hover {
+          color: #2B69A2;
+          background: none;
+          text-decoration: none;
+        }
       }
-      .new-course {
-        float: right;
-        letter-spacing: 3px;
-        margin: 4px 20px 0 0;
-        top: 10px;
+      li.active a {
+        color: #2B69A2;
+        font-weight: 400;
+      }
+      li.active a:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #7BA3C9;
+        left: 1px;
+        bottom: -2px;
       }
     }
-  }
-  h1 {
-    color: $font-gray;
-    span {
-      line-height: 1;
-      display: inline-block;
-      width: 100%;
-      line-height: 26px;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
-      padding-bottom: 4px;
+    .new-course {
+      letter-spacing: 1px;
+      text-align: right;
+      margin-bottom: 10px;
     }
-    em {
-      display: inline-block;
-      width: 100%;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
-      font-family: "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 24px;
-      color: #666;
-      position: relative;
-      top: -2px;
-      margin-bottom: 12px;
-      vertical-align: top;
-      letter-spacing: 0;
-      -webkit-font-smoothing: antialiased;
+    .content.active {
+      display: block;
+    }
+    .no-course {
+      border: 2px solid #dbe8f5;
+      width: 400px;
+      text-align: center;
+      margin: 0 auto;
+      padding: 30px 0;
+      background-color: #e7f0fa;
     }
   }
 }

@@ -1,0 +1,21 @@
+<div class="course-list clearfix">
+  <div class="user-course-header">
+    <i class="fa fa-clock-o"></i>
+    <span class="date"><%= course.created_at.strftime("%B %d, %Y") %></span>
+  </div>
+  <%= image_tag course.poster_url %>
+  <div class="meta">
+    <div class="title">
+      <%= link_to course.title, course_path(course) %>
+      <% if !course.public %>
+        <span class="course-private-label"><i class="fa fa-lock fa-lg"></i></span>
+      <% end %>
+    </div>
+    <div class="desc">
+      <%= course.description %>
+    </div>
+    <div class="videos">视频数: <%= course.videos.count %> </div>
+    <div class="author">作者： <%= course.user.name %></div>
+  </div>
+  <%= link_to "查看课程", course_path(course), :class => "course-button" %>
+</div>
