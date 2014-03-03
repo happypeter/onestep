@@ -1,7 +1,10 @@
 #user-course {
   .content {
-    margin-top: 50px;
+    margin-top: 30px;
     display: none;
+  }
+  .content.active {
+    display: block;
   }
   .courses-wrap {
     border-left: 1px solid #dbe8f5;

@@ -1,0 +1,31 @@
+<% if activity.action != "delete" && activity.trackable %>
+<tr class="<%= cycle("odd", "even") %>">
+  <td class="icon">
+    <% if activity.action == "create" %>
+      <i class="fa fa-plus fa-2x"></i>
+    <% else %>
+      <i class="fa fa-edit fa-2x"></i>
+    <% end %>
+  </td>
+
+  <td class="desc">
+    <%= activity.user.name %>
+
+    <% if activity.trackable_type == "Video" %>
+      <% video = activity.trackable %>
+      <%= t 'to_course' %>
+      <%= link_to video.course.title, course_path(video.course) %>
+
+      <%= activity.action == "create" ? t('upload_a_video') : t('reupload_a_video') %>
+      <%= link_to video.title, course_path(video.course) + "/" + video.position.to_s %>
+
+    <% else %>
+      <% course = activity.trackable %>
+      <%= t 'create_a_course' %>
+      <%= link_to course.title, course %>
+    <% end %>
+  </td>
+
+  <td class="date"><%= activity.created_at.strftime("%-m月%-d日 %H:%M") %></td>
+</tr>
+<% end %>

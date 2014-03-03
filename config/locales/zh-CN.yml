@@ -15,6 +15,7 @@ zh-CN:
   watch_course: "关注课程"
   unwatch_course: "取消关注"
   watchers: "关注人数"
+  to_course: "为课程"
   create_a_course: "创建了一门新课程"
   upload_a_video: "上传了一个新视频"
   delete_a_video: "删除了一个视频"
@@ -51,6 +52,7 @@ zh-CN:
   update_course: "更新课程"
   create_course: "创建课程"
   no_courses_found: "木有课程！"
+  no_activities_found: "木有课程更新!"
 
   course_poster: "课程封面"
   course_poster_dimension: "最佳宽高比为16：9"

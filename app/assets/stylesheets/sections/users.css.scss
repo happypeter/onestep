@@ -28,10 +28,10 @@
   #user-course {
     width: 900px;
     float: right;
+    margin-bottom: 30px;
     .main-nav {
       padding-left: 0;
       list-style: none;
-      margin-bottom: 20px;
       border-bottom: 2px solid #ededed;
       text-align: center;
       li {
@@ -77,9 +77,6 @@
       text-align: right;
       margin-bottom: 10px;
     }
-    .content.active {
-      display: block;
-    }
     .no-course {
       border: 2px solid #dbe8f5;
       width: 400px;
@@ -87,9 +84,66 @@
       margin: 0 auto;
       padding: 30px 0;
       background-color: #e7f0fa;
+      -webkit-box-shadow: 0 0 7px 0 #ddd;
+      -moz-box-shadow: 0 0 7px 0 #ddd;
+      box-shadow: 0 0 7px 0 #ddd;
+    }
+  }
+  .user-activity {
+    margin-top: 30px;
+    .seperator {
+      position: relative;
+      height: 20px;
+      margin-bottom: 30px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        border-bottom: 2px solid #ededed;
+      }
+      .mark {
+        position: absolute;
+        left: 50%;
+        margin-left: -70px;
+        background-color: #ffffff;
+        width: 140px;
+        border: 1px solid #ededed;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        font-size: 18px;
+        color: #888;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+    .activities-wrap {
+      width: 900px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      text-align: center;
+      .even, .odd {
+        border-bottom: 1px solid #e6eaed;
+      }
+      .odd {
+        background-color: #f6f9fb;
+      }
+      tr:last-child {
+        border-bottom: none;
+      }
+      td {
+        height: 45px;
+      }
+      .date {
+      }
+    }
+    .no-activity {
+      text-align: center;
     }
   }
 }
+
 .setting-container {
   margin-top: 20px;
   .left-col {

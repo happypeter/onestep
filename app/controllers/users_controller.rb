@@ -143,7 +143,7 @@ class UsersController < ApplicationController
     @paid_courses = @user.paid_courses
 
     @activities = []
-    @user.activities.reverse.each { |a| @activities << a if Course.find(a.course_id).public }
+    @user.activities.reverse.each { |a| @activities << a  }
 
     session[:return_to] = request.url
   end

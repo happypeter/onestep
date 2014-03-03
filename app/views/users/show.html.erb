@@ -28,25 +28,25 @@
   <div id="user-course">
     <ul class="main-nav">
       <li class="active" data-course-type="owned">
-        <a href="#owned-courses">我创建的课程</a>
+        <a href="#owned-courses">创建的课程</a>
       </li>
       <li data-course-type="watched">
-        <a href="#watched-courses">我关注的课程</a>
+        <a href="#watched-courses">关注的课程</a>
       </li>
       <li data-course-type="paid">
-        <a href="#paid-courses">我购买的课程</a>
+        <a href="#paid-courses">购买的课程</a>
       </li>
     </ul>
     <div class="content owned-courses-section active clearfix">
-      <div class="new-course">
-        <% if current_user == @user %>
-          <%= link_to create_course_path, :class => "button primary" do %>
-            <%= t('create_course') %>
-            <i class='fa fa-hand-o-right fa-lg'></i>
-          <% end %>
-        <% end %>
-      </div>
       <% if @courses.present? %>
+        <div class="new-course">
+          <% if current_user == @user %>
+            <%= link_to create_course_path, :class => "button primary" do %>
+              <%= t('create_course') %>
+              <i class='fa fa-hand-o-right fa-lg'></i>
+            <% end %>
+          <% end %>
+        </div>
         <div class="courses-wrap">
           <% @courses.each do |course| %>
             <%= render "courses/course_list", :course => course %>
@@ -55,9 +55,36 @@
       <% else %>
         <p class="no-course">
           <i class="fa fa-smile-o fa-2x"></i>
-         <%= t('no_courses_found') %>
-       </p>
+          <%= t('no_courses_found') %>
+          <% if current_user == @user %>
+            <%= link_to create_course_path, :class => "minibutton primary" do %>
+              <%= t('create_course') %>
+              <i class='fa fa-hand-o-right fa-lg'></i>
+            <% end %>
+          <% end %>
+        </p>
       <% end %>
+      <div class="user-activity">
+        <div class="seperator">
+          <span class="mark">最新动态</span>
+        </div>
+        <% if @activities.present? %>
+          <table class="activities-wrap">
+            <% @activities.each do |activity| %>
+              <% if @user == current_user %>
+                <%= render "activities/user_activity", :activity => activity %>
+              <% else %>
+                <%= render "activities/user_activity", :activity => activity if Course.find(activity.course_id).public %>
+              <% end %>
+            <% end %>
+          </table>
+        <% else %>
+          <p class="no-activity">
+            <i class="fa fa-smile-o fa-2x"></i>
+            <%= t('no_activities_found') %>
+          </p>
+        <% end %>
+      </div>
     </div>
     <div class="content paid-courses-section clearfix">
       <% if @paid_courses.present? and current_user == @user%>
@@ -69,8 +96,8 @@
       <% else %>
         <p class="no-course">
           <i class="fa fa-smile-o fa-2x"></i>
-         <%= t('no_courses_found') %>
-       </p>
+          <%= t('no_courses_found') %>
+        </p>
       <% end %>
     </div>
     <div class="content watched-courses-section clearfix">
@@ -83,11 +110,12 @@
       <% else %>
         <p class="no-course">
           <i class="fa fa-smile-o fa-2x"></i>
-         <%= t('no_courses_found') %>
-       </p>
+          <%= t('no_courses_found') %>
+        </p>
       <% end %>
     </div>
   </div><!--end user-course -->
+
 </div><!-- user-show -->
 
 <% content_for :template_js do %>
