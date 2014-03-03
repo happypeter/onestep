@@ -5,17 +5,24 @@
   </div>
   <%= image_tag course.poster_url %>
   <div class="meta">
-    <div class="title">
-      <%= link_to course.title, course_path(course) %>
+    <div>
+      <span class="title"><%= link_to course.title, course_path(course) %></span>
       <% if !course.public %>
-        <span class="course-private-label"><i class="fa fa-lock fa-lg"></i></span>
+        <span class="lock"><i class="fa fa-lock fa-lg"></i></span>
       <% end %>
     </div>
     <div class="desc">
       <%= course.description %>
     </div>
-    <div class="videos">视频数: <%= course.videos.count %> </div>
-    <div class="author">作者： <%= course.user.name %></div>
+    <div class="details">
+      <i class="fa fa-video-camera"></i><span class="tip">视频: <%= course.videos.count %></span>
+    </div>
+    <div class="details">
+      <i class="fa fa-money"></i><span class="tip">价格: <%= course.price.present? ? course.price : 0 %> 元</span>
+    </div>
+    <div class="details">
+      <i class="fa fa-user"></i><span class="tip">作者： <%= link_to course.user.name, member_path(course.user.name) %></span>
+    </div>
   </div>
   <%= link_to "查看课程", course_path(course), :class => "course-button" %>
 </div>

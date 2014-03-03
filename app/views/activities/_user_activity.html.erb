@@ -2,14 +2,14 @@
 <tr class="<%= cycle("odd", "even") %>">
   <td class="icon">
     <% if activity.action == "create" %>
-      <i class="fa fa-plus fa-2x"></i>
+      <i class="fa fa-plus fa-lg"></i>
     <% else %>
-      <i class="fa fa-edit fa-2x"></i>
+      <i class="fa fa-edit fa-lg"></i>
     <% end %>
   </td>
 
   <td class="desc">
-    <%= activity.user.name %>
+    <%= link_to activity.user.name, member_path(activity.user.name) %>
 
     <% if activity.trackable_type == "Video" %>
       <% video = activity.trackable %>
