@@ -2,14 +2,26 @@
 
 #notifications {
   .details {
-    width: 960px;
-    margin: 0 auto;
     .title {
       line-height: 60px;
       margin-top: 30px;
       height: 60px; // fix section title and talbe overlap error in firefox
       .clear-all {
         float: left;
+      }
+      .btn-danger {
+        color: #ffffff;
+        background-color: #e91b23;
+        border: 1px solid;
+        border-color: #df1119;
+        padding: 5px 20px;
+        font-size: 16px;
+        &:hover {
+          color: #ffffff;
+          background-color: #d5070f;
+          border-color: #d5070f;
+          text-decoration: none;
+        }
       }
       .total {
         float: right;
@@ -27,22 +39,36 @@
     border-spacing: 0;
     background: transparent;
   }
+  tr.odd {
+    background-color: #EAF3F3;
+  }
   table td {
     padding: 8px;
     text-align: left;
     vertical-align: top;
     line-height: 18px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #D9E4E6;
   }
-  td.face {
-    width: 48px;
+  tr:first-child {
+    border-left: 1px solid #167F92;
   }
   .annotate {
     font-size: 14px;
     font-weight: bold;
   }
   td.notificon {
-    width: 60px;
+    padding-left: 10px;
+    width: 50px;
+    color: #888;
+    border-left: 1px solid #167F92;
+  }
+  td.avatar {
+    padding-right: 8px;
+    padding-left: 0;
+    width: 30px;
+  }
+  td.event {
+    padding: 8px 0;
   }
   img.gavatar {
     border-radius: 50%;
@@ -55,10 +81,26 @@
     color: black;
     padding-top: 12px;
     padding-left: 20px;
+    font-style: italic;
+    font-size: 13px;
   }
   td.last {
     width: 50px;
     text-align: right;
+    border-right: 1px solid #167F92;
+    .danger {
+      background-color: #d15b47;
+      border: 1px solid;
+      border-color: #d15b47;
+      padding: 5px 10px;
+      font-size: 13px;
+      color: #ffffff;
+      &:hover {
+        background-color: #b74635!important;
+        border-color: #d15b47;
+        text-decoration: none;
+      }
+    }
   }
   .highlight {
     [class^="fa-"], [class*=" fa-"]{

@@ -1,8 +1,15 @@
 <% commentable = notification.notifiable.commentable %>
+<% executor = notification.executor %>
+
 <% case commentable.class.name.underscore %>
 <% when "video" %>
   <td class="notificon"><i class="fa fa-comments fa-2x"></i></td>
-  <td>
+  <td class="avatar">
+    <%= link_to member_path(executor.name) do %>
+      <%= image_tag executor.final_avatar_url, :class => "gavatar", :width => "30x30" %>
+    <% end %>
+  </td>
+  <td class="event">
     <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
     <% course = commentable.course %>
     <span class="annotate">
@@ -18,6 +25,11 @@
   <% when "post" %>
   <td class="notificon"><i class="fa fa-comments-o fa-2x"></i></td>
   <td>
+    <%= link_to member_path(executor.name) do %>
+      <%= image_tag executor.final_avatar_url, :class => "gavatar", :width => "30x30" %>
+    <% end %>
+  </td>
+  <td class="event">
     <%= render :partial => "notification_executor", :locals => { :notification => notification } %>
     <span class="annotate">
       <%= commentable.user == current_user ? '评论了你的文章' : '评论了你点评过的文章' %>
