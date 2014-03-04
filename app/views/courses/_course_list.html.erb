@@ -2,6 +2,15 @@
   <div class="user-course-header">
     <i class="fa fa-clock-o"></i>
     <span class="date"><%= course.created_at.strftime("%B %d, %Y") %></span>
+    <span class="watcher">/ 关注人数 <%= course.watchers.count %></span>
+    <div class="action">
+      <% if current_user.present? %>
+        <%= link_to edit_course_path(course) do %>
+          <i class="fa fa-pencil"></i>
+          <%= t('edit_course') %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <%= image_tag course.poster_url %>
   <div class="meta">
