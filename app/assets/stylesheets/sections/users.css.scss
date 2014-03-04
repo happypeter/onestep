@@ -122,7 +122,7 @@
       width: 900px;
       margin: 0 auto;
       border-collapse: collapse;
-      text-align: center;
+      text-align: left;
       .even, .odd {
         border-bottom: 1px solid #e6eaed;
       }
@@ -133,10 +133,16 @@
         border-bottom: none;
       }
       td {
-        height: 45px;
+        height: 40px;
+      }
+      td.date {
+        width: 100px;
+        font-style: italic;
+        font-size: 13px;
+        text-align: center;
       }
       .icon {
-        padding-left: 10px;
+        padding-left: 15px;
         color: #888;
       }
     }
