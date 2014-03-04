@@ -12,7 +12,9 @@
       <% end %>
     </div>
   </div>
-  <%= image_tag course.poster_url %>
+  <%= link_to course_path(course) do %>
+    <%= image_tag course.poster_url %>
+  <% end %>
   <div class="meta">
     <div>
       <span class="title"><%= link_to course.title, course_path(course) %></span>
