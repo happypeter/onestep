@@ -1,13 +1,13 @@
 <div id="user-show" class="container">
   <div id="user-info">
-    <div class="avatared">
+    <div class="avatar">
       <% if current_user == @user %>
         <a href="/account" title="点击编辑个人信息">
-          <%= image_tag @user.final_avatar_url, :alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+          <%= image_tag @user.final_avatar_url, :alt => t('your_avatar') %>
         </a>
         <%= link_to t('edit_profile'), account_path, :class => "button" %>
       <% else %>
-        <%= image_tag @user.final_avatar_url, :alt => t('your_avatar'), :size => "210x210", :id => "avatar" %>
+        <%= image_tag @user.final_avatar_url, :alt => t('your_avatar') %>
         <%= follow_user_tag(@user) %>
       <% end %>
     </div>
@@ -41,7 +41,7 @@
       <% if @courses.present? %>
         <div class="new-course">
           <% if current_user == @user %>
-            <%= link_to create_course_path, :class => "button primary" do %>
+            <%= link_to create_course_path, :class => "new-course-button" do %>
               <%= t('create_course') %>
               <i class='fa fa-hand-o-right fa-lg'></i>
             <% end %>

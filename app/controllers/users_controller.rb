@@ -142,8 +142,7 @@ class UsersController < ApplicationController
     @watched_courses = @user == current_user ? @user.watched_courses : @user.watched_courses.pub
     @paid_courses = @user.paid_courses
 
-    @activities = []
-    @user.activities.reverse.each { |a| @activities << a  }
+    @activities = @user.activities.limit(10).reverse
 
     session[:return_to] = request.url
   end

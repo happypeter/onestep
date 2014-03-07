@@ -75,7 +75,15 @@
     .new-course {
       letter-spacing: 1px;
       text-align: right;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      .new-course-button {
+        background-color: #60b044;
+        padding: 10px;
+        color: #ffffff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
     .no-course {
       border: 2px solid #dbe8f5;
@@ -164,7 +172,7 @@
   }
 }
 
-.avatared {
+.avatar {
   img {
     padding: 5px;
     margin-bottom: 20px;
