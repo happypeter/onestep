@@ -1,7 +1,7 @@
   <div class="pagehead clearfix">
   <div class="container">
     <ul class="pagehead-actions">
-      <% if @course.user == current_user %>
+      <% if owner?(@course) %>
         <li>
           <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
         </li>
