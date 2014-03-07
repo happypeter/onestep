@@ -24,7 +24,7 @@
   </td>
   <% when "post" %>
   <td class="notificon"><i class="fa fa-comments-o fa-2x"></i></td>
-  <td>
+  <td class="avatar">
     <%= link_to member_path(executor.name) do %>
       <%= image_tag executor.final_avatar_url, :class => "gavatar", :width => "30x30" %>
     <% end %>
