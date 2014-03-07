@@ -29,11 +29,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.where(public: true).reverse
     @course_groups = []
-    @courses.each_index do |i|
-      if i%3 == 0
-        @course_groups << @courses[i..i+2]
-      end
-    end
+    @courses.in_groups_of(3, false) { |group| @course_groups << group }
   end
 
   def show

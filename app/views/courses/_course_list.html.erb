@@ -32,7 +32,7 @@
       <i class="fa fa-money"></i><span class="tip">价格: <%= course.price.present? ? course.price : 0 %> 元</span>
     </div>
     <div class="details">
-      <i class="fa fa-user"></i><span class="tip">作者： <%= link_to course.user.name, member_path(course.user.name) %></span>
+      <i class="fa fa-user"></i><span class="tip">作者: <%= link_to course.user.name, member_path(course.user.name) %></span>
     </div>
   </div>
   <%= link_to "查看课程", course_path(course), :class => "course-button" %>
