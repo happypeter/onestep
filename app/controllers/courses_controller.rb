@@ -27,16 +27,15 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.where(public: true).reverse
-    c_watcher = {}
-    @courses.each do |c|
-      c_watcher << { c => c.watchers }
+    if params[:sort] == "time"
+      @courses = Course.where(public: true).reverse
+      @course_groups = []
+      @courses.in_groups_of(3, false) { |group| @course_groups << group }
+    elsif params[:sort] == "star"
+      c_sorted = courses_sorted_by_star
+      @course_groups = []
+      c_sorted.in_groups_of(3, false) { |group| @course_groups << group }
     end
-    tmp = c_watcher.sort_by{ |k, v| v}.reverse
-    c_sorted = []
-    tmp.each { |a| c_sorted << a.first }
-    @course_groups = []
-    c_sorted.in_groups_of(3, false) { |group| @course_groups << group }
   end
 
   def show

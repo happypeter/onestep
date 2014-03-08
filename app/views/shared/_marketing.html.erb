@@ -1,24 +1,67 @@
 <div class="container">
 
   <div class="marketing">
-
     <hr class="soften">
-
-    <% if !@recent_courses.empty? %>
-      <div class="courses clearfix">
-        <% @recent_courses.each do |course| %>
-          <div class="course">
-            <%= render "courses/course", :course => course %>
-          </div>
-        <% end %>
-      </div>
-      <%= link_to "查看所有课程", course_index_path, class: "all-courses-btn button" %>
-    <% else %>
-      <p>
-      No Courses found
-      </p>
-    <% end %>
+    <ul class="sort-label clearfix">
+      <li class="active" data-type="star"><a href="#">按课程关注人数排序</a></li>
+      <li data-type="time"><a href="#">按课程创建时间排序</a></li>
+    </ul>
+    <div id="sorted-by-star">
+      <% if !@star_courses.empty? %>
+        <div class="courses clearfix">
+          <% @star_courses.each do |course| %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
+          <% end %>
+        </div>
+        <%= link_to "查看所有课程", course_index_path(:sort => "star"), class: "all-courses-btn button" %>
+      <% else %>
+        <p>
+        No Courses found
+        </p>
+      <% end %>
+    </div>
+    <div id="sorted-by-time" style="display: none;">
+      <% if !@recent_courses.empty? %>
+        <div class="courses clearfix">
+          <% @recent_courses.each do |course| %>
+            <div class="course">
+              <%= render "courses/course", :course => course %>
+            </div>
+          <% end %>
+        </div>
+        <%= link_to "查看所有课程", course_index_path(:sort => "time"), class: "all-courses-btn button" %>
+      <% else %>
+        <p>
+        No Courses found
+        </p>
+      <% end %>
+    </div>
   </div>
 
 </div>
 
+<% content_for :template_js do %>
+  <script>
+    var menuItems = $(".sort-label li");
+
+    menuItems.on("click", function(event) {
+
+      menuItems.removeClass("active");
+      $(this).addClass("active");
+
+      var type = $(this).data("type");
+
+      if (type == "star") {
+        $("#sorted-by-time").css("display", "none");
+        $("#sorted-by-star").css("display", "block");
+      }else {
+        $("#sorted-by-star").css("display", "none");
+        $("#sorted-by-time").css("display", "block");
+      }
+
+      event.preventDefault();
+    });
+  </script>
+<% end %>

@@ -83,4 +83,15 @@ class ApplicationController < ActionController::Base
       Notification.where(:notifiable_id => id, :notifiable_type => type).delete_all
     end
   end
+
+  def courses_sorted_by_star
+    courses = Course.where(public: true).reverse
+    c_watcher = {}
+    courses.each { |c| c_watcher[c] = c.watchers }
+    temp = c_watcher.sort_by{ |k, v| v}.reverse
+    @c_sorted = []
+    temp.each { |a| @c_sorted << a.first }
+    @c_sorted
+  end
+
 end

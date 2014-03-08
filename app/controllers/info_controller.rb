@@ -3,6 +3,7 @@ class InfoController < ApplicationController
 
   def marketing
     @recent_courses = Course.where(public: true).limit(6).order('id desc')
+    @star_courses = courses_sorted_by_star.take(6)
     @user = User.new
     session[:return_to] = request.url
   end
