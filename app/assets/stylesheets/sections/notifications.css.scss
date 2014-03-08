@@ -62,19 +62,22 @@
     color: #888;
     border-left: 1px solid #167F92;
   }
-  td.avatar {
-    padding-right: 8px;
-    padding-left: 0;
-    width: 30px;
-  }
   td.event {
     padding: 8px 0;
   }
   img.gavatar {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -ms-border-radius: 50%;
     -moz-border-radius: 50%;
+  }
+  td.avatar {
+    padding-right: 8px;
+    padding-left: 0;
+    width: 30px;
   }
   td.time {
     width: 100px;
