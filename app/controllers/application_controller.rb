@@ -85,10 +85,10 @@ class ApplicationController < ActionController::Base
   end
 
   def courses_sorted_by_star
-    courses = Course.where(public: true).reverse
+    courses = Course.where(public: true)
     c_watcher = {}
-    courses.each { |c| c_watcher[c] = c.watchers }
-    temp = c_watcher.sort_by{ |k, v| v}.reverse
+    courses.each { |c| c_watcher[c] = c.watchers.count }
+    temp = c_watcher.sort_by{ |k, v| v }.reverse
     @c_sorted = []
     temp.each { |a| @c_sorted << a.first }
     @c_sorted
