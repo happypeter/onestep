@@ -76,13 +76,14 @@
       letter-spacing: 1px;
       text-align: right;
       margin-bottom: 15px;
-      .new-course-button {
-        background-color: #60b044;
-        padding: 10px;
-        color: #ffffff;
-        &:hover {
-          text-decoration: none;
-        }
+    }
+    .new-course-button {
+      background-color: #60b044;
+      padding: 10px;
+      color: #ffffff;
+      line-height: 36px;
+      &:hover {
+        text-decoration: none;
       }
     }
     .no-course {
