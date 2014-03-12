@@ -1,29 +1,30 @@
-<div id="user-show" class="container">
+<div id="user-show" class="container clearfix">
   <div id="user-info">
-    <div class="avatar">
-      <% if current_user == @user %>
-        <a href="/account" title="点击编辑个人信息">
-          <%= image_tag @user.final_avatar_url, :alt => t('your_avatar') %>
-        </a>
-        <%= link_to t('edit_profile'), account_path, :class => "button" %>
-      <% else %>
+    <div class="header">
+      <div class="profile">
+        <% if current_user == @user %>
+          <%= link_to account_path, :class => "edit-profile-button" do %>
+            <i class="fa fa-pencil"></i>
+            <%#= t('edit_profile') %>
+          <% end %>
+        <% end %>
         <%= image_tag @user.final_avatar_url, :alt => t('your_avatar') %>
-        <%= follow_user_tag(@user) %>
-      <% end %>
+      </div>
+      <div class="name-email">
+        <h2><%= @user.name %></h2>
+        <p>
+          <i class="fa fa-envelope-o"></i>
+          <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+        </p>
+      </div>
     </div>
-    <h1>
-      <span><%= @user.name %></span>
-    </h1>
-    <p>
-      <span>
-        <i class="fa fa-envelope-o"></i>
-        <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
-      </span>
-    </p>
     <ul class="stats">
       <li><strong><%= @user.follower_count %></strong> followers</li>
       <li><strong><%= @user.followed_user_count %></strong> following</li>
     </ul>
+    <% if current_user != @user %>
+      <%= follow_user_tag(@user) %>
+    <% end %>
   </div><!--end user-info -->
   <div id="user-course">
     <ul class="main-nav">
@@ -140,5 +141,10 @@
         $(".watched-courses-section").addClass("active");
       }
     });
+    if ($(".follow-user-button").data("followed")) {
+      $(".follow-user-button").css('background-color','#34CF7A');
+    }else {
+      $(".follow-user-button").css('background-color','#2589CC');
+    }
   </script>
 <% end %>

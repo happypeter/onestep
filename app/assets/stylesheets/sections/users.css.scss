@@ -3,18 +3,43 @@
 
 #user-show {
   padding-top: 23px;
-  display: table;
   #user-info {
+    margin-top: 10px;
+    padding-bottom: 20px;
     width: 250px;
-    display: table-cell;
-    background-color: white;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
     float: left;
+    .edit-profile-button {
+      display: block;
+      width: 30px;
+      padding: 5px;
+      text-align: center;
+      background-color: #34CF7A;
+      color: #ffffff;
+    }
+    .header {
+      border-bottom: 1px solid #ddd;
+    }
+    .profile img {
+      display: block;
+      margin: 20px auto;
+      width: 120px;
+      height: 120px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+    }
+    .name-email {
+      text-align: center;
+      h2 {
+        color: black;
+      }
+    }
     .stats {
       width: 210px;
       height: 60px;
-      margin-top: 20px;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
+      margin: 10px auto 0;
       list-style-type: none;
       li {
         float: left;
@@ -22,6 +47,24 @@
         padding-left: 30px;
         text-align: center;
         strong { display: block; }
+      }
+    }
+    .follow-user-button {
+      display: block;
+      margin: 0 auto;
+      width: 150px;
+      color: white;
+      text-align: center;
+      padding: .5em;
+      border-radius: 5px;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #167abd;
+        cursor: pointer;
+        text-decoration: none;
       }
     }
   }
@@ -40,7 +83,7 @@
       li a {
         color: #888;
         font-weight: 400;
-        border: 0px;
+        border: 0;
         padding: 10px 40px;
         font-size: 18px;
         position: relative;
