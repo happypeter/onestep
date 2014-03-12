@@ -8,6 +8,6 @@
     def content_type
       # real content type, "image/png" or "image/jpeg"
       # data.match(/data:(.*);/)[1]
-      "image/jpeg"
+      "image/png"
     end
   end
