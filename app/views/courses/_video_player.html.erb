@@ -4,6 +4,6 @@
 </video>
 <div class="download-btn">
   <% params = @video.asset_url.split("/").last.split(".") %>
-  <%= link_to "Download Video", download_video_path(:serial => params[0],
+  <%= link_to t('download_video'), download_video_path(:serial => params[0],
     :type => params[1]), class: "minibutton primary" %>
 </div>

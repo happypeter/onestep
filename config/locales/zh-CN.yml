@@ -72,6 +72,7 @@ zh-CN:
   buy_this_course: "购买本课程"
   # video
   add_video: "添加视频"
+  download_video: "下载视频"
   videos: "视频"
   all_videos: "课程表"
   playing: "正在播放"
