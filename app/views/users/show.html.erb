@@ -19,8 +19,8 @@
       </div>
     </div>
     <ul class="stats">
-      <li><strong><%= @user.follower_count %></strong> followers</li>
-      <li><strong><%= @user.followed_user_count %></strong> following</li>
+      <li><strong><%= @user.follower_count %></strong> <%= t('followers') %></li>
+      <li><strong><%= @user.followed_user_count %></strong> <%= t('following') %></li>
     </ul>
     <% if current_user != @user %>
       <%= follow_user_tag(@user) %>

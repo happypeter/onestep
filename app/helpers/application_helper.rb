@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def current_translations
+    I18n.backend.send(:init_translations) unless I18n.backend.initialized?
+    @translations ||= I18n.backend.send(:translations)
+    @translations[I18n.locale].with_indifferent_access
+  end
+
   def markdown(text)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {
