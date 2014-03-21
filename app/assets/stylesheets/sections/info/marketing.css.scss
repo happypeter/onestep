@@ -3,16 +3,11 @@
 
 .marketing {
   color: $font-gray;
+  margin-top: -20px;
   h1 {
-    margin: 60px 0 10px;
-    font-size: 60px;
-    font-weight: 200;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-  h2 {
-    font-weight: 200;
-    margin-bottom: 5px;
+    text-align: center;
+    padding-bottom: 50px;
+    margin-top: 0;
   }
   p {
     font-size: 16px;
@@ -38,9 +33,6 @@
         margin: 0 auto 30px;
       }
     }
-  }
-  hr.soften {
-    margin-bottom: 50px;
   }
   .sort-label {
     list-style-type: none;
