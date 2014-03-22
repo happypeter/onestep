@@ -10,6 +10,9 @@ class Course < ActiveRecord::Base
   has_many :watchers, :through => :watchings, :source => :user
   belongs_to :user
 
+  has_many :collaboratings, :dependent => :destroy
+  has_many :collaborators, :through => :collaboratings, :source => :user
+
   mount_uploader :poster, PosterUploader
 
   scope :pub, where(public: true)

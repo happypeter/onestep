@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
 
   has_many :followed_users, :through => :followed_relationships
 
+  has_many :collaboratings, :dependent => :destroy
+  has_many :collaborated_courses, :through => :collaboratings, :source => :course
+
   mount_uploader :avatar, AvatarUploader
 
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
