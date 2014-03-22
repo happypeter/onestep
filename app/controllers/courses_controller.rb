@@ -1,7 +1,9 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers]
+  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration, :add_member]
+
+  autocomplete :user, :name
 
   def check_owner
     if current_user.nil?
@@ -145,6 +147,18 @@ class CoursesController < ApplicationController
 
   def watchers
     @watchers = @course.watchers
+  end
+
+  def collaboration
+    @collaborators = @course.collaborators
+  end
+
+  def add_member
+    matcher = User.find_by_name(params[:collab])
+    return false if @course.user.id == matcher.id
+    return false if @course.collaborators.include?(matcher)
+    @course.collaborators << matcher
+    render :nothing => true
   end
 
   private

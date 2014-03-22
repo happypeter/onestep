@@ -34,6 +34,7 @@ end
 
 gem 'jquery-rails', '2.1.2'
 gem 'jquery-ui-rails'
+gem 'rails3-jquery-autocomplete'
 gem 'jquery-fileupload-rails', '0.4.0'
 gem 'haml'
 

@@ -36,7 +36,7 @@
     <h1><%= @course.title %></h1>
     <div class="alert">
       <%= t('no_classes') %>
-      <% if @course.user == current_user %>
+      <% if owner?(@course) %>
         <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
         <%= link_to t('delete_this_course'), @course, :confirm => t('confirm_delete'),
           :method => :delete, :class => "minibutton" %>
@@ -50,10 +50,11 @@
         <div class="course-update-time">
           <i class="fa fa-clock-o"></i>
           <span><%= t('update_time') %></span>
-          <span>
-            <%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %>
-          </span>
+          <span><%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %></span>
         </div>
+        <% if owner?(@course) %>
+          <div class="collab-button"><%= link_to "Add collaborator", course_collab_path %></div>
+        <% end %>
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>

@@ -14,6 +14,7 @@
 //= require jquery.atwho
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require autocomplete-rails
 //= require jquery_at_caret
 //= require comments
 //= require courses

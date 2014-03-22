@@ -1,0 +1,33 @@
+<ul class="collaborators">
+  <% if @collaborators.present? %>
+    <% @collaborators.each do |user| %>
+      <li>
+        <%= image_tag user.final_avatar_url, :class => "avatar", :width => '30x30' %>
+        <%= link_to user.name, member_path %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_tag course_add_member_path, :class => "add-new-collob", :method => :post, :remote => true do %>
+  <div class="form-wrapper">
+    <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 30 %>
+    <%= button_tag :type => "submit", :class => "collob-button", :disabled => true do %>
+      Add collaborator
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :template_js do %>
+  <script>
+    $('#collab').focus(function() {
+      $('.ui-helper-hidden-accessible').css("display", "none");
+    });
+    $('#collab').bind('input', function() {
+      $('.collob-button').attr("disabled", true);
+    });
+    $('#collab').bind('railsAutocomplete.select', function(){
+      $('.collob-button').attr("disabled", false);
+    });
+  </script>
+<% end %>
