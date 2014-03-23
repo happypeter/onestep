@@ -2,8 +2,10 @@
   <% if @collaborators.present? %>
     <% @collaborators.each do |user| %>
       <li>
-        <%= image_tag user.final_avatar_url, :class => "avatar", :width => '30x30' %>
-        <%= link_to user.name, member_path %>
+        <%= link_to member_path  do %>
+          <%= image_tag user.final_avatar_url, :class => "avatar", :width => '30x30' %>
+          <%= user.name %>
+        <% end %>
       </li>
     <% end %>
   <% end %>
@@ -17,6 +19,8 @@
     <% end %>
   </div>
 <% end %>
+
+<div class="collab-error"></div>
 
 <% content_for :template_js do %>
   <script>

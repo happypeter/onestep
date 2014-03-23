@@ -154,11 +154,19 @@ class CoursesController < ApplicationController
   end
 
   def add_member
-    matcher = User.find_by_name(params[:collab])
-    return false if @course.user.id == matcher.id
-    return false if @course.collaborators.include?(matcher)
-    @course.collaborators << matcher
-    render :nothing => true
+    @member = User.find_by_name(params[:collab])
+    if @course.user.id == @member.id
+      @author_flag = true
+      return
+    end
+    if @course.collaborators.include?(@member)
+      @collab_flag = true
+      return
+    end
+    @course.collaborators << @member
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
