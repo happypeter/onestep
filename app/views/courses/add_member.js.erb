@@ -1,7 +1,9 @@
 <% if @author_flag %>
   $('.collab-error').html("Course author can not be a collaborator!")
+  $('.collab-error').css("display", "block");
 <% elsif @collab_flag %>
   $('.collab-error').html("You have added <%= @member.name %>!")
+  $('.collab-error').css("display", "block");
 <% else %>
-  $('.collaborators').append("<%= j render 'collaborator', :user => @member %>")
+  $('.collabs').append("<%= j render 'collaborator', :user => @member %>")
 <% end %>

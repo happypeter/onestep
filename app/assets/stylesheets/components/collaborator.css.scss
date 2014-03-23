@@ -1,0 +1,112 @@
+.collab-wrapper {
+  width: 600px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  .caption {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    background-color: #ececec;
+    color: #333;
+    font-weight: bold;
+  }
+  .collabs {
+    list-style-type: none;
+    li {
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+    a {
+      display: block;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .collab-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+    }
+    span {
+      display: block;
+      margin-left: 40px;
+      margin-top: -32px;
+    }
+  }
+  .add-new-collab {
+    padding: 10px;
+  }
+  #collab {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 34px;
+    width: 230px;
+    &:focus {
+      z-index: 2;
+    }
+  }
+  .collab-button {
+    display: inline-block;
+    height: 34px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 7px 12px;
+    margin-left: -4px;
+    border: 1px solid #d5d5d5;
+    background-color: #eeeeee;
+    &:disabled {
+      cursor: default;
+    }
+    &:hover {
+      background-color: #ddd;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+    &:disabled:hover {
+      cursor: default;
+      background-color: #eeeeee;
+    }
+    &:focus {
+      outline: none;
+      border-color: #51a7e8;
+      box-shadow: 0 0 5px rgba(81,167,232,0.5);
+    }
+  }
+  .collab-error {
+    background-color: #efd0d0;
+    color: #911;
+    font-size: 13px;
+    border: 1px solid #da9797;
+    margin: 10px;
+    padding: 6px;
+    border-radius: 6px;
+    display: none;
+  }
+}
+ul.ui-autocomplete {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style-type: none;
+  width: 230px !important;
+  padding: 0;
+  color: #666;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-top: none;
+  overflow-x: hidden;
+}
+.ui-menu .ui-menu-item a.ui-corner-all:hover, .ui-menu .ui-menu-item a.ui-corner-all:focus,
+.ui-menu .ui-menu-item a.ui-corner-all:active {
+  background: #4183c4;
+  color: #ffffff;
+  border-radius: 0;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
+.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+  background: #4183c4 !important;
+  border: none;
+  color: #ffffff !important;
+  border-radius: 0;
+  font-weight: normal;
+}
