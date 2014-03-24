@@ -23,7 +23,7 @@
 
     <%= form_tag course_add_member_path, :class => "add-new-collab", :method => :post, :remote => true do %>
       <div class="form-wrapper">
-        <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 25 %>
+        <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 25, :placeholder => t('type_a_user_name') %>
         <%= button_tag :type => "submit", :class => "collab-button", :disabled => true do %>
           <%= t('add_collaborator') %>
         <% end %>

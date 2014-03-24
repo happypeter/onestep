@@ -15,6 +15,7 @@ zh-CN:
   collaborator: "课程协作者"
   watch_course_no_fee: "免费观看视频"
   add_collaborator: "添加协作者"
+  type_a_user_name: "输入一个用户名"
   course_author_cannot_be_a_collaborator: "课程作者不可以是协作者"
   you_have_added: "你已经添加了"
   watch_course: "关注课程"
