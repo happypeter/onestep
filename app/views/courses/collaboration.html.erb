@@ -1,6 +1,6 @@
 <div class="container">
   <div class="collab-wrapper">
-    <div class="caption">Collaborators</div>
+    <div class="caption"><%= t('collaborator') %></div>
     <ul class="collabs">
      <% if @collaborators.present? %>
        <% @collaborators.each do |user| %>
@@ -18,7 +18,7 @@
      <div class="form-wrapper">
        <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 25 %>
        <%= button_tag :type => "submit", :class => "collab-button", :disabled => true do %>
-         Add collaborator
+         <%= t('add_collaborator') %>
        <% end %>
      </div>
    <% end %>

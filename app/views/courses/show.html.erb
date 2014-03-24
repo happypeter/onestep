@@ -2,9 +2,8 @@
   <div class="container">
     <ul class="pagehead-actions">
       <% if owner?(@course) %>
-        <li>
-          <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
-        </li>
+        <li><%= link_to t('add_collaborator'), course_collab_path, :class => "minibutton" %></li>
+        <li><%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %></li>
       <% end %>
       <% if not @course.open_to_user?(current_user) %>
         <li>
@@ -52,9 +51,7 @@
           <span><%= t('update_time') %></span>
           <span><%= link_to @course.updated_at.strftime(t('date.formats.default')), timeline_course_path %></span>
         </div>
-        <% if owner?(@course) %>
-          <div class="collab-button"><%= link_to "Add collaborator", course_collab_path %></div>
-        <% end %>
+
       </div>
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
