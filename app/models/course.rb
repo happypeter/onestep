@@ -22,12 +22,18 @@ class Course < ActiveRecord::Base
     return false if user.nil?
     return true if user == self.user
     return true if is_paid_user?(user)
+    return true if collaborator?(user)
   end
 
   def is_paid_user?(user)
     return false if user.nil?
     order = Order.where(:course_id => self.id, :user_id => user.id, trade_status: "TRADE_FINISHED").first
     return true if order
+    false
+  end
+
+  def collaborator?(user)
+    return true if self.collaborators.include?(user)
     false
   end
 
