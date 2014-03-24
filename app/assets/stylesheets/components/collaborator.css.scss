@@ -47,6 +47,15 @@
       margin-left: 40px;
       margin-top: -32px;
     }
+    .delete-collab-button {
+      float: right;
+      display: block;
+      margin-top: -20px;
+      color: #999;
+      &:hover {
+        color: #911;
+      }
+    }
   }
   .add-new-collab {
     padding: 10px;

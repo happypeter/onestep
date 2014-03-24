@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration, :add_member]
+  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration, :add_member, :delete_member]
 
   autocomplete :user, :name
 
@@ -164,6 +164,14 @@ class CoursesController < ApplicationController
       return
     end
     @course.collaborators << @member
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_member
+    @member = User.find_by_name(params[:collab])
+    @course.collaborators.delete(@member)
     respond_to do |format|
       format.js
     end

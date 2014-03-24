@@ -62,6 +62,7 @@ Onestep::Application.routes.draw do
   get "/:member_name/:course_name/collaboration" => "courses#collaboration", :as => "course_collab"
 
   post "/:member_name/:course_name/add_member" => "courses#add_member", :as => "course_add_member"
+  post "/:member_name/:course_name/delete_member" => "courses#delete_member", :as => "course_delete_member"
 
   resources :courses do
     get :autocomplete_user_name, :on => :collection

@@ -5,28 +5,32 @@
       <span><%= link_to t('go_back'), @course, :class => "minibutton" %></span>
     </div>
     <ul class="collabs">
-     <% if @collaborators.present? %>
-       <% @collaborators.each do |user| %>
-         <li>
-           <%= link_to member_path  do %>
-             <%= image_tag user.final_avatar_url, :class => "collab-avatar" %>
-             <span><%= user.name %></span>
-           <% end %>
-         </li>
-       <% end %>
-     <% end %>
-   </ul>
+      <% if @collaborators.present? %>
+        <% @collaborators.each do |user| %>
+          <li class="uid_<%= user.id %>">
+            <%= link_to member_path do %>
+              <%= image_tag user.final_avatar_url, :class => "collab-avatar" %>
+              <span><%= user.name %></span>
+            <% end %>
+            <%= link_to course_delete_member_path(:collab => user.name), :method => :post,
+              :remote => true, :class => "delete-collab-button" do %>
+              <i class="fa fa-times-circle-o"></i>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
 
-   <%= form_tag course_add_member_path, :class => "add-new-collab", :method => :post, :remote => true do %>
-     <div class="form-wrapper">
-       <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 25 %>
-       <%= button_tag :type => "submit", :class => "collab-button", :disabled => true do %>
-         <%= t('add_collaborator') %>
-       <% end %>
-     </div>
-   <% end %>
+    <%= form_tag course_add_member_path, :class => "add-new-collab", :method => :post, :remote => true do %>
+      <div class="form-wrapper">
+        <%= autocomplete_field_tag :collab, params[:collab], autocomplete_user_name_courses_path, :size => 25 %>
+        <%= button_tag :type => "submit", :class => "collab-button", :disabled => true do %>
+          <%= t('add_collaborator') %>
+        <% end %>
+      </div>
+    <% end %>
 
-   <div class="collab-error"></div>
+    <div class="collab-error"></div>
   </div>
 </div>
 <% content_for :template_js do %>
