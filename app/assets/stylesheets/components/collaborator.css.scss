@@ -10,6 +10,20 @@
     background-color: #ececec;
     color: #333;
     font-size: 16px;
+    .free {
+      display: inline-block;
+      color: #911;
+      font-size: 12px;
+      padding: 2px 7px;
+      margin-left: 5px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      background-color: #efd0d0;
+    }
+    span {
+      float: right;
+    }
   }
   .collabs {
     list-style-type: none;

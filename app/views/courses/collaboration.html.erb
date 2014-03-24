@@ -1,6 +1,9 @@
 <div class="container">
   <div class="collab-wrapper">
-    <div class="caption"><%= t('collaborator') %></div>
+    <div class="caption">
+      <%= t('collaborator') %><small class="free"><%= t('watch_course_no_fee') %></small>
+      <span><%= link_to t('go_back'), @course, :class => "minibutton" %></span>
+    </div>
     <ul class="collabs">
      <% if @collaborators.present? %>
        <% @collaborators.each do |user| %>
