@@ -17,6 +17,9 @@
       text-align: center;
       background-color: #34CF7A;
       color: #ffffff;
+      &:hover {
+        background-color: #60b044;
+      }
     }
     .header {
       border-bottom: 1px solid #ddd;
@@ -121,11 +124,12 @@
       margin-bottom: 15px;
     }
     .new-course-button {
-      background-color: #60b044;
+      background-color: #34cf7a;
       padding: 10px;
       color: #ffffff;
       line-height: 36px;
       &:hover {
+        background-color: #60b044;
         text-decoration: none;
       }
     }
