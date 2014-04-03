@@ -14,12 +14,12 @@
 
       if (!file.type.match(/image.*/)) { return; }
 
-      reader.onload = function() {
-          $('#avatar-cropbox')[0].src = reader.result;
-          $('#avatar_dataurl')[0].value = reader.result;
-        }
-
       reader.readAsDataURL(file);
+
+      reader.onload = function() {
+          $('#avatar-cropbox')[0].src = this.result;
+          $('#avatar_dataurl')[0].value = this.result;
+        }
 
       if (jcrop_api) {
         jcrop_api.destroy();
