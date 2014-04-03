@@ -150,6 +150,7 @@ zh-CN:
   your_avatar: "你的头像"
   crop: "裁剪"
   crop_avatar: "裁剪头像"
+  crop_poster: "裁剪课程封面"
   select_crop_area: "选择裁剪区域"
   crop_and_save: "裁剪并保存"
 

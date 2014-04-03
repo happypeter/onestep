@@ -10,8 +10,77 @@
         $(".toggle label i").replaceWith(lock);
       }
     });
+
+    //following codes are for course poster crop
+    var jcrop_api; // Holder for the jcrop API
+    var inputFile = $("#poster-fileupload")[0];
+    inputFile.addEventListener('click', function() {this.value = null;}, false);
+    inputFile.addEventListener('change', readData, false);
+
+    function readData(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+
+      var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
+      var reader = new FileReader();
+
+      if (!file.type.match(/image.*/)) { return; }
+
+      reader.readAsDataURL(file);
+
+      reader.onload = function() {
+          $('#poster-cropbox')[0].src = this.result;
+          $('#poster-dataurl')[0].value = this.result;
+        }
+
+      if (jcrop_api) {
+        jcrop_api.destroy();
+      } else {
+        init_jcrop();
+      }
+
+      $.colorbox({href:'#poster-crop-modal', inline:true});
+    }
+
+   function init_jcrop() {
+      $(document).bind('cbox_complete', function() {
+        $('#poster-cropbox').Jcrop({  //options
+          onChange: update_crop,
+          onSelect: update_crop,
+          setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
+          aspectRatio: <%= AvatarUploader::AVATAR_NW %>/<%= AvatarUploader::AVATAR_NH %>,  //设置选择框高宽比,默认为任意
+          bgColor: 'white'
+          }, function(){
+          jcrop_api = this;
+        });
+      });
+    };
+
+    function update_crop(coords) {
+      $("#crop_x").val(Math.round(coords.x));
+      $("#crop_y").val(Math.round(coords.y));
+      $("#crop_w").val(Math.round(coords.w));
+      $("#crop_h").val(Math.round(coords.h));
+    }
+
   </script>
 <% end %>
+
+<!-- Modal -->
+<div style="display: none;">
+  <div id="poster-crop-modal" class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-label"><%= t('crop_poster') %></h3>
+    </div>
+    <div class="modal-body">
+      <div class="poster-crop-box">
+        <%= image_tag @course.poster_url, :id => "poster-cropbox" %>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
 
 <div class="course-wrap clearfix">
   <div id="edit-course-delete">

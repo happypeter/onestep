@@ -79,6 +79,13 @@ div#html5-player {
   }
 }
 
+.poster-crop-box {
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  img { max-width: 500px; max-height: 400px; }
+}
+
 .courses {
   margin-bottom: 40px;
   .course {
