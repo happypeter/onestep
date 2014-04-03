@@ -32,6 +32,15 @@ $course-name-blue: #3499D3;
       position: absolute;
       top: 0;
       right: 0;
+      display: block;
+      width: 30px;
+      padding: 5px;
+      text-align: center;
+      background-color: #34CF7A;
+      color: #ffffff;
+      &:hover {
+        background-color: #60b044;
+      }
     }
     input, textarea {
       width: 310px !important;
@@ -100,7 +109,7 @@ $course-name-blue: #3499D3;
       box-shadow: -1px 0 0 0 rgba(0,0,0,0.05) inset;
     }
   }
-  
+
   /* http://semantic-ui.com/modules/checkbox.html */
   .ui.checkbox {
     position: relative;
