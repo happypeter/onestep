@@ -5,24 +5,6 @@ class CoursesController < ApplicationController
 
   autocomplete :user, :name
 
-  def check_owner
-    if current_user.nil?
-      redirect_to :root, :notice => t('login_first_plz')
-      return
-    end
-    if params[:course_name]
-      user = User.find_by_name(params[:member_name])
-      course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-    else
-      # for update
-      course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
-    end
-    if course.user != current_user
-      redirect_to :root, :notice => "抱歉，只有课程所有者才有此权限"
-      return
-    end
-  end
-
   def new
     @course = Course.new(:user_id => current_user.id)
     session[:return_to] = request.url
@@ -181,5 +163,23 @@ class CoursesController < ApplicationController
   def find_course
     user = User.find_by_name(params[:member_name])
     @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+  end
+
+  def check_owner
+    if current_user.nil?
+      redirect_to :root, :notice => t('login_first_plz')
+      return
+    end
+    if params[:course_name]
+      user = User.find_by_name(params[:member_name])
+      course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    else
+      # for update
+      course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+    end
+    if course.user != current_user
+      redirect_to :root, :notice => "抱歉，只有课程所有者才有此权限"
+      return
+    end
   end
 end
