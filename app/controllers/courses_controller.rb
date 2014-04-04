@@ -1,8 +1,7 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration,
-                                        :add_member, :delete_member, :edit_video, :add_video]
+  before_filter :find_course, :except => [:new, :index, :create, :update, :update_poster, :autocomplete_user_name]
 
   autocomplete :user, :name
 
@@ -104,11 +103,9 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    user = User.find_by_name(params[:member_name])
-    course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-    destroy_notifications course
-    course.destroy
-    redirect_to member_path(user.name)
+    destroy_notifications @course
+    @course.destroy
+    redirect_to member_path(@user.name)
   end
 
   def watch
@@ -157,8 +154,8 @@ class CoursesController < ApplicationController
   private
 
   def find_course
-    user = User.find_by_name(params[:member_name])
-    @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
+    @user = User.find_by_name(params[:member_name])
+    @course = Course.where(:user_id => @user.id, :name => params[:course_name]).first
   end
 
   def check_owner
