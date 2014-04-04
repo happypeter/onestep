@@ -1,7 +1,8 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration, :add_member, :delete_member]
+  before_filter :find_course, :only => [:show, :edit, :watch, :unwatch, :watchers, :collaboration,
+                                        :add_member, :delete_member, :edit_video, :add_video]
 
   autocomplete :user, :name
 
@@ -55,21 +56,15 @@ class CoursesController < ApplicationController
   end
 
   def edit_video
+    @video = Video.where(:course_id => @course.id, :position => params[:position]).first
     respond_to do |format|
-      format.js {
-        user = User.find_by_name(params[:member_name])
-        course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-        @video = Video.where(:course_id => course.id, :position => params[:position]).first
-      }
+      format.js
     end
   end
 
   def add_video
     respond_to do |format|
-      format.js {
-        user = User.find_by_name(params[:member_name])
-        @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
-      }
+      format.js
     end
   end
 
@@ -160,6 +155,7 @@ class CoursesController < ApplicationController
   end
 
   private
+
   def find_course
     user = User.find_by_name(params[:member_name])
     @course = Course.where(:user_id => user.id, :name => params[:course_name]).first
