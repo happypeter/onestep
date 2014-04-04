@@ -283,3 +283,38 @@ zh-CN:
       month: 月
       second: 秒
       year: 年
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+     accepted: 必须是可被接受的
+     blank: 不能为空字符
+     confirmation: 与确认值不匹配
+     empty: 不能留空
+     equal_to: 必须等于 %{count}
+     even: 必须为双数
+     exclusion: 是保留关键字
+     greater_than: 必须大于 %{count}
+     greater_than_or_equal_to: 必须大于或等于 %{count}
+     inclusion: 不包含于列表中
+     invalid: 是无效的
+     less_than: 必须小于 %{count}
+     less_than_or_equal_to: 必须小于或等于 %{count}
+     not_a_number: 不是数字
+     not_an_integer: 必须是整数
+     odd: 必须为单数
+     record_invalid: ! '验证失败: %{errors}'
+     taken: 已经被使用
+     too_long: 过长（最长为 %{count} 个字符）
+     too_short: 过短（最短为 %{count} 个字符）
+     wrong_length: 长度非法（必须为 %{count} 个字符）
+  template:
+    body: 如下字段出现错误：
+    header:
+     one: 有 1 个错误发生导致「%{model}」无法被保存。
+     other: 有 %{count} 个错误发生导致「%{model}」无法被保存。
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors

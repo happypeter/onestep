@@ -13,20 +13,19 @@
   </script>
 <% end %>
 
-<%= form_for(course, :url => "/course") do |f| %>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :name %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-      <% @course.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for course, :url => '/course' do |f| %>
+  <%= f.hidden_field :id %>
   <div class="course-wrap clearfix">
+    <% if @course.errors.any? %>
+      <div id="error-message">
+        <div class="title">不能保存课程信息有 <strong><%= @course.errors.count %></strong> 个错误:</div>
+        <ul class="list">
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div id="edit-course-delete">
       <%= link_to t("delete_this_course"), course, :confirm => t("confirm_delete"),
       :method => :delete, :class => "minibutton danger" %>

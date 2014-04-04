@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+    @course = Course.find(params[:course][:id])
     @course.update_attributes(params[:course])
     @course.name = PinYin.of_string(params[:course][:title]).join('-').downcase
     respond_to do |format|
@@ -50,28 +50,6 @@ class CoursesController < ApplicationController
         format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }
       else
         format.html { render :action => "edit" }
-      end
-    end
-  end
-
-  def edit_video
-    @video = Video.where(:course_id => @course.id, :position => params[:position]).first
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def add_video
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def update_poster
-    @course = Course.find(params[:course_id])
-    respond_to do |format|
-      format.js do
-        @course.update_attributes(params[:course])
       end
     end
   end
@@ -106,6 +84,28 @@ class CoursesController < ApplicationController
     destroy_notifications @course
     @course.destroy
     redirect_to member_path(@user.name)
+  end
+
+  def edit_video
+    @video = Video.where(:course_id => @course.id, :position => params[:position]).first
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_video
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_poster
+    @course = Course.find(params[:course_id])
+    respond_to do |format|
+      format.js do
+        @course.update_attributes(params[:course])
+      end
+    end
   end
 
   def watch
@@ -167,8 +167,8 @@ class CoursesController < ApplicationController
       user = User.find_by_name(params[:member_name])
       course = Course.where(:user_id => user.id, :name => params[:course_name]).first
     else
-      # for update
-      course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+      # for update; find the proper course object when course title is blank
+      course = Course.find(params[:course][:id])
     end
     if course.user != current_user
       redirect_to :root, :notice => "抱歉，只有课程所有者才有此权限"

@@ -7,7 +7,7 @@ $course-name-blue: #3499D3;
     position: relative;
     width: 960px;
     margin: 0 auto;
-    padding: 30px 50px;
+    padding: 30px 0;
   }
   #edit-course-delete {
     position: absolute;
@@ -72,6 +72,27 @@ $course-name-blue: #3499D3;
       }
     }
   }
+  #error-message {
+    width: 280px;
+    min-height: 70px;
+    position: absolute;
+    right: 0;
+    top: 145px;
+    padding: 10px;
+    background-color: #F1D7D7;
+    color: #A95252;
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+    ul.list {
+      opacity: .85;
+      list-style-position: inside;
+      margin: 10px 0;
+      padding: 0;
+    }
+  }
   .course-extra-info {
     color: black;
     float: right;
@@ -109,6 +130,7 @@ $course-name-blue: #3499D3;
       box-shadow: -1px 0 0 0 rgba(0,0,0,0.05) inset;
     }
   }
+
 
   /* http://semantic-ui.com/modules/checkbox.html */
   .ui.checkbox {
