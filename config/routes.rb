@@ -52,6 +52,7 @@ Onestep::Application.routes.draw do
   get "/member" => "users#index", :as => "user_index"
   post "/member" => "users#create"
   put "/crop" => "users#crop", :as => "crop"
+  put "/crop_poster" => "courses#crop_poster", :as => "crop_poster"
 
   get "/:member_name/:course_name/timeline" => "activities#index" , :as => "timeline_course"
 

@@ -141,6 +141,7 @@ zh-CN:
   profile_updated: "个人信息更新成功"
   change_avatar: "更换头像"
   avatar_updated: "头像更新成功"
+  poster_updated: "课程封面更新成功"
   avatar_email: "我们会去Gravatar上根据你的Email: "
   upload_avatar: "搜索是否有可用的头像。不知道Gravatar是什么？"
   go_avatar: "可以去他们网站看看： "

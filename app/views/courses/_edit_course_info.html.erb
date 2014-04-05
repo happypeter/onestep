@@ -47,8 +47,8 @@
         $('#poster-cropbox').Jcrop({  //options
           onChange: update_crop,
           onSelect: update_crop,
-          setSelect: [0, 0, <%= AvatarUploader::AVATAR_NW %>, <%= AvatarUploader::AVATAR_NH %>],  //设置一个初选框的位置
-          aspectRatio: <%= AvatarUploader::AVATAR_NW %>/<%= AvatarUploader::AVATAR_NH %>,  //设置选择框高宽比,默认为任意
+          setSelect: [0, 0, <%= PosterUploader::POSTER_NW %>, <%= PosterUploader::POSTER_NH %>],  //设置一个初选框的位置
+          aspectRatio: <%= PosterUploader::POSTER_NW %>/<%= PosterUploader::POSTER_NH %>,  //设置选择框高宽比,默认为任意
           bgColor: 'white'
           }, function(){
           jcrop_api = this;
@@ -78,6 +78,15 @@
       </div>
     </div>
     <div class="modal-footer">
+      <%= form_for(course, :url =>"/crop_poster") do |f| %>
+        <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+          <%= f.hidden_field attribute, :id => attribute %>
+        <% end %>
+        <%= f.hidden_field :poster, :id => "poster-dataurl" %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :name %>
+        <%= f.submit t('crop_and_save'), :id => "poster-crop-form", :class => "button primary right" %>
+      <% end %>
     </div>
   </div>
 </div>
