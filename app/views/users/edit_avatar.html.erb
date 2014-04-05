@@ -89,7 +89,7 @@
           <%= f.hidden_field attribute, :id => attribute %>
         <% end %>
         <%= f.hidden_field :avatar, :id => "avatar_dataurl" %>
-        <%= f.submit t('crop_and_save'), :id => "avatar-crop-form", :class => "button primary right" %>
+        <%= f.submit t('crop_and_save'), :id => "avatar-crop-form", :class => "button primary right", :onclick => "$.colorbox.close();"%>
       <% end %>
     </div>
   </div>
