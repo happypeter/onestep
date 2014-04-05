@@ -22,11 +22,11 @@
 
   <%= form_for course, :url => '/course' do |f| %>
     <%= f.hidden_field :id %>
-      <% if @course.errors.any? %>
+      <% if course.errors.any? %>
         <div id="error-message">
-          <div class="title">不能保存课程信息有 <strong><%= @course.errors.count %></strong> 个错误:</div>
+          <div class="title">不能保存课程信息有 <strong><%= course.errors.count %></strong> 个错误:</div>
           <ul class="list">
-          <% @course.errors.full_messages.each do |msg| %>
+          <% course.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
           </ul>
