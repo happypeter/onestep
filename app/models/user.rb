@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   validates_presence_of :name, :email
