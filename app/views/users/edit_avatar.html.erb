@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <%= form_for(@user, :url =>"/crop") do |f| %>
+      <%= form_for(@user, :url =>"/edit-avatar", :remote => true) do |f| %>
         <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
           <%= f.hidden_field attribute, :id => attribute %>
         <% end %>

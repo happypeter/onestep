@@ -11,24 +11,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # PUT
-  def crop
-    @user = User.find_by_name(current_user.name) if current_user
-
-    dataurl = params[:user][:avatar]
-
-    # mothod to convert base64 image data url to binary image
-    @user.image_data= dataurl
-
-    @user.crop_x = params[:user][:crop_x]
-    @user.crop_y = params[:user][:crop_y]
-    @user.crop_w = params[:user][:crop_w]
-    @user.crop_h = params[:user][:crop_h]
-    @user.avatar = @user.avatar
-    @user.save
-    redirect_to edit_avatar_path, :notice => t('avatar_updated')
-  end
-
   def edit
     @user = User.find_by_name(current_user.name) if current_user
     if @user.nil?
@@ -46,12 +28,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # PUT
   def update_avatar
+    @user = current_user
+
+    dataurl = params[:user][:avatar]
+
+    # mothod to convert base64 image data url to binary image
+    @user.image_data= dataurl
+
+    @user.crop_x = params[:user][:crop_x]
+    @user.crop_y = params[:user][:crop_y]
+    @user.crop_w = params[:user][:crop_w]
+    @user.crop_h = params[:user][:crop_h]
+    @user.avatar = @user.avatar
+    @user.save
+
     respond_to do |format|
-      format.js do
-        @user = current_user
-        @user.update_attributes(params[:user])
-      end
+      format.js
     end
   end
 
