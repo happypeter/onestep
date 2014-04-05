@@ -13,58 +13,59 @@
   </script>
 <% end %>
 
-<%= form_for course, :url => '/course' do |f| %>
-  <%= f.hidden_field :id %>
-  <div class="course-wrap clearfix">
-    <% if @course.errors.any? %>
-      <div id="error-message">
-        <div class="title">不能保存课程信息有 <strong><%= @course.errors.count %></strong> 个错误:</div>
-        <ul class="list">
-        <% @course.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div id="edit-course-delete">
-      <%= link_to t("delete_this_course"), course, :confirm => t("confirm_delete"),
-      :method => :delete, :class => "minibutton danger" %>
-      <%= link_to t("go_back"), course, :class => "minibutton" %>
-    </div>
-    <div class="course-card">
-      <div class="poster">
-        <%= image_tag course.poster_url, :id => "poster" %>
-        <a class= "fileupload-btn">
-          <i class="fa fa-pencil fa-lg"></i>
-          <input id="poster-fileupload" name="course[poster]" type="file" title="编辑课程封面">
-        </a>
-      </div>
-      <%= f.text_field :title, :placeholder => "不求惊世骇俗，但求意义明确", :id => "course-title" %>
-      <%= f.text_area :description, :rows => "6", :id => "course-desc", :placeholder => "这是一门实用的课程" %>
-    </div>
+<div class="course-wrap clearfix">
+  <div id="edit-course-delete">
+    <%= link_to t("delete_this_course"), course, :confirm => t("confirm_delete"),
+    :method => :delete, :class => "minibutton danger" %>
+    <%= link_to t("go_back"), course, :class => "minibutton" %>
+  </div>
 
-    <div class="course-extra-info">
-      <div class="item">
-        <%= f.label :price %>
-        <div class="price-sign">
-          <span class="input-fixed-content">￥/元</span>
-          <%= f.text_field :price, :placeholder => "0.0" %>
+  <%= form_for course, :url => '/course' do |f| %>
+    <%= f.hidden_field :id %>
+      <% if @course.errors.any? %>
+        <div id="error-message">
+          <div class="title">不能保存课程信息有 <strong><%= @course.errors.count %></strong> 个错误:</div>
+          <ul class="list">
+          <% @course.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="course-card">
+        <div class="poster">
+          <%= image_tag course.poster_url, :id => "poster" %>
+          <a class= "fileupload-btn">
+            <i class="fa fa-pencil fa-lg"></i>
+            <input id="poster-fileupload" name="course[poster]" type="file" title="编辑课程封面">
+          </a>
+        </div>
+        <%= f.text_field :title, :placeholder => "不求惊世骇俗，但求意义明确", :id => "course-title" %>
+        <%= f.text_area :description, :rows => "6", :id => "course-desc", :placeholder => "这是一门实用的课程" %>
+      </div>
+
+      <div class="course-extra-info">
+        <div class="item">
+          <%= f.label :price %>
+          <div class="price-sign">
+            <span class="input-fixed-content">￥/元</span>
+            <%= f.text_field :price, :placeholder => "0.0" %>
+          </div>
+        </div>
+        <div class="item ui toggle checkbox">
+          <%= f.check_box :public %>
+          <label for="course_public">
+            <% if course.public == true %>
+              <i class="fa fa-unlock-alt"> 公开</i>
+            <% else %>
+              <i class="fa fa-lock"> 私有</i>
+            <% end %>
+          </label>
+        </div>
+        <div class="item">
+          <%= f.submit t("update_course"), :class => "button" %>
+          <span class="cancel"><%= link_to "取消", edit_course_path(course) %></span>
         </div>
       </div>
-      <div class="item ui toggle checkbox">
-        <%= f.check_box :public %>
-        <label for="course_public">
-          <% if course.public == true %>
-            <i class="fa fa-unlock-alt"> 公开</i>
-          <% else %>
-            <i class="fa fa-lock"> 私有</i>
-          <% end %>
-        </label>
-      </div>
-      <div class="item">
-        <%= f.submit t("update_course"), :class => "button" %>
-        <span class="cancel"><%= link_to "取消", edit_course_path(course) %></span>
-      </div>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
