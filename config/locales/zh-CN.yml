@@ -73,6 +73,7 @@ zh-CN:
   upload_video: "上传视频"
   wait_upload: "上传可能会花几分钟时间，请耐心等待哦"
   submit_video_info: "保存视频信息"
+  update_video_info: "更新视频信息"
 
   no_classes: "课程表中还没有课"
   cat: "分类"
