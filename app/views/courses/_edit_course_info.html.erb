@@ -78,14 +78,14 @@
       </div>
     </div>
     <div class="modal-footer">
-      <%= form_for(course, :url =>"/crop_poster") do |f| %>
+      <%= form_for(course, :url =>"/update_poster", :remote => true) do |f| %>
         <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
           <%= f.hidden_field attribute, :id => attribute %>
         <% end %>
         <%= f.hidden_field :poster, :id => "poster-dataurl" %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :name %>
-        <%= f.submit t('crop_and_save'), :id => "poster-crop-form", :class => "button primary right" %>
+        <%= f.submit t('crop_and_save'), :id => "poster-crop-form", :class => "button primary right", :onclick => "$.colorbox.close();" %>
       <% end %>
     </div>
   </div>

@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   before_filter :check_owner, :only => [:edit, :update, :destory]
-  before_filter :find_course, :except => [:new, :index, :create, :update, :update_poster, :crop_poster, :autocomplete_user_name]
+  before_filter :find_course, :except => [:new, :index, :create, :update, :update_poster, :autocomplete_user_name]
 
   autocomplete :user, :name
 
@@ -35,23 +35,6 @@ class CoursesController < ApplicationController
       end
       session[:return_to] = request.url
     end
-  end
-
-  # PUT
-  def crop_poster
-    @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
-    dataurl = params[:course][:poster]
-
-    # mothod to convert base64 image data url to binary image
-    @course.image_data= dataurl
-
-    @course.crop_x = params[:course][:crop_x]
-    @course.crop_y = params[:course][:crop_y]
-    @course.crop_w = params[:course][:crop_w]
-    @course.crop_h = params[:course][:crop_h]
-    @course.poster = @course.poster
-    @course.save
-    redirect_to edit_course_path(@course), :notice => t('poster_updated')
   end
 
   def edit
@@ -116,12 +99,23 @@ class CoursesController < ApplicationController
     end
   end
 
+  # PUT
   def update_poster
-    @course = Course.find(params[:course_id])
+    @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
+    dataurl = params[:course][:poster]
+
+    # mothod to convert base64 image data url to binary image
+    @course.image_data= dataurl
+
+    @course.crop_x = params[:course][:crop_x]
+    @course.crop_y = params[:course][:crop_y]
+    @course.crop_w = params[:course][:crop_w]
+    @course.crop_h = params[:course][:crop_h]
+    @course.poster = @course.poster
+    @course.save
+
     respond_to do |format|
-      format.js do
-        @course.update_attributes(params[:course])
-      end
+      format.js
     end
   end
 
