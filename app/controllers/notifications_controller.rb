@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   after_filter :mark_read, :only => :index
 
   def index
-    @notifications = current_user.notifications.recent
+    @notifications = current_user.notifications.recent.page(params[:page]).per(30)
   end
   def destroy
     @notification = current_user.notifications.find(params[:id])
