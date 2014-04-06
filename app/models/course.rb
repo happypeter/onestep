@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
                   :price
   validates_presence_of :title
 
-  has_many :videos, order: :position
+  has_many :videos, order: :position, :dependent => :destroy
   has_many :orders
   has_many :activities, :dependent => :destroy
   has_many :watchings, :dependent => :destroy
