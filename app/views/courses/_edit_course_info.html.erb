@@ -63,6 +63,9 @@
       $("#crop_h").val(Math.round(coords.h));
     }
 
+    $('.modal-footer form').submit(function() {
+      $(this).find("input[type='submit']").prop('disabled',true);
+    });
   </script>
 <% end %>
 
@@ -85,7 +88,7 @@
         <%= f.hidden_field :poster, :id => "poster-dataurl" %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :name %>
-        <%= f.submit t('crop_and_save'), :id => "poster-crop-form", :class => "button primary right", :onclick => "$.colorbox.close();" %>
+        <%= f.submit t('crop_and_save'), :id => "poster-crop-form", :class => "button primary right" %>
       <% end %>
     </div>
   </div>

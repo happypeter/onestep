@@ -1,1 +1,3 @@
 $('img#avatar').replaceWith('<%= image_tag @user.avatar_url,:alt => "头像", :id => "avatar"%>');
+$.colorbox.close();
+$('.modal-footer form').find("input[type='submit']").prop('disabled',false);
