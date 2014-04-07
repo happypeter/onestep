@@ -11,6 +11,16 @@
       }
     });
 
+    $("#course-title").bind("input", function() {
+      if ($(this).val() == '') {
+        $("#update-course-btn").attr("disabled", true);
+        $("#js-errors").html("课程标题不能为空").fadeIn();
+        setTimeout(function() { $("#js-errors").fadeOut(); }, 3000);
+      } else {
+        $("#update-course-btn").attr("disabled", false);
+      }
+    });
+
     //following codes are for course poster crop
     var jcrop_api; // Holder for the jcrop API
     var inputFile = $("#poster-fileupload")[0];
@@ -113,6 +123,7 @@
           </ul>
         </div>
       <% end %>
+      <div id="js-errors"></div>
       <div class="course-card">
         <div class="poster">
           <%= image_tag course.poster_url, :id => "poster" %>
@@ -144,7 +155,7 @@
           </label>
         </div>
         <div class="item">
-          <%= f.submit t("update_course"), :class => "button" %>
+          <%= f.submit t("update_course"), :class => "button", :id => "update-course-btn" %>
         </div>
       </div>
   <% end %>

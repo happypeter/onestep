@@ -94,6 +94,21 @@ $course-name-blue: #3499D3;
       padding: 0;
     }
   }
+  #js-errors {
+    display: none;
+    width: 280px;
+    min-height: 40px;
+    position: absolute;
+    right: 0;
+    top: 145px;
+    padding: 10px;
+    background-color: #F1D7D7;
+    color: #A95252;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 40px;
+  }
   .course-extra-info {
     color: black;
     float: right;
@@ -101,9 +116,9 @@ $course-name-blue: #3499D3;
     padding-top: 50px;
     .item {
       margin-top: 30px;
-      .cancel {
-        margin-left: 20px;
-      }
+    }
+    #update-course-btn:disabled {
+      color: #999;
     }
     .price-sign {
       position: relative;
