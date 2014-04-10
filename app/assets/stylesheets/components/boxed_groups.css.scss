@@ -15,7 +15,12 @@ Styleguide 7.1.
   padding: 3px;
   border-radius: 3px;
   margin: 0 0 15px 0;
-  &>h3, .heading {
+  & > h3 {
+    background-color: #ececec;
+    margin: 0;
+    padding: 10px 20px;
+  }
+  .heading {
     background-color: #e0e0e0;
     background-image: -moz-linear-gradient(#fafafa, #e0e0e0);
     background-image: -webkit-linear-gradient(#fafafa, #e0e0e0);
@@ -33,10 +38,6 @@ Styleguide 7.1.
   .boxed-group-inner {
     padding: 10px 20px;
     background: #fff;
-    border: 1px solid #d8d8d8;
-    border-top: 1px solid #ccc;
-    border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 1px;
     color: #666;
     font-size: 13px;
   }
