@@ -17,10 +17,8 @@
     </table>
     <div class="payment-form">
       <%= form_tag "/checkout" do %>
-        <%= hidden_field_tag :price, @price %>
-        <%= hidden_field_tag :quantity, '1' %>
-        <%= hidden_field_tag :subject, @subject %>
-        <%= hidden_field_tag :out_trade_no, @out_trade_no %>
+        <%= hidden_field_tag :course_id, @course.id %>
+        <%= hidden_field_tag :order_id, @order.id %>
         <%= submit_tag t('checkout'), :class => "button primary large right" %>
       <% end %>
     </div>
