@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
       @order.course_id = @course.id
     end
     @order.subject = @subject # course's title may change
+    @order.out_trade_no = @out_trade_no
 
     @order.save!
   end
