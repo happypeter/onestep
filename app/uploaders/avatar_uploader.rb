@@ -16,12 +16,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   AVATAR_NW = 172
   AVATAR_NH = 172
 
-  process :resize_and_pad => [AVATAR_LW, AVATAR_LH, "white"], :if => :large_image?
+  process :resize_to_fit => [AVATAR_LW, AVATAR_LH], :if => :large_image?
   process :crop
 
   def crop
     return unless model.cropping?
-    manipulate! format: "png" do |img|
+    manipulate! do |img|
       x = model.crop_x.to_i
       y = model.crop_y.to_i
       w = model.crop_w.to_i
@@ -30,6 +30,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
       img
     end
   end
+
+  # def resize_to_fit(width, height)
+  #   manipulate! format: "png" do |img|
+  #     img.resize_to_fit!(width, height)
+  #     img = yield(img) if block_given?
+  #     img
+  #   end
+  # end  
 
   def large_image? file
     if @file
