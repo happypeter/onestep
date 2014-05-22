@@ -2,7 +2,7 @@
   class CarrierStringIO < StringIO
     def original_filename
       # the real name does not matter
-      "photo.jpeg"
+      "photo.png"
     end
 
     def content_type
