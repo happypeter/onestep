@@ -5,16 +5,10 @@ class OrdersController < ApplicationController
   before_filter :update_order, :only => [:done, :notify]
 
   def new
-    @course = Course.find(params[:course_id])
     @subject = @course.title
     @price = @course.price
-    # Too ease to be faked and may cause problem when several user paid at the same time.
-    # @out_trade_no = Time.now.to_i.to_s
     @out_trade_no = Base64.encode64("#{current_user.id}: #{Time.now.to_i}")
 
-    # @order ||= Order.new(user_id: current_user.id, course_id: @course.id,
-      # subject: @subject, out_trade_no: @out_trade_no)
-    # otherwise it would reproduce lots of dead orders
     unless ( @order = Order.not_paid.where(course_id: params[:course_id], user_id: current_user.id).first )
       @order = current_user.orders.new
       @order.course_id = @course.id
@@ -26,8 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def done
-    # order = Order.find_by_out_trade_no(params[:out_trade_no])
-    # course = Course.find(order.course_id)
     flash[:notice] = t('trade_finished')
     redirect_to course_path(@order.course)
   end
@@ -41,12 +33,10 @@ class OrdersController < ApplicationController
       :partner           => Settings.alipay.pid,
       :key               => Settings.alipay.secret,
       :seller_email      => Settings.alipay.seller_email,
-      # DON'T TRUST params at anytime
       :out_trade_no      => @order.out_trade_no,
       :subject           => @course.title,
       :price             => @course.price,
       :quantity          => 1,  # It seems that no one need to pay the same course twice .
-      # :quantity          => params[:quantity],
       :return_url        => Settings.alipay.return_url,
       :notify_url        => Settings.alipay.notify_url
     }
@@ -69,7 +59,6 @@ class OrdersController < ApplicationController
         elsif params[:trade_status] == "WAIT_SELLER_SEND_GOODS"
           # for danbao pay
           AlipayDualfun.send_goods_confirm_by_platform(options)
-          # shouldn't trade_status be boolean ?
           @order.update_attributes(trade_status: "TRADE_FINISHED",  total_fee: params[:total_fee])
         end
       end
@@ -91,9 +80,6 @@ class OrdersController < ApplicationController
       end
     end
 
-    # It feels too dangerous to show out_trade_no to users.
-    # Since I got out_trade_no, I could easily fake a request to done or notify.
-    # To find the order, I would rather choose order_id instead.
     def get_order
       unless ( @order = Order.where( course_id: params[:course_id], 
                                     id: params[:order_id], 
