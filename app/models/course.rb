@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
                   :price
   validates_presence_of :title
 
-  has_many :videos, order: :position, :dependent => :destroy
+  has_many :videos, -> { order :position }, :dependent => :destroy
   has_many :orders
   has_many :activities, :dependent => :destroy
   has_many :watchings, :dependent => :destroy
@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
   has_many :collaboratings, :dependent => :destroy
   has_many :collaborators, :through => :collaboratings, :source => :user
 
-  scope :pub, where(public: true)
+  scope :pub, -> { where(public: true) } 
 
   mount_uploader :poster, PosterUploader
 

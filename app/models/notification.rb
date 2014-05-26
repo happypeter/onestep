@@ -3,7 +3,7 @@ class Notification < ActiveRecord::Base
   belongs_to :executor, :class_name => 'User'
   belongs_to :notifiable, :polymorphic => true
 
-  scope :recent, order("created_at DESC")
+  scope :recent, -> { order("created_at DESC") } 
 
   attr_accessible :action, :unread, :notifiable, :user, :executor
 

@@ -22,16 +22,16 @@ gem "jquery-atwho-rails"
 
 # Gems used only for assets and not required
 # in production environments by default.
-# group :assets do
-gem 'sass-rails'
-gem 'compass-rails'
-gem 'coffee-rails'
-gem "font-awesome-rails"
+group :assets do
+  gem 'sass-rails'
+  gem 'compass-rails'
+  gem 'coffee-rails'
+  gem "font-awesome-rails"
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', :platforms => :ruby
-gem 'uglifier'
-# end
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', :platforms => :ruby
+  gem 'uglifier'
+end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

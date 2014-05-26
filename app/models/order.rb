@@ -5,6 +5,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
 
-  scope :not_paid ,where("trade_status IS NULL")
-  scope :paid, where(trade_status: "TRADE_FINISHED")
+  scope :not_paid, -> { where("trade_status IS NULL") }
+  scope :paid, -> { where(trade_status: "TRADE_FINISHED") }
 end

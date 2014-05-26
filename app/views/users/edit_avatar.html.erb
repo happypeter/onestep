@@ -72,7 +72,7 @@
         <input id="fileupload" name="user[avatar]" type="file">
       </a>
       <%= link_to("恢复Gravatar头像", "/restore_gravatar", :class => "button", 
-                  :method => :put, :id => "restore_gravatar", 
+                  :method => :patch, :id => "restore_gravatar", 
                   :style => "display:#{@user.use_avatar? ? '' : 'none'};")%>      
     </p>
   </div>
