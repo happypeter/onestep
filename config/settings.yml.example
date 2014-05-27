@@ -1,6 +1,8 @@
 default: &default
   image:
     default_poster: 'http://media.haoqicat.com/course_poster/default.png'
+    default_posters_dir: 'default_posters/'
+    default_avatar: "http://www.gravatar.com/avatar/default.png"    
   alipay:
     pid: '2088402465243298'
     secret: 'p182a5k2yekoo5fzjjcbpysu41ak4wlb'
