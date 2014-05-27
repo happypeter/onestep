@@ -61,7 +61,7 @@
   <h3><%= t('change_avatar') %></h3>
   <div class="boxed-group-inner">
     <p>
-      <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com" %>
+      <%= t('avatar_email') %> <b><%= @user.email %></b><br/><%= t('upload_avatar') %><br/><%= t('go_avatar') %><%= link_to "Gravatar.com", "http://www.gravatar.com", :target => "_blank"  %>
     </p>
     <p> <b><%= t('or') %></b> </p>
     <p> <%= t('haoqicat_avatar') %> </p>
@@ -71,6 +71,9 @@
         <span id="upload-tip"><%= t('select_avatar') %></span>
         <input id="fileupload" name="user[avatar]" type="file">
       </a>
+      <%= link_to("恢复Gravatar头像", "/restore_gravatar", :class => "button", 
+                  :method => :put, :id => "restore_gravatar", 
+                  :style => "display:#{@user.use_avatar? ? '' : 'none'};")%>      
     </p>
   </div>
 </div>

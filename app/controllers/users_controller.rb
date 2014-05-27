@@ -42,6 +42,7 @@ class UsersController < ApplicationController
     @user.crop_w = params[:user][:crop_w]
     @user.crop_h = params[:user][:crop_h]
     @user.avatar = @user.avatar
+    @user.use_gravatar = false
     @user.save
 
     respond_to do |format|
@@ -51,6 +52,12 @@ class UsersController < ApplicationController
 
   def edit_avatar
     @user = current_user
+  end
+
+  def restore_gravatar
+    current_user.update_attribute(:use_gravatar, true) unless current_user.use_gravatar?
+
+    redirect_to :edit_avatar
   end
 
   def create

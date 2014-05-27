@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140322080035) do
+ActiveRecord::Schema.define(:version => 20140521052220) do
 
   create_table "activities", :force => true do |t|
     t.string   "action"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20140322080035) do
     t.string   "avatar"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean  "use_gravatar"
   end
 
   create_table "videos", :force => true do |t|

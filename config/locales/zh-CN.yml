@@ -43,6 +43,10 @@ zh-CN:
   update_time: "最近更新:"
 
   #order
+  order:
+    no_such_order: "订单错误, 请重新提交"
+    no_such_course: "您申购的课程不存在"
+    already_paid: "您已购买过此课程" 
   trade_finished: "付款成功"
   wait_buyer_pay: "等待付款"
   out_trade_no: "订单号"

@@ -31,6 +31,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
     end
   end
 
+  # def resize_to_fit(width, height)
+  #   manipulate! format: "png" do |img|
+  #     img.resize_to_fit!(width, height)
+  #     img = yield(img) if block_given?
+  #     img
+  #   end
+  # end  
+
   def large_image? file
     if @file
       img = ::Magick::Image::read(@file.file).first

@@ -76,13 +76,17 @@ class User < ActiveRecord::Base
     self.read_attribute(:avatar).present?
   end
 
+  def use_avatar?
+    has_avatar? && !use_gravatar?
+  end
+
   def gravatar_url
     gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=512&d=retro"
   end
 
   def final_avatar_url
-    self.has_avatar? ? self.avatar_url : self.gravatar_url
+    self.use_avatar? ? self.avatar_url : self.gravatar_url
   end
 
   def generate_token(column)
