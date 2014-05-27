@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  scope :recent, order('id DESC')
+  scope :recent, -> { order('id DESC') }
 
   def to_param
   # post_path(@post), will become blog/0112-good-news

@@ -24,12 +24,16 @@
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
 
-var commenter = [];
-var commenter_exist= [];
-$('.comment-header-author').each(function() {
-  if($.inArray($(this).text(), commenter_exist) < 0){
-      commenter.push($(this).text());
-      commenter_exist.push($(this).text());
-    }
+jQuery(document).ready(function() {
+  if($('.comment-header-author') && $('textarea').size > 1) {
+    var commenter = [];
+    var commenter_exist= [];
+    $('.comment-header-author').each(function() {
+      if($.inArray($(this).text(), commenter_exist) < 0){
+          commenter.push($(this).text());
+          commenter_exist.push($(this).text());
+        }
+    });
+    $('textarea').atWho('@', {data: commenter});
+  }
 });
-$('textarea').atWho('@', {data: commenter});

@@ -32,25 +32,26 @@ Onestep::Application.routes.draw do
   delete "notifications/:id" => "notifications#destroy", :as => "notification"
   delete "notifications" => "notifications#clear", :as => "clear_notifications"
 
-  put 'edit-avatar' => 'users#update_avatar', :as => :update_avatar
-  match "edit-avatar" => "users#edit_avatar", :as => "edit_avatar"
-  match 'update_poster' => 'courses#update_poster', :as => :update_poster
+  patch '/restore_gravatar' => "users#restore_gravatar"
+  patch 'edit-avatar' => 'users#update_avatar', :as => :update_avatar
+  get "edit-avatar" => "users#edit_avatar", :as => "edit_avatar"
+  patch 'update_poster' => 'courses#update_poster', :as => :update_poster
 
   resources :comments
-  match "/comment_preview" => "comments#preview", :as => "comment_preview"
+  post "/comment_preview" => "comments#preview", :as => "comment_preview"
 
   get "login" => "users#login", :as => "login"
   get "signup" => "users#signup", :as => "signup"
   post "create_login_session" => "users#create_login_session"
   delete "logout" => "users#logout", :as => "logout"
 
-  put "/course" => "courses#update"
+  patch "/course" => "courses#update"
   get "/course" => "courses#index", :as => "course_index"
   post "/course" => "courses#create"
   get "/create_course" => "courses#new", :as => :create_course
 
-  get "/member" => "users#index", :as => "user_index"
-  post "/member" => "users#create"
+  get "/members" => "users#index", :as => "user_index"
+  post "/members" => "users#create"
   put "/crop" => "users#crop", :as => "crop"
   put "/crop_poster" => "courses#crop_poster", :as => "crop_poster"
 
@@ -65,7 +66,7 @@ Onestep::Application.routes.draw do
   post "/:member_name/:course_name/add_member" => "courses#add_member", :as => "course_add_member"
   post "/:member_name/:course_name/delete_member" => "courses#delete_member", :as => "course_delete_member"
 
-  resources :courses do
+  resources :courses, :except => :edit do
     get :autocomplete_user_name, :on => :collection
   end
 
@@ -73,14 +74,14 @@ Onestep::Application.routes.draw do
   post "/:member_name/unfollow" => "users#unfollow"
 
   get "/account" => "users#edit", :as => "account"
-  put "/account" => "users#update"
+  patch "/account" => "users#update"
   get "/:member_name" => "users#show", :as => "member"
   delete "/:member_name/:course_name" => "courses#destroy"
   get "/:member_name/:course_name/edit" => "courses#edit" , :as => "edit_course"
   get "/:member_name/:course_name(/:position)" => "courses#show", :constraints => {:position => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
   get "/:member_name/:course_name/:position/edit" => "courses#edit_video"
   get "/:member_name/:course_name/add_video" => "courses#add_video"
-  match "/update_video/:id" => "videos#update"
+  patch "/update_video/:id" => "videos#update"
   post "/sort_videos" => "videos#sort"
 
 end

@@ -1,6 +1,7 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
+# source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails'
 gem 'kss'
 
 # Bundle edge Rails instead:
@@ -9,7 +10,7 @@ gem 'kss'
 gem 'mysql2'
 gem 'unicorn'
 gem 'redcarpet'
-gem 'carrierwave', "~> 0.6.2"
+gem 'carrierwave'
 gem 'rmagick'
 gem 'mime-types'
 gem 'settingslogic'
@@ -17,32 +18,32 @@ gem 'ruby-pinyin'
 gem 'acts_as_list'
 gem "rails_autolink"
 
-gem "jquery-atwho-rails", "0.1.6"
+gem "jquery-atwho-rails"
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails'
   gem 'compass-rails'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem "font-awesome-rails", '4.0.3.0'
+  gem 'coffee-rails'
+  gem "font-awesome-rails"
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
-gem 'jquery-rails', '2.1.2'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete'
-gem 'jquery-fileupload-rails', '0.4.0'
+gem 'jquery-fileupload-rails'
 gem 'haml'
 
 # modal
-gem "colorbox-rails", "~> 0.1.0"
+gem "colorbox-rails"
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -65,3 +66,7 @@ gem 'alipay_dualfun'
 
 # use for pagination
 gem 'kaminari'
+
+# TODO: switch to strong parameters
+# for rails4
+gem 'protected_attributes'
