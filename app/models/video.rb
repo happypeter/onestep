@@ -21,11 +21,12 @@ class Video < ActiveRecord::Base
   end
 
   def set_ratio
-    out = `ffmpeg -i #{asset_url} 2>&1`
-    if out =~ /(\b[\d]{3,4}x[\d]{3,4}\b)/
-      a = $1.split('x')
-      a[0].to_f / a[1].to_f
-    end
+    # out = `ffmpeg -i #{asset_url} 2>&1`
+    # if out =~ /(\b[\d]{3,4}x[\d]{3,4}\b)/
+    #   a = $1.split('x')
+    #   a[0].to_f / a[1].to_f
+    # end
+    `mediainfo '--Inform=Video; %DisplayAspectRatio%' #{asset_url}`
   end
 
   private
