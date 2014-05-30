@@ -37,4 +37,5 @@ Onestep::Application.configure do
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => "op.local" }
 
+  config.eager_load = false
 end
