@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_to_zh
+    I18n.config.enforce_available_locales = false
     I18n.locale = cookies[:locale] || "zh-CN"
   end
 
