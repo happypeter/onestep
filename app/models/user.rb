@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :watchings, :dependent => :destroy
   has_many :watched_courses, :through => :watchings, :source => :course
 
-  attr_accessible :name, :email, :avatar, :password, :password_confirmation, :admin
+  attr_accessible :name, :email, :avatar, :password, :password_confirmation#, :admin
 
   has_many :follower_relationships, :class_name => "Relationship",
            :foreign_key => "followed_user_id", :dependent => :destroy
