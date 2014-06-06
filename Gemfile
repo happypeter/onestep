@@ -1,5 +1,5 @@
-source 'http://ruby.taobao.org'
-# source 'https://rubygems.org'
+# source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
 
 gem 'rails'
 gem 'kss'
@@ -73,3 +73,5 @@ gem 'kaminari'
 # TODO: switch to strong parameters
 # for rails4
 gem 'protected_attributes'
+
+gem 'newrelic_rpm'

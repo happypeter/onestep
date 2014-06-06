@@ -130,6 +130,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    newrelic_rpm (3.6.8.168)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     polyglot (0.3.4)
@@ -259,6 +260,7 @@ DEPENDENCIES
   kss
   mime-types
   mysql2
+  newrelic_rpm
   protected_attributes
   rails
   rails3-jquery-autocomplete
