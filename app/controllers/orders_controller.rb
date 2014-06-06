@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def new
     @subject = @course.title
     @price = @course.price
-    @out_trade_no = Base64.encode64("#{current_user.id}: #{Time.now.to_i}")
+    @out_trade_no = Base64.urlsafe_encode64("#{current_user.id}: #{Time.now.to_i}")
 
     unless ( @order = Order.not_paid.where(course_id: params[:course_id], user_id: current_user.id).first )
       @order = current_user.orders.new
