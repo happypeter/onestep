@@ -78,7 +78,8 @@ class UsersController < ApplicationController
   end
 
   def create_login_session
-    user = User.find_by_name(params[:name])
+    user = User.find_by(name: params[:login])
+    user ||= User.find_by(email: params[:login])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
       redirect_to_target_or_default root_url

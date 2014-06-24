@@ -5,15 +5,15 @@
       <%= form_tag "/create_login_session" do %>
         <dl class="form">
           <dt>
-          <%= label_tag t('username') %>
+          <%= label_tag :login, t('username') %>
           </dt>
           <dd>
-          <%= text_field_tag :name, params[:name], :class => "short" %>
+          <%= text_field_tag :login, params[:login], :class => "short" %>
           </dd>
         </dl>
         <dl class="form">
           <dt>
-          <%= label_tag t('password') %>
+          <%= label_tag :password, t('password') %>
           </dt>
           <dd>
           <%= password_field_tag :password, params[:password], :class => "short" %>
