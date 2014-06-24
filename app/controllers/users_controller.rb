@@ -2,6 +2,8 @@
 class UsersController < ApplicationController
   layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :redirect_to_root_if_logged_in, only: [:signup, :login]
+  before_filter :check_login, :only => [:edit, :update, :update_avatar, :edit_avatar, 
+                                        :restore_gravatar, :follow, :unfollow]
 
   def login
     @user = User.new
@@ -12,15 +14,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_name(current_user.name) if current_user
-    if @user.nil?
-      redirect_to_target_or_default :root, :notice => t('login_first_plz')
-      return
-    end
+    @user = current_user
   end
 
   def update
-    @user = User.find_by_name(params[:user][:name])
+    @user = current_user
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(account_path, :notice => t('profile_updated')) }
