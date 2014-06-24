@@ -24,6 +24,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(account_path, :notice => t('profile_updated')) }
+      else
+        flash[:notice]  = @user.errors.full_messages.first
+        format.html { render :edit, layout: "users/edit" }
       end
     end
   end

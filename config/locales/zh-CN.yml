@@ -328,5 +328,6 @@ zh-CN:
         name: 用户名
         email: Email
         password: 密码
+        password_confirmation: 密码确认
     errors:
       <<: *errors
