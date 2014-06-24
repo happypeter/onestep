@@ -1,15 +1,5 @@
 <div class="single-form-container">
   <%= form_for(@user,:url =>"/members") do |f| %>
-    <% if @user.errors.any? %>
-      <div class="error_messages">
-        <h2>填写的信息有误</h2>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
     <div class="boxed-group">
       <h3><%= t('signup') %></h3>
       <div class="boxed-group-inner">

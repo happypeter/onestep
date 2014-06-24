@@ -63,53 +63,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    black_list = %w(write_blog create_login_seesion account blog explore signup login about)
-
-    if params[:user][:name].empty? ||
-       params[:user][:email].empty? ||
-       params[:user][:password].empty?
-
-      flash[:notice] = t('fields_can_not_be_blank')
-      redirect_to :signup
-      return
-    end
-
-    user_name = @user.name
-    if user_name.include?('-') ||
-       user_name.include?(' ') ||
-       user_name.include?('.') ||
-       user_name.include?('/') ||
-       user_name.include?('\\')
-      flash[:notice] = "用户名不能包含横线, 斜线, 句点或空格"
-      redirect_to :signup
-      return
-    end
-
-    if black_list.include? user_name
-      flash[:notice] = "#{user_name} #{t('is_reserved_word')}"
-      redirect_to :signup
-      return
-    end
-
-    if User.exists? name: user_name
-      flash[:notice] = t('name_taken')
-      redirect_to :signup
-      return
-    end
-
-    if User.exists? email: @user.email
-      flash[:notice] = t('email_taken')
-      redirect_to :signup
-      return
-    end
-
-    if @user.save
+    if @user.valid?
+      @user.save!
       UserMailer.welcome(@user).deliver
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => t('signed_up')
     else
-      redirect_to :signup
-      flash[:notice] = t('fail_save_user')
+      flash[:notice] = @user.errors.full_messages.first
+      render :signup
     end
   end
 

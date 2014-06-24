@@ -291,10 +291,10 @@ zh-CN:
       second: 秒
       year: 年
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: ! '%{attribute}%{message}'
     messages:
      accepted: 必须是可被接受的
-     blank: 不能为空字符
+     blank: 不能为空，请填写完整的信息
      confirmation: 与确认值不匹配
      empty: 不能留空
      equal_to: 必须等于 %{count}
@@ -310,7 +310,7 @@ zh-CN:
      not_an_integer: 必须是整数
      odd: 必须为单数
      record_invalid: ! '验证失败: %{errors}'
-     taken: 已经被使用
+     taken: 已被占用，请重新选择
      too_long: 过长（最长为 %{count} 个字符）
      too_short: 过短（最短为 %{count} 个字符）
      wrong_length: 长度非法（必须为 %{count} 个字符）
@@ -323,5 +323,10 @@ zh-CN:
     errors:
       <<: *errors
   activerecord:
+    attributes:
+      user:
+        name: 用户名
+        email: Email
+        password: 密码
     errors:
       <<: *errors

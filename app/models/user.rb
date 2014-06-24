@@ -1,6 +1,5 @@
 # encoding:utf-8
 class User < ActiveRecord::Base
-  has_secure_password
   has_many :activities
   has_many :comments
   has_many :posts
@@ -29,7 +28,15 @@ class User < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  validates_presence_of :name, :email
+  BLACK_LIST = %w(write_blog create_login_seesion account blog explore signup login about)
+
+  validates :name,  presence: true, uniqueness: true, 
+                    exclusion: { in: BLACK_LIST, message: I18n.t("is_reserved_word") }, 
+                    format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
+  validates :email, presence: true, 
+                    uniqueness: { message: "已经注册了一个用户，请重新选择" },
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  has_secure_password
 
   before_create { generate_token(:token) }
 
