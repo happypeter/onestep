@@ -74,4 +74,4 @@ gem 'kaminari'
 # for rails4
 gem 'protected_attributes'
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
