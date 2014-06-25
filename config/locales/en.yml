@@ -40,7 +40,7 @@ en:
   new_password: "New Password"
   password_confirm: "Password Confirm"
 
-  username: "Username"
+  username: "User name or Email"
   signup_username: "Pick a username"
   password: "Password"
 

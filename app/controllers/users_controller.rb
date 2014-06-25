@@ -2,6 +2,8 @@
 class UsersController < ApplicationController
   layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :redirect_to_root_if_logged_in, only: [:signup, :login]
+  before_filter :check_login, :only => [:edit, :update, :update_avatar, :edit_avatar, 
+                                        :restore_gravatar, :follow, :unfollow]
 
   def login
     @user = User.new
@@ -12,18 +14,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_name(current_user.name) if current_user
-    if @user.nil?
-      redirect_to_target_or_default :root, :notice => t('login_first_plz')
-      return
-    end
+    @user = current_user
   end
 
   def update
-    @user = User.find_by_name(params[:user][:name])
+    @user = current_user
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(account_path, :notice => t('profile_updated')) }
+      else
+        flash[:notice]  = @user.errors.full_messages.first
+        format.html { render :edit, layout: "users/edit" }
       end
     end
   end
@@ -63,58 +64,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    black_list = %w(write_blog create_login_seesion account blog explore signup login about)
-
-    if params[:user][:name].empty? ||
-       params[:user][:email].empty? ||
-       params[:user][:password].empty?
-
-      flash[:notice] = t('fields_can_not_be_blank')
-      redirect_to :signup
-      return
-    end
-
-    user_name = @user.name
-    if user_name.include?('-') ||
-       user_name.include?(' ') ||
-       user_name.include?('.') ||
-       user_name.include?('/') ||
-       user_name.include?('\\')
-      flash[:notice] = "用户名不能包含横线, 斜线, 句点或空格"
-      redirect_to :signup
-      return
-    end
-
-    if black_list.include? user_name
-      flash[:notice] = "#{user_name} #{t('is_reserved_word')}"
-      redirect_to :signup
-      return
-    end
-
-    if User.exists? name: user_name
-      flash[:notice] = t('name_taken')
-      redirect_to :signup
-      return
-    end
-
-    if User.exists? email: @user.email
-      flash[:notice] = t('email_taken')
-      redirect_to :signup
-      return
-    end
-
-    if @user.save
+    if @user.valid?
+      @user.save!
       UserMailer.welcome(@user).deliver
       cookies.permanent[:token] = @user.token
       redirect_to member_path(@user.name), :notice => t('signed_up')
     else
-      redirect_to :signup
-      flash[:notice] = t('fail_save_user')
+      flash[:notice] = @user.errors.full_messages.first
+      render :signup
     end
   end
 
   def create_login_session
-    user = User.find_by_name(params[:name])
+    user = User.find_by(name: params[:login])
+    user ||= User.find_by(email: params[:login])
     if user && user.authenticate(params[:password])
       cookies.permanent[:token] = user.token
       redirect_to_target_or_default root_url

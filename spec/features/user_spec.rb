@@ -1,5 +1,6 @@
 # encoding: utf-8
-require 'spec_helper.rb'
+# require 'spec_helper.rb'
+include Utilities
 
 describe "User Actions" do
   before do

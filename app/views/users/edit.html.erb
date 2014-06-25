@@ -2,15 +2,6 @@
   <h3><%= t('edit_profile') %></h3>
   <div class="boxed-group-inner">
     <%= form_for(@user,:url =>"/account" ) do |f| %>
-      <% if @user.errors.any? %>
-        <div class="error_messages">
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
       <%= f.hidden_field :name %>
       <dl class="form">
         <dt> <%= f.label :email %> </dt>
