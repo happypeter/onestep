@@ -1,9 +1,7 @@
 <% kss_block '9.1' do %>
   <ol class="member-list">
     <li class="member-list-item">
-    <a href="/happypeter">
-      <img alt="uprofile" class="gavatar" src="http://haoqicat.com/assets/team/peter-dbff066be775902c09eab4d5ac4876cd.jpeg" />
-    </a>
+      <a href="/happypeter"><%= image_tag User.find_by_name('happypeter').final_avatar_url, :class => "gavatar"%></a>
     <div class="member-list-container">
       <h3 class="member-name">
         <a href="/happypeter">happypeter</a>
@@ -14,9 +12,7 @@
     </div>
     </li>
     <li class="member-list-item">
-    <a href="/luckyyang">
-      <img alt="uprofile" class="gavatar" src="http://haoqicat.com/assets/team/luckyyang-7328d774d8dbf0ffd9298ef0d18bd92c.jpg" />
-    </a>
+      <a href="/happypeter"><%= image_tag User.find_by_name('luckyyang').final_avatar_url, :class => "gavatar"%></a>
     <div class="member-list-container">
       <h3 class="member-name">
         <a href="/luckyyang">luckyyang</a>

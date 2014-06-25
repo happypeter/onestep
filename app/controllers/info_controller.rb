@@ -9,6 +9,7 @@ class InfoController < ApplicationController
   end
 
   def styleguide
+
     @styleguide = Kss::Parser.new("app/assets/stylesheets")
     if not params[:ref]
       render :template => "info/styleguide/css/index"
