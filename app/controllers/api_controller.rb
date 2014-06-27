@@ -11,7 +11,14 @@ class ApiController < ApplicationController
           :date => order.created_at.strftime(t('date.formats.default'))
         }
       end
-      render :json => result, :callback => params[:callback]
+      # Workaround for https://github.com/rails/rails/issues/15081
+      # TODO When the bug above is fixed we should just be able to replace the block below with
+      # render :json => result, :callback => params[:callback]
+      if params[:callback]
+        render :json => result, callback: params[:callback], content_type: "application/javascript"
+      else
+        render :json => result
+      end
     }
     end
   end
