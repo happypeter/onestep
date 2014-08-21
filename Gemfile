@@ -28,7 +28,7 @@ group :assets do
   gem 'coffee-rails'
   # error loading in rails 4.1
   # see https://github.com/bokmann/font-awesome-rails/issues/88 for more details
-  # gem "font-awesome-rails"  
+  # gem "font-awesome-rails"
   gem 'font-awesome-sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes

@@ -35,7 +35,8 @@ Onestep::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => "op.local" }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.preview_path = "#{Rails.root}/lib/mailers/previews"
 
   config.eager_load = false
 end
