@@ -63,9 +63,21 @@ describe "User features" do
       expect(page).to have_content "用户名已被占用，请重新选择"
     end
 
+    it "should display error msg when user name which case insensitive exists" do
+      create(:user, :name => "happypeter")
+      signup_with_attributes(name: "Happypeter")
+      expect(page).to have_content "用户名已被占用，请重新选择"
+    end
+
     it "should display error msg when emial exists" do
       create(:user, :email => "happypeter@gmail.com")
       signup_with_attributes(email: "happypeter@gmail.com")
+      expect(page).to have_content "Email已经注册了一个用户，请重新选择"
+    end    
+
+    it "should display error msg when emial which case insensitive exists" do
+      create(:user, :email => "happypeter@gmail.com")
+      signup_with_attributes(email: "Happypeter@gmail.com")
       expect(page).to have_content "Email已经注册了一个用户，请重新选择"
     end    
 
