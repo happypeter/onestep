@@ -30,11 +30,11 @@ class User < ActiveRecord::Base
 
   BLACK_LIST = %w(write_blog create_login_seesion account blog explore signup login about)
 
-  validates :name,  presence: true, uniqueness: true, 
+  validates :name,  presence: true, uniqueness: { case_sensitive: false}, 
                     exclusion: { in: BLACK_LIST, message: I18n.t("is_reserved_word") }, 
                     format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
   validates :email, presence: true, 
-                    uniqueness: { message: "已经注册了一个用户，请重新选择" },
+                    uniqueness: { case_sensitive: false, message: "已经注册了一个用户，请重新选择" },
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   has_secure_password
 
