@@ -4,10 +4,10 @@
       HAOQI
     </a>
     <ul class="top-nav">
-      <li><a href="/about"><%= t("about") %></a></li>
-      <li><a href="/blog"><%= t("blog") %></a></li>
       <li> <%= link_to "全部课程", course_index_path(:sort => "star") %></li>
       <li><a href="/timeline"><%= t("site_timeline") %></a></li>
+      <li><a href="/blog"><%= t("blog") %></a></li>
+			<li><a href="/about"><%= t("about") %></a></li>
     </ul>
     <ul id="user-links">
       <li><%= link_to notifications_path do %>
