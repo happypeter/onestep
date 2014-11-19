@@ -29,6 +29,7 @@ class VideosController < ApplicationController
       f.html do
           redirect_to_target_or_default root_url
       end
+      f.json { render :json => {} }
     end
   end
 

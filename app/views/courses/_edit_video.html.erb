@@ -2,6 +2,8 @@
   jQuery(function($) {
     $('#fileupload').fileupload({
       url: '/update_video/<%= video.id %>',
+      type: 'patch',
+      dataType: "json",
       add: function(e, data){
         types = /(\.|\/)(mov|mp4)$/i;
         file = data.files[0];
