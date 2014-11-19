@@ -44,7 +44,7 @@
       :confirm => t('confirm_delete') %>
   </div>
   <div class="primary-info">
-    <%= form_for video, method: "patch" do |f| %>
+    <%= form_for video do |f| %>
       <dl class="form">
         <dt>
           <%= f.hidden_field :id %>
