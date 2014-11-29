@@ -23,6 +23,7 @@
 //= require colorbox-rails
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
+//= require jquery.tooltipster.min.js
 
 jQuery(document).ready(function() {
   if($('.comment-header-author') && $('textarea').size > 1) {
@@ -36,4 +37,5 @@ jQuery(document).ready(function() {
     });
     $('textarea').atWho('@', {data: commenter});
   }
+  $('.tooltip').tooltipster();
 });

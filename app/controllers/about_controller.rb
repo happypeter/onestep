@@ -14,4 +14,3 @@ class AboutController < ApplicationController
   def faq
   end
 end
-

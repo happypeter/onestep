@@ -105,8 +105,6 @@
   }
 }
 
-
-
 /* sticky footer */
 html,body {
   margin:0;
@@ -147,8 +145,26 @@ body > .navbar {
       margin-left: 0;
     }
   }
-  .brand {
-    text-align: center;
+  .contact {
+    line-height: 20px;
+    width: 600px;
+    margin: 0 auto;
+    .member {
+      display: inline-block;
+      float: left;
+      margin-left: 3px;
+    }
+    .text {
+      line-height: 20px;
+      margin: 0;
+      margin-left: 3px;
+      float: left;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+    }
   }
 }
 .footer-divider {

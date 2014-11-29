@@ -18,7 +18,8 @@ gem 'ruby-pinyin'
 gem 'acts_as_list'
 gem "rails_autolink"
 
-gem "jquery-atwho-rails"
+gem 'jquery-atwho-rails'
+gem 'tooltipster-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
