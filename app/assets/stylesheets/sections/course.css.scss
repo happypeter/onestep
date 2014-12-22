@@ -138,14 +138,14 @@ div#html5-player {
     margin-bottom: 0;
     font-size: 20px;
     font-weight: normal;
-    line-height: 26px;
+    line-height: 30px;
     color: #666;
     position: relative;
     float: left;
     .course-image {
       float: left;
-      width: 48px;
-      height: 27px;
+      width: 53px;
+      height: 30px;
       border-radius: 3px;
       background-position: center;
       background-size: cover;
@@ -156,6 +156,11 @@ div#html5-player {
     .pagehead-name-divider {
       padding-right: 5px;
       padding-left: 5px;
+    }
+    .label {
+      font-size: 14px;
+      padding: 3px 8px;
+      margin-left: 10px;
     }
   }
 }

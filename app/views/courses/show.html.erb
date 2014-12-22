@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="pagehead-actions">
       <% if owner?(@course) %>
-        <% if @course.price.present? && @course.price > 0.0 %>
+        <% if paid_course?(@course) %>
           <li><%= link_to t('add_collaborator'), course_collab_path, :class => "minibutton" %></li>
         <% end %>
         <li><%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %></li>
@@ -27,6 +27,9 @@
       </span>
       <span class="pagehead-name-divider">/</span>
       <strong><%= link_to @course.title, course_path(@course) %></strong>
+      <% if !paid_course?(@course) %>
+        <span class="ui teal label">免费</span>
+      <% end %>
     </h1>
     <br>
     <p class="course-desc"><%= auto_link @course.description %></p>

@@ -60,12 +60,14 @@
           <%= f.text_area :desc, id: "video-desc", class: "long short", rows: '8' %>
         </dd>
       </dl>
+      <% if paid_course?(video.course) %>
       <dl class="form">
         <dt>
           <%= f.check_box :free %>
           <%= f.label :free %>
         </dt>
       </dl>
+      <% end %>
       <div class="video-button-group">
         <%= f.submit t('update_video_info'), class: "button", data: {disable_with: t('video_saving') + "..."}, id: "submit_video_info" %>
       </div>

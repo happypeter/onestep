@@ -5,7 +5,7 @@
         <a class="video" href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js' %>" data-remote='true'>
           <span class="video-info edit-video-info">
             <%= video.title %>
-            <%= "(免费)" if video.free? %>
+            <%= "(免费)" if video.free? && paid_course?(course) %>
           </span>
         </a>
         <a href="<%= course_path(video.course) + '/' + video.position.to_s + '/edit.js' %>"

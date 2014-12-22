@@ -52,6 +52,10 @@ module ApplicationHelper
     item.user_id == current_user.id
   end
 
+  def paid_course?(course)
+    course.price.present? && course.price > 0.0
+  end
+
   def course_name_tag(course_id)
     course = Course.find_by_id(course_id)
     link_to course.title, course_path(course)
