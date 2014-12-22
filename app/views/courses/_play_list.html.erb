@@ -8,7 +8,7 @@
         </div>
         <span class="video-info">
           <%= v.title %>
-          <%= "(免费)" if v.free? %>
+          <%= "(免费)" if v.free? && paid_course?(course) %>
         </span>
       </a>
       </li>
