@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require autocomplete-rails
-//= require jquery_at_caret
 //= require comments
 //= require courses
 //= require users
@@ -26,16 +25,13 @@
 //= require jquery.tooltipster.min.js
 
 jQuery(document).ready(function() {
-  if($('.comment-header-author') && $('textarea').size > 1) {
-    var commenter = [];
-    var commenter_exist= [];
-    $('.comment-header-author').each(function() {
-      if($.inArray($(this).text(), commenter_exist) < 0){
-          commenter.push($(this).text());
-          commenter_exist.push($(this).text());
-        }
-    });
-    $('textarea').atWho('@', {data: commenter});
-  }
+  var commenter_exist = [];
+  $('.comment-header-author').each(function() {
+    if($.inArray($(this).text(), commenter_exist) < 0) {
+      commenter_exist.push($(this).text());
+    }
+  });
+  $('textarea').atwho({ at: "@", 'data': commenter_exist });
+
   $('.tooltip').tooltipster();
 });
