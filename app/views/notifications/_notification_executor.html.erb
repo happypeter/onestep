@@ -1,9 +1,0 @@
-<% executor = notification.executor %>
-
-<%= link_to member_path(executor.name) do %>
-  <span><%= executor.name %></span>
-<% end %>
-<% if notification.notifiable_type == "Activity" %>
-  <span class="annotate">为你关注的课程： </span>
-  <%= course_name_tag(notification.notifiable.course_id) %>
-<% end %>
