@@ -1,6 +1,6 @@
 <video id="html5-player" class="video-js vjs-default-skin" controls preload="auto"
   width="840" height="<%= (840 / video.ratio).to_i %>" data-setup="{}">
-  <source src="<%= video.asset_url %>" type='video/mp4'>
+  <source src="http://7u2myb.com1.z0.glb.clouddn.com/<%= video.asset_url.split('/').last %>" type='video/mp4'>
 </video>
 <div class="download-btn">
   <% params = @video.asset_url.split("/").last.split(".") %>
