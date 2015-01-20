@@ -42,8 +42,10 @@
       <% if @courses.present? %>
         <div class="new-course">
           <% if current_user == @user %>
-            <%= link_to create_course_path, :class => "new-course-button" do %>
-              <%= t('create_course') %>
+            <%#= link_to create_course_path, :class => "new-course-button" do %>
+            <%= link_to "javascript:;", :class => "new-course-button" do %>
+              <%#= t('create_course') %>
+              创建课程暂不开放
               <i class='fa fa-hand-o-right fa-lg'></i>
             <% end %>
           <% end %>
@@ -58,8 +60,10 @@
           <i class="fa fa-smile-o fa-2x"></i>
           <%= t('no_courses_found') %>
           <% if current_user == @user %>
-            <%= link_to create_course_path, :class => "new-course-button" do %>
-              <%= t('create_course') %>
+            <%#= link_to create_course_path, :class => "new-course-button" do %>
+            <%= link_to "javascript:;", :class => "new-course-button" do %>
+              <%#= t('create_course') %>
+              创建课程暂不开放
               <i class='fa fa-hand-o-right fa-lg'></i>
             <% end %>
           <% end %>

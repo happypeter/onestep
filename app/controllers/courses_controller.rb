@@ -39,6 +39,7 @@ class CoursesController < ApplicationController
 
   def edit
     session[:return_to] = request.url
+    redirect_to :root
   end
 
   def update

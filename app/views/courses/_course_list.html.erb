@@ -5,9 +5,11 @@
     <span class="watcher">/ 关注人数 <%= course.watchers.count %></span>
     <div class="action">
       <% if owner?(course) %>
-        <%= link_to edit_course_path(course) do %>
+        <%#= link_to edit_course_path(course) do %>
+        <%= link_to "javascript:;" do %>
           <i class="fa fa-pencil"></i>
-          <%= t('edit_course') %>
+          <%#= t('edit_course') %>
+          编辑功能暂不开放
         <% end %>
       <% end %>
     </div>

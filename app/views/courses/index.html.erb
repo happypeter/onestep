@@ -15,8 +15,4 @@
     No Courses found
     </p>
   <% end %>
-  <hr class="soften">
-  <% if current_user && current_user.admin? %>
-    <%= link_to t("create_course"), "/create_course", :class => "button" %>
-  <% end %>
 </div>
