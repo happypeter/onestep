@@ -15,7 +15,7 @@ namespace :db do
     names = {}
     Video.all.each do |v|
       asset_name = v.asset_url.split('/').last
-      v_name =  v.filename ? v.filename : v.id.to_s + '.' + asset_name.split('.').last
+      v_name =  v.filename ? v.id.to_s + '_' + v.filename : v.id.to_s + '.' + asset_name.split('.').last
       course_name = v.course.id.to_s + '_' + v.course.name
       new_v_name = v.course.id.to_s + '_' + v.course.name + '/' + v_name
       names[asset_name] = new_v_name
