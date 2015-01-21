@@ -1,5 +1,5 @@
 <li class="uid_<%= user.id %>">
-  <%= link_to member_path  do %>
+  <%= link_to member_path(user.name)  do %>
     <%= image_tag user.final_avatar_url, :class => "collab-avatar" %>
     <span><%= user.name %></span>
     <%= link_to course_delete_member_path(:collab => user.name), :method => :post,
