@@ -51,9 +51,6 @@ class VideosController < ApplicationController
   def download
     video = Video.find_by_asset("#{params[:serial]}.#{params[:type]}")
     video_path = "http://7u2myb.com1.z0.glb.clouddn.com/#{video.asset_url.split('/').last}"
-    send_file video_path,
-              :filename => video.filename,
-              :type => "video/quicktime",
-              :disposition => 'attachment'
+    redirect_to video_path
   end
 end
