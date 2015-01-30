@@ -49,7 +49,14 @@
         init_jcrop();
       }
 
-      $.colorbox({href:'#poster-crop-modal', inline:true});
+      $.colorbox({
+        href: '#poster-crop-modal',
+        inline: true,
+        onClosed: function(){
+          $("#poster-cropbox").removeAttr("src");
+          $("#poster-cropbox").removeAttr("style");
+        }
+      });
     }
 
    function init_jcrop() {
