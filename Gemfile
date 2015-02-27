@@ -1,12 +1,8 @@
 # source 'http://ruby.taobao.org'
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '4.1.6'
 gem 'kss'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 gem 'unicorn'
 gem 'redcarpet'
@@ -41,7 +37,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-fileupload-rails'
-gem 'haml'
 
 # modal
 gem "colorbox-rails"
@@ -49,21 +44,12 @@ gem "colorbox-rails"
 # To use ActiveModel has_secure_password
 gem 'bcrypt'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Deploy with Capistrano
-gem 'capistrano'
-
 gem "rspec-rails", :group => [:test, :development]
 group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
 end
-
-# To use debugger
-# gem 'debugger'
 
 # use for alipay
 gem 'alipay_dualfun'
@@ -75,4 +61,5 @@ gem 'kaminari'
 # for rails4
 gem 'protected_attributes'
 
-# gem 'newrelic_rpm'
+# upload videos to qiniu
+gem 'qiniu', '~> 6.4.1'

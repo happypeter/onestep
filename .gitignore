@@ -26,3 +26,4 @@ config/database.yml
 lib/tasks/activity.rake
 *.sublime-workspace
 tags
+qiniu.rb
