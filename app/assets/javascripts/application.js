@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery.atwho
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
 //= require autocomplete-rails
 //= require comments
 //= require courses

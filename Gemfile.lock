@@ -46,7 +46,6 @@ GEM
       mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    chunky_png (1.3.4)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -58,22 +57,6 @@ GEM
     colorbox-rails (0.1.2)
       jquery-rails
       rails (>= 3.1.1)
-    compass (1.0.3)
-      chunky_png (~> 1.2)
-      compass-core (~> 1.0.2)
-      compass-import-once (~> 1.0.5)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
-      sass (>= 3.3.13, < 3.5)
-    compass-core (1.0.3)
-      multi_json (~> 1.0)
-      sass (>= 3.3.0, < 3.5)
-    compass-import-once (1.0.5)
-      sass (>= 3.2, < 3.5)
-    compass-rails (2.0.4)
-      compass (~> 1.0.0)
-      sass-rails (<= 5.0.1)
-      sprockets (< 2.13)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.3.0)
@@ -83,8 +66,8 @@ GEM
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     ffi (1.9.6)
-    font-awesome-sass (4.3.1)
-      sass (~> 3.2)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     guard (2.12.4)
       formatador (>= 0.2.4)
@@ -119,7 +102,6 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.9.3)
     kss (0.5.0)
-    libv8 (3.16.14.7)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -164,8 +146,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
-    rails3-jquery-autocomplete (1.0.15)
-      rails (>= 3.2)
+    rails-jquery-autocomplete (1.0.0)
+      rails (>= 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
     railties (4.1.6)
@@ -179,7 +161,6 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.2)
-    ref (1.0.5)
     rest-client (1.7.3)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -228,9 +209,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    therubyracer (0.12.1)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -260,9 +238,8 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   colorbox-rails
-  compass-rails
   factory_girl_rails
-  font-awesome-sass
+  font-awesome-rails
   guard-rspec
   jquery-atwho-rails
   jquery-fileupload-rails
@@ -275,7 +252,7 @@ DEPENDENCIES
   protected_attributes
   qiniu (~> 6.4.1)
   rails (= 4.1.6)
-  rails3-jquery-autocomplete
+  rails-jquery-autocomplete
   rails_autolink
   redcarpet
   rmagick
@@ -283,7 +260,6 @@ DEPENDENCIES
   ruby-pinyin
   sass-rails
   settingslogic
-  therubyracer
   tooltipster-rails
   uglifier
   unicorn
