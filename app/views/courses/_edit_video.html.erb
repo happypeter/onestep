@@ -9,7 +9,7 @@
         file = data.files[0];
         if (types.test(file.type) || types.test(file.name))
         {
-           file = data.files[0];
+          file = data.files[0];
           data.context = $(tmpl("template-upload", file));
           $('.secondary-info').append(data.context);
           data.submit();

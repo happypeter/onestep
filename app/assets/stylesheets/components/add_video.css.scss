@@ -78,14 +78,14 @@
       width: 300px;
       margin-top: 5px;
       height: 32px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-      background: #eaeaea;
       .progress {
         position: relative;
         height: 100%;
+        border: 1px solid #aaa;
+        background: #eaeaea;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
         .bar {
           height: 100%;
           background: $link-green;

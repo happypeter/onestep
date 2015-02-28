@@ -1,6 +1,6 @@
 <script>
   jQuery(function($) {
-    $('#fileupload').fileupload({
+    $('.fileupload').fileupload({
         formData: {course_id: <%= course.id %>},
         dataType: 'script',
         url: '/videos.js',

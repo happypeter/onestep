@@ -1,5 +1,3 @@
-<%= render "add_video_js", course: course %>
-
 <div class="add-video-box clearfix">
   <div class="primary-info">
     <%= form_for(Video.new) do |f| %>
@@ -22,7 +20,9 @@
       </dl>
       <% end %>
       <div class="video-button-group">
-        <%= f.submit t('submit_video_info'), class: "button", :disabled => true, data: {disable_with: t('video_saving') + "..."}, id: "submit_video_info" %>
+        <%= f.submit t('submit_video_info'), class: "button", :disabled => true,
+          data: {disable_with: t('video_saving') + "..."},
+          id: "submit_video_info" %>
       </div>
     <% end %>
   </div>
@@ -33,17 +33,25 @@
       <li>声音编码支持：aac</li>
     </ul>
     <p id="video-filename"></p>
-    <a class="fileupload-btn fileupload-video">
-      <i class="fileupload-icon fa fa-upload"></i>
-      <input id="fileupload" name="video[asset]" type="file">
-      <span id="upload-button-text">上传视频</span>
-    </a>
+    <%= qiniu_video_uploader_form callback_url: videos_path,
+      bucket:        'image',
+      id:            "video-uploader",
+      custom_fields: { course_id: course.id },
+      progress_bar_id: 'progress-bar' do %>
+
+      <a class="fileupload-btn fileupload-video">
+        <i class="fileupload-icon fa fa-upload"></i>
+        <input id="fileupload" name="file" type="file">
+        <span id="upload-button-text">上传视频</span>
+      </a>
+      <div class="bar" id="progress-bar"></div>
+    <% end %>
+
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
+        {%=o.name%}
         <div class="progress">
-          <span id="progress-text"></span>
-          <div class="bar" id="progress-bar">
-          </div>
+          <div class="bar" style="width: 0%"></div>
         </div>
       </div>
     </script>

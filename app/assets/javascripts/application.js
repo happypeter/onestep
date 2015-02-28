@@ -23,6 +23,7 @@
 //= require vendor/jquery.Jcrop.min
 //= require jquery.NobleCount
 //= require jquery.tooltipster.min.js
+//= require qiniu-video-upload
 
 jQuery(document).ready(function() {
   var commenter_exist = [];

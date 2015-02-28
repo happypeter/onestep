@@ -9,9 +9,6 @@ class Video < ActiveRecord::Base
 
   acts_as_list scope: :course
 
-  mount_uploader :asset, VideoUploader
-
-  before_create :set_metadata
   before_update :set_metadata
 
   def open_to_user?(user)

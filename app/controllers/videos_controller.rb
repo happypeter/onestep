@@ -1,12 +1,14 @@
 class VideosController < ApplicationController
   def create
     respond_to do |f|
-      f.html do
-          redirect_to_target_or_default root_url
-      end
       f.js do
-        @video = Video.new(params[:video])
-        @video.course_id = params[:course_id]
+        @video = Video.new
+        @video.asset = params[:key]
+        @video.size = params[:fsize]
+        @video.filename = params[:fname]
+        @video.content_type = params[:mimeType]
+        @video.course_id = params[:custom_fields][:course_id]
+        @video.ratio =  params[:avinfo][:width].to_f / params[:avinfo][:height].to_f
         @video.user_id = current_user.id
         @video.save
         track_activity @video, @video.course.id
