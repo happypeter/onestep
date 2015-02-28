@@ -1,10 +1,10 @@
 #= require vendor/qiniu_direct_uploader
 
 $(document).ready(function() {
-  var videoForm;
-  videoForm = $("form#video-uploader");
-  if (videoForm.length > 0) {
-    videoForm.QiniuUploader({
+  var createVideoForm;
+  createVideoForm = $("form#create-video-uploader");
+  if (createVideoForm.length > 0) {
+    createVideoForm.QiniuUploader({
       autoUpload: true,
       singleFileUploads: true
     });

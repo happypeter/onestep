@@ -22,15 +22,12 @@ class VideosController < ApplicationController
     else
       video = Video.find(params[:video][:id])
     end
-    old_asset = video.asset.to_s.split('/').last
+    old_asset = video.asset
     video.update_attributes(params[:video])
-    new_asset = video.asset.to_s.split('/').last
+    new_asset = params[:key]
     track_activity video, video.course.id if old_asset != new_asset
 
     respond_to do |f|
-      f.html do
-          redirect_to_target_or_default root_url
-      end
       f.json { render :json => {} }
     end
   end

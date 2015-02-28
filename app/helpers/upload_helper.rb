@@ -28,7 +28,7 @@ module UploadHelper
         submit_button_id:   nil,
         progress_bar_id:    nil,
         drop_paste_zone_id: nil,
-        callback_method:    "POST"
+        callback_method:    nil
       )
     end
 
