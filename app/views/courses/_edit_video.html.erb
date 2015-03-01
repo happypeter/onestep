@@ -21,6 +21,11 @@
         $('#submit_video_info').attr('disabled', 'true');
         $('a.fileupload-btn').bind('click', false);
       });
+      updateVideoForm.bind("qiniu_upload_complete", function(e, data) {
+        $('#submit_video_info').attr('value', '保存视频信息');
+        $('#submit_video_info').removeAttr('disabled');
+        $('#video-filename').html("视频文件名： " + "<strong>" + data.fname + "</strong>");
+      });
     }
   });
 </script>
