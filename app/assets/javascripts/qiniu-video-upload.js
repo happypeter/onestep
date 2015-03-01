@@ -17,5 +17,10 @@ $(document).ready(function() {
         }
       }
     });
+    createVideoForm.bind("qiniu_upload_start", function(e) {
+      $('#submit_video_info').attr('value', '视频正在上传');
+      $('#submit_video_info').attr('disabled', 'true');
+      $('a.fileupload-btn').bind('click', false);
+    });
   }
 });
