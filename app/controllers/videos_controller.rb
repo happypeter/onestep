@@ -57,8 +57,7 @@ class VideosController < ApplicationController
   end
 
   def download
-    video = Video.find_by_asset("#{params[:serial]}.#{params[:type]}")
-    video_path = "http://7u2myb.com1.z0.glb.clouddn.com/#{video.asset_url.split('/').last}"
+    video_path = "http://#{Settings.qiniu.bucket_domain}/#{params[:asset]}"
     redirect_to video_path
   end
 end
