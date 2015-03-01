@@ -7,6 +7,7 @@ $(document).ready(function() {
     createVideoForm.QiniuUploader({
       autoUpload: true,
       singleFileUploads: true,
+      removeProgressBarWhenCompleted: false,
       onFilesAdd: function(file) {
         types = /(\.|\/)(mov|mp4)$/i;
         if (types.test(file.type) || types.test(file.name)) {
@@ -23,6 +24,7 @@ $(document).ready(function() {
       $('a.fileupload-btn').bind('click', false);
     });
     createVideoForm.bind("qiniu_upload_complete", function(e, data) {
+      $('#progress-text').html("视频上传成功！");
       $('#video-filename').html("视频文件名： " + "<strong>" + data.fname + "</strong>");
     });
   }
