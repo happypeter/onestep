@@ -17,18 +17,27 @@ class VideosController < ApplicationController
   end
 
   def update
-    if params[:id]
-      video = Video.find(params[:id])
-    else
-      video = Video.find(params[:video][:id])
-    end
-    old_asset = video.asset
-    video.update_attributes(params[:video])
-    new_asset = params[:key]
-    track_activity video, video.course.id if old_asset != new_asset
-
+    video = params[:id] ? Video.find(params[:id]) : Video.find(params[:video][:id])
     respond_to do |f|
-      f.json { render :json => {} }
+      if params[:etag].present?
+        old_asset = video.asset
+        new_asset = params[:key]
+        if old_asset != new_asset
+          video.asset = params[:key]
+          video.size = params[:fsize]
+          video.filename = params[:fname]
+          video.content_type = params[:mimeType]
+          video.ratio =  params[:avinfo][:width].to_f / params[:avinfo][:height].to_f
+          video.save
+          track_activity video, video.course.id
+        end
+        f.json { render :json => {} }
+      else
+        video.update_attributes(params[:video])
+        f.html do
+          redirect_to_target_or_default root_url
+        end
+      end
     end
   end
 
