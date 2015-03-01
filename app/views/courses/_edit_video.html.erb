@@ -6,6 +6,7 @@
       updateVideoForm.QiniuUploader({
         autoUpload: true,
         singleFileUploads: true,
+        removeProgressBarWhenCompleted: false,
         onFilesAdd: function(file) {
           types = /(\.|\/)(mov|mp4)$/i;
           if (types.test(file.type) || types.test(file.name)) {
