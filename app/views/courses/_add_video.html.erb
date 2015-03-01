@@ -34,7 +34,7 @@
     </ul>
     <p id="video-filename"></p>
     <%= qiniu_video_uploader_form callback_url: videos_path,
-      bucket:        'image',
+      bucket:        "#{Settings.qiniu.bucket}",
       id:            'create-video-uploader',
       callback_method: 'POST',
       custom_fields: { course_id: course.id },

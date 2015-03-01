@@ -74,7 +74,7 @@
     <p id="video-filename">视频文件名: <b><%= video.filename %></b></p>
     <%= qiniu_video_uploader_form callback_url: "/update_video/#{video.id}",
       callback_method: 'PATCH',
-      bucket:        'image',
+      bucket:        "#{Settings.qiniu.bucket}",
       id:            'update-video-uploader',
       progress_bar_id: 'progress-bar' do %>
 
