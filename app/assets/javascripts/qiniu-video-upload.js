@@ -11,7 +11,7 @@ $(document).ready(function() {
       onFilesAdd: function(file) {
         types = /(\.|\/)(mov|mp4)$/i;
         if (types.test(file.type) || types.test(file.name)) {
-          if (file.size > 50000000) {
+          if (file.size > 100000000) {
             alert("上传失败：" + file.name + " 视频太大，超过50M");
             return false;
           } else {

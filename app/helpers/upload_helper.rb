@@ -22,7 +22,7 @@ module UploadHelper
   class QiniuUploader
     def initialize(options)
       @options = options.reverse_merge(
-        expires_in:         3600,
+        expires_in:         36000,
         ssl:                false,
         custom_fields:      {},
         submit_button_id:   nil,
@@ -62,7 +62,7 @@ module UploadHelper
 
     def save_key
       return @options[:save_key] if @options[:save_key]
-      "uploads/$(year)/$(mon)/$(day)/$(etag)/$(fname)"
+      "$(etag)"
     end
 
     def action
