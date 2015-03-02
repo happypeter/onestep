@@ -5,7 +5,6 @@
         <% if current_user == @user %>
           <%= link_to account_path, :class => "edit-profile-button" do %>
             <i class="fa fa-pencil fa-lg"></i>
-            <%#= t('edit_profile') %>
           <% end %>
         <% end %>
         <%= image_tag @user.final_avatar_url, :alt => t('your_avatar') %>
@@ -42,10 +41,10 @@
       <% if @courses.present? %>
         <div class="new-course">
           <% if current_user == @user %>
-            <%#= link_to create_course_path, :class => "new-course-button" do %>
-            <%= link_to "javascript:;", :class => "new-course-button" do %>
-              <%#= t('create_course') %>
-              创建课程暂不开放
+            <%= link_to create_course_path, :class => "new-course-button" do %>
+            <%#= link_to "javascript:;", :class => "new-course-button" do %>
+              <%= t('create_course') %>
+              <!--创建课程暂不开放-->
               <i class='fa fa-hand-o-right fa-lg'></i>
             <% end %>
           <% end %>
@@ -60,10 +59,10 @@
           <i class="fa fa-smile-o fa-2x"></i>
           <%= t('no_courses_found') %>
           <% if current_user == @user %>
-            <%#= link_to create_course_path, :class => "new-course-button" do %>
-            <%= link_to "javascript:;", :class => "new-course-button" do %>
-              <%#= t('create_course') %>
-              创建课程暂不开放
+            <%= link_to create_course_path, :class => "new-course-button" do %>
+            <%#= link_to "javascript:;", :class => "new-course-button" do %>
+              <%= t('create_course') %>
+              <!--创建课程暂不开放-->
               <i class='fa fa-hand-o-right fa-lg'></i>
             <% end %>
           <% end %>
