@@ -6,7 +6,7 @@
       max_chars: 33});
   </script>
 <% end %>
-<%= form_for(@course, :url => "javascript:;") do |f| %>
+<%= form_for(@course, :url => "/course") do |f| %>
   <%= f.hidden_field :user_id %>
   <%= flash[:notice] %>
   <% if @course.errors.any? %>
@@ -25,6 +25,6 @@
     <dd> <%= f.text_field :title %> </dd>
   </dl>
   <div>
-    <%= f.submit "创建课程暂不开放", :class => "minibutton primary" %>
+    <%= f.submit "创建课程", :class => "minibutton primary" %>
   </div>
 <% end %>
