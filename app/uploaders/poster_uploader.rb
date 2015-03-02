@@ -1,13 +1,14 @@
 # encoding: utf-8
 
 class PosterUploader < CarrierWave::Uploader::Base
+
   include UploaderHelper
 
   include CarrierWave::MimeTypes
   process :set_content_type
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
 
   # process :resize_to_fit => [310, 175]
 
@@ -32,23 +33,21 @@ class PosterUploader < CarrierWave::Uploader::Base
       y = model.crop_y.to_i
       w = model.crop_w.to_i
       h = model.crop_h.to_i
-      img.crop("#{w}x#{h}+#{x}+#{y}")
+      img = img.crop(x, y, w, h)
       img
     end
   end
 
   def large_image? file
     if @file
-      width, height = ::MiniMagick::Image.open(@file.file)[:dimensions]
-      width > POSTER_LW || height > POSTER_LH
+      img = ::Magick::Image::read(@file.file).first
+      return img.rows > POSTER_LW || img.columns > POSTER_LH
     end
   end
-
-  # Provide a default URL as a default if there hasn't been a file uploaded:
+   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     Settings.image.default_poster
   end
-
   def store_dir
     "uploads/poster/"
   end
