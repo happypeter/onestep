@@ -12,7 +12,7 @@ $(document).ready(function() {
         types = /(\.|\/)(mov|mp4)$/i;
         if (types.test(file.type) || types.test(file.name)) {
           if (file.size > 100000000) {
-            alert("上传失败：" + file.name + " 视频太大，超过50M");
+            alert("上传失败：" + file.name + " 视频太大，超过100M");
             return false;
           } else {
             return true;
