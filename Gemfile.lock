@@ -83,6 +83,8 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    haml (4.0.5)
+      tilt
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.7.0)
@@ -243,6 +245,7 @@ DEPENDENCIES
   factory_girl_rails
   font-awesome-rails
   guard-rspec
+  haml
   jquery-atwho-rails
   jquery-fileupload-rails
   jquery-rails

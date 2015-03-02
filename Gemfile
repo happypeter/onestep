@@ -10,6 +10,7 @@ gem 'settingslogic'
 gem 'ruby-pinyin'
 gem 'acts_as_list'
 gem "rails_autolink"
+gem 'haml'
 
 gem 'sass-rails'
 gem 'coffee-rails'
