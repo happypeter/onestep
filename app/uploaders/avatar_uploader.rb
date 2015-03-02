@@ -39,6 +39,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   end
   # end
 
+  # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Get-image-dimensions
   def large_image? file
     if @file
       width, height = ::MiniMagick::Image.open(@file.file)[:dimensions]
