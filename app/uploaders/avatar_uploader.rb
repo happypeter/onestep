@@ -7,7 +7,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # large
   AVATAR_LW = 300
@@ -26,7 +26,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
       y = model.crop_y.to_i
       w = model.crop_w.to_i
       h = model.crop_h.to_i
-      img = img.crop(x, y, w, h)
+      img.crop("#{w}x#{h}+#{x}+#{y}")
       img
     end
   end
@@ -37,20 +37,21 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #     img = yield(img) if block_given?
   #     img
   #   end
-  # end  
+  # end
 
   # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Get-image-dimensions
   def large_image? file
     if @file
-      img = ::Magick::Image::read(@file.file).first
-      return img.rows > AVATAR_LW || img.columns > AVATAR_LH
+      width, height = ::MiniMagick::Image.open(@file.file)[:dimensions]
+      width > AVATAR_LW || height > AVATAR_LH
     end
   end
 
-   # Provide a default URL as a default if there hasn't been a file uploaded:
+  # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     Settings.image.default_avatar
   end
+
   def store_dir
     "uploads/avatar/"
   end

@@ -24,10 +24,10 @@ gem 'tooltipster-rails'
 gem 'rails-jquery-autocomplete'
 gem 'jquery-fileupload-rails'
 
-# upload images
-gem 'rmagick'
 gem 'redcarpet'
-gem 'carrierwave'
+# upload images
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '3.7.0', require: false
 
 # modal
 gem "colorbox-rails"
@@ -48,8 +48,7 @@ gem 'alipay_dualfun'
 # use for pagination
 gem 'kaminari'
 
-# TODO: switch to strong parameters
-# for rails4
+# TODO: switch to strong parameters for rails4
 gem 'protected_attributes'
 
 # upload videos to qiniu
