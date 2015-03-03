@@ -2,7 +2,6 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
   include UploaderHelper
-
   include CarrierWave::MimeTypes
   process :set_content_type
 
@@ -30,14 +29,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
       img
     end
   end
-
-  # def resize_to_fit(width, height)
-  #   manipulate! format: "png" do |img|
-  #     img.resize_to_fit!(width, height)
-  #     img = yield(img) if block_given?
-  #     img
-  #   end
-  # end
 
   # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Get-image-dimensions
   def large_image? file

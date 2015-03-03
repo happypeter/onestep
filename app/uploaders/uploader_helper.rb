@@ -2,7 +2,6 @@ require 'digest'
 require 'carrierwave/processing/mime_types'
 
 module UploaderHelper
-
   def cache_dir
     "/tmp"
   end

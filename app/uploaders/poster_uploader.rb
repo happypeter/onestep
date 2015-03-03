@@ -2,14 +2,11 @@
 
 class PosterUploader < CarrierWave::Uploader::Base
   include UploaderHelper
-
   include CarrierWave::MimeTypes
   process :set_content_type
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
-
-  # process :resize_to_fit => [310, 175]
 
   # large
   POSTER_LW = 500
