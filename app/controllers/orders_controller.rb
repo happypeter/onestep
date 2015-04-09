@@ -29,36 +29,37 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-     options = {
-      :partner           => Settings.alipay.pid,
-      :key               => Settings.alipay.secret,
-      :seller_email      => Settings.alipay.seller_email,
-      :out_trade_no      => @order.out_trade_no,
-      :subject           => @course.title,
-      :price             => @course.price,
-      :quantity          => 1,  # It seems that no one need to pay the same course twice .
-      :return_url        => Settings.alipay.return_url,
-      :notify_url        => Settings.alipay.notify_url
-    }
-    redirect_to AlipayDualfun.trade_create_by_buyer_url(options)
+    redirect_to Alipay::Service.create_partner_trade_by_buyer_url({
+      out_trade_no:      @order.out_trade_no,
+      subject:           @course.title,
+      price:             @course.price,
+      quantity:          1,
+      logistics_type:    'DIRECT',
+      logistics_fee:     '0',
+      logistics_payment: 'SELLER_PAY',
+      receive_name:      'none',
+      receive_address:   'none',
+      receive_zip:       '100000',
+      receive_mobile:    '100000000000',
+      return_url:        Settings.alipay.return_url,
+      notify_url:        Settings.alipay.notify_url
+    })
   end
 
   private
 
     def update_order
       options = {
-        :partner           => Settings.alipay.pid,
-        :trade_no          => params[:trade_no],
-        :logistics_name    => 'Haoqi Course' # move it to setting.yml, shall we ?
+        :trade_no       => params[:trade_no],
+        :logistics_name => Settings.alipay.site,
+        :transport_type => 'DIRECT'
       }
       @order = Order.find_by_out_trade_no(params[:out_trade_no])
-      if @order.trade_status != "TRADE_FINISHED"
-        if params[:trade_status] == 'TRADE_FINISHED'
-          # for direct pay
-          @order.update_attributes(trade_status: params[:trade_status], total_fee: params[:total_fee])
-        elsif params[:trade_status] == "WAIT_SELLER_SEND_GOODS"
-          # for danbao pay
-          AlipayDualfun.send_goods_confirm_by_platform(options)
+      notify_params = params.except(*request.path_parameters.keys)
+
+      if (@order.trade_status != "TRADE_FINISHED") && Alipay::Notify.verify?(notify_params)
+        if params[:trade_status] == "WAIT_SELLER_SEND_GOODS"
+          Alipay::Service.send_goods_confirm_by_platform(options)
           @order.update_attributes(trade_status: "TRADE_FINISHED",  total_fee: params[:total_fee])
         end
       end

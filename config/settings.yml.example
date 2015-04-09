@@ -4,11 +4,9 @@ default: &default
     default_posters_dir: 'default_posters/'
     default_avatar: "http://www.gravatar.com/avatar/default.png"
   alipay:
-    pid: '2088402465243298'
-    secret: 'p182a5k2yekoo5fzjjcbpysu41ak4wlb'
-    seller_email: 'myemail@gmail.com'
-    return_url: 'http://mysite.com/orders/done'
-    notify_url: 'http://mysite.com/orders/notify'
+    site: 'your site name'
+    return_url: 'http://yoursite.com/orders/done'
+    notify_url: 'http://yoursite.com/orders/notify'
   qiniu:
     access_key: 'your access key'
     secret_key: 'your secret key'

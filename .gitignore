@@ -27,3 +27,4 @@ lib/tasks/activity.rake
 *.sublime-workspace
 tags
 qiniu.rb
+alipay.rb
