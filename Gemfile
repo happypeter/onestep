@@ -43,7 +43,7 @@ group :test do
 end
 
 # use for alipay
-gem 'alipay_dualfun'
+gem 'alipay', '~> 0.7.0'
 
 # use for pagination
 gem 'kaminari'

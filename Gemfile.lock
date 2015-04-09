@@ -29,7 +29,7 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.6.0)
       activerecord (>= 3.0)
-    alipay_dualfun (0.4)
+    alipay (0.7.0)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -236,7 +236,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
-  alipay_dualfun
+  alipay (~> 0.7.0)
   bcrypt
   capybara
   carrierwave (~> 0.10.0)

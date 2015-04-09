@@ -67,7 +67,6 @@ class OrdersController < ApplicationController
     def should_not_paid
       if Order.paid.exists?(user_id: current_user.id, course_id: params[:course_id])
         redirect_to course_path(params[:course_id]), flash: t("order.already_paid")
-
         return
       end
     end
@@ -75,19 +74,17 @@ class OrdersController < ApplicationController
     def get_course
       unless ( @course = Course.where(id: params[:course_id]).first )
         redirect_to :root, notice: I18n.t("order.no_such_course")
-
         return
       end
     end
 
     def get_order
-      unless ( @order = Order.where( course_id: params[:course_id], 
-                                    id: params[:order_id], 
+      unless ( @order = Order.where( course_id: params[:course_id],
+                                    id: params[:order_id],
                                     user_id: current_user.id).first )
 
-        redirect_to new_order_path( course_id: params[:course_id]), 
+        redirect_to new_order_path( course_id: params[:course_id]),
                                     notice: I18n.t("order.no_such_order")
-
         return
       end
     end
