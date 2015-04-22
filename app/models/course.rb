@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
   has_many :collaboratings, :dependent => :destroy
   has_many :collaborators, :through => :collaboratings, :source => :user
 
-  scope :pub, -> { where(public: true) } 
+  scope :pub, -> { where(public: true) }
 
   mount_uploader :poster, PosterUploader
 
