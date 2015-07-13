@@ -26,7 +26,11 @@
           done: function (e, data) {
               $.each(data.result, function (index, file) {
                 new_pic = "\n" + "![](" + file.url + ")";
-                textarea.atCaret('insert', new_pic);
+                source = textarea.val();
+                text = source + new_pic;
+                textarea.val(text);
+                textarea.focus();
+                textarea.change();
               });
           },
           always: function(e) {

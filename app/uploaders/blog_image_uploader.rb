@@ -8,7 +8,7 @@ class BlogImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
 
-  process :resize_to_limit => [570, 0]
+  process :resize_to_limit => [570, 570]
 
   def store_dir
     "uploads/blog_image"

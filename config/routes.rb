@@ -22,7 +22,10 @@ Onestep::Application.routes.draw do
   get "/blog/:id" => "posts#show", :as => "blog"
   get "/blog/:id/edit" => "posts#edit", :as => "edit_blog"
   get "/write_blog" => "posts#new"
-  put "/blog_images" => "blog_images#create" #for file-upload on posts#edit
+
+  # Use patch verb for editing posts, use put verb for creating a new post
+  match 'blog_images', to: 'blog_images#create', via: [:put, :patch]
+
   resources :posts
   resources :blog_images
   resources :videos
