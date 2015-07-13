@@ -27,10 +27,13 @@
               $.each(data.result, function (index, file) {
                 new_pic = "\n" + "![](" + file.url + ")";
                 source = textarea.val();
-                text = source + new_pic;
+                pos = Math.max(textarea.caret('pos'), 0);
+                startStr = source.slice(0, pos);
+                endStr = source.slice(pos);
+                text = startStr + new_pic + endStr;
                 textarea.val(text);
+                textarea.caret('pos', startStr.length + new_pic.length);
                 textarea.focus();
-                textarea.change();
               });
           },
           always: function(e) {
