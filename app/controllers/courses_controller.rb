@@ -181,7 +181,7 @@ class CoursesController < ApplicationController
       # for update; find the proper course object when course title is blank
       course = Course.find(params[:course][:id])
     end
-    if not current_user.admin? && (course.user != current_user)
+    if not (( current_user.admin? ) || (course.user == current_user))
       redirect_to :root, :notice => "抱歉，只有课程所有者或管理员才有此权限"
       return
     end
