@@ -7,6 +7,8 @@ default: &default
     site: 'your site name'
     return_url: 'http://yoursite.com/orders/done'
     notify_url: 'http://yoursite.com/orders/notify'
+  video:
+    url: 'http://'
   qiniu:
     access_key: 'your access key'
     secret_key: 'your secret key'
