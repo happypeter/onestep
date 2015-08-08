@@ -5,9 +5,6 @@
         <% if paid_course?(@course) %>
           <li><%= link_to t('add_collaborator'), course_collab_path, :class => "minibutton" %></li>
         <% end %>
-        <li>
-          <%= link_to t('edit_course'), edit_course_path(@course), :class => "minibutton" %>
-        </li>
       <% end %>
       <% if not @course.open_to_user?(current_user) %>
         <li>
