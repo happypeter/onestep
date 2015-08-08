@@ -39,16 +39,6 @@
     </ul>
     <div class="content owned-courses-section active clearfix">
       <% if @courses.present? %>
-        <div class="new-course">
-          <% if current_user == @user %>
-            <%= link_to create_course_path, :class => "new-course-button" do %>
-            <%#= link_to "javascript:;", :class => "new-course-button" do %>
-              <%= t('create_course') %>
-              <!--创建课程暂不开放-->
-              <i class='fa fa-hand-o-right fa-lg'></i>
-            <% end %>
-          <% end %>
-        </div>
         <div class="courses-wrap">
           <% @courses.each do |course| %>
             <%= render "courses/course_list", :course => course %>

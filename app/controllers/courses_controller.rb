@@ -5,11 +5,6 @@ class CoursesController < ApplicationController
 
   autocomplete :user, :name
 
-  def new
-    @course = Course.new(:user_id => current_user.id)
-    session[:return_to] = request.url
-  end
-
   def index
     if params[:sort] == "time"
       @courses = Course.where(public: true).reverse
@@ -35,88 +30,6 @@ class CoursesController < ApplicationController
       end
       @video_link = Settings.video.store + @course.user.name + "/" + @course.name + "/" +  @video.position.to_s + ".mp4"
       session[:return_to] = request.url
-    end
-  end
-
-  def edit
-    session[:return_to] = request.url
-  end
-
-  def update
-    @course = Course.find(params[:course][:id])
-    @course.update_attributes(params[:course])
-    @course.name = PinYin.of_string(params[:course][:title]).join('-').downcase
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to course_path(@course), :success => 'Course was successfully updated.' }
-      else
-        format.html { render :action => "edit" }
-      end
-    end
-  end
-
-  def create
-    user = User.find(params[:course][:user_id])
-    title = params[:course][:title]
-    name = PinYin.of_string(title).join('-').downcase
-    user.courses.each do |c|
-      if c.name == name
-        @name_exsits = true
-      end
-    end
-    if defined? @name_exsits
-      redirect_to_target_or_default :root, :notice => "你已经创建了这门课程"
-      return
-    end
-    course = Course.new(params[:course])
-    course.name = name
-    # get a random poster
-    all_posters = Dir["app/assets/images/" + Settings.image.default_posters_dir + "*"]
-    course.poster = open(all_posters[rand(all_posters.length)])
-    if course.save
-      track_activity course, course.id
-      redirect_to edit_course_path(course), :notice => "新课程创建成功！"
-    else
-      redirect_to_target_or_default :root, :notice => "新课程创建失败！"
-    end
-  end
-
-  def destroy
-    destroy_notifications @course
-    @course.destroy
-    redirect_to member_path(@user.name)
-  end
-
-  def edit_video
-    @video = Video.where(:course_id => @course.id, :position => params[:position]).first
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def add_video
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  # PUT
-  def update_poster
-    @course = Course.where(:user_id => params[:course][:user_id], :name => params[:course][:name]).first
-    dataurl = params[:course][:poster]
-
-    # mothod to convert base64 image data url to binary image
-    @course.image_data= dataurl
-
-    @course.crop_x = params[:course][:crop_x]
-    @course.crop_y = params[:course][:crop_y]
-    @course.crop_w = params[:course][:crop_w]
-    @course.crop_h = params[:course][:crop_h]
-    @course.poster = @course.poster
-    @course.save
-
-    respond_to do |format|
-      format.js
     end
   end
 
