@@ -63,7 +63,11 @@
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
-          <%= render "video_player", :video => @video %>
+          <%= if @course.name = "htmlcss-ji-chu-jiao-cheng" %>
+            <%= render "video_player", :video => @video %>
+          <% else %>
+            <%= render "old_video_player", :video => @video %>
+          <% end %>
         <% else %>
           <%= link_to t('pay_for_course_please'), new_order_path + "?course_id=#{@course.id}",
             :class => "button primary" %>
