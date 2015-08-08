@@ -80,10 +80,7 @@ Onestep::Application.routes.draw do
   patch "/account" => "users#update"
   get "/:member_name" => "users#show", :as => "member"
   delete "/:member_name/:course_name" => "courses#destroy"
-  get "/:member_name/:course_name/edit" => "courses#edit" , :as => "edit_course"
   get "/:member_name/:course_name(/:position)" => "courses#show", :constraints => {:position => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
-  get "/:member_name/:course_name/:position/edit" => "courses#edit_video"
-  get "/:member_name/:course_name/add_video" => "courses#add_video"
   patch "/update_video/:id" => "videos#update"
   post "/sort_videos" => "videos#sort"
 
