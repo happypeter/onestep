@@ -63,7 +63,7 @@
       <div class="tutorial-content">
         <%= render "video_info", :video => @video %>
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
-          <% if @course.name = "htmlcss-ji-chu-jiao-cheng" %>
+          <% if @course.name == "htmlcss-ji-chu-jiao-cheng" %>
             <%= render "video_player", :video => @video %>
           <% else %>
             <%= render "old_video_player", :video => @video %>

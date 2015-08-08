@@ -3,6 +3,6 @@
   <source src="http://<%= Settings.qiniu.bucket_domain %>/<%= video.asset %>" type='video/mp4'>
 </video>
 <div class="download-btn">
-  <%= link_to t('download_video'), "<%= Settings.video.store %>/<%= video.id %>.mp4"), class: "minibutton primary" %>
+  <%= link_to t('download_video'), "http://<%= Settings.qiniu.bucket_domain %>/<%= video.asset %>", class: "minibutton primary" %>
 </div>
 x
