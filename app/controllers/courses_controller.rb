@@ -33,7 +33,7 @@ class CoursesController < ApplicationController
       else
         @video = Video.where(:course_id => @course.id,:position => 1).first
       end
-      @video_link = Settings.video.store + @course.user.name + "/" + @course.name + "/" +  @video.position + ".mp4"
+      @video_link = Settings.video.store + @course.user.name + "/" + @course.name + "/" +  @video.position.to_s + ".mp4"
       session[:return_to] = request.url
     end
   end
