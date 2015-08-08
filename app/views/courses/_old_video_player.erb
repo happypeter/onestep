@@ -1,7 +1,0 @@
-<video id="html5-player" class="video-js vjs-default-skin" controls preload="auto"
-  width="840" height="<%= (840 / video.ratio).to_i %>" data-setup="{}">
-  <source src="http://<%= Settings.qiniu.bucket_domain %>/<%= video.asset %>" type='video/mp4'>
-</video>
-<div class="download-btn">
-  <%= link_to t('download_video'), download_video_path(:asset => @video.asset), class: "minibutton primary" %>
-</div>
