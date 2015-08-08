@@ -1,7 +1,7 @@
 <video id="html5-player" class="video-js vjs-default-skin" controls preload="auto"
   width="840" height="<%= (840 / video.ratio).to_i %>" data-setup="{}">
-  <source src="<%= Settings.video.store %>/<%= video.id %>.mp4" type='video/mp4'>
+  <source src="<%= video_link %>" type='video/mp4'>
 </video>
 <div class="download-btn">
-  <%= link_to t('download_video'), "#", class: "minibutton primary" %>
+  <a class="minibutton primary" href="<%= video_link %>">Download</a>
 </div>

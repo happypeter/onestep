@@ -64,7 +64,7 @@
         <%= render "video_info", :video => @video %>
         <% if @course.open_to_user?(current_user) || @video.open_to_user?(current_user) %>
           <% if @course.name == "htmlcss-ji-chu-jiao-cheng" %>
-            <%= render "video_player", :video => @video %>
+            <%= render :partial => "video_player", :locals => {:video => @video, :video_link => @video_link } %>
           <% else %>
             <%= render "old_video_player", :video => @video %>
           <% end %>
