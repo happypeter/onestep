@@ -1,9 +1,0 @@
-<% if @author_flag %>
-  $('.collab-error').html("<%= t('course_author_cannot_be_a_collaborator') %>!")
-  $('.collab-error').css("display", "block");
-<% elsif @collab_flag %>
-  $('.collab-error').html("<%= t('you_have_added') %> <%= @member.name %> !")
-  $('.collab-error').css("display", "block");
-<% else %>
-  $('.collabs').append("<%= j render 'collaborator', :user => @member %>")
-<% end %>

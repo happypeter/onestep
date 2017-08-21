@@ -1,4 +1,0 @@
-$('form#new_video').get(0).setAttribute("action", "/videos/<%= @video.id %>");
-$('form#new_video > div').append('<input name="_method" type="hidden" value="put">');
-$('input#submit_video_info').removeAttr('disabled');
-$('input#submit_video_info').get(0).setAttribute('value', '保存视频信息');
