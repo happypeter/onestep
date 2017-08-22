@@ -1,0 +1,24 @@
+.ant-layout-content {
+  display: flex;
+  flex-direction: column;
+}
+.ant-layout-sider {
+  border-right: 1px solid #ccc;
+}
+.upload {
+  display: flex;
+}
+.course-choice {
+  width: 400px;
+}
+.search-course {
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  height: 100px;
+  overflow: auto;
+  border-radius: 5px;
+}
+.search-course>p {
+  line-height: 24px;
+  text-indent: 10px;
+}
