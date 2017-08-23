@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import store from '../redux/store'
+import { connect } from 'react-redux'
 
 class CourseList extends Component {
-
   render(){
-    let courses = store.getState().map((item, i) => (
+    let courses = this.props.courses.map((item, i) => (
       <div key={i} className='course'>
         <img src={`${item.post}`} alt='poster' />
         <h2>{item.title}</h2>
@@ -20,4 +19,8 @@ class CourseList extends Component {
   }
 }
 
-export default CourseList
+const mapStateToProps = (state) => ({
+  courses: state
+})
+
+export default connect(mapStateToProps)(CourseList)
