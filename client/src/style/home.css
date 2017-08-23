@@ -1,0 +1,21 @@
+.home {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   padding-top: 20px;
+   background-color: #3F51B5;
+   text-align: center;
+ }
+
+.button {
+   background-color: #FF5252;
+   margin: 20% auto 0 auto;
+   width: 20%;
+   padding: 0 10px;
+   border: none;
+   line-height: 30px;
+   outline: none;
+   color: white;
+   text-decoration: none;
+   border-radius: 50px;
+ }
