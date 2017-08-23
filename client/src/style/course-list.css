@@ -1,0 +1,16 @@
+.course-list {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 10%;
+}
+
+.course {
+  margin: 0 5%;
+  width: 33%;
+  border: 1px solid #BDBDBD;
+
+}
+
+.poster {
+  width: 100%;
+}
