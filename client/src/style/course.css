@@ -1,0 +1,16 @@
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  background-color: #3F51B5;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 10%;
+  text-align: center;
+}
+
+.chapter {
+
+  text-decoration: none;
+  color: #FFFFFF;
+  background: #303F9F;
+}
