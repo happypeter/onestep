@@ -7,8 +7,10 @@
 .course {
   margin: 0 5%;
   width: 33%;
-  border: 1px solid #BDBDBD;
-
+  border: 1px solid #757575;
+  text-decoration: none;
+  color: #FFFFFF;
+  background: #303F9F;
 }
 
 .poster {
