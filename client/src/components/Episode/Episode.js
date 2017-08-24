@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../style/episode.css'
+import './episode.css'
 
 class Episode extends Component {
   render(){

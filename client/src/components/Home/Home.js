@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CourseList from './CourseList'
-import '../style/home.css'
+import CourseList from '../CourseList/CourseList'
+import './home.css'
 
 export default () => (
   <div className='home'>

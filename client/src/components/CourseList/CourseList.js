@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import '../style/course-list.css'
+import './course-list.css'
 
 class CourseList extends Component {
   render(){
