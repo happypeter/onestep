@@ -6,13 +6,11 @@ import '../style/course.css'
 class Course extends Component {
   render(){
     let { courseName } = this.props.match.params
-    console.log(courseName);
     let thisCourse = this.props.courses.find(
       item => (
         item.title === courseName
       )
     )
-    console.log(thisCourse);
     let episode = thisCourse.episode.map((item, i) => (
       <Link to={`/${courseName}/${item}`} key={i} className='episode'>
         {item}
@@ -30,7 +28,7 @@ class Course extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  courses: state
+  courses: state.courses
 })
 
 export default connect(mapStateToProps)(Course)

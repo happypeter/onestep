@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import '../style/episode.css'
 
 class Episode extends Component {
   render(){
-    let { episodeName } = this.props.match.params
+    let { episodeName } = this.props.computedMatch.params
 
+    console.log(this.props);
     return(
       <div className='episode-video'>
         <div className='video'>

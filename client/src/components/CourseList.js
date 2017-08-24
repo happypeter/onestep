@@ -22,7 +22,7 @@ class CourseList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  courses: state
+  courses: state.courses
 })
 
 export default connect(mapStateToProps)(CourseList)

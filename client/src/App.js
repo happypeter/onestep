@@ -2,13 +2,29 @@ import React, { Component } from 'react'
 import Home from './components/Home'
 import Login from './components/Login'
 import Course from './components/Course'
+import Episode from './components/Episode'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+
+const PrivateRoute = ({ component: Component, ...rest}) => (
+  <Route {...rest} render={(props) => (
+      store.getState().fakeAuth.isAuthenticated ? (
+        <Component {...rest} />
+      ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
+      )
+    )
+    }/>
+)
 
 class App extends Component {
   render() {
@@ -19,6 +35,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
+              <PrivateRoute path="/:courseName/:episodeName" component={Episode} />
               <Route path="/:courseName" component={Course} />
             </Switch>
           </Router>

@@ -1,13 +1,42 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Login extends Component {
-  render(){
-    return(
-      <div className="home">
-        Login
-      </div>
-    )
-  }
+  state = {
+   redirectToReferrer: false
+ }
+
+ login = () => {
+   this.props.fakeAuth.authenticate()
+   this.setState({
+     redirectToReferrer: true
+   })
+ }
+
+ render() {
+   const refererState = this.props.location.state
+
+   if (this.state.redirectToReferrer && refererState ) {
+     let refererPath = refererState.from.pathname
+     return (
+       <Redirect to={refererPath} />
+     )
+   }else if(this.state.redirectToReferrer) {
+     return (
+       <Redirect to='/' />
+     )
+   }
+   return (
+     <div className="home">
+       <button onClick={this.login}>点击假装微信扫码登录</button>
+     </div>
+   )
+ }
 }
 
-export default Login
+const mapStateToProps = (state) => ({
+  fakeAuth: state.fakeAuth
+})
+
+export default connect(mapStateToProps)(Login)
