@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import '../style/login.css'
 
 class Login extends Component {
-  state = {
-   redirectToReferrer: false
- }
 
  login = () => {
    this.props.dispatch({ type: 'IS_AUTH' })
