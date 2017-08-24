@@ -19,7 +19,7 @@ class Course extends Component {
 
     return(
       <div className="episode-list">
-        <img src={`${thisCourse.post}`} alt='poster' className='poster' />
+        <img src={`${thisCourse.post}`} alt='poster' className='intro' />
         <h2>章节列表</h2>
         { episode }
       </div>
