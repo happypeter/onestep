@@ -1,4 +1,4 @@
-.chapter-list {
+.episode-list {
   display: flex;
   flex-direction: column;
   background-color: #3F51B5;
@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-.chapter {
+.episode {
 
   text-decoration: none;
   color: #FFFFFF;

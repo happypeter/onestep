@@ -5,11 +5,11 @@ let courses = [
     'title': 'Course0',
     'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/redux-hello-v2.png',
     'msg': 'peter - 2days ago',
-    'chapter': [
-      'course0 - chapter0 - 00000',
-      'course0 - chapter1 - 00000',
-      'course0 - chapter2 - 00000',
-      'course0 - chapter3 - 00000'
+    'episode': [
+      'course0 - episode0 - 00000',
+      'course0 - episode1 - 00000',
+      'course0 - episode2 - 00000',
+      'course0 - episode3 - 00000'
     ]
   },
   {
@@ -17,11 +17,11 @@ let courses = [
     'title': 'Course1',
     'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/aa-journey.png',
     'msg': 'peter - 12days ago',
-    'chapter': [
-      'course1 - chapter0 - 111111',
-      'course1 - chapter1 - 111111',
-      'course1 - chapter2 - 111111',
-      'course1 - chapter3 - 111111'
+    'episode': [
+      'course1 - episode0 - 111111',
+      'course1 - episode1 - 111111',
+      'course1 - episode2 - 111111',
+      'course1 - episode3 - 111111'
     ]
   },
   {
@@ -29,11 +29,11 @@ let courses = [
     'title': 'Course2',
     'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/redux-hello-v2.png',
     'msg': 'peter - 22days ago',
-    'chapter': [
-      'course2 - chapter0 - 233333',
-      'course2 - chapter1 - 233333',
-      'course2 - chapter2 - 233333',
-      'course2 - chapter3 - 233333'
+    'episode': [
+      'course2 - episode0 - 233333',
+      'course2 - episode1 - 233333',
+      'course2 - episode2 - 233333',
+      'course2 - episode3 - 233333'
     ]
   }
 ]

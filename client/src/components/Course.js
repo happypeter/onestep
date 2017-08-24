@@ -12,17 +12,18 @@ class Course extends Component {
         item.title === courseName
       )
     )
-    let chapter = thisCourse.chapter.map((item, i) => (
-      <Link to={`/${courseName}/${item}`} key={i} className='chapter'>
+    console.log(thisCourse);
+    let episode = thisCourse.episode.map((item, i) => (
+      <Link to={`/${courseName}/${item}`} key={i} className='episode'>
         {item}
       </Link>
     ))
 
     return(
-      <div className="chapter-list">
+      <div className="episode-list">
         <img src={`${thisCourse.post}`} alt='poster' className='poster' />
         <h2>章节列表</h2>
-        { chapter }
+        { episode }
       </div>
     )
   }
