@@ -6,7 +6,7 @@ import '../style/course-list.css'
 class CourseList extends Component {
   render(){
     let courses = this.props.courses.map((item, i) => (
-      <Link to={`/course/${item.id}`} key={i} className='course'>
+      <Link to={`/${item.title}`} key={i} className='course'>
         <img src={`${item.post}`} alt='poster' className='poster' />
         <h2>{item.title}</h2>
         <p>{item.msg}</p>

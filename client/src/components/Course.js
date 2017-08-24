@@ -5,14 +5,15 @@ import '../style/course.css'
 
 class Course extends Component {
   render(){
-    let { id } = this.props.match.params
+    let { courseName } = this.props.match.params
+    console.log(courseName);
     let thisCourse = this.props.courses.find(
       item => (
-        item.id === id
+        item.title === courseName
       )
     )
     let chapter = thisCourse.chapter.map((item, i) => (
-      <Link to={`/course/${id}/${item}`} key={i} className='chapter'>
+      <Link to={`/${courseName}/${item}`} key={i} className='chapter'>
         {item}
       </Link>
     ))
