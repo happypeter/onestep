@@ -9,21 +9,19 @@ class Login extends Component {
  }
 
  login = () => {
-   this.props.fakeAuth.authenticate()
-   this.setState({
-     redirectToReferrer: true
-   })
+   this.props.dispatch({ type: 'IS_AUTH' })
+   this.props.dispatch({ type: 'TO_REFERRER' })
  }
 
  render() {
    const refererState = this.props.location.state
 
-   if (this.state.redirectToReferrer && refererState ) {
+   if (this.props.fakeAuth.redirectToReferrer && refererState ) {
      let refererPath = refererState.from.pathname
      return (
        <Redirect to={refererPath} />
      )
-   }else if(this.state.redirectToReferrer) {
+   }else if(this.props.fakeAuth.redirectToReferrer) {
      return (
        <Redirect to='/' />
      )

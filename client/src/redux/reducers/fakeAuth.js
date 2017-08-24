@@ -1,11 +1,19 @@
 let fakeAuth = {
  isAuthenticated: false,
- authenticate() {
-   this.isAuthenticated = true
-   console.log(this.isAuthenticated)
- }
+ redirectToReferrer: false,
 }
 
 export default function coursesReducer(state=fakeAuth, action) {
-  return state
+  switch (action.type) {
+    case 'TO_REFERRER':
+      return { ...state, redirectToReferrer: true }
+
+    case 'IS_AUTH':
+      console.log("action");
+      console.log({...state, isAuthenticated: true});
+      return { ...state, isAuthenticated: true }
+      
+    default:
+      return state
+  }
 }
