@@ -9,10 +9,8 @@ export default function coursesReducer(state=fakeAuth, action) {
       return { ...state, redirectToReferrer: true }
 
     case 'IS_AUTH':
-      console.log("action");
-      console.log({...state, isAuthenticated: true});
       return { ...state, isAuthenticated: true }
-      
+
     default:
       return state
   }

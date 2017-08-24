@@ -11,14 +11,16 @@ class Login extends Component {
  }
 
  render() {
+   const { redirectToReferrer } = this.props
    const refererState = this.props.location.state
 
-   if (this.props.fakeAuth.redirectToReferrer && refererState ) {
+
+   if (redirectToReferrer && refererState ) {
      let refererPath = refererState.from.pathname
      return (
        <Redirect to={refererPath} />
      )
-   }else if(this.props.fakeAuth.redirectToReferrer) {
+   }else if(redirectToReferrer) {
      return (
        <Redirect to='/' />
      )
@@ -32,7 +34,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  fakeAuth: state.fakeAuth
+  redirectToReferrer: state.fakeAuth.redirectToReferrer
 })
 
 export default connect(mapStateToProps)(Login)
