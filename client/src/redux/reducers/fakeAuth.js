@@ -1,9 +1,9 @@
 let fakeAuth = {
- isAuthenticated: false,
- redirectToReferrer: false,
+  isAuthenticated: false,
+  redirectToReferrer: false
 }
 
-export default function coursesReducer(state=fakeAuth, action) {
+export default function coursesReducer (state = fakeAuth, action) {
   switch (action.type) {
     case 'TO_REFERRER':
       return { ...state, redirectToReferrer: true }

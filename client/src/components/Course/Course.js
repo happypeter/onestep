@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './course.css'
 
 class Course extends Component {
-  render(){
+  render () {
     let { courseName } = this.props.match.params
     let thisCourse = this.props.courses.find(
       item => (
@@ -17,8 +17,8 @@ class Course extends Component {
       </Link>
     ))
 
-    return(
-      <div className="episode-list">
+    return (
+      <div className='episode-list'>
         <img src={`${thisCourse.post}`} alt='poster' className='intro' />
         <h2>章节列表</h2>
         { episode }

@@ -13,7 +13,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 import './assets/css/App.css'
 
-const PrivateRoute = ({ component: Component, ...rest}) => (
+const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
       store.getState().fakeAuth.isAuthenticated ? (
         <Component {...rest} />
@@ -24,20 +24,20 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
         }} />
       )
     )
-    }/>
+    } />
 )
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Provider store={store}>
-        <div className="App">
+        <div className='App'>
           <Router>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <PrivateRoute path="/:courseName/:episodeName" component={Episode} />
-              <Route path="/:courseName" component={Course} />
+              <Route exact path='/' component={Home} />
+              <Route path='/login' component={Login} />
+              <PrivateRoute path='/:courseName/:episodeName' component={Episode} />
+              <Route path='/:courseName' component={Course} />
             </Switch>
           </Router>
         </div>

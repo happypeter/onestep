@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './course-list.css'
 
 class CourseList extends Component {
-  render(){
+  render () {
     let courses = this.props.courses.map((item, i) => (
       <Link to={`/${item.title}`} key={i} className='course'>
         <img src={`${item.post}`} alt='poster' className='poster' />
@@ -13,8 +13,8 @@ class CourseList extends Component {
       </Link>
     ))
 
-    return(
-      <div className="course-list">
+    return (
+      <div className='course-list'>
         {courses}
       </div>
     )
