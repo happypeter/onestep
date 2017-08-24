@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import '../style/login.css'
 
 class Login extends Component {
   state = {
@@ -29,7 +30,7 @@ class Login extends Component {
    }
    return (
      <div className="home">
-       <button onClick={this.login}>点击假装微信扫码登录</button>
+       <button onClick={this.login} className='fake-code'>点击假装微信扫码登录</button>
      </div>
    )
  }
