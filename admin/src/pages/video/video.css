@@ -22,3 +22,43 @@
   line-height: 24px;
   text-indent: 10px;
 }
+.upload-list {
+  margin-bottom: 80px;
+}
+.upload-list>div {
+  display: flex;
+  line-height: 30px;
+}
+.upload-list>div>div {
+  flex-grow: 1;
+}
+.upload-list>div>div:last-child {
+  text-align: right;
+  color: #2b85cc;
+}
+.select-bucket {
+  line-height: 80px;
+}
+.create-bucket>label, .select-bucket>label {
+  display: inline-block;
+  width: 180px;
+  /*text-align: right;*/
+}
+.create-bucket>div>input {
+  width: 300px;
+  margin: 0 20px;
+}
+.create-bucket>div>div {
+  margin: 10px 0;
+}
+.create-bucket>div button {
+  margin: 0 20px;
+}
+.select-bucket>label {
+  float: left;
+}
+.select-bucket>div {
+  width: 300px;
+  margin: 0 20px;
+  float: left;
+}
