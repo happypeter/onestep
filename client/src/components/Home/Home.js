@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CourseList from '../CourseList/CourseList'
+import CourseList from '../../containers/CourseListContainer'
 import './home.css'
 
 export default () => (
