@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Home from '../components/Home/Home'
 import Login from './LoginContainer'
-import Course from '../components/Course/Course'
+import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
 import {
   BrowserRouter as Router,

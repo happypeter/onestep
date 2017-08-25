@@ -6,7 +6,7 @@ class EpisodeContainer extends Component {
     let { episodeName } = this.props.computedMatch.params
 
     return (
-      <div >
+      <div>
         <Episode episodeName={episodeName} />
       </div>
     )
