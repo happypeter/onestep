@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Home from '../components/Home/Home'
 import Login from './LoginContainer'
 import Course from '../components/Course/Course'
-import Episode from '../components/Episode/Episode'
+import Episode from './EpisodeContainer'
 import {
   BrowserRouter as Router,
   Switch,
