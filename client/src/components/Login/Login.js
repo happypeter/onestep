@@ -4,7 +4,6 @@ import './login.css'
 class Login extends Component {
 
   handleClick = () => {
-   console.log("handleClick");
    this.props.onClick()
   }
 

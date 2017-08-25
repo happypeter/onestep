@@ -6,7 +6,6 @@ import Login from '../components/Login/Login'
 class LoginContainer extends Component {
 
   login = () => {
-    console.log("container");
      this.props.dispatch({ type: 'IS_AUTH' })
      this.props.dispatch({ type: 'TO_REFERRER' })
    }
