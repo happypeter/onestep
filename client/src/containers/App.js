@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Home from './components/Home/Home'
-import Login from './components/Login/Login'
-import Course from './components/Course/Course'
-import Episode from './components/Episode/Episode'
+import Home from '../components/Home/Home'
+import Login from './LoginContainer'
+import Course from '../components/Course/Course'
+import Episode from '../components/Episode/Episode'
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,8 +10,8 @@ import {
   Redirect
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import store from './redux/store'
-import './assets/css/App.css'
+import store from '../redux/store'
+import '../assets/css/App.css'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
