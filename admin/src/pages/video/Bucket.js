@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Input, Button } from 'antd'
 import DropDownMenu from './DropDownMenu'
 import axios from 'axios'
+import jsonp from 'jsonp'
 
 class Bucket extends Component {
   constructor () {
@@ -42,9 +43,15 @@ class Bucket extends Component {
     this.selected = this.selected.bind(this)
   }
   componentWillMount () {
-    axios.get('http://localhost:6060/getservice')
+    // axios.get('http://localhost:6060/getservice')
+    // .then(res => {
+    //   this.setState({buckets: res.data.data.Buckets, bucket: res.data.data.Buckets[0]})
+    // })
+    axios.get('http://localhost:6060/')
     .then(res => {
-      this.setState({buckets: res.data.data.Buckets, bucket: res.data.data.Buckets[0]})
+      console.log(res)
+      axios.get('http://haoqicat-1254205806.cos.cn-north.myqcloud.com/', {headers: {'Authorization': res.data.Authorization}})
+      .then(a => console.log(a))
     })
   }
   handleChange (e) {

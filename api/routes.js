@@ -1,4 +1,6 @@
-// const CryptoJS = require('crypto-js')
+const CryptoJS = require('crypto-js')
+const crypto = require('crypto')
+const auth = require('./Auth')
 const config = require('./config/config')
 const COS = require('cos-nodejs-sdk-v5')
 const fs = require('fs')
@@ -12,17 +14,6 @@ const cos = new COS({
   SecretKey: config.SecretKey
 })
 module.exports = function (app) {
-  app.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild')
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
-    if (req.method === 'OPTIONS') {
-      res.send(200)
-    } else {
-      next()
-    }
-  })
-
   app.get('/getservice', function (req, res) {
     cos.getService(function (err, data) {
       if (err) {
@@ -31,6 +22,16 @@ module.exports = function (app) {
         return res.status(200).json({data})
       }
     })
+  })
+
+  app.get('/', function (req, res) {
+    let Authorization = auth({
+      SecretId: 'AKIDpleU9eMMhN5mYJGKdpsqkaJuN1qsG2Qk',
+      SecretKey: 'On29jh2SuIXeuCLUWXLKRhonfLpv5EGB',
+      method: 'get',
+      pathname: '/'
+    })
+    return res.status(200).json({Authorization})
   })
 
   app.post('/getbucket', function (req, res) {
