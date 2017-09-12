@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import Test from './test'
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Menu, Icon } from 'antd';
+const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-class SideBar extends React.Component {
+class SideBar extends Component {
   state = {
     collapsed: false,
   };

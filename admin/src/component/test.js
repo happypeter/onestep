@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+import { Layout, Breadcrumb, Icon } from 'antd'
+const { Header, Content, Footer } = Layout
 
-
-class Test extends React.Component {
+class Test extends Component {
   render() {
     return (
       <Layout style={{ minHeight: '100vh', width: '100%' }}>
@@ -22,7 +20,7 @@ class Test extends React.Component {
             Bill is a cat.
           </div>
         </Content>
-        
+
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©2016 Created by Ant UED
         </Footer>
