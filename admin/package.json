@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^2.13.1",
     "axios": "^0.16.2",
+    "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

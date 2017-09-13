@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import config from '../config'
-import { Layout, Breadcrumb, Icon } from 'antd'
+import { Layout, Breadcrumb, Icon, Table } from 'antd'
+import TableColumns from './tableColumns'
 
 const { Header, Content, Footer } = Layout
 
@@ -9,8 +10,7 @@ class Test extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      value: [],
-      test: 'TEST'
+      contents: []
     }
   }
 
@@ -19,9 +19,9 @@ class Test extends Component {
     .then(
       res => {
         this.setState({
-          value: res.data.Contents
+          contents: res.data.Contents
         })
-        console.log(this.state.value)
+        console.log(this.state.contents)
       }
     )
     .catch(err => {
@@ -47,7 +47,12 @@ class Test extends Component {
             <Breadcrumb.Item>Test</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-            value: {this.state.test}
+
+            <Table columns={TableColumns}
+            dataSource={this.state.contents}
+            rowKey={item => item.ETag}
+          />
+
           </div>
         </Content>
 
