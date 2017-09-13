@@ -12,6 +12,7 @@
     "axios": "^0.16.2",
     "body-parser": "^1.16.1",
     "cors": "^2.8.1",
+    "cos-nodejs-sdk-v5": "^2.0.10",
     "express": "^4.14.1",
     "morgan": "^1.8.2"
   },

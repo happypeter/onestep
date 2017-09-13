@@ -2,22 +2,26 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import config from '../config'
 import { Layout, Breadcrumb, Icon } from 'antd'
+
 const { Header, Content, Footer } = Layout
 
 class Test extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      value: '',
+      value: [],
       test: 'TEST'
     }
   }
-  componentWillMount(){
-    axios.get(`${config.api}`)
+
+  componentWillMount () {
+    axios.get(`${config.api}/bucket`)
     .then(
       res => {
-        this.setState({value:res.data})
-        console.log(this.state.value);
+        this.setState({
+          value: res.data.Contents
+        })
+        console.log(this.state.value)
       }
     )
     .catch(err => {
@@ -28,12 +32,13 @@ class Test extends Component {
       }
     })
   }
-  render() {
+
+  render () {
     return (
       <Layout style={{ minHeight: '100vh', width: '100%' }}>
-        <Header style={{ background: '#fff', padding: 10, display: 'flex', flexDirection: 'row-reverse', alignItems: 'baseline'}}>
+        <Header style={{background: '#fff', padding: 10, display: 'flex', flexDirection: 'row-reverse', alignItems: 'baseline'}}>
           <span>用户名</span>
-          <Icon type="user" />
+          <Icon type='user' />
         </Header>
 
         <Content style={{ margin: '0 16px' }}>
@@ -42,7 +47,7 @@ class Test extends Component {
             <Breadcrumb.Item>Test</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-            value: {this.state.value}
+            value: {this.state.test}
           </div>
         </Content>
 
