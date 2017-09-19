@@ -1,17 +1,20 @@
-import React, { Component } from 'react'
-import SideBar from './sideBar'
-import Test from './test'
-import './App.css'
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <SideBar />
-        <Test />
-      </div>
-    )
-  }
-}
+import Home from './home'
+import Content from './content'
+
+const App = () => (
+<Router>
+  <Switch>
+    <Route exact path='/' component={Home} />
+    <Route path='/content/:contentId' component={Content} />
+  </Switch>
+</Router>
+)
 
 export default App

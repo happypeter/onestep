@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 
 const TableColumns = [{
@@ -13,6 +14,13 @@ const TableColumns = [{
   render: (text) => {
     return <span>{moment(text).format('YYYY-MM-DD kk:mm:ss')}</span>
   }
+}, {
+  title: '操作',
+  dataIndex: 'ETag',
+  key: 'ETag',
+  render: (text) => {
+    return <Link to={`/content/${text}`}>查看</Link>
+  },
 }]
 
 export default TableColumns
