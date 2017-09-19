@@ -13,6 +13,6 @@ router.get('/bucket', bucket.getBucket)
 // getObject
 router.post('/getObject', bucket.getObject)
 
-router.post('/sliceUploadFile', sliceUploadFile.sliceUploadFile)
+// router.post('/sliceUploadFile', sliceUploadFile.sliceUploadFile)
 
 module.exports = router

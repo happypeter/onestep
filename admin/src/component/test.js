@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import config from '../config'
-import { Layout, Breadcrumb, Icon, Table, Upload,message ,Progress} from 'antd'
+import { Layout, Breadcrumb, Icon, Table, Upload,message ,Progress, Input} from 'antd'
 import COS from 'cos-js-sdk-v5'
 import TableColumns from './tableColumns'
 const Dragger = Upload.Dragger;
@@ -60,7 +60,8 @@ class Test extends Component {
       contents: [],
       percent: 0,
       name: '文件名',
-      progress: []
+      progress: [],
+      folder: ''
     }
   }
 
@@ -97,6 +98,14 @@ class Test extends Component {
     // })
   }
 
+  onPressEnter (e) {
+    console.log(e.target.value)
+    let folderName = e.target.value.trim()
+    this.setState({
+      folder: `${folderName}/`
+    })
+  }
+
   render () {
     let that = this
     //antd拖拽组件部分
@@ -130,7 +139,7 @@ class Test extends Component {
           var params = {
             Bucket: `${config.Bucket}`,
             Region: `${config.Region}`,                      /* 必须 */
-            Key: `${file.name}`,
+            Key: `${that.state.folder}${file.name}`,
             Body: file,                                     /* 必须 */
             // Body: 'File || Blob',
             // SliceSize: 'STRING_VALUE',                      /* 非必须 */
@@ -253,6 +262,7 @@ class Test extends Component {
 
         {/* 拖拽块 */}
         <div style={{ marginTop: 16, height: 180 }}>
+          <text>目标文件夹：{this.state.folder ? this.state.folder : 'bucket顶层'}</text>
           <Dragger {...props}>
             <p className="ant-upload-drag-icon">
               <Icon type="inbox" />
@@ -261,6 +271,8 @@ class Test extends Component {
             <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
           </Dragger>
         </div>
+
+        <Input placeholder="要传入的文件夹名称" onPressEnter={this.onPressEnter.bind(this)}/>
 
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©2016 Created by Ant UED
