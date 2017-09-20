@@ -61,7 +61,8 @@ class Test extends Component {
       percent: 0,
       name: '文件名',
       progress: [],
-      folder: ''
+      folder: '',
+      inputClass: ''
     }
   }
 
@@ -98,12 +99,31 @@ class Test extends Component {
     // })
   }
 
+  //指定的文件夹名
   onPressEnter (e) {
     console.log(e.target.value)
     let folderName = e.target.value.trim()
-    this.setState({
-      folder: `${folderName}/`
-    })
+    let parseName = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/
+
+    //分开判断，便于精确提示用户
+    if (folderName.length > 20) {
+      message.error('最多支持 20 个字符')
+      this.setState({
+        inputClass: 'has-feedback has-error'
+      })
+    } else if (!parseName.test(folderName)) {
+      message.error('仅支持数字、中英文、下划线')
+      this.setState({
+        inputClass: 'has-feedback has-error'
+      })
+    } else {
+      this.setState({
+        folder: `${folderName}/`,
+        inputClass: 'has-feedback has-success'
+      })
+      e.target.value = ''
+      message.success(`文件将上传至${folderName}/`)
+    }
   }
 
   render () {
@@ -240,7 +260,7 @@ class Test extends Component {
 
             <Table columns={TableColumns}
             dataSource={this.state.contents}
-            rowKey={item => item.ETag}
+            rowKey={item => item.LastModified}
             />
 
           </div>
@@ -260,9 +280,16 @@ class Test extends Component {
           )
         }
 
+        {/*上传目标文件夹*/}
+        <div className={"has-success"} style={{ marginTop: 16, height: 80 }}>
+          <text>目标文件夹：{this.state.folder ? this.state.folder : 'bucket顶层'}</text>
+          <Input placeholder="要传入的文件夹名称" onPressEnter={this.onPressEnter.bind(this)} />
+          <div className="ant-form-explain">可用数字、中英文、下划线组合，最多20个字符</div>
+        </div>
+
         {/* 拖拽块 */}
         <div style={{ marginTop: 16, height: 180 }}>
-          <text>目标文件夹：{this.state.folder ? this.state.folder : 'bucket顶层'}</text>
+
           <Dragger {...props}>
             <p className="ant-upload-drag-icon">
               <Icon type="inbox" />
@@ -271,8 +298,6 @@ class Test extends Component {
             <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
           </Dragger>
         </div>
-
-        <Input placeholder="要传入的文件夹名称" onPressEnter={this.onPressEnter.bind(this)}/>
 
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©2016 Created by Ant UED
