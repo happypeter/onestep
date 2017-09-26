@@ -10,11 +10,16 @@ const FormWrap = styled.div`
 `
 
 class Home extends Component {
+
+  login = () => {
+    this.props.history.push('/dashbord')
+  }
+
   render () {
     return (
       <div className='home'>
         <FormWrap>
-          <LoginForm />
+          <LoginForm onLogin={this.login} />
         </FormWrap>
       </div>
     )

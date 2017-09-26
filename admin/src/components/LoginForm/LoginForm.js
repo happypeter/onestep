@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button } from 'antd'
+import { Form, Icon, Input, Button, message } from 'antd'
 import styled from 'styled-components'
 const FormItem = Form.Item
 
@@ -13,6 +13,10 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+        if (values.userName !== 'admin' || values.password !== 'admin') {
+          return message.error('用户名或密码错误')
+        }
+        this.props.onLogin()
       }
     })
   }
