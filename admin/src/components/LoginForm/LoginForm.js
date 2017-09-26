@@ -1,6 +1,11 @@
 import React from 'react'
 import { Form, Icon, Input, Button } from 'antd'
+import styled from 'styled-components'
 const FormItem = Form.Item
+
+const StyledButton = styled(Button)`
+  width: 100%;
+`
 
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
@@ -30,9 +35,9 @@ class NormalLoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <StyledButton type="primary" htmlType="submit" className="login-form-button">
             Log in
-          </Button>
+          </StyledButton>
         </FormItem>
       </Form>
     )
