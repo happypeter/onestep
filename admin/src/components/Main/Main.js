@@ -5,10 +5,10 @@ import {
 import Home from '../Home/Home'
 
 class Main extends Component {
-  render() {
+  render () {
     return (
       <div className='main'>
-        <Route exact='/' component={ Home } />
+        <Route exact path='/' component={Home} />
       </div>
     )
   }
