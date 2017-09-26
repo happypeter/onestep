@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import {
-  BrowserRouter as Router,
+  BrowserRouter as Router
 } from 'react-router-dom'
 import Main from '../Main/Main'
 import './app.css'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Router>
         <Main />
       </Router>
-    );
+    )
   }
 }
 

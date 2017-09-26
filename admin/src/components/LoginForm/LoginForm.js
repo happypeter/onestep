@@ -11,7 +11,7 @@ class NormalLoginForm extends React.Component {
       }
     })
   }
-  render() {
+  render () {
     const { getFieldDecorator } = this.props.form
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
