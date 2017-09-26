@@ -1,7 +1,7 @@
 const express = require('express')
 const hello = require('./api/hello')
 const bucket = require('./api/bucket')
-const sliceUploadFile = require('./api/sliceUploadFile')
+const auth = require('./api/auth')
 
 const router = express.Router()
 
@@ -13,6 +13,7 @@ router.get('/bucket', bucket.getBucket)
 // getObject
 router.post('/getObject', bucket.getObject)
 
-// router.post('/sliceUploadFile', sliceUploadFile.sliceUploadFile)
+// auth
+router.get('/auth', auth.auth)
 
 module.exports = router
