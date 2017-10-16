@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
-import '../assets/css/App.css'
+// import '../assets/css/App.css'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
