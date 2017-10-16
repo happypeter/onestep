@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router
 } from 'react-router-dom'
 import Main from '../Main/Main'
-import './app.css'
+import 'antd/dist/antd.css'
 
 class App extends Component {
   render () {
