@@ -2,12 +2,35 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CourseList from '../../containers/CourseListContainer'
 import Footer from '../Footer/Footer'
-import './home.css'
+import styled from 'styled-components'
+
+const HomeWrap = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  background-color: #3F51B5;
+  text-align: center;
+`
+
+const Button = styled(Link)`
+  background-color: #FF5252;
+  margin: 20% auto 10% auto;
+  width: 15%;
+  padding: 0 10px;
+  border: none;
+  line-height: 30px;
+  outline: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+`
 
 export default () => (
-  <div className='home'>
-    <Link to='/Login' className='button'>微信登录</Link>
+  <HomeWrap>
+    <Button to='/Login'>微信登录</Button>
     <CourseList />
     <Footer />
-  </div>
+  </HomeWrap>
 )
