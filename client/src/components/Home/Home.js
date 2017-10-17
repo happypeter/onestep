@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CourseList from '../../containers/CourseListContainer'
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
@@ -9,8 +10,7 @@ const HomeWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 20px;
-  background-color: #3F51B5;
+  background-color: #B2EBF2;
   text-align: center;
 `
 
@@ -29,6 +29,7 @@ const Button = styled(Link)`
 
 export default () => (
   <HomeWrap>
+    <Header />
     <Button to='/Login'>微信登录</Button>
     <CourseList />
     <Footer />
