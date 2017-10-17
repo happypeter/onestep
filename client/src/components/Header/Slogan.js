@@ -14,6 +14,11 @@ const SloganWrap = styled.div`
     display: flex;
     align-items: center;
   }
+
+  @media (min-width: 1000px) {
+    background-position: 85%;
+    padding-left: 10%;
+  }
 `
 const TextWrap = styled.div`
   max-width: 1000px;
@@ -49,12 +54,8 @@ const H3Wrap = styled.h3`
 export default () => (
   <SloganWrap>
     <TextWrap>
-      <H1Wrap>
-        欢迎来到好奇猫
-      </H1Wrap>
-      <H3Wrap>
-        节省自学时间
-      </H3Wrap>
+      <H1Wrap>欢迎来到好奇猫</H1Wrap>
+      <H3Wrap>节省自学时间</H3Wrap>
     </TextWrap>
   </SloganWrap>
 )
