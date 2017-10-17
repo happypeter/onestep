@@ -3,7 +3,7 @@ let courses = [
   {
     'id': '0',
     'title': 'Course0',
-    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/redux-hello-v2.png',
+    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/antd.png',
     'msg': 'peter - 2days ago',
     'episode': [
       'course0 - episode0 - 00000',
@@ -27,7 +27,7 @@ let courses = [
   {
     'id': '2',
     'title': 'Course2',
-    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/redux-hello-v2.png',
+    'post': 'http://o86bpj665.bkt.clouddn.com/posters/o-o-js.png',
     'msg': 'peter - 22days ago',
     'episode': [
       'course2 - episode0 - 233333',
