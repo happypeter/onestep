@@ -5,7 +5,7 @@ const SloganWrap = styled.div`
   background-color: #00BCD4;
   margin-bottom: 40px;
   padding: 50px 1.5em 10px;
-  @media (min-width: 800px) {
+  @media (min-width: 850px) {
     background-image: url(http://o84cbt6xd.bkt.clouddn.com/banner.png);
     background-position: right;
     background-size: 550px;
@@ -18,7 +18,7 @@ const SloganWrap = styled.div`
 const TextWrap = styled.div`
   max-width: 1000px;
   margin: 0px auto;
-  @media (min-width: 800px) {
+  @media (min-width: 850px) {
     text-align: left;
     margin-left: 10px;
   }
@@ -33,7 +33,7 @@ const H1Wrap = styled.h1`
   line-height: 1.1;
   letter-spacing: -1px;
   color: rgb(85, 85, 85);
-  @media (min-width: 800px) {
+  @media (min-width: 850px) {
     font-size: 50px;
   }
 `
