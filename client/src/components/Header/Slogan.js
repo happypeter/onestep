@@ -15,7 +15,7 @@ const SloganWrap = styled.div`
     align-items: center;
   }
 `
-const TextDiv = styled.div`
+const TextWrap = styled.div`
   max-width: 1000px;
   margin: 0px auto;
   @media (min-width: 800px) {
@@ -48,13 +48,13 @@ const H3Wrap = styled.h3`
 
 export default () => (
   <SloganWrap>
-    <TextDiv>
+    <TextWrap>
       <H1Wrap>
         欢迎来到好奇猫
       </H1Wrap>
       <H3Wrap>
         节省自学时间
       </H3Wrap>
-    </TextDiv>
+    </TextWrap>
   </SloganWrap>
 )
