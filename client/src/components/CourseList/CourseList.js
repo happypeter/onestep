@@ -46,6 +46,14 @@ const CourseCard = styled(Link)`
     font-size: 17px;
     text-align: center;
   }
+
+  @media (min-width: 600px) {
+    width: calc(50% - 40px)
+  }
+
+  @media (min-width: 900px) {
+    width: calc(33.33333% - 40px)
+  }
 `
 
 class CourseList extends Component {
