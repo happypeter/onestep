@@ -14,7 +14,6 @@ const SloganWrap = styled.div`
     display: flex;
     align-items: center;
   }
-
   @media (min-width: 1000px) {
     background-position: 85%;
     padding-left: 10%;
