@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-// import './course-list.css'
 
 const Title = styled.div`
   color: #6d6d6d;
