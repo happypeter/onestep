@@ -15,6 +15,14 @@ const SloganWrap = styled.div`
     align-items: center;
   }
 `
+const TextDiv = styled.div`
+  max-width: 1000px;
+  margin: 0px auto;
+  @media (min-width: 800px) {
+    text-align: left;
+    margin-left: 10px;
+  }
+`
 
 const H1Wrap = styled.h1`
   font-family: sans-serif;
@@ -25,6 +33,9 @@ const H1Wrap = styled.h1`
   line-height: 1.1;
   letter-spacing: -1px;
   color: rgb(85, 85, 85);
+  @media (min-width: 800px) {
+    font-size: 50px;
+  }
 `
 
 const H3Wrap = styled.h3`
@@ -37,13 +48,13 @@ const H3Wrap = styled.h3`
 
 export default () => (
   <SloganWrap>
-    <div style={{ maxWidth: '1000px', margin: '0px auto' }}>
+    <TextDiv>
       <H1Wrap>
         欢迎来到好奇猫
       </H1Wrap>
       <H3Wrap>
         节省自学时间
       </H3Wrap>
-    </div>
+    </TextDiv>
   </SloganWrap>
 )
