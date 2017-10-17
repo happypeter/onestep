@@ -5,14 +5,45 @@ const SloganWrap = styled.div`
   background-color: #00BCD4;
   margin-bottom: 40px;
   padding: 50px 1.5em 10px;
+  @media (min-width: 800px) {
+    background-image: url(http://o84cbt6xd.bkt.clouddn.com/banner.png);
+    background-position: right;
+    background-size: 550px;
+    background-repeat: no-repeat;
+    height: 550px;
+    display: flex;
+    align-items: center;
+  }
 `
+
+const H1Wrap = styled.h1`
+  font-family: sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: rgb(85, 85, 85);
+`
+
+const H3Wrap = styled.h3`
+  font-weight: 200;
+  font-size: 1.35em;
+  margin-bottom: 50px;
+  line-height: 2em;
+  color: rgb(255, 255, 255);
+`
+
 export default () => (
   <SloganWrap>
-    <h1 style={{ maxWidth: '1000px', margin: '0px auto', fontFamily: 'sans-serif', fontSize: '35px', fontWeight: 400, marginTop: '0px', marginBottom: '30px', lineHeight: '1.1', letterSpacing: '-1px', color: 'rgb(85, 85, 85)' }}>
-      欢迎来到好奇猫
-    </h1>
-    <h3 style={{ maxWidth: '1000px', margin: '0px auto', fontWeight: 200, fontSize: '1.35em', marginBottom: '50px', lineHeight: '2em', color: 'rgb(255, 255, 255)' }}>
-      节省自学时间
-    </h3>
+    <div style={{ maxWidth: '1000px', margin: '0px auto' }}>
+      <H1Wrap>
+        欢迎来到好奇猫
+      </H1Wrap>
+      <H3Wrap>
+        节省自学时间
+      </H3Wrap>
+    </div>
   </SloganWrap>
 )
