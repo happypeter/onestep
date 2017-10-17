@@ -30,7 +30,7 @@ const Button = styled(Link)`
 export default () => (
   <HomeWrap>
     <Header />
-    <Button to='/Login'>微信登录</Button>
+    {/* <Button to='/Login'>微信登录</Button> */}
     <CourseList />
     <Footer />
   </HomeWrap>
