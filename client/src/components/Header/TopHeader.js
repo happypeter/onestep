@@ -7,15 +7,24 @@ const TopHeaderWrap = styled.div`
   justify-content: space-between;
 `
 
+const SideButtonsWrap = styled.div`
+  display: flex;
+  flex-direction: flex-end;
+`
+
 const Button = styled.div`
+  font-size: 1em;
+  padding: 0.5em;
   color: white;
   line-height: 2;
-  padding: 0.5em 1.3em;
   opacity: 0.8;
   transition: all 0.5s ease;
   font-weight: 600;
-  font-size: 1.2em;
   text-decoration: none;
+  @media (min-width: 850px) {
+    font-size: 1.2em;
+    padding: 0.5em 1.3em;
+  }
 `
 
 export default () => (
@@ -23,13 +32,10 @@ export default () => (
     <Button>
       首页
     </Button>
-    <div style={{display: 'flex', flexDirection: 'flex-end'}}>
-      <Button>
-        注册
-      </Button>
-      <Button>
-        登录
-      </Button>
-    </div>
+    <SideButtonsWrap>
+      <Button>注册</Button>
+      <Button>登录</Button>
+      <Button>微信登录</Button>
+    </SideButtonsWrap>
   </TopHeaderWrap>
 )
