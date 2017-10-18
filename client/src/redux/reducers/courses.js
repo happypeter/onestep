@@ -50,6 +50,6 @@ let courses = [
   }
 ]
 
-export default function coursesReducer(state=courses, action) {
+export default function coursesReducer (state = courses, action) {
   return state
 }
