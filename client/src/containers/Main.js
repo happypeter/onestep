@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Home from '../components/Home/Home'
 import WechatLogin from './WechatLoginContainer'
+import Login from './LoginContainer'
 import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
 import {
@@ -32,6 +33,7 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/wechatLogin' component={WechatLogin} />
+          <Route path='/login' component={Login} />
           <PrivateRoute path='/:courseName/:episodeName' component={Episode} />
           <Route path='/:courseName' component={Course} />
         </Switch>

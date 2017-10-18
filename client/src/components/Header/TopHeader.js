@@ -35,7 +35,7 @@ export default () => (
     </Button>
     <SideButtonsWrap>
       <Button to=''>注册</Button>
-      <Button to=''>登录</Button>
+      <Button to='/login'>登录</Button>
       <Button to='/wechatLogin'>微信登录</Button>
     </SideButtonsWrap>
   </TopHeaderWrap>

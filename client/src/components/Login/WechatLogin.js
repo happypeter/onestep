@@ -57,7 +57,7 @@ class WechatLogin extends Component {
           点击假装微信扫码登录
         </Mcode>
         <ButtonsWrap>
-          <Button to='' >账号登录</Button>
+          <Button to='/login' >账号登录</Button>
           <Button to='' >注册账号</Button>
         </ButtonsWrap>
         <Footer />
