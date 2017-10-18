@@ -35,6 +35,18 @@ let courses = [
       'course2 - episode2 - 233333',
       'course2 - episode3 - 233333'
     ]
+  },
+  {
+    'id': '3',
+    'title': 'Course3',
+    'post': 'http://o86bpj665.bkt.clouddn.com/posters/o-o-js.png',
+    'msg': 'peter - 23days ago',
+    'episode': [
+      'course2 - episode0 - 233333',
+      'course2 - episode1 - 266663',
+      'course2 - episode2 - 233333',
+      'course2 - episode3 - 233333'
+    ]
   }
 ]
 
