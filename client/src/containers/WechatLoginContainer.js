@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Login from '../components/Login/Login'
+import WechatLogin from '../components/Login/WechatLogin'
 
-class LoginContainer extends Component {
+class WechatLoginContainer extends Component {
 
   login = () => {
      this.props.dispatch({ type: 'IS_AUTH' })
@@ -26,7 +26,7 @@ class LoginContainer extends Component {
     }
     return (
       <div>
-        <Login onClick={this.login} />
+        <WechatLogin onClick={this.login} />
       </div>
     )
   }
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => ({
   redirectToReferrer: state.fakeAuth.redirectToReferrer
 })
 
-export default connect(mapStateToProps)(LoginContainer)
+export default connect(mapStateToProps)(WechatLoginContainer)

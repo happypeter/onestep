@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
-const LoginWrap = styled.div`
+const WechatLoginWrap = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ const LoginWrap = styled.div`
 `
 
 
-class Login extends Component {
+class WechatLogin extends Component {
 
   handleClick = () => {
    this.props.onClick()
@@ -21,7 +21,7 @@ class Login extends Component {
 
   render () {
     return (
-      <LoginWrap>
+      <WechatLoginWrap>
         <button
           onClick={this.handleClick}
           style={{ margin: '20% auto', height: '200px', width: '200px' }}
@@ -29,9 +29,9 @@ class Login extends Component {
           点击假装微信扫码登录
         </button>
         <Footer />
-      </LoginWrap>
+      </WechatLoginWrap>
     )
   }
 }
 
-export default Login
+export default WechatLogin

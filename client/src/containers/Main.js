@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Home from '../components/Home/Home'
-import Login from './LoginContainer'
+import WechatLogin from './WechatLoginContainer'
 import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
 import {
@@ -17,7 +17,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
         <Component {...rest} />
       ) : (
         <Redirect to={{
-          pathname: '/login',
+          pathname: '/wechatLogin',
           state: { from: props.location }
         }} />
       )
@@ -31,7 +31,7 @@ class Main extends Component {
       <Router>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/login' component={Login} />
+          <Route path='/wechatLogin' component={WechatLogin} />
           <PrivateRoute path='/:courseName/:episodeName' component={Episode} />
           <Route path='/:courseName' component={Course} />
         </Switch>
