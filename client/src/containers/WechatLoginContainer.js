@@ -6,34 +6,33 @@ import WechatLogin from '../components/Login/WechatLogin'
 class WechatLoginContainer extends Component {
 
   login = () => {
-     this.props.dispatch({ type: 'IS_AUTH' })
-     this.props.dispatch({ type: 'TO_REFERRER' })
+     this.props.dispatch({ type: 'AUTH_USER', userInfo: 'wechatCode' })
    }
 
   render () {
-    const { redirectToReferrer } = this.props
+    const { isAuthenticated } = this.props
     const refererState = this.props.location.state
 
-    if (redirectToReferrer && refererState) {
+    if (isAuthenticated && refererState) {
       let refererPath = refererState.from.pathname
       return (
         <Redirect to={refererPath} />
       )
-    } else if (redirectToReferrer) {
+    } else if (isAuthenticated) {
       return (
         <Redirect to='/' />
       )
     }
     return (
       <div>
-        <WechatLogin onClick={this.login} />
+        <WechatLogin onClick={this.login} refererState={refererState}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  redirectToReferrer: state.fakeAuth.redirectToReferrer
+  isAuthenticated: state.fakeAuth.isAuthenticated
 })
 
 export default connect(mapStateToProps)(WechatLoginContainer)

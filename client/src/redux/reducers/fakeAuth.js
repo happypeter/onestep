@@ -1,16 +1,17 @@
-let fakeAuth = {
+import isEmpty from 'lodash/fp/isEmpty'
+
+const initialState = {
   isAuthenticated: false,
-  redirectToReferrer: false
+  currentUser: {}
 }
 
-export default function coursesReducer (state = fakeAuth, action) {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'TO_REFERRER':
-      return { ...state, redirectToReferrer: true }
-
-    case 'IS_AUTH':
-      return { ...state, isAuthenticated: true }
-
+    case 'AUTH_USER':
+      return {
+        isAuthenticated: !isEmpty(action.userInfo),
+        currentUser: action.userInfo
+      }
     default:
       return state
   }
