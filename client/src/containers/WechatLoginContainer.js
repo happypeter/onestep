@@ -12,17 +12,14 @@ class WechatLoginContainer extends Component {
   render () {
     const { isAuthenticated } = this.props
     const refererState = this.props.location.state
+    const refererPath = refererState ? refererState.from.pathname : '/'
 
-    if (isAuthenticated && refererState) {
-      let refererPath = refererState.from.pathname
+    if (isAuthenticated) {
       return (
         <Redirect to={refererPath} />
       )
-    } else if (isAuthenticated) {
-      return (
-        <Redirect to='/' />
-      )
     }
+    
     return (
       <div>
         <WechatLogin onClick={this.login} refererState={refererState}/>
