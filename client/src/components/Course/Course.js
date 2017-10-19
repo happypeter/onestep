@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import TopHeader from '../Header/TopHeader'
+import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
 const CourseWrap = styled.div`
@@ -36,13 +38,17 @@ class Course extends Component {
   render () {
     let {src, episode} = this.props
     return (
-      <CourseWrap>
-        <IntroImg src={src} alt='poster' />
-        <h2>章节列表</h2>
-        {/* <EpisodesWrap> */}
-          { episode }
-        {/* </EpisodesWrap> */}
-      </CourseWrap>
+      <div>
+        <TopHeader />
+        <CourseWrap>
+          <IntroImg src={src} alt='poster' />
+          <h2>章节列表</h2>
+          {/* <EpisodesWrap> */}
+            { episode }
+          {/* </EpisodesWrap> */}
+        </CourseWrap>
+        <Footer />
+      </div>
     )
   }
 }

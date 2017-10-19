@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import TopHeader from '../Header/TopHeader'
+import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
 const EpisodeWrap = styled.div`
@@ -18,11 +20,15 @@ const VideoWrap = styled.div`
 class Episode extends Component {
   render () {
     return (
-      <EpisodeWrap>
-        <VideoWrap>
-          video: {this.props.episodeName}
-        </VideoWrap>
-      </EpisodeWrap>
+      <div>
+        <TopHeader />
+        <EpisodeWrap>
+          <VideoWrap>
+            video: {this.props.episodeName}
+          </VideoWrap>
+        </EpisodeWrap>
+        <Footer />
+      </div>
     )
   }
 }
