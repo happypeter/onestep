@@ -4,8 +4,11 @@ import { connect } from 'react-redux'
 import TopHeader from '../components/Header/TopHeader'
 
 class TopHeaderContainer extends Component {
+  logout = () => {
+    this.props.dispatch({ type: 'LOG_OUT'})
+  }
+
   render () {
-    console.log(this.props.currentUser)
     const LoginLink = (
       <div>
         <Link className='headerButton' to='signup'>注册</Link>
@@ -17,7 +20,7 @@ class TopHeaderContainer extends Component {
     const LogoutLink = (
       <div>
         <span className='headerButton'>{this.props.currentUserInfo.currentUser.username}</span>
-        <Link className='headerButton' to=''>退出</Link>
+        <Link className='headerButton' to='/' onClick={this.logout}>退出</Link>
       </div>
   )
     return (
