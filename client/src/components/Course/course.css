@@ -1,7 +1,7 @@
 .episode-list {
   display: flex;
   flex-direction: column;
-  background-color: #3F51B5;
+  background-color: #B2EBF2;
   min-height: 100vh;
   margin: 0 auto;
   padding: 10% 20%;
@@ -18,6 +18,6 @@
   padding: 5px;
   text-decoration: none;
   color: #FFFFFF;
-  background: #303F9F;
+  background: #0097A7;
   border-radius: 40px;
 }

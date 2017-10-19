@@ -3,13 +3,13 @@
    display: flex;
    flex-direction: column;
    padding-top: 20px;
-   background-color: #303F9F;
+   background-color: #B2EBF2;
    text-align: center;
  }
 
  .video {
    border: 1px solid #BDBDBD;
-   margin: 10% auto;
+   margin: 10%;
    padding: 150px 200px;
-   background-color: #3F51B5;
+   background-color: #0097A7;
  }
