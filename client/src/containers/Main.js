@@ -4,6 +4,8 @@ import WechatLogin from './WechatLoginContainer'
 import Login from './LoginContainer'
 import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
+import Signup from '../components/Signup/Signup'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +36,7 @@ class Main extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/wechatLogin' component={WechatLogin} />
           <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
           <PrivateRoute path='/:courseName/:episodeName' component={Episode} />
           <Route path='/:courseName' component={Course} />
         </Switch>

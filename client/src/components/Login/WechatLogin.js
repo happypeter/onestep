@@ -62,7 +62,11 @@ class WechatLogin extends Component {
             state: { from: this.props.refererState }
           }}
           >账号登录</Button>
-          <Button to='' >注册账号</Button>
+          <Button to={{
+            pathname: '/signup',
+            state: { from: this.props.refererState }
+          }}
+          >注册账号</Button>
         </ButtonsWrap>
         <Footer />
       </WechatLoginWrap>
