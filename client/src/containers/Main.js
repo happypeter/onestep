@@ -16,7 +16,8 @@ import store from '../redux/store'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-      store.getState().fakeAuth.isAuthenticated ? (
+      // store.getState().fakeAuth.isAuthenticated ? (
+      window.localStorage.getItem('userInfo') ? (
         <Component {...rest} />
       ) : (
         <Redirect to={{
