@@ -12,14 +12,21 @@ class LoginContainer extends Component {
     const { isAuthenticated } = this.props.currentUser
     const refererState = this.props.location.state
 
-    if (isAuthenticated && refererState) {
-      let refererPath = refererState.from.from.pathname
+    let refererPath
+    if (!refererState || !refererState.from) {
+      console.log('home')
+      refererPath = '/'
+    } else if (refererState.from.pathname) {
+      console.log('direct; course')
+      refererPath = refererState.from.pathname
+    } else {
+      console.log('from wc; course')
+      refererPath = refererState.from.from.pathname
+    }
+
+    if (isAuthenticated) {
       return (
         <Redirect to={refererPath} />
-      )
-    } else if (isAuthenticated) {
-      return (
-        <Redirect to='/' />
       )
     }
 
