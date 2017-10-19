@@ -60,11 +60,35 @@ class Signup extends Component {
       <SignupWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
-          <TextField ref='username' errorText={this.props.errorText.username} floatingLabelText='用户名' />
-          <TextField ref='mailbox' errorText={this.props.errorText.mailbox} floatingLabelText='邮箱' />
-          <TextField ref='password' onBlur={this.checkPassword} errorText={this.props.errorText.password} floatingLabelText='密码' type='password' />
-          <TextField ref='passwordConfirm' onBlur={this.checkpasswordConfirm} errorText={this.props.errorText.passwordConfirm} floatingLabelText='确认密码' type='password' />
-          <RaisedButtonWrap secondary={true} type='submit' label='注册' />
+          <TextField
+            ref='username'
+            errorText={this.props.errorText.username}
+            floatingLabelText='用户名'
+          />
+          <TextField
+            ref='mailbox'
+            errorText={this.props.errorText.mailbox}
+            floatingLabelText='邮箱'
+          />
+          <TextField
+            ref='password'
+            onBlur={this.checkPassword}
+            errorText={this.props.errorText.password}
+            floatingLabelText='密码'
+            type='password'
+          />
+          <TextField
+            ref='passwordConfirm'
+            onBlur={this.checkpasswordConfirm}
+            errorText={this.props.errorText.passwordConfirm}
+            floatingLabelText='确认密码'
+            type='password'
+          />
+          <RaisedButtonWrap
+            secondary={true}
+            type='submit'
+            label='注册'
+          />
         </FromWrap>
         <Footer />
       </SignupWrap>
