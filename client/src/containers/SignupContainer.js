@@ -69,10 +69,14 @@ class SignupContainer extends Component {
   handleSubmit = (userInfo) => {
     console.log(userInfo);
     if (this.state.usernameIsValed && this.state.mailboxIsValed && this.state.passwordIsValed && this.state.passwordConfirmIsValed) {
-      console.log("通过验证");
-      this.props.dispatch({ type: 'AUTH_USER', userInfo: userInfo})
+      console.log('通过验证')
+      this.props.dispatch({
+        type: 'AUTH_USER',
+        userInfo: userInfo
+      })
+      window.localStorage.setItem('userInfo', userInfo.username)
     } else {
-      console.log("未通过验证");
+      console.log('未通过验证')
     }
   }
 

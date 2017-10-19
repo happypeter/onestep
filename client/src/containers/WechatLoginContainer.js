@@ -6,7 +6,11 @@ import WechatLogin from '../components/Login/WechatLogin'
 class WechatLoginContainer extends Component {
 
   login = () => {
-     this.props.dispatch({ type: 'AUTH_USER', userInfo: {username: 'wechatCode', password: ''} })
+     this.props.dispatch({
+       type: 'AUTH_USER',
+       userInfo: {username: 'wechatCode', password: ''}
+     })
+      window.localStorage.setItem('userInfo', 'wechatCode')
    }
 
   render () {
