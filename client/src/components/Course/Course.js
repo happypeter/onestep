@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TopHeader from '../Header/TopHeader'
+import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
