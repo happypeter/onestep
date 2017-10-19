@@ -5,7 +5,7 @@ import TopHeader from '../components/Header/TopHeader'
 
 class TopHeaderContainer extends Component {
   render () {
-    console.log(this.props.currentUser.isAuthenticated);
+    console.log(this.props.currentUser)
     const LoginLink = (
       <div>
         <Link className='headerButton' to='signup'>注册</Link>
@@ -16,20 +16,20 @@ class TopHeaderContainer extends Component {
 
     const LogoutLink = (
       <div>
-        <span className='headerButton'>fakeName</span>
+        <span className='headerButton'>{this.props.currentUserInfo.currentUser.username}</span>
         <Link className='headerButton' to=''>退出</Link>
       </div>
   )
     return (
       <TopHeader
-        sideButtons={this.props.currentUser.isAuthenticated ? LogoutLink : LoginLink}
+        sideButtons={this.props.currentUserInfo.isAuthenticated ? LogoutLink : LoginLink}
       />
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.fakeAuth
+  currentUserInfo: state.fakeAuth
 })
 
 export default connect(mapStateToProps)(TopHeaderContainer)
