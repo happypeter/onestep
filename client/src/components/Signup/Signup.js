@@ -34,11 +34,25 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
+  checkPassword = (e) => {
+    let password = this.refs.password.getValue()
+    this.props.checkPassword(password)
+  }
+
+  checkpasswordConfirm = (e) => {
+    let password = this.refs.password.getValue()
+    let passwordConfirm = this.refs.passwordConfirm.getValue()
+    this.props.checkpasswordConfirm({password, passwordConfirm})
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
+    console.log(this.refs.password.props);
     let username = this.refs.username.getValue()
+    let mailbox = this.refs.mailbox.getValue()
     let password = this.refs.password.getValue()
-    this.props.onSubmit({username, password})
+    let passwordConfirm = this.refs.passwordConfirm.getValue()
+    this.props.onSubmit({username, mailbox, password, passwordConfirm})
   }
 
   render () {
@@ -46,10 +60,10 @@ class Signup extends Component {
       <SignupWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
-          <TextField ref='username' floatingLabelText='用户名' />
-          <TextField ref='mailbox' floatingLabelText='邮箱' />
-          <TextField ref='password' floatingLabelText='密码' type='password' />
-          <TextField ref='password' floatingLabelText='确认密码' type='password' />
+          <TextField ref='username' errorText={this.props.errorText.username} floatingLabelText='用户名' />
+          <TextField ref='mailbox' errorText={this.props.errorText.mailbox} floatingLabelText='邮箱' />
+          <TextField ref='password' onBlur={this.checkPassword} errorText={this.props.errorText.password} floatingLabelText='密码' type='password' />
+          <TextField ref='passwordConfirm' onBlur={this.checkpasswordConfirm} errorText={this.props.errorText.passwordConfirm} floatingLabelText='确认密码' type='password' />
           <RaisedButtonWrap secondary={true} type='submit' label='注册' />
         </FromWrap>
         <Footer />

@@ -4,7 +4,7 @@ import WechatLogin from './WechatLoginContainer'
 import Login from './LoginContainer'
 import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
-import Signup from '../components/Signup/Signup'
+import Signup from './SignupContainer'
 
 import {
   BrowserRouter as Router,
