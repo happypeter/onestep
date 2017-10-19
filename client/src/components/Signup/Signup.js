@@ -34,12 +34,12 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
-  checkPassword = (e) => {
+  checkPassword = () => {
     let password = this.refs.password.getValue()
     this.props.checkPassword(password)
   }
 
-  checkpasswordConfirm = (e) => {
+  checkpasswordConfirm = () => {
     let password = this.refs.password.getValue()
     let passwordConfirm = this.refs.passwordConfirm.getValue()
     this.props.checkpasswordConfirm({password, passwordConfirm})
