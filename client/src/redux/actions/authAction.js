@@ -12,3 +12,11 @@ export function wechatLogin (data) {
     window.localStorage.setItem('userInfo', 'wechatCode')
   }
 }
+
+export function login (data) {
+  return dispatch => {
+    // axios ...
+    dispatch(setCurrentUserInfo(data))
+    window.localStorage.setItem('userInfo', data.username)
+  }
+}

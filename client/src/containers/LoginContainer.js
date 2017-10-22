@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
+import { login } from '../redux/actions/authAction'
+import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
   handleSubmit = (userInfo) => {
-    window.localStorage.setItem('userInfo', userInfo.username)
-    this.props.dispatch({ type: 'AUTH_USER', userInfo: userInfo})
+    // window.localStorage.setItem('userInfo', userInfo.username)
+    // this.props.dispatch({ type: 'AUTH_USER', userInfo: userInfo})
+    this.props.login(userInfo)
   }
 
   render () {
@@ -37,8 +40,12 @@ class LoginContainer extends Component {
   }
 }
 
+LoginContainer.propTypes = {
+  login: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
   currentUser: state.fakeAuth
 })
 
-export default connect(mapStateToProps)(LoginContainer)
+export default connect(mapStateToProps, { login })(LoginContainer)
