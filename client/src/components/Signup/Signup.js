@@ -39,10 +39,10 @@ class Signup extends Component {
     this.props.checkPassword(password)
   }
 
-  checkpasswordConfirm = () => {
+  checkpasswordConsistent = () => {
     let password = this.refs.password.getValue()
-    let passwordConfirm = this.refs.passwordConfirm.getValue()
-    this.props.checkpasswordConfirm({password, passwordConfirm})
+    let passwordConsistent = this.refs.passwordConsistent.getValue()
+    this.props.checkpasswordConsistent({password, passwordConsistent})
   }
 
   handleSubmit = (e) => {
@@ -51,8 +51,8 @@ class Signup extends Component {
     let username = this.refs.username.getValue()
     let mailbox = this.refs.mailbox.getValue()
     let password = this.refs.password.getValue()
-    let passwordConfirm = this.refs.passwordConfirm.getValue()
-    this.props.onSubmit({username, mailbox, password, passwordConfirm})
+    let passwordConsistent = this.refs.passwordConsistent.getValue()
+    this.props.onSubmit({username, mailbox, password, passwordConsistent})
   }
 
   render () {
@@ -78,9 +78,9 @@ class Signup extends Component {
             type='password'
           />
           <TextField
-            ref='passwordConfirm'
-            onBlur={this.checkpasswordConfirm}
-            errorText={this.props.errorText.passwordConfirm}
+            ref='passwordConsistent'
+            onBlur={this.checkpasswordConsistent}
+            errorText={this.props.errorText.passwordConsistent}
             floatingLabelText='确认密码'
             type='password'
           />

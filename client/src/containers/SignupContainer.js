@@ -4,71 +4,37 @@ import { connect } from 'react-redux'
 import Signup from '../components/Signup/Signup'
 
 class SignupContainer extends Component {
-  state = {
-    usernameIsValed: true,
-    mailboxIsValed: true,
-    passwordIsValed: false,
-    passwordConfirmIsValed: false,
-    testErrObj: {
-      username: '',
-      mailbox: '',
-      password: '',
-      passwordConfirm: ''
-    }
-  }
 
-  checkPassword= (password) => {
+  checkPassword = (password) => {
     console.log(password)
     if (password.length < 6) {
-      this.setState({
-        passwordIsValed: false,
-        testErrObj: {
-          username: '',
-          mailbox: '',
-          password: '请输入6位以上的密码',
-          passwordConfirm: ''
-        }
+      console.log("<6");
+      this.props.dispatch({
+        type: 'PASSWORD_TOO_SHORT'
       })
     } else {
-      this.setState({
-        passwordIsValed: true,
-        testErrObj: {
-          username: '',
-          mailbox: '',
-          password: '',
-          passwordConfirm: ''
-        }
+      console.log(">>>");
+      this.props.dispatch({
+        type: 'PASSWORE_IS_VALID'
       })
     }
   }
 
-  checkpasswordConfirm = (passwords) => {
-    if (passwords.passwordConfirm !== passwords.password) {
-      this.setState({
-        passwordConfirmIsValed: false,
-        testErrObj: {
-          username: '',
-          mailbox: '',
-          password: '',
-          passwordConfirm: '两次密码不相同'
-        }
+  checkpasswordConsistent = (passwords) => {
+    if (passwords.passwordConsistent !== passwords.password) {
+      this.props.dispatch({
+        type: 'PASSWORDS_INCONSISTENT'
       })
     } else {
-      this.setState({
-        passwordConfirmIsValed: true,
-        testErrObj: {
-          username: '',
-          mailbox: '',
-          password: '',
-          passwordConfirm: ''
-        }
+      this.props.dispatch({
+        type: 'PASSWORDS_CONSISTENT'
       })
     }
   }
 
   handleSubmit = (userInfo) => {
     console.log(userInfo);
-    if (this.state.usernameIsValed && this.state.mailboxIsValed && this.state.passwordIsValed && this.state.passwordConfirmIsValed) {
+    if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
       this.props.dispatch({
         type: 'AUTH_USER',
@@ -105,15 +71,16 @@ class SignupContainer extends Component {
       <Signup
         onSubmit={this.handleSubmit}
         checkPassword={this.checkPassword}
-        checkpasswordConfirm={this.checkpasswordConfirm}
-        errorText={this.state.testErrObj}
+        checkpasswordConsistent={this.checkpasswordConsistent}
+        errorText={this.props.signUpState.testErrObj}
       />
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.fakeAuth
+  currentUser: state.fakeAuth,
+  signUpState: state.signUp
 })
 
 export default connect(mapStateToProps)(SignupContainer)
