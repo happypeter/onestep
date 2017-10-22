@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "material-ui": "^0.19.4",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -11,6 +12,7 @@
     "react-scripts": "1.0.11",
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.2.1"
   },
   "scripts": {
