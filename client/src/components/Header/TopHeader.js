@@ -54,7 +54,6 @@ class TopHeader extends Component {
         </Button>
         <SideButtonsWrap>
           {this.props.sideButtons}
-          {this.props.testDiv}
           {/* <Button to='signup'>注册</Button>
           <Button to='/login'>登录</Button>
           <Button to='/wechatLogin'>微信登录</Button> */}
