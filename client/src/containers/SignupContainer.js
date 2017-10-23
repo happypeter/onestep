@@ -2,33 +2,29 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Signup from '../components/Signup/Signup'
+import { signup,
+  passwordTooShort,
+  passwordIsValid,
+  passwordsInconsistent,
+  passwordsConsistent } from '../redux/actions/authAction'
+import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
 
   checkPassword = (password) => {
     console.log(password)
     if (password.length < 6) {
-      console.log("<6");
-      this.props.dispatch({
-        type: 'PASSWORD_TOO_SHORT'
-      })
+      this.props.passwordTooShort()
     } else {
-      console.log(">>>");
-      this.props.dispatch({
-        type: 'PASSWORE_IS_VALID'
-      })
+      this.props.passwordIsValid()
     }
   }
 
   checkpasswordConsistent = (passwords) => {
     if (passwords.passwordConsistent !== passwords.password) {
-      this.props.dispatch({
-        type: 'PASSWORDS_INCONSISTENT'
-      })
+      this.props.passwordsInconsistent()
     } else {
-      this.props.dispatch({
-        type: 'PASSWORDS_CONSISTENT'
-      })
+      this.props.passwordsConsistent()
     }
   }
 
@@ -36,11 +32,7 @@ class SignupContainer extends Component {
     console.log(userInfo);
     if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
-      this.props.dispatch({
-        type: 'AUTH_USER',
-        userInfo: userInfo
-      })
-      window.localStorage.setItem('userInfo', userInfo.username)
+      this.props.signup(userInfo)
     } else {
       console.log('未通过验证')
     }
@@ -78,9 +70,23 @@ class SignupContainer extends Component {
   }
 }
 
+SignupContainer.PropTypes = {
+  login: PropTypes.func.isRequired,
+  passwordTooShort: PropTypes.func.isRequired,
+  passwordIsValid: PropTypes.func.isRequired,
+  passwordsInconsistent: PropTypes.func.isRequired,
+  passwordsConsistent: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
   currentUser: state.fakeAuth,
   signUpState: state.signUp
 })
 
-export default connect(mapStateToProps)(SignupContainer)
+export default connect(mapStateToProps, {
+  signup,
+  passwordTooShort,
+  passwordIsValid,
+  passwordsInconsistent,
+  passwordsConsistent
+})(SignupContainer)
