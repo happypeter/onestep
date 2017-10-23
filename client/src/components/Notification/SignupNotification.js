@@ -26,7 +26,7 @@ class SignupNotification extends Component {
   render () {
     return (
       <NotificationWrap>
-        <ColseWrap onClick={this.props.onClick}>
+        <ColseWrap onClick={this.props.removeSignupNotification}>
           x
         </ColseWrap>
         账号成功注册
