@@ -117,7 +117,7 @@ SignupContainer.PropTypes = {
 
 const mapStateToProps = (state) => ({
   currentUser: state.fakeAuth,
-  signUpState: state.signUp
+  signUpState: state.signupForm
 })
 
 export default connect(mapStateToProps, {

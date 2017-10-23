@@ -6,6 +6,7 @@ import { logout } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 import Notification from './NotificationContainer'
 import LoginNotification from './LoginNotificationContainer'
+import SignupNotification from './SignupNotificationContainer'
 
 class TopHeaderContainer extends Component {
   logout = () => {
@@ -46,6 +47,11 @@ class TopHeaderContainer extends Component {
         {
           this.props.currentUserInfo.showLoginNotification ?
           (<LoginNotification />) :
+          ''
+        }
+        {
+          this.props.currentUserInfo.showSignupNotification ?
+          (<SignupNotification />) :
           ''
         }
       </div>

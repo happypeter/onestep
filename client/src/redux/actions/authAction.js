@@ -17,6 +17,21 @@ export function login (data) {
   }
 }
 
+export function signup (data) {
+  return dispatch => {
+    // axios ...
+    dispatch({
+      type: 'SIGN_UP',
+      userInfo: data
+    })
+    window.localStorage.setItem('userInfo', data.username)
+    setTimeout(function timer () {
+      dispatch({ type: 'RM_SIGNUP_NOTIFICATION' })
+    }
+    , 4000)
+  }
+}
+
 export function logout (data) {
   return dispatch => {
     dispatch({ type: 'LOG_OUT' })
@@ -40,11 +55,9 @@ export function removeLoginNotification (data) {
   }
 }
 
-export function signup (data) {
+export function removeSignupNotification (data) {
   return dispatch => {
-    // axios ...
-    dispatch(setCurrentUserInfo(data))
-    window.localStorage.setItem('userInfo', data.username)
+    dispatch({ type: 'RM_SIGNUP_NOTIFICATION' })
   }
 }
 
