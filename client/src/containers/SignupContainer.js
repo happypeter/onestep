@@ -49,15 +49,21 @@ class SignupContainer extends Component {
   }
 
   handleSubmit = (userInfo) => {
-    console.log(userInfo);
-    console.log(this.props.signUpState);
     if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
       this.props.signup(userInfo)
     } else {
-      console.log(this.props.signUpState);
       if (!this.props.signUpState.usernameIsValid) {
         this.props.usernameIsRequired()
+      }
+      if (!this.props.signUpState.mailboxIsValid) {
+        this.props.mailboxNotValid()
+      }
+      if (!this.props.signUpState.passwordIsValid) {
+        this.props.passwordTooShort()
+      }
+      if (!this.props.signUpState.passwordConsistentIsValid) {
+        this.props.passwordsInconsistent()
       }
       console.log('未通过验证')
     }

@@ -73,7 +73,7 @@ export default (state = initialState, action = {}) => {
         passwordConsistentIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          passwordConsistent: '两次密码不相同'
+          passwordConsistent: '两次密码必须相同'
         }
       }
     case 'PASSWORDS_CONSISTENT':
