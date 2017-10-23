@@ -24,8 +24,8 @@ class SignupContainer extends Component {
   }
 
   checkMailbox = (mailbox) => {
-    const pattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-    if (!pattern.test(mailbox)) {
+    const mailboxPattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+    if (!mailboxPattern.test(mailbox)) {
       this.props.mailboxNotValid()
     } else {
       this.props.mailboxIsValid()

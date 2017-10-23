@@ -17,6 +17,7 @@ export function logout (data) {
   return dispatch => {
     dispatch({ type: 'LOG_OUT' })
     window.localStorage.removeItem('userInfo')
+    console.log("已经退出登录");
   }
 }
 
