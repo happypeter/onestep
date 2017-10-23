@@ -39,6 +39,11 @@ class Signup extends Component {
     this.props.checkUsername(username)
   }
 
+  checkMailbox = () => {
+    let mailbox = this.refs.mailbox.getValue()
+    this.props.checkMailbox(mailbox)
+  }
+
   checkPassword = () => {
     let password = this.refs.password.getValue()
     this.props.checkPassword(password)
@@ -75,6 +80,7 @@ class Signup extends Component {
             ref='mailbox'
             errorText={this.props.errorText.mailbox}
             floatingLabelText='邮箱'
+            onBlur={this.checkMailbox}
           />
           <TextField
             ref='password'

@@ -1,6 +1,6 @@
 const initialState = {
   usernameIsValid: false,
-  mailboxIsValid: true,
+  mailboxIsValid: false,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
   testErrObj: {
@@ -13,10 +13,28 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'MAILBOX_NOT_VALID':
+      return {
+        ...state,
+        mailboxIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          mailbox: '请输入格式正确的邮箱'
+        }
+      }
+    case 'MAILBOX_IS_VALID':
+      return {
+        ...state,
+        mailboxIsValid: true,
+        testErrObj: {
+          ...state.testErrObj,
+          mailbox: ''
+        }
+      }
     case 'USERNAME_IS_REQUIRED':
       return {
         ...state,
-        passwordIsValid: false,
+        usernameIsValid: false,
         testErrObj: {
           ...state.testErrObj,
           username: '请输入用户名'
@@ -25,7 +43,7 @@ export default (state = initialState, action = {}) => {
       case 'USERNAME_IS_VALID':
         return {
           ...state,
-          passwordIsValid: true,
+          usernameIsValid: true,
           testErrObj: {
             ...state.testErrObj,
             username: ''

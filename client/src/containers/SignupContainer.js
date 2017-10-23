@@ -8,7 +8,9 @@ import { signup,
   passwordsInconsistent,
   passwordsConsistent,
   usernameIsRequired,
-  usernameIsValid } from '../redux/actions/authAction'
+  usernameIsValid,
+  mailboxNotValid,
+  mailboxIsValid } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
@@ -18,6 +20,15 @@ class SignupContainer extends Component {
       this.props.usernameIsRequired()
     } else {
       this.props.usernameIsValid()
+    }
+  }
+
+  checkMailbox = (mailbox) => {
+    const pattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+    if (!pattern.test(mailbox)) {
+      this.props.mailboxNotValid()
+    } else {
+      this.props.mailboxIsValid()
     }
   }
 
@@ -39,10 +50,12 @@ class SignupContainer extends Component {
 
   handleSubmit = (userInfo) => {
     console.log(userInfo);
+    console.log(this.props.signUpState);
     if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
       this.props.signup(userInfo)
     } else {
+      console.log(this.props.signUpState);
       if (!this.props.signUpState.usernameIsValid) {
         this.props.usernameIsRequired()
       }
@@ -75,6 +88,7 @@ class SignupContainer extends Component {
       <Signup
         onSubmit={this.handleSubmit}
         checkUsername={this.checkUsername}
+        checkMailbox={this.checkMailbox}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
@@ -90,7 +104,9 @@ SignupContainer.PropTypes = {
   passwordsInconsistent: PropTypes.func.isRequired,
   passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
-  usernameIsValid: PropTypes.func.isRequired
+  usernameIsValid: PropTypes.func.isRequired,
+  mailboxNotValid: PropTypes.func.isRequired,
+  mailboxIsValid: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -105,5 +121,7 @@ export default connect(mapStateToProps, {
   passwordsInconsistent,
   passwordsConsistent,
   usernameIsRequired,
-  usernameIsValid
+  usernameIsValid,
+  mailboxNotValid,
+  mailboxIsValid
 })(SignupContainer)

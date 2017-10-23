@@ -28,7 +28,24 @@ export function signup (data) {
   }
 }
 
+export function mailboxNotValid (data) {
+  return dispatch => {
+    dispatch({
+      type: 'MAILBOX_NOT_VALID'
+    })
+  }
+}
+
+export function mailboxIsValid (data) {
+  return dispatch => {
+    dispatch({
+      type: 'MAILBOX_IS_VALID'
+    })
+  }
+}
+
 export function usernameIsRequired (data) {
+  console.log('usernameIsRequired');
   return dispatch => {
     dispatch({
       type: 'USERNAME_IS_REQUIRED'
@@ -37,6 +54,7 @@ export function usernameIsRequired (data) {
 }
 
 export function usernameIsValid (data) {
+  console.log('usernameIsValid');
   return dispatch => {
     dispatch({
       type: 'USERNAME_IS_VALID'
