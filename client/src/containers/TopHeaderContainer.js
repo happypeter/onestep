@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import TopHeader from '../components/Header/TopHeader'
+import { logout } from '../redux/actions/authAction'
+import PropTypes from 'prop-types'
 
 class TopHeaderContainer extends Component {
   logout = () => {
-    this.props.dispatch({ type: 'LOG_OUT'})
-    window.localStorage.removeItem('userInfo')
+    this.props.logout()
   }
 
   render () {
@@ -37,8 +38,13 @@ class TopHeaderContainer extends Component {
   }
 }
 
+TopHeaderContainer.propTypes = {
+  logout: PropTypes.func.isRequired
+}
+
+
 const mapStateToProps = (state) => ({
   currentUserInfo: state.fakeAuth
 })
 
-export default connect(mapStateToProps)(TopHeaderContainer)
+export default connect(mapStateToProps, { logout })(TopHeaderContainer)

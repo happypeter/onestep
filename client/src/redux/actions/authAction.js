@@ -12,3 +12,10 @@ export function login (data) {
     window.localStorage.setItem('userInfo', data.username)
   }
 }
+
+export function logout (data) {
+  return dispatch => {
+    dispatch({ type: 'LOG_OUT' })
+    window.localStorage.removeItem('userInfo')
+  }
+}
