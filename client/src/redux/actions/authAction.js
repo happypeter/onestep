@@ -5,14 +5,6 @@ export function setCurrentUserInfo (data) {
   }
 }
 
-export function wechatLogin (data) {
-  return dispatch => {
-    // axios ...
-    dispatch(setCurrentUserInfo(data))
-    window.localStorage.setItem('userInfo', 'wechatCode')
-  }
-}
-
 export function login (data) {
   return dispatch => {
     // axios ...

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import WechatLogin from '../components/Login/WechatLogin'
-import { wechatLogin } from '../redux/actions/authAction'
+import { login } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 
 class WechatLoginContainer extends Component {
 
   login = () => {
-    this.props.wechatLogin({
+    this.props.login({
       username: 'wechatCode',
       password: ''
     })
@@ -35,11 +35,11 @@ class WechatLoginContainer extends Component {
 }
 
 WechatLoginContainer.propTypes = {
-  wechatLogin: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.fakeAuth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { wechatLogin })(WechatLoginContainer)
+export default connect(mapStateToProps, { login })(WechatLoginContainer)
