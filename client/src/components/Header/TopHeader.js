@@ -25,6 +25,9 @@ const SideButtonsWrap = styled.div`
       padding: 0.5em 1.3em;
     }
   }
+  .username {
+    color: rgb(255, 226, 0);
+  }
 `
 
 const Button = styled(Link)`

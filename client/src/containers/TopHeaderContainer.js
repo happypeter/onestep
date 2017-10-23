@@ -25,7 +25,7 @@ class TopHeaderContainer extends Component {
     const LogoutLink = (
       <div>
         {/* <span className='headerButton'>{this.props.currentUserInfo.currentUser.username}</span> */}
-        <span className='headerButton'>{tempIsAuthenticated}</span>
+        <span className='headerButton username'>{tempIsAuthenticated}</span>
         <Link className='headerButton' to='/' onClick={this.logout}>退出</Link>
       </div>
     )
