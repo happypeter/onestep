@@ -7,8 +7,6 @@ import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
   handleSubmit = (userInfo) => {
-    // window.localStorage.setItem('userInfo', userInfo.username)
-    // this.props.dispatch({ type: 'AUTH_USER', userInfo: userInfo})
     this.props.login(userInfo)
   }
 
