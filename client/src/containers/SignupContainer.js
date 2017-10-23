@@ -6,13 +6,22 @@ import { signup,
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,
-  passwordsConsistent } from '../redux/actions/authAction'
+  passwordsConsistent,
+  usernameIsRequired,
+  usernameIsValid } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
 
+  checkUsername = (username) => {
+    if (!username) {
+      this.props.usernameIsRequired()
+    } else {
+      this.props.usernameIsValid()
+    }
+  }
+
   checkPassword = (password) => {
-    console.log(password)
     if (password.length < 6) {
       this.props.passwordTooShort()
     } else {
@@ -34,6 +43,9 @@ class SignupContainer extends Component {
       console.log('通过验证')
       this.props.signup(userInfo)
     } else {
+      if (!this.props.signUpState.usernameIsValid) {
+        this.props.usernameIsRequired()
+      }
       console.log('未通过验证')
     }
   }
@@ -62,6 +74,7 @@ class SignupContainer extends Component {
     return (
       <Signup
         onSubmit={this.handleSubmit}
+        checkUsername={this.checkUsername}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
@@ -75,7 +88,9 @@ SignupContainer.PropTypes = {
   passwordTooShort: PropTypes.func.isRequired,
   passwordIsValid: PropTypes.func.isRequired,
   passwordsInconsistent: PropTypes.func.isRequired,
-  passwordsConsistent: PropTypes.func.isRequired
+  passwordsConsistent: PropTypes.func.isRequired,
+  usernameIsRequired: PropTypes.func.isRequired,
+  usernameIsValid: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -88,5 +103,7 @@ export default connect(mapStateToProps, {
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,
-  passwordsConsistent
+  passwordsConsistent,
+  usernameIsRequired,
+  usernameIsValid
 })(SignupContainer)

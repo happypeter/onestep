@@ -28,6 +28,22 @@ export function signup (data) {
   }
 }
 
+export function usernameIsRequired (data) {
+  return dispatch => {
+    dispatch({
+      type: 'USERNAME_IS_REQUIRED'
+    })
+  }
+}
+
+export function usernameIsValid (data) {
+  return dispatch => {
+    dispatch({
+      type: 'USERNAME_IS_VALID'
+    })
+  }
+}
+
 export function passwordTooShort (data) {
   return dispatch => {
     dispatch({

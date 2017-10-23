@@ -1,5 +1,5 @@
 const initialState = {
-  usernameIsValid: true,
+  usernameIsValid: false,
   mailboxIsValid: true,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
@@ -13,6 +13,24 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'USERNAME_IS_REQUIRED':
+      return {
+        ...state,
+        passwordIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          username: '请输入用户名'
+        }
+      }
+      case 'USERNAME_IS_VALID':
+        return {
+          ...state,
+          passwordIsValid: true,
+          testErrObj: {
+            ...state.testErrObj,
+            username: ''
+          }
+        }
     case 'PASSWORD_TOO_SHORT':
       return {
         ...state,

@@ -34,6 +34,11 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
+  checkUsername = () => {
+    let username = this.refs.username.getValue()
+    this.props.checkUsername(username)
+  }
+
   checkPassword = () => {
     let password = this.refs.password.getValue()
     this.props.checkPassword(password)
@@ -64,6 +69,7 @@ class Signup extends Component {
             ref='username'
             errorText={this.props.errorText.username}
             floatingLabelText='用户名'
+            onBlur={this.checkUsername}
           />
           <TextField
             ref='mailbox'
