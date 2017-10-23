@@ -40,15 +40,15 @@ export default (state = initialState, action = {}) => {
           username: '请输入用户名'
         }
       }
-      case 'USERNAME_IS_VALID':
-        return {
-          ...state,
-          usernameIsValid: true,
-          testErrObj: {
-            ...state.testErrObj,
-            username: ''
-          }
+    case 'USERNAME_IS_VALID':
+      return {
+        ...state,
+        usernameIsValid: true,
+        testErrObj: {
+          ...state.testErrObj,
+          username: ''
         }
+      }
     case 'PASSWORD_TOO_SHORT':
       return {
         ...state,

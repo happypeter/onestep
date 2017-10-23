@@ -45,7 +45,6 @@ export function mailboxIsValid (data) {
 }
 
 export function usernameIsRequired (data) {
-  console.log('usernameIsRequired');
   return dispatch => {
     dispatch({
       type: 'USERNAME_IS_REQUIRED'
@@ -54,7 +53,6 @@ export function usernameIsRequired (data) {
 }
 
 export function usernameIsValid (data) {
-  console.log('usernameIsValid');
   return dispatch => {
     dispatch({
       type: 'USERNAME_IS_VALID'
