@@ -38,7 +38,7 @@ class TopHeaderContainer extends Component {
           sideButtons={tempIsAuthenticated ? LogoutLink : LoginLink}
         />
         {
-          this.props.currentUserInfo.testSwitch ?
+          this.props.currentUserInfo.showLogoutNotification ?
           (<Notification />) :
           '' }
       </div>

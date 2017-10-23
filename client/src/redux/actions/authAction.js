@@ -17,7 +17,16 @@ export function logout (data) {
   return dispatch => {
     dispatch({ type: 'LOG_OUT' })
     window.localStorage.removeItem('userInfo')
-    console.log("已经退出登录");
+    setTimeout(function timer () {
+      dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
+    }
+    , 4000)
+  }
+}
+
+export function removeLogoutNotification (data) {
+  return dispatch => {
+    dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
   }
 }
 
