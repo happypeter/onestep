@@ -10,6 +10,10 @@ export function login (data) {
     // axios ...
     dispatch(setCurrentUserInfo(data))
     window.localStorage.setItem('userInfo', data.username)
+    setTimeout(function timer () {
+      dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
+    }
+    , 4000)
   }
 }
 
@@ -27,6 +31,12 @@ export function logout (data) {
 export function removeLogoutNotification (data) {
   return dispatch => {
     dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
+  }
+}
+
+export function removeLoginNotification (data) {
+  return dispatch => {
+    dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Notification from '../components/Header/Notification'
+import LogoutNotification from '../components/Header/LogoutNotification'
 import { removeLogoutNotification } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 
@@ -12,7 +12,7 @@ class NotificationContainer extends Component {
 
   render () {
     return (
-      <Notification onClick={this.onClick} />
+      <LogoutNotification onClick={this.onClick} />
     )
   }
 }

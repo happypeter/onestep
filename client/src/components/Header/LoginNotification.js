@@ -22,17 +22,17 @@ const ColseWrap = styled.div`
 }
 `
 
-class Notification extends Component {
+class LoginNotification extends Component {
   render () {
     return (
       <NotificationWrap>
         <ColseWrap onClick={this.props.onClick}>
           x
         </ColseWrap>
-        已经退出了
+        已经登录了
       </NotificationWrap>
     )
   }
 }
 
-export default Notification
+export default LoginNotification

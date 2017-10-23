@@ -3,7 +3,8 @@ import isEmpty from 'lodash/fp/isEmpty'
 const initialState = {
   isAuthenticated: false,
   currentUser: {},
-  showLogoutNotification: false
+  showLogoutNotification: false,
+  showLoginNotification: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -11,7 +12,8 @@ export default (state = initialState, action = {}) => {
     case 'AUTH_USER':
       return {
         isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo
+        currentUser: action.userInfo,
+        showLoginNotification: true
       }
     case 'LOG_OUT':
       return {
@@ -23,6 +25,11 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         showLogoutNotification: false
+      }
+    case 'RM_LOGIN_NOTIFICATION':
+      return {
+        ...state,
+        showLoginNotification: false
       }
     default:
       return state
