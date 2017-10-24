@@ -15,7 +15,6 @@ class WechatLoginContainer extends Component {
    }
 
   render () {
-    console.log(this.props.isAuthenticated);
     const { isAuthenticated } = this.props
     const refererState = this.props.location.state
     const refererPath = refererState ? refererState.from.pathname : '/'
