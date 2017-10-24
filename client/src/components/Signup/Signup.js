@@ -35,12 +35,12 @@ const RaisedButtonWrap = styled(RaisedButton)`
 class Signup extends Component {
 
   checkUsername = () => {
-    let username = this.refs.username.getValue()
+    let username = this.refs.username.getValue().trim()
     this.props.checkUsername(username)
   }
 
   checkMailbox = () => {
-    let mailbox = this.refs.mailbox.getValue()
+    let mailbox = this.refs.mailbox.getValue().trim()
     this.props.checkMailbox(mailbox)
   }
 
@@ -57,9 +57,8 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.refs.password.props);
-    let username = this.refs.username.getValue()
-    let mailbox = this.refs.mailbox.getValue()
+    let username = this.refs.username.getValue().trim()
+    let mailbox = this.refs.mailbox.getValue().trim()
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
     this.props.onSubmit({username, mailbox, password, passwordConsistent})
