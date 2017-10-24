@@ -4,14 +4,23 @@ import styled from 'styled-components'
 const NotificationWrap = styled.div`
   background-color: #27AE60;
   text-align: center;
-  WIDTH: 214PX;
-  HEIGHT: 67PX;
+  width: 163px;
+  height: 67px;
   color: #FFF;
-  font-size: 1.2em;
+  font-weight: 200;
   line-height: 67px;
   position: absolute;
   top: 10px;
-  right: 5px;
+  right: 10px;
+  box-shadow: 2px 2px 1px #0097A7;
+  animation:notification 0.2s;
+  animation-direction:alternate;
+  @keyframes notification
+  {
+    0%   {right:0px; top:10px;}
+    50%  {right:20px; top:10px;}
+    100% {right:10px; top:10px;}
+  }
 `
 
 const ColseWrap = styled.div`
@@ -19,6 +28,7 @@ const ColseWrap = styled.div`
   top: -20px;
   right: 10px;
   cursor: pointer;
+  font-weight: 900;
 }
 `
 
@@ -29,7 +39,7 @@ class SignupNotification extends Component {
         <ColseWrap onClick={this.props.removeSignupNotification}>
           x
         </ColseWrap>
-        账号成功注册
+        账号注册成功
       </NotificationWrap>
     )
   }
