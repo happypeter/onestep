@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import LogoutNotification from '../components/Notification/LogoutNotification'
-import LoginNotification from '../components/Notification/LoginNotification'
-import SignupNotification from '../components/Notification/SignupNotification'
+import Notification from '../components/Notification/Notification'
 import { removeLogoutNotification } from '../redux/actions/authAction'
 import { removeLoginNotification } from '../redux/actions/authAction'
 import { removeSignupNotification } from '../redux/actions/authAction'
@@ -28,8 +26,9 @@ class NotificationContainer extends Component {
         {
           this.props.currentUserInfo.showLogoutNotification ?
           (
-            <LogoutNotification
-            removeLogoutNotification={this.removeLogoutNotification}
+            <Notification
+            removeNotification={this.removeLogoutNotification}
+            text={'已经退出登录'}
             />
           ) :
           ''
@@ -37,8 +36,9 @@ class NotificationContainer extends Component {
         {
           this.props.currentUserInfo.showLoginNotification ?
           (
-            <LoginNotification
-            removeLoginNotification={this.removeLoginNotification}
+            <Notification
+            removeNotification={this.removeLoginNotification}
+            text={'已经成功登录'}
             />
           ) :
           ''
@@ -46,8 +46,9 @@ class NotificationContainer extends Component {
         {
           this.props.currentUserInfo.showSignupNotification ?
           (
-            <SignupNotification
-            removeSignupNotification={this.removeSignupNotification}
+            <Notification
+            removeNotification={this.removeSignupNotification}
+            text={'账号注册成功'}
             />
           ) :
           ''

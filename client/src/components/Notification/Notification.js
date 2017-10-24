@@ -32,17 +32,17 @@ const ColseWrap = styled.div`
 }
 `
 
-class LogoutNotification extends Component {
+class Notification extends Component {
   render () {
     return (
       <NotificationWrap>
-        <ColseWrap onClick={this.props.removeLogoutNotification}>
+        <ColseWrap onClick={this.props.removeNotification}>
           x
         </ColseWrap>
-        已经退出登录
+        {this.props.text}
       </NotificationWrap>
     )
   }
 }
 
-export default LogoutNotification
+export default Notification
