@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const NotificationWrap = styled.div`
@@ -14,7 +14,6 @@ const NotificationWrap = styled.div`
   right: 10px;
   box-shadow: 2px 2px 1px #0097A7;
   animation:notification 0.2s;
-  animation-direction:alternate;
   @keyframes notification
   {
     0%   {right:0px; top:10px;}
@@ -32,17 +31,11 @@ const ColseWrap = styled.div`
 }
 `
 
-class Notification extends Component {
-  render () {
-    return (
-      <NotificationWrap>
-        <ColseWrap onClick={this.props.removeNotification}>
-          x
-        </ColseWrap>
-        {this.props.text}
-      </NotificationWrap>
-    )
-  }
-}
-
-export default Notification
+export default props => (
+  <NotificationWrap>
+    <ColseWrap onClick={props.removeNotification}>
+      x
+    </ColseWrap>
+    {props.text}
+  </NotificationWrap>
+)
