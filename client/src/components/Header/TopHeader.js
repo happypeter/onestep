@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import LoginHeaderSideButtons from './LoginHeaderSideButtons'
@@ -29,31 +29,24 @@ const Button = styled(Link)`
     padding: 0.5em 1.3em;
   }
 `
-
-class TopHeader extends Component {
-  render () {
-    return (
-      <TopHeaderWrap>
-        <Button to='/'>
-          首页
-        </Button>
-        <SideButtonsWrap>
-          {
-            this.props.sideButtons
-            ? (
-              <LogoutHeaderSideButtons
-                username={this.props.sideButtons}
-                logout={this.props.logout}
-              />
-            )
-            : (
-              <LoginHeaderSideButtons />
-            )
-          }
-        </SideButtonsWrap>
-      </TopHeaderWrap>
-    )
-  }
-}
-
-export default TopHeader
+export default props => (
+  <TopHeaderWrap>
+    <Button to='/'>
+      首页
+    </Button>
+    <SideButtonsWrap>
+      {
+        props.sideButtons
+        ? (
+          <LogoutHeaderSideButtons
+            username={props.sideButtons}
+            logout={props.logout}
+          />
+        )
+        : (
+          <LoginHeaderSideButtons />
+        )
+      }
+    </SideButtonsWrap>
+  </TopHeaderWrap>
+)
