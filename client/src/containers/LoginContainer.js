@@ -2,38 +2,48 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
+import { login } from '../redux/actions/authAction'
+import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
-
-  login = () => {
-     this.props.dispatch({ type: 'IS_AUTH' })
-     this.props.dispatch({ type: 'TO_REFERRER' })
-   }
+  handleSubmit = (userInfo) => {
+    this.props.login(userInfo)
+  }
 
   render () {
-    const { redirectToReferrer } = this.props
+    const { isAuthenticated } = this.props.currentUser
     const refererState = this.props.location.state
 
-    if (redirectToReferrer && refererState) {
-      let refererPath = refererState.from.pathname
+    let refererPath
+    if (!refererState || !refererState.from) {
+      console.log('home')
+      refererPath = '/'
+    } else if (refererState.from.pathname) {
+      console.log('direct; course')
+      refererPath = refererState.from.pathname
+    } else {
+      console.log('from wc; course')
+      refererPath = refererState.from.from.pathname
+    }
+
+    if (isAuthenticated) {
       return (
         <Redirect to={refererPath} />
       )
-    } else if (redirectToReferrer) {
-      return (
-        <Redirect to='/' />
-      )
     }
+
     return (
-      <div>
-        <Login onClick={this.login} />
-      </div>
+      <Login onSubmit={this.handleSubmit}/>
     )
   }
 }
 
+LoginContainer.propTypes = {
+  login: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
-  redirectToReferrer: state.fakeAuth.redirectToReferrer
+  currentUser: state.fakeAuth
 })
 
-export default connect(mapStateToProps)(LoginContainer)
+export default connect(mapStateToProps, { login })(LoginContainer)

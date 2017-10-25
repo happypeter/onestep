@@ -1,11 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import CourseList from '../../containers/CourseListContainer'
-import './home.css'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import styled from 'styled-components'
+
+const HomeWrap = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #B2EBF2;
+  text-align: center;
+`
 
 export default () => (
-  <div className='home'>
-    <Link to='/Login' className='button'>微信登录</Link>
+  <HomeWrap>
+    <Header />
     <CourseList />
-  </div>
+    <Footer />
+  </HomeWrap>
 )
