@@ -1,10 +1,20 @@
 const express = require('express')
 const app = express()
 const logger = require('morgan')
-
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = require('./routes')
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://localhost:27017/haoqicat', {
+  useMongoClient: true
+})
+
+const db = mongoose.connection
+db.on('error', console.log)
+db.once('open', function () {
+  console.log('success!')
+})
 
 const isProduction = process.env.NODE_ENV === 'production'
 
