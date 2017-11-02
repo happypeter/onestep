@@ -46,18 +46,18 @@ const Username = styled.span`
 class TopHeader extends Component {
   render () {
     const LoginButtons = (
-      <div>
+      <SideButtonsWrap>
         <Button to='signup'>注册</Button>
         <Button to='/login'>登录</Button>
         <Button to='/wechatLogin'>微信登录</Button>
-      </div>
+      </SideButtonsWrap>
     )
 
     const LogoutButtons = (
-      <div>
+      <SideButtonsWrap>
         <Username>{this.props.sideButtons}</Username>
         <Button to='/' onClick={this.props.logout}>退出</Button>
-      </div>
+      </SideButtonsWrap>
     )
 
     return (
@@ -65,13 +65,11 @@ class TopHeader extends Component {
         <Button to='/'>
           首页
         </Button>
-        <SideButtonsWrap>
-          {
-            this.props.sideButtons
-            ? LogoutButtons
-            : LoginButtons
-          }
-        </SideButtonsWrap>
+        {
+          this.props.sideButtons
+          ? LogoutButtons
+          : LoginButtons
+        }
       </TopHeaderWrap>
     )
   }
