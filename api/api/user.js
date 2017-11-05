@@ -1,4 +1,10 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
+
+let generateToken = function (user) {
+  return jwt.sign(user, config.jwtSecret, { expiresIn: config.expiresIn })
+}
 
 exports.signup = (req, res, next) => {
   console.log(req.body)
@@ -33,10 +39,43 @@ exports.signup = (req, res, next) => {
     user.save().then(
       user => {
         return res.status(200).json({
-          success: true
+          message: 'success!'
         })
       }
     )
   })
   .catch(next)
+}
+
+exports.login = (req, res, next) => {
+  console.log(req.body)
+  const {username, password} = req.body
+
+  User.findOne({username: username})
+      .exec()
+      .then(
+        user => {
+          if (!user) {
+            console.log("the user doesn't exist")
+            return res.status(403).json({
+              error: "the user doesn't exist"
+            })
+          } else {
+            user.comparePassword(password, function (err, isMatch) {
+              if (err) {
+                return console.log(err)
+              }
+              if (!isMatch) {
+                return res.status(403).json({
+                  error: 'invalid password'
+                })
+              }
+              return res.json({
+                user: {name: user.username},
+                token: generateToken({name: user.username})
+              })
+            })
+          }
+        }
+      )
 }

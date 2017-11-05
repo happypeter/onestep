@@ -9,5 +9,6 @@ router.get('/', hello.sayHello)
 
 // 用户接口
 router.post('/signup', user.signup)
+router.post('/login', user.login)
 
 module.exports = router
