@@ -17,13 +17,15 @@ exports.signup = (req, res, next) => {
     if (doc[0]) {
       console.log('username already exists')
       return res.status(403).json({
-        errorMsg: 'username already exists'
+        errorMsg: 'username already exists',
+        success: false
       })
     }
     if (doc[1].length !== 0) {
       console.log('mailbox already exists')
       return res.status(403).json({
-        errorMsg: 'mailbox already exists'
+        errorMsg: 'mailbox already exists',
+        success: false
       })
     }
 
@@ -38,6 +40,7 @@ exports.signup = (req, res, next) => {
     user.save().then(
       user => {
         return res.status(200).json({
+          token: generateToken({name: user.username}),
           success: true
         })
       }
@@ -56,7 +59,8 @@ exports.login = (req, res, next) => {
           if (!user) {
             console.log("the user doesn't exist")
             return res.status(403).json({
-              errorMsg: "the user doesn't exist"
+              errorMsg: "the user doesn't exist",
+              success: false
             })
           } else {
             user.comparePassword(password, function (err, isMatch) {
@@ -65,12 +69,14 @@ exports.login = (req, res, next) => {
               }
               if (!isMatch) {
                 return res.status(403).json({
-                  errorMsg: 'invalid password'
+                  errorMsg: 'invalid password',
+                  success: false
                 })
               }
               return res.json({
                 user: {name: user.username},
-                token: generateToken({name: user.username})
+                token: generateToken({name: user.username}),
+                success: true
               })
             })
           }

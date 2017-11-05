@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function setCurrentUserInfo (data) {
   return {
     type: 'AUTH_USER',
@@ -7,28 +9,46 @@ export function setCurrentUserInfo (data) {
 
 export function login (data) {
   return dispatch => {
-    // axios ...
-    dispatch(setCurrentUserInfo(data))
-    window.localStorage.setItem('userInfo', data.username)
-    setTimeout(function timer () {
-      dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-    }
-    , 4000)
+    axios.post('http://localhost:3001/login', data)
+         .then(
+           res => {
+             console.log('post login');
+             console.log(res);
+           }
+         )
+         .catch(
+           err => {
+             console.log(err.response);
+           }
+         )
+    // dispatch(setCurrentUserInfo(data))
+    // window.localStorage.setItem('userInfo', data.username)
+    // setTimeout(function timer () {
+    //   dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
+    // }
+    // , 4000)
   }
 }
 
 export function signup (data) {
   return dispatch => {
-    // axios ...
-    dispatch({
-      type: 'SIGN_UP',
-      userInfo: data
-    })
-    window.localStorage.setItem('userInfo', data.username)
-    setTimeout(function timer () {
-      dispatch({ type: 'RM_SIGNUP_NOTIFICATION' })
-    }
-    , 4000)
+    axios.post('http://localhost:3001/signup', data)
+         .then(
+           res => {
+             console.log(res.data)
+             dispatch(setCurrentUserInfo(data))
+             window.localStorage.setItem('userInfo', data.username)
+             setTimeout(function timer () {
+               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
+             }
+             , 4000)
+           }
+         )
+         .catch(
+           err => {
+             console.log(err.response.data.errorMsg)
+           }
+         )
   }
 }
 
