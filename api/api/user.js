@@ -9,22 +9,21 @@ let generateToken = function (user) {
 exports.signup = (req, res, next) => {
   console.log(req.body)
   const {username, password, mailbox: mails} = req.body
-
   Promise.all([
-    User.findOne({username: username}).exec(),
-    User.find({ 'mails': { address: mails } })
+    User.findOne({username: username}),
+    User.find({ 'mails.address': mails })
   ])
   .then(doc => {
     if (doc[0]) {
       console.log('username already exists')
       return res.status(403).json({
-        error: 'username already exists'
+        errorMsg: 'username already exists'
       })
     }
     if (doc[1].length !== 0) {
       console.log('mailbox already exists')
       return res.status(403).json({
-        error: 'mailbox already exists'
+        errorMsg: 'mailbox already exists'
       })
     }
 
@@ -39,7 +38,7 @@ exports.signup = (req, res, next) => {
     user.save().then(
       user => {
         return res.status(200).json({
-          message: 'success!'
+          success: true
         })
       }
     )
@@ -52,13 +51,12 @@ exports.login = (req, res, next) => {
   const {username, password} = req.body
 
   User.findOne({username: username})
-      .exec()
       .then(
         user => {
           if (!user) {
             console.log("the user doesn't exist")
             return res.status(403).json({
-              error: "the user doesn't exist"
+              errorMsg: "the user doesn't exist"
             })
           } else {
             user.comparePassword(password, function (err, isMatch) {
@@ -67,7 +65,7 @@ exports.login = (req, res, next) => {
               }
               if (!isMatch) {
                 return res.status(403).json({
-                  error: 'invalid password'
+                  errorMsg: 'invalid password'
                 })
               }
               return res.json({
