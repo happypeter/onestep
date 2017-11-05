@@ -12,21 +12,20 @@ export function login (data) {
     axios.post('http://localhost:3001/login', data)
          .then(
            res => {
-             console.log('post login');
-             console.log(res);
+             console.log(res.data)
+             dispatch(setCurrentUserInfo(data))
+             window.localStorage.setItem('userInfo', data.username)
+             setTimeout(function timer () {
+               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
+             }
+             , 4000)
            }
          )
          .catch(
            err => {
-             console.log(err.response);
+             console.log(err.response.data.errorMsg)
            }
          )
-    // dispatch(setCurrentUserInfo(data))
-    // window.localStorage.setItem('userInfo', data.username)
-    // setTimeout(function timer () {
-    //   dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-    // }
-    // , 4000)
   }
 }
 
