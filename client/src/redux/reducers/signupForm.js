@@ -31,6 +31,15 @@ export default (state = initialState, action = {}) => {
           mailbox: ''
         }
       }
+    case 'MAILBOX_ALREADY_EXISTS':
+      return {
+        ...state,
+        mailboxIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          mailbox: '该邮箱已被注册'
+        }
+      }
     case 'USERNAME_IS_REQUIRED':
       return {
         ...state,
@@ -47,6 +56,15 @@ export default (state = initialState, action = {}) => {
         testErrObj: {
           ...state.testErrObj,
           username: ''
+        }
+      }
+    case 'USERMANE_ALREADY_EXISTS':
+      return {
+        ...state,
+        usernameIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          username: '该用户名已被注册'
         }
       }
     case 'PASSWORD_TOO_SHORT':

@@ -59,8 +59,20 @@ export function signup (data) {
            }
          )
          .catch(
-           err => {
-             handleError(err)
+           error => {
+             if (error.response) {
+               switch (error.response.data.errorMsg) {
+                 case 'USERMANE_ALREADY_EXISTS':
+                   dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
+                   break
+                 case 'MAILBOX_ALREADY_EXISTS':
+                   dispatch({ type: 'MAILBOX_ALREADY_EXISTS' })
+                   break
+                 default: console.log(error.response.data.errorMsg)
+               }
+             } else {
+               console.log(error)
+             }
            }
          )
   }

@@ -17,14 +17,14 @@ exports.signup = (req, res, next) => {
     if (doc[0]) {
       console.log('username already exists')
       return res.status(403).json({
-        errorMsg: 'username already exists',
+        errorMsg: 'USERMANE_ALREADY_EXISTS',
         success: false
       })
     }
     if (doc[1].length !== 0) {
       console.log('mailbox already exists')
       return res.status(403).json({
-        errorMsg: 'mailbox already exists',
+        errorMsg: 'MAILBOX_ALREADY_EXISTS',
         success: false
       })
     }
