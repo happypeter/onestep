@@ -32,8 +32,20 @@ export function login (data) {
            }
          )
          .catch(
-           err => {
-             handleError(err)
+           error => {
+             if (error.response) {
+               switch (error.response.data.errorMsg) {
+                 case 'USER_DOESNOT_EXIST':
+                   dispatch({ type: 'USER_DOESNOT_EXIST' })
+                   break
+                 case 'INVALID_PASSWORD':
+                   dispatch({ type: 'INVALID_PASSWORD' })
+                   break
+                 default: console.log(error.response.data)
+               }
+             } else {
+               console.log(error)
+             }
            }
          )
   }

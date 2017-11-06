@@ -60,7 +60,7 @@ exports.login = (req, res, next) => {
           if (!user) {
             console.log("the user doesn't exist")
             return res.status(403).json({
-              errorMsg: "the user doesn't exist",
+              errorMsg: "USER_DOESNOT_EXIST",
               success: false
             })
           } else {
@@ -69,8 +69,9 @@ exports.login = (req, res, next) => {
                 return console.log(err)
               }
               if (!isMatch) {
+                console.log('invalid password')
                 return res.status(403).json({
-                  errorMsg: 'invalid password',
+                  errorMsg: 'INVALID_PASSWORD',
                   success: false
                 })
               }

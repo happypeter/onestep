@@ -67,6 +67,15 @@ export default (state = initialState, action = {}) => {
           username: '该用户名已被注册'
         }
       }
+    case 'USER_DOESNOT_EXIST':
+      return {
+        ...state,
+        usernameIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          username: '该用户名不存在'
+        }
+      }
     case 'PASSWORD_IS_REQUIRED':
       return {
         ...state,
@@ -83,6 +92,15 @@ export default (state = initialState, action = {}) => {
         testErrObj: {
           ...state.testErrObj,
           password: '请输入6位以上的密码'
+        }
+      }
+    case 'INVALID_PASSWORD':
+      return {
+        ...state,
+        passwordIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          password: '密码无效'
         }
       }
     case 'PASSWORE_IS_VALID':
