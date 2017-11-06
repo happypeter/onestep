@@ -7,7 +7,6 @@ let generateToken = function (user) {
 }
 
 exports.signup = (req, res, next) => {
-  console.log(req.body)
   const {username, password, mailbox: mails} = req.body
   Promise.all([
     User.findOne({username: username}),
@@ -51,7 +50,6 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  console.log(req.body)
   const {username, password} = req.body
 
   User.findOne({username: username})
@@ -60,7 +58,7 @@ exports.login = (req, res, next) => {
           if (!user) {
             console.log("the user doesn't exist")
             return res.status(403).json({
-              errorMsg: "USER_DOESNOT_EXIST",
+              errorMsg: 'USER_DOESNOT_EXIST',
               success: false
             })
           } else {
@@ -84,4 +82,57 @@ exports.login = (req, res, next) => {
           }
         }
       )
+}
+
+exports.profile = (req, res, next) => {
+  const {username} = req.body
+  let courses = []
+  let total = 0
+  let allExpireDateArr = []
+  User.findOne({username: username})
+      .populate('contracts')
+      .then(
+        user => {
+          const contracts = user.contracts
+          contracts.forEach(
+            contract => {
+              // all paid courses
+              courses = [...courses, ...contract.courseId]
+              // total
+              total += contract.total
+              // collect all kinds of membership expireDate
+              if (contract.type === 'vip' || contract.type === 'member') {
+                allExpireDateArr = [...allExpireDateArr, contract.expireDate]
+              }
+            }
+          )
+          let latestExpireDate = chooseExpireDate(allExpireDateArr)
+
+          return res.json({
+            courses,
+            total,
+            latestExpireDate
+          })
+        }
+      )
+      .catch(
+        error => {
+          console.log(error)
+        }
+      )
+}
+
+const chooseExpireDate = function (allExpireDateArr) {
+  let parsedDate = []
+  allExpireDateArr.forEach(
+    date => {
+      parsedDate = [...parsedDate, Date.parse(date)]
+    }
+  )
+  const maxParsedDate = Math.max(...parsedDate)
+  let d = new Date()
+  d.setTime(maxParsedDate)
+  let latestExpireDate = JSON.stringify(d).substr(1, 10)
+
+  return latestExpireDate
 }
