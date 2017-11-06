@@ -9,8 +9,8 @@ const UserSchema = new Schema(
     admin: { type: String },
     wechatId: { type: String },
     mails: [{
-      address: String,
-      verified: Boolean
+      address: { type: String },
+      verified: { type: Boolean }
     }],
     contracts: [{type: Schema.Types.ObjectId, ref: 'Contract'}]
   },
