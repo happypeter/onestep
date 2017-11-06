@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
 import { login } from '../redux/actions/authAction'
 import {
+  formErrInit,
   passwordIsRequired,
   passwordIsValid,
   usernameIsRequired,
@@ -12,6 +13,10 @@ import {
 import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
+
+  componentWillMount(){
+    this.props.formErrInit()
+  }
 
   checkUsername = (username) => {
     if (!username) {
@@ -46,7 +51,6 @@ class LoginContainer extends Component {
   }
 
   render () {
-    console.log(this.props);
     const { isAuthenticated } = this.props.currentUser
     const refererState = this.props.location.state
 
@@ -94,6 +98,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   login,
+  formErrInit,
   passwordIsRequired,
   passwordIsValid,
   usernameIsRequired,

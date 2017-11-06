@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Signup from '../components/Signup/Signup'
 import { signup } from '../redux/actions/authAction'
 import {
+  formErrInit,
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,
@@ -15,6 +16,10 @@ import {
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
+
+  componentWillMount(){
+    this.props.formErrInit()
+  }
 
   checkUsername = (username) => {
     if (!username) {
@@ -124,6 +129,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   signup,
+  formErrInit,
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,

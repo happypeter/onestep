@@ -1,3 +1,11 @@
+export function formErrInit (data) {
+  return dispatch => {
+    dispatch({
+      type: 'FORM_ERR_INIT'
+    })
+  }
+}
+
 export function mailboxNotValid (data) {
   return dispatch => {
     dispatch({

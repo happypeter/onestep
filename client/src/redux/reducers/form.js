@@ -13,6 +13,8 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'FORM_ERR_INIT':
+      return initialState
     case 'MAILBOX_NOT_VALID':
       return {
         ...state,
