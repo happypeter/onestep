@@ -84,6 +84,21 @@ exports.login = (req, res, next) => {
       )
 }
 
+const chooseExpireDate = function (allExpireDateArr) {
+  let parsedDate = []
+  allExpireDateArr.forEach(
+    date => {
+      parsedDate = [...parsedDate, Date.parse(date)]
+    }
+  )
+  const maxParsedDate = Math.max(...parsedDate)
+  let d = new Date()
+  d.setTime(maxParsedDate)
+  let latestExpireDate = JSON.stringify(d).substr(1, 10)
+
+  return latestExpireDate
+}
+
 exports.profile = (req, res, next) => {
   const {username} = req.body
   let courses = []
@@ -120,19 +135,4 @@ exports.profile = (req, res, next) => {
           console.log(error)
         }
       )
-}
-
-const chooseExpireDate = function (allExpireDateArr) {
-  let parsedDate = []
-  allExpireDateArr.forEach(
-    date => {
-      parsedDate = [...parsedDate, Date.parse(date)]
-    }
-  )
-  const maxParsedDate = Math.max(...parsedDate)
-  let d = new Date()
-  d.setTime(maxParsedDate)
-  let latestExpireDate = JSON.stringify(d).substr(1, 10)
-
-  return latestExpireDate
 }
