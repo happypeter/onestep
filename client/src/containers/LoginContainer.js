@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
-import { login,
+import { login } from '../redux/actions/authAction'
+import {
   passwordIsRequired,
   passwordIsValid,
   usernameIsRequired,
   usernameIsValid
- } from '../redux/actions/authAction'
+} from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
