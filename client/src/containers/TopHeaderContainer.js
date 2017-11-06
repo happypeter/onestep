@@ -11,7 +11,7 @@ class TopHeaderContainer extends Component {
   }
 
   render () {
-    let tempIsAuthenticated = window.localStorage.getItem('userInfo')
+    let tempIsAuthenticated = window.sessionStorage.getItem('user')
 
     return (
       <div>

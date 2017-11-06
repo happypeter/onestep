@@ -1,9 +1,17 @@
 import axios from 'axios'
 
-export function setCurrentUserInfo (data) {
+function setCurrentUserInfo (data) {
   return {
     type: 'AUTH_USER',
     userInfo: data
+  }
+}
+
+function handleError (error) {
+  if (error.response) {
+    console.log(error.response.data.errorMsg)
+  } else {
+    console.log(error)
   }
 }
 
@@ -12,9 +20,11 @@ export function login (data) {
     axios.post('http://localhost:3001/login', data)
          .then(
            res => {
-             console.log(res.data)
-             dispatch(setCurrentUserInfo(data))
-             window.localStorage.setItem('userInfo', data.username)
+             const token = res.data.token
+             const user = res.data.user
+             window.sessionStorage.setItem('jwtToken', token)
+             window.sessionStorage.setItem('user', user.username)
+             dispatch(setCurrentUserInfo(user))
              setTimeout(function timer () {
                dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
              }
@@ -23,7 +33,7 @@ export function login (data) {
          )
          .catch(
            err => {
-             console.log(err.response.data.errorMsg)
+             handleError(err)
            }
          )
   }
@@ -34,9 +44,14 @@ export function signup (data) {
     axios.post('http://localhost:3001/signup', data)
          .then(
            res => {
-             console.log(res.data)
-             dispatch(setCurrentUserInfo(data))
-             window.localStorage.setItem('userInfo', data.username)
+             const token = res.data.token
+             const user = res.data.user
+             window.sessionStorage.setItem('jwtToken', token)
+             window.sessionStorage.setItem('user', user.username)
+             dispatch({
+               type: 'SIGN_UP',
+               userInfo: user
+             })
              setTimeout(function timer () {
                dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
              }
@@ -45,7 +60,7 @@ export function signup (data) {
          )
          .catch(
            err => {
-             console.log(err.response.data.errorMsg)
+             handleError(err)
            }
          )
   }
@@ -54,7 +69,8 @@ export function signup (data) {
 export function logout (data) {
   return dispatch => {
     dispatch({ type: 'LOG_OUT' })
-    window.localStorage.removeItem('userInfo')
+    window.sessionStorage.removeItem('user')
+    window.sessionStorage.removeItem('jwtToken')
     setTimeout(function timer () {
       dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
     }

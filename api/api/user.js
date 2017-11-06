@@ -40,7 +40,8 @@ exports.signup = (req, res, next) => {
     user.save().then(
       user => {
         return res.status(200).json({
-          token: generateToken({name: user.username}),
+          user: {username: user.username},
+          token: generateToken({username: user.username}),
           success: true
         })
       }
@@ -74,8 +75,8 @@ exports.login = (req, res, next) => {
                 })
               }
               return res.json({
-                user: {name: user.username},
-                token: generateToken({name: user.username}),
+                user: {username: user.username},
+                token: generateToken({username: user.username}),
                 success: true
               })
             })
