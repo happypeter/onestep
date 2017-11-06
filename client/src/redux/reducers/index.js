@@ -1,12 +1,12 @@
 import courses from './courses'
 import fakeAuth from './fakeAuth'
-import signupForm from './signupForm'
+import form from './form'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   courses,
   fakeAuth,
-  signupForm
+  form
 })
 
 export default rootReducer

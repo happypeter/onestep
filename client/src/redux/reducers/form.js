@@ -13,6 +13,8 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'FORM_ERR_INIT':
+      return initialState
     case 'MAILBOX_NOT_VALID':
       return {
         ...state,
@@ -29,6 +31,15 @@ export default (state = initialState, action = {}) => {
         testErrObj: {
           ...state.testErrObj,
           mailbox: ''
+        }
+      }
+    case 'MAILBOX_ALREADY_EXISTS':
+      return {
+        ...state,
+        mailboxIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          mailbox: '该邮箱已被注册'
         }
       }
     case 'USERNAME_IS_REQUIRED':
@@ -49,6 +60,33 @@ export default (state = initialState, action = {}) => {
           username: ''
         }
       }
+    case 'USERMANE_ALREADY_EXISTS':
+      return {
+        ...state,
+        usernameIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          username: '该用户名已被注册'
+        }
+      }
+    case 'USER_DOESNOT_EXIST':
+      return {
+        ...state,
+        usernameIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          username: '该用户名不存在'
+        }
+      }
+    case 'PASSWORD_IS_REQUIRED':
+      return {
+        ...state,
+        passwordIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          password: '请输入密码'
+        }
+      }
     case 'PASSWORD_TOO_SHORT':
       return {
         ...state,
@@ -56,6 +94,15 @@ export default (state = initialState, action = {}) => {
         testErrObj: {
           ...state.testErrObj,
           password: '请输入6位以上的密码'
+        }
+      }
+    case 'INVALID_PASSWORD':
+      return {
+        ...state,
+        passwordIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          password: '密码无效'
         }
       }
     case 'PASSWORE_IS_VALID':

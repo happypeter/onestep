@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Notification from '../components/Notification/Notification'
-import { removeLogoutNotification } from '../redux/actions/authAction'
-import { removeLoginNotification } from '../redux/actions/authAction'
-import { removeSignupNotification } from '../redux/actions/authAction'
+import {
+  removeLogoutNotification,
+  removeLoginNotification,
+  removeSignupNotification } from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {

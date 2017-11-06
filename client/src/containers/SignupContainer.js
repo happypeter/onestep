@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Signup from '../components/Signup/Signup'
-import { signup,
+import { signup } from '../redux/actions/authAction'
+import {
+  formErrInit,
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,
@@ -10,10 +12,14 @@ import { signup,
   usernameIsRequired,
   usernameIsValid,
   mailboxNotValid,
-  mailboxIsValid } from '../redux/actions/authAction'
+  mailboxIsValid } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
+
+  componentWillMount(){
+    this.props.formErrInit()
+  }
 
   checkUsername = (username) => {
     if (!username) {
@@ -118,11 +124,12 @@ SignupContainer.PropTypes = {
 
 const mapStateToProps = (state) => ({
   currentUser: state.fakeAuth,
-  signUpState: state.signupForm
+  signUpState: state.form
 })
 
 export default connect(mapStateToProps, {
   signup,
+  formErrInit,
   passwordTooShort,
   passwordIsValid,
   passwordsInconsistent,
