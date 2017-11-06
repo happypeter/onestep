@@ -34,6 +34,17 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Login extends Component {
 
+  checkUsername = () => {
+    let username = this.refs.username.getValue().trim()
+    this.props.checkUsername(username)
+  }
+
+  checkPassword = () => {
+    let password = this.refs.password.getValue()
+    this.props.checkPassword(password)
+  }
+
+
   handleSubmit = (e) => {
     e.preventDefault()
     let username = this.refs.username.getValue()
@@ -46,9 +57,24 @@ class Login extends Component {
       <LoginWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
-          <TextField ref='username' floatingLabelText='用户名' />
-          <TextField ref='password' floatingLabelText='密码' type='password' />
-          <RaisedButtonWrap secondary={true} type='submit' label='登录' />
+          <TextField
+            ref='username'
+            floatingLabelText='用户名'
+            errorText={this.props.errorText.username}
+            onBlur={this.checkUsername}
+          />
+          <TextField
+            ref='password'
+            floatingLabelText='密码'
+            type='password'
+            errorText={this.props.errorText.password}
+            onBlur={this.checkPassword}
+          />
+          <RaisedButtonWrap
+            secondary={true}
+            type='submit'
+            label='登录'
+          />
         </FromWrap>
         <Footer />
       </LoginWrap>

@@ -150,6 +150,14 @@ export function usernameIsValid (data) {
   }
 }
 
+export function passwordIsRequired (data) {
+  return dispatch => {
+    dispatch({
+      type: 'PASSWORD_IS_REQUIRED'
+    })
+  }
+}
+
 export function passwordTooShort (data) {
   return dispatch => {
     dispatch({

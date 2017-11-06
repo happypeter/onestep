@@ -67,6 +67,15 @@ export default (state = initialState, action = {}) => {
           username: '该用户名已被注册'
         }
       }
+    case 'PASSWORD_IS_REQUIRED':
+      return {
+        ...state,
+        passwordIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          password: '请输入密码'
+        }
+      }
     case 'PASSWORD_TOO_SHORT':
       return {
         ...state,
