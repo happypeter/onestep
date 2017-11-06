@@ -78,6 +78,16 @@ export function logout (data) {
   }
 }
 
+export function fakeWechatLogin (user) {
+  return dispatch => {
+    dispatch({
+      type: 'FAKE_WECHATCODE_LOGIN',
+      userInfo: user
+    })
+    window.sessionStorage.setItem('user', 'wechatCode')
+  }
+}
+
 export function removeLogoutNotification (data) {
   return dispatch => {
     dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })

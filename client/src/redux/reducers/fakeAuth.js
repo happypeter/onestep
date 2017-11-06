@@ -28,6 +28,12 @@ export default (state = initialState, action = {}) => {
         currentUser: {},
         showLogoutNotification: true
       }
+    case 'FAKE_WECHATCODE_LOGIN':
+      return {
+        isAuthenticated: !isEmpty(action.userInfo),
+        currentUser: action.userInfo,
+        showLoginNotification: true
+      }
     case 'RM_LOGOUT_NOTIFICATION':
       return {
         ...state,
