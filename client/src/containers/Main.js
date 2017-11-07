@@ -17,7 +17,7 @@ import {
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
       // store.getState().fakeAuth.isAuthenticated ? (
-      window.localStorage.getItem('userInfo') ? (
+      window.sessionStorage.getItem('user') ? (
         <Component {...rest} />
       ) : (
         <Redirect to={{
