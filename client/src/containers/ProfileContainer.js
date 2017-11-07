@@ -1,13 +1,33 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import Profile from '../components/Profile/Profile'
 
 class ProfileContainer extends Component {
+  componentWillMount () {}
+
   render () {
+    let {latestExpireDate, total, courses} = this.props.profile
+
+    let test = courses.map(
+      (item, i) => (
+        <div key={i}>{item}</div>
+      )
+    )
+
     return (
       <div>
-        PROFILE
+        <Profile
+          latestExpireDate={latestExpireDate}
+          total={total}
+          courses={test}
+         />
       </div>
     )
   }
 }
 
-export default ProfileContainer
+const mapStateToProps = (state) => ({
+  profile: state.profile
+})
+
+export default connect(mapStateToProps)(ProfileContainer)
