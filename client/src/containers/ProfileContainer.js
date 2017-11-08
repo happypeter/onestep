@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Profile from '../components/Profile/Profile'
+import { fetchProfile } from '../redux/actions/profileAction'
 
 class ProfileContainer extends Component {
-  componentWillMount () {}
+  componentDidMount () {
+    const username = window.sessionStorage.getItem('user')
+    this.props.fetchProfile(username)
+    console.log(username)
+  }
 
   render () {
-    let {latestExpireDate, total, courses} = this.props.profile
-
-    let test = courses.map(
-      (item, i) => (
-        <div key={i}>{item}</div>
-      )
-    )
+    const {latestExpireDate, total, courses, status} = this.props.state
 
     return (
       <div>
         <Profile
+          status={status}
           latestExpireDate={latestExpireDate}
           total={total}
-          courses={test}
+          courses={courses}
          />
       </div>
     )
@@ -27,7 +27,7 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  profile: state.profile
+  state: state.profile
 })
 
-export default connect(mapStateToProps)(ProfileContainer)
+export default connect(mapStateToProps, { fetchProfile })(ProfileContainer)
