@@ -27,7 +27,7 @@ export default ({courses, latestExpireDate, total, status}) => {
       return (
         <Wrap>
           <TopHeader />
-          购买过的课程{courses}
+          购买过的课程{courses.map((course, i) => (<div key={i}>{course}</div>))}
           <br />
           好奇猫会员到期日{latestExpireDate}
           <br />
