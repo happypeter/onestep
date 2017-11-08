@@ -97,7 +97,10 @@ exports.checkToken = function (req, res) {
       } else {
         if (decoded.username) {
           req.username = decoded.username
-          return res.status(200).json({ message: '登录中' })
+          return res.status(200).json({
+            message: '登录中',
+            success: true
+          })
         } else {
           res.status(401).json({ errorMsg: '认证失败！' })
         }

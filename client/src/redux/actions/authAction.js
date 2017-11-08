@@ -101,3 +101,29 @@ export function fakeWechatLogin (user) {
     window.sessionStorage.setItem('user', 'wechatCode')
   }
 }
+
+export const checkToken = (token) => {
+  return dispatch => {
+    axios.post('http://localhost:3001/auth', {token: token})
+         .then(
+           res => {
+             if (res.data.success !== true) {
+               throw new Error('Fail to check token: ' + res)
+             } else {
+               dispatch({
+                 type: 'TOKEN_IS_VALID',
+                 success: true
+               })
+             }
+           }
+         )
+         .catch(
+           error => {
+             dispatch({
+               type: 'TOKEN_IS_INVALID',
+               error
+             })
+           }
+         )
+  }
+}

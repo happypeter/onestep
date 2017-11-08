@@ -49,6 +49,23 @@ export default (state = initialState, action = {}) => {
         ...state,
         showSignupNotification: false
       }
+    case 'TOKEN_IS_VALID':
+      return {
+        ...state,
+        isAuthenticated: action.success
+      }
+    case 'TOKEN_IS_INVALID':
+
+      if (action.error.response) {
+        console.log(action.error.response.data.errorMsg)
+      } else {
+        console.log(action.error)
+      }
+
+      return {
+        ...state,
+        isAuthenticated: false
+      }
     default:
       return state
   }

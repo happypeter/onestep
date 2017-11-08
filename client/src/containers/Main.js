@@ -6,29 +6,13 @@ import Course from './CourseContainer'
 import Episode from './EpisodeContainer'
 import Signup from './SignupContainer'
 import Profile from './ProfileContainer'
+import {requireAuthentication} from './CheckToken'
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom'
-// import store from '../redux/store'
-
-const PrivateRoute = ({component: Component, ...rest}) => (
-  <Route {...rest} render={(props) => (
-      // store.getState().fakeAuth.isAuthenticated ? (
-      window.sessionStorage.getItem('user') ? (
-        <Component {...rest} />
-      ) : (
-        <Redirect to={{
-          pathname: '/wechatLogin',
-          state: { from: props.location }
-        }} />
-      )
-    )
-    } />
-)
 
 class Main extends Component {
   render () {
@@ -39,8 +23,8 @@ class Main extends Component {
           <Route path='/wechatLogin' component={WechatLogin} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
-          <PrivateRoute path='/profile' component={Profile} />
-          <PrivateRoute path='/:courseName/:episodeName' component={Episode} />
+          <Route path='/profile' component={requireAuthentication(Profile)} />
+          <Route path='/:courseName/:episodeName' component={requireAuthentication(Episode)} />
           <Route path='/:courseName' component={Course} />
         </Switch>
       </Router>

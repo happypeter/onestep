@@ -3,7 +3,7 @@ import Episode from '../components/Episode/Episode'
 
 class EpisodeContainer extends Component {
   render () {
-    let { episodeName } = this.props.computedMatch.params
+    let { episodeName } = this.props.match.params
 
     return (
       <div>
