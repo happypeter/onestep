@@ -108,6 +108,13 @@ exports.profile = (req, res, next) => {
       .populate('contracts')
       .then(
         user => {
+          if (!user) {
+            res.status(403).json({
+              errorMsg: 'USER_DOESNOT_EXIST',
+              success: false
+            })
+            throw new Error('user is ' + user)
+          }
           const contracts = user.contracts
           contracts.forEach(
             contract => {
