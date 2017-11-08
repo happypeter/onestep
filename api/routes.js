@@ -10,6 +10,7 @@ router.get('/', hello.sayHello)
 // 用户接口
 router.post('/signup', user.signup)
 router.post('/login', user.login)
+router.post('/auth', user.checkToken)
 
 router.post('/profile', user.profile)
 

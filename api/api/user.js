@@ -84,6 +84,32 @@ exports.login = (req, res, next) => {
       )
 }
 
+exports.checkToken = function (req, res) {
+  let token = req.body.token
+  if (token) {
+    jwt.verify(token, config.jwtSecret, (err, decoded) => {
+      if (err) {
+        if (err.name === 'TokenExpiredError') {
+          return res.status(401).json({ errorMsg: '认证码失效，请重新登录!' })
+        } else {
+          return res.status(401).json({ errorMsg: '认证失败！' })
+        }
+      } else {
+        if (decoded.username) {
+          req.username = decoded.username
+          return res.status(200).json({ message: '登录中' })
+        } else {
+          res.status(401).json({ errorMsg: '认证失败！' })
+        }
+      }
+    })
+  } else {
+    return res.status(403).json({
+      errorMsg: '请提供认证码！'
+    })
+  }
+}
+
 const chooseExpireDate = function (allExpireDateArr) {
   let parsedDate = []
   allExpireDateArr.forEach(
@@ -99,7 +125,7 @@ const chooseExpireDate = function (allExpireDateArr) {
   return latestExpireDate
 }
 
-exports.profile = (req, res, next) => {
+exports.profile = (req, res) => {
   const {username} = req.body
   let courses = []
   let total = 0
