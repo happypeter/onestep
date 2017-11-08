@@ -55,7 +55,7 @@ class TopHeader extends Component {
 
     const LogoutButtons = (
       <SideButtonsWrap>
-        <Username to='profile'>{this.props.sideButtons}</Username>
+        <Username to='/profile'>{this.props.sideButtons}</Username>
         <Button to='/' onClick={this.props.logout}>退出</Button>
       </SideButtonsWrap>
     )
