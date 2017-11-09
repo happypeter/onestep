@@ -52,15 +52,6 @@ export default (state = initialState, action = {}) => {
         }
       }
     case 'USERNAME_IS_VALID':
-      console.log(state);
-      console.log({
-        ...state,
-        usernameIsValid: true,
-        testErrObj: {
-          ...state.testErrObj,
-          username: ''
-        }
-      });
       return {
         ...state,
         usernameIsValid: true,
@@ -115,15 +106,6 @@ export default (state = initialState, action = {}) => {
         }
       }
     case 'PASSWORE_IS_VALID':
-    console.log(state);
-    console.log({
-      ...state,
-      passwordIsValid: true,
-      testErrObj: {
-        ...state.testErrObj,
-        password: ''
-      }
-    });
       return {
         ...state,
         passwordIsValid: true,
@@ -151,7 +133,6 @@ export default (state = initialState, action = {}) => {
         }
       }
     default:
-    console.log('default state');
       return state
   }
 }
