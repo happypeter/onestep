@@ -34,10 +34,16 @@ class LoginContainer extends Component {
     }
   }
 
-  handleSubmit = (userInfo) => {
+  recheckForm = function *() {
+    let userInfo = yield
+
+    let {username, password} = userInfo
+    this.checkUsername(username)
+    this.checkPassword(password)
+
+    yield
     if (this.props.loginState.usernameIsValid && this.props.loginState.passwordIsValid) {
       console.log('通过验证')
-      console.log(userInfo)
       this.props.login(userInfo)
     } else {
       if (!this.props.loginState.usernameIsValid) {
@@ -48,6 +54,17 @@ class LoginContainer extends Component {
       }
       console.log('未通过验证')
     }
+  }
+
+  handleSubmit = (userInfo) => {
+    let foo = this.recheckForm()
+    foo.next()
+    foo.next(userInfo)
+    setTimeout(() => {
+        foo.next()
+    },
+      50
+    )
   }
 
   render () {
