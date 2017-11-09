@@ -7,7 +7,6 @@ class ProfileContainer extends Component {
   componentDidMount () {
     const username = window.sessionStorage.getItem('user')
     this.props.fetchProfile(username)
-    console.log(username)
   }
 
   render () {

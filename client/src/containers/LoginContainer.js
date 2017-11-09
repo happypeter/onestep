@@ -44,6 +44,7 @@ class LoginContainer extends Component {
     yield
     if (this.props.loginState.usernameIsValid && this.props.loginState.passwordIsValid) {
       console.log('通过验证')
+
       this.props.login(userInfo)
     } else {
       if (!this.props.loginState.usernameIsValid) {

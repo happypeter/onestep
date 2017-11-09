@@ -66,7 +66,7 @@ class SignupContainer extends Component {
     yield
     if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
-      console.log(userInfo)
+
       this.props.signup(userInfo)
     } else {
       if (!this.props.signUpState.usernameIsValid) {

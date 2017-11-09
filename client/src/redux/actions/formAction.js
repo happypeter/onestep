@@ -31,7 +31,6 @@ export function usernameIsRequired (data) {
 }
 
 export function usernameIsValid (data) {
-  console.log('action: usernameIsValid');
   return dispatch => {
     dispatch({
       type: 'USERNAME_IS_VALID'
@@ -57,7 +56,6 @@ export function passwordTooShort (data) {
 
 export function passwordIsValid (data) {
   return dispatch => {
-    console.log('action: passwordIsValid');
     dispatch({
       type: 'PASSWORE_IS_VALID'
     })
