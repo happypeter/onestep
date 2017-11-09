@@ -4,7 +4,8 @@ import Notification from '../components/Notification/Notification'
 import {
   removeLogoutNotification,
   removeLoginNotification,
-  removeSignupNotification } from '../redux/actions/notificationAction'
+  removeSignupNotification,
+  removeUnhandledErrNotification } from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {
@@ -19,6 +20,10 @@ class NotificationContainer extends Component {
 
   removeSignupNotification = () => {
     this.props.removeSignupNotification()
+  }
+
+  removeUnhandledErrNotification = () => {
+    this.props.removeUnhandledErrNotification()
   }
 
   render () {
@@ -54,6 +59,16 @@ class NotificationContainer extends Component {
           ) :
           ''
         }
+        {
+          this.props.currentUserInfo.showUnhandledErrNotification ?
+          (
+            <Notification
+            removeNotification={this.removeUnhandledErrNotification}
+            text={'网络错误 操作失败'}
+            />
+          ) :
+          ''
+        }
       </div>
     )
   }
@@ -62,7 +77,8 @@ class NotificationContainer extends Component {
 NotificationContainer.PropTypes = {
   removeLogoutNotification: PropTypes.func.isRequired,
   removeLoginNotification: PropTypes.func.isRequired,
-  removeSignupNotification: PropTypes.func.isRequired
+  removeSignupNotification: PropTypes.func.isRequired,
+  removeUnhandledErrNotification: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -72,5 +88,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps,{
   removeLogoutNotification,
   removeLoginNotification,
-  removeSignupNotification
+  removeSignupNotification,
+  removeUnhandledErrNotification
 })(NotificationContainer)

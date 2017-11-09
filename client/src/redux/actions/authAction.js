@@ -25,6 +25,10 @@ function handleError (error, dispatch) {
       default: console.log(error.response.data)
     }
   } else {
+    dispatch({ type: 'UNHANDLED_ERROR' })
+    setTimeout(function timer () {
+      dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
+    }, 4000)
     console.log(error)
   }
 }

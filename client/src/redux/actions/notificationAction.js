@@ -15,3 +15,9 @@ export function removeSignupNotification (data) {
     dispatch({ type: 'RM_SIGNUP_NOTIFICATION' })
   }
 }
+
+export function removeUnhandledErrNotification () {
+  return dispatch => {
+    dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
+  }
+}

@@ -5,7 +5,8 @@ const initialState = {
   currentUser: {},
   showLogoutNotification: false,
   showLoginNotification: false,
-  showSignupNotification: false
+  showSignupNotification: false,
+  showUnhandledErrNotification: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -48,6 +49,16 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         showSignupNotification: false
+      }
+    case 'UNHANDLED_ERROR':
+      return {
+        ...state,
+        showUnhandledErrNotification: true
+      }
+    case 'RM_UNHANDLED_ERR_NOTIFICATION':
+      return {
+        ...state,
+        showUnhandledErrNotification: false
       }
     case 'TOKEN_IS_VALID':
       return {
