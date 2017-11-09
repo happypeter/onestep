@@ -35,7 +35,7 @@ class NotificationContainer extends Component {
     return (
       <div>
         {
-          this.props.currentUserInfo.showLogoutNotification ?
+          this.props.notification.showLogoutNotification ?
           (
             <Notification
             removeNotification={this.removeLogoutNotification}
@@ -45,7 +45,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showLoginNotification ?
+          this.props.notification.showLoginNotification ?
           (
             <Notification
             removeNotification={this.removeLoginNotification}
@@ -55,7 +55,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showSignupNotification ?
+          this.props.notification.showSignupNotification ?
           (
             <Notification
             removeNotification={this.removeSignupNotification}
@@ -65,7 +65,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showInvalidTokenNotification ?
+          this.props.notification.showInvalidTokenNotification ?
           (
             <Notification
             removeNotification={this.removeInvalidTokenNotification}
@@ -75,7 +75,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showUnhandledErrNotification ?
+          this.props.notification.showUnhandledErrNotification ?
           (
             <Notification
             removeNotification={this.removeUnhandledErrNotification}
@@ -98,7 +98,8 @@ NotificationContainer.PropTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  currentUserInfo: state.fakeAuth
+  // curr: state.fakeAuth,
+  notification: state.notification
 })
 
 export default connect(mapStateToProps,{

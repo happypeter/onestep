@@ -1,4 +1,9 @@
 import axios from 'axios'
+import {
+  showLoginNotification,
+  showLogoutNotification,
+  showSignupNotification,
+  showInvalidTokenNotification } from './notificationAction'
 
 function setCurrentUserInfo (data) {
   return {
@@ -33,16 +38,14 @@ function handleError (error, dispatch) {
           type: 'TOKEN_IS_INVALID',
           error
         })
-        setTimeout(() => {
-          dispatch({ type: 'RM_INVALID_TOKEN_NOTIFICATION' })
-        }, 4000)
+        showInvalidTokenNotification(dispatch)
         break
 
       default: console.log(error.response.data)
     }
   } else {
     dispatch({ type: 'UNHANDLED_ERROR' })
-    setTimeout(function timer () {
+    setTimeout(function () {
       dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
     }, 4000)
     console.log(error)
@@ -58,11 +61,9 @@ export function login (data) {
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
              window.sessionStorage.setItem('user', user.username)
+
              dispatch(setCurrentUserInfo(user))
-             setTimeout(function timer () {
-               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-             }
-             , 4000)
+             showLoginNotification(dispatch)
            }
          )
          .catch(
@@ -86,10 +87,8 @@ export function signup (data) {
                type: 'SIGN_UP',
                userInfo: user
              })
-             setTimeout(function timer () {
-               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-             }
-             , 4000)
+
+             showSignupNotification(dispatch)
            }
          )
          .catch(
@@ -105,10 +104,8 @@ export function logout (data) {
     dispatch({ type: 'LOG_OUT' })
     window.sessionStorage.removeItem('user')
     window.sessionStorage.removeItem('jwtToken')
-    setTimeout(function timer () {
-      dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
-    }
-    , 4000)
+
+    showLogoutNotification(dispatch)
   }
 }
 
@@ -118,6 +115,7 @@ export function fakeWechatLogin (user) {
       type: 'FAKE_WECHATCODE_LOGIN',
       userInfo: user
     })
+    showLoginNotification(dispatch)
     window.sessionStorage.setItem('user', 'wechatCode')
   }
 }

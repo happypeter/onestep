@@ -2,12 +2,7 @@ import isEmpty from 'lodash/fp/isEmpty'
 
 const initialState = {
   isAuthenticated: false,
-  currentUser: {},
-  showLogoutNotification: false,
-  showLoginNotification: false,
-  showSignupNotification: false,
-  showUnhandledErrNotification: false,
-  showInvalidTokenNotification: false
+  currentUser: {}
 }
 
 export default (state = initialState, action = {}) => {
@@ -15,41 +10,22 @@ export default (state = initialState, action = {}) => {
     case 'AUTH_USER':
       return {
         isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
-        showLoginNotification: true
+        currentUser: action.userInfo
       }
     case 'SIGN_UP':
       return {
         isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
-        showSignupNotification: true
+        currentUser: action.userInfo
       }
     case 'LOG_OUT':
       return {
         isAuthenticated: false,
-        currentUser: {},
-        showLogoutNotification: true
+        currentUser: {}
       }
     case 'FAKE_WECHATCODE_LOGIN':
       return {
         isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
-        showLoginNotification: true
-      }
-    case 'RM_LOGOUT_NOTIFICATION':
-      return {
-        ...state,
-        showLogoutNotification: false
-      }
-    case 'RM_LOGIN_NOTIFICATION':
-      return {
-        ...state,
-        showLoginNotification: false
-      }
-    case 'RM_SIGNUP_NOTIFICATION':
-      return {
-        ...state,
-        showSignupNotification: false
+        currentUser: action.userInfo
       }
     case 'TOKEN_IS_VALID':
       return {
@@ -59,23 +35,7 @@ export default (state = initialState, action = {}) => {
     case 'TOKEN_IS_INVALID':
       return {
         ...state,
-        isAuthenticated: false,
-        showInvalidTokenNotification: true
-      }
-    case 'RM_INVALID_TOKEN_NOTIFICATION':
-      return {
-        ...state,
-        showInvalidTokenNotification: false
-      }
-    case 'UNHANDLED_ERROR':
-      return {
-        ...state,
-        showUnhandledErrNotification: true
-      }
-    case 'RM_UNHANDLED_ERR_NOTIFICATION':
-      return {
-        ...state,
-        showUnhandledErrNotification: false
+        isAuthenticated: false
       }
     default:
       return state
