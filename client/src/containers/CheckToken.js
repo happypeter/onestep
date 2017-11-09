@@ -14,20 +14,21 @@ export function requireAuthentication (Component) {
     checkAuth () {
       let token = window.sessionStorage.getItem('jwtToken')
       this.props.checkToken(token)
-      console.log('checklll')
     }
 
     render () {
       console.log(this.props)
       return (
-        this.props.isAuthenticated ? (
+        this.props.isAuthenticated
+        ? (
           <Component {...this.props} />
-              ) : (
-                <Redirect to={{
-                  pathname: '/wechatLogin',
-                  state: { from: this.props.location }
-                }} />
-              )
+        )
+        : (
+          <Redirect to={{
+            pathname: '/wechatLogin',
+            state: { from: this.props.location }
+          }} />
+        )
       )
     }
     }

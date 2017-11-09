@@ -6,7 +6,8 @@ const initialState = {
   showLogoutNotification: false,
   showLoginNotification: false,
   showSignupNotification: false,
-  showUnhandledErrNotification: false
+  showUnhandledErrNotification: false,
+  showInvalidTokenNotification: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -50,6 +51,22 @@ export default (state = initialState, action = {}) => {
         ...state,
         showSignupNotification: false
       }
+    case 'TOKEN_IS_VALID':
+      return {
+        ...state,
+        isAuthenticated: action.success
+      }
+    case 'TOKEN_IS_INVALID':
+      return {
+        ...state,
+        isAuthenticated: false,
+        showInvalidTokenNotification: true
+      }
+    case 'RM_INVALID_TOKEN_NOTIFICATION':
+      return {
+        ...state,
+        showInvalidTokenNotification: false
+      }
     case 'UNHANDLED_ERROR':
       return {
         ...state,
@@ -59,23 +76,6 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         showUnhandledErrNotification: false
-      }
-    case 'TOKEN_IS_VALID':
-      return {
-        ...state,
-        isAuthenticated: action.success
-      }
-    case 'TOKEN_IS_INVALID':
-
-      if (action.error.response) {
-        console.log(action.error.response.data.errorMsg)
-      } else {
-        console.log(action.error)
-      }
-
-      return {
-        ...state,
-        isAuthenticated: false
       }
     default:
       return state

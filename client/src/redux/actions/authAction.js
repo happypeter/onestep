@@ -13,15 +13,31 @@ function handleError (error, dispatch) {
       case 'USER_DOESNOT_EXIST':
         dispatch({ type: 'USER_DOESNOT_EXIST' })
         break
+
       case 'INVALID_PASSWORD':
         dispatch({ type: 'INVALID_PASSWORD' })
         break
+
       case 'USERMANE_ALREADY_EXISTS':
         dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
         break
+
       case 'MAILBOX_ALREADY_EXISTS':
         dispatch({ type: 'MAILBOX_ALREADY_EXISTS' })
         break
+
+      case 'INVALID_TOKEN':
+      case 'EXPIRED_TOKEN':
+      case 'TOKEN_NOT_FOUND':
+        dispatch({
+          type: 'TOKEN_IS_INVALID',
+          error
+        })
+        setTimeout(() => {
+          dispatch({ type: 'RM_INVALID_TOKEN_NOTIFICATION' })
+        }, 4000)
+        break
+
       default: console.log(error.response.data)
     }
   } else {
@@ -123,10 +139,7 @@ export const checkToken = (token) => {
          )
          .catch(
            error => {
-             dispatch({
-               type: 'TOKEN_IS_INVALID',
-               error
-             })
+             handleError(error, dispatch)
            }
          )
   }

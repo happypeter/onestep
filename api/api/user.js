@@ -90,25 +90,35 @@ exports.checkToken = function (req, res) {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {
         if (err.name === 'TokenExpiredError') {
-          return res.status(401).json({ errorMsg: '认证码失效，请重新登录!' })
+          return res.status(401).json({
+            errorMsg: 'EXPIRED_TOKEN',
+            success: false
+          })
         } else {
-          return res.status(401).json({ errorMsg: '认证失败！' })
+          return res.status(401).json({
+            errorMsg: 'INVALID_TOKEN',
+            success: false
+          })
         }
       } else {
         if (decoded.username) {
           req.username = decoded.username
           return res.status(200).json({
-            message: '登录中',
+            message: 'VALID_TOKEN',
             success: true
           })
         } else {
-          res.status(401).json({ errorMsg: '认证失败！' })
+          res.status(401).json({
+            errorMsg: 'INVALID_TOKEN',
+            success: false
+          })
         }
       }
     })
   } else {
     return res.status(403).json({
-      errorMsg: '请提供认证码！'
+      errorMsg: 'TOKEN_NOT_FOUND',
+      success: false
     })
   }
 }

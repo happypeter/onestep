@@ -21,3 +21,9 @@ export function removeUnhandledErrNotification () {
     dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
   }
 }
+
+export function removeInvalidTokenNotification () {
+  return dispatch => {
+    dispatch({ type: 'RM_INVALID_TOKEN_NOTIFICATION' })
+  }
+}
