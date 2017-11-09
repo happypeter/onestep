@@ -54,7 +54,16 @@ class SignupContainer extends Component {
     }
   }
 
-  handleSubmit = (userInfo) => {
+  recheckForm = function *() {
+    let userInfo = yield
+
+    let {username, mailbox, password, passwordConsistent} = userInfo
+    this.checkUsername(username)
+    this.checkMailbox(mailbox)
+    this.checkPassword(password)
+    this.checkpasswordConsistent({password, passwordConsistent})
+
+    yield
     if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
       console.log(userInfo)
@@ -74,6 +83,17 @@ class SignupContainer extends Component {
       }
       console.log('未通过验证')
     }
+  }
+
+
+  handleSubmit = (userInfo) => {
+    let recheck = this.recheckForm()
+    recheck.next()
+    console.log(userInfo);
+    recheck.next(userInfo)
+    setTimeout(() => {
+      recheck.next()
+    }, 50)
   }
 
   render () {
