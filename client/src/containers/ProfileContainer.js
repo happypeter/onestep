@@ -5,8 +5,8 @@ import { fetchProfile } from '../redux/actions/profileAction'
 
 class ProfileContainer extends Component {
   componentDidMount () {
-    const username = window.sessionStorage.getItem('user')
-    this.props.fetchProfile(username)
+    const phoneNum = window.sessionStorage.getItem('user')
+    this.props.fetchProfile(phoneNum)
   }
 
   render () {

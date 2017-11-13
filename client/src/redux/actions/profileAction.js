@@ -2,7 +2,7 @@ import axios from 'axios'
 
 function setUsername (data) {
   return {
-    username: data
+    phoneNum: data
   }
 }
 
