@@ -132,8 +132,8 @@ exports.checkToken = function (req, res) {
           })
         }
       } else {
-        if (decoded.username) {
-          req.username = decoded.username
+        if (decoded.phoneNum) {
+          req.phoneNum = decoded.phoneNum
           return res.status(200).json({
             message: 'VALID_TOKEN',
             success: true
@@ -170,11 +170,12 @@ const chooseExpireDate = function (allExpireDateArr) {
 }
 
 exports.profile = (req, res) => {
-  const {username} = req.body
+  // const {username} = req.body
+  const {phoneNum} = req.body
   let courses = []
   let total = 0
   let allExpireDateArr = []
-  User.findOne({username: username})
+  User.findOne({phoneNum: phoneNum})
       .populate('contracts')
       .then(
         user => {
