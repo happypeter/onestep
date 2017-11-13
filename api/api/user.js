@@ -48,11 +48,9 @@ exports.signup = (req, res, next) => {
   // })
   // .catch(next)
   const {password, phoneNum} = req.body
-  console.log(req.body);
   User.findOne({ 'phoneNum': phoneNum })
       .then(doc => {
         if (doc) {
-          console.log(doc);
           console.log('phoneNum already exists')
           return res.status(403).json({
             errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
@@ -78,38 +76,81 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  const {username, password} = req.body
+  const {username, password, phoneNum} = req.body
 
-  User.findOne({username: username})
-      .then(
-        user => {
-          if (!user) {
-            console.log("the user doesn't exist")
-            return res.status(403).json({
-              errorMsg: 'USER_DOESNOT_EXIST',
-              success: false
-            })
-          } else {
-            user.comparePassword(password, function (err, isMatch) {
-              if (err) {
-                return console.log(err)
-              }
-              if (!isMatch) {
-                console.log('invalid password')
+  if (username) {
+    User.findOne({username: username})
+        .then(
+          user => {
+            if (!user) {
+              console.log("the user doesn't exist")
+              return res.status(403).json({
+                errorMsg: 'USER_DOESNOT_EXIST',
+                success: false
+              })
+            } else {
+              if (user.phoneNum) {
+                console.log('该用户已绑定手机号' + user.phoneNum)
                 return res.status(403).json({
-                  errorMsg: 'INVALID_PASSWORD',
+                  errorMsg: 'PLEASE_USE_PHONE_NUM',
                   success: false
                 })
               }
-              return res.json({
-                user: {username: user.username},
-                token: generateToken({username: user.username}),
-                success: true
-              })
-            })
+              // update
+              user.phoneNum = phoneNum
+              user.password = password
+
+              user.save().then(
+                user => {
+                  return res.status(200).json({
+                    user: {phoneNum: user.phoneNum},
+                    token: generateToken({phoneNum: user.phoneNum}),
+                    success: true
+                  })
+                }
+              )
+              .catch(
+                err => {
+                  console.log(err)
+                }
+              )
+            }
           }
-        }
-      )
+        )
+        .catch(next)
+  } else {
+    User.findOne({phoneNum: phoneNum})
+        .then(
+          user => {
+            if (!user) {
+              console.log("this phoneNum doesn't exist")
+              return res.status(403).json({
+                errorMsg: 'PHONE_NUM_DOESNOT_EXIST',
+                success: false
+              })
+            } else {
+              user.comparePassword(password, function (err, isMatch) {
+                if (err) {
+                  return console.log(err)
+                }
+                if (!isMatch) {
+                  console.log('invalid password')
+                  return res.status(403).json({
+                    errorMsg: 'INVALID_PASSWORD',
+                    success: false
+                  })
+                }
+                return res.json({
+                  user: {phoneNum: user.phoneNum},
+                  token: generateToken({phoneNum: user.phoneNum}),
+                  success: true
+                })
+              })
+            }
+          }
+        )
+        .catch(next)
+  }
 }
 
 exports.checkToken = function (req, res) {

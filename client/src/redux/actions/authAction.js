@@ -27,8 +27,16 @@ function handleError (error, dispatch) {
         dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
         break
 
+      case 'PHONE_NUM_DOESNOT_EXIST':
+        dispatch({ type: 'PHONE_NUM_DOESNOT_EXIST' })
+        break
+
       case 'PHONE_NUM_ALREADY_EXISTS':
         dispatch({ type: 'PHONE_NUM_ALREADY_EXISTS' })
+        break
+
+      case 'PLEASE_USE_PHONE_NUM':
+        dispatch({ type: 'PLEASE_USE_PHONE_NUM' })
         break
 
       case 'INVALID_TOKEN':
@@ -60,7 +68,7 @@ export function login (data) {
              const token = res.data.token
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
-             window.sessionStorage.setItem('user', user.username)
+             window.sessionStorage.setItem('user', user.phoneNum)
 
              dispatch(setCurrentUserInfo(user))
              showLoginNotification(dispatch)

@@ -76,8 +76,11 @@ class SignupContainer extends Component {
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
+
+    let {phoneNumIsValid, passwordIsValid, passwordConsistentIsValid} = this.props.signUpState
+
     // if (this.props.signUpState.usernameIsValid && this.props.signUpState.phoneNumIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
-    if (this.props.signUpState.phoneNumIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
+    if (phoneNumIsValid && passwordIsValid && passwordConsistentIsValid) {
       console.log('通过验证')
 
       this.props.signup(userInfo)
@@ -85,13 +88,13 @@ class SignupContainer extends Component {
       // if (!this.props.signUpState.usernameIsValid) {
       //   this.props.usernameIsRequired()
       // }
-      if (!this.props.signUpState.phoneNumIsValid) {
+      if (!phoneNumIsValid) {
         this.props.phoneNumNotValid()
       }
-      if (!this.props.signUpState.passwordIsValid) {
+      if (!passwordIsValid) {
         this.props.passwordTooShort()
       }
-      if (!this.props.signUpState.passwordConsistentIsValid) {
+      if (!passwordConsistentIsValid) {
         this.props.passwordsInconsistent()
       }
       console.log('未通过验证')

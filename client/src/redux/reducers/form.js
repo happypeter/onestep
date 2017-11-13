@@ -10,13 +10,18 @@ const initialState = {
     phoneNum: '',
     password: '',
     passwordConsistent: ''
-  }
+  },
+  hideUsername: true
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FORM_ERR_INIT':
-      return initialState
+      let initializedState = {
+        ...initialState,
+        hideUsername: state.hideUsername
+      }
+      return initializedState
     // case 'MAILBOX_NOT_VALID':
     //   return {
     //     ...state,
@@ -52,7 +57,25 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: '该号码已被注册'
+          phoneNum: '该号码已注册，请直接登录'
+        }
+      }
+    case 'PHONE_NUM_DOESNOT_EXIST':
+      return {
+        ...state,
+        phoneNumIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          phoneNum: '该号码尚未注册'
+        }
+      }
+    case 'PLEASE_USE_PHONE_NUM':
+      return {
+        ...state,
+        phoneNumIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          phoneNum: '已绑定过手机号，请直接用手机号登录'
         }
       }
     case 'USERNAME_IS_REQUIRED':
@@ -144,6 +167,11 @@ export default (state = initialState, action = {}) => {
           ...state.testErrObj,
           passwordConsistent: ''
         }
+      }
+    case 'ALTER':
+      return {
+        ...state,
+        hideUsername: !state.hideUsername
       }
     default:
       return state

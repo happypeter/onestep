@@ -93,3 +93,11 @@ export function passwordsConsistent (data) {
     })
   }
 }
+
+export function alter () {
+  return dispatch => {
+    dispatch({
+      type: 'ALTER'
+    })
+  }
+}
