@@ -27,8 +27,8 @@ function handleError (error, dispatch) {
         dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
         break
 
-      case 'MAILBOX_ALREADY_EXISTS':
-        dispatch({ type: 'MAILBOX_ALREADY_EXISTS' })
+      case 'PHONE_NUM_ALREADY_EXISTS':
+        dispatch({ type: 'PHONE_NUM_ALREADY_EXISTS' })
         break
 
       case 'INVALID_TOKEN':
@@ -82,7 +82,7 @@ export function signup (data) {
              const token = res.data.token
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
-             window.sessionStorage.setItem('user', user.username)
+             window.sessionStorage.setItem('user', user.phoneNum)
              dispatch({
                type: 'SIGN_UP',
                userInfo: user

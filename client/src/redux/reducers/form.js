@@ -1,11 +1,13 @@
 const initialState = {
   usernameIsValid: false,
-  mailboxIsValid: false,
+  // mailboxIsValid: false,
+  phoneNumIsValid: false,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
   testErrObj: {
     username: '',
-    mailbox: '',
+    // mailbox: '',
+    phoneNum: '',
     password: '',
     passwordConsistent: ''
   }
@@ -15,31 +17,42 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FORM_ERR_INIT':
       return initialState
-    case 'MAILBOX_NOT_VALID':
+    // case 'MAILBOX_NOT_VALID':
+    //   return {
+    //     ...state,
+    //     mailboxIsValid: false,
+    //     testErrObj: {
+    //       ...state.testErrObj,
+    //       mailbox: '请输入格式正确的邮箱'
+    //     }
+    //   }
+
+    // phone number
+    case 'PHONE_NUM_NOT_VALID':
       return {
         ...state,
-        mailboxIsValid: false,
+        phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: '请输入格式正确的邮箱'
+          phoneNum: '请输入正确的手机号'
         }
       }
-    case 'MAILBOX_IS_VALID':
+    case 'PHONE_NUM_IS_VALID':
       return {
         ...state,
-        mailboxIsValid: true,
+        phoneNumIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: ''
+          phoneNum: ''
         }
       }
-    case 'MAILBOX_ALREADY_EXISTS':
+    case 'PHONE_NUM_ALREADY_EXISTS':
       return {
         ...state,
-        mailboxIsValid: false,
+        phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: '该邮箱已被注册'
+          phoneNum: '该号码已被注册'
         }
       }
     case 'USERNAME_IS_REQUIRED':

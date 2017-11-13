@@ -11,8 +11,8 @@ import {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  mailboxNotValid,
-  mailboxIsValid } from '../redux/actions/formAction'
+  phoneNumNotValid,
+  phoneNumIsValid } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
@@ -29,12 +29,22 @@ class SignupContainer extends Component {
     }
   }
 
-  checkMailbox = (mailbox) => {
-    const mailboxPattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-    if (!mailboxPattern.test(mailbox)) {
-      this.props.mailboxNotValid()
+  // checkMailbox = (mailbox) => {
+  //   const mailboxPattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+  //   if (!mailboxPattern.test(mailbox)) {
+  //     this.props.mailboxNotValid()
+  //   } else {
+  //     this.props.mailboxIsValid()
+  //   }
+  // }
+
+  // phone number
+  checkPhoneNum = (phoneNum) => {
+    const phoneNumPattern =  /^1\d{10}$/
+    if (!phoneNumPattern.test(phoneNum)) {
+      this.props.phoneNumNotValid()
     } else {
-      this.props.mailboxIsValid()
+      this.props.phoneNumIsValid()
     }
   }
 
@@ -57,23 +67,26 @@ class SignupContainer extends Component {
   recheckForm = function *() {
     let userInfo = yield
 
-    let {username, mailbox, password, passwordConsistent} = userInfo
+    // let {username, mailbox, password, passwordConsistent} = userInfo
+    let {username, phoneNum, password, passwordConsistent} = userInfo
     this.checkUsername(username)
-    this.checkMailbox(mailbox)
+    // this.checkMailbox(mailbox)
+    this.checkPhoneNum(phoneNum)
     this.checkPassword(password)
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
-    if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
+    // if (this.props.signUpState.usernameIsValid && this.props.signUpState.phoneNumIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
+    if (this.props.signUpState.phoneNumIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
       console.log('通过验证')
 
       this.props.signup(userInfo)
     } else {
-      if (!this.props.signUpState.usernameIsValid) {
-        this.props.usernameIsRequired()
-      }
-      if (!this.props.signUpState.mailboxIsValid) {
-        this.props.mailboxNotValid()
+      // if (!this.props.signUpState.usernameIsValid) {
+      //   this.props.usernameIsRequired()
+      // }
+      if (!this.props.signUpState.phoneNumIsValid) {
+        this.props.phoneNumNotValid()
       }
       if (!this.props.signUpState.passwordIsValid) {
         this.props.passwordTooShort()
@@ -93,6 +106,7 @@ class SignupContainer extends Component {
     recheck.next(userInfo)
     setTimeout(() => {
       recheck.next()
+      console.log(this.props.signUpState);
     }, 50)
   }
 
@@ -121,7 +135,8 @@ class SignupContainer extends Component {
       <Signup
         onSubmit={this.handleSubmit}
         checkUsername={this.checkUsername}
-        checkMailbox={this.checkMailbox}
+        // checkMailbox={this.checkMailbox}
+        checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
@@ -138,8 +153,8 @@ SignupContainer.PropTypes = {
   passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
   usernameIsValid: PropTypes.func.isRequired,
-  mailboxNotValid: PropTypes.func.isRequired,
-  mailboxIsValid: PropTypes.func.isRequired
+  phoneNumNotValid: PropTypes.func.isRequired,
+  phoneNumIsValid: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -156,6 +171,6 @@ export default connect(mapStateToProps, {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  mailboxNotValid,
-  mailboxIsValid
+  phoneNumNotValid,
+  phoneNumIsValid
 })(SignupContainer)

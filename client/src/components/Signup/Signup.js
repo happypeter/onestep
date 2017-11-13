@@ -34,14 +34,19 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
-  checkUsername = () => {
-    let username = this.refs.username.getValue().trim()
-    this.props.checkUsername(username)
-  }
+  // checkUsername = () => {
+  //   let username = this.refs.username.getValue().trim()
+  //   this.props.checkUsername(username)
+  // }
 
-  checkMailbox = () => {
-    let mailbox = this.refs.mailbox.getValue().trim()
-    this.props.checkMailbox(mailbox)
+  // checkMailbox = () => {
+  //   let mailbox = this.refs.mailbox.getValue().trim()
+  //   this.props.checkMailbox(mailbox)
+  // }
+
+  checkPhoneNum = () => {
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    this.props.checkPhoneNum(phoneNum)
   }
 
   checkPassword = () => {
@@ -57,11 +62,13 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let username = this.refs.username.getValue().trim()
-    let mailbox = this.refs.mailbox.getValue().trim()
+    // let username = this.refs.username.getValue().trim()
+    // let mailbox = this.refs.mailbox.getValue().trim()
+    let phoneNum = this.refs.phoneNum.getValue().trim()
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.onSubmit({username, mailbox, password, passwordConsistent})
+    // this.props.onSubmit({username, mailbox, password, passwordConsistent})
+    this.props.onSubmit({phoneNum, password, passwordConsistent})
   }
 
   render () {
@@ -69,17 +76,23 @@ class Signup extends Component {
       <SignupWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
-          <TextField
+          {/* <TextField
             ref='username'
             errorText={this.props.errorText.username}
             floatingLabelText='用户名'
             onBlur={this.checkUsername}
-          />
-          <TextField
+          /> */}
+          {/* <TextField
             ref='mailbox'
             errorText={this.props.errorText.mailbox}
             floatingLabelText='邮箱'
             onBlur={this.checkMailbox}
+          /> */}
+          <TextField
+            ref='phoneNum'
+            errorText={this.props.errorText.phoneNum}
+            floatingLabelText='手机号'
+            onBlur={this.checkPhoneNum}
           />
           <TextField
             ref='password'

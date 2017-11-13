@@ -7,46 +7,74 @@ let generateToken = function (user) {
 }
 
 exports.signup = (req, res, next) => {
-  const {username, password, mailbox: mails} = req.body
-  Promise.all([
-    User.findOne({username: username}),
-    User.find({ 'mails.address': mails })
-  ])
-  .then(doc => {
-    if (doc[0]) {
-      console.log('username already exists')
-      return res.status(403).json({
-        errorMsg: 'USERMANE_ALREADY_EXISTS',
-        success: false
-      })
-    }
-    if (doc[1].length !== 0) {
-      console.log('mailbox already exists')
-      return res.status(403).json({
-        errorMsg: 'MAILBOX_ALREADY_EXISTS',
-        success: false
-      })
-    }
+  // const {username, password, mailbox: mails} = req.body
+  // Promise.all([
+  //   User.findOne({username: username}),
+  //   User.find({ 'phoneNum': phoneNum })
+  // ])
+  // .then(doc => {
+  //   if (doc[0]) {
+  //     console.log('username already exists')
+  //     return res.status(403).json({
+  //       errorMsg: 'USERMANE_ALREADY_EXISTS',
+  //       success: false
+  //     })
+  //   }
+  //   if (doc[1].length !== 0) {
+  //     console.log('mailbox already exists')
+  //     return res.status(403).json({
+  //       errorMsg: 'MAILBOX_ALREADY_EXISTS',
+  //       success: false
+  //     })
+  //   }
+  //
+  //   const user = new User()
+  //   user.username = username
+  //   user.password = password
+  //   user.mails.push({
+  //     address: mails,
+  //     verified: false
+  //   })
+  //
+  //   user.save().then(
+  //     user => {
+  //       return res.status(200).json({
+  //         user: {username: user.username},
+  //         token: generateToken({username: user.username}),
+  //         success: true
+  //       })
+  //     }
+  //   )
+  // })
+  // .catch(next)
+  const {password, phoneNum} = req.body
+  console.log(req.body);
+  User.findOne({ 'phoneNum': phoneNum })
+      .then(doc => {
+        if (doc) {
+          console.log(doc);
+          console.log('phoneNum already exists')
+          return res.status(403).json({
+            errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+            success: false
+          })
+        }
 
-    const user = new User()
-    user.username = username
-    user.password = password
-    user.mails.push({
-      address: mails,
-      verified: false
-    })
+        const user = new User()
+        user.phoneNum = phoneNum
+        user.password = password
 
-    user.save().then(
-      user => {
-        return res.status(200).json({
-          user: {username: user.username},
-          token: generateToken({username: user.username}),
-          success: true
-        })
-      }
-    )
-  })
-  .catch(next)
+        user.save().then(
+          user => {
+            return res.status(200).json({
+              user: {phoneNum: user.phoneNum},
+              token: generateToken({phoneNum: user.phoneNum}),
+              success: true
+            })
+          }
+        )
+      })
+      .catch(next)
 }
 
 exports.login = (req, res, next) => {

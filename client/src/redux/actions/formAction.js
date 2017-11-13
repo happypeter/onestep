@@ -6,18 +6,34 @@ export function formErrInit (data) {
   }
 }
 
-export function mailboxNotValid (data) {
+// export function mailboxNotValid (data) {
+//   return dispatch => {
+//     dispatch({
+//       type: 'MAILBOX_NOT_VALID'
+//     })
+//   }
+// }
+//
+// export function mailboxIsValid (data) {
+//   return dispatch => {
+//     dispatch({
+//       type: 'MAILBOX_IS_VALID'
+//     })
+//   }
+// }
+
+export function phoneNumNotValid (data) {
   return dispatch => {
     dispatch({
-      type: 'MAILBOX_NOT_VALID'
+      type: 'PHONE_NUM_NOT_VALID'
     })
   }
 }
 
-export function mailboxIsValid (data) {
+export function phoneNumIsValid (data) {
   return dispatch => {
     dispatch({
-      type: 'MAILBOX_IS_VALID'
+      type: 'PHONE_NUM_IS_VALID'
     })
   }
 }
