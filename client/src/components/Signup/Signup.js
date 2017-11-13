@@ -34,16 +34,6 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
-  // checkUsername = () => {
-  //   let username = this.refs.username.getValue().trim()
-  //   this.props.checkUsername(username)
-  // }
-
-  // checkMailbox = () => {
-  //   let mailbox = this.refs.mailbox.getValue().trim()
-  //   this.props.checkMailbox(mailbox)
-  // }
-
   checkPhoneNum = () => {
     let phoneNum = this.refs.phoneNum.getValue().trim()
     this.props.checkPhoneNum(phoneNum)
@@ -76,18 +66,6 @@ class Signup extends Component {
       <SignupWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
-          {/* <TextField
-            ref='username'
-            errorText={this.props.errorText.username}
-            floatingLabelText='用户名'
-            onBlur={this.checkUsername}
-          /> */}
-          {/* <TextField
-            ref='mailbox'
-            errorText={this.props.errorText.mailbox}
-            floatingLabelText='邮箱'
-            onBlur={this.checkMailbox}
-          /> */}
           <TextField
             ref='phoneNum'
             errorText={this.props.errorText.phoneNum}

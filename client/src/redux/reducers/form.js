@@ -22,16 +22,6 @@ export default (state = initialState, action = {}) => {
         hideUsername: state.hideUsername
       }
       return initializedState
-    // case 'MAILBOX_NOT_VALID':
-    //   return {
-    //     ...state,
-    //     mailboxIsValid: false,
-    //     testErrObj: {
-    //       ...state.testErrObj,
-    //       mailbox: '请输入格式正确的邮箱'
-    //     }
-    //   }
-
     // phone number
     case 'PHONE_NUM_NOT_VALID':
       return {

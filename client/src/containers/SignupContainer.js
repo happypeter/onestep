@@ -29,15 +29,6 @@ class SignupContainer extends Component {
     }
   }
 
-  // checkMailbox = (mailbox) => {
-  //   const mailboxPattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-  //   if (!mailboxPattern.test(mailbox)) {
-  //     this.props.mailboxNotValid()
-  //   } else {
-  //     this.props.mailboxIsValid()
-  //   }
-  // }
-
   // phone number
   checkPhoneNum = (phoneNum) => {
     const phoneNumPattern =  /^1\d{10}$/
@@ -67,10 +58,8 @@ class SignupContainer extends Component {
   recheckForm = function *() {
     let userInfo = yield
 
-    // let {username, mailbox, password, passwordConsistent} = userInfo
     let {username, phoneNum, password, passwordConsistent} = userInfo
     this.checkUsername(username)
-    // this.checkMailbox(mailbox)
     this.checkPhoneNum(phoneNum)
     this.checkPassword(password)
     this.checkpasswordConsistent({password, passwordConsistent})
@@ -79,15 +68,11 @@ class SignupContainer extends Component {
 
     let {phoneNumIsValid, passwordIsValid, passwordConsistentIsValid} = this.props.signUpState
 
-    // if (this.props.signUpState.usernameIsValid && this.props.signUpState.phoneNumIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
     if (phoneNumIsValid && passwordIsValid && passwordConsistentIsValid) {
       console.log('通过验证')
 
       this.props.signup(userInfo)
     } else {
-      // if (!this.props.signUpState.usernameIsValid) {
-      //   this.props.usernameIsRequired()
-      // }
       if (!phoneNumIsValid) {
         this.props.phoneNumNotValid()
       }
@@ -138,7 +123,6 @@ class SignupContainer extends Component {
       <Signup
         onSubmit={this.handleSubmit}
         checkUsername={this.checkUsername}
-        // checkMailbox={this.checkMailbox}
         checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}

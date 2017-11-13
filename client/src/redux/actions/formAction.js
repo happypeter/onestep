@@ -6,22 +6,6 @@ export function formErrInit (data) {
   }
 }
 
-// export function mailboxNotValid (data) {
-//   return dispatch => {
-//     dispatch({
-//       type: 'MAILBOX_NOT_VALID'
-//     })
-//   }
-// }
-//
-// export function mailboxIsValid (data) {
-//   return dispatch => {
-//     dispatch({
-//       type: 'MAILBOX_IS_VALID'
-//     })
-//   }
-// }
-
 export function phoneNumNotValid (data) {
   return dispatch => {
     dispatch({
