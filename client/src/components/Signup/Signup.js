@@ -26,6 +26,13 @@ const FromWrap = styled.form`
     margin: 30px auto;
   }
 `
+const TextFieldWrap = styled.div`
+  display: 'block'
+`
+
+const SmsSendWrap = styled.div`
+  display: ${props => props.hide ? 'none' : 'inline-block'}
+`
 
 const RaisedButtonWrap = styled(RaisedButton)`
   width: 130px;
@@ -47,18 +54,22 @@ class Signup extends Component {
   checkpasswordConsistent = () => {
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.checkpasswordConsistent({password, passwordConsistent})
+    this.props.checkpasswordConsistent({ password, passwordConsistent })
+  }
+
+  sendMsg = () => {
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    console.log("signup.js sendmsg");
+    this.props.sendMsg(phoneNum)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // let username = this.refs.username.getValue().trim()
-    // let mailbox = this.refs.mailbox.getValue().trim()
     let phoneNum = this.refs.phoneNum.getValue().trim()
+    let smsCode = this.refs.smsCode.getValue().trim()
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
-    // this.props.onSubmit({username, mailbox, password, passwordConsistent})
-    this.props.onSubmit({phoneNum, password, passwordConsistent})
+    this.props.onSubmit({ phoneNum, password, passwordConsistent, smsCode })
   }
 
   render () {
@@ -72,6 +83,36 @@ class Signup extends Component {
             floatingLabelText='手机号'
             onBlur={this.checkPhoneNum}
           />
+
+          <TextFieldWrap>
+            <TextField
+              ref='smsCode'
+              floatingLabelText='验证码'
+              errorText={this.props.errorText.smsCode}
+              style={{width: '65%'}}
+            />
+            <SmsSendWrap
+              hide={this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                onClick={this.sendMsg}
+                >
+                发送
+              </RaisedButton>
+            </SmsSendWrap>
+
+            <SmsSendWrap
+              hide={!this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                disabled={true}
+                >
+                {this.props.second}s
+              </RaisedButton>
+            </SmsSendWrap>
+          </TextFieldWrap>
+
+
           <TextField
             ref='password'
             onBlur={this.checkPassword}

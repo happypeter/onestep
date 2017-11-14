@@ -111,7 +111,10 @@ export function sendMsg (phoneNum) {
            res => { console.log(res) }
          )
          .catch(
-           err => { console.log(err) }
+           err => {
+             console.log(err)
+             dispatch({ type: 'SMS_ERR_TRY_AGAIN' })
+           }
          )
     dispatch({ type: 'ALREADY_SEND_MSG' })
   }

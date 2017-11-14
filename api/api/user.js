@@ -8,32 +8,47 @@ let generateToken = function (user) {
 }
 
 exports.signup = (req, res, next) => {
-  const {password, phoneNum} = req.body
-  User.findOne({ 'phoneNum': phoneNum })
-      .then(doc => {
-        if (doc) {
-          console.log('phoneNum already exists')
-          return res.status(403).json({
-            errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-            success: false
-          })
-        }
+  const { password, phoneNum, smsCode } = req.body
+  msg.check(phoneNum, smsCode)
+     .then(
+       msg => {
+         console.log('smsCode: ' + msg)
+         User.findOne({ 'phoneNum': phoneNum })
+             .then(doc => {
+               if (doc) {
+                 console.log('phoneNum already exists')
+                 return res.status(403).json({
+                   errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+                   success: false
+                 })
+               }
 
-        const user = new User()
-        user.phoneNum = phoneNum
-        user.password = password
+               const user = new User()
+               user.phoneNum = phoneNum
+               user.password = password
 
-        user.save().then(
-          user => {
-            return res.status(200).json({
-              user: {phoneNum: user.phoneNum},
-              token: generateToken({phoneNum: user.phoneNum}),
-              success: true
-            })
-          }
-        )
-      })
-      .catch(next)
+               user.save().then(
+                 user => {
+                   return res.status(200).json({
+                     user: {phoneNum: user.phoneNum},
+                     token: generateToken({phoneNum: user.phoneNum}),
+                     success: true
+                   })
+                 }
+               )
+             })
+             .catch(next)
+       }
+     )
+     .catch(
+       err => {
+         console.log(err)
+         return res.status(403).json({
+           errorMsg: err,
+           success: false
+         })
+       }
+     )
 }
 
 exports.login = (req, res, next) => {

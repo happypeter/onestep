@@ -127,7 +127,6 @@ class Login extends Component {
 
             <SmsSendWrap
               hide={!this.props.alreadySendMsg}
-                // hide={this.props.alreadySendMsg}
               >
               <RaisedButton
                 disabled={true}
