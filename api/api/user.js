@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
+const msg = require('./msg')
 
 let generateToken = function (user) {
   return jwt.sign(user, config.jwtSecret, { expiresIn: config.expiresIn })
@@ -36,49 +37,64 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  const {username, password, phoneNum} = req.body
+  const { username, password, phoneNum, smsCode } = req.body
 
   if (username) {
     // 老用户过渡
-    User.findOne({username: username})
-        .then(
-          user => {
-            if (!user) {
-              console.log("the user doesn't exist")
-              return res.status(403).json({
-                errorMsg: 'USER_DOESNOT_EXIST',
-                success: false
-              })
-            } else {
-              if (user.phoneNum) {
-                console.log('该用户已绑定手机号' + user.phoneNum)
-                return res.status(403).json({
-                  errorMsg: 'PLEASE_USE_PHONE_NUM',
-                  success: false
-                })
-              }
-              // update
-              user.phoneNum = phoneNum
-              user.password = password
+    msg.check(phoneNum, smsCode)
+       .then(
+         msg => {
+           console.log('res: ' + msg);
+           User.findOne({username: username})
+               .then(
+                 user => {
+                   if (!user) {
+                     console.log("the user doesn't exist")
+                     return res.status(403).json({
+                       errorMsg: 'USER_DOESNOT_EXIST',
+                       success: false
+                     })
+                   } else {
+                     if (user.phoneNum) {
+                       console.log('该用户已绑定手机号' + user.phoneNum)
+                       return res.status(403).json({
+                         errorMsg: 'PLEASE_USE_PHONE_NUM',
+                         success: false
+                       })
+                     }
+                     // update
+                     user.phoneNum = phoneNum
+                     user.password = password
 
-              user.save().then(
-                user => {
-                  return res.status(200).json({
-                    user: {phoneNum: user.phoneNum},
-                    token: generateToken({phoneNum: user.phoneNum}),
-                    success: true
-                  })
-                }
-              )
-              .catch(
-                err => {
-                  console.log(err)
-                }
-              )
-            }
-          }
-        )
-        .catch(next)
+                     user.save().then(
+                       user => {
+                         return res.status(200).json({
+                           user: {phoneNum: user.phoneNum},
+                           token: generateToken({phoneNum: user.phoneNum}),
+                           success: true
+                         })
+                       }
+                     )
+                     .catch(
+                       err => {
+                         console.log(err)
+                       }
+                     )
+                   }
+                 }
+               )
+               .catch(next)
+         }
+       )
+       .catch(
+         err => {
+           console.log(err)
+           return res.status(403).json({
+             errorMsg: err,
+             success: false
+           })
+         }
+       )
   } else {
     // 手机号登录
     User.findOne({phoneNum: phoneNum})
