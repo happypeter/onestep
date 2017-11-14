@@ -181,6 +181,33 @@ export default (state = initialState, action = {}) => {
           smsCode: ''
         }
       }
+    case 'SMS_ERR_TRY_AGAIN':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '出错 请重新获取验证码'
+        }
+      }
+    case 'SMS_CODE_IS_INVALID':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '验证码不正确'
+        }
+      }
+    case 'EXPIRED_SMS_CODE':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '验证码已过期'
+        }
+      }
     case 'ALTER':
       return {
         ...state,

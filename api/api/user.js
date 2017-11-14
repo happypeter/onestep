@@ -44,7 +44,7 @@ exports.login = (req, res, next) => {
     msg.check(phoneNum, smsCode)
        .then(
          msg => {
-           console.log('res: ' + msg);
+           console.log('smsCode: ' + msg)
            User.findOne({username: username})
                .then(
                  user => {

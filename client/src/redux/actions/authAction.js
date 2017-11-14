@@ -49,7 +49,25 @@ function handleError (error, dispatch) {
         showInvalidTokenNotification(dispatch)
         break
 
-      default: console.log(error.response.data)
+      case 'SMS_NO_RECORED':
+      case 'SMS_ERR_TRY_AGAIN':
+        dispatch({ type: 'SMS_ERR_TRY_AGAIN' })
+        break
+
+      case 'SMS_CODE_IS_INVALID':
+        dispatch({ type: 'SMS_CODE_IS_INVALID' })
+        break
+
+      case 'EXPIRED_SMS_CODE':
+        dispatch({ type: 'EXPIRED_SMS_CODE' })
+        break
+
+      default:
+        dispatch({ type: 'UNHANDLED_ERROR' })
+        setTimeout(function () {
+          dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
+        }, 4000)
+        console.log(error.response.data)
     }
   } else {
     dispatch({ type: 'UNHANDLED_ERROR' })

@@ -15,6 +15,9 @@ exports.send = (req, res) => {
   let phoneNum = req.body.phoneNum
   // 六位随机验证码
   let smsCode = Math.random().toString().slice(-6)
+  while (smsCode.length !== 6) {
+    smsCode = Math.random().toString().slice(-6)
+  }
   smsClient.sendSMS({
     PhoneNumbers: phoneNum,
     SignName: config.SignName,
@@ -26,7 +29,12 @@ exports.send = (req, res) => {
       console.log('已成功发送短信')
     }
   }, function (err) {
+    console.log('ERR ERR ERR')
     console.log(err)
+    return res.status(403).json({
+      errorMsg: err.data.Message,
+      success: false
+    })
   })
 }
 
@@ -59,7 +67,8 @@ exports.check = (phoneNum, code) => {
           let content = detail.Content
           let pattern = /\d{6}/
           if (!pattern.exec(content)) {
-            reject('出错 请重新获取验证码')
+            console.log('出错 请重新获取验证码')
+            reject('SMS_ERR_TRY_AGAIN')
           }
           let realCode = pattern.exec(content)[0]
           if (realCode === code) {
@@ -71,13 +80,16 @@ exports.check = (phoneNum, code) => {
 
               resolve('pass')
             } else {
-              reject('验证码过期')
+              console.log('验证码过期')
+              reject('EXPIRED_SMS_CODE')
             }
           } else {
-            reject('验证码错误')
+            console.log('验证码错误')
+            reject('SMS_CODE_IS_INVALID')
           }
         } else {
-          reject(`${sendDate + '无验证码记录'}`)
+          console.log(`${sendDate + '无验证码记录'}`)
+          reject('SMS_NO_RECORED')
         }
       }
     }, function (err) {
