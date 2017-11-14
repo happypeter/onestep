@@ -13,6 +13,11 @@ import {
   usernameIsValid,
   phoneNumNotValid,
   phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg,
   alter
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
@@ -56,6 +61,44 @@ class LoginContainer extends Component {
     }
   }
 
+  checkSmsCode = (smsCode) => {
+    if (!smsCode) {
+      this.props.smsCodeIsRequired()
+    } else {
+      this.props.smsCodeIsValid()
+    }
+  }
+
+  timer = () => {
+      let promise = new Promise((resolve, reject) => {
+        let setTimer = setInterval(
+          () => {
+            this.props.countdown()
+
+            if (this.props.loginState.second <= 0) {
+              this.props.readyToSendMsg()
+              console.log(this.props.loginState)
+              resolve(setTimer)
+            }
+          }
+          , 1000)
+      })
+      promise.then((setTimer) => {
+        clearInterval(setTimer)
+      })
+    }
+
+  sendMsg = (phoneNum) => {
+    this.checkPhoneNum(phoneNum)
+    if (!this.props.loginState.phoneNumIsValid) {
+      console.log('phoneNum is not valid')
+      return
+    }
+
+    this.props.sendMsg(phoneNum)
+    this.timer()
+  }
+
   alter = () => {
     this.props.formErrInit()
     this.props.alter()
@@ -64,33 +107,35 @@ class LoginContainer extends Component {
   recheckForm = function *() {
     let userInfo = yield
 
-    let {username, password, passwordConsistent, phoneNum} = userInfo
+    let { username, password, passwordConsistent, phoneNum, smsCode } = userInfo
     this.checkUsername(username)
-    this.checkPassword(password)
     this.checkPhoneNum(phoneNum)
+    this.checkSmsCode(smsCode)
+    this.checkPassword(password)
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
-    let {hideUsername, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid} = this.props.loginState
+    let { hideUsername, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
 
     if (
         (hideUsername && phoneNumIsValid && passwordIsValid)
         ||
-        (!hideUsername && phoneNumIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
+        (!hideUsername && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
       ) {
       console.log('通过验证')
 
       this.props.login(userInfo)
     } else {
-      if (!usernameIsValid) {
-        this.props.usernameIsRequired()
-      }
-      if (!passwordIsValid) {
-        this.props.passwordIsRequired()
-      }
-      if (!passwordConsistentIsValid) {
-        this.props.passwordsInconsistent()
-      }
+      // delete
+      // if (!usernameIsValid) {
+      //   this.props.usernameIsRequired()
+      // }
+      // if (!passwordIsValid) {
+      //   this.props.passwordIsRequired()
+      // }
+      // if (!passwordConsistentIsValid) {
+      //   this.props.passwordsInconsistent()
+      // }
       console.log('未通过验证')
     }
   }
@@ -99,7 +144,6 @@ class LoginContainer extends Component {
     let foo = this.recheckForm()
     foo.next()
     foo.next(userInfo)
-    console.log(userInfo);
     setTimeout(() => {
         foo.next()
     },
@@ -136,9 +180,12 @@ class LoginContainer extends Component {
         checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
+        sendMsg={this.sendMsg}
         alter={this.alter}
         errorText={this.props.loginState.testErrObj}
         hideUsername={this.props.loginState.hideUsername}
+        alreadySendMsg={this.props.loginState.alreadySendMsg}
+        second={this.props.loginState.second}
       />
     )
   }
@@ -154,7 +201,12 @@ LoginContainer.propTypes = {
   usernameIsValid: PropTypes.func.isRequired,
   phoneNumNotValid: PropTypes.func.isRequired,
   phoneNumIsValid: PropTypes.func.isRequired,
-  alter: PropTypes.func.isRequired
+  smsCodeIsRequired: PropTypes.func.isRequired,
+  smsCodeIsValid: PropTypes.func.isRequired,
+  sendMsg: PropTypes.func.isRequired,
+  alter: PropTypes.func.isRequired,
+  countdown: PropTypes.func.isRequired,
+  readyToSendMsg: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -173,5 +225,10 @@ export default connect(mapStateToProps, {
   usernameIsValid,
   phoneNumNotValid,
   phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg,
   alter
 })(LoginContainer)

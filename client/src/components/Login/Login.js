@@ -31,6 +31,10 @@ const TextFieldWrap = styled.div`
   display: ${props => props.hide ? 'none' : 'block'}
 `
 
+const SmsSendWrap = styled.div`
+  display: ${props => props.hide ? 'none' : 'inline-block'}
+`
+
 const RaisedButtonWrap = styled(RaisedButton)`
   width: 130px;
   margin-top: 30px;
@@ -59,6 +63,11 @@ class Login extends Component {
     this.props.checkpasswordConsistent({password, passwordConsistent})
   }
 
+  sendMsg = () => {
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    this.props.sendMsg(phoneNum)
+  }
+
   alter = () => {
     this.props.alter()
   }
@@ -67,10 +76,11 @@ class Login extends Component {
     e.preventDefault()
     let username = this.refs.username.getValue().trim()
     let phoneNum = this.refs.phoneNum.getValue().trim()
+    let smsCode = this.refs.smsCode.getValue().trim()
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
 
-    this.props.onSubmit({username, password, phoneNum, passwordConsistent})
+    this.props.onSubmit({username, phoneNum, smsCode, password, passwordConsistent})
   }
 
   render () {
@@ -78,6 +88,7 @@ class Login extends Component {
       <LoginWrap>
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
+
           <TextFieldWrap
             hide={this.props.hideUsername}>
             <TextField
@@ -94,6 +105,37 @@ class Login extends Component {
             errorText={this.props.errorText.phoneNum}
             onBlur={this.checkPhoneNum}
           />
+
+          <TextFieldWrap
+            hide={this.props.hideUsername}
+            >
+            <TextField
+              ref='smsCode'
+              floatingLabelText='验证码'
+              errorText={this.props.errorText.smsCode}
+              style={{width: '65%'}}
+            />
+            <SmsSendWrap
+              hide={this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                onClick={this.sendMsg}
+                >
+                发送
+              </RaisedButton>
+            </SmsSendWrap>
+
+            <SmsSendWrap
+              hide={!this.props.alreadySendMsg}
+                // hide={this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                disabled={true}
+                >
+                {this.props.second}s
+              </RaisedButton>
+            </SmsSendWrap>
+          </TextFieldWrap>
 
           <TextField
             ref='password'
@@ -119,6 +161,7 @@ class Login extends Component {
             type='submit'
             label='登录'
           />
+
           <RaisedButtonWrap
             label={this.props.hideUsername ? '我是老用户' : '手机号登录'}
             onClick={this.alter}

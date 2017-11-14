@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function formErrInit (data) {
   return dispatch => {
     dispatch({
@@ -78,10 +80,51 @@ export function passwordsConsistent (data) {
   }
 }
 
+export function smsCodeIsRequired () {
+  return dispatch => {
+    dispatch({
+      type: 'SMSCODE_IS_REQUIRED'
+    })
+  }
+}
+
+export function smsCodeIsValid () {
+  return dispatch => {
+    dispatch({
+      type: 'SMSCODE_IS_VALID'
+    })
+  }
+}
+
 export function alter () {
   return dispatch => {
     dispatch({
       type: 'ALTER'
     })
+  }
+}
+
+export function sendMsg (phoneNum) {
+  return dispatch => {
+    axios.post('http://localhost:3001/msg', { phoneNum: phoneNum })
+         .then(
+           res => { console.log(res) }
+         )
+         .catch(
+           err => { console.log(err) }
+         )
+    dispatch({ type: 'ALREADY_SEND_MSG' })
+  }
+}
+
+export function countdown () {
+  return dispatch => {
+    dispatch({ type: 'COUNTDOWN' })
+  }
+}
+
+export function readyToSendMsg () {
+  return dispatch => {
+    dispatch({ type: 'READY_TO_SEND_MSG' })
   }
 }

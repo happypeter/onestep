@@ -1,17 +1,22 @@
+import config from '../../config/config'
+
 const initialState = {
   usernameIsValid: false,
   // mailboxIsValid: false,
   phoneNumIsValid: false,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
+  smsCodeIsValid: false,
   testErrObj: {
     username: '',
-    // mailbox: '',
     phoneNum: '',
     password: '',
-    passwordConsistent: ''
+    passwordConsistent: '',
+    smsCode: ''
   },
-  hideUsername: true
+  hideUsername: true,
+  alreadySendMsg: false,
+  second: config.smsTimeLimit
 }
 
 export default (state = initialState, action = {}) => {
@@ -158,10 +163,44 @@ export default (state = initialState, action = {}) => {
           passwordConsistent: ''
         }
       }
+    case 'SMSCODE_IS_REQUIRED':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '请输入验证码'
+        }
+      }
+    case 'SMSCODE_IS_VALID':
+      return {
+        ...state,
+        smsCodeIsValid: true,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: ''
+        }
+      }
     case 'ALTER':
       return {
         ...state,
         hideUsername: !state.hideUsername
+      }
+    case 'ALREADY_SEND_MSG':
+      return {
+        ...state,
+        alreadySendMsg: true
+      }
+    case 'COUNTDOWN':
+      return {
+        ...state,
+        second: state.second - 1
+      }
+    case 'READY_TO_SEND_MSG':
+      return {
+        ...state,
+        alreadySendMsg: false,
+        second: config.smsTimeLimit
       }
     default:
       return state
