@@ -23,19 +23,27 @@ exports.send = (req, res) => {
     SignName: config.SignName,
     TemplateCode: config.TemplateCode,
     TemplateParam: `${'{"number":' + smsCode + '}'}`
-  }).then(function (res) {
-    let {Code} = res
+  }).then(function (smsRes) {
+    let {Code} = smsRes
     if (Code === 'OK') {
       console.log('已成功发送短信')
+      return res.status(200).json({
+        message: '已成功发送短信',
+        success: true
+      })
     }
   }, function (err) {
-    console.log('ERR ERR ERR')
+    console.log('短信发送失败')
     console.log(err)
     return res.status(403).json({
-      errorMsg: err.data.Message,
+      errorMsg: err,
       success: false
     })
-  })
+  }).catch(
+    err => {
+      console.log(err)
+    }
+  )
 }
 
 // check smsCode
