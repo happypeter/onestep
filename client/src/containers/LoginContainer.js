@@ -74,7 +74,7 @@ class LoginContainer extends Component {
         let setTimer = setInterval(
           () => {
             this.props.countdown()
-            console.log(this.props.loginState.second);
+            // console.log(this.props.loginState.second)
             if (this.props.loginState.second <= 0) {
               this.props.readyToSendMsg()
               console.log(this.props.loginState)
@@ -90,7 +90,7 @@ class LoginContainer extends Component {
     }
 
   sendMsg = (phoneNum) => {
-    console.log("SEND MESSAGE SMS CODE");
+    console.log('SEND MESSAGE SMS CODE')
     this.checkPhoneNum(phoneNum)
     if (!this.props.loginState.phoneNumIsValid) {
       console.log('phoneNum is not valid')
