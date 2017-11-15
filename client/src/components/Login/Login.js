@@ -20,8 +20,11 @@ const FromWrap = styled.form`
   box-shadow: 0 0 0 0px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
   text-align: center;
   padding: 0 1em 1em;
-  margin-top: 10%;
-  @media (min-width: 400px): {
+  margin-top: 0;
+  @media (min-width: 325px) {
+    margin-top: 10%;
+  }
+  @media (min-width: 400px) {
     width: 400px;
     margin: 30px auto;
   }
@@ -35,9 +38,16 @@ const SmsSendWrap = styled.div`
   display: ${props => props.hide ? 'none' : 'inline-block'}
 `
 
+const ButtonsWrap = styled.div`
+  display: flex;
+  flex-direction: ${props => props.hide ? 'column' : 'row'}
+`
+
 const RaisedButtonWrap = styled(RaisedButton)`
   width: 130px;
   margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
 `
 
 class Login extends Component {
@@ -161,18 +171,20 @@ class Login extends Component {
             />
           </TextFieldWrap>
 
-          <RaisedButtonWrap
-            secondary={true}
-            type='submit'
-            label='登录'
-          />
-
-          <RaisedButtonWrap
-            label={this.props.hideUsername ? '我是老用户' : '手机号登录'}
-            onClick={this.alter}
-            type="reset"
-          />
+          <ButtonsWrap hide={this.props.hideUsername}>
+            <RaisedButtonWrap
+              secondary={true}
+              type='submit'
+              label='登录'
+            />
+            <RaisedButtonWrap
+              label={this.props.hideUsername ? '我是老用户' : '手机号登录'}
+              onClick={this.alter}
+              type="reset"
+            />
+          </ButtonsWrap>
         </FromWrap>
+
         <Footer />
       </LoginWrap>
     )
