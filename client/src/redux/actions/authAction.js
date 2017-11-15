@@ -1,4 +1,9 @@
 import axios from 'axios'
+import {
+  showLoginNotification,
+  showLogoutNotification,
+  showSignupNotification,
+  showInvalidTokenNotification } from './notificationAction'
 
 function setCurrentUserInfo (data) {
   return {
@@ -13,18 +18,62 @@ function handleError (error, dispatch) {
       case 'USER_DOESNOT_EXIST':
         dispatch({ type: 'USER_DOESNOT_EXIST' })
         break
+
       case 'INVALID_PASSWORD':
         dispatch({ type: 'INVALID_PASSWORD' })
         break
+
       case 'USERMANE_ALREADY_EXISTS':
         dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
         break
-      case 'MAILBOX_ALREADY_EXISTS':
-        dispatch({ type: 'MAILBOX_ALREADY_EXISTS' })
+
+      case 'PHONE_NUM_DOESNOT_EXIST':
+        dispatch({ type: 'PHONE_NUM_DOESNOT_EXIST' })
         break
-      default: console.log(error.response.data)
+
+      case 'PHONE_NUM_ALREADY_EXISTS':
+        dispatch({ type: 'PHONE_NUM_ALREADY_EXISTS' })
+        break
+
+      case 'PLEASE_USE_PHONE_NUM':
+        dispatch({ type: 'PLEASE_USE_PHONE_NUM' })
+        break
+
+      case 'INVALID_TOKEN':
+      case 'EXPIRED_TOKEN':
+      case 'TOKEN_NOT_FOUND':
+        dispatch({
+          type: 'TOKEN_IS_INVALID',
+          error
+        })
+        showInvalidTokenNotification(dispatch)
+        break
+
+      case 'SMS_NO_RECORED':
+      case 'SMS_ERR_TRY_AGAIN':
+        dispatch({ type: 'SMS_ERR_TRY_AGAIN' })
+        break
+
+      case 'SMS_CODE_IS_INVALID':
+        dispatch({ type: 'SMS_CODE_IS_INVALID' })
+        break
+
+      case 'EXPIRED_SMS_CODE':
+        dispatch({ type: 'EXPIRED_SMS_CODE' })
+        break
+
+      default:
+        dispatch({ type: 'UNHANDLED_ERROR' })
+        setTimeout(function () {
+          dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
+        }, 4000)
+        console.log(error.response.data)
     }
   } else {
+    dispatch({ type: 'UNHANDLED_ERROR' })
+    setTimeout(function () {
+      dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
+    }, 4000)
     console.log(error)
   }
 }
@@ -37,12 +86,10 @@ export function login (data) {
              const token = res.data.token
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
-             window.sessionStorage.setItem('user', user.username)
+             window.sessionStorage.setItem('user', user.phoneNum)
+
              dispatch(setCurrentUserInfo(user))
-             setTimeout(function timer () {
-               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-             }
-             , 4000)
+             showLoginNotification(dispatch)
            }
          )
          .catch(
@@ -61,15 +108,13 @@ export function signup (data) {
              const token = res.data.token
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
-             window.sessionStorage.setItem('user', user.username)
+             window.sessionStorage.setItem('user', user.phoneNum)
              dispatch({
                type: 'SIGN_UP',
                userInfo: user
              })
-             setTimeout(function timer () {
-               dispatch({ type: 'RM_LOGIN_NOTIFICATION' })
-             }
-             , 4000)
+
+             showSignupNotification(dispatch)
            }
          )
          .catch(
@@ -85,10 +130,8 @@ export function logout (data) {
     dispatch({ type: 'LOG_OUT' })
     window.sessionStorage.removeItem('user')
     window.sessionStorage.removeItem('jwtToken')
-    setTimeout(function timer () {
-      dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
-    }
-    , 4000)
+
+    showLogoutNotification(dispatch)
   }
 }
 
@@ -98,6 +141,30 @@ export function fakeWechatLogin (user) {
       type: 'FAKE_WECHATCODE_LOGIN',
       userInfo: user
     })
+    showLoginNotification(dispatch)
     window.sessionStorage.setItem('user', 'wechatCode')
+  }
+}
+
+export const checkToken = (token) => {
+  return dispatch => {
+    axios.post('http://localhost:3001/auth', {token: token})
+         .then(
+           res => {
+             if (res.data.success !== true) {
+               throw new Error('Fail to check token: ' + res)
+             } else {
+               dispatch({
+                 type: 'TOKEN_IS_VALID',
+                 success: true
+               })
+             }
+           }
+         )
+         .catch(
+           error => {
+             handleError(error, dispatch)
+           }
+         )
   }
 }

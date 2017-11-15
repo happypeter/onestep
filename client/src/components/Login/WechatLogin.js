@@ -45,14 +45,15 @@ const Button = styled(Link)`
 class WechatLogin extends Component {
 
   handleClick = () => {
-   this.props.onClick()
+  //  this.props.onClick()
+  console.log("上线 MVP 以后再做")
   }
 
   render () {
     return (
       <WechatLoginWrap>
         <Mcode onClick={this.handleClick}>
-          点击假装微信扫码登录
+          微信扫码登录
         </Mcode>
         <ButtonsWrap>
           <Button to={{

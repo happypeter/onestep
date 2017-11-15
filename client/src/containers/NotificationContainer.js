@@ -4,7 +4,9 @@ import Notification from '../components/Notification/Notification'
 import {
   removeLogoutNotification,
   removeLoginNotification,
-  removeSignupNotification } from '../redux/actions/notificationAction'
+  removeSignupNotification,
+  removeUnhandledErrNotification,
+  removeInvalidTokenNotification } from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {
@@ -21,11 +23,19 @@ class NotificationContainer extends Component {
     this.props.removeSignupNotification()
   }
 
+  removeUnhandledErrNotification = () => {
+    this.props.removeUnhandledErrNotification()
+  }
+
+  removeInvalidTokenNotification = () => {
+    this.props.removeInvalidTokenNotification()
+  }
+
   render () {
     return (
       <div>
         {
-          this.props.currentUserInfo.showLogoutNotification ?
+          this.props.notification.showLogoutNotification ?
           (
             <Notification
             removeNotification={this.removeLogoutNotification}
@@ -35,7 +45,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showLoginNotification ?
+          this.props.notification.showLoginNotification ?
           (
             <Notification
             removeNotification={this.removeLoginNotification}
@@ -45,11 +55,31 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.currentUserInfo.showSignupNotification ?
+          this.props.notification.showSignupNotification ?
           (
             <Notification
             removeNotification={this.removeSignupNotification}
             text={'账号注册成功'}
+            />
+          ) :
+          ''
+        }
+        {
+          this.props.notification.showInvalidTokenNotification ?
+          (
+            <Notification
+            removeNotification={this.removeInvalidTokenNotification}
+            text={'登录过期 请重新登录'}
+            />
+          ) :
+          ''
+        }
+        {
+          this.props.notification.showUnhandledErrNotification ?
+          (
+            <Notification
+            removeNotification={this.removeUnhandledErrNotification}
+            text={'网络错误 操作失败'}
             />
           ) :
           ''
@@ -62,15 +92,20 @@ class NotificationContainer extends Component {
 NotificationContainer.PropTypes = {
   removeLogoutNotification: PropTypes.func.isRequired,
   removeLoginNotification: PropTypes.func.isRequired,
-  removeSignupNotification: PropTypes.func.isRequired
+  removeSignupNotification: PropTypes.func.isRequired,
+  removeUnhandledErrNotification: PropTypes.func.isRequired,
+  removeInvalidTokenNotification: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  currentUserInfo: state.fakeAuth
+  // curr: state.fakeAuth,
+  notification: state.notification
 })
 
 export default connect(mapStateToProps,{
   removeLogoutNotification,
   removeLoginNotification,
-  removeSignupNotification
+  removeSignupNotification,
+  removeUnhandledErrNotification,
+  removeInvalidTokenNotification
 })(NotificationContainer)

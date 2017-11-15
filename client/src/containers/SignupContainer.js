@@ -11,8 +11,14 @@ import {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  mailboxNotValid,
-  mailboxIsValid } from '../redux/actions/formAction'
+  phoneNumNotValid,
+  phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg
+} from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
@@ -29,12 +35,12 @@ class SignupContainer extends Component {
     }
   }
 
-  checkMailbox = (mailbox) => {
-    const mailboxPattern = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-    if (!mailboxPattern.test(mailbox)) {
-      this.props.mailboxNotValid()
+  checkPhoneNum = (phoneNum) => {
+    const phoneNumPattern =  /^1\d{10}$/
+    if (!phoneNumPattern.test(phoneNum)) {
+      this.props.phoneNumNotValid()
     } else {
-      this.props.mailboxIsValid()
+      this.props.phoneNumIsValid()
     }
   }
 
@@ -54,26 +60,92 @@ class SignupContainer extends Component {
     }
   }
 
-  handleSubmit = (userInfo) => {
-    if (this.props.signUpState.usernameIsValid && this.props.signUpState.mailboxIsValid && this.props.signUpState.passwordIsValid && this.props.signUpState.passwordConsistentIsValid) {
+  checkSmsCode = (smsCode) => {
+    if (!smsCode) {
+      this.props.smsCodeIsRequired()
+    } else {
+      this.props.smsCodeIsValid()
+    }
+  }
+
+  timer = () => {
+      let promise = new Promise((resolve, reject) => {
+        let setTimer = setInterval(
+          () => {
+            this.props.countdown()
+            // console.log(this.props.signUpState.second)
+            if (this.props.signUpState.second <= 0) {
+              this.props.readyToSendMsg()
+              console.log(this.props.signUpState)
+              resolve(setTimer)
+            }
+          }
+          , 1000)
+      })
+      promise.then((setTimer) => {
+        clearInterval(setTimer)
+        console.log('CLEAR INTERVAL')
+      })
+      .catch(
+        err => {
+          console.log(err)
+        }
+      )
+    }
+
+  sendMsg = (phoneNum) => {
+    this.checkPhoneNum(phoneNum)
+    if (!this.props.signUpState.phoneNumIsValid) {
+      console.log('phoneNum is not valid')
+      return
+    }
+
+    this.props.sendMsg(phoneNum)
+    this.timer()
+  }
+
+  recheckForm = function *() {
+    let userInfo = yield
+
+    let { username, phoneNum, password, passwordConsistent, smsCode } = userInfo
+    this.checkUsername(username)
+    this.checkPhoneNum(phoneNum)
+    this.checkSmsCode(smsCode)
+    this.checkPassword(password)
+    this.checkpasswordConsistent({password, passwordConsistent})
+
+    yield
+
+    let { phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.signUpState
+
+    if (phoneNumIsValid && smsCodeIsValid && passwordIsValid && passwordConsistentIsValid) {
       console.log('通过验证')
-      console.log(userInfo)
+
       this.props.signup(userInfo)
     } else {
-      if (!this.props.signUpState.usernameIsValid) {
-        this.props.usernameIsRequired()
-      }
-      if (!this.props.signUpState.mailboxIsValid) {
-        this.props.mailboxNotValid()
-      }
-      if (!this.props.signUpState.passwordIsValid) {
-        this.props.passwordTooShort()
-      }
-      if (!this.props.signUpState.passwordConsistentIsValid) {
-        this.props.passwordsInconsistent()
-      }
+      // if (!phoneNumIsValid) {
+      //   this.props.phoneNumNotValid()
+      // }
+      // if (!passwordIsValid) {
+      //   this.props.passwordTooShort()
+      // }
+      // if (!passwordConsistentIsValid) {
+      //   this.props.passwordsInconsistent()
+      // }
       console.log('未通过验证')
     }
+  }
+
+
+  handleSubmit = (userInfo) => {
+    let recheck = this.recheckForm()
+    recheck.next()
+    console.log(userInfo);
+    recheck.next(userInfo)
+    setTimeout(() => {
+      recheck.next()
+      console.log(this.props.signUpState);
+    }, 50)
   }
 
   render () {
@@ -101,10 +173,14 @@ class SignupContainer extends Component {
       <Signup
         onSubmit={this.handleSubmit}
         checkUsername={this.checkUsername}
-        checkMailbox={this.checkMailbox}
+        checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
+        checkSmsCode={this.checkSmsCode}
         errorText={this.props.signUpState.testErrObj}
+        sendMsg={this.sendMsg}
+        alreadySendMsg={this.props.signUpState.alreadySendMsg}
+        second={this.props.signUpState.second}
       />
     )
   }
@@ -118,8 +194,13 @@ SignupContainer.PropTypes = {
   passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
   usernameIsValid: PropTypes.func.isRequired,
-  mailboxNotValid: PropTypes.func.isRequired,
-  mailboxIsValid: PropTypes.func.isRequired
+  phoneNumNotValid: PropTypes.func.isRequired,
+  phoneNumIsValid: PropTypes.func.isRequired,
+  smsCodeIsRequired: PropTypes.func.isRequired,
+  smsCodeIsValid: PropTypes.func.isRequired,
+  sendMsg: PropTypes.func.isRequired,
+  countdown: PropTypes.func.isRequired,
+  readyToSendMsg: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -136,6 +217,11 @@ export default connect(mapStateToProps, {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  mailboxNotValid,
-  mailboxIsValid
+  phoneNumNotValid,
+  phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg
 })(SignupContainer)

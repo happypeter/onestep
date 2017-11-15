@@ -7,8 +7,18 @@ import {
   formErrInit,
   passwordIsRequired,
   passwordIsValid,
+  passwordsInconsistent,
+  passwordsConsistent,
   usernameIsRequired,
-  usernameIsValid
+  usernameIsValid,
+  phoneNumNotValid,
+  phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg,
+  alter
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
@@ -26,6 +36,15 @@ class LoginContainer extends Component {
     }
   }
 
+  checkPhoneNum = (phoneNum) => {
+    const phoneNumPattern =  /^1\d{10}$/
+    if (!phoneNumPattern.test(phoneNum)) {
+      this.props.phoneNumNotValid()
+    } else {
+      this.props.phoneNumIsValid()
+    }
+  }
+
   checkPassword = (password) => {
     if (!password) {
       this.props.passwordIsRequired()
@@ -34,20 +53,104 @@ class LoginContainer extends Component {
     }
   }
 
-  handleSubmit = (userInfo) => {
-    if (this.props.loginState.usernameIsValid && this.props.loginState.passwordIsValid) {
+  checkpasswordConsistent = (passwords) => {
+    if (passwords.passwordConsistent !== passwords.password) {
+      this.props.passwordsInconsistent()
+    } else {
+      this.props.passwordsConsistent()
+    }
+  }
+
+  checkSmsCode = (smsCode) => {
+    if (!smsCode) {
+      this.props.smsCodeIsRequired()
+    } else {
+      this.props.smsCodeIsValid()
+    }
+  }
+
+  timer = () => {
+      let promise = new Promise((resolve, reject) => {
+        let setTimer = setInterval(
+          () => {
+            this.props.countdown()
+            // console.log(this.props.loginState.second)
+            if (this.props.loginState.second <= 0) {
+              this.props.readyToSendMsg()
+              console.log(this.props.loginState)
+              resolve(setTimer)
+            }
+          }
+          , 1000)
+      })
+      promise.then((setTimer) => {
+        console.log('CLEAR INTERVAL')
+        clearInterval(setTimer)
+      })
+    }
+
+  sendMsg = (phoneNum) => {
+    console.log('SEND MESSAGE SMS CODE')
+    this.checkPhoneNum(phoneNum)
+    if (!this.props.loginState.phoneNumIsValid) {
+      console.log('phoneNum is not valid')
+      return
+    }
+
+    this.props.sendMsg(phoneNum)
+    this.timer()
+  }
+
+  alter = () => {
+    this.props.formErrInit()
+    this.props.alter()
+  }
+
+  recheckForm = function *() {
+    let userInfo = yield
+
+    let { username, password, passwordConsistent, phoneNum, smsCode } = userInfo
+    this.checkUsername(username)
+    this.checkPhoneNum(phoneNum)
+    this.checkSmsCode(smsCode)
+    this.checkPassword(password)
+    this.checkpasswordConsistent({password, passwordConsistent})
+
+    yield
+    let { hideUsername, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
+
+    if (
+        (hideUsername && phoneNumIsValid && passwordIsValid)
+        ||
+        (!hideUsername && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
+      ) {
       console.log('通过验证')
-      console.log(userInfo)
+
       this.props.login(userInfo)
     } else {
-      if (!this.props.loginState.usernameIsValid) {
-        this.props.usernameIsRequired()
-      }
-      if (!this.props.loginState.passwordIsValid) {
-        this.props.passwordIsRequired()
-      }
+      // delete
+      // if (!usernameIsValid) {
+      //   this.props.usernameIsRequired()
+      // }
+      // if (!passwordIsValid) {
+      //   this.props.passwordIsRequired()
+      // }
+      // if (!passwordConsistentIsValid) {
+      //   this.props.passwordsInconsistent()
+      // }
       console.log('未通过验证')
     }
+  }
+
+  handleSubmit = (userInfo) => {
+    let foo = this.recheckForm()
+    foo.next()
+    foo.next(userInfo)
+    setTimeout(() => {
+        foo.next()
+    },
+      50
+    )
   }
 
   render () {
@@ -76,8 +179,16 @@ class LoginContainer extends Component {
       <Login
         onSubmit={this.handleSubmit}
         checkUsername={this.checkUsername}
+        checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
+        checkpasswordConsistent={this.checkpasswordConsistent}
+        checkSmsCode={this.checkSmsCode}
+        sendMsg={this.sendMsg}
+        alter={this.alter}
         errorText={this.props.loginState.testErrObj}
+        hideUsername={this.props.loginState.hideUsername}
+        alreadySendMsg={this.props.loginState.alreadySendMsg}
+        second={this.props.loginState.second}
       />
     )
   }
@@ -87,8 +198,18 @@ LoginContainer.propTypes = {
   login: PropTypes.func.isRequired,
   passwordIsRequired: PropTypes.func.isRequired,
   passwordIsValid: PropTypes.func.isRequired,
+  passwordsInconsistent: PropTypes.func.isRequired,
+  passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
-  usernameIsValid: PropTypes.func.isRequired
+  usernameIsValid: PropTypes.func.isRequired,
+  phoneNumNotValid: PropTypes.func.isRequired,
+  phoneNumIsValid: PropTypes.func.isRequired,
+  smsCodeIsRequired: PropTypes.func.isRequired,
+  smsCodeIsValid: PropTypes.func.isRequired,
+  sendMsg: PropTypes.func.isRequired,
+  alter: PropTypes.func.isRequired,
+  countdown: PropTypes.func.isRequired,
+  readyToSendMsg: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -101,6 +222,16 @@ export default connect(mapStateToProps, {
   formErrInit,
   passwordIsRequired,
   passwordIsValid,
+  passwordsInconsistent,
+  passwordsConsistent,
   usernameIsRequired,
-  usernameIsValid
+  usernameIsValid,
+  phoneNumNotValid,
+  phoneNumIsValid,
+  smsCodeIsRequired,
+  smsCodeIsValid,
+  sendMsg,
+  countdown,
+  readyToSendMsg,
+  alter
 })(LoginContainer)

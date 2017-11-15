@@ -28,7 +28,7 @@ const Button = styled(Link)`
   }
 `
 
-const Username = styled.span`
+const Username = styled(Link)`
   font-size: 1em;
   padding: 0.5em;
   color: rgb(255, 226, 0);
@@ -55,7 +55,7 @@ class TopHeader extends Component {
 
     const LogoutButtons = (
       <SideButtonsWrap>
-        <Username>{this.props.sideButtons}</Username>
+        <Username to='/profile'>{this.props.sideButtons}</Username>
         <Button to='/' onClick={this.props.logout}>退出</Button>
       </SideButtonsWrap>
     )

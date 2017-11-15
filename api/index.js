@@ -13,6 +13,8 @@ mongoose.connect('mongodb://localhost:27017/haoqicat', {
 const db = mongoose.connection
 db.on('error', console.log)
 db.once('open', function () {
+  require('./models/user')
+  require('./models/contract')
   console.log('success!')
 })
 

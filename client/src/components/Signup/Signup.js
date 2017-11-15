@@ -26,6 +26,13 @@ const FromWrap = styled.form`
     margin: 30px auto;
   }
 `
+const TextFieldWrap = styled.div`
+  display: 'block'
+`
+
+const SmsSendWrap = styled.div`
+  display: ${props => props.hide ? 'none' : 'inline-block'}
+`
 
 const RaisedButtonWrap = styled(RaisedButton)`
   width: 130px;
@@ -34,14 +41,9 @@ const RaisedButtonWrap = styled(RaisedButton)`
 
 class Signup extends Component {
 
-  checkUsername = () => {
-    let username = this.refs.username.getValue().trim()
-    this.props.checkUsername(username)
-  }
-
-  checkMailbox = () => {
-    let mailbox = this.refs.mailbox.getValue().trim()
-    this.props.checkMailbox(mailbox)
+  checkPhoneNum = () => {
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    this.props.checkPhoneNum(phoneNum)
   }
 
   checkPassword = () => {
@@ -52,16 +54,27 @@ class Signup extends Component {
   checkpasswordConsistent = () => {
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.checkpasswordConsistent({password, passwordConsistent})
+    this.props.checkpasswordConsistent({ password, passwordConsistent })
+  }
+
+  checkSmsCode = () => {
+    let smsCode = this.refs.smsCode.getValue().trim()
+    this.props.checkSmsCode(smsCode)
+  }
+
+  sendMsg = () => {
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    console.log("signup.js sendmsg");
+    this.props.sendMsg(phoneNum)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let username = this.refs.username.getValue().trim()
-    let mailbox = this.refs.mailbox.getValue().trim()
+    let phoneNum = this.refs.phoneNum.getValue().trim()
+    let smsCode = this.refs.smsCode.getValue().trim()
     let password = this.refs.password.getValue()
     let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.onSubmit({username, mailbox, password, passwordConsistent})
+    this.props.onSubmit({ phoneNum, password, passwordConsistent, smsCode })
   }
 
   render () {
@@ -70,17 +83,42 @@ class Signup extends Component {
         <TopHeader />
         <FromWrap onSubmit={this.handleSubmit}>
           <TextField
-            ref='username'
-            errorText={this.props.errorText.username}
-            floatingLabelText='用户名'
-            onBlur={this.checkUsername}
+            ref='phoneNum'
+            errorText={this.props.errorText.phoneNum}
+            floatingLabelText='手机号'
+            onBlur={this.checkPhoneNum}
           />
-          <TextField
-            ref='mailbox'
-            errorText={this.props.errorText.mailbox}
-            floatingLabelText='邮箱'
-            onBlur={this.checkMailbox}
-          />
+
+          <TextFieldWrap>
+            <TextField
+              ref='smsCode'
+              floatingLabelText='验证码'
+              errorText={this.props.errorText.smsCode}
+              style={{width: '65%'}}
+              onBlur={this.checkSmsCode}
+            />
+            <SmsSendWrap
+              hide={this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                onClick={this.sendMsg}
+                >
+                发送
+              </RaisedButton>
+            </SmsSendWrap>
+
+            <SmsSendWrap
+              hide={!this.props.alreadySendMsg}
+              >
+              <RaisedButton
+                disabled={true}
+                >
+                {this.props.second}s
+              </RaisedButton>
+            </SmsSendWrap>
+          </TextFieldWrap>
+
+
           <TextField
             ref='password'
             onBlur={this.checkPassword}

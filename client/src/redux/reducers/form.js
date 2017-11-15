@@ -1,45 +1,76 @@
+import config from '../../config/config'
+
 const initialState = {
   usernameIsValid: false,
-  mailboxIsValid: false,
+  // mailboxIsValid: false,
+  phoneNumIsValid: false,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
+  smsCodeIsValid: false,
   testErrObj: {
     username: '',
-    mailbox: '',
+    phoneNum: '',
     password: '',
-    passwordConsistent: ''
-  }
+    passwordConsistent: '',
+    smsCode: ''
+  },
+  hideUsername: true,
+  alreadySendMsg: false,
+  second: config.smsTimeLimit
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FORM_ERR_INIT':
-      return initialState
-    case 'MAILBOX_NOT_VALID':
+      let initializedState = {
+        ...initialState,
+        hideUsername: state.hideUsername
+      }
+      return initializedState
+    // phone number
+    case 'PHONE_NUM_NOT_VALID':
       return {
         ...state,
-        mailboxIsValid: false,
+        phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: '请输入格式正确的邮箱'
+          phoneNum: '请输入正确的手机号'
         }
       }
-    case 'MAILBOX_IS_VALID':
+    case 'PHONE_NUM_IS_VALID':
       return {
         ...state,
-        mailboxIsValid: true,
+        phoneNumIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: ''
+          phoneNum: ''
         }
       }
-    case 'MAILBOX_ALREADY_EXISTS':
+    case 'PHONE_NUM_ALREADY_EXISTS':
       return {
         ...state,
-        mailboxIsValid: false,
+        phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          mailbox: '该邮箱已被注册'
+          phoneNum: '该号码已注册，请直接登录'
+        }
+      }
+    case 'PHONE_NUM_DOESNOT_EXIST':
+      return {
+        ...state,
+        phoneNumIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          phoneNum: '该号码尚未注册'
+        }
+      }
+    case 'PLEASE_USE_PHONE_NUM':
+      return {
+        ...state,
+        phoneNumIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          phoneNum: '已绑定过手机号，请直接用手机号登录'
         }
       }
     case 'USERNAME_IS_REQUIRED':
@@ -131,6 +162,72 @@ export default (state = initialState, action = {}) => {
           ...state.testErrObj,
           passwordConsistent: ''
         }
+      }
+    case 'SMSCODE_IS_REQUIRED':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '请输入验证码'
+        }
+      }
+    case 'SMSCODE_IS_VALID':
+      return {
+        ...state,
+        smsCodeIsValid: true,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: ''
+        }
+      }
+    case 'SMS_ERR_TRY_AGAIN':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '出错 请重新获取验证码'
+        }
+      }
+    case 'SMS_CODE_IS_INVALID':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '验证码不正确'
+        }
+      }
+    case 'EXPIRED_SMS_CODE':
+      return {
+        ...state,
+        smsCodeIsValid: false,
+        testErrObj: {
+          ...state.testErrObj,
+          smsCode: '验证码已过期'
+        }
+      }
+    case 'ALTER':
+      return {
+        ...state,
+        hideUsername: !state.hideUsername
+      }
+    case 'ALREADY_SEND_MSG':
+      return {
+        ...state,
+        alreadySendMsg: true
+      }
+    case 'COUNTDOWN':
+      return {
+        ...state,
+        second: state.second - 1
+      }
+    case 'READY_TO_SEND_MSG':
+      return {
+        ...state,
+        alreadySendMsg: false,
+        second: config.smsTimeLimit
       }
     default:
       return state

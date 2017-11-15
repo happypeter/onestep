@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.2",
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.1",
