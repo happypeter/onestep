@@ -21,7 +21,7 @@ const FromWrap = styled.form`
   text-align: center;
   padding: 0 1em 1em;
   margin-top: 5%;
-  @media (min-width: 400px): {
+  @media (min-width: 400px) {
     width: 400px;
     margin: 30px auto;
   }
