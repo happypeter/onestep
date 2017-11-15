@@ -3,7 +3,9 @@ import {
   showLoginNotification,
   showLogoutNotification,
   showSignupNotification,
-  showInvalidTokenNotification } from './notificationAction'
+  showInvalidTokenNotification
+} from './notificationAction'
+import config from '../../config/config'
 
 function setCurrentUserInfo (data) {
   return {
@@ -80,7 +82,7 @@ function handleError (error, dispatch) {
 
 export function login (data) {
   return dispatch => {
-    axios.post('http://localhost:3001/login', data)
+    axios.post(`${config.api + '/login'}`, data)
          .then(
            res => {
              const token = res.data.token
@@ -102,7 +104,7 @@ export function login (data) {
 
 export function signup (data) {
   return dispatch => {
-    axios.post('http://localhost:3001/signup', data)
+    axios.post(`${config.api + '/signup'}`, data)
          .then(
            res => {
              const token = res.data.token
@@ -148,7 +150,7 @@ export function fakeWechatLogin (user) {
 
 export const checkToken = (token) => {
   return dispatch => {
-    axios.post('http://localhost:3001/auth', {token: token})
+    axios.post(`${config.api + '/auth'}`, {token: token})
          .then(
            res => {
              if (res.data.success !== true) {

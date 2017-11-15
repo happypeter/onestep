@@ -1,4 +1,5 @@
 import axios from 'axios'
+import config from '../../config/config'
 
 export function formErrInit (data) {
   return dispatch => {
@@ -106,7 +107,7 @@ export function alter () {
 
 export function sendMsg (phoneNum) {
   return dispatch => {
-    axios.post('http://localhost:3001/msg', { phoneNum: phoneNum })
+    axios.post(`${config.api + '/msg'}`, { phoneNum: phoneNum })
          .then(
            res => { console.log(res) }
          )

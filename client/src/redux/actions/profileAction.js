@@ -1,4 +1,5 @@
 import axios from 'axios'
+import config from '../../config/config'
 
 function setUsername (data) {
   return {
@@ -24,7 +25,7 @@ export function fetchProfile (data) {
   return dispatch => {
     dispatch(fetchProfileStarted())
 
-    axios.post('http://localhost:3001/profile', setUsername(data))
+    axios.post(`${config.api + '/profile'}`, setUsername(data))
    .then(
      res => {
        dispatch(fetchProfileSuccess(res.data))
