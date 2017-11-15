@@ -182,6 +182,7 @@ class LoginContainer extends Component {
         checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
+        checkSmsCode={this.checkSmsCode}
         sendMsg={this.sendMsg}
         alter={this.alter}
         errorText={this.props.loginState.testErrObj}

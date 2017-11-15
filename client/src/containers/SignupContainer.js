@@ -176,6 +176,7 @@ class SignupContainer extends Component {
         checkPhoneNum={this.checkPhoneNum}
         checkPassword={this.checkPassword}
         checkpasswordConsistent={this.checkpasswordConsistent}
+        checkSmsCode={this.checkSmsCode}
         errorText={this.props.signUpState.testErrObj}
         sendMsg={this.sendMsg}
         alreadySendMsg={this.props.signUpState.alreadySendMsg}

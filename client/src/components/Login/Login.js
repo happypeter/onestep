@@ -63,6 +63,11 @@ class Login extends Component {
     this.props.checkpasswordConsistent({password, passwordConsistent})
   }
 
+  checkSmsCode = () => {
+    let smsCode = this.refs.smsCode.getValue().trim()
+    this.props.checkSmsCode(smsCode)
+  }
+
   sendMsg = () => {
     let phoneNum = this.refs.phoneNum.getValue().trim()
     this.props.sendMsg(phoneNum)
@@ -114,6 +119,7 @@ class Login extends Component {
               floatingLabelText='验证码'
               errorText={this.props.errorText.smsCode}
               style={{width: '65%'}}
+              onBlur={this.checkSmsCode}
             />
             <SmsSendWrap
               hide={this.props.alreadySendMsg}
