@@ -159,13 +159,13 @@ class LoginContainer extends Component {
 
     let refererPath
     if (!refererState || !refererState.from) {
-      console.log('home')
+      // console.log('home')
       refererPath = '/'
     } else if (refererState.from.pathname) {
-      console.log('direct; course')
+      // console.log('direct; course')
       refererPath = refererState.from.pathname
     } else {
-      console.log('from wc; course')
+      // console.log('from wc; course')
       refererPath = refererState.from.from.pathname
     }
 

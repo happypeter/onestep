@@ -17,7 +17,6 @@ export function requireAuthentication (Component) {
     }
 
     render () {
-      console.log(this.props)
       return (
         this.props.isAuthenticated
         ? (
