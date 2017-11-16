@@ -64,7 +64,6 @@ class Signup extends Component {
 
   sendMsg = () => {
     let phoneNum = this.refs.phoneNum.getValue().trim()
-    console.log("signup.js sendmsg");
     this.props.sendMsg(phoneNum)
   }
 

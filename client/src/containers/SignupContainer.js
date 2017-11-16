@@ -140,11 +140,11 @@ class SignupContainer extends Component {
   handleSubmit = (userInfo) => {
     let recheck = this.recheckForm()
     recheck.next()
-    console.log(userInfo);
+    // console.log(userInfo);
     recheck.next(userInfo)
     setTimeout(() => {
       recheck.next()
-      console.log(this.props.signUpState);
+      // console.log(this.props.signUpState);
     }, 50)
   }
 
@@ -154,13 +154,13 @@ class SignupContainer extends Component {
 
     let refererPath
     if (!refererState || !refererState.from) {
-      console.log('home')
+      // console.log('home')
       refererPath = '/'
     } else if (refererState.from.pathname) {
-      console.log('direct; course')
+      // console.log('direct; course')
       refererPath = refererState.from.pathname
     } else {
-      console.log('from wc; course')
+      // console.log('from wc; course')
       refererPath = refererState.from.from.pathname
     }
 
