@@ -32,10 +32,11 @@ class NotificationContainer extends Component {
   }
 
   render () {
+    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification } = this.props.notification
     return (
       <div>
         {
-          this.props.notification.showLogoutNotification ?
+          showLogoutNotification ?
           (
             <Notification
             removeNotification={this.removeLogoutNotification}
@@ -45,7 +46,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.notification.showLoginNotification ?
+          showLoginNotification ?
           (
             <Notification
             removeNotification={this.removeLoginNotification}
@@ -55,7 +56,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.notification.showSignupNotification ?
+          showSignupNotification ?
           (
             <Notification
             removeNotification={this.removeSignupNotification}
@@ -65,7 +66,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.notification.showInvalidTokenNotification ?
+          (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification) ?
           (
             <Notification
             removeNotification={this.removeInvalidTokenNotification}
@@ -75,7 +76,7 @@ class NotificationContainer extends Component {
           ''
         }
         {
-          this.props.notification.showUnhandledErrNotification ?
+          showUnhandledErrNotification ?
           (
             <Notification
             removeNotification={this.removeUnhandledErrNotification}
