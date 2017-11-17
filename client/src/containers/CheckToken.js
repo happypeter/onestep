@@ -23,8 +23,12 @@ export function requireAuthentication (Component) {
           <Component {...this.props} />
         )
         : (
+          // <Redirect to={{
+          //   pathname: '/wechatLogin',
+          //   state: { from: this.props.location }
+          // }} />
           <Redirect to={{
-            pathname: '/wechatLogin',
+            pathname: '/login',
             state: { from: this.props.location }
           }} />
         )

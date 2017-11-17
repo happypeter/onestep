@@ -49,7 +49,7 @@ class TopHeader extends Component {
       <SideButtonsWrap>
         <Button to='signup'>注册</Button>
         <Button to='/login'>登录</Button>
-        <Button to='/wechatLogin'>微信登录</Button>
+        <Button to='/wechatLogin' style={{display: 'none'}}>微信登录</Button>
       </SideButtonsWrap>
     )
 
