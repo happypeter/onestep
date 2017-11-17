@@ -4,10 +4,10 @@ const logger = require('morgan')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = require('./routes')
-
+const config = require('./config/config')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/haoqicat', {
+mongoose.connect(config.url, {
   useMongoClient: true
 })
 const db = mongoose.connection

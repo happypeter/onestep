@@ -17,15 +17,18 @@ export function requireAuthentication (Component) {
     }
 
     render () {
-      console.log(this.props)
       return (
         this.props.isAuthenticated
         ? (
           <Component {...this.props} />
         )
         : (
+          // <Redirect to={{
+          //   pathname: '/wechatLogin',
+          //   state: { from: this.props.location }
+          // }} />
           <Redirect to={{
-            pathname: '/wechatLogin',
+            pathname: '/login',
             state: { from: this.props.location }
           }} />
         )

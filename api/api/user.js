@@ -29,6 +29,7 @@ exports.signup = (req, res, next) => {
 
                user.save().then(
                  user => {
+                   console.log(phoneNum + 'signup')
                    return res.status(200).json({
                      user: {phoneNum: user.phoneNum},
                      token: generateToken({phoneNum: user.phoneNum}),
@@ -83,6 +84,7 @@ exports.login = (req, res, next) => {
 
                      user.save().then(
                        user => {
+                         console.log(username + ' updated: ' + phoneNum)
                          return res.status(200).json({
                            user: {phoneNum: user.phoneNum},
                            token: generateToken({phoneNum: user.phoneNum}),
@@ -133,6 +135,7 @@ exports.login = (req, res, next) => {
                     success: false
                   })
                 }
+                console.log(phoneNum + 'login')
                 return res.json({
                   user: {phoneNum: user.phoneNum},
                   token: generateToken({phoneNum: user.phoneNum}),
