@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchProfile } from '../redux/actions/profileAction'
 
 import Loadable from 'react-loadable'
-import LoadingComponent from './LoadingComponent'
+import LoadingComponent from '../components/common/Loading'
 
 const AsyncProfile = Loadable({
   loader: () => import('../components/Profile/Profile'),

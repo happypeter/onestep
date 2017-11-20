@@ -7,7 +7,7 @@ import {
 
 import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
-import LoadingComponent from './LoadingComponent'
+import LoadingComponent from '../components/common/Loading'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),

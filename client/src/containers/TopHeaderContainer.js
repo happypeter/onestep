@@ -5,11 +5,12 @@ import { logout } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
 
 import Loadable from 'react-loadable'
-import LoadingComponent from './LoadingComponent'
+import LoadingComponent from '../components/common/Loading'
 
 const AsyncNotification = Loadable({
   loader: () => import('./NotificationContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 
 class TopHeaderContainer extends Component {
