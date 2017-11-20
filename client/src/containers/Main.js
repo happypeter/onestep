@@ -6,15 +6,37 @@ import {
 } from 'react-router-dom'
 
 import {requireAuthentication} from './CheckToken'
-import asyncComponent from './AsyncComponent'
+import Loadable from 'react-loadable'
+import LoadingComponent from './LoadingComponent'
 
-const AsyncHome = asyncComponent(() => import('../components/Home/Home'))
-const AsyncLogin = asyncComponent(() => import('./LoginContainer'))
-const AsyncCourse = asyncComponent(() => import('./CourseContainer'))
-const AsyncSignup = asyncComponent(() => import('./SignupContainer'))
-const AsyncEpisode = asyncComponent(() => import('./EpisodeContainer'))
-const AsyncProfile = asyncComponent(() => import('./ProfileContainer'))
-const AsyncWechatLogin = asyncComponent(() => import('./WechatLoginContainer'))
+const AsyncHome = Loadable({
+  loader: () => import('../components/Home/Home'),
+  loading: LoadingComponent
+})
+const AsyncSignup = Loadable({
+  loader: () => import('./SignupContainer'),
+  loading: LoadingComponent
+})
+const AsyncLogin = Loadable({
+  loader: () => import('./LoginContainer'),
+  loading: LoadingComponent
+})
+const AsyncWechatLogin = Loadable({
+  loader: () => import('./WechatLoginContainer'),
+  loading: LoadingComponent
+})
+const AsyncProfile = Loadable({
+  loader: () => import('./ProfileContainer'),
+  loading: LoadingComponent
+})
+const AsyncCourse = Loadable({
+  loader: () => import('./CourseContainer'),
+  loading: LoadingComponent
+})
+const AsyncEpisode = Loadable({
+  loader: () => import('./EpisodeContainer'),
+  loading: LoadingComponent
+})
 
 class Main extends Component {
   render () {
