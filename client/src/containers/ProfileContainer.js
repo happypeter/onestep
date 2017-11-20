@@ -7,7 +7,8 @@ import LoadingComponent from './LoadingComponent'
 
 const AsyncProfile = Loadable({
   loader: () => import('../components/Profile/Profile'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 
 class ProfileContainer extends Component {

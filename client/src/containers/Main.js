@@ -11,31 +11,38 @@ import LoadingComponent from './LoadingComponent'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncSignup = Loadable({
   loader: () => import('./SignupContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncLogin = Loadable({
   loader: () => import('./LoginContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncWechatLogin = Loadable({
   loader: () => import('./WechatLoginContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncProfile = Loadable({
   loader: () => import('./ProfileContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncCourse = Loadable({
   loader: () => import('./CourseContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 const AsyncEpisode = Loadable({
   loader: () => import('./EpisodeContainer'),
-  loading: LoadingComponent
+  loading: LoadingComponent,
+  delay: 300
 })
 
 class Main extends Component {
