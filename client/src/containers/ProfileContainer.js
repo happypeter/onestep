@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Profile from '../components/Profile/Profile'
 import { fetchProfile } from '../redux/actions/profileAction'
+
+import Loadable from 'react-loadable'
+import LoadingComponent from '../components/common/Loading'
+
+const AsyncProfile = Loadable({
+  loader: () => import('../components/Profile/Profile'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class ProfileContainer extends Component {
   componentDidMount () {
     const phoneNum = window.sessionStorage.getItem('user')
+    // fetch userInfo from server
     this.props.fetchProfile(phoneNum)
   }
 
@@ -14,7 +23,7 @@ class ProfileContainer extends Component {
 
     return (
       <div>
-        <Profile
+        <AsyncProfile
           status={status}
           latestExpireDate={latestExpireDate}
           total={total}

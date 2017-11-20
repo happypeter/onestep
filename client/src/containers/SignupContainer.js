@@ -123,15 +123,6 @@ class SignupContainer extends Component {
 
       this.props.signup(userInfo)
     } else {
-      // if (!phoneNumIsValid) {
-      //   this.props.phoneNumNotValid()
-      // }
-      // if (!passwordIsValid) {
-      //   this.props.passwordTooShort()
-      // }
-      // if (!passwordConsistentIsValid) {
-      //   this.props.passwordsInconsistent()
-      // }
       console.log('未通过验证')
     }
   }

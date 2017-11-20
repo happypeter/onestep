@@ -128,16 +128,6 @@ class LoginContainer extends Component {
 
       this.props.login(userInfo)
     } else {
-      // delete
-      // if (!usernameIsValid) {
-      //   this.props.usernameIsRequired()
-      // }
-      // if (!passwordIsValid) {
-      //   this.props.passwordIsRequired()
-      // }
-      // if (!passwordConsistentIsValid) {
-      //   this.props.passwordsInconsistent()
-      // }
       console.log('未通过验证')
     }
   }

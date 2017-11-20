@@ -3,7 +3,15 @@ import { connect } from 'react-redux'
 import TopHeader from '../components/Header/TopHeader'
 import { logout } from '../redux/actions/authAction'
 import PropTypes from 'prop-types'
-import Notification from './NotificationContainer'
+
+import Loadable from 'react-loadable'
+import LoadingComponent from '../components/common/Loading'
+
+const AsyncNotification = Loadable({
+  loader: () => import('./NotificationContainer'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class TopHeaderContainer extends Component {
   logout = () => {
@@ -19,7 +27,7 @@ class TopHeaderContainer extends Component {
           sideButtons={tempIsAuthenticated}
           logout={this.logout}
         />
-        <Notification />
+        <AsyncNotification />
       </div>
 
     )
