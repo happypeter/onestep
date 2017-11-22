@@ -12,7 +12,7 @@ const Wrap = styled.div`
 `
 const Info = styled.div`
   margin: 20%;
-  font-size: 80px;
+  font-size: 30px;
   font-weight: bold;
 `
 
