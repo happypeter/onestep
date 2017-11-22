@@ -8,6 +8,7 @@ import {
 import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
+import ProfileSettings from './ProfileSettingsContainer'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -45,6 +46,12 @@ const AsyncEpisode = Loadable({
   delay: 300
 })
 
+const AsyncNotFound = Loadable({
+  loader: () => import('../components/common/NotFound'),
+  loading: LoadingComponent,
+  delay: 300
+})
+
 class Main extends Component {
   render () {
     return (
@@ -54,9 +61,11 @@ class Main extends Component {
           <Route path='/wechatLogin' component={AsyncWechatLogin} />
           <Route path='/login' component={AsyncLogin} />
           <Route path='/signup' component={AsyncSignup} />
-          <Route path='/profile' component={requireAuthentication(AsyncProfile)} />
+          <Route exact path='/profile' component={requireAuthentication(AsyncProfile)} />
+          <Route path='/profile/settings' component={requireAuthentication(ProfileSettings)} />
+          <Route path='/course/:courseName' component={AsyncCourse} />
           <Route path='/:courseName/:episodeName' component={requireAuthentication(AsyncEpisode)} />
-          <Route path='/:courseName' component={AsyncCourse} />
+          <Route component={AsyncNotFound} />
         </Switch>
       </Router>
     )

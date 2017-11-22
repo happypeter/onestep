@@ -58,7 +58,7 @@ const CourseCard = styled(Link)`
 class CourseList extends Component {
   render () {
     let courses = this.props.courses.map((item, i) => (
-      <CourseCard to={`/${item.title}`} key={i}>
+      <CourseCard to={`course/${item.title}`} key={i}>
         <img src={`${item.post}`} alt='poster' className='poster' />
         <p>{item.title}</p>
       </CourseCard>

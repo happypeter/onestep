@@ -3,7 +3,8 @@ import {
   showLoginNotification,
   showLogoutNotification,
   showSignupNotification,
-  showInvalidTokenNotification
+  showInvalidTokenNotification,
+  showResetPasswordNotification
 } from './notificationAction'
 import config from '../../config/config'
 
@@ -161,6 +162,30 @@ export const checkToken = (token) => {
                  success: true
                })
              }
+           }
+         )
+         .catch(
+           error => {
+             handleError(error, dispatch)
+           }
+         )
+  }
+}
+
+export function resetPassword (data) {
+  return dispatch => {
+    axios.post(`${config.api + '/resetpassword'}`, data)
+         .then(
+           res => {
+             const token = res.data.token
+             const user = res.data.user
+             window.sessionStorage.setItem('jwtToken', token)
+             dispatch({
+               type: 'RESET_PASSWORD',
+               userInfo: user
+             })
+
+             showResetPasswordNotification(dispatch)
            }
          )
          .catch(

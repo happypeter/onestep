@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import Notification from '../components/Notification/Notification'
 import {
   removeLogoutNotification,
   removeLoginNotification,
   removeSignupNotification,
   removeUnhandledErrNotification,
-  removeInvalidTokenNotification } from '../redux/actions/notificationAction'
+  removeInvalidTokenNotification,
+  removeResetPasswordNotification
+} from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {
@@ -31,8 +34,12 @@ class NotificationContainer extends Component {
     this.props.removeInvalidTokenNotification()
   }
 
+  removeResetPasswordNotification = () => {
+    this.props.removeResetPasswordNotification()
+  }
+
   render () {
-    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification } = this.props.notification
+    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification, showResetPasswordNotification } = this.props.notification
     return (
       <div>
         {
@@ -66,6 +73,19 @@ class NotificationContainer extends Component {
           ''
         }
         {
+          showResetPasswordNotification ?
+          (
+            <div>
+            <Redirect to='/profile' />
+            <Notification
+            removeNotification={this.removeResetPasswordNotification}
+            text={'重置密码成功'}
+            />
+           </div>
+          ) :
+          ''
+        }
+        {
           (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification) ?
           (
             <Notification
@@ -95,11 +115,11 @@ NotificationContainer.PropTypes = {
   removeLoginNotification: PropTypes.func.isRequired,
   removeSignupNotification: PropTypes.func.isRequired,
   removeUnhandledErrNotification: PropTypes.func.isRequired,
-  removeInvalidTokenNotification: PropTypes.func.isRequired
+  removeInvalidTokenNotification: PropTypes.func.isRequired,
+  removeResetPasswordNotification: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  // curr: state.fakeAuth,
   notification: state.notification
 })
 
@@ -108,5 +128,6 @@ export default connect(mapStateToProps,{
   removeLoginNotification,
   removeSignupNotification,
   removeUnhandledErrNotification,
-  removeInvalidTokenNotification
+  removeInvalidTokenNotification,
+  removeResetPasswordNotification
 })(NotificationContainer)

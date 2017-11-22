@@ -3,7 +3,8 @@ const initialState = {
   showLoginNotification: false,
   showSignupNotification: false,
   showUnhandledErrNotification: false,
-  showInvalidTokenNotification: false
+  showInvalidTokenNotification: false,
+  showResetPasswordNotification: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -28,6 +29,11 @@ export default (state = initialState, action = {}) => {
         ...state,
         showInvalidTokenNotification: true
       }
+    case 'SHOW_RESET_PASSWORD_NOTIFICATION':
+      return {
+        ...state,
+        showResetPasswordNotification: true
+      }
     case 'RM_LOGOUT_NOTIFICATION':
       return {
         ...state,
@@ -47,6 +53,11 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         showInvalidTokenNotification: false
+      }
+    case 'RM_RESET_PASSWORD_NOTIFICATION':
+      return {
+        ...state,
+        showResetPasswordNotification: false
       }
     case 'UNHANDLED_ERROR':
       return {

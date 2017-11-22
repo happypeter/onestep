@@ -17,6 +17,11 @@ export default (state = initialState, action = {}) => {
         isAuthenticated: !isEmpty(action.userInfo),
         currentUser: action.userInfo
       }
+    case 'RESET_PASSWORD':
+      return {
+        isAuthenticated: !isEmpty(action.userInfo),
+        currentUser: action.userInfo
+      }
     case 'LOG_OUT':
       return {
         isAuthenticated: false,
