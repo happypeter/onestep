@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ProfileSettings from '../components/Profile/ProfileSettings'
 import { resetPassword } from '../redux/actions/authAction'
@@ -99,7 +98,7 @@ class ProfileSettingsContainer extends Component {
   recheckForm = function *() {
     let userInfo = yield
 
-    let { username, phoneNum, password, passwordConsistent, smsCode } = userInfo
+    let { password, passwordConsistent, smsCode } = userInfo
     // this.checkPhoneNum(phoneNum)
     this.checkSmsCode(smsCode)
     this.checkPassword(password)
