@@ -233,7 +233,8 @@ exports.profile = (req, res) => {
               }
             }
           )
-          let latestExpireDate = chooseExpireDate(allExpireDateArr)
+
+          let latestExpireDate = (allExpireDateArr.length !== 0) ? chooseExpireDate(allExpireDateArr) : null
 
           return res.json({
             courses,

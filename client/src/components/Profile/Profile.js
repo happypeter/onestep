@@ -43,9 +43,35 @@ export default ({courses, latestExpireDate, total, status}) => {
           <TopHeader />
           <div style={{ marginTop: '-150px', fontSize: '30px', fontWeight: 'bold' }}>个人中心</div>
           <div style={{ marginTop: '-150px', marginLeft: '40%', textAlign: 'left' }}>
-            <div>购买过的课程{courses.map((course, i) => (<div key={i}>{course}</div>))}</div>
-            <div>好奇猫会员到期日{latestExpireDate}</div>
-            <div>已在好奇猫为自己投资{total}元</div>
+            {
+              (courses.length !== 0)
+              ? (
+                <div>
+                购买过的课程{courses.map((course, i) => (<div key={i}>{course}</div>))}
+                </div>
+              )
+              : (
+                <div>还没有购买过任何课程</div>
+              )
+            }
+            {
+              latestExpireDate
+              ? (
+                <div>好奇猫会员到期日{latestExpireDate}</div>
+              )
+              : (
+                <div>还不是好奇猫会员</div>
+              )
+            }
+            {
+              (total !== 0)
+              ? (
+                <div>已在好奇猫为自己投资{total}元</div>
+              )
+              : (
+                <div>还没有在好奇猫为自己投资</div>
+              )
+            }
           </div>
           <LinkButton to='/profile/settings'>设置</LinkButton>
           <Footer />
