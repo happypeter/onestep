@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {
+  Link,
+  Redirect,
+  matchPath
+} from 'react-router-dom'
 import Course from '../components/Course/Course'
 
 class CourseContainer extends Component {
@@ -11,6 +15,17 @@ class CourseContainer extends Component {
         item.title === courseName
       )
     )
+    if (!thisCourse) {
+      return <Redirect to={{ pathname: '/404' }} />
+    }
+
+    const match = matchPath(this.props.location.pathname, {
+      path: this.props.match.path
+    })
+    if (!match.isExact) {
+      return <Redirect to={{ pathname: '/404' }} />
+    }
+
     let episode = thisCourse.episode.map((item, i) => (
       <Link to={`/${courseName}/${item}`} key={i} className='episode'>
         {item}
