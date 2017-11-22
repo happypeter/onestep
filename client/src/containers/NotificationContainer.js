@@ -7,7 +7,9 @@ import {
   removeLoginNotification,
   removeSignupNotification,
   removeUnhandledErrNotification,
-  removeInvalidTokenNotification } from '../redux/actions/notificationAction'
+  removeInvalidTokenNotification,
+  removeResetPasswordNotification
+} from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {
@@ -30,6 +32,10 @@ class NotificationContainer extends Component {
 
   removeInvalidTokenNotification = () => {
     this.props.removeInvalidTokenNotification()
+  }
+
+  removeResetPasswordNotification = () => {
+    this.props.removeResetPasswordNotification()
   }
 
   render () {
@@ -72,7 +78,7 @@ class NotificationContainer extends Component {
             <div>
             <Redirect to='/profile' />
             <Notification
-            removeNotification={this.removeSignupNotification}
+            removeNotification={this.removeResetPasswordNotification}
             text={'重置密码成功'}
             />
            </div>
@@ -109,7 +115,8 @@ NotificationContainer.PropTypes = {
   removeLoginNotification: PropTypes.func.isRequired,
   removeSignupNotification: PropTypes.func.isRequired,
   removeUnhandledErrNotification: PropTypes.func.isRequired,
-  removeInvalidTokenNotification: PropTypes.func.isRequired
+  removeInvalidTokenNotification: PropTypes.func.isRequired,
+  removeResetPasswordNotification: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -121,5 +128,6 @@ export default connect(mapStateToProps,{
   removeLoginNotification,
   removeSignupNotification,
   removeUnhandledErrNotification,
-  removeInvalidTokenNotification
+  removeInvalidTokenNotification,
+  removeResetPasswordNotification
 })(NotificationContainer)
