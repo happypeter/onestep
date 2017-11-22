@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import Notification from '../components/Notification/Notification'
 import {
   removeLogoutNotification,
@@ -32,7 +33,7 @@ class NotificationContainer extends Component {
   }
 
   render () {
-    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification } = this.props.notification
+    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification, showResetPasswordNotification } = this.props.notification
     return (
       <div>
         {
@@ -62,6 +63,19 @@ class NotificationContainer extends Component {
             removeNotification={this.removeSignupNotification}
             text={'账号注册成功'}
             />
+          ) :
+          ''
+        }
+        {
+          showResetPasswordNotification ?
+          (
+            <div>
+            <Redirect to='/profile' />
+            <Notification
+            removeNotification={this.removeSignupNotification}
+            text={'重置密码成功'}
+            />
+           </div>
           ) :
           ''
         }
@@ -99,7 +113,6 @@ NotificationContainer.PropTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  // curr: state.fakeAuth,
   notification: state.notification
 })
 

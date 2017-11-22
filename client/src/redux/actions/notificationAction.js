@@ -30,6 +30,13 @@ export function showInvalidTokenNotification (dispatch) {
   }, 4000)
 }
 
+export function showResetPasswordNotification (dispatch) {
+  dispatch({ type: 'SHOW_RESET_PASSWORD_NOTIFICATION' })
+  setTimeout(() => {
+    dispatch({ type: 'RM_RESET_PASSWORD_NOTIFICATION' })
+  }, 4000)
+}
+
 // for react components
 export function removeLogoutNotification (data) {
   return dispatch => {
@@ -58,5 +65,11 @@ export function removeUnhandledErrNotification () {
 export function removeInvalidTokenNotification () {
   return dispatch => {
     dispatch({ type: 'RM_INVALID_TOKEN_NOTIFICATION' })
+  }
+}
+
+export function removeResetPasswordNotification () {
+  return dispatch => {
+    dispatch({ type: 'RM_RESET_PASSWORD_NOTIFICATION' })
   }
 }
