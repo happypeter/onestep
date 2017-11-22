@@ -45,9 +45,11 @@ const AsyncEpisode = Loadable({
   delay: 300
 })
 
-const NotFound = () => (
-  <div>404</div>
-)
+const AsyncNotFound = Loadable({
+  loader: () => import('../components/common/NotFound'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class Main extends Component {
   render () {
@@ -61,7 +63,7 @@ class Main extends Component {
           <Route path='/profile' component={requireAuthentication(AsyncProfile)} />
           <Route path='/course/:courseName' component={AsyncCourse} />
           <Route path='/:courseName/:episodeName' component={requireAuthentication(AsyncEpisode)} />
-          <Route component={NotFound} />
+          <Route component={AsyncNotFound} />
         </Switch>
       </Router>
     )
