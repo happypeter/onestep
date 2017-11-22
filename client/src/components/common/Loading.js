@@ -10,19 +10,24 @@ const Wrap = styled.div`
   background-color: #B2EBF2;
   text-align: center;
 `
+const Info = styled.div`
+  margin: 20%;
+  font-size: 80px;
+  font-weight: bold;
+`
 
-const LoadingComponent = (props) => {
+export default (props) => {
   if (props.error) {
     return (
       <Wrap>
-        <div>Error!</div>
+        <Info>Error!</Info>
         <Footer />
       </Wrap>
     )
   } else if (props.pastDelay) {
     return (
       <Wrap>
-        <div>信息请求中...</div>
+        <Info>信息请求中...</Info>
         <Footer />
       </Wrap>
     )
@@ -30,5 +35,3 @@ const LoadingComponent = (props) => {
     return null
   }
 }
-
-export default LoadingComponent
