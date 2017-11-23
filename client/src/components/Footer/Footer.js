@@ -2,28 +2,31 @@ import React from 'react'
 import styled from 'styled-components'
 
 const FooterWrap = styled.div`
-  background-color: rgb(33, 33, 33);
+  background-color: #2A3745;
+  color: #FFFFFF;
   text-align: center;
-  padding: 12px 6px;
-  color: rgba(255, 255, 255, 0.54);
-  @media (min-width: 400px) {
-    padding: 48px 24px;
-  }
-`
-
-const ICPWrap = styled.div`
-  font-size: 0.5em;
-  margin-top: 10px;
-  @media (min-width: 400px) {
-    font-size: 0.9em;
-    margin-top: 20px;
+  font-weight: 300;
+  padding: 48px 24px;
+  @media (min-width: 1024px) {
+    height: 324px;
   }
 `
 
 const WelcomeWrap = styled.div`
+  opacity: 0.85;
   font-size: 0.4em;
-  @media (min-width: 400px) {
-    font-size: 1.1em;
+  @media (min-width: 1024px) {
+    font-size: 1em;
+  }
+`
+
+const ICPWrap = styled.div`
+  opacity: 0.57;
+  font-size: 0.5em;
+  margin-top: 10px;
+  @media (min-width: 1024px) {
+    font-size: 0.88em;
+    margin-top: 20px;
   }
 `
 
