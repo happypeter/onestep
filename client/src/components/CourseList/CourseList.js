@@ -3,28 +3,22 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Title = styled.div`
-  color: #6d6d6d;
-  line-height: 1.8;
-  width: 139px;
   margin: 0px auto;
   text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  border-bottom: 3px solid rgb(0, 188, 212);
+  font-size: 2.5em;
 `
 
 const CourseListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
   margin: 0px auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 1em 4em;
 `
 
 const CourseCard = styled(Link)`
-  margin: 20px;
+  margin: 2em;
   width: 100%;
+  flex-grow: 1;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -47,11 +41,11 @@ const CourseCard = styled(Link)`
   }
 
   @media (min-width: 600px) {
-    width: calc(50% - 40px)
+    width: calc(50% - 4em)
   }
 
-  @media (min-width: 900px) {
-    width: calc(33.33333% - 40px)
+  @media (min-width: 1024px) {
+    width: calc(33.33333% - 4em)
   }
 `
 
@@ -66,7 +60,7 @@ class CourseList extends Component {
 
     return (
       <div>
-        <Title>已发布课程</Title>
+        <Title>最新发布</Title>
         <CourseListWrap>
           {courses}
         </CourseListWrap>
