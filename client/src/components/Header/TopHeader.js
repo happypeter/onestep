@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import logoSimple from '../../assets/logoSimple.svg'
 
 const TopHeaderWrap = styled.div`
   background-color: #FFFFFF;
@@ -75,7 +76,7 @@ class TopHeader extends Component {
     return (
       <TopHeaderWrap>
         <HomeWrap>
-          <img src={require('../../assets/logoSimple.svg')} alt='logo-simple' width='55px' />
+          <img src={logoSimple} alt='logo-simple' width='55px' />
           <Button to='/'>
             首页
           </Button>
