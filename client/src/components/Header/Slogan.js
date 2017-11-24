@@ -7,17 +7,14 @@ const SloganWrap = styled.div`
   padding: 50px 1.5em 10px;
   @media (min-width: 1024px) {
     background-image: url(./reactHexagon.svg);
-    background-position: right;
+    background-position: right 6em center;
     background-size: 277px;
     background-repeat: no-repeat;
-    height: 348px;
+    height: 297px;
     padding-right: 10px;
+    padding-left: 6em;
     display: flex;
     align-items: center;
-  }
-  @media (min-width: 1024px) {
-    background-position: right 6em center;
-    padding-left: 6em;
   }
 `
 const TextWrap = styled.div`

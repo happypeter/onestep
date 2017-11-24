@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseList from '../../containers/CourseListContainer'
 import Header from '../Header/Header'
+import AboveFooter from '../Footer/AboveFooter'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
@@ -17,6 +18,7 @@ export default () => (
   <HomeWrap>
     <Header />
     <CourseList />
+    <AboveFooter />
     <Footer />
   </HomeWrap>
 )
