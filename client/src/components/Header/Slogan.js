@@ -1,20 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
+import reactHexagon from '../../assets/reactHexagon.svg'
 
 const SloganWrap = styled.div`
   background-color: #00BCD4;
   margin-bottom: 40px;
   padding: 50px 1.5em 10px;
+  img {
+    display: none
+  }
   @media (min-width: 1024px) {
-    background-image: url(./reactHexagon.svg);
-    background-position: right 6em center;
-    background-size: 277px;
-    background-repeat: no-repeat;
     height: 297px;
-    padding-right: 10px;
+    padding-right: 6em;
     padding-left: 6em;
     display: flex;
     align-items: center;
+    img {
+      display: block;
+      margin-top: -40px;
+      width: 277px;
+    }
   }
 `
 const TextWrap = styled.div`
@@ -61,5 +66,6 @@ export default () => (
         懂你的视频资源站。
       </H3Wrap>
     </TextWrap>
+    <img src={reactHexagon} alt='react-hexagon' />
   </SloganWrap>
 )
