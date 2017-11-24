@@ -1,9 +1,21 @@
 import React from 'react'
 import CourseList from '../../containers/CourseListContainer'
 import Header from '../Header/Header'
-import AboveFooter from '../Footer/AboveFooter'
-import Footer from '../Footer/Footer'
 import styled from 'styled-components'
+import Loadable from 'react-loadable'
+import LoadingComponent from '../common/Loading'
+
+const AsyncAboveFooter = Loadable({
+  loader: () => import('../Footer/AboveFooter'),
+  loading: LoadingComponent,
+  delay: 300
+})
+
+const AsyncFooter = Loadable({
+  loader: () => import('../Footer/Footer'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 const HomeWrap = styled.div`
   min-height: 100vh;
@@ -18,7 +30,7 @@ export default () => (
   <HomeWrap>
     <Header />
     <CourseList />
-    <AboveFooter />
-    <Footer />
+    <AsyncAboveFooter />
+    <AsyncFooter />
   </HomeWrap>
 )
