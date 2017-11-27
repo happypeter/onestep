@@ -9,6 +9,7 @@ import {
   passwordIsValid,
   passwordsInconsistent,
   passwordsConsistent,
+  passwordTooShort,
   usernameIsRequired,
   usernameIsValid,
   phoneNumNotValid,
@@ -46,8 +47,10 @@ class LoginContainer extends Component {
   }
 
   checkPassword = (password) => {
-    if (!password) {
-      this.props.passwordIsRequired()
+    // if (!password) {
+    if (password.length < 6) {
+      // this.props.passwordIsRequired()
+      this.props.passwordTooShort()
     } else {
       this.props.passwordIsValid()
     }
@@ -190,6 +193,7 @@ LoginContainer.propTypes = {
   passwordIsValid: PropTypes.func.isRequired,
   passwordsInconsistent: PropTypes.func.isRequired,
   passwordsConsistent: PropTypes.func.isRequired,
+  passwordTooShort: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
   usernameIsValid: PropTypes.func.isRequired,
   phoneNumNotValid: PropTypes.func.isRequired,
@@ -214,6 +218,7 @@ export default connect(mapStateToProps, {
   passwordIsValid,
   passwordsInconsistent,
   passwordsConsistent,
+  passwordTooShort,
   usernameIsRequired,
   usernameIsValid,
   phoneNumNotValid,

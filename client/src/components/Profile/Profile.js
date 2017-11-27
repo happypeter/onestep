@@ -141,7 +141,7 @@ const CourseCard = styled(Link)`
   }
 `
 
-export default ({courses, latestExpireDate, total, status, allFakeCourses, phoneNum}) => {
+export default ({ courses, latestExpireDate, total, status, allFakeCourses, phoneNum }) => {
   switch (status) {
     case 'LOADING': {
       return (
