@@ -19,7 +19,7 @@ const SideButtonsWrap = styled.div`
 `
 
 const Button = styled(Link)`
-  font-size: 1em;
+  font-size: 0.8em;
   padding: 0.5em;
   color: #212121;
   line-height: 2;
@@ -32,7 +32,7 @@ const Button = styled(Link)`
 `
 
 const Username = styled(Link)`
-  font-size: 1em;
+  font-size: 0.8em;
   padding: 0.5em;
   color: rgb(255, 226, 0);
   line-height: 2;
@@ -46,11 +46,12 @@ const Username = styled(Link)`
 `
 
 const HomeWrap = styled.div`
-  font-size: 1.56em;
+  font-size: 1em;
   display: flex;
   align-items: center;
   margin-left: 1em;
   @media (min-width: 1024px) {
+    font-size: 1.56em;
     margin-left: 4em;
   }
 `

@@ -12,7 +12,9 @@ const CourseListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0px auto;
-  padding: 1em 4em;
+  @media (min-width: 1024px) {
+    padding: 1em 4em;
+  }
 `
 
 const CourseCard = styled(Link)`
