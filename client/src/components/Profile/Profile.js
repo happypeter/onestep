@@ -141,7 +141,7 @@ const CourseCard = styled(Link)`
   }
 `
 
-export default ({courses, latestExpireDate, total, status, allFakeCourses}) => {
+export default ({courses, latestExpireDate, total, status, allFakeCourses, phoneNum}) => {
   switch (status) {
     case 'LOADING': {
       return (
@@ -158,7 +158,7 @@ export default ({courses, latestExpireDate, total, status, allFakeCourses}) => {
           <TopHeader />
           <AvatarWrap>
             <img src={defaultAvatar} alt='nickname' />
-            <Nickname>18735159854</Nickname>
+            <Nickname>{phoneNum}</Nickname>
           </AvatarWrap>
           <ContentWrap>
             <SubTitle>课程</SubTitle>
@@ -185,8 +185,7 @@ export default ({courses, latestExpireDate, total, status, allFakeCourses}) => {
                   <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
                 )
                 : (
-                  // <MembershipMsg>还不是好奇猫会员</MembershipMsg>
-                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
+                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
                 )
               }
             {/* {

@@ -20,6 +20,7 @@ class ProfileContainer extends Component {
 
   render () {
     const {latestExpireDate, total, courses, status} = this.props.state
+    const phoneNum = window.sessionStorage.getItem('user')
 
     return (
       <div>
@@ -29,6 +30,7 @@ class ProfileContainer extends Component {
           total={total}
           courses={courses}
           allFakeCourses={this.props.allFakeCourses}
+          phoneNum={phoneNum}
          />
       </div>
     )
