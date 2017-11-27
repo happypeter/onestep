@@ -58,6 +58,10 @@ const HomeWrap = styled.div`
 
 class TopHeader extends Component {
   render () {
+    const backToHome = () => {
+      this.props.backToHome()
+    }
+
     const LoginButtons = (
       <SideButtonsWrap>
         <Button to='signup'>注册</Button>
@@ -76,7 +80,7 @@ class TopHeader extends Component {
     return (
       <TopHeaderWrap>
         <HomeWrap>
-          <img src={logoSimple} alt='logo-simple' width='55px' />
+          <img src={logoSimple} alt='logo-simple' width='55px' onClick={backToHome} />
           <Button to='/'>
             首页
           </Button>
