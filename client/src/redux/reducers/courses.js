@@ -3,7 +3,7 @@ let courses = [
   {
     'id': '0',
     'title': 'Gulp-Flexbox 响应式网站课程',
-    'post': 'http://o86bpj665.bkt.clouddn.com/posters/gulp-flex-res.png',
+    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/qcloud.png',
     'msg': 'peter - 2days ago',
     'episode': [
       'course0 - episode0 - 00000',
@@ -15,7 +15,7 @@ let courses = [
   {
     'id': '1',
     'title': 'Meteor-React 小鸟课程',
-    'post': 'http://o86bpj665.bkt.clouddn.com/posters/meteor-react-bird.png',
+    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/qcloud.png',
     'msg': 'peter - 12days ago',
     'episode': [
       'course1 - episode0 - 111111',
@@ -27,7 +27,7 @@ let courses = [
   {
     'id': '2',
     'title': 'Happypeter 的摩登 JS 王国',
-    'post': 'http://o86bpj665.bkt.clouddn.com/posters/happypeter-js-kingdom.png',
+    'post': 'http://haoqicat-1253322599.costj.myqcloud.com/posters/qcloud.png',
     'msg': 'peter - 22days ago',
     'episode': [
       'course2 - episode0 - 233333',
@@ -51,7 +51,7 @@ let courses = [
   {
     'id': '4',
     'post': 'http://o86bpj665.bkt.clouddn.com/posters/meteor-express-ajax.png',
-    'title': 'Meteor-Express Ajax 方案对比',
+    'title': 'Meteor-Express Ajax 方案',
     'episode': [
       'course2 - episode0 - 233333',
       'course2 - episode1 - 266663',

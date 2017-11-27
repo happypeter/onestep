@@ -9,6 +9,7 @@ const UserSchema = new Schema(
     admin: { type: String },
     wechatId: { type: String },
     phoneNum: { type: String },
+    avatar: { type: String },
     contracts: [{type: Schema.Types.ObjectId, ref: 'Contract'}]
   },
   {timestamps: true}

@@ -20,6 +20,7 @@ class ProfileContainer extends Component {
 
   render () {
     const {latestExpireDate, total, courses, status} = this.props.state
+    const phoneNum = window.sessionStorage.getItem('user')
 
     return (
       <div>
@@ -28,6 +29,8 @@ class ProfileContainer extends Component {
           latestExpireDate={latestExpireDate}
           total={total}
           courses={courses}
+          allFakeCourses={this.props.allFakeCourses}
+          phoneNum={phoneNum}
          />
       </div>
     )
@@ -35,7 +38,8 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  state: state.profile
+  state: state.profile,
+  allFakeCourses: state.courses
 })
 
 export default connect(mapStateToProps, { fetchProfile })(ProfileContainer)

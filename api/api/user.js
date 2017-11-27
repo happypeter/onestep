@@ -203,6 +203,7 @@ const chooseExpireDate = function (allExpireDateArr) {
   return latestExpireDate
 }
 
+// Profile Page
 exports.profile = (req, res) => {
   // const {username} = req.body
   const {phoneNum} = req.body

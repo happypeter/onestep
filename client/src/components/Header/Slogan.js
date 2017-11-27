@@ -1,28 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import reactHexagon from '../../assets/reactHexagon.svg'
 
 const SloganWrap = styled.div`
   background-color: #00BCD4;
   margin-bottom: 40px;
   padding: 50px 1.5em 10px;
-  @media (min-width: 850px) {
-    background-image: url(http://o84cbt6xd.bkt.clouddn.com/banner.png);
-    background-position: right;
-    background-size: 550px;
-    background-repeat: no-repeat;
-    height: 550px;
+  img {
+    display: none
+  }
+  @media (min-width: 1024px) {
+    height: 297px;
+    padding-right: 6em;
+    padding-left: 6em;
     display: flex;
     align-items: center;
-  }
-  @media (min-width: 1000px) {
-    background-position: 85%;
-    padding-left: 10%;
+    img {
+      display: block;
+      margin-top: -40px;
+      width: 277px;
+    }
   }
 `
 const TextWrap = styled.div`
   max-width: 1000px;
   margin: 0px auto;
-  @media (min-width: 850px) {
+  color: #FFFFFF;
+  @media (min-width: 1024px) {
     text-align: left;
     margin-left: 10px;
   }
@@ -30,31 +34,38 @@ const TextWrap = styled.div`
 
 const H1Wrap = styled.h1`
   font-family: sans-serif;
-  font-size: 35px;
+  font-size: 2.5em;
   font-weight: 400;
   margin-top: 0px;
   margin-bottom: 30px;
   line-height: 1.1;
   letter-spacing: -1px;
-  color: rgb(85, 85, 85);
-  @media (min-width: 850px) {
+  @media (min-width: 1024px) {
     font-size: 50px;
   }
 `
 
 const H3Wrap = styled.h3`
   font-weight: 200;
-  font-size: 1.35em;
+  font-size: 1em;
   margin-bottom: 50px;
   line-height: 2em;
-  color: rgb(255, 255, 255);
+  opacity: 0.84;
 `
 
 export default () => (
   <SloganWrap>
     <TextWrap>
-      <H1Wrap>欢迎来到好奇猫</H1Wrap>
-      <H3Wrap>节省自学时间</H3Wrap>
+      <H1Wrap>为开发者而生</H1Wrap>
+      <H3Wrap>好奇猫的每个课程都是《做一个东西的一二三四步》，为你踩坑。
+        <br />
+        我自己写代码上传到 github ，然后通过微视频的形式讲每一个 diff
+        <br />
+        的背后故事给你听。通过会员订阅的服务形式，好奇猫要做一个
+        <br />
+        懂你的视频资源站。
+      </H3Wrap>
     </TextWrap>
+    <img src={reactHexagon} alt='react-hexagon' />
   </SloganWrap>
 )
