@@ -28,6 +28,7 @@ class ProfileContainer extends Component {
           latestExpireDate={latestExpireDate}
           total={total}
           courses={courses}
+          allFakeCourses={this.props.allFakeCourses}
          />
       </div>
     )
@@ -35,7 +36,8 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  state: state.profile
+  state: state.profile,
+  allFakeCourses: state.courses
 })
 
 export default connect(mapStateToProps, { fetchProfile })(ProfileContainer)

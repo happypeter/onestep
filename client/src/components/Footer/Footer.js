@@ -8,7 +8,7 @@ const FooterWrap = styled.div`
   font-weight: 300;
   padding: 48px 24px;
   @media (min-width: 1024px) {
-    height: 324px;
+    height: 228px;
   }
 `
 
