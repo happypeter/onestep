@@ -1,6 +1,6 @@
 const initialState = {
   status: 'LOADING',
-  catalogue: []
+  content: {}
 }
 
 export default (state = initialState, action = {}) => {
@@ -12,7 +12,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         status: 'SUCCESS',
-        catalogue: [...action.res]
+        content: {...action.res}
       }
     }
     case 'FETCH_FAILURE': {
