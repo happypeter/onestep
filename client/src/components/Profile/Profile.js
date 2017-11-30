@@ -110,7 +110,7 @@ const CourseListWrap = styled.div`
 const CourseCard = styled(Link)`
   margin: 2em;
   width: 100%;
-  flex-grow: 1;
+  flex-grow: 0;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -141,7 +141,7 @@ const CourseCard = styled(Link)`
   }
 `
 
-export default ({ courses, latestExpireDate, total, status, allFakeCourses, phoneNum }) => {
+export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
   switch (status) {
     case 'LOADING': {
       return (
@@ -163,12 +163,12 @@ export default ({ courses, latestExpireDate, total, status, allFakeCourses, phon
           <ContentWrap>
             <SubTitle>课程</SubTitle>
             {
-              (courses.length !== 0)
+              (paidCourses && paidCourses.length !== 0)
               ? (
                 <CourseListWrap>
-                  {allFakeCourses.map((item, i) => (
-                    <CourseCard to={`course/${item.title}`} key={i}>
-                      <img src={`${item.post}`} alt='poster' className='poster' />
+                  {paidCourses.map((item, i) => (
+                    <CourseCard to={`course${item.link}`} key={item.key}>
+                      <img src={`${item.cover}`} alt='cover' className='cover' />
                       <p>{item.title}</p>
                     </CourseCard>
                 ))}
