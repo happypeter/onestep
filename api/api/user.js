@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Catalogue = require('../models/catalogue')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 const msg = require('./msg')
@@ -203,46 +204,80 @@ const chooseExpireDate = function (allExpireDateArr) {
   return latestExpireDate
 }
 
-// Profile Page
+// Profile Page API
+// 用于展示 profile 页的课程卡片
+function getPaidCourse (course) {
+  return Catalogue.findOne({link: `/${course}`})
+                  .then(
+                    item => {
+                      return item
+                    }
+                  )
+                  .catch(
+                    err => { console.log(err) }
+                  )
+}
+
+// 遍历获取每个...
+async function getEveryPaidCourses (courses) {
+  if (Object.prototype.toString.call(courses) !== '[object Array]') {
+    throw new Error('courses must be an array')
+  }
+
+  let paidCourses = []
+  for (let course of courses) {
+    let a = await getPaidCourse(course)
+
+    paidCourses.push(a)
+  }
+
+  return paidCourses
+}
+
+// API
 exports.profile = (req, res) => {
-  // const {username} = req.body
   const {phoneNum} = req.body
   let courses = []
   let total = 0
   let allExpireDateArr = []
+  let paidCourses = []
+
   User.findOne({phoneNum: phoneNum})
       .populate('contracts')
       .then(
-        user => {
-          if (!user) {
-            res.status(403).json({
-              errorMsg: 'USER_DOESNOT_EXIST',
-              success: false
-            })
-            throw new Error('user is ' + user)
-          }
-          const contracts = user.contracts
-          contracts.forEach(
-            contract => {
-              // all paid courses
-              courses = [...courses, ...contract.courseId]
-              // total
-              total += contract.total
-              // collect all kinds of membership expireDate
-              if (contract.type === 'vip' || contract.type === 'member') {
-                allExpireDateArr = [...allExpireDateArr, contract.expireDate]
-              }
-            }
-          )
-
-          let latestExpireDate = (allExpireDateArr.length !== 0) ? chooseExpireDate(allExpireDateArr) : null
-
-          return res.json({
-            courses,
-            total,
-            latestExpireDate
+      async user => {
+        if (!user) {
+          res.status(403).json({
+            errorMsg: 'USER_DOESNOT_EXIST',
+            success: false
           })
+          throw new Error('user is ' + user)
         }
+        const contracts = user.contracts
+        // 区别处理每个订单
+        for (let contract of contracts) {
+          // all paid courses
+          courses = [...courses, ...contract.courseId]
+          // 获取已购买课程的信息
+          paidCourses = await getEveryPaidCourses(courses)
+
+          // total
+          total += contract.total
+
+          // collect all kinds of membership expireDate
+          if (contract.type === 'vip' || contract.type === 'member') {
+            allExpireDateArr = [...allExpireDateArr, contract.expireDate]
+          }
+        }
+
+        let latestExpireDate = (allExpireDateArr.length !== 0) ? chooseExpireDate(allExpireDateArr) : null
+
+        return res.json({
+          paidCourses,
+          total,
+          latestExpireDate
+        })
+      }
       )
       .catch(
         error => {
