@@ -2,6 +2,8 @@ const express = require('express')
 const hello = require('./api/hello')
 const user = require('./api/user')
 const msg = require('./api/msg')
+const catalogue = require('./api/catalogue')
+const course = require('./api/course')
 
 const router = express.Router()
 
@@ -18,5 +20,9 @@ router.post('/profile', user.profile)
 
 // sms verification
 router.post('/msg', msg.send)
+
+// 课程展示接口
+router.get('/catalogue', catalogue.catalogue)
+router.post('/course', course.getCourse)
 
 module.exports = router
