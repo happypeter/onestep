@@ -215,9 +215,9 @@ class Course extends Component {
           {
             item.section.map(
               t => (
-                <EpisodeLink>
+                <EpisodeLink key={t.link}>
                   <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-                  <EpisodeTitle to={`${this.props.courseName}/${t.link}`} key={t.link}>{t.title}</EpisodeTitle>
+                  <EpisodeTitle to={`${this.props.courseName}/${t.link}`}>{t.title}</EpisodeTitle>
                 </EpisodeLink>
               )
             )
