@@ -69,7 +69,7 @@ class CourseContainer extends Component {
           autoplay: false,
           controls: true,
           sources: [{
-            src: `${courseContent.vlink}/index.mp4`,
+            src: `${courseContent.vlink}/${courseContent.cover_video}.mp4`,
             type: 'video/mp4'
           }],
           poster: 'http://videojs.com/img/logo.png',
