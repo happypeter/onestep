@@ -3,8 +3,7 @@ import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-// import RaisedButton from 'material-ui/RaisedButton'
-import Button from 'material-ui/Button';
+import Button from 'material-ui/Button'
 import ChapterIcon from '../../assets/ChapterIcon.svg'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
@@ -12,24 +11,9 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: PingFangSC-Regular;
-  max-width: 1350px;
-  p {
-  ${'' /* font-size: 50px; */}
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-}
-p.thin {
-  font-weight: 100;
-}
-p.normal {
-  font-weight: normal;
-}
-p.thick {
-  font-weight: bold;
-}
+  ${'' /* max-width: 1350px;
+  margin: 0 auto; */}
+
 `
 
 const VideoWrap = styled.div`
@@ -81,10 +65,11 @@ const MsgBigCard = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-right: 20%;
   margin-top: 44px;
   margin-bottom: 2em;
   padding-bottom: 1em;
+  position: relative;
+  left: -140px;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -134,7 +119,7 @@ const MsgSmallCards = styled.div`
 `
 
 const MsgSmallCard = styled.div`
-  width: 30%;
+  width: 15%;
   text-align: center;
   padding: 0.5em;
   margin-right: 20%;
