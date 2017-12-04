@@ -8,14 +8,14 @@ import {
 import Course from '../components/Course/Course'
 import { fetchCourse } from '../redux/actions/contentAction'
 
-// import Loadable from 'react-loadable'
-// import LoadingComponent from '../common/Loading'
-//
-// const AsyncHome = Loadable({
-//   loader: () => import('../components/Home/Home'),
-//   loading: LoadingComponent,
-//   delay: 300
-// })
+import Loadable from 'react-loadable'
+import LoadingComponent from '../components/common/Loading'
+
+const AsyncCourse = Loadable({
+  loader: () => import('../components/Course/Course'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 
 class CourseContainer extends Component {
@@ -87,7 +87,7 @@ class CourseContainer extends Component {
 
         return (
           <div>
-            <Course
+            <AsyncCourse
               courseOptions={courseContent}
               videoJsOptions={CourseVideoJsOptions}
             />
