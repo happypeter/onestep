@@ -12,15 +12,16 @@ const AsyncProfile = Loadable({
 })
 
 class ProfileContainer extends Component {
-  componentDidMount () {
+  componentWillMount () {
     const phoneNum = window.sessionStorage.getItem('user')
     // fetch userInfo from server
     this.props.fetchProfile(phoneNum)
   }
 
   render () {
-    const {latestExpireDate, total, courses, status} = this.props.state
+    const {latestExpireDate, total, paidCourses, status} = this.props.state
     const phoneNum = window.sessionStorage.getItem('user')
+    // let { catalogue } = this.props.courses
 
     return (
       <div>
@@ -28,8 +29,8 @@ class ProfileContainer extends Component {
           status={status}
           latestExpireDate={latestExpireDate}
           total={total}
-          courses={courses}
-          allFakeCourses={this.props.allFakeCourses}
+          paidCourses={paidCourses}
+          // catalogue={catalogue}
           phoneNum={phoneNum}
          />
       </div>
@@ -39,7 +40,7 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = (state) => ({
   state: state.profile,
-  allFakeCourses: state.courses
+  // courses: state.courses
 })
 
 export default connect(mapStateToProps, { fetchProfile })(ProfileContainer)
