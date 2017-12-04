@@ -54,6 +54,7 @@ const MsgIntro = styled.div`
   margin-left: 0;
   margin-right: 10px;
   padding: 0.5em 1em;
+  padding-right: 140px;
   margin-bottom: 14px;
   font-size: 1em;
   border-left: 7px solid #00BCD4;

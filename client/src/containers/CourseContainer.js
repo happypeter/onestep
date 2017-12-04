@@ -5,7 +5,7 @@ import {
   Redirect,
   matchPath
 } from 'react-router-dom'
-import Course from '../components/Course/Course'
+// import Course from '../components/Course/Course'
 import { fetchCourse } from '../redux/actions/contentAction'
 
 import Loadable from 'react-loadable'
