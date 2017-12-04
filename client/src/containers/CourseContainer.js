@@ -57,9 +57,10 @@ class CourseContainer extends Component {
     switch (status) {
       case 'LOADING': {
         return (
-          <div>
-            <div>信息请求中...</div>
-          </div>
+          // <div>
+            // <div>信息请求中...</div>
+          // </div>
+          <LoadingComponent />
         )
       }
       case 'SUCCESS': {
