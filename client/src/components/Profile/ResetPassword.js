@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-// import TopHeader from '../../containers/TopHeaderContainer'
-// import Footer from '../Footer/Footer'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
+import Button from 'material-ui/Button';
+import Input, { InputLabel } from 'material-ui/Input'
+import { FormControl, FormHelperText } from 'material-ui/Form'
 import styled from 'styled-components'
 
 const SignupWrap = styled.div`
@@ -12,68 +12,78 @@ const SignupWrap = styled.div`
 `
 
 const FromWrap = styled.form`
+  min-height: 450px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  box-shadow: 0 0 0 0px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px #888888;
+  border-top: 2.5em solid #00BCD4;
   text-align: center;
-  padding: 0 1em 1em;
   margin-top: 5%;
+  padding: 0 60px;
   @media (min-width: 400px) {
-    width: 400px;
-    margin: 30px auto;
+    width: 360px;
+    margin: 80px auto;
+    padding: 0 80px 20px;
   }
 `
+
 const TextFieldWrap = styled.div`
-  display: 'block'
+  display: flex;
+  width: 100%;
 `
 
 const SmsSendWrap = styled.div`
   display: ${props => props.hide ? 'none' : 'inline-block'}
 `
 
-const RaisedButtonWrap = styled(RaisedButton)`
+const RaisedButtonWrap = styled(Button)`
   width: 130px;
   margin-top: 30px;
 `
 
+const ShortButton = styled(Button)`
+  && {
+    color: #00BCD4;
+    font-size: 1em;
+    height: 100%;
+    line-height: 100%;
+  }
+`
+
+const ActionButton = styled(Button)`
+  && {
+    background-color: #00BCD4;
+    color: #FFFFFF;
+    width: 100%;
+    margin-top: 1.5em;
+  }
+`
+
 class ResetPassword extends Component {
 
-  // checkPhoneNum = () => {
-  //   let phoneNum = this.refs.phoneNum.getValue().trim()
-  //   this.props.checkPhoneNum(phoneNum)
-  // }
-
-  checkPassword = () => {
-    let password = this.refs.password.getValue()
-    this.props.checkPassword(password)
+  getPassword = (e) => {
+    this.props.getPassword(e.target.value)
   }
 
-  checkpasswordConsistent = () => {
-    let password = this.refs.password.getValue()
-    let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.checkpasswordConsistent({ password, passwordConsistent })
+  getPasswordConsistent = (e) => {
+    this.props.getPasswordConsistent(e.target.value)
   }
 
-  checkSmsCode = () => {
-    let smsCode = this.refs.smsCode.getValue().trim()
-    this.props.checkSmsCode(smsCode)
+  getSmsCode = (e) => {
+    this.props.getSmsCode(e.target.value)
   }
 
   sendMsg = () => {
-    let phoneNum = this.refs.phoneNum.getValue().trim()
-    this.props.sendMsg(phoneNum)
+    this.props.sendMsg()
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let phoneNum = this.refs.phoneNum.getValue().trim()
-    let smsCode = this.refs.smsCode.getValue().trim()
-    let password = this.refs.password.getValue()
-    let passwordConsistent = this.refs.passwordConsistent.getValue()
-    this.props.onSubmit({ phoneNum, password, passwordConsistent, smsCode })
+    this.props.onSubmit()
   }
 
   render () {
@@ -81,64 +91,83 @@ class ResetPassword extends Component {
       <SignupWrap>
         {/* <TopHeader /> */}
         <FromWrap onSubmit={this.handleSubmit}>
-          <TextField
-            ref='phoneNum'
-            errorText={this.props.errorText.phoneNum}
-            floatingLabelText='手机号'
-            // onBlur={this.checkPhoneNum}
+
+          <FormControl
+            error={this.props.errorText.phoneNum}
+            fullWidth={true}
+            margin={'dense'}
             disabled={true}
             value={this.props.phoneNum}
-          />
+            >
+            <InputLabel htmlFor='phoneNum'>{this.props.phoneNum}</InputLabel>
+            <Input onBlur={this.getPhoneNum} />
+            <FormHelperText>{this.props.errorText.phoneNum}</FormHelperText>
+          </FormControl>
 
           <TextFieldWrap>
-            <TextField
-              ref='smsCode'
-              floatingLabelText='验证码'
-              errorText={this.props.errorText.smsCode}
-              style={{width: '65%'}}
-              onBlur={this.checkSmsCode}
-            />
+            <FormControl
+              error={this.props.errorText.smsCode}
+              margin={'dense'}
+              >
+              <InputLabel htmlFor='smsCode'>验证码</InputLabel>
+              <Input onBlur={this.getSmsCode} />
+              <FormHelperText>{this.props.errorText.smsCode}</FormHelperText>
+            </FormControl>
+
             <SmsSendWrap
               hide={this.props.alreadySendMsg}
               >
-              <RaisedButton
+              <ShortButton
                 onClick={this.sendMsg}
                 >
                 发送
-              </RaisedButton>
+              </ShortButton>
             </SmsSendWrap>
 
             <SmsSendWrap
               hide={!this.props.alreadySendMsg}
               >
-              <RaisedButton
+              <ShortButton
+                raised
                 disabled={true}
                 >
                 {this.props.second}s
-              </RaisedButton>
+              </ShortButton>
             </SmsSendWrap>
           </TextFieldWrap>
 
+          <FormControl
+            error={this.props.errorText.password}
+            fullWidth={true}
+            margin={'dense'}
+            >
+            <InputLabel htmlFor='password'>新密码</InputLabel>
+            <Input
+              onBlur={this.getPassword}
+              type='password'
+            />
+            <FormHelperText>{this.props.errorText.password}</FormHelperText>
+          </FormControl>
 
-          <TextField
-            ref='password'
-            onBlur={this.checkPassword}
-            errorText={this.props.errorText.password}
-            floatingLabelText='新密码'
-            type='password'
-          />
-          <TextField
-            ref='passwordConsistent'
-            onBlur={this.checkpasswordConsistent}
-            errorText={this.props.errorText.passwordConsistent}
-            floatingLabelText='确认新密码'
-            type='password'
-          />
-          <RaisedButtonWrap
-            secondary={true}
+          <FormControl
+            error={this.props.errorText.passwordConsistent}
+            fullWidth={true}
+            margin={'dense'}
+            >
+            <InputLabel htmlFor='passwordConsistent'>确认新密码</InputLabel>
+            <Input
+              onBlur={this.getPasswordConsistent}
+              type='password'
+            />
+            <FormHelperText>{this.props.errorText.passwordConsistent}</FormHelperText>
+          </FormControl>
+
+          <ActionButton
+            raised
             type='submit'
-            label='重置密码'
-          />
+          >
+            重置密码
+          </ActionButton>
         </FromWrap>
         {/* <Footer /> */}
       </SignupWrap>

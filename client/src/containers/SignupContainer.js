@@ -23,8 +23,49 @@ import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
 
+  state = {
+    phoneNum: '',
+    smsCode: '',
+    password: '',
+    passwordConsistent: ''
+  }
+
   componentWillMount(){
     this.props.formErrInit()
+    this.setState({
+      phoneNum: '',
+      smsCode: '',
+      password: '',
+      passwordConsistent: ''
+    })
+  }
+
+  getPhoneNum = (phoneNum) => {
+    this.setState({
+      phoneNum: phoneNum
+    })
+    this.checkPhoneNum(phoneNum)
+  }
+
+  getSmsCode = (smsCode) => {
+    this.setState({
+      smsCode: smsCode
+    })
+    this.checkSmsCode(smsCode)
+  }
+
+  getPassword = (password) => {
+    this.setState({
+    password: password
+    })
+    this.checkPassword(password)
+  }
+
+  getPasswordConsistent = (passwordConsistent) => {
+    this.setState({
+      passwordConsistent: passwordConsistent
+    })
+    this.checkpasswordConsistent()
   }
 
   checkUsername = (username) => {
@@ -52,8 +93,10 @@ class SignupContainer extends Component {
     }
   }
 
-  checkpasswordConsistent = (passwords) => {
-    if (passwords.passwordConsistent !== passwords.password) {
+  checkpasswordConsistent = () => {
+    let {password, passwordConsistent} = this.state
+
+    if (passwordConsistent !== password) {
       this.props.passwordsInconsistent()
     } else {
       this.props.passwordsConsistent()
@@ -93,14 +136,14 @@ class SignupContainer extends Component {
       )
     }
 
-  sendMsg = (phoneNum) => {
-    this.checkPhoneNum(phoneNum)
+  sendMsg = () => {
+    this.checkPhoneNum(this.state.phoneNum)
     if (!this.props.signUpState.phoneNumIsValid) {
-      console.log('phoneNum is not valid')
+      // console.log('phoneNum is not valid')
       return
     }
 
-    this.props.sendMsg(phoneNum)
+    this.props.sendMsg(this.state.phoneNum)
     this.timer()
   }
 
@@ -128,11 +171,11 @@ class SignupContainer extends Component {
   }
 
 
-  handleSubmit = (userInfo) => {
+  handleSubmit = () => {
     let recheck = this.recheckForm()
     recheck.next()
-    // console.log(userInfo);
-    recheck.next(userInfo)
+
+    recheck.next(this.state)
     setTimeout(() => {
       recheck.next()
       // console.log(this.props.signUpState);
@@ -162,12 +205,11 @@ class SignupContainer extends Component {
     }
     return (
       <Signup
+        getPhoneNum={this.getPhoneNum}
+        getSmsCode={this.getSmsCode}
+        getPassword={this.getPassword}
+        getPasswordConsistent={this.getPasswordConsistent}
         onSubmit={this.handleSubmit}
-        checkUsername={this.checkUsername}
-        checkPhoneNum={this.checkPhoneNum}
-        checkPassword={this.checkPassword}
-        checkpasswordConsistent={this.checkpasswordConsistent}
-        checkSmsCode={this.checkSmsCode}
         errorText={this.props.signUpState.testErrObj}
         sendMsg={this.sendMsg}
         alreadySendMsg={this.props.signUpState.alreadySendMsg}

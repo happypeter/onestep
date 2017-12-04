@@ -22,18 +22,44 @@ import PropTypes from 'prop-types'
 
 class ResetPasswordContainer extends Component {
 
-  componentWillMount(){
-    this.props.formErrInit()
+  state = {
+    phoneNum: '',
+    smsCode: '',
+    password: '',
+    passwordConsistent: ''
   }
 
-  // checkPhoneNum = (phoneNum) => {
-  //   const phoneNumPattern =  /^1\d{10}$/
-  //   if (!phoneNumPattern.test(phoneNum)) {
-  //     this.props.phoneNumNotValid()
-  //   } else {
-  //     this.props.phoneNumIsValid()
-  //   }
-  // }
+  componentWillMount(){
+    this.props.formErrInit()
+    let phoneNum = window.sessionStorage.getItem('user')
+    this.setState({
+      phoneNum: phoneNum,
+      smsCode: '',
+      password: '',
+      passwordConsistent: ''
+    })
+  }
+
+  getSmsCode = (smsCode) => {
+    this.setState({
+      smsCode: smsCode
+    })
+    this.checkSmsCode(smsCode)
+  }
+
+  getPassword = (password) => {
+    this.setState({
+    password: password
+    })
+    this.checkPassword(password)
+  }
+
+  getPasswordConsistent = (passwordConsistent) => {
+    this.setState({
+      passwordConsistent: passwordConsistent
+    })
+    this.checkpasswordConsistent()
+  }
 
   checkPassword = (password) => {
     if (password.length < 6) {
@@ -43,8 +69,10 @@ class ResetPasswordContainer extends Component {
     }
   }
 
-  checkpasswordConsistent = (passwords) => {
-    if (passwords.passwordConsistent !== passwords.password) {
+  checkpasswordConsistent = () => {
+    let {password, passwordConsistent} = this.state
+
+    if (passwordConsistent !== password) {
       this.props.passwordsInconsistent()
     } else {
       this.props.passwordsConsistent()
@@ -84,14 +112,14 @@ class ResetPasswordContainer extends Component {
       )
     }
 
-  sendMsg = (phoneNum) => {
-    // this.checkPhoneNum(phoneNum)
+  sendMsg = () => {
+    // this.checkPhoneNum(this.state.phoneNum)
     // if (!this.props.signUpState.phoneNumIsValid) {
-    //   console.log('phoneNum is not valid')
+    //   // console.log('phoneNum is not valid')
     //   return
     // }
-    this.props.sendMsg(phoneNum)
-    console.log("SEND MESSAGE");
+
+    this.props.sendMsg(this.state.phoneNum)
     this.timer()
   }
 
@@ -117,12 +145,11 @@ class ResetPasswordContainer extends Component {
     }
   }
 
-
-  handleSubmit = (userInfo) => {
+  handleSubmit = () => {
     let recheck = this.recheckForm()
     recheck.next()
-    // console.log(userInfo);
-    recheck.next(userInfo)
+
+    recheck.next(this.state)
     setTimeout(() => {
       recheck.next()
       // console.log(this.props.signUpState);
@@ -130,16 +157,16 @@ class ResetPasswordContainer extends Component {
   }
 
   render () {
-    let phoneNum = window.sessionStorage.getItem('user')
+    // let phoneNum = window.sessionStorage.getItem('user')
 
     return (
       <ResetPassword
         onSubmit={this.handleSubmit}
-        phoneNum={phoneNum}
+        phoneNum={this.state.phoneNum}
         // checkPhoneNum={this.checkPhoneNum}
-        checkPassword={this.checkPassword}
-        checkpasswordConsistent={this.checkpasswordConsistent}
-        checkSmsCode={this.checkSmsCode}
+        getSmsCode={this.getSmsCode}
+        getPassword={this.getPassword}
+        getPasswordConsistent={this.getPasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
         sendMsg={this.sendMsg}
         alreadySendMsg={this.props.signUpState.alreadySendMsg}
