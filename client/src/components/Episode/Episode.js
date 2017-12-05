@@ -5,15 +5,6 @@ import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import ReactMarkdown from 'react-markdown'
 
-const EpisodeWrap = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  background-color: #B2EBF2;
-  text-align: center;
-`
-
 const VideoWrap = styled.div`
   margin: 3.5em auto;
 `
