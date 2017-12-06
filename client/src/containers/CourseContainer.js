@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import {
   Link,
   Redirect,
-  matchPath
+  matchPath,
+  Route
 } from 'react-router-dom'
-// import Course from '../components/Course/Course'
 import { fetchCourse } from '../redux/actions/contentAction'
 
 import Loadable from 'react-loadable'
@@ -17,6 +17,11 @@ const AsyncCourse = Loadable({
   delay: 300
 })
 
+const AsyncEpisode = Loadable({
+  loader: () => import('./EpisodeContainer'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class CourseContainer extends Component {
 
@@ -33,43 +38,31 @@ class CourseContainer extends Component {
     // console.log(courseName);
 
     // let { catalogue } = this.props.courses
-    // console.log(catalogue);
-    // let thisCourse = this.props.courses.find(
-    // let thisCourse = catalogue.find(
-    //   item => (
-    //     item.link.substr(1) === courseName
-    //   )
-    // )
-    // if (!thisCourse) {
-    //   return <Redirect to={{ pathname: '/404' }} />
-    // }
-
-    const match = matchPath(this.props.location.pathname, {
-      path: this.props.match.path
-    })
+    // const match = matchPath(this.props.location.pathname, {
+    //   path: this.props.match.path
+    // })
     // console.log(this.props);
-    if (!match.isExact) {
-      return <Redirect to={{ pathname: '/404' }} />
-    }
+    // if (!match.isExact) {
+    //   return <Redirect to={{ pathname: '/404' }} />
+    //   console.log(this.props.match.path);
+    //   console.log(this.props.location.pathname);
+    // }
 
     let { status, content: courseContent } = this.props.course
 
     switch (status) {
       case 'LOADING': {
-        return (
-          // <div>
-            // <div>信息请求中...</div>
-          // </div>
-          <LoadingComponent />
-        )
+        return (<LoadingComponent />)
       }
       case 'SUCCESS': {
+        console.log(this.props.match.url);
+        const couseUrl = this.props.match.url
         // VideoJsOptions for this Course
         const CourseVideoJsOptions = {
           autoplay: false,
           controls: true,
           sources: [{
-            src: `${courseContent.vlink}/${courseContent.cover_video}.mp4`,
+            src: `${courseContent.vlink}/${courseContent.cover_video ? courseContent.cover_video : 'index'}.mp4`,
             type: 'video/mp4'
           }],
           poster: 'http://videojs.com/img/logo.png',
