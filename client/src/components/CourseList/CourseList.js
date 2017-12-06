@@ -65,7 +65,7 @@ class CourseList extends Component {
       }
       case 'SUCCESS': {
         let catalogues = courses.map((item, i) => (
-          <CourseCard to={`course${item.link}`} key={item.key}>
+          <CourseCard to={`${item.link}`} key={item.key}>
             <img src={`${item.cover}`} alt='cover' className='cover' />
             <p>{item.title}</p>
           </CourseCard>

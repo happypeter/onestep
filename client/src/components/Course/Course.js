@@ -11,13 +11,20 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  ${'' /* max-width: 1350px;
+  ${'' /* max-width: 1024px;
   margin: 0 auto; */}
 
 `
 
 const VideoWrap = styled.div`
 
+`
+
+const CourseName = styled.div`
+  margin: 44px auto;
+  color: #573D00;
+  text-align: center;
+  font-size: 2.5em;
 `
 
 const VideoTitle = styled.div`
@@ -153,13 +160,6 @@ const CatalogueWrap = styled.div`
   text-decoration: none;
 `
 
-const CourseName = styled.div`
-  margin: 44px auto;
-  color: #573D00;
-  text-align: center;
-  font-size: 2.5em;
-`
-
 const Info = styled.div`
   margin: 0px auto;
   text-align: center;
@@ -202,12 +202,13 @@ const EpisodeTitle = styled(Link)`
 
 class Course extends Component {
   render () {
-    let { name, intro, writing_to_who: writingToWho, learning_goal: learningGoal, price, publishedOn, vlink, service, content } = this.props.courseOptions
+    // console.log(this.props);
+    let { name, courseName, intro, writing_to_who: writingToWho, learning_goal: learningGoal, price, publishedOn, vlink, service, content } = this.props.courseOptions
 
     let episode
     if (content) {
       episode = content.map((item, i) => (
-        <EpisodesWrap to={'/'} key={item.header}>
+        <EpisodesWrap key={item.header}>
           <EpisodeChapter>
             <img src={ChapterIcon} alt={'ChapterIcon'} />
             <h1>{item.header}</h1>
@@ -217,7 +218,7 @@ class Course extends Component {
               t => (
                 <EpisodeLink key={t.link}>
                   <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-                  <EpisodeTitle to={`${this.props.courseName}/${t.link}`}>{t.title}</EpisodeTitle>
+                  <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
                 </EpisodeLink>
               )
             )
