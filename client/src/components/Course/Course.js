@@ -11,47 +11,77 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  ${'' /* max-width: 1024px;
-  margin: 0 auto; */}
-
 `
 
 const VideoWrap = styled.div`
-
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 const CourseName = styled.div`
-  margin: 44px auto;
+  margin: 2em auto;
   color: #573D00;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 1.5em;
+  @media (min-width: 1024px) {
+    margin: 44px auto;
+    font-size: 2.5em;
+  }
 `
 
 const VideoTitle = styled.div`
-  height: 2.5em;
-  line-height: 2.5em;
+  height: 1.5em;
+  line-height: 1.5em;
   max-width: 100%;
   background-color: #00BCD4;
   color: #FFFFFF;
-  font-size: 1.25em;
+  font-size: 0.5em;
   padding-left: 12px;
+  @media (min-width: 1024px) {
+    height: 2.5em;
+    line-height: 2.5em;
+    max-width: 100%;
+    font-size: 1.25em;
+    padding-left: 12px;
+  }
 `
 
 const Video = styled.div`
-  margin: 0 23%;
+  margin: 0 2em;
+  @media (min-width: 1024px) {
+    margin: 0 23%;
+  }
+`
+
+const MsgHero = styled.div`
+  background-color: #F7F7F7;
 `
 
 const MsgWrap = styled.div`
-  display: flex;
-  background-color: #F7F7F7;
+  ${'' /* display: flex; */}
   flex-shrink: 0;
+  @media (min-width: 1024px) {
+    display: flex;
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 const MsgArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 23%;
-  min-width: 600px;
+  ${'' /* display: flex;
+  flex-direction: column; */}
+  margin-left: 2em;
+  width: 100%;
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    margin-left: 23%;
+    min-width: 600px;
+  }
 `
 
 const MsgIntro = styled.div`
@@ -61,23 +91,20 @@ const MsgIntro = styled.div`
   margin-left: 0;
   margin-right: 10px;
   padding: 0.5em 1em;
-  padding-right: 140px;
   margin-bottom: 14px;
   font-size: 1em;
   border-left: 7px solid #00BCD4;
+  @media (min-width: 1024px) {
+    padding-right: 140px;
+  }
 `
 
 const MsgBigCard = styled.div`
-  width: 400px;
-  max-height: 20.5em;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 44px;
-  margin-bottom: 2em;
+  margin: 0 2em 2em 2em;
   padding-bottom: 1em;
-  position: relative;
-  left: -140px;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -86,6 +113,13 @@ const MsgBigCard = styled.div`
     font-weight: 300;
     font-size: 0.875em;
     color: #212121;
+  }
+  @media (min-width: 1024px) {
+    width: 400px;
+    max-height: 20.5em;
+    position: relative;
+    left: -140px;
+    margin-top: 44px;
   }
 `
 
@@ -127,15 +161,20 @@ const MsgSmallCards = styled.div`
 `
 
 const MsgSmallCard = styled.div`
-  width: 15%;
+  width: 35%;
   text-align: center;
   padding: 0.5em;
-  margin-right: 20%;
-  margin-bottom: 6em;
+  margin-right: 5%;
+  margin-bottom: 1.5em;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
+  @media (min-width: 1024px) {
+    width: 15%;
+    margin-right: 20%;
+    margin-bottom: 6em;
+  }
 `
 
 const CardTitle = styled.span`
@@ -151,13 +190,25 @@ const CardContent = styled.p`
   text-align: left;
 `
 
+const CatalogueHero = styled.div`
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+  }
+`
+
 const CatalogueWrap = styled.div`
-  margin: 6.375em 23% 3em 23%;
-  border-top: 2.7em solid #00BCD4;
+  margin: 0 2em 3em 2em;
+  border-top: 2em solid #00BCD4;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
   text-decoration: none;
+  @media (min-width: 1024px) {
+    margin: 6.375em 23% 3em 23%;
+    border-top: 2.7em solid #00BCD4;
+  }
 `
 
 const Info = styled.div`
@@ -167,11 +218,14 @@ const Info = styled.div`
 `
 const EpisodesWrap = styled.div`
   margin: 10px;
-  padding: 5px 50px;
+  padding: 5px;
   text-decoration: none;
   text-align: left;
   color: #212121;
   border-radius: 40px;
+  @media (min-width: 1024px) {
+    padding: 5px 50px;
+  }
 `
 
 const EpisodeChapter = styled.div`
@@ -179,25 +233,46 @@ const EpisodeChapter = styled.div`
   color: #000000;
   margin-bottom: 10px;
   h1 {
-    margin-left: 29px;
-    font-size: 25px;
+    margin-left: 10px;
+    font-size: 1.2em;
     font-weight: 300;
+  }
+  img {
+    width: 1.2em;
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      margin-left: 29px;
+      font-size: 25px;
+      font-weight: 300;
+    }
   }
 `
 
 const EpisodeLink = styled.div`
   display: flex;
-  margin-left: 29px;
-  margin-bottom: 18px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  img {
+    width: 0.8em;
+  }
+  @media (min-width: 1024px) {
+    margin-left: 29px;
+    margin-bottom: 18px;
+  }
 `
 
 const EpisodeTitle = styled(Link)`
   display: block;
-  margin-left: 43px;
+  margin-left: 15px;
   text-decoration: none;
   color: #000000;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 300;
+  @media (min-width: 1024px) {
+    margin-left: 43px;
+    font-size: 1em;
+  }
 `
 
 class Course extends Component {
@@ -241,35 +316,39 @@ class Course extends Component {
           </Video>
         </VideoWrap>
 
-        <MsgWrap>
-          <MsgArea>
-            <MsgIntro>{intro}</MsgIntro>
-            <MsgSmallCards>
-              <MsgSmallCard>
-                <CardTitle>适合观众</CardTitle>
-                <CardContent>{writingToWho}</CardContent>
-              </MsgSmallCard>
-              <MsgSmallCard>
-                <CardTitle>知识点</CardTitle>
-                <CardContent>{learningGoal}</CardContent>
-              </MsgSmallCard>
-            </MsgSmallCards>
-          </MsgArea>
-          <MsgBigCard>
-            <PriceArea>
-              <Price>{price}元</Price>
-              <p>本课程</p>
-            </PriceArea>
-            <p>课程永久学习权限</p>
-            <Splitter />
-            <p>源代码</p>
-            <RaisedButtonWrap raised>购买</RaisedButtonWrap>
-          </MsgBigCard>
-        </MsgWrap>
+        <MsgHero>
+          <MsgWrap>
+            <MsgArea>
+              <MsgIntro>{intro}</MsgIntro>
+              <MsgSmallCards>
+                <MsgSmallCard>
+                  <CardTitle>适合观众</CardTitle>
+                  <CardContent>{writingToWho}</CardContent>
+                </MsgSmallCard>
+                <MsgSmallCard>
+                  <CardTitle>知识点</CardTitle>
+                  <CardContent>{learningGoal}</CardContent>
+                </MsgSmallCard>
+              </MsgSmallCards>
+            </MsgArea>
+            <MsgBigCard>
+              <PriceArea>
+                <Price>{price}元</Price>
+                <p>本课程</p>
+              </PriceArea>
+              <p>课程永久学习权限</p>
+              <Splitter />
+              <p>源代码</p>
+              <RaisedButtonWrap raised>购买</RaisedButtonWrap>
+            </MsgBigCard>
+          </MsgWrap>
+        </MsgHero>
 
-        <CatalogueWrap>
-          { episode }
-        </CatalogueWrap>
+        <CatalogueHero>
+          <CatalogueWrap>
+            { episode }
+          </CatalogueWrap>
+        </CatalogueHero>
 
         <Footer />
       </Wrap>
