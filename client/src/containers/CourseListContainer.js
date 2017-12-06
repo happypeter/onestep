@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CourseList from '../components/CourseList/CourseList'
+// import CourseList from '../components/CourseList/CourseList'
 import { fetchCatalogue } from '../redux/actions/contentAction'
+import LoadingComponent from '../components/common/Loading'
+import Loadable from 'react-loadable'
+
+const AsyncCourseList = Loadable({
+  loader: () => import('../components/CourseList/CourseList'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class CourseListContainer extends Component {
 
@@ -10,11 +18,11 @@ class CourseListContainer extends Component {
   }
 
   render () {
-    console.log(this.props);
+    // console.log(this.props);
     let { status, catalogue } = this.props.courses
     return (
       <div>
-        <CourseList
+        <AsyncCourseList
           status={status}
           courses={catalogue}
         />

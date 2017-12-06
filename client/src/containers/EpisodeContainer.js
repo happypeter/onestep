@@ -4,9 +4,16 @@ import {
   matchPath
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Episode from '../components/Episode/Episode'
+// import Episode from '../components/Episode/Episode'
 import { fetchEpisode } from '../redux/actions/contentAction'
 import LoadingComponent from '../components/common/Loading'
+import Loadable from 'react-loadable'
+
+const AsyncEpisode = Loadable({
+  loader: () => import('../components/Episode/Episode'),
+  loading: LoadingComponent,
+  delay: 300
+})
 
 class EpisodeContainer extends Component {
 
@@ -60,7 +67,7 @@ class EpisodeContainer extends Component {
 
         return (
           <div>
-            <Episode
+            <AsyncEpisode
               episodeState={episodeState}
               videoJsOptions={EpisodeVideoJsOptions}
             />
