@@ -5,26 +5,22 @@ import {
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Episode from '../components/Episode/Episode'
+import { fetchEpisode } from '../redux/actions/contentAction'
+import LoadingComponent from '../components/common/Loading'
 
 class EpisodeContainer extends Component {
-  render () {
-    // 404: /path + whatever
+
+  componentWillMount () {
     let { courseName, episodeName } = this.props.match.params
-    const isPathExact = this.props.courses.filter(
-      item => {
-        if (item.title !== courseName) return
-        let isExact = item.episode.filter(
-          // return an Array(0)(404) or Array(1)
-          episode => (
-            episode === episodeName
-          )
-        )
-        return (isExact.length !== 0)
-      }
-    )
-    if (isPathExact.length === 0) {
-      return <Redirect to={{ pathname: '/404' }} />
-    }
+    this.props.fetchEpisode({ courseName, episodeName })
+  }
+
+  render () {
+    // console.log(this.props);
+    let {
+      episode: { status },
+      match: { params: { episodeName } }
+        } = this.props
 
     // 404: /path/whatever
     const match = matchPath(this.props.location.pathname, {
@@ -34,16 +30,59 @@ class EpisodeContainer extends Component {
       return <Redirect to={{ pathname: '/404' }} />
     }
 
-    return (
-      <div>
-        <Episode episodeName={episodeName} />
-      </div>
-    )
+    switch (status) {
+      case 'LOADING': {
+        return (<LoadingComponent />)
+      }
+      case 'SUCCESS': {
+        const episodeState = this.props.episode
+        // VideoJsOptions for this Course
+        const EpisodeVideoJsOptions = {
+          autoplay: false,
+          controls: true,
+          sources: [{
+            src: `${episodeState.vlink}/${episodeName}.mp4`,
+            type: 'video/mp4'
+          }],
+          poster: 'http://videojs.com/img/logo.png',
+          fluid: 'true', // put the player in the VideoPlayerWrap box
+          playbackRates: [0.75, 1, 1.5, 2],
+          controlBar: {
+            volumePanel: {
+              inline: false // vertical VolumeControl
+            }
+          },
+          // Using A Plugin
+          plugins: {
+            setStateandFocusPlugin: true
+          }
+        }
+
+        return (
+          <div>
+            <Episode
+              episodeState={episodeState}
+              videoJsOptions={EpisodeVideoJsOptions}
+            />
+          </div>
+        )
+      }
+      case 'FAILURE': {
+        return (
+          <div>
+            <div>信息加载失败</div>
+          </div>
+        )
+      }
+      default: {
+        throw new Error('unexpected status ' + status)
+      }
+    }
   }
 }
 
 const mapStateToProps = (state) => ({
-  courses: state.courses
+  episode: state.episode
 })
 
-export default connect(mapStateToProps)(EpisodeContainer)
+export default connect(mapStateToProps, { fetchEpisode })(EpisodeContainer)

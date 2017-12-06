@@ -72,7 +72,10 @@ const Doc = styled.div`
 
 class Episode extends Component {
   render () {
-    console.log(this.props);
+    let {
+      videoJsOptions,
+      episodeState: { doc, title }
+    } = this.props
     return (
       <div>
         <TopHeader />
@@ -80,13 +83,13 @@ class Episode extends Component {
         <VideoWrap>
           {/* <CourseName></CourseName> */}
           <Video>
-            <VideoTitle>{this.props.episodeState ? this.props.episodeState.title : 'xxx'}</VideoTitle>
-            <VideoPlayer {...this.props.videoJsOptions} />
+            <VideoTitle>{title}</VideoTitle>
+            <VideoPlayer {...videoJsOptions} />
           </Video>
         </VideoWrap>
 
         <Doc>
-          <ReactMarkdown source={this.props.doc} />
+          <ReactMarkdown source={doc} />
         </Doc>
 
         <Footer />
