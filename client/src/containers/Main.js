@@ -9,7 +9,6 @@ import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
-import E from './EpisodeContainer'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),

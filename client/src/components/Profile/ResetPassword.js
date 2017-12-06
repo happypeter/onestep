@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button';
 import Input, { InputLabel } from 'material-ui/Input'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -40,10 +39,10 @@ const SmsSendWrap = styled.div`
   display: ${props => props.hide ? 'none' : 'inline-block'}
 `
 
-const RaisedButtonWrap = styled(Button)`
-  width: 130px;
-  margin-top: 30px;
-`
+// const RaisedButtonWrap = styled(Button)`
+//   width: 130px;
+//   margin-top: 30px;
+// `
 
 const ShortButton = styled(Button)`
   && {
