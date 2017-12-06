@@ -7,7 +7,7 @@ exports.getCourse = (req, res) => {
            .then(
              item => {
                if (!item) {
-                 res.status(404).send('404')
+                 res.status(404).send('404: no such a course')
                }
                res.send(item)
              }
