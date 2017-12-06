@@ -4,6 +4,7 @@ const user = require('./api/user')
 const msg = require('./api/msg')
 const catalogue = require('./api/catalogue')
 const course = require('./api/course')
+const doc = require('./api/doc')
 
 const router = express.Router()
 
@@ -24,5 +25,6 @@ router.post('/msg', msg.send)
 // 课程展示接口
 router.get('/catalogue', catalogue.catalogue)
 router.post('/course', course.getCourse)
+router.post('/episode', doc.getEpisode)
 
 module.exports = router
