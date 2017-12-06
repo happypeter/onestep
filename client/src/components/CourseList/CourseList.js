@@ -13,6 +13,9 @@ const CourseListWrap = styled.div`
   flex-wrap: wrap;
   margin: 0px auto;
   @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
     padding: 1em 4em;
   }
 `

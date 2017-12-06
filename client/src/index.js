@@ -5,10 +5,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import { injectGlobal } from 'styled-components'
 
 injectGlobal`
-  html {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
   body {
 
     font-family: PingFangSC-Regular;

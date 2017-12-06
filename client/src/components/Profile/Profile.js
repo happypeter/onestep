@@ -14,6 +14,10 @@ const Wrap = styled.div`
   justify-content: space-between;
 `
 
+const AvatarHero = styled.div`
+  background-color: #00BCD4;
+`
+
 const AvatarWrap = styled.div`
   background-color: #00BCD4;
   height: 200px;
@@ -30,6 +34,8 @@ const AvatarWrap = styled.div`
     border: 1px solid white;
   }
   @media (min-width: 1024px) {
+    width: 1024px;
+    margin: 0 auto;
     height: 325px;
     img {
       margin-top: 48px;
@@ -54,6 +60,11 @@ const ContentWrap = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 const SubTitle = styled.div`
@@ -156,10 +167,14 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
       return (
         <Wrap>
           <TopHeader />
-          <AvatarWrap>
-            <img src={defaultAvatar} alt='nickname' />
-            <Nickname>{phoneNum}</Nickname>
-          </AvatarWrap>
+
+          <AvatarHero>
+            <AvatarWrap>
+              <img src={defaultAvatar} alt='nickname' />
+              <Nickname>{phoneNum}</Nickname>
+            </AvatarWrap>
+          </AvatarHero>
+
           <ContentWrap>
             <SubTitle>课程</SubTitle>
             {
@@ -198,7 +213,9 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
                 )
               } */}
           </ContentWrap>
+
           <LinkButton to='/profile/settings'>设置</LinkButton>
+
           <Footer />
         </Wrap>
       )
