@@ -4,7 +4,8 @@ const initialState = {
   showSignupNotification: false,
   showUnhandledErrNotification: false,
   showInvalidTokenNotification: false,
-  showResetPasswordNotification: false
+  showResetPasswordNotification: false,
+  showNotPaidNotification: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -58,6 +59,16 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         showResetPasswordNotification: false
+      }
+    case 'SHOW_NOT_PAID_NOTIFICATION':
+      return {
+        ...state,
+        showNotPaidNotification: true
+      }
+    case 'RM_NOT_PAID_NOTIFICATION':
+      return {
+        ...state,
+        showNotPaidNotification: false
       }
     case 'UNHANDLED_ERROR':
       return {

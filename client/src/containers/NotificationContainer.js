@@ -39,71 +39,89 @@ class NotificationContainer extends Component {
   // }
 
   render () {
-    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification, showResetPasswordNotification } = this.props.notification
+    let {
+      showLogoutNotification,
+      showLoginNotification,
+      showSignupNotification,
+      showInvalidTokenNotification,
+      showUnhandledErrNotification,
+      showResetPasswordNotification,
+      showNotPaidNotification
+    } = this.props.notification
     return (
       <div>
         {
-          showLogoutNotification ?
-          (
+          showLogoutNotification
+          ? (
             <Notification
             // removeNotification={this.removeLogoutNotification}
-            text={'已经退出登录'}
+              text={'已经退出登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showLoginNotification ?
-          (
+          showLoginNotification
+          ? (
             <Notification
             // removeNotification={this.removeLoginNotification}
-            text={'已经成功登录'}
+              text={'已经成功登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showSignupNotification ?
-          (
+          showSignupNotification
+          ? (
             <Notification
             // removeNotification={this.removeSignupNotification}
-            text={'账号注册成功'}
+              text={'账号注册成功'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showResetPasswordNotification ?
-          (
+          showResetPasswordNotification
+          ? (
             <div>
-            <Redirect to='/profile' />
-            <Notification
+              <Redirect to='/profile' />
+              <Notification
             // removeNotification={this.removeResetPasswordNotification}
-            text={'重置密码成功'}
-            />
-           </div>
-          ) :
-          ''
+                text={'重置密码成功'}
+              />
+            </div>
+          )
+          : null
         }
         {
-          (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification) ?
-          (
+          (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification)
+          ? (
             <Notification
             // removeNotification={this.removeInvalidTokenNotification}
-            text={'登录过期 请重新登录'}
+              text={'登录过期 请重新登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showUnhandledErrNotification ?
-          (
+          showNotPaidNotification
+          ? (
             <Notification
             // removeNotification={this.removeUnhandledErrNotification}
-            text={'网络错误 操作失败'}
+              text={'您需要成为好奇猫会员，或者购买课程'}
             />
-          ) :
-          ''
+          )
+          : null
+        }
+        {
+          showUnhandledErrNotification
+          ? (
+            <Notification
+            // removeNotification={this.removeUnhandledErrNotification}
+              text={'网络错误 操作失败'}
+            />
+          )
+          : null
         }
       </div>
     )
