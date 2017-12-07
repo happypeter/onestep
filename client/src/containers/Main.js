@@ -9,6 +9,7 @@ import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
+import {requireEpisodeAuth} from './CheckEpisodeAuth'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -64,7 +65,7 @@ class Main extends Component {
           <Route exact path='/profile' component={requireAuthentication(AsyncProfile)} />
           <Route path='/profile/settings' component={requireAuthentication(ProfileSettings)} />
           <Route exact path='/:courseName' component={AsyncCourse} />
-          <Route path='/:courseName/:episodeName' component={requireAuthentication(AsyncEpisode)} />
+          <Route path='/:courseName/:episodeName' component={requireEpisodeAuth(AsyncEpisode)} />
           <Route component={AsyncNotFound} />
         </Switch>
       </Router>

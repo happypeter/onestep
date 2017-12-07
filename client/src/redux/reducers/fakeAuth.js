@@ -2,6 +2,7 @@ import isEmpty from 'lodash/fp/isEmpty'
 
 const initialState = {
   isAuthenticated: false,
+  isEpisodePaid: false,
   currentUser: {}
 }
 
@@ -41,6 +42,16 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         isAuthenticated: false
+      }
+    case 'EPISODE_AUTH_VALID':
+      return {
+        ...state,
+        isEpisodePaid: true
+      }
+    case 'EPISODE_AUTH_INVALID':
+      return {
+        ...state,
+        isEpisodePaid: false
       }
     default:
       return state
