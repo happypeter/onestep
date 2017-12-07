@@ -7,7 +7,7 @@ import {
   Route
 } from 'react-router-dom'
 import { fetchCourse } from '../redux/actions/contentAction'
-
+import { checkEpisodeAuth } from '../redux/actions/authAction'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
@@ -29,6 +29,10 @@ class CourseContainer extends Component {
     let { courseName } = this.props.match.params
     // fetch the course data form server
     this.props.fetchCourse({ courseName })
+    let token = window.sessionStorage.getItem('jwtToken')
+    const phoneNum = window.sessionStorage.getItem('user')
+
+    this.props.checkEpisodeAuth({courseName, token, phoneNum})
   }
 
   render () {
@@ -55,7 +59,6 @@ class CourseContainer extends Component {
         return (<LoadingComponent />)
       }
       case 'SUCCESS': {
-        console.log(this.props.match.url);
         const couseUrl = this.props.match.url
         // VideoJsOptions for this Course
         const CourseVideoJsOptions = {
@@ -106,4 +109,4 @@ const mapStateToProps = (state) => ({
   course: state.course
 })
 
-export default connect(mapStateToProps, { fetchCourse })(CourseContainer)
+export default connect(mapStateToProps, { fetchCourse, checkEpisodeAuth })(CourseContainer)

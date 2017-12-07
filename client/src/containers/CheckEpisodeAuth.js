@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { checkEpisodeAuth } from '../redux/actions/authAction'
+import { showNotPaidNotification } from '../redux/actions/notificationAction'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
@@ -8,12 +9,17 @@ export function requireEpisodeAuth (Component) {
   class EpisodeAuthComponent extends Component {
 
     componentDidMount () {
-      // console.log(this.props);
-      let {match: {params: {courseName}}} = this.props
-      let token = window.sessionStorage.getItem('jwtToken')
-      const phoneNum = window.sessionStorage.getItem('user')
+      // keep render() a pure func
+      let {
+        isAuthenticated,
+        isEpisodePaid,
+        showNotPaidNotification
+      } = this.props
 
-      this.props.checkEpisodeAuth({courseName, token, phoneNum})
+      if (isAuthenticated && !isEpisodePaid) {
+        // show notification
+        showNotPaidNotification()
+      }
     }
 
     render () {
@@ -46,12 +52,13 @@ export function requireEpisodeAuth (Component) {
   }
 
   EpisodeAuthComponent.PropTypes = {
-    checkEpisodeAuth: PropTypes.func.isRequired
+    checkEpisodeAuth: PropTypes.func.isRequired,
+    showNotPaidNotification: PropTypes.func.isRequired
   }
   const mapStateToProps = (state) => ({
     isAuthenticated: state.fakeAuth.isAuthenticated,
     isEpisodePaid: state.fakeAuth.isEpisodePaid
   })
 
-  return connect(mapStateToProps, { checkEpisodeAuth })(EpisodeAuthComponent)
+  return connect(mapStateToProps, { checkEpisodeAuth, showNotPaidNotification })(EpisodeAuthComponent)
 }

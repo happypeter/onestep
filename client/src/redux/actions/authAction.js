@@ -5,7 +5,7 @@ import {
   showSignupNotification,
   showInvalidTokenNotification,
   showResetPasswordNotification,
-  showNotPaidNotification
+  // showNotPaidNotification
 } from './notificationAction'
 import config from '../../config/config'
 
@@ -219,8 +219,8 @@ export const checkEpisodeAuth = (data) => {
               dispatch({
                 type: 'EPISODE_AUTH_INVALID'
               })
-              // show notification
-              showNotPaidNotification(dispatch)
+              // // show notification
+              // showNotPaidNotification(dispatch)
             } else {
               console.log('you already bought this course!')
               dispatch({

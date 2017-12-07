@@ -37,14 +37,23 @@ export function showResetPasswordNotification (dispatch) {
   }, 4000)
 }
 
-export function showNotPaidNotification (dispatch) {
-  dispatch({ type: 'SHOW_NOT_PAID_NOTIFICATION' })
-  setTimeout(() => {
-    dispatch({ type: 'RM_NOT_PAID_NOTIFICATION' })
-  }, 4000)
-}
+// export function showNotPaidNotification (dispatch) {
+//   dispatch({ type: 'SHOW_NOT_PAID_NOTIFICATION' })
+//   setTimeout(() => {
+//     dispatch({ type: 'RM_NOT_PAID_NOTIFICATION' })
+//   }, 4000)
+// }
 
 // for react components
+export function showNotPaidNotification () {
+  return dispatch => {
+    dispatch({ type: 'SHOW_NOT_PAID_NOTIFICATION' })
+    setTimeout(() => {
+      dispatch({ type: 'RM_NOT_PAID_NOTIFICATION' })
+    }, 4000)
+  }
+}
+
 // export function removeLogoutNotification (data) {
 //   return dispatch => {
 //     dispatch({ type: 'RM_LOGOUT_NOTIFICATION' })
