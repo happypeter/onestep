@@ -174,7 +174,7 @@ exports.checkToken = function (req, res) {
             success: true
           })
         } else {
-          res.status(401).json({
+          return res.status(401).json({
             errorMsg: 'INVALID_TOKEN',
             success: false
           })
@@ -247,11 +247,12 @@ exports.profile = (req, res) => {
       .then(
       async user => {
         if (!user) {
-          res.status(403).json({
+          console.log('user is ' + user)
+          return res.status(403).json({
             errorMsg: 'USER_DOESNOT_EXIST',
             success: false
           })
-          throw new Error('user is ' + user)
+          // throw new Error('user is ' + user)
         }
         const contracts = user.contracts
         // 区别处理每个订单
