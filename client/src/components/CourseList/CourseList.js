@@ -21,14 +21,14 @@ const CourseListWrap = styled.div`
 `
 
 const CourseCard = styled(Link)`
-  margin: 2em;
+  margin: 1em;
   width: 100%;
   flex-grow: 0;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
 
   img {
@@ -42,7 +42,13 @@ const CourseCard = styled(Link)`
     padding: 15px;
     color: rgb(76, 87, 101);
     font-size: 17px;
-    text-align: center;
+  }
+
+  span {
+    font-size: 14px;
+    padding:5px 0 5px 15px;
+    display: inline-block;
+    font-weight: 200;
   }
 
   @media (min-width: 600px) {
@@ -50,7 +56,7 @@ const CourseCard = styled(Link)`
   }
 
   @media (min-width: 1024px) {
-    width: calc(33.33333% - 4em)
+    width: calc(33.33333% - 2em)
   }
 `
 
@@ -69,6 +75,7 @@ class CourseList extends Component {
       case 'SUCCESS': {
         let catalogues = courses.map((item, i) => (
           <CourseCard to={`${item.link}`} key={item.key}>
+            <span>{item.publishedOn}</span>
             <img src={`${item.cover}`} alt='cover' className='cover' />
             <p>{item.title}</p>
           </CourseCard>
