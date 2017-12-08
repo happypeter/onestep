@@ -14,6 +14,10 @@ const Wrap = styled.div`
   justify-content: space-between;
 `
 
+const AvatarHero = styled.div`
+  background-color: #00BCD4;
+`
+
 const AvatarWrap = styled.div`
   background-color: #00BCD4;
   height: 200px;
@@ -30,6 +34,8 @@ const AvatarWrap = styled.div`
     border: 1px solid white;
   }
   @media (min-width: 1024px) {
+    width: 1024px;
+    margin: 0 auto;
     height: 325px;
     img {
       margin-top: 48px;
@@ -54,6 +60,11 @@ const ContentWrap = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 const SubTitle = styled.div`
@@ -110,7 +121,7 @@ const CourseListWrap = styled.div`
 const CourseCard = styled(Link)`
   margin: 2em;
   width: 100%;
-  flex-grow: 1;
+  flex-grow: 0;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -141,7 +152,7 @@ const CourseCard = styled(Link)`
   }
 `
 
-export default ({ courses, latestExpireDate, total, status, allFakeCourses, phoneNum }) => {
+export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
   switch (status) {
     case 'LOADING': {
       return (
@@ -156,19 +167,23 @@ export default ({ courses, latestExpireDate, total, status, allFakeCourses, phon
       return (
         <Wrap>
           <TopHeader />
-          <AvatarWrap>
-            <img src={defaultAvatar} alt='nickname' />
-            <Nickname>{phoneNum}</Nickname>
-          </AvatarWrap>
+
+          <AvatarHero>
+            <AvatarWrap>
+              <img src={defaultAvatar} alt='nickname' />
+              <Nickname>{phoneNum}</Nickname>
+            </AvatarWrap>
+          </AvatarHero>
+
           <ContentWrap>
             <SubTitle>课程</SubTitle>
             {
-              (courses.length !== 0)
+              (paidCourses && paidCourses.length !== 0)
               ? (
                 <CourseListWrap>
-                  {allFakeCourses.map((item, i) => (
-                    <CourseCard to={`course/${item.title}`} key={i}>
-                      <img src={`${item.post}`} alt='poster' className='poster' />
+                  {paidCourses.map((item, i) => (
+                    <CourseCard to={`course${item.link}`} key={item.key}>
+                      <img src={`${item.cover}`} alt='cover' className='cover' />
                       <p>{item.title}</p>
                     </CourseCard>
                 ))}
@@ -198,7 +213,9 @@ export default ({ courses, latestExpireDate, total, status, allFakeCourses, phon
                 )
               } */}
           </ContentWrap>
+
           <LinkButton to='/profile/settings'>设置</LinkButton>
+
           <Footer />
         </Wrap>
       )

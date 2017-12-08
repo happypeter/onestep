@@ -13,6 +13,9 @@ const CourseListWrap = styled.div`
   flex-wrap: wrap;
   margin: 0px auto;
   @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
     padding: 1em 4em;
   }
 `
@@ -20,7 +23,7 @@ const CourseListWrap = styled.div`
 const CourseCard = styled(Link)`
   margin: 2em;
   width: 100%;
-  flex-grow: 1;
+  flex-grow: 0;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
@@ -53,21 +56,43 @@ const CourseCard = styled(Link)`
 
 class CourseList extends Component {
   render () {
-    let courses = this.props.courses.map((item, i) => (
-      <CourseCard to={`course/${item.title}`} key={i}>
-        <img src={`${item.post}`} alt='poster' className='poster' />
-        <p>{item.title}</p>
-      </CourseCard>
-    ))
+    let { courses, status } = this.props
 
-    return (
-      <div>
-        <Title>最新发布</Title>
-        <CourseListWrap>
-          {courses}
-        </CourseListWrap>
-      </div>
-    )
+    switch (status) {
+      case 'LOADING': {
+        return (
+          <div>
+            <Title>信息请求中...</Title>
+          </div>
+        )
+      }
+      case 'SUCCESS': {
+        let catalogues = courses.map((item, i) => (
+          <CourseCard to={`${item.link}`} key={item.key}>
+            <img src={`${item.cover}`} alt='cover' className='cover' />
+            <p>{item.title}</p>
+          </CourseCard>
+        ))
+        return (
+          <div>
+            <Title>最新发布</Title>
+            <CourseListWrap>
+              { catalogues }
+            </CourseListWrap>
+          </div>
+        )
+      }
+      case 'FAILURE': {
+        return (
+          <div>
+            <Title>信息加载失败</Title>
+          </div>
+        )
+      }
+      default: {
+        throw new Error('unexpected status ' + status)
+      }
+    }
   }
 }
 

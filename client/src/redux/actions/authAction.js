@@ -151,7 +151,7 @@ export function fakeWechatLogin (user) {
 
 export const checkToken = (token) => {
   return dispatch => {
-    axios.post(`${config.api + '/auth'}`, {token: token})
+    axios.post(`${config.api + '/auth'}`, {token})
          .then(
            res => {
              if (res.data.success !== true) {
@@ -172,6 +172,75 @@ export const checkToken = (token) => {
   }
 }
 
+// 检测 Episode 权限部分
+function checkMembership (date) {
+  let now = new Date()
+  let isMember = Date.parse(date) - Date.parse(now)
+  return isMember
+}
+
+function checkShoplist (shoplist, courseName) {
+  let isPaid = shoplist.find(
+    course => (
+      course.link.substr(1) === courseName
+    )
+  )
+  return !!isPaid
+}
+
+export const episodeAuthFetchStarted = () => ({
+  type: 'EP_AUTH_FETCH_STARTED'
+})
+
+export const episodeAuthFetchFailed = () => ({
+  type: 'EP_AUTH_FETCH_FAILED'
+})
+
+export const checkEpisodeAuth = (data) => {
+  return dispatch => {
+    dispatch(episodeAuthFetchStarted())
+
+    let { phoneNum, courseName } = data
+    axios.post(`${config.api + '/profile'}`, {phoneNum})
+         .then(
+           res => {
+             let paidRes = res.data
+
+             if (res.status !== 200) {
+               throw new Error('Fail to check paid courses: ' + paidRes)
+             } else {
+               if (!paidRes.latestExpireDate || !checkMembership(paidRes.latestExpireDate)) {
+                 console.log('not a member')
+                 // now we need to check if the user bought the course
+                 if ((paidRes.paidCourses.length === 0) || !checkShoplist(paidRes.paidCourses, courseName)) {
+                   // time to refuse the user
+                   console.log('refuse')
+                   dispatch({
+                     type: 'EPISODE_AUTH_INVALID'
+                   })
+                 } else {
+                   console.log('you already bought this course!')
+                   dispatch({
+                     type: 'EPISODE_AUTH_VALID'
+                   })
+                 }
+               } else {
+                 console.log('here comes a member')
+                 dispatch({
+                   type: 'EPISODE_AUTH_VALID'
+                 })
+               }
+             }
+           }
+         ).catch(
+           error => {
+             dispatch(episodeAuthFetchFailed())
+             handleError(error, dispatch)
+           }
+         )
+  }
+}
+
 export function resetPassword (data) {
   return dispatch => {
     axios.post(`${config.api + '/resetpassword'}`, data)
@@ -184,7 +253,6 @@ export function resetPassword (data) {
                type: 'RESET_PASSWORD',
                userInfo: user
              })
-
              showResetPasswordNotification(dispatch)
            }
          )

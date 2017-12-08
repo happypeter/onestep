@@ -1,6 +1,8 @@
 const initialState = {
   status: 'LOADING',
-  catalogue: []
+  doc: '',
+  vlink: '',
+  title: ''
 }
 
 export default (state = initialState, action = {}) => {
@@ -12,7 +14,9 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         status: 'SUCCESS',
-        catalogue: [...action.res]
+        doc: action.res && action.res.doc,
+        vlink: action.res && action.res.vlink,
+        title: action.res && action.res.title
       }
     }
     case 'FETCH_FAILURE': {

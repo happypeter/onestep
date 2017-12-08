@@ -34,7 +34,7 @@ export function requireAuthentication (Component) {
         )
       )
     }
-    }
+  }
 
   AuthenticatedComponent.PropTypes = {
     checkToken: PropTypes.func.isRequired

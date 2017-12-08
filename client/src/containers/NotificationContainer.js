@@ -2,132 +2,152 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Notification from '../components/Notification/Notification'
-import {
-  removeLogoutNotification,
-  removeLoginNotification,
-  removeSignupNotification,
-  removeUnhandledErrNotification,
-  removeInvalidTokenNotification,
-  removeResetPasswordNotification
-} from '../redux/actions/notificationAction'
-import PropTypes from 'prop-types'
+// import {
+//   removeLogoutNotification,
+//   removeLoginNotification,
+//   removeSignupNotification,
+//   removeUnhandledErrNotification,
+//   removeInvalidTokenNotification,
+//   removeResetPasswordNotification
+// } from '../redux/actions/notificationAction'
+// import PropTypes from 'prop-types'
 
 class NotificationContainer extends Component {
 
-  removeLogoutNotification = () => {
-    this.props.removeLogoutNotification()
-  }
-
-  removeLoginNotification = () => {
-    this.props.removeLoginNotification()
-  }
-
-  removeSignupNotification = () => {
-    this.props.removeSignupNotification()
-  }
-
-  removeUnhandledErrNotification = () => {
-    this.props.removeUnhandledErrNotification()
-  }
-
-  removeInvalidTokenNotification = () => {
-    this.props.removeInvalidTokenNotification()
-  }
-
-  removeResetPasswordNotification = () => {
-    this.props.removeResetPasswordNotification()
-  }
+  // removeLogoutNotification = () => {
+  //   this.props.removeLogoutNotification()
+  // }
+  //
+  // removeLoginNotification = () => {
+  //   this.props.removeLoginNotification()
+  // }
+  //
+  // removeSignupNotification = () => {
+  //   this.props.removeSignupNotification()
+  // }
+  //
+  // removeUnhandledErrNotification = () => {
+  //   this.props.removeUnhandledErrNotification()
+  // }
+  //
+  // removeInvalidTokenNotification = () => {
+  //   this.props.removeInvalidTokenNotification()
+  // }
+  //
+  // removeResetPasswordNotification = () => {
+  //   this.props.removeResetPasswordNotification()
+  // }
 
   render () {
-    let { showLogoutNotification, showLoginNotification, showSignupNotification, showInvalidTokenNotification, showUnhandledErrNotification, showResetPasswordNotification } = this.props.notification
+    let {
+      showLogoutNotification,
+      showLoginNotification,
+      showSignupNotification,
+      showInvalidTokenNotification,
+      showUnhandledErrNotification,
+      showResetPasswordNotification,
+      showNotPaidNotification
+    } = this.props.notification
     return (
       <div>
         {
-          showLogoutNotification ?
-          (
+          showLogoutNotification
+          ? (
             <Notification
-            removeNotification={this.removeLogoutNotification}
-            text={'已经退出登录'}
+            // removeNotification={this.removeLogoutNotification}
+              text={'已经退出登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showLoginNotification ?
-          (
+          showLoginNotification
+          ? (
             <Notification
-            removeNotification={this.removeLoginNotification}
-            text={'已经成功登录'}
+            // removeNotification={this.removeLoginNotification}
+              text={'已经成功登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showSignupNotification ?
-          (
+          showSignupNotification
+          ? (
             <Notification
-            removeNotification={this.removeSignupNotification}
-            text={'账号注册成功'}
+            // removeNotification={this.removeSignupNotification}
+              text={'账号注册成功'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showResetPasswordNotification ?
-          (
+          showResetPasswordNotification
+          ? (
             <div>
-            <Redirect to='/profile' />
-            <Notification
-            removeNotification={this.removeResetPasswordNotification}
-            text={'重置密码成功'}
-            />
-           </div>
-          ) :
-          ''
+              <Redirect to='/profile' />
+              <Notification
+            // removeNotification={this.removeResetPasswordNotification}
+                text={'重置密码成功'}
+              />
+            </div>
+          )
+          : null
         }
         {
-          (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification) ?
-          (
+          (window.sessionStorage.getItem('jwtToken') && showInvalidTokenNotification)
+          ? (
             <Notification
-            removeNotification={this.removeInvalidTokenNotification}
-            text={'登录过期 请重新登录'}
+            // removeNotification={this.removeInvalidTokenNotification}
+              text={'登录过期 请重新登录'}
             />
-          ) :
-          ''
+          )
+          : null
         }
         {
-          showUnhandledErrNotification ?
-          (
+          showNotPaidNotification
+          ? (
             <Notification
-            removeNotification={this.removeUnhandledErrNotification}
-            text={'网络错误 操作失败'}
+            // removeNotification={this.removeUnhandledErrNotification}
+              text={'您需要成为好奇猫会员，或者购买课程'}
             />
-          ) :
-          ''
+          )
+          : null
+        }
+        {
+          showUnhandledErrNotification
+          ? (
+            <Notification
+            // removeNotification={this.removeUnhandledErrNotification}
+              text={'网络错误 操作失败'}
+            />
+          )
+          : null
         }
       </div>
     )
   }
 }
 
-NotificationContainer.PropTypes = {
-  removeLogoutNotification: PropTypes.func.isRequired,
-  removeLoginNotification: PropTypes.func.isRequired,
-  removeSignupNotification: PropTypes.func.isRequired,
-  removeUnhandledErrNotification: PropTypes.func.isRequired,
-  removeInvalidTokenNotification: PropTypes.func.isRequired,
-  removeResetPasswordNotification: PropTypes.func.isRequired
-}
+// NotificationContainer.PropTypes = {
+//   removeLogoutNotification: PropTypes.func.isRequired,
+//   removeLoginNotification: PropTypes.func.isRequired,
+//   removeSignupNotification: PropTypes.func.isRequired,
+//   removeUnhandledErrNotification: PropTypes.func.isRequired,
+//   removeInvalidTokenNotification: PropTypes.func.isRequired,
+//   removeResetPasswordNotification: PropTypes.func.isRequired
+// }
 
 const mapStateToProps = (state) => ({
   notification: state.notification
 })
 
-export default connect(mapStateToProps,{
-  removeLogoutNotification,
-  removeLoginNotification,
-  removeSignupNotification,
-  removeUnhandledErrNotification,
-  removeInvalidTokenNotification,
-  removeResetPasswordNotification
-})(NotificationContainer)
+export default connect(mapStateToProps
+//   ,{
+//   removeLogoutNotification,
+//   removeLoginNotification,
+//   removeSignupNotification,
+//   removeUnhandledErrNotification,
+//   removeInvalidTokenNotification,
+//   removeResetPasswordNotification
+// }
+)(NotificationContainer)

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import Loadable from 'react-loadable'
 import LoadingComponent from '../common/Loading'
-import RaisedButton from 'material-ui/RaisedButton'
+import Button from 'material-ui/Button';
 
 const AsyncResetPassword = Loadable({
   loader: () => import('../../containers/ResetPasswordContainer'),
@@ -13,7 +13,7 @@ const AsyncResetPassword = Loadable({
   delay: 300
 })
 
-const RaisedButtonWrap = styled(RaisedButton)`
+const RaisedButtonWrap = styled(Button)`
   width: 130px;
   margin-top: 30px;
   margin-left: 5px;

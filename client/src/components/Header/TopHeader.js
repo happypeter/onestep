@@ -7,6 +7,10 @@ const TopHeaderWrap = styled.div`
   background-color: #FFFFFF;
   display: flex;
   justify-content: space-between;
+  @media (min-width: 1024px) {
+    width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 const SideButtonsWrap = styled.div`
