@@ -109,7 +109,9 @@ export function sendMsg (phoneNum) {
   return dispatch => {
     axios.post(`${config.api + '/msg'}`, { phoneNum: phoneNum })
          .then(
-           res => { console.log(res) }
+           res => {
+             // console.log(res)
+           }
          )
          .catch(
            err => {
