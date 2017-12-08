@@ -80,6 +80,10 @@ const Doc = styled.div`
     color: #0366d6;
     text-decoration: none;
   }
+  img {
+    width: 100%;
+    padding: 5px;
+  }
   @media (min-width: 1024px) {
     width: 870px;
     margin: 3.5em auto;
