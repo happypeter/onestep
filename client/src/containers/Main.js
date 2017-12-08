@@ -65,7 +65,7 @@ class Main extends Component {
           <Route exact path='/profile' component={requireAuthentication(AsyncProfile)} />
           <Route path='/profile/settings' component={requireAuthentication(ProfileSettings)} />
           <Route exact path='/:courseName' component={AsyncCourse} />
-          <Route path='/:courseName/:episodeName' component={requireEpisodeAuth(AsyncEpisode)} />
+          <Route path='/:courseName/:episodeName' component={requireAuthentication(requireEpisodeAuth(AsyncEpisode))} />
           <Route component={AsyncNotFound} />
         </Switch>
       </Router>

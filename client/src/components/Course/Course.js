@@ -61,7 +61,6 @@ const MsgHero = styled.div`
 `
 
 const MsgWrap = styled.div`
-  ${'' /* display: flex; */}
   flex-shrink: 0;
   @media (min-width: 1024px) {
     display: flex;
@@ -72,8 +71,6 @@ const MsgWrap = styled.div`
 `
 
 const MsgArea = styled.div`
-  ${'' /* display: flex;
-  flex-direction: column; */}
   margin-left: 2em;
   width: 100%;
   @media (min-width: 1024px) {
@@ -276,6 +273,7 @@ const EpisodeTitle = styled(Link)`
 `
 
 class Course extends Component {
+
   render () {
     // console.log(this.props);
     let { name, courseName, intro, writing_to_who: writingToWho, learning_goal: learningGoal, price, publishedOn, vlink, service, content } = this.props.courseOptions

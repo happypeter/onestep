@@ -4,8 +4,7 @@ import {
   showLogoutNotification,
   showSignupNotification,
   showInvalidTokenNotification,
-  showResetPasswordNotification,
-  // showNotPaidNotification
+  showResetPasswordNotification
 } from './notificationAction'
 import config from '../../config/config'
 
@@ -173,6 +172,7 @@ export const checkToken = (token) => {
   }
 }
 
+// 检测 Episode 权限部分
 function checkMembership (date) {
   let now = new Date()
   let isMember = Date.parse(date) - Date.parse(now)
@@ -188,58 +188,56 @@ function checkShoplist (shoplist, courseName) {
   return !!isPaid
 }
 
-export const checkEpisodeAuth = (data) => {
-  let { token, phoneNum, courseName } = data
-  return dispatch => {
-    Promise.all([
-      axios.post(`${config.api + '/auth'}`, {token}),
-      axios.post(`${config.api + '/profile'}`, {phoneNum})
-    ]).then(
-      res => {
-        let tokenRes = res[0].data
-        if (tokenRes.success !== true) {
-          throw new Error('Fail to check token: ' + res[0])
-        } else {
-          dispatch({
-            type: 'TOKEN_IS_VALID',
-            success: true
-          })
-        }
+export const episodeAuthFetchStarted = () => ({
+  type: 'EP_AUTH_FETCH_STARTED'
+})
 
-        let paidRes = res[1].data
-        if (res[1].status !== 200) {
-          throw new Error('Fail to check paid courses: ' + paidRes)
-        } else {
-          if (!paidRes.latestExpireDate || !checkMembership(paidRes.latestExpireDate)) {
-            console.log('not a member')
-            // now we need to check if the user bought the course
-            if ((paidRes.paidCourses.length === 0) || !checkShoplist(paidRes.paidCourses, courseName)) {
-              // time to refuse the user
-              console.log('refuse')
-              dispatch({
-                type: 'EPISODE_AUTH_INVALID'
-              })
-              // // show notification
-              // showNotPaidNotification(dispatch)
-            } else {
-              console.log('you already bought this course!')
-              dispatch({
-                type: 'EPISODE_AUTH_VALID'
-              })
-            }
-          } else {
-            console.log('here comes a member')
-            dispatch({
-              type: 'EPISODE_AUTH_VALID'
-            })
-          }
-        }
-      }
-    ).catch(
-      error => {
-        handleError(error, dispatch)
-      }
-    )
+export const episodeAuthFetchFailed = () => ({
+  type: 'EP_AUTH_FETCH_FAILED'
+})
+
+export const checkEpisodeAuth = (data) => {
+  return dispatch => {
+    dispatch(episodeAuthFetchStarted())
+
+    let { phoneNum, courseName } = data
+    axios.post(`${config.api + '/profile'}`, {phoneNum})
+         .then(
+           res => {
+             let paidRes = res.data
+
+             if (res.status !== 200) {
+               throw new Error('Fail to check paid courses: ' + paidRes)
+             } else {
+               if (!paidRes.latestExpireDate || !checkMembership(paidRes.latestExpireDate)) {
+                 console.log('not a member')
+                 // now we need to check if the user bought the course
+                 if ((paidRes.paidCourses.length === 0) || !checkShoplist(paidRes.paidCourses, courseName)) {
+                   // time to refuse the user
+                   console.log('refuse')
+                   dispatch({
+                     type: 'EPISODE_AUTH_INVALID'
+                   })
+                 } else {
+                   console.log('you already bought this course!')
+                   dispatch({
+                     type: 'EPISODE_AUTH_VALID'
+                   })
+                 }
+               } else {
+                 console.log('here comes a member')
+                 dispatch({
+                   type: 'EPISODE_AUTH_VALID'
+                 })
+               }
+             }
+           }
+         ).catch(
+           error => {
+             dispatch(episodeAuthFetchFailed())
+             handleError(error, dispatch)
+           }
+         )
   }
 }
 
@@ -255,7 +253,6 @@ export function resetPassword (data) {
                type: 'RESET_PASSWORD',
                userInfo: user
              })
-
              showResetPasswordNotification(dispatch)
            }
          )

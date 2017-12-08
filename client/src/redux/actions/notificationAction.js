@@ -47,6 +47,7 @@ export function showResetPasswordNotification (dispatch) {
 // for react components
 export function showNotPaidNotification () {
   return dispatch => {
+    // console.log('actio: showNotPaidNotification');
     dispatch({ type: 'SHOW_NOT_PAID_NOTIFICATION' })
     setTimeout(() => {
       dispatch({ type: 'RM_NOT_PAID_NOTIFICATION' })
