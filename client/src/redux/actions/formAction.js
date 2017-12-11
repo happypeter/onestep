@@ -97,10 +97,11 @@ export function smsCodeIsValid () {
   }
 }
 
-export function alter () {
+export function alter (data) {
   return dispatch => {
     dispatch({
-      type: 'ALTER'
+      type: 'ALTER',
+      data
     })
   }
 }

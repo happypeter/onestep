@@ -154,7 +154,8 @@ class LoginContainer extends Component {
     this.timer()
   }
 
-  alter = () => {
+  alter = (data) => {
+    // 切换表单，重新初始化表单信息、报错信息。
     this.setState({
       username: '',
       phoneNum: '',
@@ -163,7 +164,7 @@ class LoginContainer extends Component {
       passwordConsistent: ''
     })
     this.props.formErrInit()
-    this.props.alter()
+    this.props.alter(data)
   }
 
   recheckForm = function *() {
@@ -246,7 +247,7 @@ class LoginContainer extends Component {
         sendMsg={this.sendMsg}
         alter={this.alter}
         errorText={this.props.loginState.testErrObj}
-        hideUsername={this.props.loginState.hideUsername}
+        tabValue={this.props.loginState.tabValue}
         alreadySendMsg={this.props.loginState.alreadySendMsg}
         second={this.props.loginState.second}
       />

@@ -14,7 +14,7 @@ const initialState = {
     passwordConsistent: '',
     smsCode: ''
   },
-  hideUsername: true,
+  tabValue: 0,
   alreadySendMsg: false,
   second: config.smsTimeLimit
 }
@@ -22,11 +22,7 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FORM_ERR_INIT':
-      let initializedState = {
-        ...initialState,
-        hideUsername: state.hideUsername
-      }
-      return initializedState
+      return initialState
     // phone number
     case 'PHONE_NUM_NOT_VALID':
       return {
@@ -211,7 +207,7 @@ export default (state = initialState, action = {}) => {
     case 'ALTER':
       return {
         ...state,
-        hideUsername: !state.hideUsername
+        tabValue: action.data && action.data.value
       }
     case 'ALREADY_SEND_MSG':
       return {
