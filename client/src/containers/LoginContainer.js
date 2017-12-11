@@ -212,7 +212,7 @@ class LoginContainer extends Component {
     // 跳回登录前的页面
     let refererPath
     if (!refererState || !refererState.from) {
-      // 直接从首页登录
+      // 直接点登录按钮而来
       // console.log('home')
       refererPath = '/'
     } else if (refererState.from.pathname) {
@@ -226,6 +226,10 @@ class LoginContainer extends Component {
     }
 
     if (isAuthenticated) {
+      if (refererPath === '/') {
+        this.props.history.goBack()
+        return null
+      }
       return (
         <Redirect to={refererPath} />
       )

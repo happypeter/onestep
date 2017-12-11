@@ -188,7 +188,7 @@ class SignupContainer extends Component {
 
     let refererPath
     if (!refererState || !refererState.from) {
-      // console.log('home')
+      // console.log('from signup button')
       refererPath = '/'
     } else if (refererState.from.pathname) {
       // console.log('direct; course')
@@ -199,6 +199,10 @@ class SignupContainer extends Component {
     }
 
     if (isAuthenticated) {
+      if (refererPath === '/') {
+        this.props.history.goBack()
+        return null
+      }
       return (
         <Redirect to={refererPath} />
       )
