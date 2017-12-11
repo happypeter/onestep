@@ -140,7 +140,7 @@ class Login extends Component {
           <TabsWrap
             value={value}
             onChange={this.alter}
-            indicatorColor="#00BCD4"
+            indicatorColor="primary"
             centered
             >
               <Tab label="手机登录" />
