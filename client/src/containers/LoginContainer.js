@@ -178,12 +178,12 @@ class LoginContainer extends Component {
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
-    let { hideUsername, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
+    let { tabValue, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
 
     if (
-        (hideUsername && phoneNumIsValid && passwordIsValid)
+        ((tabValue===0) && phoneNumIsValid && passwordIsValid)
         ||
-        (!hideUsername && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
+        ((tabValue===1) && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
       ) {
       console.log('通过验证')
 
