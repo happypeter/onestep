@@ -147,6 +147,7 @@ span {
   padding:5px 0 5px 15px;
   display: inline-block;
   font-weight: 200;
+  color: rgb(76, 87, 101);
 }
 
 @media (min-width: 600px) {
