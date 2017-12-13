@@ -15,8 +15,25 @@ const AsyncNotification = Loadable({
 })
 
 class TopHeaderContainer extends Component {
+  state = {
+    anchorEl: null
+  }
+
+  handlePopoverOpen = (data) => {
+    this.setState({ anchorEl: data })
+  }
+
+  handlePopoverClose = () => {
+    this.setState({ anchorEl: null });
+  }
+
   logout = () => {
     this.props.logout()
+    this.props.history.push('/')
+  }
+
+  goToProfile = () => {
+    this.props.history.push('/profile')
   }
 
   backToHome = () => {
@@ -24,14 +41,19 @@ class TopHeaderContainer extends Component {
   }
 
   render () {
-    let tempIsAuthenticated = window.sessionStorage.getItem('user')
+    const tempIsAuthenticated = window.sessionStorage.getItem('user')
+    const { anchorEl } = this.state
 
     return (
       <div>
         <TopHeader
           sideButtons={tempIsAuthenticated}
           logout={this.logout}
+          goToProfile={this.goToProfile}
           backToHome={this.backToHome}
+          handlePopoverOpen={this.handlePopoverOpen}
+          handlePopoverClose={this.handlePopoverClose}
+          anchorEl={anchorEl}
         />
         <AsyncNotification />
       </div>
