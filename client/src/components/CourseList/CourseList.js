@@ -30,6 +30,7 @@ const CourseCard = styled(Link)`
   transition: all 450ms ease;
   text-align: left;
   text-decoration: none;
+  color: rgb(76, 87, 101);
 
   img {
     width: 100%;
@@ -40,7 +41,6 @@ const CourseCard = styled(Link)`
     border-top: 1px solid rgb(226, 226, 226);
     margin: 0;
     padding: 15px;
-    color: rgb(76, 87, 101);
     font-size: 17px;
   }
 
@@ -49,7 +49,6 @@ const CourseCard = styled(Link)`
     padding:5px 0 5px 15px;
     display: inline-block;
     font-weight: 200;
-    color: rgb(76, 87, 101);
   }
 
   @media (min-width: 600px) {
