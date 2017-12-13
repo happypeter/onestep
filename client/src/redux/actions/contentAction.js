@@ -1,17 +1,18 @@
 import axios from 'axios'
 import config from '../../config/config'
+import * as types from '../../constants/actionTypes/contentActionTypes.js'
 
 export const fetchStarted = () => ({
-  type: 'FETCH_STARTED'
+  type: types.FETCH_STARTED
 })
 
 export const fetchSuccess = (res) => ({
-  type: 'FETCH_SUCCESS',
+  type: types.FETCH_SUCCESS,
   res
 })
 
 export const fetchFailed = (error) => ({
-  type: 'FETCH_FAILURE',
+  type: types.FETCH_FAILURE,
   error
 })
 

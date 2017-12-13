@@ -1,5 +1,6 @@
 import axios from 'axios'
 import config from '../../config/config'
+import * as types from '../../constants/actionTypes/profileActionTypes.js'
 
 function setUsername (data) {
   return {
@@ -8,16 +9,16 @@ function setUsername (data) {
 }
 
 export const fetchProfileStarted = () => ({
-  type: 'FETCH_STARTED'
+  type: types.FETCH_STARTED
 })
 
 export const fetchProfileSuccess = (res) => ({
-  type: 'FETCH_SUCCESS',
+  type: types.FETCH_SUCCESS,
   res
 })
 
 export const fetchProfileFailed = (error) => ({
-  type: 'FETCH_FAILURE',
+  type: types.FETCH_FAILURE,
   error
 })
 

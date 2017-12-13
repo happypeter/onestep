@@ -1,10 +1,11 @@
 import axios from 'axios'
 import config from '../../config/config'
+import * as types from '../../constants/actionTypes/formActionTypes.js'
 
 export function formErrInit (data) {
   return dispatch => {
     dispatch({
-      type: 'FORM_ERR_INIT'
+      type: types.FORM_ERR_INIT
     })
   }
 }
@@ -12,7 +13,7 @@ export function formErrInit (data) {
 export function phoneNumNotValid (data) {
   return dispatch => {
     dispatch({
-      type: 'PHONE_NUM_NOT_VALID'
+      type: types.PHONE_NUM_NOT_VALID
     })
   }
 }
@@ -20,7 +21,7 @@ export function phoneNumNotValid (data) {
 export function phoneNumIsValid (data) {
   return dispatch => {
     dispatch({
-      type: 'PHONE_NUM_IS_VALID'
+      type: types.PHONE_NUM_IS_VALID
     })
   }
 }
@@ -28,7 +29,7 @@ export function phoneNumIsValid (data) {
 export function usernameIsRequired (data) {
   return dispatch => {
     dispatch({
-      type: 'USERNAME_IS_REQUIRED'
+      type: types.USERNAME_IS_REQUIRED
     })
   }
 }
@@ -36,7 +37,7 @@ export function usernameIsRequired (data) {
 export function usernameIsValid (data) {
   return dispatch => {
     dispatch({
-      type: 'USERNAME_IS_VALID'
+      type: types.USERNAME_IS_VALID
     })
   }
 }
@@ -44,7 +45,7 @@ export function usernameIsValid (data) {
 export function passwordIsRequired (data) {
   return dispatch => {
     dispatch({
-      type: 'PASSWORD_IS_REQUIRED'
+      type: types.PASSWORD_IS_REQUIRED
     })
   }
 }
@@ -52,7 +53,7 @@ export function passwordIsRequired (data) {
 export function passwordTooShort (data) {
   return dispatch => {
     dispatch({
-      type: 'PASSWORD_TOO_SHORT'
+      type: types.PASSWORD_TOO_SHORT
     })
   }
 }
@@ -60,7 +61,7 @@ export function passwordTooShort (data) {
 export function passwordIsValid (data) {
   return dispatch => {
     dispatch({
-      type: 'PASSWORE_IS_VALID'
+      type: types.PASSWORE_IS_VALID
     })
   }
 }
@@ -68,7 +69,7 @@ export function passwordIsValid (data) {
 export function passwordsInconsistent (data) {
   return dispatch => {
     dispatch({
-      type: 'PASSWORDS_INCONSISTENT'
+      type: types.PASSWORDS_INCONSISTENT
     })
   }
 }
@@ -76,7 +77,7 @@ export function passwordsInconsistent (data) {
 export function passwordsConsistent (data) {
   return dispatch => {
     dispatch({
-      type: 'PASSWORDS_CONSISTENT'
+      type: types.PASSWORDS_CONSISTENT
     })
   }
 }
@@ -84,7 +85,7 @@ export function passwordsConsistent (data) {
 export function smsCodeIsRequired () {
   return dispatch => {
     dispatch({
-      type: 'SMSCODE_IS_REQUIRED'
+      type: types.SMSCODE_IS_REQUIRED
     })
   }
 }
@@ -92,7 +93,7 @@ export function smsCodeIsRequired () {
 export function smsCodeIsValid () {
   return dispatch => {
     dispatch({
-      type: 'SMSCODE_IS_VALID'
+      type: types.SMSCODE_IS_VALID
     })
   }
 }
@@ -100,7 +101,7 @@ export function smsCodeIsValid () {
 export function alter (data) {
   return dispatch => {
     dispatch({
-      type: 'ALTER',
+      type: types.ALTER,
       data
     })
   }
@@ -117,21 +118,21 @@ export function sendMsg (phoneNum) {
          .catch(
            err => {
              console.log(err)
-             dispatch({ type: 'SMS_ERR_TRY_AGAIN' })
+             dispatch({ type: types.SMS_ERR_TRY_AGAIN })
            }
          )
-    dispatch({ type: 'ALREADY_SEND_MSG' })
+    dispatch({ type: types.ALREADY_SEND_MSG })
   }
 }
 
 export function countdown () {
   return dispatch => {
-    dispatch({ type: 'COUNTDOWN' })
+    dispatch({ type: types.COUNTDOWN })
   }
 }
 
 export function readyToSendMsg () {
   return dispatch => {
-    dispatch({ type: 'READY_TO_SEND_MSG' })
+    dispatch({ type: types.READY_TO_SEND_MSG })
   }
 }
