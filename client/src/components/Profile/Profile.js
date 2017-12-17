@@ -92,23 +92,6 @@ const MembershipMsg = styled.span`
   }
 `
 
-const LinkButton = styled(Link)`
-  margin: 20px auto;
-  padding: 5px;
-  width: 10%;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-    @media (min-width: 1024px) {
-      margin: 50px auto;
-    }
-`
-
 const CourseListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -220,8 +203,6 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
                 )
               } */}
           </ContentWrap>
-
-          <LinkButton to='/profile/settings'>设置</LinkButton>
 
           <Footer />
         </Wrap>

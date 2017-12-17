@@ -13,32 +13,23 @@ const AsyncResetPassword = Loadable({
   delay: 300
 })
 
-const RaisedButtonWrap = styled(Button)`
-  width: 130px;
-  margin-top: 30px;
-  margin-left: 5px;
-  margin-right: 5px;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 `
 
 class ProfileSettings extends Component {
-  toggle = () => {
-    this.props.toggle()
-  }
 
   render () {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        <Wrap>
           <TopHeader />
-          <div style={{ fontSize: '30px', fontWeight: 'bold' }}>Settings</div>
-          <RaisedButtonWrap onClick={this.toggle}>
-              重置密码
-          </RaisedButtonWrap>
-          <div style={{ flexGrow: 1 }}></div>
-          <div style={{ flexGrow: 1, display: this.props.showResetPasswordForm ? 'block' : 'none' }}>
+          <div >
             <AsyncResetPassword />
           </div>
           <Footer />
-        </div>
+        </Wrap>
     )
   }
 }

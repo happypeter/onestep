@@ -33,7 +33,11 @@ class TopHeaderContainer extends Component {
   }
 
   goToProfile = () => {
-    this.props.history.push('/profile')
+    this.props.history.push('/user/profile')
+  }
+
+  goToSettings = () => {
+    this.props.history.push('/settings/account')
   }
 
   backToHome = () => {
@@ -50,6 +54,7 @@ class TopHeaderContainer extends Component {
           sideButtons={tempIsAuthenticated}
           logout={this.logout}
           goToProfile={this.goToProfile}
+          goToSettings={this.goToSettings}
           backToHome={this.backToHome}
           handlePopoverOpen={this.handlePopoverOpen}
           handlePopoverClose={this.handlePopoverClose}
