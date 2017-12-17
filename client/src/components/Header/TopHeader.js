@@ -39,10 +39,9 @@ const ButtonLink = styled(Link)`
 const Username = styled.div`
   font-size: 0.8em;
   padding: 0.5em;
-  color: rgb(255, 226, 0);
+  color: #212121;
   line-height: 2;
   transition: all 0.5s ease;
-  font-weight: 600;
   text-decoration: none;
   @media (min-width: 1024px) {
     font-size: 1em;
@@ -77,7 +76,6 @@ class TopHeader extends Component {
 
   handlePopoverOpen = (event) => {
     // console.log('handlePopoverOpen');
-    console.log(event.target);
     this.props.handlePopoverOpen(event.target)
   }
 
@@ -93,6 +91,11 @@ class TopHeader extends Component {
   goToProfile = () => {
     this.handlePopoverClose()
     this.props.goToProfile()
+  }
+
+  goToSettings = () => {
+    this.handlePopoverClose()
+    this.props.goToSettings()
   }
 
   render () {
@@ -122,8 +125,9 @@ class TopHeader extends Component {
             open={!!this.props.anchorEl}
             onRequestClose={this.handlePopoverClose}
             >
-              <MenuItem onClick={this.goToProfile}>Profile</MenuItem>
-              <MenuItem onClick={this.props.logout}>Logout</MenuItem>
+              <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
+              <MenuItem onClick={this.goToSettings}>设置</MenuItem>
+              <MenuItem onClick={this.props.logout}>退出</MenuItem>
           </PopMenu>
 
         </div>
