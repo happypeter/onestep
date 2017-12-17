@@ -62,8 +62,8 @@ class Main extends Component {
           <Route path='/wechatLogin' component={AsyncWechatLogin} />
           <Route path='/login' component={AsyncLogin} />
           <Route path='/signup' component={AsyncSignup} />
-          <Route exact path='/profile' component={requireAuthentication(AsyncProfile)} />
-          <Route path='/profile/settings' component={requireAuthentication(ProfileSettings)} />
+          <Route exact path='/user/profile' component={requireAuthentication(AsyncProfile)} />
+          <Route path='/settings/account' component={requireAuthentication(ProfileSettings)} />
           <Route exact path='/:courseName' component={AsyncCourse} />
           <Route path='/:courseName/:episodeName' component={requireAuthentication(requireEpisodeAuth(AsyncEpisode))} />
           <Route component={AsyncNotFound} />
