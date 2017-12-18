@@ -74,7 +74,6 @@ export function requireEpisodeAuth (Component) {
   }
 
   const mapStateToProps = (state) => ({
-    // isEpisodePaid: getIsEpisodePaidtest(state),
     isEpisodePaid: getIsEpisodePaid(state),
     status: getEpAuthStatus(state)
   })
