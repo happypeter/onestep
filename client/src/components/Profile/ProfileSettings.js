@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 
 import Loadable from 'react-loadable'
 import LoadingComponent from '../common/Loading'
-import Button from 'material-ui/Button';
 
 const AsyncResetPassword = Loadable({
   loader: () => import('../../containers/ResetPasswordContainer'),
