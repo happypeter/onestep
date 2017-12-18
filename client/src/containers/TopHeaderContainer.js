@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TopHeader from '../components/Header/TopHeader'
 import { logout } from '../redux/actions/authAction'
+import { getCurrentUser } from '../selectors/commonSelectors.js'
 import PropTypes from 'prop-types'
 
 import Loadable from 'react-loadable'
@@ -73,7 +74,7 @@ TopHeaderContainer.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  currentUserInfo: state.fakeAuth
+  currentUserInfo: getCurrentUser(state)
 })
 
 export default connect(mapStateToProps, { logout })(withRouter(TopHeaderContainer))

@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
 import { login } from '../redux/actions/authAction'
 import {
+  getFormState,
+  getCurrentUser
+} from '../selectors/commonSelectors.js'
+import {
   formErrInit,
   passwordIsRequired,
   passwordIsValid,
@@ -279,8 +283,8 @@ LoginContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.fakeAuth,
-  loginState: state.form
+  currentUser: getCurrentUser(state),
+  loginState: getFormState(state)
 })
 
 export default connect(mapStateToProps, {

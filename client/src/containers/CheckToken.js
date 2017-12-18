@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { checkToken } from '../redux/actions/authAction'
+import { getIsAuthenticated } from '../selectors/commonSelectors.js'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
@@ -40,7 +41,7 @@ export function requireAuthentication (Component) {
     checkToken: PropTypes.func.isRequired
   }
   const mapStateToProps = (state) => ({
-    isAuthenticated: state.fakeAuth.isAuthenticated
+    isAuthenticated: getIsAuthenticated(state)
   })
 
   return connect(mapStateToProps, { checkToken })(AuthenticatedComponent)

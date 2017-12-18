@@ -7,6 +7,7 @@ import {
   Route
 } from 'react-router-dom'
 import { fetchCourse } from '../redux/actions/contentAction'
+import { getCourse } from '../selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
@@ -101,7 +102,7 @@ class CourseContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  course: state.course
+  course: getCourse(state)
 })
 
 export default connect(mapStateToProps, { fetchCourse })(CourseContainer)
