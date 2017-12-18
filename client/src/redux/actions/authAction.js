@@ -169,6 +169,12 @@ export const checkToken = (token) => {
 }
 
 // 检测 Episode 权限部分
+export function initEpAuthStatus () {
+  return dispatch => {
+    dispatch({ type: types.EP_STATUS_INIT })
+  }
+}
+
 function checkMembership (date) {
   let now = new Date()
   let isMember = Date.parse(date) - Date.parse(now)
