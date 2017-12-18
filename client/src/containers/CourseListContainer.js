@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import CourseList from '../components/CourseList/CourseList'
 import { fetchCatalogue } from '../redux/actions/contentAction'
+import { getCourses } from '../selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
 
@@ -18,7 +18,6 @@ class CourseListContainer extends Component {
   }
 
   render () {
-    // console.log(this.props);
     let { status, catalogue } = this.props.courses
     return (
       <div>
@@ -32,7 +31,7 @@ class CourseListContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  courses: state.courses
+  courses: getCourses(state)
 })
 
 export default connect(mapStateToProps, { fetchCatalogue })(CourseListContainer)

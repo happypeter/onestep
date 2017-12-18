@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  Link,
-  Redirect,
-  matchPath,
-  Route
-} from 'react-router-dom'
 import { fetchCourse } from '../redux/actions/contentAction'
+import { getCourse } from '../selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
 const AsyncCourse = Loadable({
   loader: () => import('../components/Course/Course'),
-  loading: LoadingComponent,
-  delay: 300
-})
-
-const AsyncEpisode = Loadable({
-  loader: () => import('./EpisodeContainer'),
   loading: LoadingComponent,
   delay: 300
 })
@@ -54,13 +43,13 @@ class CourseContainer extends Component {
         return (<LoadingComponent />)
       }
       case 'SUCCESS': {
-        const couseUrl = this.props.match.url
+        const couseUrl = `${courseContent.vlink}/${courseContent.cover_video ? courseContent.cover_video : 'index'}.mp4`
         // VideoJsOptions for this Course
         const CourseVideoJsOptions = {
           autoplay: false,
           controls: true,
           sources: [{
-            src: `${courseContent.vlink}/${courseContent.cover_video ? courseContent.cover_video : 'index'}.mp4`,
+            src: couseUrl,
             type: 'video/mp4'
           }],
           poster: 'http://videojs.com/img/logo.png',
@@ -101,7 +90,7 @@ class CourseContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  course: state.course
+  course: getCourse(state)
 })
 
 export default connect(mapStateToProps, { fetchCourse })(CourseContainer)

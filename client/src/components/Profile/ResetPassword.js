@@ -10,6 +10,13 @@ const SignupWrap = styled.div`
   height: 100%;
 `
 
+const FormTitle = styled.div`
+  margin: 0 auto;
+  margin-top: 105px;
+  font-size: 40px;
+  color: #212121;
+`
+
 const FromWrap = styled.form`
   min-height: 450px;
   flex-grow: 1;
@@ -25,7 +32,8 @@ const FromWrap = styled.form`
   padding: 0 60px;
   @media (min-width: 400px) {
     width: 360px;
-    margin: 80px auto;
+    margin: 40px auto;
+    margin-bottom: 280px;
     padding: 0 80px 20px;
   }
 `
@@ -88,7 +96,7 @@ class ResetPassword extends Component {
   render () {
     return (
       <SignupWrap>
-        {/* <TopHeader /> */}
+        <FormTitle>修改密码</FormTitle>
         <FromWrap onSubmit={this.handleSubmit}>
 
           <FormControl
@@ -168,7 +176,6 @@ class ResetPassword extends Component {
             重置密码
           </ActionButton>
         </FromWrap>
-        {/* <Footer /> */}
       </SignupWrap>
     )
   }

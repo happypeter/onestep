@@ -92,23 +92,6 @@ const MembershipMsg = styled.span`
   }
 `
 
-const LinkButton = styled(Link)`
-  margin: 20px auto;
-  padding: 5px;
-  width: 10%;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-    @media (min-width: 1024px) {
-      margin: 50px auto;
-    }
-`
-
 const CourseListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -119,37 +102,43 @@ const CourseListWrap = styled.div`
 `
 
 const CourseCard = styled(Link)`
-  margin: 2em;
+margin: 1em;
+width: 100%;
+flex-grow: 0;
+box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+background-color: white;
+-webkit-transition: all 450ms ease;
+transition: all 450ms ease;
+text-align: left;
+text-decoration: none;
+color: rgb(76, 87, 101);
+
+img {
   width: 100%;
-  flex-grow: 0;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  text-align: center;
-  text-decoration: none;
+  display: block;
+}
 
-  img {
-    width: 100%;
-    display: block;
-  }
+p {
+  border-top: 1px solid rgb(226, 226, 226);
+  margin: 0;
+  padding: 15px;
+  font-size: 17px;
+}
 
-  p {
-    border-top: 1px solid rgb(226, 226, 226);
-    margin: 0;
-    padding: 15px;
-    color: rgb(76, 87, 101);
-    font-size: 17px;
-    text-align: center;
-  }
+span {
+  font-size: 14px;
+  padding:5px 0 5px 15px;
+  display: inline-block;
+  font-weight: 200;
+}
 
-  @media (min-width: 600px) {
-    width: calc(50% - 4em)
-  }
+@media (min-width: 600px) {
+  width: calc(50% - 4em)
+}
 
-  @media (min-width: 1024px) {
-    width: calc(33.33333% - 4em)
-  }
+@media (min-width: 1024px) {
+  width: calc(33.33333% - 2em)
+}
 `
 
 export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
@@ -182,7 +171,8 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
               ? (
                 <CourseListWrap>
                   {paidCourses.map((item, i) => (
-                    <CourseCard to={`course${item.link}`} key={item.key}>
+                    <CourseCard to={`${item.link}`} key={item.key}>
+                      <span>{item.publishedOn}</span>
                       <img src={`${item.cover}`} alt='cover' className='cover' />
                       <p>{item.title}</p>
                     </CourseCard>
@@ -213,8 +203,6 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
                 )
               } */}
           </ContentWrap>
-
-          <LinkButton to='/profile/settings'>设置</LinkButton>
 
           <Footer />
         </Wrap>

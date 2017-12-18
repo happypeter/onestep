@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProfile } from '../redux/actions/profileAction'
-
+import { getProfile } from '../selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
@@ -39,7 +39,7 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  state: state.profile,
+  state: getProfile(state),
   // courses: state.courses
 })
 

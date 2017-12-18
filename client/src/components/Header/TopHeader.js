@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logoSimple from '../../assets/logoSimple.svg'
+import Menu, { MenuItem } from 'material-ui/Menu'
 
 const TopHeaderWrap = styled.div`
   background-color: #FFFFFF;
@@ -22,7 +23,7 @@ const SideButtonsWrap = styled.div`
   }
 `
 
-const Button = styled(Link)`
+const ButtonLink = styled(Link)`
   font-size: 0.8em;
   padding: 0.5em;
   color: #212121;
@@ -35,13 +36,12 @@ const Button = styled(Link)`
   }
 `
 
-const Username = styled(Link)`
+const Username = styled.div`
   font-size: 0.8em;
   padding: 0.5em;
-  color: rgb(255, 226, 0);
+  color: #212121;
   line-height: 2;
   transition: all 0.5s ease;
-  font-weight: 600;
   text-decoration: none;
   @media (min-width: 1024px) {
     font-size: 1em;
@@ -60,34 +60,89 @@ const HomeWrap = styled.div`
   }
 `
 
+const PopMenu = styled(Menu)`
+  && {
+    top: 40px;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    padding-right: 3em
+  }
+`
+
 class TopHeader extends Component {
+
+  handlePopoverOpen = (event) => {
+    // console.log('handlePopoverOpen');
+    this.props.handlePopoverOpen(event.target)
+  }
+
+  handlePopoverClose = () => {
+    // console.log('handlePopoverClose');
+    this.props.handlePopoverClose()
+  }
+
+  backToHome = () => {
+    this.props.backToHome()
+  }
+
+  goToProfile = () => {
+    this.handlePopoverClose()
+    this.props.goToProfile()
+  }
+
+  goToSettings = () => {
+    this.handlePopoverClose()
+    this.props.goToSettings()
+  }
+
   render () {
-    const backToHome = () => {
-      this.props.backToHome()
-    }
 
     const LoginButtons = (
       <SideButtonsWrap>
-        <Button to='signup'>注册</Button>
-        <Button to='/login'>登录</Button>
-        <Button to='/wechatLogin' style={{display: 'none'}}>微信登录</Button>
+        <ButtonLink to='signup'>注册</ButtonLink>
+        <ButtonLink to='/login'>登录</ButtonLink>
+        <ButtonLink to='/wechatLogin' style={{display: 'none'}}>微信登录</ButtonLink>
       </SideButtonsWrap>
     )
 
     const LogoutButtons = (
       <SideButtonsWrap>
-        <Username to='/profile'>{this.props.sideButtons}</Username>
-        <Button to='/' onClick={this.props.logout}>退出</Button>
+        <div>
+          <div
+            onMouseOver={this.handlePopoverOpen}
+            onTouchStart={this.handlePopoverOpen}
+            >
+            <Username>{this.props.sideButtons}</Username>
+            {/* <Username to='/profile'>{this.props.sideButtons}</Username> */}
+          </div>
+
+          <PopMenu
+            id="simple-menu"
+            anchorEl={this.props.anchorEl}
+            open={!!this.props.anchorEl}
+            onRequestClose={this.handlePopoverClose}
+            >
+              <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
+              <MenuItem onClick={this.goToSettings}>设置</MenuItem>
+              <MenuItem onClick={this.props.logout}>退出</MenuItem>
+          </PopMenu>
+
+        </div>
+        {/* <Username to='/profile'>{this.props.sideButtons}</Username> */}
+        {/* <ButtonLink to='/' onClick={this.props.logout}>退出</ButtonLink> */}
       </SideButtonsWrap>
     )
 
     return (
       <TopHeaderWrap>
         <HomeWrap>
-          <img src={logoSimple} alt='logo-simple' width='55px' onClick={backToHome} />
-          <Button to='/'>
+          <img src={logoSimple} alt='logo-simple' width='55px' onClick={this.backToHome} />
+          <ButtonLink to='/'>
             首页
-          </Button>
+          </ButtonLink>
         </HomeWrap>
         {
           this.props.sideButtons

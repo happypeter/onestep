@@ -70,7 +70,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         showNotPaidNotification: false
       }
-    case 'UNHANDLED_ERROR':
+    case 'SHOW_UNHANDLED_ERR_NOTIFICATION':
       return {
         ...state,
         showUnhandledErrNotification: true

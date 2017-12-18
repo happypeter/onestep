@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
 import { login } from '../redux/actions/authAction'
 import {
+  getFormState,
+  getCurrentUser
+} from '../selectors/commonSelectors.js'
+import {
   formErrInit,
   passwordIsRequired,
   passwordIsValid,
@@ -154,7 +158,8 @@ class LoginContainer extends Component {
     this.timer()
   }
 
-  alter = () => {
+  alter = (data) => {
+    // 切换表单，重新初始化表单信息、报错信息。
     this.setState({
       username: '',
       phoneNum: '',
@@ -163,7 +168,7 @@ class LoginContainer extends Component {
       passwordConsistent: ''
     })
     this.props.formErrInit()
-    this.props.alter()
+    this.props.alter(data)
   }
 
   recheckForm = function *() {
@@ -177,12 +182,12 @@ class LoginContainer extends Component {
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
-    let { hideUsername, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
+    let { tabValue, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
 
     if (
-        (hideUsername && phoneNumIsValid && passwordIsValid)
+        ((tabValue===0) && phoneNumIsValid && passwordIsValid)
         ||
-        (!hideUsername && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
+        ((tabValue===1) && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
       ) {
       console.log('通过验证')
 
@@ -211,7 +216,7 @@ class LoginContainer extends Component {
     // 跳回登录前的页面
     let refererPath
     if (!refererState || !refererState.from) {
-      // 直接从首页登录
+      // 直接点登录按钮而来
       // console.log('home')
       refererPath = '/'
     } else if (refererState.from.pathname) {
@@ -225,6 +230,10 @@ class LoginContainer extends Component {
     }
 
     if (isAuthenticated) {
+      if (refererPath === '/') {
+        this.props.history.goBack()
+        return null
+      }
       return (
         <Redirect to={refererPath} />
       )
@@ -246,7 +255,7 @@ class LoginContainer extends Component {
         sendMsg={this.sendMsg}
         alter={this.alter}
         errorText={this.props.loginState.testErrObj}
-        hideUsername={this.props.loginState.hideUsername}
+        tabValue={this.props.loginState.tabValue}
         alreadySendMsg={this.props.loginState.alreadySendMsg}
         second={this.props.loginState.second}
       />
@@ -274,8 +283,8 @@ LoginContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.fakeAuth,
-  loginState: state.form
+  currentUser: getCurrentUser(state),
+  loginState: getFormState(state)
 })
 
 export default connect(mapStateToProps, {

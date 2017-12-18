@@ -9,13 +9,6 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'EP_AUTH_FETCH_STARTED': {
-      return {
-        ...state,
-        epAuthStatus: 'LOADING',
-        isEpisodePaid: false
-      }
-    }
     case 'AUTH_USER':
       return {
         // ...state,
@@ -56,6 +49,21 @@ export default (state = initialState, action = {}) => {
         // ...state,
         isAuthenticated: false
       }
+
+    case 'EP_STATUS_INIT':
+      return {
+        ...state,
+        epAuthStatus: 'LOADING',
+        isEpisodePaid: false
+      }
+
+    case 'EP_AUTH_FETCH_STARTED': {
+      return {
+        ...state,
+        epAuthStatus: 'LOADING',
+        isEpisodePaid: false
+      }
+    }
     case 'EPISODE_AUTH_VALID':
       return {
         ...state,

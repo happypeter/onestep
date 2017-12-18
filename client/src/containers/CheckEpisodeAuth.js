@@ -1,7 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { checkEpisodeAuth } from '../redux/actions/authAction'
+import { checkEpisodeAuth, initEpAuthStatus } from '../redux/actions/authAction'
 import { showNotPaidNotification } from '../redux/actions/notificationAction'
+import {
+  getIsEpisodePaid,
+  getEpAuthStatus
+} from '../selectors/episodeAuthSelectors.js'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
@@ -14,8 +18,21 @@ export function requireEpisodeAuth (Component) {
       this.checkEpisodeAuth({phoneNum, courseName})
     }
 
-    componentDidMount () {
+    componentDidUpdate () {
       // keep render() a pure func, change state here
+      this.checkShowNotPaidNotification()
+    }
+
+    componentWillUnmount () {
+      // initialize episode-auth checking status
+      this.props.initEpAuthStatus()
+    }
+
+    checkEpisodeAuth ({ phoneNum, courseName }) {
+      this.props.checkEpisodeAuth({ phoneNum, courseName })
+    }
+
+    checkShowNotPaidNotification () {
       let {
         status,
         isEpisodePaid,
@@ -28,28 +45,23 @@ export function requireEpisodeAuth (Component) {
       }
     }
 
-    checkEpisodeAuth ({ phoneNum, courseName }) {
-      this.props.checkEpisodeAuth({ phoneNum, courseName })
-    }
-
     render () {
       let {
         match: {params: {courseName}},
-        status,
         isEpisodePaid
       } = this.props
 
-      switch (status) {
-        case 'LOADING':
-          return null
-        case 'SUCCESS':
-          if (isEpisodePaid) {
-            return <Component {...this.props} />
-          } else {
-            return <Redirect to={`/${courseName}`} />
-          }
+      switch (isEpisodePaid) {
+        case true:
+          return <Component {...this.props} />
+
+        case false:
+          showNotPaidNotification()
+          return <Redirect to={`/${courseName}`} />
+
         case 'FAILURE':
           return <div>鉴权失败，请重试</div>
+
         default:
           return null
       }
@@ -60,10 +72,11 @@ export function requireEpisodeAuth (Component) {
     checkEpisodeAuth: PropTypes.func.isRequired,
     showNotPaidNotification: PropTypes.func.isRequired
   }
+
   const mapStateToProps = (state) => ({
-    isEpisodePaid: state.fakeAuth.isEpisodePaid,
-    status: state.fakeAuth.epAuthStatus
+    isEpisodePaid: getIsEpisodePaid(state),
+    status: getEpAuthStatus(state)
   })
 
-  return connect(mapStateToProps, { checkEpisodeAuth, showNotPaidNotification })(EpisodeAuthComponent)
+  return connect(mapStateToProps, { checkEpisodeAuth, initEpAuthStatus, showNotPaidNotification })(EpisodeAuthComponent)
 }

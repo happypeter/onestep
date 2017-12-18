@@ -4,13 +4,15 @@ import {
   showLogoutNotification,
   showSignupNotification,
   showInvalidTokenNotification,
-  showResetPasswordNotification
+  showResetPasswordNotification,
+  showUnhandledErrNotification
 } from './notificationAction'
 import config from '../../config/config'
+import * as types from '../../constants/actionTypes/authActionTypes.js'
 
 function setCurrentUserInfo (data) {
   return {
-    type: 'AUTH_USER',
+    type: types.AUTH_USER,
     userInfo: data
   }
 }
@@ -19,34 +21,34 @@ function handleError (error, dispatch) {
   if (error.response) {
     switch (error.response.data.errorMsg) {
       case 'USER_DOESNOT_EXIST':
-        dispatch({ type: 'USER_DOESNOT_EXIST' })
+        dispatch({ type: types.USER_DOESNOT_EXIST })
         break
 
       case 'INVALID_PASSWORD':
-        dispatch({ type: 'INVALID_PASSWORD' })
+        dispatch({ type: types.INVALID_PASSWORD })
         break
 
       case 'USERMANE_ALREADY_EXISTS':
-        dispatch({ type: 'USERMANE_ALREADY_EXISTS' })
+        dispatch({ type: types.USERMANE_ALREADY_EXISTS })
         break
 
       case 'PHONE_NUM_DOESNOT_EXIST':
-        dispatch({ type: 'PHONE_NUM_DOESNOT_EXIST' })
+        dispatch({ type: types.PHONE_NUM_DOESNOT_EXIST })
         break
 
       case 'PHONE_NUM_ALREADY_EXISTS':
-        dispatch({ type: 'PHONE_NUM_ALREADY_EXISTS' })
+        dispatch({ type: types.PHONE_NUM_ALREADY_EXISTS })
         break
 
       case 'PLEASE_USE_PHONE_NUM':
-        dispatch({ type: 'PLEASE_USE_PHONE_NUM' })
+        dispatch({ type: types.PLEASE_USE_PHONE_NUM })
         break
 
       case 'INVALID_TOKEN':
       case 'EXPIRED_TOKEN':
       case 'TOKEN_NOT_FOUND':
         dispatch({
-          type: 'TOKEN_IS_INVALID',
+          type: types.TOKEN_IS_INVALID,
           error
         })
         showInvalidTokenNotification(dispatch)
@@ -54,29 +56,23 @@ function handleError (error, dispatch) {
 
       case 'SMS_NO_RECORED':
       case 'SMS_ERR_TRY_AGAIN':
-        dispatch({ type: 'SMS_ERR_TRY_AGAIN' })
+        dispatch({ type: types.SMS_ERR_TRY_AGAIN })
         break
 
       case 'SMS_CODE_IS_INVALID':
-        dispatch({ type: 'SMS_CODE_IS_INVALID' })
+        dispatch({ type: types.SMS_CODE_IS_INVALID })
         break
 
       case 'EXPIRED_SMS_CODE':
-        dispatch({ type: 'EXPIRED_SMS_CODE' })
+        dispatch({ type: types.EXPIRED_SMS_CODE })
         break
 
       default:
-        dispatch({ type: 'UNHANDLED_ERROR' })
-        setTimeout(function () {
-          dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
-        }, 4000)
+        showUnhandledErrNotification(dispatch)
         console.log(error.response.data)
     }
   } else {
-    dispatch({ type: 'UNHANDLED_ERROR' })
-    setTimeout(function () {
-      dispatch({ type: 'RM_UNHANDLED_ERR_NOTIFICATION' })
-    }, 4000)
+    showUnhandledErrNotification(dispatch)
     console.log(error)
   }
 }
@@ -113,7 +109,7 @@ export function signup (data) {
              window.sessionStorage.setItem('jwtToken', token)
              window.sessionStorage.setItem('user', user.phoneNum)
              dispatch({
-               type: 'SIGN_UP',
+               type: types.SIGN_UP,
                userInfo: user
              })
 
@@ -130,7 +126,7 @@ export function signup (data) {
 
 export function logout (data) {
   return dispatch => {
-    dispatch({ type: 'LOG_OUT' })
+    dispatch({ type: types.LOG_OUT })
     window.sessionStorage.removeItem('user')
     window.sessionStorage.removeItem('jwtToken')
 
@@ -141,7 +137,7 @@ export function logout (data) {
 export function fakeWechatLogin (user) {
   return dispatch => {
     dispatch({
-      type: 'FAKE_WECHATCODE_LOGIN',
+      type: types.FAKE_WECHATCODE_LOGIN,
       userInfo: user
     })
     showLoginNotification(dispatch)
@@ -158,7 +154,7 @@ export const checkToken = (token) => {
                throw new Error('Fail to check token: ' + res)
              } else {
                dispatch({
-                 type: 'TOKEN_IS_VALID',
+                 type: types.TOKEN_IS_VALID,
                  success: true
                })
              }
@@ -173,6 +169,12 @@ export const checkToken = (token) => {
 }
 
 // 检测 Episode 权限部分
+export function initEpAuthStatus () {
+  return dispatch => {
+    dispatch({ type: types.EP_STATUS_INIT })
+  }
+}
+
 function checkMembership (date) {
   let now = new Date()
   let isMember = Date.parse(date) - Date.parse(now)
@@ -189,11 +191,11 @@ function checkShoplist (shoplist, courseName) {
 }
 
 export const episodeAuthFetchStarted = () => ({
-  type: 'EP_AUTH_FETCH_STARTED'
+  type: types.EP_AUTH_FETCH_STARTED
 })
 
 export const episodeAuthFetchFailed = () => ({
-  type: 'EP_AUTH_FETCH_FAILED'
+  type: types.EP_AUTH_FETCH_FAILED
 })
 
 export const checkEpisodeAuth = (data) => {
@@ -216,18 +218,18 @@ export const checkEpisodeAuth = (data) => {
                    // time to refuse the user
                    console.log('refuse')
                    dispatch({
-                     type: 'EPISODE_AUTH_INVALID'
+                     type: types.EPISODE_AUTH_INVALID
                    })
                  } else {
                    console.log('you already bought this course!')
                    dispatch({
-                     type: 'EPISODE_AUTH_VALID'
+                     type: types.EPISODE_AUTH_VALID
                    })
                  }
                } else {
                  console.log('here comes a member')
                  dispatch({
-                   type: 'EPISODE_AUTH_VALID'
+                   type: types.EPISODE_AUTH_VALID
                  })
                }
              }
@@ -250,7 +252,7 @@ export function resetPassword (data) {
              const user = res.data.user
              window.sessionStorage.setItem('jwtToken', token)
              dispatch({
-               type: 'RESET_PASSWORD',
+               type: types.RESET_PASSWORD,
                userInfo: user
              })
              showResetPasswordNotification(dispatch)
