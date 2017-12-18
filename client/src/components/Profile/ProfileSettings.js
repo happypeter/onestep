@@ -19,19 +19,12 @@ const Wrap = styled.div`
   height: 100vh;
 `
 
-class ProfileSettings extends Component {
-
-  render () {
-    return (
-        <Wrap>
-          <TopHeader />
-          <div >
-            <AsyncResetPassword />
-          </div>
-          <Footer />
-        </Wrap>
-    )
-  }
-}
-
-export default ProfileSettings
+export default () => (
+  <Wrap>
+    <TopHeader />
+    <div >
+      <AsyncResetPassword />
+    </div>
+    <Footer />
+  </Wrap>
+)
