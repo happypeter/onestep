@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export default props => (
-  <CourseCard to={`${props.link}`} key={props.key}>
-    <span>{props.publishedAt && props.publishedAt.substr(0, 10)}</span>
-    <img src={`${props.cover}`} alt='cover' className='cover' />
-    <p>{props.title}</p>
+export default ({ link, publishedAt, cover, title }) => (
+  <CourseCard to={`${link}`}>
+    <span>{publishedAt && publishedAt.substr(0, 10)}</span>
+    <img src={`${cover}`} alt='cover' className='cover' />
+    <p>{title}</p>
   </CourseCard>
 )
 
