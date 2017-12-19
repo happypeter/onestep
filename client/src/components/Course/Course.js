@@ -2,11 +2,93 @@ import React, { Component } from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Button from 'material-ui/Button'
-import ChapterIcon from '../../assets/ChapterIcon.svg'
-import EpisodeIcon from '../../assets/EpisodeIcon.svg'
+import EpisodeCatalogue from './EpisodeCatalogue'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+
+class Course extends Component {
+
+  render () {
+    let {
+      name,
+      courseName,
+      intro,
+      writing_to_who: writingToWho,
+      learning_goal: learningGoal,
+      price,
+      publishedAt,
+      vlink,
+      service,
+      content
+    } = this.props.courseOptions
+
+    let episode
+    if (content) {
+      episode = content.map((item, i) => (
+        <EpisodeCatalogue
+          key={item.header}
+          header={item.header}
+          section={item.section}
+          courseName={courseName}
+        />
+    ))
+    } else {
+      episode = (<Info>加载中</Info>)
+    }
+
+    return (
+      <Wrap>
+        <TopHeader />
+
+        <VideoWrap>
+          <CourseName>{name}</CourseName>
+          <Video>
+            <VideoTitle>课程简介</VideoTitle>
+            <VideoPlayer {...this.props.videoJsOptions} />
+          </Video>
+        </VideoWrap>
+
+        <MsgHero>
+          <MsgWrap>
+            <MsgArea>
+              <MsgIntro>{intro}</MsgIntro>
+              <MsgSmallCards>
+                <MsgSmallCard>
+                  <CardTitle>适合观众</CardTitle>
+                  <CardContent>{writingToWho}</CardContent>
+                </MsgSmallCard>
+                <MsgSmallCard>
+                  <CardTitle>知识点</CardTitle>
+                  <CardContent>{learningGoal}</CardContent>
+                </MsgSmallCard>
+              </MsgSmallCards>
+            </MsgArea>
+            <MsgBigCard>
+              <PriceArea>
+                <Price>{price}元</Price>
+                <p>本课程</p>
+              </PriceArea>
+              <p>课程永久学习权限</p>
+              <Splitter />
+              <p>源代码</p>
+              <RaisedButtonWrap raised>购买</RaisedButtonWrap>
+            </MsgBigCard>
+          </MsgWrap>
+        </MsgHero>
+
+        <CatalogueHero>
+          <CatalogueWrap>
+            { episode }
+          </CatalogueWrap>
+        </CatalogueHero>
+
+        <Footer />
+      </Wrap>
+    )
+  }
+}
+
+export default Course
 
 const Wrap = styled.div`
   display: flex;
@@ -213,145 +295,3 @@ const Info = styled.div`
   text-align: center;
   font-size: 2.5em;
 `
-const EpisodesWrap = styled.div`
-  margin: 10px;
-  padding: 5px;
-  text-decoration: none;
-  text-align: left;
-  color: #212121;
-  border-radius: 40px;
-  @media (min-width: 1024px) {
-    padding: 5px 50px;
-  }
-`
-
-const EpisodeChapter = styled.div`
-  display: flex;
-  color: #000000;
-  margin-bottom: 10px;
-  h1 {
-    margin-left: 10px;
-    font-size: 1.2em;
-    font-weight: 300;
-  }
-  img {
-    width: 1.2em;
-  }
-  @media (min-width: 1024px) {
-    h1 {
-      margin-left: 29px;
-      font-size: 25px;
-      font-weight: 300;
-    }
-  }
-`
-
-const EpisodeLink = styled.div`
-  display: flex;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  img {
-    width: 0.8em;
-  }
-  @media (min-width: 1024px) {
-    margin-left: 29px;
-    margin-bottom: 18px;
-  }
-`
-
-const EpisodeTitle = styled(Link)`
-  display: block;
-  margin-left: 15px;
-  text-decoration: none;
-  color: #000000;
-  font-size: 0.8em;
-  font-weight: 300;
-  @media (min-width: 1024px) {
-    margin-left: 43px;
-    font-size: 1em;
-  }
-`
-
-class Course extends Component {
-
-  render () {
-    // console.log(this.props);
-    let { name, courseName, intro, writing_to_who: writingToWho, learning_goal: learningGoal, price, publishedOn, vlink, service, content } = this.props.courseOptions
-
-    let episode
-    if (content) {
-      episode = content.map((item, i) => (
-        <EpisodesWrap key={item.header}>
-          <EpisodeChapter>
-            <img src={ChapterIcon} alt={'ChapterIcon'} />
-            <h1>{item.header}</h1>
-          </EpisodeChapter>
-          {
-            item.section.map(
-              t => (
-                <EpisodeLink key={t.link}>
-                  <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-                  <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
-                </EpisodeLink>
-              )
-            )
-          }
-        </EpisodesWrap>
-    ))
-    } else {
-      episode = (<Info>加载中</Info>)
-    }
-
-    return (
-      <Wrap>
-        <TopHeader />
-
-        <VideoWrap>
-          <CourseName>{name}</CourseName>
-          <Video>
-            <VideoTitle>课程简介</VideoTitle>
-            <VideoPlayer {...this.props.videoJsOptions} />
-          </Video>
-        </VideoWrap>
-
-        <MsgHero>
-          <MsgWrap>
-            <MsgArea>
-              <MsgIntro>{intro}</MsgIntro>
-              <MsgSmallCards>
-                <MsgSmallCard>
-                  <CardTitle>适合观众</CardTitle>
-                  <CardContent>{writingToWho}</CardContent>
-                </MsgSmallCard>
-                <MsgSmallCard>
-                  <CardTitle>知识点</CardTitle>
-                  <CardContent>{learningGoal}</CardContent>
-                </MsgSmallCard>
-              </MsgSmallCards>
-            </MsgArea>
-            <MsgBigCard>
-              <PriceArea>
-                <Price>{price}元</Price>
-                <p>本课程</p>
-              </PriceArea>
-              <p>课程永久学习权限</p>
-              <Splitter />
-              <p>源代码</p>
-              <RaisedButtonWrap raised>购买</RaisedButtonWrap>
-            </MsgBigCard>
-          </MsgWrap>
-        </MsgHero>
-
-        <CatalogueHero>
-          <CatalogueWrap>
-            { episode }
-          </CatalogueWrap>
-        </CatalogueHero>
-
-        <Footer />
-      </Wrap>
-    )
-  }
-}
-
-export default Course

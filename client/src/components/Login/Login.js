@@ -7,92 +7,6 @@ import { FormControl, FormHelperText } from 'material-ui/Form'
 import Tabs, { Tab } from 'material-ui/Tabs';
 import styled from 'styled-components'
 
-const CardWarp = styled.div`
-  padding: 0;
-  box-shadow: 2px 2px 5px #888888;
-  width: 380px;
-  margin: 0 auto 80px auto;
-  padding: 0;
-`
-
-const LoginWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`
-
-const TabsHeader = styled.div`
-  margin: 0 auto;
-  margin-bottom: 2em;
-  width: 380px;
-  height: 2.5em;
-  background-color: #00BCD4;
-  flex-shrink: 0;
-`
-
-const TabsWrap = styled(Tabs)`
-  && {
-    margin: 0 80px;
-    display: flex;
-    justify-content:center;
-    flex-shrink: 1;
-  }
-
-  .MuiTab-root-8 {
-    min-width: 10px;
-    margin: 0 5px;
-    font-weight: 400;
-  }
-
-  span {
-    font-size: 16px;
-  }
-`
-
-const FromWrap = styled.form`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: border-box;
-  text-align: center;
-  margin-top: 5%;
-  padding: 0 60px;
-  @media (min-width: 400px) {
-    width: 380px;
-    margin: 1em auto 0 auto;
-    padding: 0 80px 4em;
-  }
-`
-
-const TextFieldWrap = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-const SmsSendWrap = styled.div`
-  display: ${props => props.hide ? 'none' : 'inline-block'}
-`
-
-const ActionButton = styled(Button)`
-  && {
-    background-color: #00BCD4;
-    color: #FFFFFF;
-    width: 100%;
-    margin-top: 1.5em;
-  }
-`
-
-const ShortButton = styled(Button)`
-  && {
-    color: #00BCD4;
-    font-size: 1em;
-    height: 100%;
-    line-height: 100%;
-  }
-`
-
 class Login extends Component {
 
   getUsername = (e) => {
@@ -292,3 +206,89 @@ class Login extends Component {
 }
 
 export default Login
+
+const CardWarp = styled.div`
+  padding: 0;
+  box-shadow: 2px 2px 5px #888888;
+  width: 380px;
+  margin: 0 auto 80px auto;
+  padding: 0;
+`
+
+const LoginWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
+
+const TabsHeader = styled.div`
+  margin: 0 auto;
+  margin-bottom: 2em;
+  width: 380px;
+  height: 2.5em;
+  background-color: #00BCD4;
+  flex-shrink: 0;
+`
+
+const TabsWrap = styled(Tabs)`
+  && {
+    margin: 0 80px;
+    display: flex;
+    justify-content:center;
+    flex-shrink: 1;
+  }
+
+  .MuiTab-root-8 {
+    min-width: 10px;
+    margin: 0 5px;
+    font-weight: 400;
+  }
+
+  span {
+    font-size: 16px;
+  }
+`
+
+const FromWrap = styled.form`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 5%;
+  padding: 0 60px;
+  @media (min-width: 400px) {
+    width: 380px;
+    margin: 1em auto 0 auto;
+    padding: 0 80px 4em;
+  }
+`
+
+const TextFieldWrap = styled.div`
+  display: flex;
+  width: 100%;
+`
+
+const SmsSendWrap = styled.div`
+  display: ${props => props.hide ? 'none' : 'inline-block'}
+`
+
+const ActionButton = styled(Button)`
+  && {
+    background-color: #00BCD4;
+    color: #FFFFFF;
+    width: 100%;
+    margin-top: 1.5em;
+  }
+`
+
+const ShortButton = styled(Button)`
+  && {
+    color: #00BCD4;
+    font-size: 1em;
+    height: 100%;
+    line-height: 100%;
+  }
+`

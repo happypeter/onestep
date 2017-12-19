@@ -5,6 +5,90 @@ import styled from 'styled-components'
 import CourseCard from './CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 
+export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
+  switch (status) {
+    case 'LOADING': {
+      return (
+        <Wrap>
+          <TopHeader />
+          <ContentWrap>信息请求中...</ContentWrap>
+          <Footer />
+        </Wrap>
+      )
+    }
+    case 'SUCCESS': {
+      return (
+        <Wrap>
+          <TopHeader />
+
+          <AvatarHero>
+            <AvatarWrap>
+              <img src={defaultAvatar} alt='nickname' />
+              <Nickname>{phoneNum}</Nickname>
+            </AvatarWrap>
+          </AvatarHero>
+
+          <ContentWrap>
+            <SubTitle>课程</SubTitle>
+            {
+              (paidCourses && paidCourses.length !== 0)
+              ? (
+                <CourseListWrap>
+                  {paidCourses.map((item, i) => (
+                    <CourseCard
+                      link={item.link}
+                      key={item.key}
+                      publishedAt={item.publishedAt}
+                      cover={item.cover}
+                      title={item.title}
+                    />
+                ))}
+                </CourseListWrap>
+            )
+              : (
+                <div>还没有购买过任何课程</div>
+              )
+            }
+            <SubTitle>会员</SubTitle>
+            {
+                latestExpireDate
+                ? (
+                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
+                )
+                : (
+                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
+                )
+              }
+            {/* {
+                (total !== 0)
+                ? (
+                  <div>已在好奇猫为自己投资{total}元</div>
+                )
+                : (
+                  <div>还没有在好奇猫为自己投资</div>
+                )
+              } */}
+          </ContentWrap>
+
+          <Footer />
+        </Wrap>
+      )
+    }
+    case 'FAILURE': {
+      return (
+        <Wrap>
+          <TopHeader />
+          <ContentWrap>信息加载失败</ContentWrap>
+          <Footer />
+        </Wrap>
+      )
+    }
+    default: {
+      throw new Error('unexpected status ' + status)
+    }
+  }
+}
+
 const Wrap = styled.div`
   min-height: 100vh;
   background-color: #FFFFFF;
@@ -100,87 +184,3 @@ const CourseListWrap = styled.div`
     padding: 1em 4em;
   }
 `
-
-export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
-  switch (status) {
-    case 'LOADING': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息请求中...</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
-    }
-    case 'SUCCESS': {
-      return (
-        <Wrap>
-          <TopHeader />
-
-          <AvatarHero>
-            <AvatarWrap>
-              <img src={defaultAvatar} alt='nickname' />
-              <Nickname>{phoneNum}</Nickname>
-            </AvatarWrap>
-          </AvatarHero>
-
-          <ContentWrap>
-            <SubTitle>课程</SubTitle>
-            {
-              (paidCourses && paidCourses.length !== 0)
-              ? (
-                <CourseListWrap>
-                  {paidCourses.map((item, i) => (
-                    <CourseCard
-                      link={item.link}
-                      key={item.key}
-                      publishedAt={item.publishedAt}
-                      cover={item.cover}
-                      title={item.title}
-                    />
-                ))}
-                </CourseListWrap>
-            )
-              : (
-                <div>还没有购买过任何课程</div>
-              )
-            }
-            <SubTitle>会员</SubTitle>
-            {
-                latestExpireDate
-                ? (
-                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
-                )
-                : (
-                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
-                )
-              }
-            {/* {
-                (total !== 0)
-                ? (
-                  <div>已在好奇猫为自己投资{total}元</div>
-                )
-                : (
-                  <div>还没有在好奇猫为自己投资</div>
-                )
-              } */}
-          </ContentWrap>
-
-          <Footer />
-        </Wrap>
-      )
-    }
-    case 'FAILURE': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息加载失败</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
-    }
-    default: {
-      throw new Error('unexpected status ' + status)
-    }
-  }
-}

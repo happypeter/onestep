@@ -2,24 +2,6 @@ import React from 'react'
 import CourseCard from './CourseCard'
 import styled from 'styled-components'
 
-const Title = styled.div`
-  margin: 0px auto;
-  text-align: center;
-  font-size: 2.5em;
-`
-
-const CourseListWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0px auto;
-  @media (min-width: 1024px) {
-    box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
-    padding: 1em 4em;
-  }
-`
-
 export default ({ courses, status }) => {
   switch (status) {
     case 'LOADING': {
@@ -32,8 +14,8 @@ export default ({ courses, status }) => {
     case 'SUCCESS': {
       let catalogues = courses.map((item, i) => (
         <CourseCard
-          link={item.link}
           key={item.key}
+          link={item.link}
           publishedAt={item.publishedAt}
           cover={item.cover}
           title={item.title}
@@ -60,3 +42,21 @@ export default ({ courses, status }) => {
     }
   }
 }
+
+const Title = styled.div`
+  margin: 0px auto;
+  text-align: center;
+  font-size: 2.5em;
+`
+
+const CourseListWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    width: 1024px;
+    margin: 0 auto;
+    padding: 1em 4em;
+  }
+`

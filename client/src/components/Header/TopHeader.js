@@ -4,74 +4,6 @@ import { Link } from 'react-router-dom'
 import logoSimple from '../../assets/logoSimple.svg'
 import Menu, { MenuItem } from 'material-ui/Menu'
 
-const TopHeaderWrap = styled.div`
-  background-color: #FFFFFF;
-  display: flex;
-  justify-content: space-between;
-  @media (min-width: 1024px) {
-    width: 1024px;
-    margin: 0 auto;
-  }
-`
-
-const SideButtonsWrap = styled.div`
-  display: flex;
-  flex-direction: flex-end;
-  padding: 1em;
-  @media (min-width: 1024px) {
-    padding: 1em 6em;
-  }
-`
-
-const ButtonLink = styled(Link)`
-  font-size: 0.8em;
-  padding: 0.5em;
-  color: #212121;
-  line-height: 2;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-`
-
-const Username = styled.div`
-  font-size: 0.8em;
-  padding: 0.5em;
-  color: #212121;
-  line-height: 2;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-`
-
-const HomeWrap = styled.div`
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  margin-left: 1em;
-  @media (min-width: 1024px) {
-    font-size: 1.56em;
-    margin-left: 4em;
-  }
-`
-
-const PopMenu = styled(Menu)`
-  && {
-    top: 40px;
-  }
-  ul {
-    padding: 0;
-  }
-  li {
-    padding-right: 3em
-  }
-`
-
 class TopHeader extends Component {
 
   handlePopoverOpen = (event) => {
@@ -155,3 +87,71 @@ class TopHeader extends Component {
 }
 
 export default TopHeader
+
+const TopHeaderWrap = styled.div`
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  @media (min-width: 1024px) {
+    width: 1024px;
+    margin: 0 auto;
+  }
+`
+
+const SideButtonsWrap = styled.div`
+  display: flex;
+  flex-direction: flex-end;
+  padding: 1em;
+  @media (min-width: 1024px) {
+    padding: 1em 6em;
+  }
+`
+
+const ButtonLink = styled(Link)`
+  font-size: 0.8em;
+  padding: 0.5em;
+  color: #212121;
+  line-height: 2;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  @media (min-width: 1024px) {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+`
+
+const Username = styled.div`
+  font-size: 0.8em;
+  padding: 0.5em;
+  color: #212121;
+  line-height: 2;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  @media (min-width: 1024px) {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+`
+
+const HomeWrap = styled.div`
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  margin-left: 1em;
+  @media (min-width: 1024px) {
+    font-size: 1.56em;
+    margin-left: 4em;
+  }
+`
+
+const PopMenu = styled(Menu)`
+  && {
+    top: 40px;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    padding-right: 3em
+  }
+`

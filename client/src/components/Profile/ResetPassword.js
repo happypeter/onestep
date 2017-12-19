@@ -4,72 +4,6 @@ import Input, { InputLabel } from 'material-ui/Input'
 import { FormControl, FormHelperText } from 'material-ui/Form'
 import styled from 'styled-components'
 
-const SignupWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`
-
-const FormTitle = styled.div`
-  margin: 0 auto;
-  margin-top: 105px;
-  font-size: 40px;
-  color: #212121;
-`
-
-const FromWrap = styled.form`
-  min-height: 450px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: border-box;
-  box-shadow: 2px 2px 5px #888888;
-  border-top: 2.5em solid #00BCD4;
-  text-align: center;
-  margin-top: 5%;
-  padding: 0 60px;
-  @media (min-width: 400px) {
-    width: 360px;
-    margin: 40px auto;
-    margin-bottom: 280px;
-    padding: 0 80px 20px;
-  }
-`
-
-const TextFieldWrap = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-const SmsSendWrap = styled.div`
-  display: ${props => props.hide ? 'none' : 'inline-block'}
-`
-
-// const RaisedButtonWrap = styled(Button)`
-//   width: 130px;
-//   margin-top: 30px;
-// `
-
-const ShortButton = styled(Button)`
-  && {
-    color: #00BCD4;
-    font-size: 1em;
-    height: 100%;
-    line-height: 100%;
-  }
-`
-
-const ActionButton = styled(Button)`
-  && {
-    background-color: #00BCD4;
-    color: #FFFFFF;
-    width: 100%;
-    margin-top: 1.5em;
-  }
-`
-
 class ResetPassword extends Component {
 
   getPassword = (e) => {
@@ -182,3 +116,64 @@ class ResetPassword extends Component {
 }
 
 export default ResetPassword
+
+const SignupWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`
+
+const FormTitle = styled.div`
+  margin: 0 auto;
+  margin-top: 105px;
+  font-size: 40px;
+  color: #212121;
+`
+
+const FromWrap = styled.form`
+  min-height: 450px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px #888888;
+  border-top: 2.5em solid #00BCD4;
+  text-align: center;
+  margin-top: 5%;
+  padding: 0 60px;
+  @media (min-width: 400px) {
+    width: 360px;
+    margin: 40px auto;
+    margin-bottom: 280px;
+    padding: 0 80px 20px;
+  }
+`
+
+const TextFieldWrap = styled.div`
+  display: flex;
+  width: 100%;
+`
+
+const SmsSendWrap = styled.div`
+  display: ${props => props.hide ? 'none' : 'inline-block'}
+`
+
+const ShortButton = styled(Button)`
+  && {
+    color: #00BCD4;
+    font-size: 1em;
+    height: 100%;
+    line-height: 100%;
+  }
+`
+
+const ActionButton = styled(Button)`
+  && {
+    background-color: #00BCD4;
+    color: #FFFFFF;
+    width: 100%;
+    margin-top: 1.5em;
+  }
+`

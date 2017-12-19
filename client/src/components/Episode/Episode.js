@@ -1,9 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import ReactMarkdown from 'react-markdown'
+
+export default ({
+  videoJsOptions,
+  episodeState: { doc, title }
+}) => (
+  <div>
+    <TopHeader />
+
+    <VideoWrap>
+      <Video>
+        <VideoTitle>{title}</VideoTitle>
+        <VideoPlayer {...videoJsOptions} />
+      </Video>
+    </VideoWrap>
+
+    <Doc>
+      <ReactMarkdown source={doc} />
+    </Doc>
+
+    <Footer />
+  </div>
+)
 
 const VideoWrap = styled.div`
   @media (min-width: 1024px) {
@@ -12,13 +34,6 @@ const VideoWrap = styled.div`
     margin: 3.5em auto;
   }
 `
-
-// const CourseName = styled.div`
-//   margin: 44px auto;
-//   color: #573D00;
-//   text-align: center;
-//   font-size: 2.5em;
-// `
 
 const VideoTitle = styled.div`
   height: 1.5em;
@@ -43,7 +58,6 @@ const Video = styled.div`
 `
 
 const Doc = styled.div`
-  ${'' /* width: 100%; */}
   margin:  2em;
   padding: 1em;
   padding-top: 0;
@@ -91,33 +105,3 @@ const Doc = styled.div`
     border-top: 2.7em solid #00BCD4;
   }
 `
-
-class Episode extends Component {
-  render () {
-    let {
-      videoJsOptions,
-      episodeState: { doc, title }
-    } = this.props
-    return (
-      <div>
-        <TopHeader />
-
-        <VideoWrap>
-          {/* <CourseName></CourseName> */}
-          <Video>
-            <VideoTitle>{title}</VideoTitle>
-            <VideoPlayer {...videoJsOptions} />
-          </Video>
-        </VideoWrap>
-
-        <Doc>
-          <ReactMarkdown source={doc} />
-        </Doc>
-
-        <Footer />
-      </div>
-    )
-  }
-}
-
-export default Episode

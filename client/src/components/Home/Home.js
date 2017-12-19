@@ -5,6 +5,15 @@ import styled from 'styled-components'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../common/Loading'
 
+export default () => (
+  <HomeWrap>
+    <Header />
+    <CourseList />
+    <AsyncAboveFooter />
+    <AsyncFooter />
+  </HomeWrap>
+)
+
 const AsyncAboveFooter = Loadable({
   loader: () => import('../Footer/AboveFooter'),
   loading: LoadingComponent,
@@ -25,12 +34,3 @@ const HomeWrap = styled.div`
   background-color: #FFFFFF;
   text-align: center;
 `
-
-export default () => (
-  <HomeWrap>
-    <Header />
-    <CourseList />
-    <AsyncAboveFooter />
-    <AsyncFooter />
-  </HomeWrap>
-)
