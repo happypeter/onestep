@@ -11,6 +11,10 @@ class ResetPassword extends Component {
   }
 
   getPasswordConsistent = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPasswordConsistent(e)
+      return
+    }
     this.props.getPasswordConsistent(e.target.value)
   }
 
@@ -25,6 +29,11 @@ class ResetPassword extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit()
+  }
+
+  enterToSubmit = (e) => {
+    if (e.which !== 13) return
+    this.getPasswordConsistent(e.target.value)
   }
 
   render () {
@@ -98,6 +107,7 @@ class ResetPassword extends Component {
             <InputLabel htmlFor='passwordConsistent'>确认新密码</InputLabel>
             <Input
               onBlur={this.getPasswordConsistent}
+              onKeyDown={this.enterToSubmit}
               type='password'
             />
             <FormHelperText>{this.props.errorText.passwordConsistent}</FormHelperText>

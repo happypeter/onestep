@@ -18,10 +18,18 @@ class Login extends Component {
   }
 
   getPassword = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPassword(e)
+      return
+    }
     this.props.getPassword(e.target.value)
   }
 
   getPasswordConsistent = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPasswordConsistent(e)
+      return
+    }
     this.props.getPasswordConsistent(e.target.value)
   }
 
@@ -40,6 +48,16 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit()
+  }
+
+  enterToSubmitPhone = (event) => {
+    if (event.which !== 13) return
+    this.getPassword(event.target.value)
+  }
+
+  enterToSubmitRegularUser = (event) => {
+    if (event.which !== 13) return
+    this.getPasswordConsistent(event.target.value)
   }
 
   render () {
@@ -84,6 +102,7 @@ class Login extends Component {
                 <InputLabel htmlFor='password'>密码</InputLabel>
                 <Input
                   onBlur={this.getPassword}
+                  onKeyDown={this.enterToSubmitPhone}
                   type='password'
                 />
                 <FormHelperText>{this.props.errorText.password}</FormHelperText>
@@ -182,6 +201,7 @@ class Login extends Component {
                       <InputLabel htmlFor='passwordConsistent'>确认密码</InputLabel>
                       <Input
                         onBlur={this.getPasswordConsistent}
+                        onKeyDown={this.enterToSubmitRegularUser}
                         type='password'
                       />
                       <FormHelperText>{this.props.errorText.passwordConsistent}</FormHelperText>

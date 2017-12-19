@@ -21,6 +21,10 @@ class Signup extends Component {
   }
 
   getPasswordConsistent = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPasswordConsistent(e)
+      return
+    }
     this.props.getPasswordConsistent(e.target.value)
   }
 
@@ -31,6 +35,11 @@ class Signup extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit()
+  }
+
+  enterToSubmit = (e) => {
+    if (e.which !== 13) return
+    this.getPasswordConsistent(e.target.value)
   }
 
   render () {
@@ -92,6 +101,7 @@ class Signup extends Component {
             <InputLabel htmlFor='password'>密码</InputLabel>
             <Input
               onBlur={this.getPassword}
+              onKeyDown={this.enterToSubmit}
               type='password'
             />
             <FormHelperText>{this.props.errorText.password}</FormHelperText>
