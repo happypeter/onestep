@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import CourseCard from './CourseCard'
 import styled from 'styled-components'
 
 const Title = styled.div`
@@ -20,87 +20,43 @@ const CourseListWrap = styled.div`
   }
 `
 
-const CourseCard = styled(Link)`
-  margin: 1em;
-  width: 100%;
-  flex-grow: 0;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  text-align: left;
-  text-decoration: none;
-  color: rgb(76, 87, 101);
-
-  img {
-    width: 100%;
-    display: block;
-  }
-
-  p {
-    border-top: 1px solid rgb(226, 226, 226);
-    margin: 0;
-    padding: 15px;
-    font-size: 17px;
-  }
-
-  span {
-    font-size: 14px;
-    padding:5px 0 5px 15px;
-    display: inline-block;
-    font-weight: 200;
-  }
-
-  @media (min-width: 600px) {
-    width: calc(50% - 4em)
-  }
-
-  @media (min-width: 1024px) {
-    width: calc(33.33333% - 2em)
-  }
-`
-
-class CourseList extends Component {
-  render () {
-    let { courses, status } = this.props
-
-    switch (status) {
-      case 'LOADING': {
-        return (
-          <div>
-            <Title>信息请求中...</Title>
-          </div>
-        )
-      }
-      case 'SUCCESS': {
-        let catalogues = courses.map((item, i) => (
-          <CourseCard to={`${item.link}`} key={item.key}>
-            <span>{item.publishedAt && item.publishedAt.substr(0, 10)}</span>
-            <img src={`${item.cover}`} alt='cover' className='cover' />
-            <p>{item.title}</p>
-          </CourseCard>
-        ))
-        return (
-          <div>
-            <Title>最新发布</Title>
-            <CourseListWrap>
-              { catalogues }
-            </CourseListWrap>
-          </div>
-        )
-      }
-      case 'FAILURE': {
-        return (
-          <div>
-            <Title>信息加载失败</Title>
-          </div>
-        )
-      }
-      default: {
-        throw new Error('unexpected status ' + status)
-      }
+export default ({ courses, status }) => {
+  switch (status) {
+    case 'LOADING': {
+      return (
+        <div>
+          <Title>信息请求中...</Title>
+        </div>
+      )
+    }
+    case 'SUCCESS': {
+      let catalogues = courses.map((item, i) => (
+        <CourseCard
+          link={item.link}
+          key={item.key}
+          publishedAt={item.publishedAt}
+          cover={item.cover}
+          title={item.title}
+        />
+      ))
+      return (
+        <div>
+          <Title>最新发布</Title>
+          <CourseListWrap>
+            { catalogues }
+          </CourseListWrap>
+        </div>
+      )
+    }
+    case 'FAILURE': {
+      return (
+        <div>
+          <Title>信息加载失败</Title>
+        </div>
+      )
+    }
+    default: {
+      throw new Error('unexpected status ' + status)
     }
   }
 }
-
-export default CourseList
