@@ -5,7 +5,7 @@ import ChapterIcon from '../../assets/ChapterIcon.svg'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
 export default ({ header, section, courseName }) => (
-  <EpisodesWrap key={header}>
+  <EpisodesWrap>
     <EpisodeChapter>
       <img src={ChapterIcon} alt={'ChapterIcon'} />
       <h1>{header}</h1>
