@@ -172,7 +172,7 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
                 <CourseListWrap>
                   {paidCourses.map((item, i) => (
                     <CourseCard to={`${item.link}`} key={item.key}>
-                      <span>{item.publishedOn}</span>
+                      <span>{item.publishedAt && item.publishedAt.substr(0, 10)}</span>
                       <img src={`${item.cover}`} alt='cover' className='cover' />
                       <p>{item.title}</p>
                     </CourseCard>
