@@ -30,7 +30,7 @@ class SmsSendContainer extends Component {
             this.props.countdown()
             if (this.props.smsSendState.second <= 0) {
               this.props.readyToSendMsg()
-              console.log(this.props.smsSendState)
+              // console.log(this.props.smsSendState)
               resolve(setTimer)
             }
             if (!this._mounted) {
@@ -63,7 +63,6 @@ class SmsSendContainer extends Component {
   }
 
   render () {
-    console.log(this.props);
     return (
       <SmsSend
         label={this.props.smsSendState.alreadySendMsg ? this.props.smsSendState.second : '发送'}
