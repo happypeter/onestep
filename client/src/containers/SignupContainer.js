@@ -6,7 +6,7 @@ import { signup } from '../redux/actions/authAction'
 import {
   getFormState,
   getCurrentUser
-} from '../selectors/commonSelectors.js'
+} from '../redux/selectors/commonSelectors.js'
 import {
   formErrInit,
   passwordTooShort,

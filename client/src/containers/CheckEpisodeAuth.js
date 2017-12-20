@@ -5,7 +5,7 @@ import { showNotPaidNotification } from '../redux/actions/notificationAction'
 import {
   getIsEpisodePaid,
   getEpAuthStatus
-} from '../selectors/episodeAuthSelectors.js'
+} from '../redux/selectors/episodeAuthSelectors.js'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 

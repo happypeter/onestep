@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCourse } from '../redux/actions/contentAction'
-import { getCourse } from '../selectors/commonSelectors.js'
+import { getCourse } from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 

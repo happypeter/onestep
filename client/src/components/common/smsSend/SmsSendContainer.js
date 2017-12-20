@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import SmsSend from './SmsSend'
-import { getSmsSendState } from '../../../selectors/commonSelectors.js'
+import { getSmsSendState } from '../../../redux/selectors/commonSelectors.js'
 import {
   sendMsg,
   countdown,

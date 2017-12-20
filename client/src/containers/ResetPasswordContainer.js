@@ -127,7 +127,6 @@ class ResetPasswordContainer extends Component {
         getPassword={this.getPassword}
         getPasswordConsistent={this.getPasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
-        phoneNum={this.state.phoneNum}
         phoneNumIsValid={true}
       />
     )

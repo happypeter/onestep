@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { getNotification } from '../selectors/commonSelectors.js'
+import { getNotification } from '../redux/selectors/commonSelectors.js'
 import Notification from '../components/Notification/Notification'
 // import {
 //   removeLogoutNotification,
