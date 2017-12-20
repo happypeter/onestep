@@ -5,33 +5,49 @@ import { getSmsSendState } from '../../../redux/selectors/commonSelectors.js'
 import {
   sendMsg,
   countdown,
-  readyToSendMsg
+  readyToSendMsg,
+  smsSendInit
 } from '../../../redux/actions/smsSendAction'
 import PropTypes from 'prop-types'
 
 class SmsSendContainer extends Component {
+
+  _mounted = false
+
+  componentDidMount() {
+    this._mounted = true
+  }
+
+  componentWillUnmount() {
+    this._mounted = false
+    this.props.smsSendInit()
+  }
 
   timer = () => {
       let promise = new Promise((resolve, reject) => {
         let setTimer = setInterval(
           () => {
             this.props.countdown()
-            console.log(this.props.smsSendState.second)
             if (this.props.smsSendState.second <= 0) {
               this.props.readyToSendMsg()
               console.log(this.props.smsSendState)
               resolve(setTimer)
             }
+            if (!this._mounted) {
+              reject(setTimer)
+            }
           }
           , 1000)
       })
+
       promise.then((setTimer) => {
         clearInterval(setTimer)
         console.log('CLEAR INTERVAL')
       })
       .catch(
-        err => {
-          console.log(err)
+        (setTimer) => {
+          clearInterval(setTimer)
+          console.log('CLEAR INTERVAL IN REJECTION')
         }
       )
   }
@@ -47,6 +63,7 @@ class SmsSendContainer extends Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <SmsSend
         label={this.props.smsSendState.alreadySendMsg ? this.props.smsSendState.second : '发送'}
@@ -61,7 +78,8 @@ class SmsSendContainer extends Component {
 SmsSendContainer.PropTypes = {
   sendMsg: PropTypes.func.isRequired,
   countdown: PropTypes.func.isRequired,
-  readyToSendMsg: PropTypes.func.isRequired
+  readyToSendMsg: PropTypes.func.isRequired,
+  smsSendInit: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -71,5 +89,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   sendMsg,
   countdown,
-  readyToSendMsg
+  readyToSendMsg,
+  smsSendInit
 })(SmsSendContainer)

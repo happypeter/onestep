@@ -7,6 +7,8 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'SMS_INIT':
+      return initialState
     case 'ALREADY_SEND_MSG':
       return {
         ...state,
