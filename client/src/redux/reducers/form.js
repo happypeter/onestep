@@ -1,22 +1,17 @@
-import config from '../../config/config'
-
 const initialState = {
   usernameIsValid: false,
-  // mailboxIsValid: false,
   phoneNumIsValid: false,
   passwordIsValid: false,
   passwordConsistentIsValid: false,
   smsCodeIsValid: false,
+  tabValue: 0,
   testErrObj: {
     username: '',
     phoneNum: '',
     password: '',
     passwordConsistent: '',
     smsCode: ''
-  },
-  tabValue: 0,
-  alreadySendMsg: false,
-  second: config.smsTimeLimit
+  }
 }
 
 export default (state = initialState, action = {}) => {
@@ -208,22 +203,6 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         tabValue: action.data && action.data.value
-      }
-    case 'ALREADY_SEND_MSG':
-      return {
-        ...state,
-        alreadySendMsg: true
-      }
-    case 'COUNTDOWN':
-      return {
-        ...state,
-        second: state.second - 1
-      }
-    case 'READY_TO_SEND_MSG':
-      return {
-        ...state,
-        alreadySendMsg: false,
-        second: config.smsTimeLimit
       }
     default:
       return state

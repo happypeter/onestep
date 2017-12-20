@@ -3,6 +3,7 @@ import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import Button from 'material-ui/Button'
 import FormItem from '../common/FormItem'
+import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import Tabs, { Tab } from 'material-ui/Tabs'
 import styled from 'styled-components'
 
@@ -34,10 +35,6 @@ class Login extends Component {
 
   getSmsCode = (e) => {
     this.props.getSmsCode(e.target.value)
-  }
-
-  sendMsg = () => {
-    this.props.sendMsg()
   }
 
   alter = (event, value) => {
@@ -134,27 +131,10 @@ class Login extends Component {
                 onBlur={this.getSmsCode}
                 formHelperText={this.props.errorText.smsCode}
               />
-
-              <SmsSendWrap
-                hide={this.props.alreadySendMsg}
-                >
-                  <ShortButton
-                    onClick={this.sendMsg}
-                    >
-                      发送
-                  </ShortButton>
-              </SmsSendWrap>
-
-              <SmsSendWrap
-                hide={!this.props.alreadySendMsg}
-                >
-                  <ShortButton
-                    raised
-                    disabled={true}
-                    >
-                      {this.props.second}s
-                  </ShortButton>
-                </SmsSendWrap>
+              <SmsSendContainer
+                phoneNumIsValid={this.props.phoneNumIsValid}
+                phoneNum={this.props.phoneNum}
+              />
               </TextFieldWrap>
 
               <FormItem
@@ -260,24 +240,11 @@ const TextFieldWrap = styled.div`
   width: 100%;
 `
 
-const SmsSendWrap = styled.div`
-  display: ${props => props.hide ? 'none' : 'inline-block'}
-`
-
 const ActionButton = styled(Button)`
   && {
     background-color: #00BCD4;
     color: #FFFFFF;
     width: 100%;
     margin-top: 1.5em;
-  }
-`
-
-const ShortButton = styled(Button)`
-  && {
-    color: #00BCD4;
-    font-size: 1em;
-    height: 100%;
-    line-height: 100%;
   }
 `

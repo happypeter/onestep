@@ -10,13 +10,10 @@ import {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  phoneNumNotValid,
+  // phoneNumNotValid,
   // phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid,
-  sendMsg,
-  countdown,
-  readyToSendMsg
+  smsCodeIsValid
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
@@ -87,42 +84,6 @@ class ResetPasswordContainer extends Component {
     }
   }
 
-  timer = () => {
-      let promise = new Promise((resolve, reject) => {
-        let setTimer = setInterval(
-          () => {
-            this.props.countdown()
-            // console.log(this.props.signUpState.second)
-            if (this.props.signUpState.second <= 0) {
-              this.props.readyToSendMsg()
-              console.log(this.props.signUpState)
-              resolve(setTimer)
-            }
-          }
-          , 1000)
-      })
-      promise.then((setTimer) => {
-        clearInterval(setTimer)
-        console.log('CLEAR INTERVAL')
-      })
-      .catch(
-        err => {
-          console.log(err)
-        }
-      )
-    }
-
-  sendMsg = () => {
-    // this.checkPhoneNum(this.state.phoneNum)
-    // if (!this.props.signUpState.phoneNumIsValid) {
-    //   // console.log('phoneNum is not valid')
-    //   return
-    // }
-
-    this.props.sendMsg(this.state.phoneNum)
-    this.timer()
-  }
-
   recheckForm = function *() {
     let userInfo = yield
 
@@ -157,8 +118,6 @@ class ResetPasswordContainer extends Component {
   }
 
   render () {
-    // let phoneNum = window.sessionStorage.getItem('user')
-
     return (
       <ResetPassword
         onSubmit={this.handleSubmit}
@@ -168,9 +127,8 @@ class ResetPasswordContainer extends Component {
         getPassword={this.getPassword}
         getPasswordConsistent={this.getPasswordConsistent}
         errorText={this.props.signUpState.testErrObj}
-        sendMsg={this.sendMsg}
-        alreadySendMsg={this.props.signUpState.alreadySendMsg}
-        second={this.props.signUpState.second}
+        phoneNum={this.state.phoneNum}
+        phoneNumIsValid={true}
       />
     )
   }
@@ -184,13 +142,10 @@ ResetPasswordContainer.PropTypes = {
   passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
   usernameIsValid: PropTypes.func.isRequired,
-  phoneNumNotValid: PropTypes.func.isRequired,
+  // phoneNumNotValid: PropTypes.func.isRequired,
   // phoneNumIsValid: PropTypes.func.isRequired,
   smsCodeIsRequired: PropTypes.func.isRequired,
   smsCodeIsValid: PropTypes.func.isRequired,
-  sendMsg: PropTypes.func.isRequired,
-  countdown: PropTypes.func.isRequired,
-  readyToSendMsg: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -207,11 +162,8 @@ export default connect(mapStateToProps, {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  phoneNumNotValid,
+  // phoneNumNotValid,
   // phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid,
-  sendMsg,
-  countdown,
-  readyToSendMsg
+  smsCodeIsValid
 })(ResetPasswordContainer)
