@@ -45,7 +45,7 @@ class ResetPassword extends Component {
             error={this.props.errorText.phoneNum}
             disabled={true}
             value={this.props.phoneNum}
-            htmlFor='phoneNum'
+            htmlFor={'phoneNum'}
             inputLabel={this.props.phoneNum}
             formHelperText={this.props.errorText.phoneNum}
           />

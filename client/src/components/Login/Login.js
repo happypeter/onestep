@@ -70,18 +70,18 @@ class Login extends Component {
           <TabsWrap
             value={value}
             onChange={this.alter}
-            indicatorColor="primary"
+            indicatorColor={'primary'}
             centered
             >
-              <Tab label="手机登录" />
-              <Tab label="老用户" />
+              <Tab label={'手机登录'} />
+              <Tab label={'老用户'} />
           </TabsWrap>
           {value === 0 &&
           <FromWrap  onSubmit={this.handleSubmit}>
 
             <FormItem
               error={this.props.errorText.phoneNum}
-              htmlFor='phoneNum'
+              htmlFor={'phoneNum'}
               inputLabel={'手机号'}
               onBlur={this.getPhoneNum}
               formHelperText={this.props.errorText.phoneNum}
@@ -120,7 +120,7 @@ class Login extends Component {
 
            <FormItem
              error={this.props.errorText.phoneNum}
-             htmlFor='phoneNum'
+             htmlFor={'phoneNum'}
              inputLabel={'请绑定手机号'}
              onBlur={this.getPhoneNum}
              formHelperText={this.props.errorText.phoneNum}
@@ -129,7 +129,7 @@ class Login extends Component {
             <TextFieldWrap>
               <FormItem
                 error={this.props.errorText.smsCode}
-                htmlFor='smsCode'
+                htmlFor={'smsCode'}
                 inputLabel='验证码'
                 onBlur={this.getSmsCode}
                 formHelperText={this.props.errorText.smsCode}

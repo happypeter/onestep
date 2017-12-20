@@ -48,8 +48,8 @@ class Signup extends Component {
         <FromWrap onSubmit={this.handleSubmit}>
           <FormItem
             error={this.props.errorText.phoneNum}
-            htmlFor='phoneNum'
-            inputLabel='手机号'
+            htmlFor={'phoneNum'}
+            inputLabel={'手机号'}
             onBlur={this.getPhoneNum}
             formHelperText={this.props.errorText.phoneNum}
           />
@@ -57,8 +57,8 @@ class Signup extends Component {
           <TextFieldWrap>
             <FormItem
               error={this.props.errorText.smsCode}
-              htmlFor='smsCode'
-              inputLabel='验证码'
+              htmlFor={'smsCode'}
+              inputLabel={'验证码'}
               onBlur={this.getSmsCode}
               formHelperText={this.props.errorText.smsCode}
             />
