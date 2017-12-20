@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import Button from 'material-ui/Button'
-import Input, { InputLabel } from 'material-ui/Input'
-import { FormControl, FormHelperText } from 'material-ui/Form'
+import FormItem from '../common/FormItem'
 import styled from 'styled-components'
 
 class Signup extends Component {
@@ -46,29 +45,23 @@ class Signup extends Component {
     return (
       <SignupWrap>
         <TopHeader />
-        <FromWrap
-          onSubmit={this.handleSubmit}
-          fullWidth={true}
-          >
-          <FormControl
+        <FromWrap onSubmit={this.handleSubmit}>
+          <FormItem
             error={this.props.errorText.phoneNum}
-            fullWidth={true}
-            margin={'dense'}
-            >
-            <InputLabel htmlFor='phoneNum'>手机号</InputLabel>
-            <Input onBlur={this.getPhoneNum} />
-            <FormHelperText>{this.props.errorText.phoneNum}</FormHelperText>
-          </FormControl>
+            htmlFor='phoneNum'
+            inputLabel='手机号'
+            onBlur={this.getPhoneNum}
+            formHelperText={this.props.errorText.phoneNum}
+          />
 
           <TextFieldWrap>
-            <FormControl
+            <FormItem
               error={this.props.errorText.smsCode}
-              margin={'dense'}
-              >
-              <InputLabel htmlFor='smsCode'>验证码</InputLabel>
-              <Input onBlur={this.getSmsCode} />
-              <FormHelperText>{this.props.errorText.smsCode}</FormHelperText>
-            </FormControl>
+              htmlFor='smsCode'
+              inputLabel='验证码'
+              onBlur={this.getSmsCode}
+              formHelperText={this.props.errorText.smsCode}
+            />
 
             <SmsSendWrap
               hide={this.props.alreadySendMsg}
@@ -92,33 +85,24 @@ class Signup extends Component {
             </SmsSendWrap>
           </TextFieldWrap>
 
-
-          <FormControl
+          <FormItem
             error={this.props.errorText.password}
-            fullWidth={true}
-            margin={'dense'}
-            >
-            <InputLabel htmlFor='password'>密码</InputLabel>
-            <Input
-              onBlur={this.getPassword}
-              onKeyDown={this.enterToSubmit}
-              type='password'
-            />
-            <FormHelperText>{this.props.errorText.password}</FormHelperText>
-          </FormControl>
+            htmlFor={'password'}
+            inputLabel={'密码'}
+            onBlur={this.getPassword}
+            type={'password'}
+            formHelperText={this.props.errorText.password}
+          />
 
-          <FormControl
+          <FormItem
             error={this.props.errorText.passwordConsistent}
-            fullWidth={true}
-            margin={'dense'}
-            >
-            <InputLabel htmlFor='passwordConsistent'>确认密码</InputLabel>
-            <Input
-              onBlur={this.getPasswordConsistent}
-              type='password'
-            />
-            <FormHelperText>{this.props.errorText.passwordConsistent}</FormHelperText>
-          </FormControl>
+            htmlFor={'passwordConsistent'}
+            inputLabel={'确认密码'}
+            onBlur={this.getPasswordConsistent}
+            onKeyDown={this.enterToSubmit}
+            type={'password'}
+            formHelperText={this.props.errorText.passwordConsistent}
+          />
 
           <ActionButton
             raised
