@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseCard from './CourseCard'
+import CourseCard from '../common/CourseCard'
 import styled from 'styled-components'
 
 export default ({ courses, status }) => {

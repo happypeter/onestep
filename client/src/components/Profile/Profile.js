@@ -2,7 +2,7 @@ import React from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import CourseCard from './CourseCard'
+import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 
 export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
