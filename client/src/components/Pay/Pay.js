@@ -1,7 +1,8 @@
 import React from 'react'
-import TopHeader from '../Header/TopHeader'
+import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import src from '../../assets/pay.svg'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default () => (
@@ -14,7 +15,9 @@ export default () => (
         <Instr>
           <p>添加 Peter 的微信</p>
           <p>通过微信支付课程费用10元</p>
-          <p>把您在本站 注册 用户名发送给 happypeter 就行了</p>
+          <p>把您在本站
+            <LinkWrap to={`/signup`}> 注册 </LinkWrap>
+            用户名发送给 happypeter 就行了</p>
         </Instr>
       </CardWrap>
     </ContentWrap>
@@ -60,4 +63,9 @@ const CardWrap = styled.form`
 
 const Instr = styled.div`
   margin: 37px auto 49px auto;
+`
+
+const LinkWrap = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `
