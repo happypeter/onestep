@@ -49,6 +49,7 @@ exports.send = (req, res) => {
 // check smsCode
 exports.check = (phoneNum, code) => {
   let date = new Date()
+  // 转换格式
   let sendDate = date.toLocaleDateString().split('-').map(
     (item) => {
       if (item < 10) {
@@ -74,7 +75,7 @@ exports.check = (phoneNum, code) => {
         if (detail) {
           let content = detail.Content
           let pattern = /\d{6}/
-          if (!pattern.exec(content)) {
+          if (!content || !pattern.exec(content)) {
             console.log('出错 请重新获取验证码')
             reject('SMS_ERR_TRY_AGAIN')
           }
