@@ -7,7 +7,7 @@ export default props => (
   <ContentWrap>
     <Title>购买步骤</Title>
     <CardWrap>
-      <img src={src} />
+      <img src={src} alt={'wechat: happypeter1983'} />
       <Instr>
         <p>添加 Peter 的微信</p>
         <p>通过微信支付课程费用{props.location.state ? `${props.location.state.price}元` : null}</p>
