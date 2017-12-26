@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProfile } from '../redux/actions/profileAction'
-import { getProfile } from '../selectors/commonSelectors.js'
+import { getProfile } from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 

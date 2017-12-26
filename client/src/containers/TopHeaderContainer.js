@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TopHeader from '../components/Header/TopHeader'
 import { logout } from '../redux/actions/authAction'
-import { getCurrentUser } from '../selectors/commonSelectors.js'
+import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import PropTypes from 'prop-types'
 
 import Loadable from 'react-loadable'

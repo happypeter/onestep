@@ -1,0 +1,5 @@
+export const SMS_ERR_TRY_AGAIN = 'SMS_ERR_TRY_AGAIN'
+export const ALREADY_SEND_MSG = 'ALREADY_SEND_MSG'
+export const COUNTDOWN = 'COUNTDOWN'
+export const READY_TO_SEND_MSG = 'READY_TO_SEND_MSG'
+export const SMS_INIT = 'SMS_INIT'

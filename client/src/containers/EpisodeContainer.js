@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux'
 // import Episode from '../components/Episode/Episode'
 import { fetchEpisode } from '../redux/actions/contentAction'
-import { getEpisode } from '../selectors/commonSelectors.js'
+import { getEpisode } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
 

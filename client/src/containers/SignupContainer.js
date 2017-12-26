@@ -6,7 +6,7 @@ import { signup } from '../redux/actions/authAction'
 import {
   getFormState,
   getCurrentUser
-} from '../selectors/commonSelectors.js'
+} from '../redux/selectors/commonSelectors.js'
 import {
   formErrInit,
   passwordTooShort,
@@ -18,10 +18,7 @@ import {
   phoneNumNotValid,
   phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid,
-  sendMsg,
-  countdown,
-  readyToSendMsg
+  smsCodeIsValid
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
@@ -115,42 +112,6 @@ class SignupContainer extends Component {
     }
   }
 
-  timer = () => {
-      let promise = new Promise((resolve, reject) => {
-        let setTimer = setInterval(
-          () => {
-            this.props.countdown()
-            // console.log(this.props.signUpState.second)
-            if (this.props.signUpState.second <= 0) {
-              this.props.readyToSendMsg()
-              console.log(this.props.signUpState)
-              resolve(setTimer)
-            }
-          }
-          , 1000)
-      })
-      promise.then((setTimer) => {
-        clearInterval(setTimer)
-        console.log('CLEAR INTERVAL')
-      })
-      .catch(
-        err => {
-          console.log(err)
-        }
-      )
-    }
-
-  sendMsg = () => {
-    this.checkPhoneNum(this.state.phoneNum)
-    if (!this.props.signUpState.phoneNumIsValid) {
-      // console.log('phoneNum is not valid')
-      return
-    }
-
-    this.props.sendMsg(this.state.phoneNum)
-    this.timer()
-  }
-
   recheckForm = function *() {
     let userInfo = yield
 
@@ -219,9 +180,8 @@ class SignupContainer extends Component {
         getPasswordConsistent={this.getPasswordConsistent}
         onSubmit={this.handleSubmit}
         errorText={this.props.signUpState.testErrObj}
-        sendMsg={this.sendMsg}
-        alreadySendMsg={this.props.signUpState.alreadySendMsg}
-        second={this.props.signUpState.second}
+        phoneNumIsValid={this.props.signUpState.phoneNumIsValid}
+        phoneNum={this.state.phoneNum}
       />
     )
   }
@@ -238,10 +198,7 @@ SignupContainer.PropTypes = {
   phoneNumNotValid: PropTypes.func.isRequired,
   phoneNumIsValid: PropTypes.func.isRequired,
   smsCodeIsRequired: PropTypes.func.isRequired,
-  smsCodeIsValid: PropTypes.func.isRequired,
-  sendMsg: PropTypes.func.isRequired,
-  countdown: PropTypes.func.isRequired,
-  readyToSendMsg: PropTypes.func.isRequired
+  smsCodeIsValid: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -261,8 +218,5 @@ export default connect(mapStateToProps, {
   phoneNumNotValid,
   phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid,
-  sendMsg,
-  countdown,
-  readyToSendMsg
+  smsCodeIsValid
 })(SignupContainer)
