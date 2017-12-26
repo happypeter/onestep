@@ -14,7 +14,7 @@ export default ({
   formHelperText
 }) => (
   <FormControl
-    error={error}
+    error={!!error}
     fullWidth={true}
     margin={'dense'}
     disabled={disabled || false}
