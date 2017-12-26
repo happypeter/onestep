@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import {requireAuthentication} from './CheckToken'
+import Pay from '../components/Pay/Pay'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
@@ -62,6 +63,7 @@ class Main extends Component {
           <Route path='/wechatLogin' component={AsyncWechatLogin} />
           <Route path='/login' component={AsyncLogin} />
           <Route path='/signup' component={AsyncSignup} />
+          <Route path='/pay' component={Pay} />
           <Route exact path='/user/profile' component={requireAuthentication(AsyncProfile)} />
           <Route path='/settings/account' component={requireAuthentication(ProfileSettings)} />
           <Route exact path='/:courseName' component={AsyncCourse} />
