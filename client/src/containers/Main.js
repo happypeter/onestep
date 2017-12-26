@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 import {requireAuthentication} from './CheckToken'
-import Pay from '../components/Pay/Pay'
+import Pay from './PayContainer'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
