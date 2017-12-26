@@ -9,7 +9,7 @@ class PayContainer extends Component {
     return (
       <div>
         <TopHeader />
-        <Pay />
+        <Pay {...this.props} />
         <Footer />
       </div>
     )

@@ -19,6 +19,10 @@ class CourseContainer extends Component {
     this.props.fetchCourse({ courseName })
   }
 
+  pay = (price) => {
+    this.props.history.push({ pathname: '/pay', state: { price } })
+  }
+
   render () {
     // console.log(this.props);
     // 404 Redirect
@@ -71,6 +75,7 @@ class CourseContainer extends Component {
             <AsyncCourse
               courseOptions={courseContent}
               videoJsOptions={CourseVideoJsOptions}
+              pay={this.pay}
             />
           </div>
         )
