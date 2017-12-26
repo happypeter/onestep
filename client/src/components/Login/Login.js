@@ -213,6 +213,10 @@ const TabsWrap = styled(Tabs)`
     font-weight: 400;
   }
 
+  .MuiTabs-root-213 .sc-jzJRlG .crlNmy {
+    margin: 25px;
+  }
+
   span {
     font-size: 16px;
   }
