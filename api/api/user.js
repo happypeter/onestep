@@ -254,6 +254,8 @@ exports.profile = (req, res) => {
           })
           // throw new Error('user is ' + user)
         }
+        const { admin } = user
+
         const contracts = user.contracts
         // 区别处理每个订单
         for (let contract of contracts) {
@@ -276,7 +278,8 @@ exports.profile = (req, res) => {
         return res.json({
           paidCourses,
           total,
-          latestExpireDate
+          latestExpireDate,
+          admin
         })
       }
       )

@@ -8,6 +8,10 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 class Course extends Component {
 
+  pay = (price) => {
+    this.props.pay(price)
+  }
+
   render () {
     let {
       name,
@@ -71,7 +75,12 @@ class Course extends Component {
               <p>课程永久学习权限</p>
               <Splitter />
               <p>源代码</p>
-              <RaisedButtonWrap raised>购买</RaisedButtonWrap>
+              <RaisedButtonWrap
+                raised
+                onClick={() => this.pay(price)}
+              >
+                  购买
+              </RaisedButtonWrap>
             </MsgBigCard>
           </MsgWrap>
         </MsgHero>

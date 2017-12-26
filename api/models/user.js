@@ -6,7 +6,7 @@ const UserSchema = new Schema(
   {
     username: { type: String },
     password: { type: String },
-    admin: { type: String },
+    admin: { type: Boolean },
     wechatId: { type: String },
     phoneNum: { type: String },
     avatar: { type: String },
