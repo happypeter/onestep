@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom'
 
 import {requireAuthentication} from './CheckToken'
-import Pay from './PayContainer'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
@@ -17,33 +16,45 @@ const AsyncHome = Loadable({
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncSignup = Loadable({
   loader: () => import('./SignupContainer'),
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncLogin = Loadable({
   loader: () => import('./LoginContainer'),
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncWechatLogin = Loadable({
   loader: () => import('./WechatLoginContainer'),
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncProfile = Loadable({
   loader: () => import('./ProfileContainer'),
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncCourse = Loadable({
   loader: () => import('./CourseContainer'),
   loading: LoadingComponent,
   delay: 300
 })
+
 const AsyncEpisode = Loadable({
   loader: () => import('./EpisodeContainer'),
+  loading: LoadingComponent,
+  delay: 300
+})
+
+const AsyncPay = Loadable({
+  loader: () => import('./PayContainer'),
   loading: LoadingComponent,
   delay: 300
 })
@@ -63,7 +74,7 @@ class Main extends Component {
           <Route path='/wechatLogin' component={AsyncWechatLogin} />
           <Route path='/login' component={AsyncLogin} />
           <Route path='/signup' component={AsyncSignup} />
-          <Route path='/pay' component={Pay} />
+          <Route path='/pay' component={AsyncPay} />
           <Route exact path='/user/profile' component={requireAuthentication(AsyncProfile)} />
           <Route path='/settings/account' component={requireAuthentication(ProfileSettings)} />
           <Route exact path='/:courseName' component={AsyncCourse} />
