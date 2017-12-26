@@ -211,6 +211,13 @@ export const checkEpisodeAuth = (data) => {
              if (res.status !== 200) {
                throw new Error('Fail to check paid courses: ' + paidRes)
              } else {
+               if (paidRes.admin) {
+                 console.log('admin')
+                 dispatch({
+                   type: types.EPISODE_AUTH_VALID
+                 })
+                 return
+               }
                if (!paidRes.latestExpireDate || !checkMembership(paidRes.latestExpireDate)) {
                  console.log('not a member')
                  // now we need to check if the user bought the course
