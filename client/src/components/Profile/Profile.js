@@ -2,8 +2,92 @@ import React from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
+
+export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
+  switch (status) {
+    case 'LOADING': {
+      return (
+        <Wrap>
+          <TopHeader />
+          <ContentWrap>信息请求中...</ContentWrap>
+          <Footer />
+        </Wrap>
+      )
+    }
+    case 'SUCCESS': {
+      return (
+        <Wrap>
+          <TopHeader />
+
+          <AvatarHero>
+            <AvatarWrap>
+              <img src={defaultAvatar} alt='nickname' />
+              <Nickname>{phoneNum}</Nickname>
+            </AvatarWrap>
+          </AvatarHero>
+
+          <ContentWrap>
+            <SubTitle>课程</SubTitle>
+            {
+              (paidCourses && paidCourses.length !== 0)
+              ? (
+                <CourseListWrap>
+                  {paidCourses.map((item, i) => (
+                    <CourseCard
+                      link={item.link}
+                      key={item.key}
+                      publishedAt={item.publishedAt}
+                      cover={item.cover}
+                      title={item.title}
+                    />
+                ))}
+                </CourseListWrap>
+            )
+              : (
+                <div>还没有购买过任何课程</div>
+              )
+            }
+            <SubTitle>会员</SubTitle>
+            {
+                latestExpireDate
+                ? (
+                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
+                )
+                : (
+                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
+                )
+              }
+            {/* {
+                (total !== 0)
+                ? (
+                  <div>已在好奇猫为自己投资{total}元</div>
+                )
+                : (
+                  <div>还没有在好奇猫为自己投资</div>
+                )
+              } */}
+          </ContentWrap>
+
+          <Footer />
+        </Wrap>
+      )
+    }
+    case 'FAILURE': {
+      return (
+        <Wrap>
+          <TopHeader />
+          <ContentWrap>信息加载失败</ContentWrap>
+          <Footer />
+        </Wrap>
+      )
+    }
+    default: {
+      throw new Error('unexpected status ' + status)
+    }
+  }
+}
 
 const Wrap = styled.div`
   min-height: 100vh;
@@ -100,125 +184,3 @@ const CourseListWrap = styled.div`
     padding: 1em 4em;
   }
 `
-
-const CourseCard = styled(Link)`
-margin: 1em;
-width: 100%;
-flex-grow: 0;
-box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-background-color: white;
--webkit-transition: all 450ms ease;
-transition: all 450ms ease;
-text-align: left;
-text-decoration: none;
-color: rgb(76, 87, 101);
-
-img {
-  width: 100%;
-  display: block;
-}
-
-p {
-  border-top: 1px solid rgb(226, 226, 226);
-  margin: 0;
-  padding: 15px;
-  font-size: 17px;
-}
-
-span {
-  font-size: 14px;
-  padding:5px 0 5px 15px;
-  display: inline-block;
-  font-weight: 200;
-}
-
-@media (min-width: 600px) {
-  width: calc(50% - 4em)
-}
-
-@media (min-width: 1024px) {
-  width: calc(33.33333% - 2em)
-}
-`
-
-export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
-  switch (status) {
-    case 'LOADING': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息请求中...</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
-    }
-    case 'SUCCESS': {
-      return (
-        <Wrap>
-          <TopHeader />
-
-          <AvatarHero>
-            <AvatarWrap>
-              <img src={defaultAvatar} alt='nickname' />
-              <Nickname>{phoneNum}</Nickname>
-            </AvatarWrap>
-          </AvatarHero>
-
-          <ContentWrap>
-            <SubTitle>课程</SubTitle>
-            {
-              (paidCourses && paidCourses.length !== 0)
-              ? (
-                <CourseListWrap>
-                  {paidCourses.map((item, i) => (
-                    <CourseCard to={`${item.link}`} key={item.key}>
-                      <span>{item.publishedOn}</span>
-                      <img src={`${item.cover}`} alt='cover' className='cover' />
-                      <p>{item.title}</p>
-                    </CourseCard>
-                ))}
-                </CourseListWrap>
-            )
-              : (
-                <div>还没有购买过任何课程</div>
-              )
-            }
-            <SubTitle>会员</SubTitle>
-            {
-                latestExpireDate
-                ? (
-                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
-                )
-                : (
-                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
-                )
-              }
-            {/* {
-                (total !== 0)
-                ? (
-                  <div>已在好奇猫为自己投资{total}元</div>
-                )
-                : (
-                  <div>还没有在好奇猫为自己投资</div>
-                )
-              } */}
-          </ContentWrap>
-
-          <Footer />
-        </Wrap>
-      )
-    }
-    case 'FAILURE': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息加载失败</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
-    }
-    default: {
-      throw new Error('unexpected status ' + status)
-    }
-  }
-}

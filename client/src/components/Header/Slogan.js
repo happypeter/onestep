@@ -2,6 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 import reactHexagon from '../../assets/reactHexagon.svg'
 
+export default () => (
+  <Hero>
+    <SloganWrap>
+      <TextWrap>
+        <H1Wrap>为开发者而生</H1Wrap>
+        <H3Wrap>好奇猫的每个课程都是《做一个东西的一二三四步》，为你踩坑。
+          <br />
+          我自己写代码上传到 github ，然后通过微视频的形式讲每一个 diff
+          <br />
+          的背后故事给你听。通过会员订阅的服务形式，好奇猫要做一个
+          <br />
+          懂你的视频资源站。
+        </H3Wrap>
+      </TextWrap>
+      <img src={reactHexagon} alt='react-hexagon' />
+    </SloganWrap>
+  </Hero>
+)
+
 const Hero = styled.div`
   background-color: #00BCD4;
 `
@@ -59,22 +78,3 @@ const H3Wrap = styled.h3`
   line-height: 2em;
   opacity: 0.84;
 `
-
-export default () => (
-  <Hero>
-    <SloganWrap>
-      <TextWrap>
-        <H1Wrap>为开发者而生</H1Wrap>
-        <H3Wrap>好奇猫的每个课程都是《做一个东西的一二三四步》，为你踩坑。
-          <br />
-          我自己写代码上传到 github ，然后通过微视频的形式讲每一个 diff
-          <br />
-          的背后故事给你听。通过会员订阅的服务形式，好奇猫要做一个
-          <br />
-          懂你的视频资源站。
-        </H3Wrap>
-      </TextWrap>
-      <img src={reactHexagon} alt='react-hexagon' />
-    </SloganWrap>
-  </Hero>
-)

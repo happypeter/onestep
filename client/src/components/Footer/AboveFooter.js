@@ -1,6 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export default () => (
+  <Hero>
+    <AboveWrap>
+      <TextWrap>React</TextWrap>
+      <TextWrap>Redux</TextWrap>
+      <TextWrap>Git</TextWrap>
+      <TextWrap>Atom</TextWrap>
+      <TextWrap>Express</TextWrap>
+    </AboveWrap>
+  </Hero>
+)
+
 const Hero = styled.div`
   background-color: #00BCD4;
 `
@@ -30,15 +42,3 @@ const TextWrap = styled.div`
     font-size: 3em;
   }
 `
-
-export default () => (
-  <Hero>
-    <AboveWrap>
-      <TextWrap>React</TextWrap>
-      <TextWrap>Redux</TextWrap>
-      <TextWrap>Git</TextWrap>
-      <TextWrap>Atom</TextWrap>
-      <TextWrap>Express</TextWrap>
-    </AboveWrap>
-  </Hero>
-)

@@ -1,6 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export default () => (
+  <Hero>
+    <FooterWrap>
+      <WelcomeWrap>
+        欢迎添加 Peter 的微信：happypeter1983
+      </WelcomeWrap>
+      <ICPWrap>
+        冀ICP备15007992号-3
+      </ICPWrap>
+    </FooterWrap>
+  </Hero>
+)
+
 const Hero = styled.div`
   background-color: #2A3745;
 `
@@ -35,16 +48,3 @@ const ICPWrap = styled.div`
     margin-top: 20px;
   }
 `
-
-export default () => (
-  <Hero>
-    <FooterWrap>
-      <WelcomeWrap>
-        欢迎添加 Peter 的微信：happypeter1983
-      </WelcomeWrap>
-      <ICPWrap>
-        冀ICP备15007992号-3
-      </ICPWrap>
-    </FooterWrap>
-  </Hero>
-)

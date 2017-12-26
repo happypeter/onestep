@@ -85,7 +85,7 @@ class NotificationContainer extends Component {
           showResetPasswordNotification
           ? (
             <div>
-              <Redirect to='/profile' />
+              <Redirect to='/user/profile' />
               <Notification
             // removeNotification={this.removeResetPasswordNotification}
                 text={'重置密码成功'}

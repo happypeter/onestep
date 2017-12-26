@@ -1,6 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export default props => (
+  <NotificationWrap>
+    {/* <ColseWrap onClick={props.removeNotification}>
+      x
+    </ColseWrap> */}
+    {props.text}
+  </NotificationWrap>
+)
+
 const NotificationWrap = styled.div`
   background: #FFD466;
   color: #573D00;
@@ -33,12 +42,3 @@ const NotificationWrap = styled.div`
 //   font-weight: 900;
 // }
 // `
-
-export default props => (
-  <NotificationWrap>
-    {/* <ColseWrap onClick={props.removeNotification}>
-      x
-    </ColseWrap> */}
-    {props.text}
-  </NotificationWrap>
-)

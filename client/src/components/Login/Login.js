@@ -2,10 +2,199 @@ import React, { Component } from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import Button from 'material-ui/Button'
-import Input, { InputLabel } from 'material-ui/Input'
-import { FormControl, FormHelperText } from 'material-ui/Form'
-import Tabs, { Tab } from 'material-ui/Tabs';
+import FormItem from '../common/FormItem'
+import Tabs, { Tab } from 'material-ui/Tabs'
 import styled from 'styled-components'
+
+class Login extends Component {
+
+  getUsername = (e) => {
+    this.props.getUsername(e.target.value)
+  }
+
+  getPhoneNum = (e) => {
+    this.props.getPhoneNum(e.target.value)
+  }
+
+  getPassword = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPassword(e)
+      return
+    }
+    this.props.getPassword(e.target.value)
+  }
+
+  getPasswordConsistent = (e) => {
+    if (typeof e === 'string') {
+      this.props.getPasswordConsistent(e)
+      return
+    }
+    this.props.getPasswordConsistent(e.target.value)
+  }
+
+  getSmsCode = (e) => {
+    this.props.getSmsCode(e.target.value)
+  }
+
+  sendMsg = () => {
+    this.props.sendMsg()
+  }
+
+  alter = (event, value) => {
+    this.props.alter({ value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.onSubmit()
+  }
+
+  enterToSubmitPhone = (event) => {
+    if (event.which !== 13) return
+    this.getPassword(event.target.value)
+  }
+
+  enterToSubmitRegularUser = (event) => {
+    if (event.which !== 13) return
+    this.getPasswordConsistent(event.target.value)
+  }
+
+  render () {
+    const value = this.props.tabValue
+
+    return (
+      <LoginWrap>
+        <TopHeader />
+        <CardWarp>
+          <TabsHeader />
+          <TabsWrap
+            value={value}
+            onChange={this.alter}
+            indicatorColor={'primary'}
+            centered
+            >
+              <Tab label={'手机登录'} />
+              <Tab label={'老用户'} />
+          </TabsWrap>
+          {value === 0 &&
+          <FromWrap  onSubmit={this.handleSubmit}>
+
+            <FormItem
+              error={this.props.errorText.phoneNum}
+              htmlFor={'phoneNum'}
+              inputLabel={'手机号'}
+              onBlur={this.getPhoneNum}
+              formHelperText={this.props.errorText.phoneNum}
+            />
+
+            <FormItem
+              error={this.props.errorText.password}
+              htmlFor={'password'}
+              inputLabel={'密码'}
+              onBlur={this.getPassword}
+              onKeyDown={this.enterToSubmitPhone}
+              type={'password'}
+              formHelperText={this.props.errorText.password}
+            />
+
+            <ActionButton
+              raised
+              type='submit'
+              >
+              登录
+            </ActionButton>
+
+      </FromWrap>
+      }
+      {value === 1 &&
+      <FromWrap  onSubmit={this.handleSubmit}>
+         <TextFieldWrap>
+           <FormItem
+             error={this.props.errorText.username}
+             htmlFor={'username'}
+             inputLabel={'用户名'}
+             onBlur={this.getUsername}
+             formHelperText={this.props.errorText.username}
+           />
+           </TextFieldWrap>
+
+           <FormItem
+             error={this.props.errorText.phoneNum}
+             htmlFor={'phoneNum'}
+             inputLabel={'请绑定手机号'}
+             onBlur={this.getPhoneNum}
+             formHelperText={this.props.errorText.phoneNum}
+           />
+
+            <TextFieldWrap>
+              <FormItem
+                error={this.props.errorText.smsCode}
+                htmlFor={'smsCode'}
+                inputLabel='验证码'
+                onBlur={this.getSmsCode}
+                formHelperText={this.props.errorText.smsCode}
+              />
+
+              <SmsSendWrap
+                hide={this.props.alreadySendMsg}
+                >
+                  <ShortButton
+                    onClick={this.sendMsg}
+                    >
+                      发送
+                  </ShortButton>
+              </SmsSendWrap>
+
+              <SmsSendWrap
+                hide={!this.props.alreadySendMsg}
+                >
+                  <ShortButton
+                    raised
+                    disabled={true}
+                    >
+                      {this.props.second}s
+                  </ShortButton>
+                </SmsSendWrap>
+              </TextFieldWrap>
+
+              <FormItem
+                error={this.props.errorText.password}
+                htmlFor={'password'}
+                inputLabel={'密码'}
+                onBlur={this.getPassword}
+                type={'password'}
+                formHelperText={this.props.errorText.password}
+              />
+
+              <TextFieldWrap>
+                <FormItem
+                  error={this.props.errorText.passwordConsistent}
+                  htmlFor={'passwordConsistent'}
+                  inputLabel={'确认密码'}
+                  onBlur={this.getPasswordConsistent}
+                  onKeyDown={this.enterToSubmitRegularUser}
+                  type={'password'}
+                  formHelperText={this.props.errorText.passwordConsistent}
+                />
+
+              </TextFieldWrap>
+
+              <ActionButton
+                raised
+                type='submit'
+              >
+                登录
+              </ActionButton>
+            </FromWrap>
+          }
+          </CardWarp>
+          <Footer />
+        </LoginWrap>
+      )
+    }
+}
+
+export default Login
 
 const CardWarp = styled.div`
   padding: 0;
@@ -92,203 +281,3 @@ const ShortButton = styled(Button)`
     line-height: 100%;
   }
 `
-
-class Login extends Component {
-
-  getUsername = (e) => {
-    this.props.getUsername(e.target.value)
-  }
-
-  getPhoneNum = (e) => {
-    this.props.getPhoneNum(e.target.value)
-  }
-
-  getPassword = (e) => {
-    this.props.getPassword(e.target.value)
-  }
-
-  getPasswordConsistent = (e) => {
-    this.props.getPasswordConsistent(e.target.value)
-  }
-
-  getSmsCode = (e) => {
-    this.props.getSmsCode(e.target.value)
-  }
-
-  sendMsg = () => {
-    this.props.sendMsg()
-  }
-
-  alter = (event, value) => {
-    this.props.alter({ value })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.onSubmit()
-  }
-
-  render () {
-    const value = this.props.tabValue
-
-    return (
-      <LoginWrap>
-        <TopHeader />
-        <CardWarp>
-          <TabsHeader />
-          <TabsWrap
-            value={value}
-            onChange={this.alter}
-            indicatorColor="primary"
-            centered
-            >
-              <Tab label="手机登录" />
-              <Tab label="老用户" />
-          </TabsWrap>
-          {value === 0 &&
-          <FromWrap  onSubmit={this.handleSubmit}>
-
-            <FormControl
-              error={this.props.errorText.phoneNum}
-              fullWidth={true}
-              margin={'dense'}
-              >
-                <InputLabel
-                  htmlFor='phoneNum'
-                  >
-                    {true ? '手机号' : '请绑定手机号'}
-                </InputLabel>
-                <Input onBlur={this.getPhoneNum} />
-                <FormHelperText>{this.props.errorText.phoneNum}</FormHelperText>
-            </FormControl>
-
-            <FormControl
-              error={this.props.errorText.password}
-              fullWidth={true}
-              margin={'dense'}
-              >
-                <InputLabel htmlFor='password'>密码</InputLabel>
-                <Input
-                  onBlur={this.getPassword}
-                  type='password'
-                />
-                <FormHelperText>{this.props.errorText.password}</FormHelperText>
-            </FormControl>
-
-            <ActionButton
-              raised
-              type='submit'
-              >
-                登录
-            </ActionButton>
-
-      </FromWrap>
-      }
-       {value === 1 &&
-      <FromWrap  onSubmit={this.handleSubmit}>
-         <TextFieldWrap>
-           <FormControl
-             error={this.props.errorText.username}
-             fullWidth={true}
-             margin={'dense'}
-             >
-               <InputLabel htmlFor='username'>用户名</InputLabel>
-               <Input onBlur={this.getUsername} />
-               <FormHelperText>{this.props.errorText.username}</FormHelperText>
-             </FormControl>
-
-           </TextFieldWrap>
-
-           <FormControl
-             error={this.props.errorText.phoneNum}
-             fullWidth={true}
-             margin={'dense'}
-             >
-               <InputLabel
-                 htmlFor='phoneNum'
-                 >
-                   {false ? '手机号' : '请绑定手机号'}
-                 </InputLabel>
-                 <Input onBlur={this.getPhoneNum} />
-                 <FormHelperText>{this.props.errorText.phoneNum}</FormHelperText>
-            </FormControl>
-
-            <TextFieldWrap>
-              <FormControl
-                error={this.props.errorText.smsCode}
-                margin={'dense'}
-              >
-                <InputLabel htmlFor='smsCode'>验证码</InputLabel>
-                <Input onBlur={this.getSmsCode} />
-                <FormHelperText>{this.props.errorText.smsCode}</FormHelperText>
-              </FormControl>
-
-              <SmsSendWrap
-                hide={this.props.alreadySendMsg}
-                >
-                  <ShortButton
-                    onClick={this.sendMsg}
-                    >
-                      发送
-                  </ShortButton>
-              </SmsSendWrap>
-
-              <SmsSendWrap
-                hide={!this.props.alreadySendMsg}
-                >
-                  <ShortButton
-                    raised
-                    disabled={true}
-                    >
-                      {this.props.second}s
-                  </ShortButton>
-                </SmsSendWrap>
-              </TextFieldWrap>
-
-              <FormControl
-                error={this.props.errorText.password}
-                fullWidth={true}
-                margin={'dense'}
-                >
-                  <InputLabel htmlFor='password'>密码</InputLabel>
-                  <Input
-                    onBlur={this.getPassword}
-                    type='password'
-                  />
-                  <FormHelperText>{this.props.errorText.password}</FormHelperText>
-                </FormControl>
-
-                <TextFieldWrap>
-
-                  <FormControl
-                    error={this.props.errorText.passwordConsistent}
-                    fullWidth={true}
-                    margin={'dense'}
-                    >
-                      <InputLabel htmlFor='passwordConsistent'>确认密码</InputLabel>
-                      <Input
-                        onBlur={this.getPasswordConsistent}
-                        type='password'
-                      />
-                      <FormHelperText>{this.props.errorText.passwordConsistent}</FormHelperText>
-                  </FormControl>
-                </TextFieldWrap>
-
-                <ActionButton
-                  raised
-                  type='submit'
-                  >
-                    登录
-                </ActionButton>
-
-            </FromWrap>
-            }
-
-          </CardWarp>
-          <Footer />
-        </LoginWrap>
-      )
-    }
-}
-
-export default Login
