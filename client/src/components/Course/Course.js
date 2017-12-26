@@ -195,7 +195,7 @@ const MsgBigCard = styled.div`
   }
   @media (min-width: 1024px) {
     width: 400px;
-    max-height: 20.5em;
+    max-height: 25.5em;
     position: relative;
     left: -140px;
     margin-top: 44px;
