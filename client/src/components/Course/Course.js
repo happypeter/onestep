@@ -114,7 +114,7 @@ const VideoWrap = styled.div`
 
 const CourseName = styled.div`
   margin: 2em auto;
-  color: #573D00;
+  color: #212121;
   text-align: center;
   font-size: 1.5em;
   @media (min-width: 1024px) {
