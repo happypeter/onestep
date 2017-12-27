@@ -184,60 +184,6 @@ const MsgIntro = styled.div`
   }
 `
 
-const MsgBigCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 2em 2em 2em;
-  padding-bottom: 1em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  p {
-    font-weight: 300;
-    font-size: 0.875em;
-    color: #212121;
-  }
-  @media (min-width: 1024px) {
-    width: 247px;
-    margin: 138px auto 131px auto;
-  }
-`
-
-const Splitter = styled.div`
-  flex-shrink: 0;
-  height: 1px;
-  margin: 0 16%;
-  opacity: 0.48;
-  background: #D8D8D8;
-`
-
-const RaisedButtonWrap = styled(Button)`
-  && {
-    margin: 1em 16%;
-    color: white;
-    background-color: #00B4D0;
-  }
-`
-
-const PriceArea = styled.div`
-  background-color: #00BCD4;
-  height: 40%;
-  padding: 1.75em;
-  color: #FFFFFF;
-  p {
-    font-weight: 200;
-    font-size: 1em;
-    color: #FFFFFF;
-  }
-`
-
-const Price = styled.div`
-  font-size: 3em;
-  margin: 10px 30px;
-`
-
 const MsgSmallCards = styled.div`
   display: flex;
   padding: 30px 40px 55px;
@@ -298,4 +244,61 @@ const Info = styled.div`
   margin: 0px auto;
   text-align: center;
   font-size: 2.5em;
+`
+
+const MsgBigCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 2em 2em 2em;
+  padding-bottom: 1em;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  -webkit-transition: all 450ms ease;
+  transition: all 450ms ease;
+  p {
+    font-weight: 300;
+    font-size: 0.875em;
+    color: #212121;
+  }
+  @media (min-width: 1024px) {
+    width: 247px;
+    margin: 138px auto 131px auto;
+    p {
+      font-weight: 400;
+    }
+  }
+`
+
+const Splitter = styled.div`
+  flex-shrink: 0;
+  height: 1px;
+  margin: 0 16%;
+  opacity: 0.48;
+  background: #D8D8D8;
+`
+
+const RaisedButtonWrap = styled(Button)`
+  && {
+    margin: 1em 16%;
+    color: white;
+    background-color: #00B4D0;
+  }
+`
+
+const PriceArea = styled.div`
+  background-color: #00BCD4;
+  height: 40%;
+  padding: 1.75em;
+  color: #FFFFFF;
+  p {
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFFFFF;
+  }
+`
+
+const Price = styled.div`
+  font-size: 3em;
+  margin: 10px 30px;
 `
