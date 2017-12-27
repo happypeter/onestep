@@ -67,21 +67,6 @@ class Course extends Component {
                 </MsgSmallCard>
               </MsgSmallCards>
             </MsgArea>
-            <MsgBigCard>
-              <PriceArea>
-                <Price>{price}元</Price>
-                <p>本课程</p>
-              </PriceArea>
-              <p>课程永久学习权限</p>
-              <Splitter />
-              <p>源代码</p>
-              <RaisedButtonWrap
-                raised
-                onClick={() => this.pay(price)}
-              >
-                  购买
-              </RaisedButtonWrap>
-            </MsgBigCard>
           </MsgWrap>
         </MsgHero>
 
@@ -89,6 +74,21 @@ class Course extends Component {
           <CatalogueWrap>
             { episode }
           </CatalogueWrap>
+          <MsgBigCard>
+            <PriceArea>
+              <Price>{price}元</Price>
+              <p>本课程</p>
+            </PriceArea>
+            <p>课程永久学习权限</p>
+            <Splitter />
+            <p>源代码</p>
+            <RaisedButtonWrap
+              raised
+              onClick={() => this.pay(price)}
+            >
+                购买
+            </RaisedButtonWrap>
+          </MsgBigCard>
         </CatalogueHero>
 
         <Footer />
@@ -155,9 +155,9 @@ const MsgWrap = styled.div`
   flex-shrink: 0;
   @media (min-width: 1024px) {
     display: flex;
-    box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
+    ${'' /* box-sizing: border-box; */}
+    ${'' /* width: 1024px; */}
+    ${'' /* margin: 0 auto; */}
   }
 `
 
@@ -167,7 +167,7 @@ const MsgArea = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
-    margin-left: 23%;
+    margin: auto 23%;
     min-width: 600px;
   }
 `
@@ -183,7 +183,7 @@ const MsgIntro = styled.div`
   font-size: 1em;
   border-left: 7px solid #00BCD4;
   @media (min-width: 1024px) {
-    padding-right: 140px;
+    padding-right: 30px;
   }
 `
 
@@ -203,11 +203,11 @@ const MsgBigCard = styled.div`
     color: #212121;
   }
   @media (min-width: 1024px) {
-    width: 400px;
-    max-height: 25.5em;
-    position: relative;
-    left: -140px;
-    margin-top: 44px;
+    width: 247px;
+    ${'' /* max-height: 25.5em; */}
+    ${'' /* position: relative; */}
+    ${'' /* left: -140px; */}
+    margin: 138px auto 131px auto;
   }
 `
 
@@ -246,36 +246,45 @@ const Price = styled.div`
 
 const MsgSmallCards = styled.div`
   display: flex;
+  padding: 30px 100px 55px;
 `
 
 const MsgSmallCard = styled.div`
   width: 35%;
   text-align: center;
-  padding: 0.5em;
-  margin-right: 5%;
+  flex-shrink: 0;
+  ${'' /* padding: 0.5em; */}
+  ${'' /* margin-right: 5%; */}
   margin-bottom: 1.5em;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
   @media (min-width: 1024px) {
-    width: 15%;
-    margin-right: 20%;
-    margin-bottom: 6em;
+    ${'' /* width: 15%; */}
+    width: 187px;
+    margin-right: 30px;
+    margin-bottom: 55px;
   }
 `
 
-const CardTitle = styled.span`
+const CardTitle = styled.div`
+  box-sizing: border-box;
+  height: 36px;
+  padding: 10px;
+  background-color: #00B4D0;
   font-size: 1em;
-  color: #212121;
+  line-height: 1em;
+  color: #FFFFFF;
 `
 
 const CardContent = styled.p`
   font-size: 0.8em;
   line-height: 1.6em;
-  opacity: 0.5;
   margin: 0.5em;
+  padding: 0.5em;
   text-align: left;
+  color: #212121;
 `
 
 const CatalogueHero = styled.div`
@@ -288,14 +297,9 @@ const CatalogueHero = styled.div`
 
 const CatalogueWrap = styled.div`
   margin: 0 2em 3em 2em;
-  border-top: 2em solid #00BCD4;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
   text-decoration: none;
   @media (min-width: 1024px) {
     margin: 6.375em 23% 3em 23%;
-    border-top: 2.7em solid #00BCD4;
   }
 `
 
