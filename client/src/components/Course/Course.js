@@ -155,9 +155,6 @@ const MsgWrap = styled.div`
   flex-shrink: 0;
   @media (min-width: 1024px) {
     display: flex;
-    ${'' /* box-sizing: border-box; */}
-    ${'' /* width: 1024px; */}
-    ${'' /* margin: 0 auto; */}
   }
 `
 
@@ -167,7 +164,7 @@ const MsgArea = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
-    margin: auto 23%;
+    margin: auto 28.5%;
     min-width: 600px;
   }
 `
@@ -204,9 +201,6 @@ const MsgBigCard = styled.div`
   }
   @media (min-width: 1024px) {
     width: 247px;
-    ${'' /* max-height: 25.5em; */}
-    ${'' /* position: relative; */}
-    ${'' /* left: -140px; */}
     margin: 138px auto 131px auto;
   }
 `
@@ -246,25 +240,22 @@ const Price = styled.div`
 
 const MsgSmallCards = styled.div`
   display: flex;
-  padding: 30px 100px 55px;
+  padding: 30px 40px 55px;
 `
 
 const MsgSmallCard = styled.div`
   width: 35%;
+  min-height: 215px;
   text-align: center;
   flex-shrink: 0;
-  ${'' /* padding: 0.5em; */}
-  ${'' /* margin-right: 5%; */}
   margin-bottom: 1.5em;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   background-color: white;
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
   @media (min-width: 1024px) {
-    ${'' /* width: 15%; */}
     width: 187px;
-    margin-right: 30px;
-    margin-bottom: 55px;
+    margin: 0 30px;
   }
 `
 
