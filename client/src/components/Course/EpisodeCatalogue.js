@@ -42,16 +42,15 @@ const EpisodeChapter = styled.div`
   h1 {
     margin-left: 10px;
     font-size: 1.2em;
-    font-weight: 300;
   }
   img {
-    width: 1.2em;
+    width: 25px;
   }
   @media (min-width: 1024px) {
     h1 {
-      margin-left: 29px;
-      font-size: 25px;
-      font-weight: 300;
+      margin-left: 25px;
+      font-size: 23px;
+      font-weight: 400;
     }
   }
 `
@@ -60,12 +59,13 @@ const EpisodeLink = styled.div`
   display: flex;
   margin-left: 20px;
   margin-bottom: 10px;
+  border-bottom: 1px solid #D8D8D8;
   img {
-    width: 0.8em;
+    width: 19px;
   }
   @media (min-width: 1024px) {
-    margin-left: 29px;
-    margin-bottom: 18px;
+    margin-left: 22px;
+    font-weight: 400;
   }
 `
 
@@ -74,10 +74,10 @@ const EpisodeTitle = styled(Link)`
   margin-left: 15px;
   text-decoration: none;
   color: #000000;
-  font-size: 0.8em;
-  font-weight: 300;
+  font-size: 1em;
   @media (min-width: 1024px) {
-    margin-left: 43px;
+    margin: 12px auto;
+    margin-left: 30px;
     font-size: 1em;
   }
 `
