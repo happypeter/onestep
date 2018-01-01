@@ -71,9 +71,9 @@ class TopHeader extends Component {
     return (
       <TopHeaderWrap>
         <HomeWrap>
-          <img src={logoSimple} alt='logo-simple' width='55px' onClick={this.backToHome} />
+          <img src={logoSimple} alt='logo-simple' width='35.35px' onClick={this.backToHome} />
           <ButtonLink to='/'>
-            首页
+            好奇猫
           </ButtonLink>
         </HomeWrap>
         {
@@ -117,6 +117,7 @@ const ButtonLink = styled(Link)`
   @media (min-width: 1024px) {
     font-size: 1em;
     padding: 0.5em;
+    padding-left: 19px;
   }
 `
 
