@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import reactHexagon from '../../assets/reactHexagon.svg'
+import catLogo from '../../assets/fatCat.svg'
 
 export default () => (
   <Hero>
@@ -16,7 +16,7 @@ export default () => (
           懂你的视频资源站。
         </H3Wrap>
       </TextWrap>
-      <img src={reactHexagon} alt='react-hexagon' />
+      <img src={catLogo} alt='haoqicat-logo' />
     </SloganWrap>
   </Hero>
 )
@@ -43,8 +43,8 @@ const SloganWrap = styled.div`
     align-items: center;
     img {
       display: block;
-      margin-top: -40px;
-      width: 222px;
+      margin-top: -30px;
+      height: 218px;
     }
   }
 `
