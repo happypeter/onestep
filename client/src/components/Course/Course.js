@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
 import EpisodeCatalogue from './EpisodeCatalogue'
+import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 class Course extends Component {
@@ -55,18 +56,18 @@ class Course extends Component {
         <MsgHero>
           <MsgWrap>
             <MsgArea>
-              <MsgIntro>
-                <Title>一句话简介</Title>
-                <Msg>{intro}</Msg>
-              </MsgIntro>
-              <MsgIntro>
-                <Title>适合观众</Title>
-                <Msg>{writingToWho}</Msg>
-              </MsgIntro>
-              <MsgIntro>
-                <Title>知识点</Title>
-                <Msg>{learningGoal}</Msg>
-              </MsgIntro>
+              <CourseMsgIntro
+                title={'一句话简介'}
+                intro={intro}
+              />
+              <CourseMsgIntro
+                title={'适合观众'}
+                intro={writingToWho}
+              />
+              <CourseMsgIntro
+                title={'知识点'}
+                intro={learningGoal}
+              />
             </MsgArea>
           </MsgWrap>
         </MsgHero>
@@ -162,35 +163,6 @@ const MsgArea = styled.div`
     margin: auto 28.5%;
     min-width: 600px;
   }
-`
-
-const MsgIntro = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: #212121;
-  margin: 0px auto;
-  margin-top: 44px;
-  margin-left: 0;
-  margin-right: 10px;
-  padding: 0.5em 1em;
-  padding-left: 25px;
-  margin-bottom: 14px;
-  font-size: 1em;
-  border-left: 7px solid #00BCD4;
-  @media (min-width: 1024px) {
-    padding-right: 30px;
-  }
-`
-
-const Msg = styled.div`
-  color: #212121;
-  font-size: 14px;
-`
-
-const Title = styled.div`
-  color: #212121;
-  margin-bottom: 21px;
-  font-size: 28px;
 `
 
 const CatalogueHero = styled.div`
