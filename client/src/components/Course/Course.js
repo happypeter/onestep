@@ -55,17 +55,18 @@ class Course extends Component {
         <MsgHero>
           <MsgWrap>
             <MsgArea>
-              <MsgIntro>{intro}</MsgIntro>
-              <MsgSmallCards>
-                <MsgSmallCard>
-                  <CardTitle>适合观众</CardTitle>
-                  <CardContent>{writingToWho}</CardContent>
-                </MsgSmallCard>
-                <MsgSmallCard>
-                  <CardTitle>知识点</CardTitle>
-                  <CardContent>{learningGoal}</CardContent>
-                </MsgSmallCard>
-              </MsgSmallCards>
+              <MsgIntro>
+                <Title>一句话简介</Title>
+                <Msg>{intro}</Msg>
+              </MsgIntro>
+              <MsgIntro>
+                <Title>适合观众</Title>
+                <Msg>{writingToWho}</Msg>
+              </MsgIntro>
+              <MsgIntro>
+                <Title>知识点</Title>
+                <Msg>{learningGoal}</Msg>
+              </MsgIntro>
             </MsgArea>
           </MsgWrap>
         </MsgHero>
@@ -164,12 +165,15 @@ const MsgArea = styled.div`
 `
 
 const MsgIntro = styled.div`
+  display: flex;
+  flex-direction: column;
   color: #212121;
   margin: 0px auto;
   margin-top: 44px;
   margin-left: 0;
   margin-right: 10px;
   padding: 0.5em 1em;
+  padding-left: 25px;
   margin-bottom: 14px;
   font-size: 1em;
   border-left: 7px solid #00BCD4;
@@ -178,44 +182,15 @@ const MsgIntro = styled.div`
   }
 `
 
-const MsgSmallCards = styled.div`
-  display: flex;
-  padding: 30px 40px 55px;
-`
-
-const MsgSmallCard = styled.div`
-  width: 35%;
-  min-height: 215px;
-  text-align: center;
-  flex-shrink: 0;
-  margin-bottom: 1.5em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  @media (min-width: 1024px) {
-    width: 187px;
-    margin: 0 30px;
-  }
-`
-
-const CardTitle = styled.div`
-  box-sizing: border-box;
-  height: 36px;
-  padding: 10px;
-  background-color: #00B4D0;
-  font-size: 1em;
-  line-height: 1em;
-  color: #FFFFFF;
-`
-
-const CardContent = styled.p`
-  font-size: 0.8em;
-  line-height: 1.6em;
-  margin: 0.5em;
-  padding: 0.5em;
-  text-align: left;
+const Msg = styled.div`
   color: #212121;
+  font-size: 14px;
+`
+
+const Title = styled.div`
+  color: #212121;
+  margin-bottom: 21px;
+  font-size: 28px;
 `
 
 const CatalogueHero = styled.div`
