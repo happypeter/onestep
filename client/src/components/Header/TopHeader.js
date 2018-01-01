@@ -117,7 +117,6 @@ const ButtonLink = styled(Link)`
   @media (min-width: 1024px) {
     font-size: 1em;
     padding: 0.5em;
-    padding-left: 19px;
   }
 `
 
