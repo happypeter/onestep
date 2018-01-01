@@ -31,7 +31,7 @@ const EpisodesWrap = styled.div`
   color: #212121;
   border-radius: 40px;
   @media (min-width: 1024px) {
-    padding: 5px 50px;
+    padding: 5px 0;
   }
 `
 
@@ -67,6 +67,7 @@ const EpisodeLink = styled(Link)`
   }
   @media (min-width: 1024px) {
     margin-left: 22px;
+    padding-right: 100px;
     font-weight: 400;
   }
 `

@@ -74,6 +74,7 @@ class Course extends Component {
           <CatalogueWrap>
             { episode }
           </CatalogueWrap>
+
           <MsgBigCard>
             <Price>{price}元</Price>
             <RaisedButtonWrap
