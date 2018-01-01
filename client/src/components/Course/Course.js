@@ -75,18 +75,12 @@ class Course extends Component {
             { episode }
           </CatalogueWrap>
           <MsgBigCard>
-            <PriceArea>
               <Price>{price}元</Price>
-              <p>本课程</p>
-            </PriceArea>
-            <p>课程永久学习权限</p>
-            <Splitter />
-            <p>源代码</p>
             <RaisedButtonWrap
               raised
               onClick={() => this.pay(price)}
             >
-                购买
+                购买本课程
             </RaisedButtonWrap>
           </MsgBigCard>
         </CatalogueHero>
@@ -252,10 +246,7 @@ const MsgBigCard = styled.div`
   text-align: center;
   margin: 0 2em 2em 2em;
   padding-bottom: 1em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
+  background-color: #FFFFFF;
   p {
     font-weight: 300;
     font-size: 0.875em;
@@ -270,35 +261,17 @@ const MsgBigCard = styled.div`
   }
 `
 
-const Splitter = styled.div`
-  flex-shrink: 0;
-  height: 1px;
-  margin: 0 16%;
-  opacity: 0.48;
-  background: #D8D8D8;
-`
-
 const RaisedButtonWrap = styled(Button)`
   && {
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
     margin: 1em 16%;
-    color: white;
     background-color: #00B4D0;
   }
 `
 
-const PriceArea = styled.div`
-  background-color: #00BCD4;
-  height: 40%;
-  padding: 1.75em;
-  color: #FFFFFF;
-  p {
-    font-weight: 400;
-    font-size: 1em;
-    color: #FFFFFF;
-  }
-`
-
 const Price = styled.div`
-  font-size: 3em;
-  margin: 10px 30px;
+  font-size: 30px;
+  margin: 0 30px;
 `
