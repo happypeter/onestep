@@ -7,7 +7,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #B2EBF2;
+  background-color: #b2ebf2;
   text-align: center;
 `
 

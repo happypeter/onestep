@@ -7,7 +7,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #B2EBF2;
+  background-color: #b2ebf2;
   text-align: center;
 `
 const Info = styled.div`
@@ -16,7 +16,7 @@ const Info = styled.div`
   font-weight: bold;
 `
 
-export default (props) => {
+export default props => {
   if (props.error) {
     return (
       <Wrap>

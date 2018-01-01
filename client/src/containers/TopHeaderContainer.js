@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import TopHeader from '../components/Header/TopHeader'
-import { logout } from '../redux/actions/authAction'
-import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
+import {logout} from '../redux/actions/authAction'
+import {getCurrentUser} from '../redux/selectors/commonSelectors.js'
 import PropTypes from 'prop-types'
 
 import Loadable from 'react-loadable'
@@ -12,20 +12,20 @@ import LoadingComponent from '../components/common/Loading'
 const AsyncNotification = Loadable({
   loader: () => import('./NotificationContainer'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 class TopHeaderContainer extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
   }
 
-  handlePopoverOpen = (data) => {
-    this.setState({ anchorEl: data })
+  handlePopoverOpen = data => {
+    this.setState({anchorEl: data})
   }
 
   handlePopoverClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({anchorEl: null})
   }
 
   logout = () => {
@@ -45,9 +45,9 @@ class TopHeaderContainer extends Component {
     this.props.history.push('/')
   }
 
-  render () {
+  render() {
     const tempIsAuthenticated = window.sessionStorage.getItem('user')
-    const { anchorEl } = this.state
+    const {anchorEl} = this.state
 
     return (
       <div>
@@ -63,18 +63,18 @@ class TopHeaderContainer extends Component {
         />
         <AsyncNotification />
       </div>
-
     )
   }
 }
 
 TopHeaderContainer.propTypes = {
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
 }
 
-
-const mapStateToProps = (state) => ({
-  currentUserInfo: getCurrentUser(state)
+const mapStateToProps = state => ({
+  currentUserInfo: getCurrentUser(state),
 })
 
-export default connect(mapStateToProps, { logout })(withRouter(TopHeaderContainer))
+export default connect(mapStateToProps, {logout})(
+  withRouter(TopHeaderContainer),
+)

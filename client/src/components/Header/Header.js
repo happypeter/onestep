@@ -6,7 +6,7 @@ import LoadingComponent from '../common/Loading'
 const AsyncSlogan = Loadable({
   loader: () => import('./Slogan'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 export default () => (

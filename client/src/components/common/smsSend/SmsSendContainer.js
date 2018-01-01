@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import SmsSend from './SmsSend'
-import { getSmsSendState } from '../../../redux/selectors/commonSelectors.js'
+import {getSmsSendState} from '../../../redux/selectors/commonSelectors.js'
 import {
   sendMsg,
   countdown,
   readyToSendMsg,
-  smsSendInit
+  smsSendInit,
 } from '../../../redux/actions/smsSendAction'
 import PropTypes from 'prop-types'
 
 class SmsSendContainer extends Component {
-
   _mounted = false
 
   componentDidMount() {
@@ -24,32 +23,29 @@ class SmsSendContainer extends Component {
   }
 
   timer = () => {
-      let promise = new Promise((resolve, reject) => {
-        let setTimer = setInterval(
-          () => {
-            this.props.countdown()
-            if (this.props.smsSendState.second <= 0) {
-              this.props.readyToSendMsg()
-              // console.log(this.props.smsSendState)
-              resolve(setTimer)
-            }
-            if (!this._mounted) {
-              reject(setTimer)
-            }
-          }
-          , 1000)
-      })
+    let promise = new Promise((resolve, reject) => {
+      let setTimer = setInterval(() => {
+        this.props.countdown()
+        if (this.props.smsSendState.second <= 0) {
+          this.props.readyToSendMsg()
+          // console.log(this.props.smsSendState)
+          resolve(setTimer)
+        }
+        if (!this._mounted) {
+          reject(setTimer)
+        }
+      }, 1000)
+    })
 
-      promise.then((setTimer) => {
+    promise
+      .then(setTimer => {
         clearInterval(setTimer)
         console.log('CLEAR INTERVAL')
       })
-      .catch(
-        (setTimer) => {
-          clearInterval(setTimer)
-          console.log('CLEAR INTERVAL IN REJECTION')
-        }
-      )
+      .catch(setTimer => {
+        clearInterval(setTimer)
+        console.log('CLEAR INTERVAL IN REJECTION')
+      })
   }
 
   sendMsg = () => {
@@ -62,14 +58,18 @@ class SmsSendContainer extends Component {
     this.timer()
   }
 
-  render () {
+  render() {
     return (
       <SmsSend
-        label={this.props.smsSendState.alreadySendMsg ? this.props.smsSendState.second : '发送'}
+        label={
+          this.props.smsSendState.alreadySendMsg
+            ? this.props.smsSendState.second
+            : '发送'
+        }
         disabled={this.props.smsSendState.alreadySendMsg ? true : false}
         raised={this.props.smsSendState.alreadySendMsg ? true : false}
         onClick={this.sendMsg}
-       />
+      />
     )
   }
 }
@@ -78,16 +78,16 @@ SmsSendContainer.PropTypes = {
   sendMsg: PropTypes.func.isRequired,
   countdown: PropTypes.func.isRequired,
   readyToSendMsg: PropTypes.func.isRequired,
-  smsSendInit: PropTypes.func.isRequired
+  smsSendInit: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-  smsSendState: getSmsSendState(state)
+const mapStateToProps = state => ({
+  smsSendState: getSmsSendState(state),
 })
 
 export default connect(mapStateToProps, {
   sendMsg,
   countdown,
   readyToSendMsg,
-  smsSendInit
+  smsSendInit,
 })(SmsSendContainer)

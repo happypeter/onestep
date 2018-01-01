@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './containers/App'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import { injectGlobal } from 'styled-components'
+import {injectGlobal} from 'styled-components'
 
 injectGlobal`
   body {

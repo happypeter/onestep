@@ -1,25 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import ChapterIcon from '../../assets/ChapterIcon.svg'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
-export default ({ header, section, courseName }) => (
+export default ({header, section, courseName}) => (
   <EpisodesWrap>
     <EpisodeChapter>
       <img src={ChapterIcon} alt={'ChapterIcon'} />
       <h1>{header}</h1>
     </EpisodeChapter>
-    {
-      section.map(
-        t => (
-          <EpisodeLink key={t.link}>
-            <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-            <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
-          </EpisodeLink>
-        )
-      )
-    }
+    {section.map(t => (
+      <EpisodeLink key={t.link}>
+        <img src={EpisodeIcon} alt={'EpisodeIcon'} />
+        <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
+      </EpisodeLink>
+    ))}
   </EpisodesWrap>
 )
 
@@ -59,7 +55,7 @@ const EpisodeLink = styled.div`
   display: flex;
   margin-left: 20px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid #d8d8d8;
   img {
     width: 19px;
   }

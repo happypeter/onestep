@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 import Login from '../components/Login/Login'
-import { login } from '../redux/actions/authAction'
+import {login} from '../redux/actions/authAction'
 import {
   getFormState,
-  getCurrentUser
+  getCurrentUser,
 } from '../redux/selectors/commonSelectors.js'
 import {
   formErrInit,
@@ -20,67 +20,66 @@ import {
   phoneNumIsValid,
   smsCodeIsRequired,
   smsCodeIsValid,
-  alter
+  alter,
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class LoginContainer extends Component {
-
   state = {
     username: '',
     phoneNum: '',
     smsCode: '',
     password: '',
-    passwordConsistent: ''
+    passwordConsistent: '',
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.formErrInit()
     this.setState({
       username: '',
       phoneNum: '',
       smsCode: '',
       password: '',
-      passwordConsistent: ''
+      passwordConsistent: '',
     })
   }
 
-  getUsername = (username) => {
+  getUsername = username => {
     this.setState({
-      username: username
+      username: username,
     })
     this.checkUsername(username)
   }
 
-  getPhoneNum = (phoneNum) => {
+  getPhoneNum = phoneNum => {
     this.setState({
-      phoneNum: phoneNum
+      phoneNum: phoneNum,
     })
     this.checkPhoneNum(phoneNum)
   }
 
-  getSmsCode = (smsCode) => {
+  getSmsCode = smsCode => {
     this.setState({
-      smsCode: smsCode
+      smsCode: smsCode,
     })
     this.checkSmsCode(smsCode)
   }
 
-  getPassword = (password) => {
+  getPassword = password => {
     this.setState({
-      password: password
+      password: password,
     })
     this.checkPassword(password)
   }
 
-  getPasswordConsistent = (passwordConsistent) => {
+  getPasswordConsistent = passwordConsistent => {
     this.setState({
-      passwordConsistent: passwordConsistent
+      passwordConsistent: passwordConsistent,
     })
     this.checkpasswordConsistent()
   }
 
-  checkUsername = (username) => {
+  checkUsername = username => {
     if (!username) {
       this.props.usernameIsRequired()
     } else {
@@ -88,8 +87,8 @@ class LoginContainer extends Component {
     }
   }
 
-  checkPhoneNum = (phoneNum) => {
-    const phoneNumPattern =  /^1\d{10}$/
+  checkPhoneNum = phoneNum => {
+    const phoneNumPattern = /^1\d{10}$/
     if (!phoneNumPattern.test(phoneNum)) {
       this.props.phoneNumNotValid()
     } else {
@@ -97,7 +96,7 @@ class LoginContainer extends Component {
     }
   }
 
-  checkPassword = (password) => {
+  checkPassword = password => {
     // if (!password) {
     if (password.length < 6) {
       // this.props.passwordIsRequired()
@@ -117,7 +116,7 @@ class LoginContainer extends Component {
     }
   }
 
-  checkSmsCode = (smsCode) => {
+  checkSmsCode = smsCode => {
     if (!smsCode) {
       this.props.smsCodeIsRequired()
     } else {
@@ -125,23 +124,23 @@ class LoginContainer extends Component {
     }
   }
 
-  alter = (data) => {
+  alter = data => {
     // 切换表单，重新初始化表单信息、报错信息。
     this.setState({
       username: '',
       phoneNum: '',
       smsCode: '',
       password: '',
-      passwordConsistent: ''
+      passwordConsistent: '',
     })
     this.props.formErrInit()
     this.props.alter(data)
   }
 
-  recheckForm = function *() {
+  recheckForm = function*() {
     let userInfo = yield
 
-    let { username, password, passwordConsistent, phoneNum, smsCode } = userInfo
+    let {username, password, passwordConsistent, phoneNum, smsCode} = userInfo
     this.checkUsername(username)
     this.checkPhoneNum(phoneNum)
     this.checkSmsCode(smsCode)
@@ -149,13 +148,24 @@ class LoginContainer extends Component {
     this.checkpasswordConsistent({password, passwordConsistent})
 
     yield
-    let { tabValue, usernameIsValid, phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.loginState
+    let {
+      tabValue,
+      usernameIsValid,
+      phoneNumIsValid,
+      passwordIsValid,
+      passwordConsistentIsValid,
+      smsCodeIsValid,
+    } = this.props.loginState
 
     if (
-        ((tabValue===0) && phoneNumIsValid && passwordIsValid)
-        ||
-        ((tabValue===1) && phoneNumIsValid && smsCodeIsValid && usernameIsValid && passwordIsValid && passwordConsistentIsValid)
-      ) {
+      (tabValue === 0 && phoneNumIsValid && passwordIsValid) ||
+      (tabValue === 1 &&
+        phoneNumIsValid &&
+        smsCodeIsValid &&
+        usernameIsValid &&
+        passwordIsValid &&
+        passwordConsistentIsValid)
+    ) {
       console.log('通过验证')
 
       this.props.login(userInfo)
@@ -170,14 +180,12 @@ class LoginContainer extends Component {
 
     foo.next(this.state)
     setTimeout(() => {
-        foo.next()
-    },
-      50
-    )
+      foo.next()
+    }, 50)
   }
 
-  render () {
-    const { isAuthenticated } = this.props.currentUser
+  render() {
+    const {isAuthenticated} = this.props.currentUser
     const refererState = this.props.location.state
 
     // 跳回登录前的页面
@@ -201,9 +209,7 @@ class LoginContainer extends Component {
         this.props.history.goBack()
         return null
       }
-      return (
-        <Redirect to={refererPath} />
-      )
+      return <Redirect to={refererPath} />
     }
 
     return (
@@ -238,12 +244,12 @@ LoginContainer.propTypes = {
   phoneNumIsValid: PropTypes.func.isRequired,
   smsCodeIsRequired: PropTypes.func.isRequired,
   smsCodeIsValid: PropTypes.func.isRequired,
-  alter: PropTypes.func.isRequired
+  alter: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
-  loginState: getFormState(state)
+  loginState: getFormState(state),
 })
 
 export default connect(mapStateToProps, {
@@ -260,5 +266,5 @@ export default connect(mapStateToProps, {
   phoneNumIsValid,
   smsCodeIsRequired,
   smsCodeIsValid,
-  alter
+  alter,
 })(LoginContainer)

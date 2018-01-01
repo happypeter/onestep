@@ -7,7 +7,8 @@ export default () => (
     <SloganWrap>
       <TextWrap>
         <H1Wrap>为开发者而生</H1Wrap>
-        <H3Wrap>好奇猫的每个课程都是《做一个东西的一二三四步》，为你踩坑。
+        <H3Wrap>
+          好奇猫的每个课程都是《做一个东西的一二三四步》，为你踩坑。
           <br />
           我自己写代码上传到 github ，然后通过微视频的形式讲每一个 diff
           <br />
@@ -16,20 +17,20 @@ export default () => (
           懂你的视频资源站。
         </H3Wrap>
       </TextWrap>
-      <img src={reactHexagon} alt='react-hexagon' />
+      <img src={reactHexagon} alt="react-hexagon" />
     </SloganWrap>
   </Hero>
 )
 
 const Hero = styled.div`
-  background-color: #00BCD4;
+  background-color: #00bcd4;
 `
 
 const SloganWrap = styled.div`
   margin-bottom: 40px;
   padding: 50px 1.5em 10px;
   img {
-    display: none
+    display: none;
   }
   @media (min-width: 1024px) {
     box-sizing: border-box;
@@ -51,7 +52,7 @@ const SloganWrap = styled.div`
 const TextWrap = styled.div`
   max-width: 1000px;
   margin: 0px auto;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1024px) {
     text-align: left;
     margin-left: 10px;

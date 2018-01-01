@@ -1,32 +1,31 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchCourse } from '../redux/actions/contentAction'
-import { getCourse } from '../redux/selectors/commonSelectors.js'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchCourse} from '../redux/actions/contentAction'
+import {getCourse} from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
 const AsyncCourse = Loadable({
   loader: () => import('../components/Course/Course'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 class CourseContainer extends Component {
-
-  componentWillMount () {
+  componentWillMount() {
     // fetch the course-data form server
-    let { courseName } = this.props.match.params
-    this.props.fetchCourse({ courseName })
+    let {courseName} = this.props.match.params
+    this.props.fetchCourse({courseName})
   }
 
-  pay = (price) => {
-    this.props.history.push({ pathname: '/pay', state: { price } })
+  pay = price => {
+    this.props.history.push({pathname: '/pay', state: {price}})
   }
 
-  render () {
+  render() {
     // console.log(this.props);
     // 404 Redirect
-    let { courseName } = this.props.match.params
+    let {courseName} = this.props.match.params
     // console.log(courseName);
 
     // let { catalogue } = this.props.courses
@@ -40,34 +39,38 @@ class CourseContainer extends Component {
     //   console.log(this.props.location.pathname);
     // }
 
-    let { status, content: courseContent } = this.props.course
+    let {status, content: courseContent} = this.props.course
 
     switch (status) {
       case 'LOADING': {
-        return (<LoadingComponent />)
+        return <LoadingComponent />
       }
       case 'SUCCESS': {
-        const couseUrl = `${courseContent.vlink}/${courseContent.cover_video ? courseContent.cover_video : 'index'}.mp4`
+        const couseUrl = `${courseContent.vlink}/${
+          courseContent.cover_video ? courseContent.cover_video : 'index'
+        }.mp4`
         // VideoJsOptions for this Course
         const CourseVideoJsOptions = {
           autoplay: false,
           controls: true,
-          sources: [{
-            src: couseUrl,
-            type: 'video/mp4'
-          }],
+          sources: [
+            {
+              src: couseUrl,
+              type: 'video/mp4',
+            },
+          ],
           poster: 'http://videojs.com/img/logo.png',
           fluid: 'true', // put the player in the VideoPlayerWrap box
           playbackRates: [0.75, 1, 1.5, 2],
           controlBar: {
             volumePanel: {
-              inline: false // vertical VolumeControl
-            }
+              inline: false, // vertical VolumeControl
+            },
           },
           // Using A Plugin
           plugins: {
-            setStateandFocusPlugin: true
-          }
+            setStateandFocusPlugin: true,
+          },
         }
 
         return (
@@ -94,8 +97,8 @@ class CourseContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  course: getCourse(state)
+const mapStateToProps = state => ({
+  course: getCourse(state),
 })
 
-export default connect(mapStateToProps, { fetchCourse })(CourseContainer)
+export default connect(mapStateToProps, {fetchCourse})(CourseContainer)

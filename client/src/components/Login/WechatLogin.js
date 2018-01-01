@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const WechatLoginWrap = styled.div`
   min-height: 100vh;
@@ -9,7 +9,7 @@ const WechatLoginWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding-top: 20px;
-  background-color: #00BCD4;
+  background-color: #00bcd4;
   text-align: center;
 `
 
@@ -26,7 +26,7 @@ const ButtonsWrap = styled.div`
 `
 
 const Button = styled(Link)`
-  background-color: #FF5252;
+  background-color: #ff5252;
   width: 15%;
   padding: 0 10px;
   border: none;
@@ -43,30 +43,29 @@ const Button = styled(Link)`
 `
 
 class WechatLogin extends Component {
-
   handleClick = () => {
-  //  this.props.onClick()
-  console.log("上线 MVP 以后再做")
+    //  this.props.onClick()
+    console.log('上线 MVP 以后再做')
   }
 
-  render () {
+  render() {
     return (
       <WechatLoginWrap>
-        <Mcode onClick={this.handleClick}>
-          微信扫码登录
-        </Mcode>
+        <Mcode onClick={this.handleClick}>微信扫码登录</Mcode>
         <ButtonsWrap>
-          <Button to={{
-            pathname: '/login',
-            state: { from: this.props.refererState }
-          }}>
+          <Button
+            to={{
+              pathname: '/login',
+              state: {from: this.props.refererState},
+            }}>
             账号登录
           </Button>
 
-          <Button to={{
-            pathname: '/signup',
-            state: { from: this.props.refererState }
-          }}>
+          <Button
+            to={{
+              pathname: '/signup',
+              state: {from: this.props.refererState},
+            }}>
             注册账号
           </Button>
         </ButtonsWrap>

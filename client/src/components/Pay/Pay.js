@@ -1,6 +1,6 @@
 import React from 'react'
 import src from '../../assets/pay.svg'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export default props => (
@@ -10,10 +10,16 @@ export default props => (
       <img src={src} alt={'wechat: happypeter1983'} />
       <Instr>
         <p>添加 Peter 的微信</p>
-        <p>通过微信支付课程费用{props.location.state ? `${props.location.state.price}元` : null}</p>
-        <p>把您在本站
+        <p>
+          通过微信支付课程费用{props.location.state
+            ? `${props.location.state.price}元`
+            : null}
+        </p>
+        <p>
+          把您在本站
           <LinkWrap to={`/signup`}> 注册 </LinkWrap>
-          用户名发送给 happypeter 就行了</p>
+          用户名发送给 happypeter 就行了
+        </p>
       </Instr>
     </CardWrap>
   </ContentWrap>
@@ -41,7 +47,7 @@ const CardWrap = styled.form`
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 2px 2px 5px #888888;
-  border-top: 2.5em solid #00BCD4;
+  border-top: 2.5em solid #00bcd4;
   text-align: center;
   margin-top: 5%;
   padding: 0 60px;

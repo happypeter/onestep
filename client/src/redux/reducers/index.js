@@ -3,7 +3,7 @@ import fakeAuth from './fakeAuth'
 import form from './form'
 import profile from './profile'
 import notification from './notification'
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import course from './course'
 import episode from './episode'
 import smsSend from './smsSend'
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   profile,
   notification,
   episode,
-  smsSend
+  smsSend,
 })
 
 export default rootReducer

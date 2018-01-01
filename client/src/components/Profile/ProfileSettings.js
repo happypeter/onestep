@@ -8,7 +8,7 @@ import LoadingComponent from '../common/Loading'
 export default () => (
   <Wrap>
     <TopHeader />
-    <div >
+    <div>
       <AsyncResetPassword />
     </div>
     <Footer />
@@ -18,7 +18,7 @@ export default () => (
 const AsyncResetPassword = Loadable({
   loader: () => import('../../containers/ResetPasswordContainer'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 const Wrap = styled.div`
