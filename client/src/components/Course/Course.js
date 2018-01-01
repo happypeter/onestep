@@ -75,7 +75,7 @@ class Course extends Component {
             { episode }
           </CatalogueWrap>
           <MsgBigCard>
-              <Price>{price}元</Price>
+            <Price>{price}元</Price>
             <RaisedButtonWrap
               raised
               onClick={() => this.pay(price)}
