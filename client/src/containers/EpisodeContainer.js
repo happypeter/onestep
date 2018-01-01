@@ -52,7 +52,7 @@ class EpisodeContainer extends Component {
             src: `${episodeState.vlink}/${episodeName}.mp4`,
             type: 'video/mp4'
           }],
-          poster: 'http://videojs.com/img/logo.png',
+          poster: '',
           fluid: 'true', // put the player in the VideoPlayerWrap box
           playbackRates: [0.75, 1, 1.5, 2],
           controlBar: {
