@@ -13,9 +13,9 @@ export default ({ header, section, courseName }) => (
     {
       section.map(
         t => (
-          <EpisodeLink key={t.link}>
+          <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>
             <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-            <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
+            <EpisodeTitle>{t.title}</EpisodeTitle>
           </EpisodeLink>
         )
       )
@@ -55,11 +55,13 @@ const EpisodeChapter = styled.div`
   }
 `
 
-const EpisodeLink = styled.div`
+const EpisodeLink = styled(Link)`
   display: flex;
   margin-left: 20px;
   margin-bottom: 10px;
   border-bottom: 1px solid #D8D8D8;
+  cursor: pointer;
+  text-decoration: none;
   img {
     width: 19px;
   }
@@ -69,10 +71,9 @@ const EpisodeLink = styled.div`
   }
 `
 
-const EpisodeTitle = styled(Link)`
+const EpisodeTitle = styled.div`
   display: block;
   margin-left: 15px;
-  text-decoration: none;
   color: #000000;
   font-size: 1em;
   @media (min-width: 1024px) {
