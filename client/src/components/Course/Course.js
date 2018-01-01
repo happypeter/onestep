@@ -53,24 +53,22 @@ class Course extends Component {
           </Video>
         </VideoWrap>
 
-        <MsgHero>
-          <MsgWrap>
-            <MsgArea>
-              <CourseMsgIntro
-                title={'一句话简介'}
-                intro={intro}
-              />
-              <CourseMsgIntro
-                title={'适合观众'}
-                intro={writingToWho}
-              />
-              <CourseMsgIntro
-                title={'知识点'}
-                intro={learningGoal}
-              />
-            </MsgArea>
-          </MsgWrap>
-        </MsgHero>
+        <MsgWrap>
+          <MsgArea>
+            <CourseMsgIntro
+              title={'一句话简介'}
+              intro={intro}
+            />
+            <CourseMsgIntro
+              title={'适合观众'}
+              intro={writingToWho}
+            />
+            <CourseMsgIntro
+              title={'知识点'}
+              intro={learningGoal}
+            />
+          </MsgArea>
+        </MsgWrap>
 
         <CatalogueHero>
           <CatalogueWrap>
@@ -143,14 +141,13 @@ const Video = styled.div`
   }
 `
 
-const MsgHero = styled.div`
-  background-color: #F7F7F7;
-`
-
 const MsgWrap = styled.div`
   flex-shrink: 0;
+  margin-top: 81px;
   @media (min-width: 1024px) {
     display: flex;
+    margin: 81px auto 0 auto;
+    width: 620px;
   }
 `
 
@@ -160,8 +157,6 @@ const MsgArea = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
-    margin: auto 28.5%;
-    min-width: 600px;
   }
 `
 
@@ -177,7 +172,7 @@ const CatalogueWrap = styled.div`
   margin: 0 2em 3em 2em;
   text-decoration: none;
   @media (min-width: 1024px) {
-    margin: 6.375em 23% 3em 23%;
+    margin: 81px 23% 48px 23%;
   }
 `
 
