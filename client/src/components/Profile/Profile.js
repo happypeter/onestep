@@ -53,7 +53,7 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
             {
                 latestExpireDate
                 ? (
-                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
+                  <MembershipMsg>会员截止日期，{latestExpireDate}</MembershipMsg>
                 )
                 : (
                   <MembershipMsg>还不是好奇猫会员</MembershipMsg>
