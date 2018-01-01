@@ -55,6 +55,7 @@ const TextWrap = styled.div`
   @media (min-width: 1024px) {
     text-align: left;
     margin-left: 10px;
+    margin-right: 170px;
   }
 `
 
