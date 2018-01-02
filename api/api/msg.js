@@ -47,7 +47,7 @@ exports.send = (req, res) => {
           errorMsg: err,
           success: false,
         })
-      },
+      }
     )
     .catch(err => {
       console.log(err)
@@ -118,7 +118,7 @@ exports.check = (phoneNum, code) => {
           // 处理错误
           console.log(err)
           reject(err)
-        },
+        }
       )
   })
 
