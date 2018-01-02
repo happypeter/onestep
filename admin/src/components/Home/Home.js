@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import LoginForm from '../LoginForm/LoginForm'
 import styled from 'styled-components'
 
@@ -10,14 +10,13 @@ const FormWrap = styled.div`
 `
 
 class Home extends Component {
-
   login = () => {
     this.props.history.push('/dashbord')
   }
 
-  render () {
+  render() {
     return (
-      <div className='home'>
+      <div className="home">
         <FormWrap>
           <LoginForm onLogin={this.login} />
         </FormWrap>

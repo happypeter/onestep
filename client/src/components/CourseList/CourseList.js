@@ -2,7 +2,7 @@ import React from 'react'
 import CourseCard from '../common/CourseCard'
 import styled from 'styled-components'
 
-export default ({ courses, status }) => {
+export default ({courses, status}) => {
   switch (status) {
     case 'LOADING': {
       return (
@@ -24,9 +24,7 @@ export default ({ courses, status }) => {
       return (
         <div>
           <Title>最新发布</Title>
-          <CourseListWrap>
-            { catalogues }
-          </CourseListWrap>
+          <CourseListWrap>{catalogues}</CourseListWrap>
         </div>
       )
     }

@@ -1,18 +1,18 @@
 const initialState = {
   status: 'LOADING',
-  catalogue: []
+  catalogue: [],
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FETCH_STARTED': {
-      return { status: 'LOADING' }
+      return {status: 'LOADING'}
     }
     case 'FETCH_SUCCESS': {
       return {
         ...state,
         status: 'SUCCESS',
-        catalogue: [...action.res]
+        catalogue: [...action.res],
       }
     }
     case 'FETCH_FAILURE': {

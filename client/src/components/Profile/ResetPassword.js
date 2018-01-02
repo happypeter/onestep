@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Button from 'material-ui/Button'
 import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import styled from 'styled-components'
 
 class ResetPassword extends Component {
-
-  getPassword = (e) => {
+  getPassword = e => {
     this.props.getPassword(e.target.value)
   }
 
-  getPasswordConsistent = (e) => {
+  getPasswordConsistent = e => {
     if (typeof e === 'string') {
       this.props.getPasswordConsistent(e)
       return
@@ -18,26 +17,25 @@ class ResetPassword extends Component {
     this.props.getPasswordConsistent(e.target.value)
   }
 
-  getSmsCode = (e) => {
+  getSmsCode = e => {
     this.props.getSmsCode(e.target.value)
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     this.props.onSubmit()
   }
 
-  enterToSubmit = (e) => {
+  enterToSubmit = e => {
     if (e.which !== 13) return
     this.getPasswordConsistent(e.target.value)
   }
 
-  render () {
+  render() {
     return (
       <SignupWrap>
         <FormTitle>修改密码</FormTitle>
         <FromWrap onSubmit={this.handleSubmit}>
-
           <FormItem
             error={this.props.errorText.phoneNum}
             disabled={true}
@@ -80,10 +78,7 @@ class ResetPassword extends Component {
             formHelperText={this.props.errorText.passwordConsistent}
           />
 
-          <ActionButton
-            raised
-            type='submit'
-          >
+          <ActionButton raised type="submit">
             重置密码
           </ActionButton>
         </FromWrap>
@@ -116,7 +111,7 @@ const FromWrap = styled.form`
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 2px 2px 5px #888888;
-  border-top: 2.5em solid #00BCD4;
+  border-top: 2.5em solid #00bcd4;
   text-align: center;
   margin-top: 5%;
   padding: 0 60px;
@@ -135,8 +130,8 @@ const TextFieldWrap = styled.div`
 
 const ActionButton = styled(Button)`
   && {
-    background-color: #00BCD4;
-    color: #FFFFFF;
+    background-color: #00bcd4;
+    color: #ffffff;
     width: 100%;
     margin-top: 1.5em;
   }

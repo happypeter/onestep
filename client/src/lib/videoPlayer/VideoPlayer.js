@@ -4,22 +4,21 @@ import 'video.js/dist/video-js.css'
 import './videojs-hqcat.css'
 
 export default class VideoPlayer extends React.Component {
-
-  componentDidMount () {
+  componentDidMount() {
     // instantiate video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady () {
+    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
       console.log('onPlayerReady', this)
     })
   }
 
   // destroy player on unmount
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.player) {
       this.player.dispose()
     }
   }
 
-  handleSpaceKeyDown = (event) => {
+  handleSpaceKeyDown = event => {
     if (event.which === 32) {
       event.preventDefault()
       // console.log(this.player.state.state)
@@ -27,12 +26,13 @@ export default class VideoPlayer extends React.Component {
       if (this.player) {
         switch (this.player.state.state) {
           case 'playing':
-          this.player.pause()
-          break
+            this.player.pause()
+            break
           case 'pause':
-          this.player.play()
-          break
-          default: return
+            this.player.play()
+            break
+          default:
+            return
         }
       } else {
         console.log('error')
@@ -43,30 +43,30 @@ export default class VideoPlayer extends React.Component {
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
-  render () {
+  render() {
     // write a plugin
     var that = this
-    const setStateandFocusPlugin = function (options) {
-      this.on('play', function (e) {
+    const setStateandFocusPlugin = function(options) {
+      this.on('play', function(e) {
         console.log('playback has started!')
         // console.log(that)
         this.setState({
-          state: 'playing'
+          state: 'playing',
         })
       })
 
-      this.on('pause', function (e) {
+      this.on('pause', function(e) {
         console.log('playback has paused')
         this.setState({
-          state: 'pause'
+          state: 'pause',
         })
       })
 
-      this.on('timeupdate', function(e){
+      this.on('timeupdate', function(e) {
         that.refs.videoPlayerRef.focus()
       })
 
-      this.on('ended', function (e) {
+      this.on('ended', function(e) {
         console.log('this episode ends now!!!')
         // some code to navigate to next episode page
       })
@@ -76,13 +76,13 @@ export default class VideoPlayer extends React.Component {
     videojs.registerPlugin('setStateandFocusPlugin', setStateandFocusPlugin)
 
     return (
-      <div data-vjs-player
+      <div
+        data-vjs-player
         onKeyDown={this.handleSpaceKeyDown}
-        ref='videoPlayerRef'
-        >
+        ref="videoPlayerRef">
         <video
-          ref={node => this.videoNode = node}
-          className='video-js vjs-hqcat'
+          ref={node => (this.videoNode = node)}
+          className="video-js vjs-hqcat"
         />
       </div>
     )

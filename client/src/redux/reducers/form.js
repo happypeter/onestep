@@ -10,8 +10,8 @@ const initialState = {
     phoneNum: '',
     password: '',
     passwordConsistent: '',
-    smsCode: ''
-  }
+    smsCode: '',
+  },
 }
 
 export default (state = initialState, action = {}) => {
@@ -25,8 +25,8 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: '请输入正确的手机号'
-        }
+          phoneNum: '请输入正确的手机号',
+        },
       }
     case 'PHONE_NUM_IS_VALID':
       return {
@@ -34,8 +34,8 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: ''
-        }
+          phoneNum: '',
+        },
       }
     case 'PHONE_NUM_ALREADY_EXISTS':
       return {
@@ -43,8 +43,8 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: '该号码已注册，请直接登录'
-        }
+          phoneNum: '该号码已注册，请直接登录',
+        },
       }
     case 'PHONE_NUM_DOESNOT_EXIST':
       return {
@@ -52,8 +52,8 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: '该号码尚未注册'
-        }
+          phoneNum: '该号码尚未注册',
+        },
       }
     case 'PLEASE_USE_PHONE_NUM':
       return {
@@ -61,8 +61,8 @@ export default (state = initialState, action = {}) => {
         phoneNumIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          phoneNum: '已绑定过手机号，请直接用手机号登录'
-        }
+          phoneNum: '已绑定过手机号，请直接用手机号登录',
+        },
       }
     case 'USERNAME_IS_REQUIRED':
       return {
@@ -70,8 +70,8 @@ export default (state = initialState, action = {}) => {
         usernameIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          username: '请输入用户名'
-        }
+          username: '请输入用户名',
+        },
       }
     case 'USERNAME_IS_VALID':
       return {
@@ -79,8 +79,8 @@ export default (state = initialState, action = {}) => {
         usernameIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          username: ''
-        }
+          username: '',
+        },
       }
     case 'USERMANE_ALREADY_EXISTS':
       return {
@@ -88,8 +88,8 @@ export default (state = initialState, action = {}) => {
         usernameIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          username: '该用户名已被注册'
-        }
+          username: '该用户名已被注册',
+        },
       }
     case 'USER_DOESNOT_EXIST':
       return {
@@ -97,8 +97,8 @@ export default (state = initialState, action = {}) => {
         usernameIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          username: '该用户名不存在'
-        }
+          username: '该用户名不存在',
+        },
       }
     case 'PASSWORD_IS_REQUIRED':
       return {
@@ -106,8 +106,8 @@ export default (state = initialState, action = {}) => {
         passwordIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          password: '请输入密码'
-        }
+          password: '请输入密码',
+        },
       }
     case 'PASSWORD_TOO_SHORT':
       return {
@@ -115,8 +115,8 @@ export default (state = initialState, action = {}) => {
         passwordIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          password: '请输入6位以上的密码'
-        }
+          password: '请输入6位以上的密码',
+        },
       }
     case 'INVALID_PASSWORD':
       return {
@@ -124,8 +124,8 @@ export default (state = initialState, action = {}) => {
         passwordIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          password: '密码无效'
-        }
+          password: '密码无效',
+        },
       }
     case 'PASSWORE_IS_VALID':
       return {
@@ -133,8 +133,8 @@ export default (state = initialState, action = {}) => {
         passwordIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          password: ''
-        }
+          password: '',
+        },
       }
     case 'PASSWORDS_INCONSISTENT':
       return {
@@ -142,8 +142,8 @@ export default (state = initialState, action = {}) => {
         passwordConsistentIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          passwordConsistent: '两次密码必须相同'
-        }
+          passwordConsistent: '两次密码必须相同',
+        },
       }
     case 'PASSWORDS_CONSISTENT':
       return {
@@ -151,8 +151,8 @@ export default (state = initialState, action = {}) => {
         passwordConsistentIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          passwordConsistent: ''
-        }
+          passwordConsistent: '',
+        },
       }
     case 'SMSCODE_IS_REQUIRED':
       return {
@@ -160,8 +160,8 @@ export default (state = initialState, action = {}) => {
         smsCodeIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          smsCode: '请输入验证码'
-        }
+          smsCode: '请输入验证码',
+        },
       }
     case 'SMSCODE_IS_VALID':
       return {
@@ -169,8 +169,8 @@ export default (state = initialState, action = {}) => {
         smsCodeIsValid: true,
         testErrObj: {
           ...state.testErrObj,
-          smsCode: ''
-        }
+          smsCode: '',
+        },
       }
     case 'SMS_ERR_TRY_AGAIN':
       return {
@@ -178,8 +178,8 @@ export default (state = initialState, action = {}) => {
         smsCodeIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          smsCode: '出错 请重新获取验证码'
-        }
+          smsCode: '出错 请重新获取验证码',
+        },
       }
     case 'SMS_CODE_IS_INVALID':
       return {
@@ -187,8 +187,8 @@ export default (state = initialState, action = {}) => {
         smsCodeIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          smsCode: '验证码不正确'
-        }
+          smsCode: '验证码不正确',
+        },
       }
     case 'EXPIRED_SMS_CODE':
       return {
@@ -196,13 +196,13 @@ export default (state = initialState, action = {}) => {
         smsCodeIsValid: false,
         testErrObj: {
           ...state.testErrObj,
-          smsCode: '验证码已过期'
-        }
+          smsCode: '验证码已过期',
+        },
       }
     case 'ALTER':
       return {
         ...state,
-        tabValue: action.data && action.data.value
+        tabValue: action.data && action.data.value,
       }
     default:
       return state

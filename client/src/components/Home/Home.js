@@ -17,13 +17,13 @@ export default () => (
 const AsyncAboveFooter = Loadable({
   loader: () => import('../Footer/AboveFooter'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 const AsyncFooter = Loadable({
   loader: () => import('../Footer/Footer'),
   loading: LoadingComponent,
-  delay: 300
+  delay: 300,
 })
 
 const HomeWrap = styled.div`
@@ -31,6 +31,6 @@ const HomeWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
 `

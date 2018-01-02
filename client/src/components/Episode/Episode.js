@@ -5,10 +5,7 @@ import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import ReactMarkdown from 'react-markdown'
 
-export default ({
-  videoJsOptions,
-  episodeState: { doc, title }
-}) => (
+export default ({videoJsOptions, episodeState: {doc, title}}) => (
   <div>
     <TopHeader />
 
@@ -39,8 +36,8 @@ const VideoTitle = styled.div`
   height: 1.5em;
   line-height: 1.5em;
   max-width: 100%;
-  background-color: #00BCD4;
-  color: #FFFFFF;
+  background-color: #00bcd4;
+  color: #ffffff;
   font-size: 1em;
   padding-left: 12px;
   @media (min-width: 1024px) {
@@ -58,10 +55,10 @@ const Video = styled.div`
 `
 
 const Doc = styled.div`
-  margin:  2em;
+  margin: 2em;
   padding: 1em;
   padding-top: 0;
-  border-top: 2em solid #00BCD4;
+  border-top: 2em solid #00bcd4;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
   -webkit-transition: all 450ms ease;
   transition: all 450ms ease;
@@ -70,7 +67,7 @@ const Doc = styled.div`
   font-weight: 400;
   line-height: 1.95;
   h1 {
-    text-align: center;;
+    text-align: center;
   }
   pre {
     padding: 16px;
@@ -102,6 +99,6 @@ const Doc = styled.div`
     width: 870px;
     margin: 3.5em auto;
     padding: 2.5em;
-    border-top: 2.7em solid #00BCD4;
+    border-top: 2.7em solid #00bcd4;
   }
 `

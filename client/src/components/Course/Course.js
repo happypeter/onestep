@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
@@ -7,12 +7,11 @@ import EpisodeCatalogue from './EpisodeCatalogue'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 class Course extends Component {
-
-  pay = (price) => {
+  pay = price => {
     this.props.pay(price)
   }
 
-  render () {
+  render() {
     let {
       name,
       courseName,
@@ -23,7 +22,7 @@ class Course extends Component {
       publishedAt,
       vlink,
       service,
-      content
+      content,
     } = this.props.courseOptions
 
     let episode
@@ -35,9 +34,9 @@ class Course extends Component {
           section={item.section}
           courseName={courseName}
         />
-    ))
+      ))
     } else {
-      episode = (<Info>加载中</Info>)
+      episode = <Info>加载中</Info>
     }
 
     return (
@@ -71,9 +70,7 @@ class Course extends Component {
         </MsgHero>
 
         <CatalogueHero>
-          <CatalogueWrap>
-            { episode }
-          </CatalogueWrap>
+          <CatalogueWrap>{episode}</CatalogueWrap>
           <MsgBigCard>
             <PriceArea>
               <Price>{price}元</Price>
@@ -82,11 +79,8 @@ class Course extends Component {
             <p>课程永久学习权限</p>
             <Splitter />
             <p>源代码</p>
-            <RaisedButtonWrap
-              raised
-              onClick={() => this.pay(price)}
-            >
-                购买
+            <RaisedButtonWrap raised onClick={() => this.pay(price)}>
+              购买
             </RaisedButtonWrap>
           </MsgBigCard>
         </CatalogueHero>
@@ -127,8 +121,8 @@ const VideoTitle = styled.div`
   height: 1.5em;
   line-height: 1.5em;
   max-width: 100%;
-  background-color: #00BCD4;
-  color: #FFFFFF;
+  background-color: #00bcd4;
+  color: #ffffff;
   font-size: 0.5em;
   padding-left: 12px;
   @media (min-width: 1024px) {
@@ -148,7 +142,7 @@ const Video = styled.div`
 `
 
 const MsgHero = styled.div`
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 `
 
 const MsgWrap = styled.div`
@@ -178,7 +172,7 @@ const MsgIntro = styled.div`
   padding: 0.5em 1em;
   margin-bottom: 14px;
   font-size: 1em;
-  border-left: 7px solid #00BCD4;
+  border-left: 7px solid #00bcd4;
   @media (min-width: 1024px) {
     padding-right: 30px;
   }
@@ -209,10 +203,10 @@ const CardTitle = styled.div`
   box-sizing: border-box;
   height: 36px;
   padding: 10px;
-  background-color: #00B4D0;
+  background-color: #00b4d0;
   font-size: 1em;
   line-height: 1em;
-  color: #FFFFFF;
+  color: #ffffff;
 `
 
 const CardContent = styled.p`
@@ -275,26 +269,26 @@ const Splitter = styled.div`
   height: 1px;
   margin: 0 16%;
   opacity: 0.48;
-  background: #D8D8D8;
+  background: #d8d8d8;
 `
 
 const RaisedButtonWrap = styled(Button)`
   && {
     margin: 1em 16%;
     color: white;
-    background-color: #00B4D0;
+    background-color: #00b4d0;
   }
 `
 
 const PriceArea = styled.div`
-  background-color: #00BCD4;
+  background-color: #00bcd4;
   height: 40%;
   padding: 1.75em;
-  color: #FFFFFF;
+  color: #ffffff;
   p {
     font-weight: 400;
     font-size: 1em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 `
 

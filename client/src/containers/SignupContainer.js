@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 import Signup from '../components/Signup/Signup'
-import { signup } from '../redux/actions/authAction'
+import {signup} from '../redux/actions/authAction'
 import {
   getFormState,
-  getCurrentUser
+  getCurrentUser,
 } from '../redux/selectors/commonSelectors.js'
 import {
   formErrInit,
@@ -18,58 +18,57 @@ import {
   phoneNumNotValid,
   phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid
+  smsCodeIsValid,
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class SignupContainer extends Component {
-
   state = {
     phoneNum: '',
     smsCode: '',
     password: '',
-    passwordConsistent: ''
+    passwordConsistent: '',
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.formErrInit()
     this.setState({
       phoneNum: '',
       smsCode: '',
       password: '',
-      passwordConsistent: ''
+      passwordConsistent: '',
     })
   }
 
-  getPhoneNum = (phoneNum) => {
+  getPhoneNum = phoneNum => {
     this.setState({
-      phoneNum: phoneNum
+      phoneNum: phoneNum,
     })
     this.checkPhoneNum(phoneNum)
   }
 
-  getSmsCode = (smsCode) => {
+  getSmsCode = smsCode => {
     this.setState({
-      smsCode: smsCode
+      smsCode: smsCode,
     })
     this.checkSmsCode(smsCode)
   }
 
-  getPassword = (password) => {
+  getPassword = password => {
     this.setState({
-    password: password
+      password: password,
     })
     this.checkPassword(password)
   }
 
-  getPasswordConsistent = (passwordConsistent) => {
+  getPasswordConsistent = passwordConsistent => {
     this.setState({
-      passwordConsistent: passwordConsistent
+      passwordConsistent: passwordConsistent,
     })
     this.checkpasswordConsistent()
   }
 
-  checkUsername = (username) => {
+  checkUsername = username => {
     if (!username) {
       this.props.usernameIsRequired()
     } else {
@@ -77,8 +76,8 @@ class SignupContainer extends Component {
     }
   }
 
-  checkPhoneNum = (phoneNum) => {
-    const phoneNumPattern =  /^1\d{10}$/
+  checkPhoneNum = phoneNum => {
+    const phoneNumPattern = /^1\d{10}$/
     if (!phoneNumPattern.test(phoneNum)) {
       this.props.phoneNumNotValid()
     } else {
@@ -86,7 +85,7 @@ class SignupContainer extends Component {
     }
   }
 
-  checkPassword = (password) => {
+  checkPassword = password => {
     if (password.length < 6) {
       this.props.passwordTooShort()
     } else {
@@ -104,7 +103,7 @@ class SignupContainer extends Component {
     }
   }
 
-  checkSmsCode = (smsCode) => {
+  checkSmsCode = smsCode => {
     if (!smsCode) {
       this.props.smsCodeIsRequired()
     } else {
@@ -112,10 +111,10 @@ class SignupContainer extends Component {
     }
   }
 
-  recheckForm = function *() {
+  recheckForm = function*() {
     let userInfo = yield
 
-    let { username, phoneNum, password, passwordConsistent, smsCode } = userInfo
+    let {username, phoneNum, password, passwordConsistent, smsCode} = userInfo
     this.checkUsername(username)
     this.checkPhoneNum(phoneNum)
     this.checkSmsCode(smsCode)
@@ -124,9 +123,19 @@ class SignupContainer extends Component {
 
     yield
 
-    let { phoneNumIsValid, passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.signUpState
+    let {
+      phoneNumIsValid,
+      passwordIsValid,
+      passwordConsistentIsValid,
+      smsCodeIsValid,
+    } = this.props.signUpState
 
-    if (phoneNumIsValid && smsCodeIsValid && passwordIsValid && passwordConsistentIsValid) {
+    if (
+      phoneNumIsValid &&
+      smsCodeIsValid &&
+      passwordIsValid &&
+      passwordConsistentIsValid
+    ) {
       console.log('通过验证')
 
       this.props.signup(userInfo)
@@ -134,7 +143,6 @@ class SignupContainer extends Component {
       console.log('未通过验证')
     }
   }
-
 
   handleSubmit = () => {
     let recheck = this.recheckForm()
@@ -147,8 +155,8 @@ class SignupContainer extends Component {
     }, 50)
   }
 
-  render () {
-    const { isAuthenticated } = this.props.currentUser
+  render() {
+    const {isAuthenticated} = this.props.currentUser
     const refererState = this.props.location.state
 
     let refererPath
@@ -168,9 +176,7 @@ class SignupContainer extends Component {
         this.props.history.goBack()
         return null
       }
-      return (
-        <Redirect to={refererPath} />
-      )
+      return <Redirect to={refererPath} />
     }
     return (
       <Signup
@@ -198,12 +204,12 @@ SignupContainer.PropTypes = {
   phoneNumNotValid: PropTypes.func.isRequired,
   phoneNumIsValid: PropTypes.func.isRequired,
   smsCodeIsRequired: PropTypes.func.isRequired,
-  smsCodeIsValid: PropTypes.func.isRequired
+  smsCodeIsValid: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
-  signUpState: getFormState(state)
+  signUpState: getFormState(state),
 })
 
 export default connect(mapStateToProps, {
@@ -218,5 +224,5 @@ export default connect(mapStateToProps, {
   phoneNumNotValid,
   phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid
+  smsCodeIsValid,
 })(SignupContainer)

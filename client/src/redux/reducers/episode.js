@@ -2,13 +2,13 @@ const initialState = {
   status: 'LOADING',
   doc: '',
   vlink: '',
-  title: ''
+  title: '',
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FETCH_STARTED': {
-      return { status: 'LOADING' }
+      return {status: 'LOADING'}
     }
     case 'FETCH_SUCCESS': {
       return {
@@ -16,7 +16,7 @@ export default (state = initialState, action = {}) => {
         status: 'SUCCESS',
         doc: action.res && action.res.doc,
         vlink: action.res && action.res.vlink,
-        title: action.res && action.res.title
+        title: action.res && action.res.title,
       }
     }
     case 'FETCH_FAILURE': {

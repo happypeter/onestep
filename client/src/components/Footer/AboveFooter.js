@@ -14,7 +14,7 @@ export default () => (
 )
 
 const Hero = styled.div`
-  background-color: #00BCD4;
+  background-color: #00bcd4;
 `
 
 const AboveWrap = styled.div`
@@ -37,7 +37,7 @@ const TextWrap = styled.div`
   font-size: 1em;
   opacity: 0.52;
   font-family: ArialRoundedMTBold;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1024px) {
     font-size: 3em;
   }

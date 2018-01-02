@@ -4,22 +4,18 @@ import styled from 'styled-components'
 export default () => (
   <Hero>
     <FooterWrap>
-      <WelcomeWrap>
-        欢迎添加 Peter 的微信：happypeter1983
-      </WelcomeWrap>
-      <ICPWrap>
-        冀ICP备15007992号-3
-      </ICPWrap>
+      <WelcomeWrap>欢迎添加 Peter 的微信：happypeter1983</WelcomeWrap>
+      <ICPWrap>冀ICP备15007992号-3</ICPWrap>
     </FooterWrap>
   </Hero>
 )
 
 const Hero = styled.div`
-  background-color: #2A3745;
+  background-color: #2a3745;
 `
 
 const FooterWrap = styled.div`
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-weight: 300;
   padding: 48px 24px;

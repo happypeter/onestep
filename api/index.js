@@ -8,11 +8,11 @@ const config = require('./config/config')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 mongoose.connect(config.url, {
-  useMongoClient: true
+  useMongoClient: true,
 })
 const db = mongoose.connection
 db.on('error', console.log)
-db.once('open', function () {
+db.once('open', function() {
   require('./models/user')
   require('./models/contract')
   console.log('success!')
@@ -25,24 +25,24 @@ if (!isProduction) {
 }
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}))
 app.use('/', cors(), apiRouter)
 
 // 处理开发环境报错
 if (!isProduction) {
-  app.use(function (err, req, res, next) {
+  app.use(function(err, req, res, next) {
     console.log(err.stack)
 
     res.status(err.status || 500)
-    res.json({ success: false, errorMsg: err.message })
+    res.json({success: false, errorMsg: err.message})
   })
 }
 
 // 处理生产环境报错
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.log(err.stack)
   res.status(err.status || 500)
-  res.json({ success: false, errorMsg: err.message })
+  res.json({success: false, errorMsg: err.message})
 })
 
 app.listen(3001, () => console.log('running on port 3001...'))

@@ -5,7 +5,7 @@ const initialState = {
   showUnhandledErrNotification: false,
   showInvalidTokenNotification: false,
   showResetPasswordNotification: false,
-  showNotPaidNotification: false
+  showNotPaidNotification: false,
 }
 
 export default (state = initialState, action = {}) => {
@@ -13,72 +13,72 @@ export default (state = initialState, action = {}) => {
     case 'SHOW_LOGIN_NOTIFICATION':
       return {
         ...state,
-        showLoginNotification: true
+        showLoginNotification: true,
       }
     case 'SHOW_SIGNUP_NOTIFICATION':
       return {
         ...state,
-        showSignupNotification: true
+        showSignupNotification: true,
       }
     case 'SHOW_LOGOUT_NOTIFICATION':
       return {
         ...state,
-        showLogoutNotification: true
+        showLogoutNotification: true,
       }
     case 'SHOW_INVALID_TOKEN_NOTIFICATION':
       return {
         ...state,
-        showInvalidTokenNotification: true
+        showInvalidTokenNotification: true,
       }
     case 'SHOW_RESET_PASSWORD_NOTIFICATION':
       return {
         ...state,
-        showResetPasswordNotification: true
+        showResetPasswordNotification: true,
       }
     case 'RM_LOGOUT_NOTIFICATION':
       return {
         ...state,
-        showLogoutNotification: false
+        showLogoutNotification: false,
       }
     case 'RM_LOGIN_NOTIFICATION':
       return {
         ...state,
-        showLoginNotification: false
+        showLoginNotification: false,
       }
     case 'RM_SIGNUP_NOTIFICATION':
       return {
         ...state,
-        showSignupNotification: false
+        showSignupNotification: false,
       }
     case 'RM_INVALID_TOKEN_NOTIFICATION':
       return {
         ...state,
-        showInvalidTokenNotification: false
+        showInvalidTokenNotification: false,
       }
     case 'RM_RESET_PASSWORD_NOTIFICATION':
       return {
         ...state,
-        showResetPasswordNotification: false
+        showResetPasswordNotification: false,
       }
     case 'SHOW_NOT_PAID_NOTIFICATION':
       return {
         ...state,
-        showNotPaidNotification: true
+        showNotPaidNotification: true,
       }
     case 'RM_NOT_PAID_NOTIFICATION':
       return {
         ...state,
-        showNotPaidNotification: false
+        showNotPaidNotification: false,
       }
     case 'SHOW_UNHANDLED_ERR_NOTIFICATION':
       return {
         ...state,
-        showUnhandledErrNotification: true
+        showUnhandledErrNotification: true,
       }
     case 'RM_UNHANDLED_ERR_NOTIFICATION':
       return {
         ...state,
-        showUnhandledErrNotification: false
+        showUnhandledErrNotification: false,
       }
     default:
       return state

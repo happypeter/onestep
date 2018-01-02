@@ -1,23 +1,22 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import Button from 'material-ui/Button'
 import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
-import Tabs, { Tab } from 'material-ui/Tabs'
+import Tabs, {Tab} from 'material-ui/Tabs'
 import styled from 'styled-components'
 
 class Login extends Component {
-
-  getUsername = (e) => {
+  getUsername = e => {
     this.props.getUsername(e.target.value)
   }
 
-  getPhoneNum = (e) => {
+  getPhoneNum = e => {
     this.props.getPhoneNum(e.target.value)
   }
 
-  getPassword = (e) => {
+  getPassword = e => {
     if (typeof e === 'string') {
       this.props.getPassword(e)
       return
@@ -25,7 +24,7 @@ class Login extends Component {
     this.props.getPassword(e.target.value)
   }
 
-  getPasswordConsistent = (e) => {
+  getPasswordConsistent = e => {
     if (typeof e === 'string') {
       this.props.getPasswordConsistent(e)
       return
@@ -33,30 +32,30 @@ class Login extends Component {
     this.props.getPasswordConsistent(e.target.value)
   }
 
-  getSmsCode = (e) => {
+  getSmsCode = e => {
     this.props.getSmsCode(e.target.value)
   }
 
   alter = (event, value) => {
-    this.props.alter({ value })
+    this.props.alter({value})
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     this.props.onSubmit()
   }
 
-  enterToSubmitPhone = (event) => {
+  enterToSubmitPhone = event => {
     if (event.which !== 13) return
     this.getPassword(event.target.value)
   }
 
-  enterToSubmitRegularUser = (event) => {
+  enterToSubmitRegularUser = event => {
     if (event.which !== 13) return
     this.getPasswordConsistent(event.target.value)
   }
 
-  render () {
+  render() {
     const value = this.props.tabValue
 
     return (
@@ -68,73 +67,67 @@ class Login extends Component {
             value={value}
             onChange={this.alter}
             indicatorColor={'primary'}
-            centered
-            >
-              <Tab label={'手机登录'} />
-              <Tab label={'老用户'} />
+            centered>
+            <Tab label={'手机登录'} />
+            <Tab label={'老用户'} />
           </TabsWrap>
-          {value === 0 &&
-          <FromWrap  onSubmit={this.handleSubmit}>
-
-            <FormItem
-              error={this.props.errorText.phoneNum}
-              htmlFor={'phoneNum'}
-              inputLabel={'手机号'}
-              onBlur={this.getPhoneNum}
-              formHelperText={this.props.errorText.phoneNum}
-            />
-
-            <FormItem
-              error={this.props.errorText.password}
-              htmlFor={'password'}
-              inputLabel={'密码'}
-              onBlur={this.getPassword}
-              onKeyDown={this.enterToSubmitPhone}
-              type={'password'}
-              formHelperText={this.props.errorText.password}
-            />
-
-            <ActionButton
-              raised
-              type='submit'
-              >
-              登录
-            </ActionButton>
-
-      </FromWrap>
-      }
-      {value === 1 &&
-      <FromWrap  onSubmit={this.handleSubmit}>
-         <TextFieldWrap>
-           <FormItem
-             error={this.props.errorText.username}
-             htmlFor={'username'}
-             inputLabel={'用户名'}
-             onBlur={this.getUsername}
-             formHelperText={this.props.errorText.username}
-           />
-           </TextFieldWrap>
-
-           <FormItem
-             error={this.props.errorText.phoneNum}
-             htmlFor={'phoneNum'}
-             inputLabel={'请绑定手机号'}
-             onBlur={this.getPhoneNum}
-             formHelperText={this.props.errorText.phoneNum}
-           />
-
-            <TextFieldWrap>
+          {value === 0 && (
+            <FromWrap onSubmit={this.handleSubmit}>
               <FormItem
-                error={this.props.errorText.smsCode}
-                htmlFor={'smsCode'}
-                inputLabel='验证码'
-                onBlur={this.getSmsCode}
-                formHelperText={this.props.errorText.smsCode}
+                error={this.props.errorText.phoneNum}
+                htmlFor={'phoneNum'}
+                inputLabel={'手机号'}
+                onBlur={this.getPhoneNum}
+                formHelperText={this.props.errorText.phoneNum}
               />
-              <SmsSendContainer
-                phoneNumIsValid={this.props.phoneNumIsValid}
-                phoneNum={this.props.phoneNum}
+
+              <FormItem
+                error={this.props.errorText.password}
+                htmlFor={'password'}
+                inputLabel={'密码'}
+                onBlur={this.getPassword}
+                onKeyDown={this.enterToSubmitPhone}
+                type={'password'}
+                formHelperText={this.props.errorText.password}
               />
+
+              <ActionButton raised type="submit">
+                登录
+              </ActionButton>
+            </FromWrap>
+          )}
+          {value === 1 && (
+            <FromWrap onSubmit={this.handleSubmit}>
+              <TextFieldWrap>
+                <FormItem
+                  error={this.props.errorText.username}
+                  htmlFor={'username'}
+                  inputLabel={'用户名'}
+                  onBlur={this.getUsername}
+                  formHelperText={this.props.errorText.username}
+                />
+              </TextFieldWrap>
+
+              <FormItem
+                error={this.props.errorText.phoneNum}
+                htmlFor={'phoneNum'}
+                inputLabel={'请绑定手机号'}
+                onBlur={this.getPhoneNum}
+                formHelperText={this.props.errorText.phoneNum}
+              />
+
+              <TextFieldWrap>
+                <FormItem
+                  error={this.props.errorText.smsCode}
+                  htmlFor={'smsCode'}
+                  inputLabel="验证码"
+                  onBlur={this.getSmsCode}
+                  formHelperText={this.props.errorText.smsCode}
+                />
+                <SmsSendContainer
+                  phoneNumIsValid={this.props.phoneNumIsValid}
+                  phoneNum={this.props.phoneNum}
+                />
               </TextFieldWrap>
 
               <FormItem
@@ -156,22 +149,18 @@ class Login extends Component {
                   type={'password'}
                   formHelperText={this.props.errorText.passwordConsistent}
                 />
-
               </TextFieldWrap>
 
-              <ActionButton
-                raised
-                type='submit'
-              >
+              <ActionButton raised type="submit">
                 登录
               </ActionButton>
             </FromWrap>
-          }
-          </CardWarp>
-          <Footer />
-        </LoginWrap>
-      )
-    }
+          )}
+        </CardWarp>
+        <Footer />
+      </LoginWrap>
+    )
+  }
 }
 
 export default Login
@@ -195,7 +184,7 @@ const TabsHeader = styled.div`
   margin-bottom: 2em;
   width: 380px;
   height: 2.5em;
-  background-color: #00BCD4;
+  background-color: #00bcd4;
   flex-shrink: 0;
 `
 
@@ -203,7 +192,7 @@ const TabsWrap = styled(Tabs)`
   && {
     margin: 0 80px;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     flex-shrink: 1;
   }
 
@@ -246,8 +235,8 @@ const TextFieldWrap = styled.div`
 
 const ActionButton = styled(Button)`
   && {
-    background-color: #00BCD4;
-    color: #FFFFFF;
+    background-color: #00bcd4;
+    color: #ffffff;
     width: 100%;
     margin-top: 1.5em;
   }

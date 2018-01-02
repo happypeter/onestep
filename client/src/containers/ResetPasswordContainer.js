@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import ResetPassword from '../components/Profile/ResetPassword'
-import { resetPassword } from '../redux/actions/authAction'
+import {resetPassword} from '../redux/actions/authAction'
 import {
   formErrInit,
   passwordTooShort,
@@ -13,52 +13,51 @@ import {
   // phoneNumNotValid,
   // phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid
+  smsCodeIsValid,
 } from '../redux/actions/formAction'
 import PropTypes from 'prop-types'
 
 class ResetPasswordContainer extends Component {
-
   state = {
     phoneNum: '',
     smsCode: '',
     password: '',
-    passwordConsistent: ''
+    passwordConsistent: '',
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.formErrInit()
     let phoneNum = window.sessionStorage.getItem('user')
     this.setState({
       phoneNum: phoneNum,
       smsCode: '',
       password: '',
-      passwordConsistent: ''
+      passwordConsistent: '',
     })
   }
 
-  getSmsCode = (smsCode) => {
+  getSmsCode = smsCode => {
     this.setState({
-      smsCode: smsCode
+      smsCode: smsCode,
     })
     this.checkSmsCode(smsCode)
   }
 
-  getPassword = (password) => {
+  getPassword = password => {
     this.setState({
-    password: password
+      password: password,
     })
     this.checkPassword(password)
   }
 
-  getPasswordConsistent = (passwordConsistent) => {
+  getPasswordConsistent = passwordConsistent => {
     this.setState({
-      passwordConsistent: passwordConsistent
+      passwordConsistent: passwordConsistent,
     })
     this.checkpasswordConsistent()
   }
 
-  checkPassword = (password) => {
+  checkPassword = password => {
     if (password.length < 6) {
       this.props.passwordTooShort()
     } else {
@@ -76,7 +75,7 @@ class ResetPasswordContainer extends Component {
     }
   }
 
-  checkSmsCode = (smsCode) => {
+  checkSmsCode = smsCode => {
     if (!smsCode) {
       this.props.smsCodeIsRequired()
     } else {
@@ -84,10 +83,10 @@ class ResetPasswordContainer extends Component {
     }
   }
 
-  recheckForm = function *() {
+  recheckForm = function*() {
     let userInfo = yield
 
-    let { password, passwordConsistent, smsCode } = userInfo
+    let {password, passwordConsistent, smsCode} = userInfo
     // this.checkPhoneNum(phoneNum)
     this.checkSmsCode(smsCode)
     this.checkPassword(password)
@@ -95,7 +94,11 @@ class ResetPasswordContainer extends Component {
 
     yield
 
-    let { passwordIsValid, passwordConsistentIsValid, smsCodeIsValid } = this.props.signUpState
+    let {
+      passwordIsValid,
+      passwordConsistentIsValid,
+      smsCodeIsValid,
+    } = this.props.signUpState
 
     if (smsCodeIsValid && passwordIsValid && passwordConsistentIsValid) {
       console.log('通过验证')
@@ -117,7 +120,7 @@ class ResetPasswordContainer extends Component {
     }, 50)
   }
 
-  render () {
+  render() {
     return (
       <ResetPassword
         onSubmit={this.handleSubmit}
@@ -147,9 +150,9 @@ ResetPasswordContainer.PropTypes = {
   smsCodeIsValid: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.fakeAuth,
-  signUpState: state.form
+  signUpState: state.form,
 })
 
 export default connect(mapStateToProps, {
@@ -164,5 +167,5 @@ export default connect(mapStateToProps, {
   // phoneNumNotValid,
   // phoneNumIsValid,
   smsCodeIsRequired,
-  smsCodeIsValid
+  smsCodeIsValid,
 })(ResetPasswordContainer)

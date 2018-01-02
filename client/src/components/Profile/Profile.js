@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 
-export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
+export default ({paidCourses, latestExpireDate, total, status, phoneNum}) => {
   switch (status) {
     case 'LOADING': {
       return (
@@ -23,42 +23,34 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
 
           <AvatarHero>
             <AvatarWrap>
-              <img src={defaultAvatar} alt='nickname' />
+              <img src={defaultAvatar} alt="nickname" />
               <Nickname>{phoneNum}</Nickname>
             </AvatarWrap>
           </AvatarHero>
 
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {
-              (paidCourses && paidCourses.length !== 0)
-              ? (
-                <CourseListWrap>
-                  {paidCourses.map((item, i) => (
-                    <CourseCard
-                      link={item.link}
-                      key={item.key}
-                      publishedAt={item.publishedAt}
-                      cover={item.cover}
-                      title={item.title}
-                    />
+            {paidCourses && paidCourses.length !== 0 ? (
+              <CourseListWrap>
+                {paidCourses.map((item, i) => (
+                  <CourseCard
+                    link={item.link}
+                    key={item.key}
+                    publishedAt={item.publishedAt}
+                    cover={item.cover}
+                    title={item.title}
+                  />
                 ))}
-                </CourseListWrap>
-            )
-              : (
-                <div>还没有购买过任何课程</div>
-              )
-            }
+              </CourseListWrap>
+            ) : (
+              <div>还没有购买过任何课程</div>
+            )}
             <SubTitle>会员</SubTitle>
-            {
-                latestExpireDate
-                ? (
-                  <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
-                )
-                : (
-                  <MembershipMsg>还不是好奇猫会员</MembershipMsg>
-                )
-              }
+            {latestExpireDate ? (
+              <MembershipMsg>订阅中，可以学习网站上的所有课程</MembershipMsg>
+            ) : (
+              <MembershipMsg>还不是好奇猫会员</MembershipMsg>
+            )}
             {/* {
                 (total !== 0)
                 ? (
@@ -91,7 +83,7 @@ export default ({ paidCourses, latestExpireDate, total, status, phoneNum }) => {
 
 const Wrap = styled.div`
   min-height: 100vh;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -99,11 +91,11 @@ const Wrap = styled.div`
 `
 
 const AvatarHero = styled.div`
-  background-color: #00BCD4;
+  background-color: #00bcd4;
 `
 
 const AvatarWrap = styled.div`
-  background-color: #00BCD4;
+  background-color: #00bcd4;
   height: 200px;
   align-items: center;
   flex-grow: 0;
@@ -132,7 +124,7 @@ const AvatarWrap = styled.div`
 
 const Nickname = styled.span`
   font-size: 1em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1024px) {
     font-size: 2em;
   }
@@ -159,7 +151,7 @@ const SubTitle = styled.div`
   margin-bottom: 23px;
   text-align: center;
   font-size: 2em;
-  border-bottom: 7px solid #00BCD4;
+  border-bottom: 7px solid #00bcd4;
   @media (min-width: 1024px) {
     margin-top: 87px;
     margin-bottom: 47px;
@@ -167,7 +159,7 @@ const SubTitle = styled.div`
 `
 
 const MembershipMsg = styled.span`
-  color: #00BCD4;
+  color: #00bcd4;
   font-size: 1em;
   margin: 23px auto;
   @media (min-width: 1024px) {
