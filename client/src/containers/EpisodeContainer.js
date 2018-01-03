@@ -20,7 +20,6 @@ class EpisodeContainer extends Component {
   }
 
   render() {
-    console.log('wwwithRouterithRouterithRouter');
     // console.log(this.props);
     const {episode: {status}, match: {params: {episodeName}}} = this.props
 
