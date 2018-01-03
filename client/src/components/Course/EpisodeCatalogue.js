@@ -61,6 +61,9 @@ const EpisodeLink = styled(Link)`
   img {
     width: 19px;
   }
+  :hover {
+    border-bottom: 1px solid #00bcd4;
+  }
   @media (min-width: 1024px) {
     margin-left: 22px;
     padding-right: 100px;
