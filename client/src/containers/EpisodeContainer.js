@@ -15,13 +15,14 @@ const AsyncEpisode = Loadable({
 
 class EpisodeContainer extends Component {
   componentWillMount() {
-    let {courseName, episodeName} = this.props.match.params
+    const {courseName, episodeName} = this.props.match.params
     this.props.fetchEpisode({courseName, episodeName})
   }
 
   render() {
+    console.log('wwwithRouterithRouterithRouter');
     // console.log(this.props);
-    let {episode: {status}, match: {params: {episodeName}}} = this.props
+    const {episode: {status}, match: {params: {episodeName}}} = this.props
 
     // 404: /path/whatever
     const match = matchPath(this.props.location.pathname, {
@@ -36,6 +37,7 @@ class EpisodeContainer extends Component {
         return <LoadingComponent />
       }
       case 'SUCCESS': {
+        const {courseName} = this.props.match.params
         const episodeState = this.props.episode
         // VideoJsOptions for this Course
         const EpisodeVideoJsOptions = {
@@ -64,6 +66,7 @@ class EpisodeContainer extends Component {
           <div>
             <AsyncEpisode
               episodeState={episodeState}
+              courseName={courseName}
               videoJsOptions={EpisodeVideoJsOptions}
             />
           </div>

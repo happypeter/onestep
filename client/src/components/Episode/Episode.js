@@ -3,24 +3,32 @@ import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+import SideCatalogue from './SideCatalogue'
+import {Link} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-export default ({videoJsOptions, episodeState: {doc, title}}) => (
+export default ({videoJsOptions, episodeState: {doc, title, courseCatalogue, name}, courseName}) => (
   <div>
     <TopHeader />
 
-    {/* <ContentWrap> */}
-      {/* <LeftWrap> */}
-        {/* <Title>{title}</Title> */}
-        {/* asdfadsfasdfasdf<br/>
-        asdfadsfasdfasdf<br/>
-        asdfadsfasdfasdf<br/>
-        asdfadsfasdfasdf<br/>
-        asdfadsfasdfasdf<br/>
-        asdfadsfasdfasdf<br/> */}
-      {/* </LeftWrap> */}
+    <ContentWrap>
+      <LeftWrap>
+        <CourseName to={`/${courseName}`}>{name}</CourseName>
+        {
+          courseCatalogue
+          ? courseCatalogue.map((item, i) => (
+            <SideCatalogue
+              key={item.header}
+              header={item.header}
+              section={item.section}
+              courseName={courseName}
+            />
+          ))
+          : null
+        }
+      </LeftWrap>
 
-      {/* <RightWrap> */}
+      <RightWrap>
         <Video>
           <VideoTitle>{title}</VideoTitle>
           <VideoPlayer {...videoJsOptions} />
@@ -29,8 +37,8 @@ export default ({videoJsOptions, episodeState: {doc, title}}) => (
         <Doc>
           <ReactMarkdown source={doc} />
         </Doc>
-      {/* </RightWrap> */}
-    {/* </ContentWrap> */}
+      </RightWrap>
+    </ContentWrap>
 
     <Footer />
   </div>
@@ -40,21 +48,24 @@ const ContentWrap = styled.div`
   display: flex;
   @media (min-width: 1024px) {
     width: 1024px;
+    margin: 0 auto;
     justify-content: space-between;
-    border: 1px solid red;
   }
 `
 
 const LeftWrap = styled.div`
-  border: 1px solid blue;
   @media (min-width: 1024px) {
     width: 204px;
     margin-left: 5em;
+    padding-top: 3.5em;
   }
 `
 
-const Title = styled.div`
-  color: #00BCD4;
+const CourseName = styled(Link)`
+  margin-left: 3.5em;
+  font-size: 1em;
+  color: #00bcd4;
+  text-decoration: none;
 `
 
 const RightWrap = styled.div`
@@ -67,8 +78,7 @@ const RightWrap = styled.div`
 const Video = styled.div`
   @media (min-width: 1024px) {
     box-sizing: border-box;
-    ${'' /* width: 100%; */}
-    width: 890px;
+    width: 100%;
     margin: 3.5em auto;
   }
 `
@@ -130,8 +140,7 @@ const Doc = styled.div`
     padding: 5px;
   }
   @media (min-width: 1024px) {
-    ${'' /* width: 590px; */}
-    width: 810px;
+    width: 590px;
     margin: 3.5em auto;
     padding: 2.5em;
     border-top: 2.7em solid #00bcd4;
