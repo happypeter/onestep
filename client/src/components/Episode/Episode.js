@@ -9,25 +9,66 @@ export default ({videoJsOptions, episodeState: {doc, title}}) => (
   <div>
     <TopHeader />
 
-    <VideoWrap>
-      <Video>
-        <VideoTitle>{title}</VideoTitle>
-        <VideoPlayer {...videoJsOptions} />
-      </Video>
-    </VideoWrap>
+    {/* <ContentWrap> */}
+      {/* <LeftWrap> */}
+        {/* <Title>{title}</Title> */}
+        {/* asdfadsfasdfasdf<br/>
+        asdfadsfasdfasdf<br/>
+        asdfadsfasdfasdf<br/>
+        asdfadsfasdfasdf<br/>
+        asdfadsfasdfasdf<br/>
+        asdfadsfasdfasdf<br/> */}
+      {/* </LeftWrap> */}
 
-    <Doc>
-      <ReactMarkdown source={doc} />
-    </Doc>
+      {/* <RightWrap> */}
+        <Video>
+          <VideoTitle>{title}</VideoTitle>
+          <VideoPlayer {...videoJsOptions} />
+        </Video>
+
+        <Doc>
+          <ReactMarkdown source={doc} />
+        </Doc>
+      {/* </RightWrap> */}
+    {/* </ContentWrap> */}
 
     <Footer />
   </div>
 )
 
-const VideoWrap = styled.div`
+const ContentWrap = styled.div`
+  display: flex;
+  @media (min-width: 1024px) {
+    width: 1024px;
+    justify-content: space-between;
+    border: 1px solid red;
+  }
+`
+
+const LeftWrap = styled.div`
+  border: 1px solid blue;
+  @media (min-width: 1024px) {
+    width: 204px;
+    margin-left: 5em;
+  }
+`
+
+const Title = styled.div`
+  color: #00BCD4;
+`
+
+const RightWrap = styled.div`
+  @media (min-width: 1024px) {
+    width: 670px;
+    margin-right: 5em;
+  }
+`
+
+const Video = styled.div`
   @media (min-width: 1024px) {
     box-sizing: border-box;
-    width: 1024px;
+    ${'' /* width: 100%; */}
+    width: 890px;
     margin: 3.5em auto;
   }
 `
@@ -44,13 +85,6 @@ const VideoTitle = styled.div`
     height: 2.5em;
     line-height: 2.5em;
     font-size: 1.25em;
-  }
-`
-
-const Video = styled.div`
-  margin: 0 2em;
-  @media (min-width: 1024px) {
-    margin: 0 23%;
   }
 `
 
@@ -96,7 +130,8 @@ const Doc = styled.div`
     padding: 5px;
   }
   @media (min-width: 1024px) {
-    width: 870px;
+    ${'' /* width: 590px; */}
+    width: 810px;
     margin: 3.5em auto;
     padding: 2.5em;
     border-top: 2.7em solid #00bcd4;
