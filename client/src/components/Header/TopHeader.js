@@ -70,11 +70,11 @@ class TopHeader extends Component {
         <HomeWrap>
           <img
             src={logoSimple}
-            alt="logo-simple"
-            width="55px"
+            alt='logo-simple'
+            width='35.35px'
             onClick={this.backToHome}
           />
-          <ButtonLink to="/">首页</ButtonLink>
+          <ButtonLink to='/'>好奇猫</ButtonLink>
         </HomeWrap>
         {this.props.sideButtons ? LogoutButtons : LoginButtons}
       </TopHeaderWrap>
@@ -134,6 +134,7 @@ const HomeWrap = styled.div`
   display: flex;
   align-items: center;
   margin-left: 1em;
+  cursor: pointer;
   @media (min-width: 1024px) {
     font-size: 1.56em;
     margin-left: 4em;

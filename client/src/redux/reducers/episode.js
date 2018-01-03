@@ -3,6 +3,7 @@ const initialState = {
   doc: '',
   vlink: '',
   title: '',
+  courseCatalogue: ''
 }
 
 export default (state = initialState, action = {}) => {
@@ -17,6 +18,8 @@ export default (state = initialState, action = {}) => {
         doc: action.res && action.res.doc,
         vlink: action.res && action.res.vlink,
         title: action.res && action.res.title,
+        name: action.res && action.res.name,
+        courseCatalogue: action.res && action.res.courseCatalogue
       }
     }
     case 'FETCH_FAILURE': {

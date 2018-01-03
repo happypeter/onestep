@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
 import EpisodeCatalogue from './EpisodeCatalogue'
+import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 class Course extends Component {
@@ -51,36 +52,29 @@ class Course extends Component {
           </Video>
         </VideoWrap>
 
-        <MsgHero>
-          <MsgWrap>
-            <MsgArea>
-              <MsgIntro>{intro}</MsgIntro>
-              <MsgSmallCards>
-                <MsgSmallCard>
-                  <CardTitle>适合观众</CardTitle>
-                  <CardContent>{writingToWho}</CardContent>
-                </MsgSmallCard>
-                <MsgSmallCard>
-                  <CardTitle>知识点</CardTitle>
-                  <CardContent>{learningGoal}</CardContent>
-                </MsgSmallCard>
-              </MsgSmallCards>
-            </MsgArea>
-          </MsgWrap>
-        </MsgHero>
+        <MsgWrap>
+          <MsgArea>
+            <CourseMsgIntro
+              title={'一句话简介'}
+              intro={intro}
+            />
+            <CourseMsgIntro
+              title={'适合观众'}
+              intro={writingToWho}
+            />
+            <CourseMsgIntro
+              title={'知识点'}
+              intro={learningGoal}
+            />
+          </MsgArea>
+        </MsgWrap>
 
         <CatalogueHero>
-          <CatalogueWrap>{episode}</CatalogueWrap>
+          <CatalogueWrap>{ episode }</CatalogueWrap>
           <MsgBigCard>
-            <PriceArea>
-              <Price>{price}元</Price>
-              <p>本课程</p>
-            </PriceArea>
-            <p>课程永久学习权限</p>
-            <Splitter />
-            <p>源代码</p>
+            <Price>{price}元</Price>
             <RaisedButtonWrap raised onClick={() => this.pay(price)}>
-              购买
+                购买本课程
             </RaisedButtonWrap>
           </MsgBigCard>
         </CatalogueHero>
@@ -141,14 +135,13 @@ const Video = styled.div`
   }
 `
 
-const MsgHero = styled.div`
-  background-color: #f7f7f7;
-`
-
 const MsgWrap = styled.div`
   flex-shrink: 0;
+  margin-top: 81px;
   @media (min-width: 1024px) {
     display: flex;
+    margin: 81px auto 0 auto;
+    width: 620px;
   }
 `
 
@@ -158,64 +151,7 @@ const MsgArea = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
-    margin: auto 28.5%;
-    min-width: 600px;
   }
-`
-
-const MsgIntro = styled.div`
-  color: #212121;
-  margin: 0px auto;
-  margin-top: 44px;
-  margin-left: 0;
-  margin-right: 10px;
-  padding: 0.5em 1em;
-  margin-bottom: 14px;
-  font-size: 1em;
-  border-left: 7px solid #00bcd4;
-  @media (min-width: 1024px) {
-    padding-right: 30px;
-  }
-`
-
-const MsgSmallCards = styled.div`
-  display: flex;
-  padding: 30px 40px 55px;
-`
-
-const MsgSmallCard = styled.div`
-  width: 35%;
-  min-height: 215px;
-  text-align: center;
-  flex-shrink: 0;
-  margin-bottom: 1.5em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  @media (min-width: 1024px) {
-    width: 187px;
-    margin: 0 30px;
-  }
-`
-
-const CardTitle = styled.div`
-  box-sizing: border-box;
-  height: 36px;
-  padding: 10px;
-  background-color: #00b4d0;
-  font-size: 1em;
-  line-height: 1em;
-  color: #ffffff;
-`
-
-const CardContent = styled.p`
-  font-size: 0.8em;
-  line-height: 1.6em;
-  margin: 0.5em;
-  padding: 0.5em;
-  text-align: left;
-  color: #212121;
 `
 
 const CatalogueHero = styled.div`
@@ -230,7 +166,7 @@ const CatalogueWrap = styled.div`
   margin: 0 2em 3em 2em;
   text-decoration: none;
   @media (min-width: 1024px) {
-    margin: 6.375em 23% 3em 23%;
+    margin: 81px 23% 48px 23%;
   }
 `
 
@@ -246,10 +182,7 @@ const MsgBigCard = styled.div`
   text-align: center;
   margin: 0 2em 2em 2em;
   padding-bottom: 1em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
+  background-color: #FFFFFF;
   p {
     font-weight: 300;
     font-size: 0.875em;
@@ -264,35 +197,17 @@ const MsgBigCard = styled.div`
   }
 `
 
-const Splitter = styled.div`
-  flex-shrink: 0;
-  height: 1px;
-  margin: 0 16%;
-  opacity: 0.48;
-  background: #d8d8d8;
-`
-
 const RaisedButtonWrap = styled(Button)`
   && {
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
     margin: 1em 16%;
-    color: white;
-    background-color: #00b4d0;
-  }
-`
-
-const PriceArea = styled.div`
-  background-color: #00bcd4;
-  height: 40%;
-  padding: 1.75em;
-  color: #ffffff;
-  p {
-    font-weight: 400;
-    font-size: 1em;
-    color: #ffffff;
+    background-color: #00B4D0;
   }
 `
 
 const Price = styled.div`
-  font-size: 3em;
-  margin: 10px 30px;
+  font-size: 30px;
+  margin: 0 30px;
 `

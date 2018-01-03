@@ -11,9 +11,9 @@ export default ({header, section, courseName}) => (
       <h1>{header}</h1>
     </EpisodeChapter>
     {section.map(t => (
-      <EpisodeLink key={t.link}>
+      <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>
         <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-        <EpisodeTitle to={`/${courseName}/${t.link}`}>{t.title}</EpisodeTitle>
+        <EpisodeTitle>{t.title}</EpisodeTitle>
       </EpisodeLink>
     ))}
   </EpisodesWrap>
@@ -27,7 +27,7 @@ const EpisodesWrap = styled.div`
   color: #212121;
   border-radius: 40px;
   @media (min-width: 1024px) {
-    padding: 5px 50px;
+    padding: 5px 0;
   }
 `
 
@@ -51,24 +51,29 @@ const EpisodeChapter = styled.div`
   }
 `
 
-const EpisodeLink = styled.div`
+const EpisodeLink = styled(Link)`
   display: flex;
   margin-left: 20px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid #D8D8D8;
+  cursor: pointer;
+  text-decoration: none;
   img {
     width: 19px;
   }
+  :hover {
+    border-bottom: 1px solid #00bcd4;
+  }
   @media (min-width: 1024px) {
     margin-left: 22px;
+    padding-right: 100px;
     font-weight: 400;
   }
 `
 
-const EpisodeTitle = styled(Link)`
+const EpisodeTitle = styled.div`
   display: block;
   margin-left: 15px;
-  text-decoration: none;
   color: #000000;
   font-size: 1em;
   @media (min-width: 1024px) {

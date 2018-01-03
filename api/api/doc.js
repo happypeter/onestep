@@ -2,7 +2,7 @@ const Doc = require('../models/doc')
 const Course = require('../models/course')
 
 exports.getEpisode = (req, res) => {
-  ;({courseName, episodeName} = req.body)
+  ({courseName, episodeName} = req.body)
   Promise.all([
     Doc.findOne({title: courseName}),
     Course.findOne({courseName: courseName}),
@@ -18,8 +18,12 @@ exports.getEpisode = (req, res) => {
 
       let {vlink} = item[1]
 
+      let {name} = item[1]
+
+      let courseCatalogue = item[1].content
+
       let targetEpisode
-      item[1].content.find(chapter => {
+      courseCatalogue.find(chapter => {
         if (!chapter) throw new Error('no such a chapter')
 
         targetEpisode = chapter.toJSON().section.find(episode => {
@@ -39,6 +43,8 @@ exports.getEpisode = (req, res) => {
             doc,
             vlink,
             title,
+            name,
+            courseCatalogue
           })
         }
       }
