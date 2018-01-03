@@ -54,6 +54,8 @@ const ContentWrap = styled.div`
 `
 
 const LeftWrap = styled.div`
+  display: flex;
+  flex-direction: column;
   @media (min-width: 1024px) {
     width: 204px;
     margin-left: 5em;
@@ -62,7 +64,7 @@ const LeftWrap = styled.div`
 `
 
 const CourseName = styled(Link)`
-  margin-left: 3.5em;
+  margin: 0 auto;
   font-size: 1em;
   color: #00bcd4;
   text-decoration: none;
