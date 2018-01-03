@@ -4,27 +4,15 @@ import {Link} from 'react-router-dom'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
 export default ({header, section, courseName}) => (
-  <EpisodesWrap>
+  <div>
     {section.map(t => (
       <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>
         <img src={EpisodeIcon} alt={'EpisodeIcon'} />
         <EpisodeTitle>{t.title}</EpisodeTitle>
       </EpisodeLink>
     ))}
-  </EpisodesWrap>
+  </div>
 )
-
-const EpisodesWrap = styled.div`
-  margin: 10px;
-  padding: 5px;
-  text-decoration: none;
-  text-align: left;
-  color: #212121;
-  border-radius: 40px;
-  @media (min-width: 1024px) {
-    padding: 5px 0;
-  }
-`
 
 const EpisodeLink = styled(Link)`
   display: flex;
