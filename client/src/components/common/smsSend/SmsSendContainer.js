@@ -4,6 +4,7 @@ import SmsSend from './SmsSend'
 import {getSmsSendState} from '../../../redux/selectors/commonSelectors.js'
 import {
   sendMsg,
+  sendMsgforSignup,
   countdown,
   readyToSendMsg,
   smsSendInit,
@@ -54,7 +55,11 @@ class SmsSendContainer extends Component {
       return
     }
     // action
-    this.props.sendMsg(this.props.phoneNum)
+    if (this.props.checkUserExist) {
+      this.props.sendMsgforSignup(this.props.phoneNum)
+    } else {
+      this.props.sendMsg(this.props.phoneNum)
+    }
     this.timer()
   }
 
@@ -76,6 +81,7 @@ class SmsSendContainer extends Component {
 
 SmsSendContainer.PropTypes = {
   sendMsg: PropTypes.func.isRequired,
+  sendMsgforSignup: PropTypes.func.isRequired,
   countdown: PropTypes.func.isRequired,
   readyToSendMsg: PropTypes.func.isRequired,
   smsSendInit: PropTypes.func.isRequired,
@@ -87,6 +93,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   sendMsg,
+  sendMsgforSignup,
   countdown,
   readyToSendMsg,
   smsSendInit,

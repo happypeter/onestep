@@ -8,8 +8,39 @@ let generateToken = function(user) {
   return jwt.sign(user, config.jwtSecret, {expiresIn: config.expiresIn})
 }
 
+exports.smsCodeForSignup = (req, res) => {
+  const {phoneNum} = req.body
+
+  User.findOne({phoneNum: phoneNum})
+      .then(doc => {
+        if (doc) {
+          console.log('phoneNum already exists')
+          return res.status(403).json({
+            errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+            success: false
+          })
+        } else {
+          msg.send(req, res)
+        }
+      })
+}
+
 exports.signup = (req, res, next) => {
   const {password, phoneNum, smsCode} = req.body
+
+  User.findOne({phoneNum: phoneNum})
+    .then(doc => {
+      console.log('User.findOne({phoneNum: phoneNum})');
+      if (doc) {
+        console.log('phoneNum already exists')
+        return res.status(403).json({
+          errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+          success: false
+        })
+      }
+    }
+  )
+
   msg
     .check(phoneNum, smsCode)
     .then(msg => {

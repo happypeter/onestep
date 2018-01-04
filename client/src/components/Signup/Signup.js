@@ -61,6 +61,7 @@ class Signup extends Component {
             <SmsSendContainer
               phoneNumIsValid={this.props.phoneNumIsValid}
               phoneNum={this.props.phoneNum}
+              checkUserExist={true}
             />
           </TextFieldWrap>
 
