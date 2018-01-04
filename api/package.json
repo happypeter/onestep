@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "precommit": "git add . && lint-staged"
   },
   "author": "",
   "license": "ISC",
@@ -16,11 +16,9 @@
     "cors": "^2.8.1",
     "express": "^4.14.1",
     "jsonwebtoken": "^8.1.0",
+    "moment": "^2.20.1",
     "mongoose": "^4.12.5",
     "morgan": "^1.8.2"
-  },
-  "scripts": {
-    "precommit": "git add . && lint-staged"
   },
   "lint-staged": {
     "linters": {
