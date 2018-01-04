@@ -27,7 +27,7 @@ exports.send = (req, res) => {
       PhoneNumbers: phoneNum,
       SignName: config.SignName,
       TemplateCode: config.TemplateCode,
-      TemplateParam: `${'{"number":' + smsCode + '}'}`,
+      TemplateParam: `{"code": "${smsCode}"}`,
     })
     .then(
       function(smsRes) {
