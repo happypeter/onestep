@@ -1,5 +1,6 @@
 const SMSClient = require('@alicloud/sms-sdk')
 const config = require('../config/config')
+const moment = require('moment')
 // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
 const accessKeyId = config.accessKeyId
 const secretAccessKey = config.secretAccessKey
@@ -56,19 +57,8 @@ exports.send = (req, res) => {
 
 // check smsCode
 exports.check = (phoneNum, code) => {
-  let date = new Date()
-  // 转换格式
-  let sendDate = date
-    .toLocaleDateString()
-    .split('-')
-    .map(item => {
-      if (item < 10) {
-        return (item = '0' + item)
-      } else {
-        return item
-      }
-    })
-    .join('')
+  // 转换当下日期格式
+  let sendDate = moment().format().substr(0, 10).split('-').join('')
 
   let promise = new Promise((resolve, reject) => {
     // 查询短信发送详情

@@ -21,6 +21,7 @@ router.post('/profile', user.profile)
 
 // sms verification
 router.post('/msg', msg.send)
+router.post('/signupcode', user.smsCodeForSignup)
 
 // 课程展示接口
 router.get('/catalogue', catalogue.catalogue)
