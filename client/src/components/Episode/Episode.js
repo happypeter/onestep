@@ -58,6 +58,7 @@ const LeftWrap = styled.div`
   flex-direction: column;
   @media (min-width: 1024px) {
     width: 204px;
+    margin-right: 1em;
     margin-left: 5em;
     padding-top: 3.5em;
   }

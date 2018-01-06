@@ -39,12 +39,12 @@ const EpisodeTitle = styled.div`
   display: block;
   margin-left: 15px;
   color: #000000;
-  font-size: 1em;
+  font-size: 0.5em;
   word-break: break-word;
   @media (min-width: 1024px) {
     margin: 10px auto;
     margin-left: 24px;
     margin-right: 10px;
-    font-size: 1em;
+    font-size: 0.8em;
   }
 `
