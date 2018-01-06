@@ -14,9 +14,17 @@ const AsyncEpisode = Loadable({
 })
 
 class EpisodeContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const {courseName, episodeName} = this.props.match.params
     this.props.fetchEpisode({courseName, episodeName})
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.history.location !== this.props.location) {
+      let params = this.props.history.location.pathname.split('/')
+      const [ , courseName, episodeName] = params
+      this.props.fetchEpisode({courseName, episodeName})
+    }
   }
 
   render() {
