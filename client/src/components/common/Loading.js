@@ -28,7 +28,6 @@ export default props => {
     return (
       <Wrap>
         <Info>信息请求中...</Info>
-        <Footer />
       </Wrap>
     )
   } else {
