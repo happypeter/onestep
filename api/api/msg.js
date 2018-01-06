@@ -18,17 +18,13 @@ exports.send = (req, res) => {
   let smsCode = Math.random()
     .toString()
     .slice(-6)
-  while (smsCode.length !== 6) {
-    smsCode = Math.random()
-      .toString()
-      .slice(-6)
-  }
+  let jsonifySmsCode = JSON.stringify(smsCode)
   smsClient
     .sendSMS({
       PhoneNumbers: phoneNum,
       SignName: config.SignName,
       TemplateCode: config.TemplateCode,
-      TemplateParam: `{"code": "${JSON.stringify(smsCode)}"}`,
+      TemplateParam: `{"code":${jsonifySmsCode}}`,
     })
     .then(
       function(smsRes) {
