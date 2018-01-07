@@ -60,7 +60,7 @@ export function requireEpisodeAuth(Component) {
     }
   }
 
-  EpisodeAuthComponent.PropTypes = {
+  EpisodeAuthComponent.propTypes = {
     checkEpisodeAuth: PropTypes.func.isRequired,
     showNotPaidNotification: PropTypes.func.isRequired,
   }

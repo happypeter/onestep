@@ -101,7 +101,7 @@ class NotificationContainer extends Component {
   }
 }
 
-// NotificationContainer.PropTypes = {
+// NotificationContainer.propTypes = {
 //   removeLogoutNotification: PropTypes.func.isRequired,
 //   removeLoginNotification: PropTypes.func.isRequired,
 //   removeSignupNotification: PropTypes.func.isRequired,

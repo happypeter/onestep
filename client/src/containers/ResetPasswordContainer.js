@@ -136,7 +136,7 @@ class ResetPasswordContainer extends Component {
   }
 }
 
-ResetPasswordContainer.PropTypes = {
+ResetPasswordContainer.propTypes = {
   login: PropTypes.func.isRequired,
   passwordTooShort: PropTypes.func.isRequired,
   passwordIsValid: PropTypes.func.isRequired,

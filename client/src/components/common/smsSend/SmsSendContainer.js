@@ -79,7 +79,7 @@ class SmsSendContainer extends Component {
   }
 }
 
-SmsSendContainer.PropTypes = {
+SmsSendContainer.propTypes = {
   sendMsg: PropTypes.func.isRequired,
   sendMsgforSignup: PropTypes.func.isRequired,
   countdown: PropTypes.func.isRequired,

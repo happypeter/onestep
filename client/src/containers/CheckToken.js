@@ -30,7 +30,7 @@ export function requireAuthentication(Component) {
     }
   }
 
-  AuthenticatedComponent.PropTypes = {
+  AuthenticatedComponent.propTypes = {
     checkToken: PropTypes.func.isRequired,
   }
   const mapStateToProps = state => ({
