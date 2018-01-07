@@ -17,6 +17,10 @@
     "mongoose": "^4.12.5",
     "morgan": "^1.8.2"
   },
+  "scripts": {
+    "start": "nodemon index.js",
+    "precommit": "git add . && lint-staged"
+  },
   "lint-staged": {
     "linters": {
       "*.js": [

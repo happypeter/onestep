@@ -18,13 +18,12 @@ exports.send = (req, res) => {
   let smsCode = Math.random()
     .toString()
     .slice(-6)
-  let jsonifySmsCode = JSON.stringify(smsCode)
   smsClient
     .sendSMS({
       PhoneNumbers: phoneNum,
       SignName: config.SignName,
       TemplateCode: config.TemplateCode,
-      TemplateParam: `{"code":${jsonifySmsCode}}`,
+      TemplateParam: `{"code": "${smsCode}"}`,
     })
     .then(
       function(smsRes) {
@@ -44,7 +43,7 @@ exports.send = (req, res) => {
           errorMsg: err,
           success: false,
         })
-      }
+      },
     )
     .catch(err => {
       console.log(err)
@@ -54,7 +53,11 @@ exports.send = (req, res) => {
 // check smsCode
 exports.check = (phoneNum, code) => {
   // 转换当下日期格式
-  let sendDate = moment().format().substr(0, 10).split('-').join('')
+  let sendDate = moment()
+    .format()
+    .substr(0, 10)
+    .split('-')
+    .join('')
 
   let promise = new Promise((resolve, reject) => {
     // 查询短信发送详情
@@ -104,7 +107,7 @@ exports.check = (phoneNum, code) => {
           // 处理错误
           console.log(err)
           reject(err)
-        }
+        },
       )
   })
 

@@ -4,23 +4,23 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
   {
-    username: { type: String },
-    password: { type: String },
-    admin: { type: Boolean },
-    wechatId: { type: String },
-    phoneNum: { type: String },
-    avatar: { type: String },
-    contracts: [{type: Schema.Types.ObjectId, ref: 'Contract'}]
+    username: {type: String},
+    password: {type: String},
+    admin: {type: Boolean},
+    unionid: {type: String},
+    phoneNum: {type: String},
+    avatar: {type: String},
+    contracts: [{type: Schema.Types.ObjectId, ref: 'Contract'}],
   },
-  {timestamps: true}
+  {timestamps: true},
 )
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
   const user = this
   const SALT_FACTOR = 5
-  bcrypt.genSalt(SALT_FACTOR, function (err, salt) {
+  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
     if (err) return next(err)
-    bcrypt.hash(user.password, salt, function (err, hash) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
       if (err) return next(err)
       user.password = hash
       next()
@@ -28,9 +28,11 @@ UserSchema.pre('save', function (next) {
   })
 })
 
-UserSchema.methods.comparePassword = function (password, cb) {
-  bcrypt.compare(password, this.password, function (err, isMatch) {
-    if (err) { return cb(err) }
+UserSchema.methods.comparePassword = function(password, cb) {
+  bcrypt.compare(password, this.password, function(err, isMatch) {
+    if (err) {
+      return cb(err)
+    }
     cb(null, isMatch)
   })
 }

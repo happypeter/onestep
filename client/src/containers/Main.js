@@ -6,6 +6,7 @@ import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
 import {requireEpisodeAuth} from './CheckEpisodeAuth'
+import WeChatCallback from '../components/oauth/WeChatCallback'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -64,6 +65,7 @@ class Main extends Component {
           <Route path="/login" component={AsyncLogin} />
           <Route path="/signup" component={AsyncSignup} />
           <Route path="/pay" component={AsyncPay} />
+          <Route path="/oauth/callback" component={WeChatCallback} />
           <Route
             exact
             path="/user/profile"

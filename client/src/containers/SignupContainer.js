@@ -193,7 +193,6 @@ class SignupContainer extends Component {
 }
 
 SignupContainer.propTypes = {
-  login: PropTypes.func.isRequired,
   passwordTooShort: PropTypes.func.isRequired,
   passwordIsValid: PropTypes.func.isRequired,
   passwordsInconsistent: PropTypes.func.isRequired,

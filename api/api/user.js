@@ -3,6 +3,7 @@ const Catalogue = require('../models/catalogue')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 const msg = require('./msg')
+const axios = require('axios')
 
 let generateToken = function(user) {
   return jwt.sign(user, config.jwtSecret, {expiresIn: config.expiresIn})
@@ -11,35 +12,61 @@ let generateToken = function(user) {
 exports.smsCodeForSignup = (req, res) => {
   const {phoneNum} = req.body
 
-  User.findOne({phoneNum: phoneNum})
-      .then(doc => {
-        if (doc) {
-          console.log('phoneNum already exists')
-          return res.status(403).json({
-            errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-            success: false
-          })
-        } else {
-          msg.send(req, res)
-        }
+  User.findOne({phoneNum: phoneNum}).then(doc => {
+    if (doc) {
+      console.log('phoneNum already exists')
+      return res.status(403).json({
+        errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+        success: false,
       })
+    } else {
+      msg.send(req, res)
+    }
+  })
+}
+
+exports.wechat = function(req, res, next) {
+  const {code, userAgent} = req.body
+  let wxToken
+  if (userAgent === 'PC') {
+    wxToken = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${
+      config.weChatAppId
+    }&secret=${
+      config.weChatAppSecret
+    }&code=${code}&grant_type=authorization_code`
+  } else {
+    wxToken = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${
+      config.serviceAppID
+    }&secret=${
+      config.serviceAppSecret
+    }&code=${code}&grant_type=authorization_code`
+  }
+
+  axios.get(wxToken).then(req => {
+    const accessToken = req.data.access_token
+    const openid = req.data.openid
+    const wxUserInfo = `https://api.weixin.qq.com/sns/userinfo?access_token=${accessToken}&openid=${openid}&lang=zh_CN`
+
+    axios.get(wxUserInfo).then(req => {
+      console.log('second', req.data)
+      //TODO：判断用户是否绑定账号
+    })
+  })
 }
 
 exports.signup = (req, res, next) => {
   const {password, phoneNum, smsCode} = req.body
 
-  User.findOne({phoneNum: phoneNum})
-    .then(doc => {
-      console.log('User.findOne({phoneNum: phoneNum})');
-      if (doc) {
-        console.log('phoneNum already exists')
-        return res.status(403).json({
-          errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-          success: false
-        })
-      }
+  User.findOne({phoneNum: phoneNum}).then(doc => {
+    console.log('User.findOne({phoneNum: phoneNum})')
+    if (doc) {
+      console.log('phoneNum already exists')
+      return res.status(403).json({
+        errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
+        success: false,
+      })
     }
-  )
+  })
 
   msg
     .check(phoneNum, smsCode)

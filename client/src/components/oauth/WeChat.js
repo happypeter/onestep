@@ -1,9 +1,19 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import wechat from '../../assets/wechat.svg'
+import config from '../../config/config'
 
 class WeChat extends Component {
-  handleClick = () => {}
+  handleClick = () => {
+    const redirect = encodeURIComponent(config.weChatCallback)
+    const state = Math.random()
+      .toString()
+      .slice(2)
+    const url = `https://open.weixin.qq.com/connect/qrconnect?appid=${
+      config.weChatAppId
+    }&redirect_uri=${redirect}&response_type=code&scope=snsapi_login&state=${state}#wechat_redirect`
+    window.location = url
+  }
 
   render() {
     return (

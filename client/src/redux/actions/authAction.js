@@ -80,7 +80,7 @@ function handleError(error, dispatch) {
 export function login(data) {
   return dispatch => {
     axios
-      .post(`${config.api + '/login'}`, data)
+      .post(`${config.api}/login`, data)
       .then(res => {
         const token = res.data.token
         const user = res.data.user
@@ -99,7 +99,7 @@ export function login(data) {
 export function signup(data) {
   return dispatch => {
     axios
-      .post(`${config.api + '/signup'}`, data)
+      .post(`${config.api}/signup`, data)
       .then(res => {
         const token = res.data.token
         const user = res.data.user
@@ -118,6 +118,14 @@ export function signup(data) {
   }
 }
 
+export function authWeChat(data) {
+  return dispatch => {
+    axios.post(`${config.api}/oauth/wechat`, data).then(res => {
+      console.log(`wechat res`, res.data)
+    })
+  }
+}
+
 export function logout(data) {
   return dispatch => {
     dispatch({type: types.LOG_OUT})
@@ -131,7 +139,7 @@ export function logout(data) {
 export const checkToken = token => {
   return dispatch => {
     axios
-      .post(`${config.api + '/auth'}`, {token})
+      .post(`${config.api}/auth`, {token})
       .then(res => {
         if (res.data.success !== true) {
           throw new Error('Fail to check token: ' + res)
@@ -180,7 +188,7 @@ export const checkEpisodeAuth = data => {
 
     let {phoneNum, courseName} = data
     axios
-      .post(`${config.api + '/profile'}`, {phoneNum})
+      .post(`${config.api}/profile`, {phoneNum})
       .then(res => {
         let paidRes = res.data
 
@@ -233,7 +241,7 @@ export const checkEpisodeAuth = data => {
 export function resetPassword(data) {
   return dispatch => {
     axios
-      .post(`${config.api + '/resetpassword'}`, data)
+      .post(`${config.ap}/resetpassword`, data)
       .then(res => {
         const token = res.data.token
         const user = res.data.user
