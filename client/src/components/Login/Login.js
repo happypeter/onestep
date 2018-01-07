@@ -59,152 +59,143 @@ class Login extends Component {
     const value = this.props.tabValue
 
     return (
-      <LoginWrap>
+      <Wrap>
         <TopHeader />
-        <CardWarp>
-          <TabsHeader />
-          <TabsWrap
-            value={value}
-            onChange={this.alter}
-            indicatorColor={'primary'}
-            centered>
-            <Tab label={'手机登录'} />
-            <Tab label={'老用户'} />
-          </TabsWrap>
-          {value === 0 && (
-            <FromWrap onSubmit={this.handleSubmit}>
-              <FormItem
-                error={this.props.errorText.phoneNum}
-                htmlFor={'phoneNum'}
-                inputLabel={'手机号'}
-                onBlur={this.getPhoneNum}
-                formHelperText={this.props.errorText.phoneNum}
-              />
-
-              <FormItem
-                error={this.props.errorText.password}
-                htmlFor={'password'}
-                inputLabel={'密码'}
-                onBlur={this.getPassword}
-                onKeyDown={this.enterToSubmitPhone}
-                type={'password'}
-                formHelperText={this.props.errorText.password}
-              />
-
-              <ActionButton raised type="submit">
-                登录
-              </ActionButton>
-            </FromWrap>
-          )}
-          {value === 1 && (
-            <FromWrap onSubmit={this.handleSubmit}>
-              <TextFieldWrap>
+        <Content>
+          <Container>
+            <Title>登录</Title>
+            <TabsWrap
+              value={value}
+              onChange={this.alter}
+              indicatorColor="primary">
+              <Tab label="手机登录" />
+              <Tab label="老用户" />
+            </TabsWrap>
+            {value === 0 && (
+              <Form onSubmit={this.handleSubmit}>
                 <FormItem
-                  error={this.props.errorText.username}
-                  htmlFor={'username'}
-                  inputLabel={'用户名'}
-                  onBlur={this.getUsername}
-                  formHelperText={this.props.errorText.username}
+                  error={this.props.errorText.phoneNum}
+                  htmlFor="phoneNum"
+                  inputLabel="手机号"
+                  onBlur={this.getPhoneNum}
+                  formHelperText={this.props.errorText.phoneNum}
                 />
-              </TextFieldWrap>
 
-              <FormItem
-                error={this.props.errorText.phoneNum}
-                htmlFor={'phoneNum'}
-                inputLabel={'请绑定手机号'}
-                onBlur={this.getPhoneNum}
-                formHelperText={this.props.errorText.phoneNum}
-              />
-
-              <TextFieldWrap>
                 <FormItem
-                  error={this.props.errorText.smsCode}
-                  htmlFor={'smsCode'}
-                  inputLabel="验证码"
-                  onBlur={this.getSmsCode}
-                  formHelperText={this.props.errorText.smsCode}
+                  error={this.props.errorText.password}
+                  htmlFor="password"
+                  inputLabel="密码"
+                  onBlur={this.getPassword}
+                  onKeyDown={this.enterToSubmitPhone}
+                  type="password"
+                  formHelperText={this.props.errorText.password}
                 />
-                <SmsSendContainer
-                  phoneNumIsValid={this.props.phoneNumIsValid}
-                  phoneNum={this.props.phoneNum}
-                  checkUserExist={true}
-                />
-              </TextFieldWrap>
 
-              <FormItem
-                error={this.props.errorText.password}
-                htmlFor={'password'}
-                inputLabel={'密码'}
-                onBlur={this.getPassword}
-                type={'password'}
-                formHelperText={this.props.errorText.password}
-              />
+                <ActionButton type="submit">登录</ActionButton>
+              </Form>
+            )}
+            {value === 1 && (
+              <Form onSubmit={this.handleSubmit}>
+                <TextFieldWrap>
+                  <FormItem
+                    error={this.props.errorText.username}
+                    htmlFor="username"
+                    inputLabel="用户名"
+                    onBlur={this.getUsername}
+                    formHelperText={this.props.errorText.username}
+                  />
+                </TextFieldWrap>
 
-              <TextFieldWrap>
                 <FormItem
-                  error={this.props.errorText.passwordConsistent}
-                  htmlFor={'passwordConsistent'}
-                  inputLabel={'确认密码'}
-                  onBlur={this.getPasswordConsistent}
-                  onKeyDown={this.enterToSubmitRegularUser}
-                  type={'password'}
-                  formHelperText={this.props.errorText.passwordConsistent}
+                  error={this.props.errorText.phoneNum}
+                  htmlFor="phoneNum"
+                  inputLabel="请绑定手机号"
+                  onBlur={this.getPhoneNum}
+                  formHelperText={this.props.errorText.phoneNum}
                 />
-              </TextFieldWrap>
 
-              <ActionButton raised type="submit">
-                登录
-              </ActionButton>
-            </FromWrap>
-          )}
-        </CardWarp>
+                <TextFieldWrap>
+                  <FormItem
+                    error={this.props.errorText.smsCode}
+                    htmlFor="smsCode"
+                    inputLabel="验证码"
+                    onBlur={this.getSmsCode}
+                    formHelperText={this.props.errorText.smsCode}
+                  />
+                  <SmsSendContainer
+                    phoneNumIsValid={this.props.phoneNumIsValid}
+                    phoneNum={this.props.phoneNum}
+                    checkUserExist={true}
+                  />
+                </TextFieldWrap>
+
+                <FormItem
+                  error={this.props.errorText.password}
+                  htmlFor="password"
+                  inputLabel="密码"
+                  onBlur={this.getPassword}
+                  type="password"
+                  formHelperText={this.props.errorText.password}
+                />
+
+                <TextFieldWrap>
+                  <FormItem
+                    error={this.props.errorText.passwordConsistent}
+                    htmlFor="passwordConsistent"
+                    inputLabel="确认密码"
+                    onBlur={this.getPasswordConsistent}
+                    onKeyDown={this.enterToSubmitRegularUser}
+                    type="password"
+                    formHelperText={this.props.errorText.passwordConsistent}
+                  />
+                </TextFieldWrap>
+
+                <ActionButton type="submit">登录</ActionButton>
+              </Form>
+            )}
+          </Container>
+        </Content>
         <Footer />
-      </LoginWrap>
+      </Wrap>
     )
   }
 }
 
 export default Login
 
-const CardWarp = styled.div`
-  padding: 0;
-  box-shadow: 2px 2px 5px #888888;
-  width: 380px;
-  margin: 0 auto 80px auto;
-  padding: 0;
-`
-
-const LoginWrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
 `
 
-const TabsHeader = styled.div`
-  margin: 0 auto;
-  margin-bottom: 2em;
-  width: 380px;
-  height: 2.5em;
+const Content = styled.div`
+  flex-grow: 1;
+`
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px #888888;
+  margin: 32px auto;
+  width: 100%;
+  max-width: 390px;
+`
+
+const Title = styled.div`
   background-color: #00bcd4;
-  flex-shrink: 0;
+  text-align: center;
+  font-size: 18px;
+  padding: 16px 0;
+  color: #fff;
+  letter-spacing: 1.5;
+  font-weight: 500;
 `
 
 const TabsWrap = styled(Tabs)`
   && {
-    margin: 0 80px;
-    display: flex;
-    justify-content: center;
-    flex-shrink: 1;
-  }
-
-  .MuiTab-root-8 {
-    min-width: 10px;
-    margin: 0 5px;
-    font-weight: 400;
-  }
-
-  .MuiTabs-root-213 .sc-jzJRlG .crlNmy {
-    margin: 25px;
+    padding: 0 32px;
   }
 
   span {
@@ -212,21 +203,8 @@ const TabsWrap = styled(Tabs)`
   }
 `
 
-const FromWrap = styled.form`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: border-box;
-  text-align: center;
-  margin-top: 5%;
-  padding: 0 60px;
-  @media (min-width: 400px) {
-    width: 380px;
-    margin: 1em auto 0 auto;
-    padding: 0 80px 4em;
-  }
+const Form = styled.form`
+  padding: 16px 32px;
 `
 
 const TextFieldWrap = styled.div`

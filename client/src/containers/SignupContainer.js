@@ -151,7 +151,6 @@ class SignupContainer extends Component {
     recheck.next(this.state)
     setTimeout(() => {
       recheck.next()
-      // console.log(this.props.signUpState);
     }, 50)
   }
 

@@ -6,12 +6,10 @@ import Menu, {MenuItem} from 'material-ui/Menu'
 
 class TopHeader extends Component {
   handlePopoverOpen = event => {
-    // console.log('handlePopoverOpen');
     this.props.handlePopoverOpen(event.target)
   }
 
   handlePopoverClose = () => {
-    // console.log('handlePopoverClose');
     this.props.handlePopoverClose()
   }
 
@@ -34,9 +32,6 @@ class TopHeader extends Component {
       <SideButtonsWrap>
         <ButtonLink to="signup">注册</ButtonLink>
         <ButtonLink to="/login">登录</ButtonLink>
-        <ButtonLink to="/wechatLogin" style={{display: 'none'}}>
-          微信登录
-        </ButtonLink>
       </SideButtonsWrap>
     )
 
@@ -47,7 +42,6 @@ class TopHeader extends Component {
             onMouseOver={this.handlePopoverOpen}
             onTouchStart={this.handlePopoverOpen}>
             <Username>{this.props.sideButtons}</Username>
-            {/* <Username to='/profile'>{this.props.sideButtons}</Username> */}
           </div>
 
           <PopMenu
@@ -60,8 +54,6 @@ class TopHeader extends Component {
             <MenuItem onClick={this.props.logout}>退出</MenuItem>
           </PopMenu>
         </div>
-        {/* <Username to='/profile'>{this.props.sideButtons}</Username> */}
-        {/* <ButtonLink to='/' onClick={this.props.logout}>退出</ButtonLink> */}
       </SideButtonsWrap>
     )
 
@@ -70,11 +62,11 @@ class TopHeader extends Component {
         <HomeWrap>
           <img
             src={logoSimple}
-            alt='logo-simple'
-            width='35.35px'
+            alt="logo-simple"
+            width="35.35px"
             onClick={this.backToHome}
           />
-          <ButtonLink to='/'>好奇猫</ButtonLink>
+          <ButtonLink to="/">好奇猫</ButtonLink>
         </HomeWrap>
         {this.props.sideButtons ? LogoutButtons : LoginButtons}
       </TopHeaderWrap>
