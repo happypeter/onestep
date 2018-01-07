@@ -25,12 +25,6 @@ const AsyncLogin = Loadable({
   delay: 300,
 })
 
-const AsyncWechatLogin = Loadable({
-  loader: () => import('./WechatLoginContainer'),
-  loading: LoadingComponent,
-  delay: 300,
-})
-
 const AsyncProfile = Loadable({
   loader: () => import('./ProfileContainer'),
   loading: LoadingComponent,
@@ -67,7 +61,6 @@ class Main extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={AsyncHome} />
-          <Route path="/wechatLogin" component={AsyncWechatLogin} />
           <Route path="/login" component={AsyncLogin} />
           <Route path="/signup" component={AsyncSignup} />
           <Route path="/pay" component={AsyncPay} />

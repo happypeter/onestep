@@ -20,10 +20,6 @@ export function requireAuthentication(Component) {
       return this.props.isAuthenticated ? (
         <Component {...this.props} />
       ) : (
-        // <Redirect to={{
-        //   pathname: '/wechatLogin',
-        //   state: { from: this.props.location }
-        // }} />
         <Redirect
           to={{
             pathname: '/login',

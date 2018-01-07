@@ -5,7 +5,7 @@ import Button from 'material-ui/Button'
 import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import styled from 'styled-components'
-import wechat from '../../assets/wechat.svg'
+import WeChat from '../auth/WeChat'
 
 class Signup extends Component {
   getPhoneNum = e => {
@@ -48,8 +48,8 @@ class Signup extends Component {
             <Form>
               <FormItem
                 error={this.props.errorText.phoneNum}
-                htmlFor={'phoneNum'}
-                inputLabel={'手机号'}
+                htmlFor="phoneNum"
+                inputLabel="手机号"
                 onBlur={this.getPhoneNum}
                 formHelperText={this.props.errorText.phoneNum}
               />
@@ -57,8 +57,8 @@ class Signup extends Component {
               <TextFieldWrap>
                 <FormItem
                   error={this.props.errorText.smsCode}
-                  htmlFor={'smsCode'}
-                  inputLabel={'验证码'}
+                  htmlFor="smsCode"
+                  inputLabel="验证码"
                   onBlur={this.getSmsCode}
                   formHelperText={this.props.errorText.smsCode}
                 />
@@ -71,27 +71,26 @@ class Signup extends Component {
 
               <FormItem
                 error={this.props.errorText.password}
-                htmlFor={'password'}
-                inputLabel={'密码'}
+                htmlFor="password"
+                inputLabel="密码"
                 onBlur={this.getPassword}
-                type={'password'}
+                type="password"
                 formHelperText={this.props.errorText.password}
               />
 
               <FormItem
                 error={this.props.errorText.passwordConsistent}
-                htmlFor={'passwordConsistent'}
-                inputLabel={'确认密码'}
+                htmlFor="passwordConsistent"
+                inputLabel="确认密码"
                 onBlur={this.getPasswordConsistent}
                 onKeyDown={this.enterToSubmit}
-                type={'password'}
+                type="password"
                 formHelperText={this.props.errorText.passwordConsistent}
               />
 
               <ActionButton type="submit">注册</ActionButton>
             </Form>
-            <div>第三方账号登录</div>
-            <img src={wechat} />
+            <WeChat />
           </Container>
         </Content>
         <Footer />

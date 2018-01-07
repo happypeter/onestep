@@ -128,17 +128,6 @@ export function logout(data) {
   }
 }
 
-export function fakeWechatLogin(user) {
-  return dispatch => {
-    dispatch({
-      type: types.FAKE_WECHATCODE_LOGIN,
-      userInfo: user,
-    })
-    showLoginNotification(dispatch)
-    window.sessionStorage.setItem('user', 'wechatCode')
-  }
-}
-
 export const checkToken = token => {
   return dispatch => {
     axios

@@ -6,6 +6,7 @@ import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import Tabs, {Tab} from 'material-ui/Tabs'
 import styled from 'styled-components'
+import WeChat from '../auth/WeChat'
 
 class Login extends Component {
   getUsername = e => {
@@ -153,6 +154,7 @@ class Login extends Component {
                 <ActionButton type="submit">登录</ActionButton>
               </Form>
             )}
+            <WeChat />
           </Container>
         </Content>
         <Footer />
