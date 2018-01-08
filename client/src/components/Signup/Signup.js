@@ -5,7 +5,7 @@ import Button from 'material-ui/Button'
 import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import styled from 'styled-components'
-import WeChat from '../auth/WeChat'
+import WeChat from '../oauth/WeChat'
 
 class Signup extends Component {
   getPhoneNum = e => {
