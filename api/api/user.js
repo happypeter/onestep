@@ -5,7 +5,7 @@ const config = require('../config/config')
 const msg = require('./msg')
 const axios = require('axios')
 
-let generateToken = function(user) {
+const generateToken = function(user) {
   return jwt.sign(user, config.jwtSecret, {expiresIn: config.expiresIn})
 }
 
@@ -43,24 +43,75 @@ exports.wechat = function(req, res, next) {
   }
 
   axios.get(wxToken).then(req => {
-    const accessToken = req.data.access_token
-    const openid = req.data.openid
-    const wxUserInfo = `https://api.weixin.qq.com/sns/userinfo?access_token=${accessToken}&openid=${openid}&lang=zh_CN`
+    if (req.data.errcode) return
+    const {access_token, openid} = req.data
+    const wxUserInfo = `https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`
 
     axios.get(wxUserInfo).then(req => {
-      console.log('second', req.data)
-      //TODO：判断用户是否绑定账号
+      if (req.data.errcode) return
+      User.findOne({'bindings.unionid': req.data.unionid})
+        .exec()
+        .then(user => {
+          //已经绑定
+          if (user) {
+            res.status(200).json({
+              token: generateToken({
+                _id: user._id,
+                phoneNum: user.phoneNum
+              }),
+              user: {phoneNum: user.phoneNum},
+              binding: true,
+            })
+          } else {
+            res.status(200).json({user: req.data, binding: false})
+          }
+        })
     })
   })
+}
+
+exports.binding = (req, res, next) => {
+  const {phoneNum, password, old} = req.body
+  const {nickname, headimgurl, unionid} = req.body.user
+  if (old) {
+    User.findOne({phoneNum})
+      .exec()
+      .then(user => {
+        user.bindings.push({nickname, headimgurl, unionid})
+        return user.save().then(user => {
+          res.status(200).json({
+            user: {phoneNum: user.phoneNum},
+            token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+          })
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  } else {
+    const user = new User()
+    user.phoneNum = phoneNum
+    user.password = password
+    user.bindings = [{via: 'wechat', nickname, headimgurl, unionid}]
+    user
+      .save()
+      .then(user => {
+        res.status(200).json({
+          user: {phoneNum: user.phoneNum},
+          token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
 
 exports.signup = (req, res, next) => {
   const {password, phoneNum, smsCode} = req.body
 
   User.findOne({phoneNum: phoneNum}).then(doc => {
-    console.log('User.findOne({phoneNum: phoneNum})')
     if (doc) {
-      console.log('phoneNum already exists')
       return res.status(403).json({
         errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
         success: false,
@@ -195,7 +246,7 @@ exports.login = (req, res, next) => {
 }
 
 exports.checkToken = function(req, res) {
-  let token = req.body.token
+  const token = req.body.token
   if (token) {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {

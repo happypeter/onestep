@@ -7,6 +7,7 @@ import {combineReducers} from 'redux'
 import course from './course'
 import episode from './episode'
 import smsSend from './smsSend'
+import weChatUser from './weChatUser'
 
 const rootReducer = combineReducers({
   course,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   notification,
   episode,
   smsSend,
+  weChatUser,
 })
 
 export default rootReducer

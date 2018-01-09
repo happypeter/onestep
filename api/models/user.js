@@ -4,13 +4,12 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
   {
-    username: {type: String},
+    username: {type: String, unique: true},
     password: {type: String},
     admin: {type: Boolean},
-    unionid: {type: String},
-    phoneNum: {type: String},
-    avatar: {type: String},
-    contracts: [{type: Schema.Types.ObjectId, ref: 'Contract'}],
+    phoneNum: {type: String, unique: true},
+    bindings: {type: Array},
+    contracts: [{type: Schema.Types.ObjectId, ref: 'Contract', _id: false}],
   },
   {timestamps: true},
 )

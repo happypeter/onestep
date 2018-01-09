@@ -105,11 +105,7 @@ export function signup(data) {
         const user = res.data.user
         window.sessionStorage.setItem('jwtToken', token)
         window.sessionStorage.setItem('user', user.phoneNum)
-        dispatch({
-          type: types.SIGN_UP,
-          userInfo: user,
-        })
-
+        dispatch(setCurrentUserInfo(user))
         showSignupNotification(dispatch)
       })
       .catch(error => {
@@ -118,11 +114,36 @@ export function signup(data) {
   }
 }
 
-export function authWeChat(data) {
+export function oauthWeChat(data, history) {
   return dispatch => {
-    axios.post(`${config.api}/oauth/wechat`, data).then(res => {
-      console.log(`wechat res`, res.data)
-    })
+    axios
+      .post(`${config.api}/oauth/wechat`, data)
+      .then(res => {
+        if (!res.data.binding) {
+          dispatch({type: types.WECHAT_USER, user: res.data.user})
+        } else {
+          window.sessionStorage.setItem('jwtToken', res.data.token)
+          window.sessionStorage.setItem('user', res.data.user.phoneNum)
+          dispatch(setCurrentUserInfo(res.data.user))
+          history.push('/user/profile')
+        }
+      })
+      .catch(error => {})
+  }
+}
+
+export function oauthBinding(data, history) {
+  return dispatch => {
+    delete data.confirm
+    axios
+      .post(`${config.api}/oauth/binding`, data)
+      .then(res => {
+        window.sessionStorage.setItem('jwtToken', res.data.token)
+        window.sessionStorage.setItem('user', res.data.user.phoneNum)
+        dispatch(setCurrentUserInfo(res.data.user))
+        history.push('/user/profile')
+      })
+      .catch(error => {})
   }
 }
 
