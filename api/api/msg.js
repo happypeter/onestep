@@ -9,13 +9,13 @@ const secretAccessKey = config.secretAccessKey
 // const queueName = config.queueName
 
 // 初始化sms_client
-let smsClient = new SMSClient({accessKeyId, secretAccessKey})
+const smsClient = new SMSClient({accessKeyId, secretAccessKey})
 
 // 发送短信
 exports.send = (req, res) => {
-  let phoneNum = req.body.phoneNum
+  const phoneNum = req.body.phoneNum
   // 六位随机验证码
-  let smsCode = Math.random()
+  const smsCode = Math.random()
     .toString()
     .slice(-6)
   smsClient
@@ -29,7 +29,6 @@ exports.send = (req, res) => {
       function(smsRes) {
         let {Code} = smsRes
         if (Code === 'OK') {
-          console.log('已成功发送短信')
           return res.status(200).json({
             message: '已成功发送短信',
             success: true,
@@ -37,8 +36,6 @@ exports.send = (req, res) => {
         }
       },
       function(err) {
-        console.log('短信发送失败')
-        console.log(err)
         return res.status(403).json({
           errorMsg: err,
           success: false,

@@ -134,7 +134,7 @@ export function oauthWeChat(data, history) {
 
 export function oauthBinding(data, history) {
   return dispatch => {
-    delete data.confirm
+    delete data.errors
     axios
       .post(`${config.api}/oauth/binding`, data)
       .then(res => {

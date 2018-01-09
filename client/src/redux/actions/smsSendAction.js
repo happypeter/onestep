@@ -11,7 +11,6 @@ export function sendMsg(phoneNum) {
         // console.log(res)
       })
       .catch(err => {
-        console.log(err)
         dispatch({type: types.SMS_ERR_TRY_AGAIN})
       })
     dispatch({type: types.ALREADY_SEND_MSG})
@@ -27,8 +26,10 @@ export function sendMsgforSignup(phoneNum) {
         // console.log(res)
       })
       .catch(err => {
-        // console.log(err.response)
-        if (err.response && err.response.data.errorMsg === 'PHONE_NUM_ALREADY_EXISTS') {
+        if (
+          err.response &&
+          err.response.data.errorMsg === 'PHONE_NUM_ALREADY_EXISTS'
+        ) {
           dispatch({type: types.PHONE_NUM_ALREADY_EXISTS})
         } else {
           dispatch({type: types.SMS_ERR_TRY_AGAIN})
@@ -40,7 +41,7 @@ export function sendMsgforSignup(phoneNum) {
 
 export function countdown() {
   return dispatch => {
-    dispatch({type: types.COUNTDOWN})
+    dispatch({type: types.COUNT_DOWN})
   }
 }
 

@@ -25,7 +25,7 @@ exports.smsCodeForSignup = (req, res) => {
   })
 }
 
-exports.wechat = function(req, res, next) {
+exports.weChat = function(req, res, next) {
   const {code, userAgent} = req.body
   let wxToken
   if (userAgent === 'PC') {
@@ -57,7 +57,7 @@ exports.wechat = function(req, res, next) {
             res.status(200).json({
               token: generateToken({
                 _id: user._id,
-                phoneNum: user.phoneNum
+                phoneNum: user.phoneNum,
               }),
               user: {phoneNum: user.phoneNum},
               binding: true,
@@ -71,44 +71,82 @@ exports.wechat = function(req, res, next) {
 }
 
 exports.binding = (req, res, next) => {
-  const {phoneNum, password, old} = req.body
+  const {username, phoneNum, password, existed} = req.body
   const {nickname, headimgurl, unionid} = req.body.user
-  if (old) {
+  if (existed) {
     User.findOne({phoneNum})
       .exec()
       .then(user => {
-        user.bindings.push({nickname, headimgurl, unionid})
-        return user.save().then(user => {
-          res.status(200).json({
-            user: {phoneNum: user.phoneNum},
-            token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+        let errors = []
+        if (!user) {
+          errors.push({errorMsg: '手机号不存在', field: 'phoneNum'})
+          return res
+            .status(403)
+            .json({success: false, errors})
+        }
+        user.comparePassword(password, (err, isMatch) => {
+          if (err) {
+            return console.log('wechat compare password error', err)
+          }
+          if (!isMatch) {
+            errors.push({errorMsg: '手机号和密码不匹配', field: 'password'})
+            return res
+              .status(403)
+              .json({success: false, errors})
+          }
+          user.bindings.push({via: 'wechat', nickname, headimgurl, unionid})
+          return user.save().then(user => {
+            res.status(200).json({
+              user: {phoneNum: user.phoneNum},
+              token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+            })
           })
         })
       })
       .catch(err => {
-        console.log(err)
+        console.log('wechat binding error:', err)
       })
   } else {
-    const user = new User()
-    user.phoneNum = phoneNum
-    user.password = password
-    user.bindings = [{via: 'wechat', nickname, headimgurl, unionid}]
-    user
-      .save()
-      .then(user => {
-        res.status(200).json({
-          user: {phoneNum: user.phoneNum},
-          token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
-        })
+    Promise.all([
+      User.findOne({username}).exec(),
+      User.findOne({phoneNum}).exec(),
+    ])
+      .then(users => {
+        let errors = []
+        if (users[0]) {
+          errors.push({errorMsg: '用户名已被占用', field: 'username'})
+        }
+        if (users[1]) {
+          errors.push({errorMsg: '手机号已被占用', field: 'phoneNum'})
+        }
+        if (users[0] || users[1]) {
+          return res.status(403).json({success: false, errors})
+        }
+        const user = new User()
+        user.username = username
+        user.phoneNum = phoneNum
+        user.password = password
+        user.bindings = [{via: 'wechat', nickname, headimgurl, unionid}]
+        user
+          .save()
+          .then(user => {
+            res.status(200).json({
+              user: {phoneNum: user.phoneNum},
+              token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+            })
+          })
+          .catch(err => {
+            console.log(err)
+          })
       })
       .catch(err => {
-        console.log(err)
+        console.log('wechat binding error', err)
       })
   }
 }
 
 exports.signup = (req, res, next) => {
-  const {password, phoneNum, smsCode} = req.body
+  const {username, password, phoneNum, smsCode} = req.body
 
   User.findOne({phoneNum: phoneNum}).then(doc => {
     if (doc) {
@@ -122,11 +160,9 @@ exports.signup = (req, res, next) => {
   msg
     .check(phoneNum, smsCode)
     .then(msg => {
-      console.log('smsCode: ' + msg)
       User.findOne({phoneNum: phoneNum})
         .then(doc => {
           if (doc) {
-            console.log('phoneNum already exists')
             return res.status(403).json({
               errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
               success: false,
@@ -138,7 +174,6 @@ exports.signup = (req, res, next) => {
           user.password = password
 
           user.save().then(user => {
-            console.log(phoneNum + 'signup')
             return res.status(200).json({
               user: {phoneNum: user.phoneNum},
               token: generateToken({phoneNum: user.phoneNum}),
@@ -149,7 +184,6 @@ exports.signup = (req, res, next) => {
         .catch(next)
     })
     .catch(err => {
-      console.log(err)
       return res.status(403).json({
         errorMsg: err,
         success: false,
@@ -215,7 +249,6 @@ exports.login = (req, res, next) => {
     User.findOne({phoneNum: phoneNum})
       .then(user => {
         if (!user) {
-          console.log("this phoneNum doesn't exist")
           return res.status(403).json({
             errorMsg: 'PHONE_NUM_DOESNOT_EXIST',
             success: false,
@@ -226,13 +259,11 @@ exports.login = (req, res, next) => {
               return console.log(err)
             }
             if (!isMatch) {
-              console.log('invalid password')
               return res.status(403).json({
                 errorMsg: 'INVALID_PASSWORD',
                 success: false,
               })
             }
-            console.log(phoneNum + 'login')
             return res.json({
               user: {phoneNum: user.phoneNum},
               token: generateToken({phoneNum: user.phoneNum}),

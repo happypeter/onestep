@@ -12,7 +12,7 @@ router.post('/signup', user.signup)
 router.post('/login', user.login)
 router.post('/auth', user.checkToken)
 router.post('/resetpassword', user.resetPassword)
-router.post('/oauth/wechat', user.wechat)
+router.post('/oauth/wechat', user.weChat)
 router.post('/oauth/binding', user.binding)
 
 router.post('/profile', user.profile)

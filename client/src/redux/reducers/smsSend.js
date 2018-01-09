@@ -14,7 +14,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         alreadySendMsg: true,
       }
-    case 'COUNTDOWN':
+    case 'COUNT_DOWN':
       return {
         ...state,
         second: state.second - 1,

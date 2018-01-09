@@ -10,13 +10,13 @@ class ExistedAccount extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const data = {...this.state, user: {...this.props.user}}
+    const data = {...this.state, user: {...this.props.user}, existed: true}
     this.props.oauthBinding(data, this.props.history)
   }
 
-  handleChange = e => {
+  handleChange = (field, e) => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [field]: e.target.value,
     })
   }
 
@@ -25,7 +25,7 @@ class ExistedAccount extends Component {
   }
 
   render() {
-    const {user} = this.props.user
+    const {user} = this.props
     return (
       <Container>
         <Title>绑定已有账号</Title>
@@ -34,18 +34,16 @@ class ExistedAccount extends Component {
           <div>{user.nickname}</div>
           <TextField
             style={{width: '100%'}}
-            name="phoneNum"
             value={this.state.phoneNum}
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this, 'phoneNum')}
             margin="dense"
             label="手机号"
             helperText={this.state.phoneNumErr}
           />
           <TextField
             style={{width: '100%'}}
-            name="password"
             value={this.state.password}
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this, 'password')}
             margin="dense"
             label="密码"
             type="password"
