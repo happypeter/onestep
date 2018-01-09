@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {authWeChat} from '../redux/actions/authAction'
-import WeChatCallBack from '../components/auth/WeChatCallback'
+import {oauthWeChat, oauthBinding} from '../redux/actions/authAction'
+import WeChatCallback from '../components/oauth/WeChatCallback'
 
 const WeChatCallbackContainer = props => <WeChatCallback {...props} />
 
-export default connect(null, {authWeChat})(WeChatCallbackContainer)
+const mapStateToProps = state => ({
+  user: state.weChatUser,
+})
+
+export default connect(mapStateToProps, {oauthWeChat, oauthBinding})(WeChatCallbackContainer)
