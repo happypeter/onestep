@@ -52,39 +52,3 @@ export function showNotPaidNotification() {
     }, 4000)
   }
 }
-
-// export function removeLogoutNotification (data) {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_LOGOUT_NOTIFICATION' })
-//   }
-// }
-//
-// export function removeLoginNotification (data) {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_LOGIN_NOTIFICATION' })
-//   }
-// }
-//
-// export function removeSignupNotification (data) {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_SIGNUP_NOTIFICATION' })
-//   }
-// }
-//
-// export function removeUnhandledErrNotification () {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_UNHANDLED_ERR_NOTIFICATION' })
-//   }
-// }
-//
-// export function removeInvalidTokenNotification () {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_INVALID_TOKEN_NOTIFICATION' })
-//   }
-// }
-//
-// export function removeResetPasswordNotification () {
-//   return dispatch => {
-//     dispatch({ type: types. 'RM_RESET_PASSWORD_NOTIFICATION' })
-//   }
-// }
