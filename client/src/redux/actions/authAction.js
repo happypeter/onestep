@@ -1,12 +1,5 @@
 import axios from 'axios'
-import {
-  showLoginNotification,
-  showLogoutNotification,
-  showSignupNotification,
-  showInvalidTokenNotification,
-  showResetPasswordNotification,
-  showUnhandledErrNotification,
-} from './notificationAction'
+import {notification} from './notificationAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 
@@ -51,7 +44,7 @@ function handleError(error, dispatch) {
           type: types.TOKEN_IS_INVALID,
           error,
         })
-        showInvalidTokenNotification(dispatch)
+        notification(dispatch, '登录态过期')
         break
 
       case 'SMS_NO_RECORED':
@@ -68,11 +61,11 @@ function handleError(error, dispatch) {
         break
 
       default:
-        showUnhandledErrNotification(dispatch)
+        notification(dispatch)
         console.log(error.response.data)
     }
   } else {
-    showUnhandledErrNotification(dispatch)
+    notification(dispatch)
     console.log(error)
   }
 }
@@ -88,7 +81,7 @@ export function login(data) {
         window.sessionStorage.setItem('user', user.phoneNum)
 
         dispatch(setCurrentUserInfo(user))
-        showLoginNotification(dispatch)
+        notification(dispatch, '登录成功')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -106,7 +99,7 @@ export function signup(data) {
         window.sessionStorage.setItem('jwtToken', token)
         window.sessionStorage.setItem('user', user.phoneNum)
         dispatch(setCurrentUserInfo(user))
-        showSignupNotification(dispatch)
+        notification(dispatch, '注册成功')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -154,7 +147,7 @@ export function logout(data) {
     window.sessionStorage.removeItem('user')
     window.sessionStorage.removeItem('jwtToken')
 
-    showLogoutNotification(dispatch)
+    notification(dispatch, '退出成功')
   }
 }
 
@@ -218,7 +211,6 @@ export const checkEpisodeAuth = data => {
           throw new Error('Fail to check paid courses: ' + paidRes)
         } else {
           if (paidRes.admin) {
-            console.log('admin')
             dispatch({
               type: types.EPISODE_AUTH_VALID,
             })
@@ -228,25 +220,21 @@ export const checkEpisodeAuth = data => {
             !paidRes.latestExpireDate ||
             !checkMembership(paidRes.latestExpireDate)
           ) {
-            console.log('not a member')
             // now we need to check if the user bought the course
             if (
               paidRes.paidCourses.length === 0 ||
               !checkShoplist(paidRes.paidCourses, courseName)
             ) {
               // time to refuse the user
-              console.log('refuse')
               dispatch({
                 type: types.EPISODE_AUTH_INVALID,
               })
             } else {
-              console.log('you already bought this course!')
               dispatch({
                 type: types.EPISODE_AUTH_VALID,
               })
             }
           } else {
-            console.log('here comes a member')
             dispatch({
               type: types.EPISODE_AUTH_VALID,
             })
@@ -272,7 +260,7 @@ export function resetPassword(data) {
           type: types.RESET_PASSWORD,
           userInfo: user,
         })
-        showResetPasswordNotification(dispatch)
+        // notification(dispatch)
       })
       .catch(error => {
         handleError(error, dispatch)

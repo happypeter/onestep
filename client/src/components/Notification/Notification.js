@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default props => <NotificationWrap>{props.text}</NotificationWrap>
+export default props => {
+  return props.notification.text ? (
+    <NotificationWrap>{props.notification.text}</NotificationWrap>
+  ) : null
+}
 
 const NotificationWrap = styled.div`
   background: #ffd466;

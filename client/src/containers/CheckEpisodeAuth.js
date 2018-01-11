@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {checkEpisodeAuth, initEpAuthStatus} from '../redux/actions/authAction'
-import {showNotPaidNotification} from '../redux/actions/notificationAction'
+import {notification} from '../redux/actions/notificationAction'
 import {
   getIsEpisodePaid,
   getEpAuthStatus,
@@ -32,11 +32,11 @@ export function requireEpisodeAuth(Component) {
     }
 
     checkShowNotPaidNotification() {
-      let {status, isEpisodePaid, showNotPaidNotification} = this.props
+      let {status, isEpisodePaid, notification} = this.props
 
       if (status === 'SUCCESS' && !isEpisodePaid) {
         // show notification
-        showNotPaidNotification()
+        notification()
       }
     }
 
@@ -48,7 +48,7 @@ export function requireEpisodeAuth(Component) {
           return <Component {...this.props} />
 
         case false:
-          showNotPaidNotification()
+          notification()
           return <Redirect to={`/${courseName}`} />
 
         case 'FAILURE':
@@ -62,7 +62,7 @@ export function requireEpisodeAuth(Component) {
 
   EpisodeAuthComponent.propTypes = {
     checkEpisodeAuth: PropTypes.func.isRequired,
-    showNotPaidNotification: PropTypes.func.isRequired,
+    notification: PropTypes.func.isRequired,
   }
 
   const mapStateToProps = state => ({
@@ -73,6 +73,6 @@ export function requireEpisodeAuth(Component) {
   return connect(mapStateToProps, {
     checkEpisodeAuth,
     initEpAuthStatus,
-    showNotPaidNotification,
+    notification,
   })(EpisodeAuthComponent)
 }
