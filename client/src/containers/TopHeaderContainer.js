@@ -9,61 +9,24 @@ import {getNotification} from '../redux/selectors/commonSelectors.js'
 import Notification from '../components/Notification/Notification'
 import {clearNotification} from '../redux/actions/notificationAction'
 
-class TopHeaderContainer extends Component {
-  state = {
-    anchorEl: null,
-  }
-
-  handlePopoverOpen = data => {
-    this.setState({anchorEl: data})
-  }
-
-  handlePopoverClose = () => {
-    this.setState({anchorEl: null})
-  }
-
-  logout = () => {
-    this.props.logout()
-    this.props.history.push('/')
-  }
-
-  goToProfile = () => {
-    this.props.history.push('/user/profile')
-  }
-
-  goToSettings = () => {
-    this.props.history.push('/settings/account')
-  }
-
-  backToHome = () => {
-    this.props.history.push('/')
-  }
-
-  render() {
-    const tempIsAuthenticated = window.sessionStorage.getItem('user')
-    const {anchorEl} = this.state
-    const {notification, clearNotification} = this.props
-    return (
-      <div>
-        <TopHeader
-          sideButtons={tempIsAuthenticated}
-          logout={this.logout}
-          goToProfile={this.goToProfile}
-          goToSettings={this.goToSettings}
-          backToHome={this.backToHome}
-          handlePopoverOpen={this.handlePopoverOpen}
-          handlePopoverClose={this.handlePopoverClose}
-          anchorEl={anchorEl}
+const TopHeaderContainer = (props) => {
+  const tempIsAuthenticated = window.sessionStorage.getItem('user')
+  const {notification, clearNotification, logout, history} = props
+  return (
+    <div>
+      <TopHeader
+        sideButtons={tempIsAuthenticated}
+        logout={logout}
+        history={history}
+      />
+      {notification.text ? (
+        <Notification
+          text={notification.text}
+          clearNotification={clearNotification}
         />
-        {notification.text ? (
-          <Notification
-            text={notification.text}
-            clearNotification={clearNotification}
-          />
-        ) : null}
-      </div>
-    )
-  }
+      ) : null}
+    </div>
+  )
 }
 
 TopHeaderContainer.propTypes = {
@@ -75,6 +38,7 @@ const mapStateToProps = state => ({
   notification: getNotification(state),
 })
 
-export default connect(mapStateToProps, {logout, clearNotification})(
-  withRouter(TopHeaderContainer),
-)
+export default connect(mapStateToProps, {
+  logout,
+  clearNotification
+})(withRouter(TopHeaderContainer))

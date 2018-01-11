@@ -5,26 +5,35 @@ import logoSimple from '../../assets/logoSimple.svg'
 import Menu, {MenuItem} from 'material-ui/Menu'
 
 class TopHeader extends Component {
-  handlePopoverOpen = event => {
-    this.props.handlePopoverOpen(event.target)
+  state = {
+    anchorEl: null,
+  }
+
+  handlePopoverOpen = e => {
+    this.setState({anchorEl: e.target})
   }
 
   handlePopoverClose = () => {
-    this.props.handlePopoverClose()
+    this.setState({anchorEl: null})
   }
 
   backToHome = () => {
-    this.props.backToHome()
+    this.props.history.push('/')
   }
 
   goToProfile = () => {
     this.handlePopoverClose()
-    this.props.goToProfile()
+    this.props.history.push('/user/profile')
   }
 
   goToSettings = () => {
     this.handlePopoverClose()
-    this.props.goToSettings()
+    this.props.history.push('/settings/account')
+  }
+
+  logout = () => {
+    this.props.logout()
+    this.props.history.push('/')
   }
 
   render() {
@@ -46,12 +55,12 @@ class TopHeader extends Component {
 
           <PopMenu
             id="simple-menu"
-            anchorEl={this.props.anchorEl}
-            open={!!this.props.anchorEl}
+            anchorEl={this.state.anchorEl}
+            open={!!this.state.anchorEl}
             onRequestClose={this.handlePopoverClose}>
             <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
             <MenuItem onClick={this.goToSettings}>设置</MenuItem>
-            <MenuItem onClick={this.props.logout}>退出</MenuItem>
+            <MenuItem onClick={this.logout}>退出</MenuItem>
           </PopMenu>
         </div>
       </SideButtonsWrap>
