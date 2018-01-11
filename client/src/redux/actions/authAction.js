@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {notification} from './notificationAction'
+import {showNotification} from './notificationAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 
@@ -44,7 +44,7 @@ function handleError(error, dispatch) {
           type: types.TOKEN_IS_INVALID,
           error,
         })
-        notification(dispatch, '登录态过期')
+        dispatch(showNotification('登录态过期'))
         break
 
       case 'SMS_NO_RECORED':
@@ -61,11 +61,9 @@ function handleError(error, dispatch) {
         break
 
       default:
-        notification(dispatch)
         console.log(error.response.data)
     }
   } else {
-    notification(dispatch)
     console.log(error)
   }
 }
@@ -81,7 +79,7 @@ export function login(data) {
         window.sessionStorage.setItem('user', user.phoneNum)
 
         dispatch(setCurrentUserInfo(user))
-        notification(dispatch, '登录成功')
+        dispatch(showNotification('登录成功'))
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -99,7 +97,7 @@ export function signup(data) {
         window.sessionStorage.setItem('jwtToken', token)
         window.sessionStorage.setItem('user', user.phoneNum)
         dispatch(setCurrentUserInfo(user))
-        notification(dispatch, '注册成功')
+        dispatch(showNotification('注册成功'))
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -146,8 +144,7 @@ export function logout(data) {
     dispatch({type: types.LOG_OUT})
     window.sessionStorage.removeItem('user')
     window.sessionStorage.removeItem('jwtToken')
-
-    notification(dispatch, '退出成功')
+    dispatch(showNotification('退出成功'))
   }
 }
 
@@ -260,7 +257,7 @@ export function resetPassword(data) {
           type: types.RESET_PASSWORD,
           userInfo: user,
         })
-        // notification(dispatch)
+        // dispatch(showNotification())
       })
       .catch(error => {
         handleError(error, dispatch)

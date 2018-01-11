@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {checkEpisodeAuth, initEpAuthStatus} from '../redux/actions/authAction'
-import {notification} from '../redux/actions/notificationAction'
+import {showNotification} from '../redux/actions/notificationAction'
 import {
   getIsEpisodePaid,
   getEpAuthStatus,
@@ -32,11 +32,11 @@ export function requireEpisodeAuth(Component) {
     }
 
     checkShowNotPaidNotification() {
-      let {status, isEpisodePaid, notification} = this.props
+      let {status, isEpisodePaid, showNotification} = this.props
 
       if (status === 'SUCCESS' && !isEpisodePaid) {
         // show notification
-        notification()
+        showNotification()
       }
     }
 
@@ -48,7 +48,6 @@ export function requireEpisodeAuth(Component) {
           return <Component {...this.props} />
 
         case false:
-          notification()
           return <Redirect to={`/${courseName}`} />
 
         case 'FAILURE':
@@ -73,6 +72,6 @@ export function requireEpisodeAuth(Component) {
   return connect(mapStateToProps, {
     checkEpisodeAuth,
     initEpAuthStatus,
-    notification,
+    showNotification,
   })(EpisodeAuthComponent)
 }

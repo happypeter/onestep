@@ -1,11 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 
-export default props => {
-  return props.notification.text ? (
-    <NotificationWrap>{props.notification.text}</NotificationWrap>
-  ) : null
+class Notification extends Component {
+  componentDidMount() {
+    this.startTimer()
+  }
+
+  componentWillUnmount() {
+    this.clearTimer()
+  }
+
+  startTimer = () => {
+    this.timer = setTimeout(() => {
+      this.props.clearNotification()
+      this.clearTimer()
+    }, 1500)
+  }
+
+  clearTimer = () => {
+    if (this.timer) {
+      clearTimeout(this.timer)
+      this.timer = null
+    }
+  }
+
+  render() {
+    return <NotificationWrap>{this.props.text}</NotificationWrap>
+  }
 }
+
+export default Notification
 
 const NotificationWrap = styled.div`
   background: #ffd466;

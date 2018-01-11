@@ -5,15 +5,9 @@ import TopHeader from '../components/Header/TopHeader'
 import {logout} from '../redux/actions/authAction'
 import {getCurrentUser} from '../redux/selectors/commonSelectors.js'
 import PropTypes from 'prop-types'
-
-import Loadable from 'react-loadable'
-import LoadingComponent from '../components/common/Loading'
-
-const AsyncNotification = Loadable({
-  loader: () => import('./NotificationContainer'),
-  loading: LoadingComponent,
-  delay: 300,
-})
+import {getNotification} from '../redux/selectors/commonSelectors.js'
+import Notification from '../components/Notification/Notification'
+import {clearNotification} from '../redux/actions/notificationAction'
 
 class TopHeaderContainer extends Component {
   state = {
@@ -48,7 +42,7 @@ class TopHeaderContainer extends Component {
   render() {
     const tempIsAuthenticated = window.sessionStorage.getItem('user')
     const {anchorEl} = this.state
-
+    const {notification, clearNotification} = this.props
     return (
       <div>
         <TopHeader
@@ -61,7 +55,12 @@ class TopHeaderContainer extends Component {
           handlePopoverClose={this.handlePopoverClose}
           anchorEl={anchorEl}
         />
-        <AsyncNotification />
+        {notification.text ? (
+          <Notification
+            text={notification.text}
+            clearNotification={clearNotification}
+          />
+        ) : null}
       </div>
     )
   }
@@ -73,8 +72,9 @@ TopHeaderContainer.propTypes = {
 
 const mapStateToProps = state => ({
   currentUserInfo: getCurrentUser(state),
+  notification: getNotification(state),
 })
 
-export default connect(mapStateToProps, {logout})(
+export default connect(mapStateToProps, {logout, clearNotification})(
   withRouter(TopHeaderContainer),
 )
