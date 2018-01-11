@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import SmsSend from './SmsSend'
 import {getSmsSendState} from '../../../redux/selectors/commonSelectors.js'

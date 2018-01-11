@@ -122,6 +122,7 @@ export function oauthWeChat(data, history) {
         if (!res.data.binding) {
           dispatch({type: types.WECHAT_USER, user: res.data.user})
         } else {
+          // 已经绑定则直接登录
           window.sessionStorage.setItem('jwtToken', res.data.token)
           window.sessionStorage.setItem('user', res.data.user.phoneNum)
           dispatch(setCurrentUserInfo(res.data.user))

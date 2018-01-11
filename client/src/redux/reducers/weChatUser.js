@@ -1,4 +1,3 @@
-import config from '../../config/config'
 import {WECHAT_USER} from '../../constants/actionTypes/authActionTypes'
 
 export default (state = {}, action) => {

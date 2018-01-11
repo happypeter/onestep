@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
 import {
   Container,
   Title,
@@ -14,7 +13,6 @@ import {
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 
 const WAIT_INTERVAL = 1000
-const ENTER_KEY = 13
 
 class NewAccount extends Component {
   state = {

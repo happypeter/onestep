@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {oauthWeChat, oauthBinding} from '../redux/actions/authAction'
 import WeChatCallback from '../components/oauth/WeChatCallback'
