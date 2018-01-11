@@ -54,7 +54,7 @@ class Signup extends Component {
                 formHelperText={this.props.errorText.phoneNum}
               />
 
-              <TextFieldWrap>
+              <Row>
                 <FormItem
                   error={this.props.errorText.smsCode}
                   htmlFor="smsCode"
@@ -67,7 +67,7 @@ class Signup extends Component {
                   phoneNum={this.props.phoneNum}
                   checkUserExist={true}
                 />
-              </TextFieldWrap>
+              </Row>
 
               <FormItem
                 error={this.props.errorText.password}
@@ -135,7 +135,7 @@ const Form = styled.form`
   padding: 16px 32px;
 `
 
-const TextFieldWrap = styled.div`
+const Row = styled.div`
   display: flex;
   width: 100%;
 `

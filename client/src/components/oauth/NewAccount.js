@@ -9,8 +9,8 @@ import {
   ActionButton,
   Switch,
   Row,
+  Error,
 } from './FormStyle'
-import styled from 'styled-components'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 
 const WAIT_INTERVAL = 1000
@@ -117,25 +117,21 @@ class NewAccount extends Component {
             label="手机号"
             helperText={<Error>{errors.phoneNum}</Error>}
           />
-          {
-            phoneNum && !errors.phoneNum ? (
-              <Row>
-                <TextField
-                  value={smsCode}
-                  onChange={this.handleChange.bind(this, 'smsCode')}
-                  margin="dense"
-                  placeholder="验证码"
-                  helperText={<Error>{errors.smsCode}</Error>}
-                />
-                <SmsSendContainer
-                  phoneNumIsValid={true}
-                  phoneNum={phoneNum}
-                  checkUserExist={false}
-                />
-              </Row>
-            ) : null
-          }
-
+          <Row>
+            <TextField
+              style={{flexGrow: 1}}
+              value={smsCode}
+              onChange={this.handleChange.bind(this, 'smsCode')}
+              margin="dense"
+              label="验证码"
+              helperText={<Error>{errors.smsCode}</Error>}
+            />
+            <SmsSendContainer
+              phoneNumIsValid={phoneNum && !errors.phoneNum}
+              phoneNum={phoneNum}
+              checkUserExist={false}
+            />
+          </Row>
           <TextField
             style={{width: '100%'}}
             value={password}
@@ -155,8 +151,3 @@ class NewAccount extends Component {
 }
 
 export default NewAccount
-
-// p > span
-const Error = styled.span`
-  color: red;
-`
