@@ -1,6 +1,16 @@
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
 
+export const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
+
+export const Content = styled.div`
+  flex-grow: 1;
+`
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

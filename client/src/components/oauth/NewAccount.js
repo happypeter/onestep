@@ -27,6 +27,11 @@ class NewAccount extends Component {
     this.timer = null
   }
 
+  componentWillUnmount = () => {
+    clearTimeout(this.timer)
+    this.timer = null
+  }
+
   validate = () => {
     const {username, phoneNum, smsCode, password} = this.state
     const errors = {}

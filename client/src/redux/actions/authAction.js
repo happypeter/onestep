@@ -3,6 +3,7 @@ import {showNotification} from './notificationAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 
+
 function setCurrentUserInfo(data) {
   return {
     type: types.AUTH_USER,
@@ -12,57 +13,7 @@ function setCurrentUserInfo(data) {
 
 function handleError(error, dispatch) {
   if (error.response) {
-    switch (error.response.data.errorMsg) {
-      case 'USER_DOESNOT_EXIST':
-        dispatch({type: types.USER_DOESNOT_EXIST})
-        break
-
-      case 'INVALID_PASSWORD':
-        dispatch({type: types.INVALID_PASSWORD})
-        break
-
-      case 'USERMANE_ALREADY_EXISTS':
-        dispatch({type: types.USERMANE_ALREADY_EXISTS})
-        break
-
-      case 'PHONE_NUM_DOESNOT_EXIST':
-        dispatch({type: types.PHONE_NUM_DOESNOT_EXIST})
-        break
-
-      case 'PHONE_NUM_ALREADY_EXISTS':
-        dispatch({type: types.PHONE_NUM_ALREADY_EXISTS})
-        break
-
-      case 'PLEASE_USE_PHONE_NUM':
-        dispatch({type: types.PLEASE_USE_PHONE_NUM})
-        break
-
-      case 'INVALID_TOKEN':
-      case 'EXPIRED_TOKEN':
-      case 'TOKEN_NOT_FOUND':
-        dispatch({
-          type: types.TOKEN_IS_INVALID,
-          error,
-        })
-        dispatch(showNotification('登录态过期'))
-        break
-
-      case 'SMS_NO_RECORED':
-      case 'SMS_ERR_TRY_AGAIN':
-        dispatch({type: types.SMS_ERR_TRY_AGAIN})
-        break
-
-      case 'SMS_CODE_IS_INVALID':
-        dispatch({type: types.SMS_CODE_IS_INVALID})
-        break
-
-      case 'EXPIRED_SMS_CODE':
-        dispatch({type: types.EXPIRED_SMS_CODE})
-        break
-
-      default:
-        console.log(error.response.data)
-    }
+    dispatch(showNotification(error.response.data.errorMsg))
   } else {
     console.log(error)
   }
@@ -88,6 +39,7 @@ export function login(data) {
 }
 
 export function signup(data) {
+    console.log(`signup....`, data)
   return dispatch => {
     axios
       .post(`${config.api}/signup`, data)

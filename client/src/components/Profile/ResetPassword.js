@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
-import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import {
   Container,
   Title,
   Form,
-  Image,
   ActionButton,
-  Switch,
   Row,
   Error,
 } from '../oauth/FormStyle'
+import isEmpty from 'lodash.isempty'
 
 const WAIT_INTERVAL = 1000
 
@@ -38,7 +36,7 @@ class ResetPassword extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const errors = this.validate()
-    if (Object.keys(errors).length) {
+    if (!isEmpty(errors)) {
       this.setState({errors: {...this.state.errors, ...errors}})
       return
     }
@@ -68,7 +66,7 @@ class ResetPassword extends Component {
 
   render() {
     const {errors, smsCode, password} = this.state
-    const {isAuthenticated, currentUser} = this.props.auth
+    const {currentUser} = this.props.auth
 
     return (
       <Container>

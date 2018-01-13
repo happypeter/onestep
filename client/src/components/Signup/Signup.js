@@ -1,93 +1,145 @@
 import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
-import Button from 'material-ui/Button'
-import FormItem from '../common/FormItem'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
-import styled from 'styled-components'
 import WeChat from '../oauth/WeChat'
+import TextField from 'material-ui/TextField'
+import {
+  Wrap,
+  Content,
+  Container,
+  Title,
+  Form,
+  ActionButton,
+  Row,
+  Error,
+} from '../oauth/FormStyle'
+import keys from 'lodash.keys'
+import isEmpty from 'lodash.isempty'
+
+const WAIT_INTERVAL = 1000
 
 class Signup extends Component {
-  getPhoneNum = e => {
-    this.props.getPhoneNum(e.target.value)
+  state = {
+    username: '',
+    phoneNum: '',
+    password: '',
+    smsCode: '',
+    errors: {},
   }
 
-  getSmsCode = e => {
-    this.props.getSmsCode(e.target.value)
+  componentWillMount = () => {
+    this.timers = {}
   }
 
-  getPassword = e => {
-    this.props.getPassword(e.target.value)
+  componentWillUnmount = () => {
+    this.clearTimers()
   }
 
-  getPasswordConsistent = e => {
-    if (typeof e === 'string') {
-      this.props.getPasswordConsistent(e)
-      return
+  clearTimers = () => {
+    let items = keys(this.timers)
+    for(let i = 0; i < items.length; i++) {
+      clearTimeout(this.timers[items[i]])
     }
-    this.props.getPasswordConsistent(e.target.value)
+
+    this.timers = null
+  }
+
+  validate = () => {
+    const {username, phoneNum, smsCode, password} = this.state
+    const errors = {}
+    if (!username) {
+      errors.username = '用户名不能为空'
+    }
+    if (!phoneNum || !/^1[3|4|5|7|8][0-9]\d{8}$/.test(phoneNum)) {
+      errors.phoneNum = '手机号格式不正确'
+    }
+    if (!smsCode) {
+      errors.smsCode = '验证码不能为空'
+    }
+    if (!password || password.length < 6) {
+      errors.password = '密码长度不能小于6'
+    }
+
+    return errors
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    this.props.onSubmit()
+    const errors = this.validate()
+    if (!isEmpty(errors)) {
+      this.setState({errors: {...this.state.errors, ...errors}})
+      return
+    }
+    const data = {...this.state}
+    delete data.errors
+    this.props.signup(data)
   }
 
-  enterToSubmit = e => {
-    if (e.which !== 13) return
-    this.getPasswordConsistent(e.target.value)
+  handleChange = (field, e) => {
+    clearTimeout(this.timers[field])
+    const value = e.target.value.trim()
+    this.setState({[field]: value})
+    this.timers[field] = setTimeout(() => {
+      this.triggerChange(field, value)
+    }, WAIT_INTERVAL)
+  }
+
+  triggerChange = (field, value) => {
+    let error = ''
+    if (field === 'username' && !value) {
+      error = '用户名不能为空'
+    }
+    if (field === 'phoneNum' && !/^1[3|4|5|7|8][0-9]\d{8}$/.test(value)) {
+      error = '手机号格式不正确'
+    }
+    if (field === 'password' && value.length < 6) {
+      error = '密码长度不能小于6'
+    }
+    if (field === 'smsCode' && !value) {
+      error = '验证码不能为空'
+    }
+    this.setState({errors: {...this.state.errors, [field]: error}})
   }
 
   render() {
+    const {phoneNum, errors} = this.state
+    const fields = [
+      {label: '用户名', name: 'username'},
+      {label: '手机号', name: 'phoneNum'},
+      {label: '验证码', name: 'smsCode'},
+      {label: '密码', name: 'password'},
+    ]
+    const formItems = fields.map(field => {
+      return (
+        <Row key={field.name}>
+          <TextField
+            error={errors[field.name] ? true : false}
+            style={{flexGrow: 1}}
+            value={this.state[field.name]}
+            onChange={this.handleChange.bind(this, field.name)}
+            margin="dense"
+            label={field.label}
+            helperText={<Error>{errors[field.name]}</Error>}
+          />
+          {field.name === 'smsCode' ? (
+            <SmsSendContainer
+              phoneNumIsValid={phoneNum && !errors.phoneNum}
+              phoneNum={phoneNum}
+              checkUserExist={false}
+            />
+          ) : null}
+        </Row>
+      )
+    })
     return (
       <Wrap>
         <TopHeader />
         <Content>
-          <Container onSubmit={this.handleSubmit}>
+          <Container>
             <Title>注册</Title>
-            <Form>
-              <FormItem
-                error={this.props.errorText.phoneNum}
-                htmlFor="phoneNum"
-                inputLabel="手机号"
-                onBlur={this.getPhoneNum}
-                formHelperText={this.props.errorText.phoneNum}
-              />
-
-              <Row>
-                <FormItem
-                  error={this.props.errorText.smsCode}
-                  htmlFor="smsCode"
-                  inputLabel="验证码"
-                  onBlur={this.getSmsCode}
-                  formHelperText={this.props.errorText.smsCode}
-                />
-                <SmsSendContainer
-                  phoneNumIsValid={this.props.phoneNumIsValid}
-                  phoneNum={this.props.phoneNum}
-                  checkUserExist={true}
-                />
-              </Row>
-
-              <FormItem
-                error={this.props.errorText.password}
-                htmlFor="password"
-                inputLabel="密码"
-                onBlur={this.getPassword}
-                type="password"
-                formHelperText={this.props.errorText.password}
-              />
-
-              <FormItem
-                error={this.props.errorText.passwordConsistent}
-                htmlFor="passwordConsistent"
-                inputLabel="确认密码"
-                onBlur={this.getPasswordConsistent}
-                onKeyDown={this.enterToSubmit}
-                type="password"
-                formHelperText={this.props.errorText.passwordConsistent}
-              />
-
+            <Form onSubmit={this.handleSubmit}>
+              {formItems}
               <ActionButton type="submit">注册</ActionButton>
             </Form>
             <WeChat />
@@ -100,51 +152,3 @@ class Signup extends Component {
 }
 
 export default Signup
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`
-
-const Content = styled.div`
-  flex-grow: 1;
-`
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  box-shadow: 2px 2px 5px #888888;
-  margin: 32px auto;
-  width: 100%;
-  max-width: 390px;
-`
-
-const Title = styled.div`
-  background-color: #00bcd4;
-  text-align: center;
-  font-size: 18px;
-  padding: 16px 0;
-  color: #fff;
-  letter-spacing: 1.5;
-  font-weight: 500;
-`
-
-const Form = styled.form`
-  padding: 16px 32px;
-`
-
-const Row = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-const ActionButton = styled(Button)`
-  && {
-    background-color: #00bcd4;
-    color: #ffffff;
-    width: 100%;
-    margin-top: 1.5em;
-  }
-`

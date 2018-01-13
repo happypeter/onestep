@@ -147,47 +147,51 @@ exports.binding = (req, res, next) => {
 
 exports.signup = (req, res, next) => {
   const {username, password, phoneNum, smsCode} = req.body
+  Promise.all([
+    User.findOne({username}).exec(),
+    User.findOne({phoneNum}).exec(),
+    msg.check(phoneNum, smsCode)
+  ])
+    .then(results => {
+      if (results[0]) {
+        return res.status(403).json({
+          errorMsg: '用户名已被占用',
+          success: false,
+        })
+      }
 
-  User.findOne({phoneNum: phoneNum}).then(doc => {
-    if (doc) {
-      return res.status(403).json({
-        errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-        success: false,
-      })
-    }
-  })
+      if (results[1]) {
+        return res.status(403).json({
+          errorMsg: '手机号已被占用',
+          success: false,
+        })
+      }
 
-  msg
-    .check(phoneNum, smsCode)
-    .then(msg => {
-      User.findOne({phoneNum: phoneNum})
-        .then(doc => {
-          if (doc) {
-            return res.status(403).json({
-              errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-              success: false,
-            })
-          }
+      if (!results[2]) {
+        return res.status(403).json({
+          errorMsg: '验证码错误',
+          success: false,
+        })
+      }
 
-          const user = new User()
-          user.phoneNum = phoneNum
-          user.password = password
+      if (!results[0] && !results[1] && results[2] === smsCode) {
+        const user = new User()
+        user.username = username
+        user.phoneNum = phoneNum
+        user.password = password
 
-          user.save().then(user => {
-            return res.status(200).json({
-              user: {phoneNum: user.phoneNum},
-              token: generateToken({phoneNum: user.phoneNum}),
-              success: true,
-            })
+        user.save().then(user => {
+          return res.status(200).json({
+            user: {phoneNum: user.phoneNum},
+            token: generateToken({phoneNum: user.phoneNum}),
+            success: true,
           })
         })
-        .catch(next)
+      }
+
     })
-    .catch(err => {
-      return res.status(403).json({
-        errorMsg: err,
-        success: false,
-      })
+    .catch(error => {
+      console.log(error)
     })
 }
 

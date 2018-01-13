@@ -15,9 +15,7 @@ const smsClient = new SMSClient({accessKeyId, secretAccessKey})
 exports.send = (req, res) => {
   const phoneNum = req.body.phoneNum
   // 六位随机验证码
-  const smsCode = Math.random()
-    .toString()
-    .slice(-6)
+  const smsCode = Math.random().toString().slice(-6)
   smsClient
     .sendSMS({
       PhoneNumbers: phoneNum,
@@ -50,13 +48,9 @@ exports.send = (req, res) => {
 // check smsCode
 exports.check = (phoneNum, code) => {
   // 转换当下日期格式
-  let sendDate = moment()
-    .format()
-    .substr(0, 10)
-    .split('-')
-    .join('')
+  const sendDate = moment().format('YYYYMMDD')
 
-  let promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     // 查询短信发送详情
     smsClient
       .queryDetail({
@@ -67,16 +61,15 @@ exports.check = (phoneNum, code) => {
       })
       .then(
         function(res) {
-          let {Code, SmsSendDetailDTOs} = res
+          const {Code, SmsSendDetailDTOs} = res
           if (Code === 'OK') {
             // 处理发送详情内容
-            let detail = SmsSendDetailDTOs.SmsSendDetailDTO[0]
+            const detail = SmsSendDetailDTOs.SmsSendDetailDTO[0]
             if (detail) {
-              let content = detail.Content
-              let pattern = /\d{6}/
+              const content = detail.Content
+              const pattern = /\d{6}/
               if (!content || !pattern.exec(content)) {
-                console.log('出错 请重新获取验证码')
-                reject('SMS_ERR_TRY_AGAIN')
+                reject('出错 请重新获取验证码')
               }
               let realCode = pattern.exec(content)[0]
               if (realCode === code) {
@@ -85,28 +78,21 @@ exports.check = (phoneNum, code) => {
                 // 一分钟60000ms
                 let difftime = (now - receiveTime) / 60000
                 if (difftime <= config.timeLimit) {
-                  resolve('pass')
+                  resolve(code)
                 } else {
-                  console.log('验证码过期')
-                  reject('EXPIRED_SMS_CODE')
+                  reject('验证码过期')
                 }
               } else {
-                console.log('验证码错误')
-                reject('SMS_CODE_IS_INVALID')
+                reject('验证码错误')
               }
             } else {
-              console.log(`${sendDate + '无验证码记录'}`)
-              reject('SMS_NO_RECORED')
+              reject('验证码错误')
             }
           }
         },
         function(err) {
-          // 处理错误
           console.log(err)
-          reject(err)
-        },
+        }
       )
   })
-
-  return promise
 }
