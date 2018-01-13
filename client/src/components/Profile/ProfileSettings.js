@@ -8,9 +8,9 @@ import LoadingComponent from '../common/Loading'
 export default () => (
   <Wrap>
     <TopHeader />
-    <div>
+    <Content>
       <AsyncResetPassword />
-    </div>
+    </Content>
     <Footer />
   </Wrap>
 )
@@ -25,4 +25,8 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+`
+
+const Content = styled.div`
+  flex-grow: 1;
 `

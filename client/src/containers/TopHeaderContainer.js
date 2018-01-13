@@ -15,7 +15,7 @@ const TopHeaderContainer = (props) => {
   return (
     <div>
       <TopHeader
-        sideButtons={tempIsAuthenticated}
+        loggedIn={tempIsAuthenticated}
         logout={logout}
         history={history}
       />

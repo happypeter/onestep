@@ -10,8 +10,6 @@ import {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  // phoneNumNotValid,
-  // phoneNumIsValid,
   smsCodeIsRequired,
   smsCodeIsValid,
 } from '../redux/actions/formAction'
@@ -87,7 +85,6 @@ class ResetPasswordContainer extends Component {
     let userInfo = yield
 
     let {password, passwordConsistent, smsCode} = userInfo
-    // this.checkPhoneNum(phoneNum)
     this.checkSmsCode(smsCode)
     this.checkPassword(password)
     this.checkpasswordConsistent({password, passwordConsistent})
@@ -116,7 +113,6 @@ class ResetPasswordContainer extends Component {
     recheck.next(this.state)
     setTimeout(() => {
       recheck.next()
-      // console.log(this.props.signUpState);
     }, 50)
   }
 
@@ -125,7 +121,6 @@ class ResetPasswordContainer extends Component {
       <ResetPassword
         onSubmit={this.handleSubmit}
         phoneNum={this.state.phoneNum}
-        // checkPhoneNum={this.checkPhoneNum}
         getSmsCode={this.getSmsCode}
         getPassword={this.getPassword}
         getPasswordConsistent={this.getPasswordConsistent}
@@ -137,15 +132,12 @@ class ResetPasswordContainer extends Component {
 }
 
 ResetPasswordContainer.propTypes = {
-  login: PropTypes.func.isRequired,
   passwordTooShort: PropTypes.func.isRequired,
   passwordIsValid: PropTypes.func.isRequired,
   passwordsInconsistent: PropTypes.func.isRequired,
   passwordsConsistent: PropTypes.func.isRequired,
   usernameIsRequired: PropTypes.func.isRequired,
   usernameIsValid: PropTypes.func.isRequired,
-  // phoneNumNotValid: PropTypes.func.isRequired,
-  // phoneNumIsValid: PropTypes.func.isRequired,
   smsCodeIsRequired: PropTypes.func.isRequired,
   smsCodeIsValid: PropTypes.func.isRequired,
 }
@@ -164,8 +156,6 @@ export default connect(mapStateToProps, {
   passwordsConsistent,
   usernameIsRequired,
   usernameIsValid,
-  // phoneNumNotValid,
-  // phoneNumIsValid,
   smsCodeIsRequired,
   smsCodeIsValid,
 })(ResetPasswordContainer)

@@ -22,12 +22,10 @@ class TopHeader extends Component {
   }
 
   goToProfile = () => {
-    this.handlePopoverClose()
     this.props.history.push('/user/profile')
   }
 
   goToSettings = () => {
-    this.handlePopoverClose()
     this.props.history.push('/settings/account')
   }
 
@@ -43,21 +41,21 @@ class TopHeader extends Component {
         <ButtonLink to="/login">登录</ButtonLink>
       </SideButtonsWrap>
     )
-
+    const {anchorEl} = this.state
     const LogoutButtons = (
       <SideButtonsWrap>
         <div>
           <div
             onMouseOver={this.handlePopoverOpen}
             onTouchStart={this.handlePopoverOpen}>
-            <Username>{this.props.sideButtons}</Username>
+            <Username>{this.props.loggedIn}</Username>
           </div>
 
           <PopMenu
             id="simple-menu"
-            anchorEl={this.state.anchorEl}
-            open={!!this.state.anchorEl}
-            onRequestClose={this.handlePopoverClose}>
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handlePopoverClose}>
             <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
             <MenuItem onClick={this.goToSettings}>设置</MenuItem>
             <MenuItem onClick={this.logout}>退出</MenuItem>
@@ -77,7 +75,7 @@ class TopHeader extends Component {
           />
           <ButtonLink to="/">好奇猫</ButtonLink>
         </HomeWrap>
-        {this.props.sideButtons ? LogoutButtons : LoginButtons}
+        {this.props.loggedIn ? LogoutButtons : LoginButtons}
       </TopHeaderWrap>
     )
   }
