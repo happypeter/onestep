@@ -248,7 +248,7 @@ export const checkEpisodeAuth = data => {
 export function resetPassword(data) {
   return dispatch => {
     axios
-      .post(`${config.ap}/resetpassword`, data)
+      .post(`${config.ap}/reset-password`, data)
       .then(res => {
         const token = res.data.token
         const user = res.data.user
@@ -257,7 +257,7 @@ export function resetPassword(data) {
           type: types.RESET_PASSWORD,
           userInfo: user,
         })
-        // dispatch(showNotification())
+        dispatch(showNotification('密码修改成功'))
       })
       .catch(error => {
         handleError(error, dispatch)

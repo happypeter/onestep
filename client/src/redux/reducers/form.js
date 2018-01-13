@@ -17,8 +17,8 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'FORM_ERR_INIT':
+      console.log(`form state`, state)
       return initialState
-    // phone number
     case 'PHONE_NUM_NOT_VALID':
       return {
         ...state,

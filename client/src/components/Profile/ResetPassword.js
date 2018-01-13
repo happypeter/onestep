@@ -1,138 +1,117 @@
 import React, {Component} from 'react'
 import Button from 'material-ui/Button'
-import FormItem from '../common/FormItem'
+import TextField from 'material-ui/TextField'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
-import styled from 'styled-components'
+import {
+  Container,
+  Title,
+  Form,
+  Image,
+  ActionButton,
+  Switch,
+  Row,
+  Error,
+} from '../oauth/FormStyle'
+
+const WAIT_INTERVAL = 1000
 
 class ResetPassword extends Component {
-  getPassword = e => {
-    this.props.getPassword(e.target.value)
+  state = {
+    smsCode: '',
+    password: '',
+    errors: {},
   }
 
-  getPasswordConsistent = e => {
-    if (typeof e === 'string') {
-      this.props.getPasswordConsistent(e)
-      return
+  validate = () => {
+    const {smsCode, password} = this.state
+    const errors = {}
+    if (!smsCode) {
+      errors.smsCode = '验证码不能为空'
     }
-    this.props.getPasswordConsistent(e.target.value)
-  }
+    if (!password || password.length < 6) {
+      errors.password = '密码长度不能小于6'
+    }
 
-  getSmsCode = e => {
-    this.props.getSmsCode(e.target.value)
+    return errors
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    this.props.onSubmit()
+    const errors = this.validate()
+    if (Object.keys(errors).length) {
+      this.setState({errors: {...this.state.errors, ...errors}})
+      return
+    }
+    const {smsCode, password} = this.state
+    const phoneNum = this.props.auth.currentUser.phoneNum
+    this.props.resetPassword({phoneNum, smsCode, password})
   }
 
-  enterToSubmit = e => {
-    if (e.which !== 13) return
-    this.getPasswordConsistent(e.target.value)
+  handleChange = (field, e) => {
+    const value = e.target.value.trim()
+    this.setState({[field]: value})
+    this.timer = setTimeout(() => {
+      this.triggerChange(field, value)
+    }, WAIT_INTERVAL)
+  }
+
+  triggerChange = (field, value) => {
+    let error = ''
+    if (field === 'password' && value.length < 6) {
+      error = '密码长度不能小于6'
+    }
+    if (field === 'smsCode' && !value) {
+      error = '验证码不能为空'
+    }
+    this.setState({errors: {...this.state.errors, [field]: error}})
   }
 
   render() {
-    return (
-      <SignupWrap>
-        <FormTitle>修改密码</FormTitle>
-        <FromWrap onSubmit={this.handleSubmit}>
-          <FormItem
-            error={this.props.errorText.phoneNum}
-            disabled={true}
-            value={this.props.phoneNum}
-            htmlFor={'phoneNum'}
-            inputLabel={this.props.phoneNum}
-            formHelperText={this.props.errorText.phoneNum}
-          />
+    const {errors, smsCode, password} = this.state
+    const {isAuthenticated, currentUser} = this.props.auth
 
-          <TextFieldWrap>
-            <FormItem
-              error={this.props.errorText.smsCode}
-              htmlFor={'smsCode'}
-              inputLabel={'验证码'}
-              onBlur={this.getSmsCode}
-              formHelperText={this.props.errorText.smsCode}
+    return (
+      <Container>
+        <Title>修改密码</Title>
+        <Form onSubmit={this.handleSubmit}>
+          <TextField
+            style={{width: '100%'}}
+            disabled={true}
+            margin="dense"
+            defaultValue={currentUser.phoneNum}
+            label="手机号"
+          />
+          <Row>
+            <TextField
+              style={{width: '100%'}}
+              label="验证码"
+              value={smsCode}
+              margin="dense"
+              onChange={this.handleChange.bind(this, 'smsCode')}
+              helperText={<Error>{errors.smsCode}</Error>}
             />
             <SmsSendContainer
-              phoneNumIsValid={this.props.phoneNumIsValid}
-              phoneNum={this.props.phoneNum}
+              phoneNumIsValid={true}
+              phoneNum={currentUser.phoneNum}
             />
-          </TextFieldWrap>
-
-          <FormItem
-            error={this.props.errorText.password}
-            htmlFor={'password'}
-            inputLabel={'新密码'}
-            onBlur={this.getPassword}
-            type={'password'}
-            formHelperText={this.props.errorText.password}
-          />
-
-          <FormItem
-            error={this.props.errorText.passwordConsistent}
-            htmlFor={'passwordConsistent'}
-            inputLabel={'确认新密码'}
-            onBlur={this.getPasswordConsistent}
-            onKeyDown={this.enterToSubmit}
-            type={'password'}
-            formHelperText={this.props.errorText.passwordConsistent}
+          </Row>
+          <TextField
+            style={{width: '100%'}}
+            label="新密码"
+            value={password}
+            onChange={this.handleChange.bind(this, 'password')}
+            type="password"
+            margin="dense"
+            helperText={<Error>{errors.password}</Error>}
           />
 
           <ActionButton raised type="submit">
             重置密码
           </ActionButton>
-        </FromWrap>
-      </SignupWrap>
+        </Form>
+      </Container>
     )
   }
 }
 
 export default ResetPassword
-
-const SignupWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`
-
-const FormTitle = styled.div`
-  margin: 0 auto;
-  margin-top: 105px;
-  font-size: 40px;
-  color: #212121;
-`
-
-const FromWrap = styled.form`
-  min-height: 450px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: border-box;
-  box-shadow: 2px 2px 5px #888888;
-  border-top: 2.5em solid #00bcd4;
-  text-align: center;
-  margin-top: 5%;
-  padding: 0 60px;
-  @media (min-width: 400px) {
-    width: 360px;
-    margin: 40px auto;
-    margin-bottom: 280px;
-    padding: 0 80px 20px;
-  }
-`
-
-const TextFieldWrap = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-const ActionButton = styled(Button)`
-  && {
-    background-color: #00bcd4;
-    color: #ffffff;
-    width: 100%;
-    margin-top: 1.5em;
-  }
-`

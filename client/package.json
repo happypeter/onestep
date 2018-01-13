@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "jsonwebtoken": "^8.1.0",
+    "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.22",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",

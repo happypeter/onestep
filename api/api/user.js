@@ -417,13 +417,9 @@ exports.resetPassword = (req, res, next) => {
   msg
     .check(phoneNum, smsCode)
     .then(msg => {
-      console.log('smsCode: ' + msg)
       User.findOne({phoneNum: phoneNum}).then(user => {
-        // update password
         user.password = password
-
         user.save().then(user => {
-          console.log(phoneNum + ' reset password')
           return res.status(200).json({
             user: {phoneNum: user.phoneNum},
             token: generateToken({phoneNum: user.phoneNum}),

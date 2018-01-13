@@ -11,7 +11,7 @@ const router = express.Router()
 router.post('/signup', user.signup)
 router.post('/login', user.login)
 router.post('/auth', user.checkToken)
-router.post('/resetpassword', user.resetPassword)
+router.post('/reset-password', user.resetPassword)
 router.post('/oauth/wechat', user.weChat)
 router.post('/oauth/binding', user.binding)
 

@@ -9,9 +9,5 @@ export function showNotification(text) {
 }
 
 export function clearNotification() {
-  return dispatch => {
-    dispatch({
-      type: CLEAR_NOTIFICATION,
-    })
-  }
+  return {type: CLEAR_NOTIFICATION}
 }
