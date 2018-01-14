@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
+import {Link} from 'react-router-dom'
 
 export const Wrap = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ export const Title = styled.div`
 `
 
 export const Form = styled.form`
-  padding: 16px 32px 32px;
+  padding: 16px 32px 24px;
   text-align: center;
 `
 
@@ -69,4 +70,13 @@ export const Row = styled.div`
 
 export const Error = styled.span`
   color: #ff1744;
+`
+
+export const LinkWrap = styled(Link)`
+  text-decoration: none;
+  color: #00bcd4;
+  font-size: 14px;
+  display: block;
+  margin-top: 8px;
+  text-align: right;
 `

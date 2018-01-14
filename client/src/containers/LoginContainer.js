@@ -37,7 +37,7 @@ class LoginContainer extends Component {
     }
 
     return (
-      <Login />
+      <Login {...this.props} />
     )
   }
 }

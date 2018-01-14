@@ -72,8 +72,8 @@ class Main extends Component {
             component={requireAuthentication(AsyncProfile)}
           />
           <Route
-            path="/settings/account"
-            component={requireAuthentication(ProfileSettings)}
+            path="/reset-password"
+            component={ProfileSettings}
           />
           <Route exact path="/:courseName" component={AsyncCourse} />
           <Route

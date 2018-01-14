@@ -31,7 +31,7 @@ class WeChat extends Component {
 export default WeChat
 
 const Wrap = styled.div`
-  padding: 16px 0;
+  padding-bottom: 16px;
 `
 
 const Line = styled.div`
