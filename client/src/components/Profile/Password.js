@@ -67,6 +67,7 @@ class Password extends Component {
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"
             label={field.label}
+            type='password'
             helperText={<Error>{errors[field.name]}</Error>}
           />
           {field.name === 'old' ? <div>忘记密码</div> : null}

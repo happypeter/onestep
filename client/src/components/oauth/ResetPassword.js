@@ -118,6 +118,7 @@ class ResetPassword extends Component {
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"
             label={field.label}
+            type={field.name === 'password' ? 'password' : null}
             helperText={<Error>{errors[field.name]}</Error>}
           />
           {field.name === 'smsCode' ? (
@@ -136,7 +137,7 @@ class ResetPassword extends Component {
         <TopHeader />
         <Content>
           <Container>
-            <Title>找回密码</Title>
+            <Title>重置密码</Title>
             <Form onSubmit={this.handleSubmit}>
               {formItems}
               <ActionButton raised type="submit">

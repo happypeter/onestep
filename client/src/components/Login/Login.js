@@ -68,6 +68,7 @@ class Login extends Component {
                 onChange={this.handleChange.bind(this, 'password')}
                 margin="dense"
                 label='密码'
+                type='password'
                 helperText={<Error>{errors.password}</Error>}
               />
               <ActionButton type="submit">登录</ActionButton>

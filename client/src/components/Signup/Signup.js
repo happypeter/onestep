@@ -120,6 +120,7 @@ class Signup extends Component {
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"
             label={field.label}
+            type={field.name === 'password' ? 'password' : null}
             helperText={<Error>{errors[field.name]}</Error>}
           />
           {field.name === 'smsCode' ? (
