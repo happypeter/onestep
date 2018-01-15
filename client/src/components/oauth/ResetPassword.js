@@ -1,26 +1,28 @@
 import React, {Component} from 'react'
 import TextField from 'material-ui/TextField'
+import TopHeader from '../../containers/TopHeaderContainer'
+import Footer from '../Footer/Footer'
+import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import {
+  Wrap,
+  Content,
   Container,
   Title,
   Form,
-  Image,
   ActionButton,
-  Switch,
   Row,
   Error,
-} from './FormStyle'
-import SmsSendContainer from '../common/smsSend/SmsSendContainer'
-import keys from 'lodash.keys'
+} from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
+import keys from 'lodash.keys'
 const WAIT_INTERVAL = 1000
 
-class NewAccount extends Component {
+class ResetPassword extends Component {
   state = {
     username: '',
     phoneNum: '',
-    password: '',
     smsCode: '',
+    password: '',
     errors: {},
   }
 
@@ -62,15 +64,14 @@ class NewAccount extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    //针对表单信息没有填写完整，就提交表单的情况
     const errors = this.validate()
     if (!isEmpty(errors)) {
       this.setState({errors: {...this.state.errors, ...errors}})
       return
     }
-
-    const data = {...this.state, user: {...this.props.user}, existed: false}
-    this.props.oauthBinding(data, this.props.history)
+    const {smsCode, password} = this.state
+    const phoneNum = this.props.auth.currentUser.phoneNum
+    this.props.resetPassword({phoneNum, smsCode, password})
   }
 
   handleChange = (field, e) => {
@@ -99,67 +100,55 @@ class NewAccount extends Component {
     this.setState({errors: {...this.state.errors, [field]: error}})
   }
 
-  handleClick = () => {
-    this.props.switchTab()
-  }
-
   render() {
-    const {user} = this.props
-    const {username, phoneNum, smsCode, password, errors} = this.state
-
-    return (
-      <Container>
-        <Title>绑定新账号</Title>
-        <Form onSubmit={this.handleSubmit}>
-          <Image src={user.headimgurl} />
-          <div>{user.nickname}</div>
+    const {phoneNum, errors} = this.state
+    const fields = [
+      {label: '用户名', name: 'username'},
+      {label: '手机号', name: 'phoneNum'},
+      {label: '验证码', name: 'smsCode'},
+      {label: '密码', name: 'password'},
+    ]
+    const formItems = fields.map(field => {
+      return (
+        <Row key={field.name}>
           <TextField
+            error={errors[field.name] ? true : false}
             style={{width: '100%'}}
-            value={username}
-            onChange={this.handleChange.bind(this, 'username')}
+            value={this.state[field.name]}
+            onChange={this.handleChange.bind(this, field.name)}
             margin="dense"
-            label="用户名"
-            helperText={<Error>{errors.username}</Error>}
+            label={field.label}
+            helperText={<Error>{errors[field.name]}</Error>}
           />
-          <TextField
-            style={{width: '100%'}}
-            value={phoneNum}
-            onChange={this.handleChange.bind(this, 'phoneNum')}
-            margin="dense"
-            label="手机号"
-            helperText={<Error>{errors.phoneNum}</Error>}
-          />
-          <Row>
-            <TextField
-              style={{flexGrow: 1}}
-              value={smsCode}
-              onChange={this.handleChange.bind(this, 'smsCode')}
-              margin="dense"
-              label="验证码"
-              helperText={<Error>{errors.smsCode}</Error>}
-            />
+          {field.name === 'smsCode' ? (
             <SmsSendContainer
               phoneNumIsValid={phoneNum && !errors.phoneNum}
               phoneNum={phoneNum}
               checkUserExist={false}
             />
-          </Row>
-          <TextField
-            style={{width: '100%'}}
-            value={password}
-            onChange={this.handleChange.bind(this, 'password')}
-            margin="dense"
-            label="密码"
-            placeholder="密码长度不能小于6"
-            type="password"
-            helperText={<Error>{errors.password}</Error>}
-          />
-          <ActionButton type="submit">完成注册</ActionButton>
-        </Form>
-        <Switch onClick={this.handleClick}>绑定已有账号</Switch>
-      </Container>
+          ) : null}
+        </Row>
+      )
+    })
+
+    return (
+      <Wrap>
+        <TopHeader />
+        <Content>
+          <Container>
+            <Title>找回密码</Title>
+            <Form onSubmit={this.handleSubmit}>
+              {formItems}
+              <ActionButton raised type="submit">
+                确定
+              </ActionButton>
+            </Form>
+          </Container>
+        </Content>
+        <Footer />
+      </Wrap>
     )
   }
 }
 
-export default NewAccount
+export default ResetPassword

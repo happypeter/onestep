@@ -16,7 +16,7 @@ export default () => (
 )
 
 const AsyncResetPassword = Loadable({
-  loader: () => import('../../containers/ResetPasswordContainer'),
+  loader: () => import('../../containers/PasswordContainer'),
   loading: LoadingComponent,
   delay: 300,
 })

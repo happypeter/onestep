@@ -33,7 +33,7 @@ export const Title = styled.div`
 `
 
 export const Form = styled.form`
-  padding: 16px 32px 24px;
+  padding: 16px 32px 32px;
   text-align: center;
 `
 

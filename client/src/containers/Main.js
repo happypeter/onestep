@@ -7,6 +7,7 @@ import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
 import {requireEpisodeAuth} from './CheckEpisodeAuth'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
+import ResetPasswordContainer from './ResetPasswordContainer'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -72,9 +73,11 @@ class Main extends Component {
             component={requireAuthentication(AsyncProfile)}
           />
           <Route
-            path="/reset-password"
-            component={ProfileSettings}
+            exact
+            path="/settings"
+            component={requireAuthentication(ProfileSettings)}
           />
+          <Route path="/reset-password" component={ResetPasswordContainer} />
           <Route exact path="/:courseName" component={AsyncCourse} />
           <Route
             path="/:courseName/:episodeName"

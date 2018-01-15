@@ -115,7 +115,7 @@ class Signup extends Component {
         <Row key={field.name}>
           <TextField
             error={errors[field.name] ? true : false}
-            style={{flexGrow: 1}}
+            style={{width: '100%'}}
             value={this.state[field.name]}
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"

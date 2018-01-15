@@ -3,7 +3,6 @@ import {showNotification} from './notificationAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 
-
 function setCurrentUserInfo(data) {
   return {
     type: types.AUTH_USER,
@@ -39,7 +38,6 @@ export function login(data) {
 }
 
 export function signup(data) {
-    console.log(`signup....`, data)
   return dispatch => {
     axios
       .post(`${config.api}/signup`, data)
@@ -215,4 +213,8 @@ export function resetPassword(data) {
         handleError(error, dispatch)
       })
   }
+}
+
+export function modifyPassword(data) {
+  return dispatch => {}
 }
