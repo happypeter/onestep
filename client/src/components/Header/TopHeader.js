@@ -26,7 +26,7 @@ class TopHeader extends Component {
   }
 
   goToSettings = () => {
-    this.props.history.push('/settings/account')
+    this.props.history.push('/settings')
   }
 
   logout = () => {

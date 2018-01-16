@@ -15,14 +15,26 @@ const WAIT_INTERVAL = 1000
 
 class Password extends Component {
   state = {
-    old: '',
-    new: '',
+    oldOne: '',
+    newOne: '',
     consistent: '',
     errors: {},
   }
 
   validate = () => {
-    return
+    const {oldOne, newOne, consistent} = this.state
+    const errors = {}
+    if (!oldOne || oldOne.length < 6) {
+      errors.oldOne = '密码不能为空'
+    }
+    if (!newOne || newOne.length < 6) {
+      errors.newOne = '密码长度不能小于6'
+    }
+    if (newOne !== consistent) {
+      errors.consistent = '两次输入的密码不一致'
+    }
+
+    return errors
   }
 
   handleSubmit = e => {
@@ -32,30 +44,21 @@ class Password extends Component {
       this.setState({errors: {...this.state.errors, ...errors}})
       return
     }
+    const {oldOne, newOne} = this.state
+    this.props.modifyPassword({oldOne, newOne})
   }
 
   handleChange = (field, e) => {
     const value = e.target.value.trim()
     this.setState({[field]: value})
-    this.timer = setTimeout(() => {
-      this.triggerChange(field, value)
-    }, WAIT_INTERVAL)
-  }
-
-  triggerChange = (field, value) => {
-    let error = ''
-    if (field === 'old' && !value) {
-      error = '旧密码不能为空'
-    }
-    this.setState({errors: {...this.state.errors, [field]: error}})
   }
 
   render() {
     const {phoneNum, errors} = this.state
     const fields = [
-      {label: '旧密码', name: 'old'},
-      {label: '新密码', name: 'new'},
-      {label: '确认新密码', name: 'confirm'},
+      {label: '旧密码', name: 'oldOne'},
+      {label: '新密码', name: 'newOne'},
+      {label: '确认新密码', name: 'consistent'},
     ]
     const formItems = fields.map(field => {
       return (
@@ -70,7 +73,7 @@ class Password extends Component {
             type='password'
             helperText={<Error>{errors[field.name]}</Error>}
           />
-          {field.name === 'old' ? <div>忘记密码</div> : null}
+          {field.name === 'oldOne' ? <div>忘记密码</div> : null}
         </Row>
       )
     })

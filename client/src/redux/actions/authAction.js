@@ -218,7 +218,7 @@ export function resetPassword(data, history) {
 export function modifyPassword(data) {
   return dispatch => {
     axios
-      .post(`${config.api}/modify-password`, data)
+      .post(`${config.api}/password`, data)
       .then(res => {
         dispatch(showNotification('密码修改成功'))
       })

@@ -424,4 +424,35 @@ exports.resetPassword = (req, res, next) => {
 
 exports.password = (req, res, next) => {
   const {oldOne, newOne} = req.body
+  User.findOne({_id: req.userId})
+    .exec()
+    .then(user => {
+      if (!user) {
+        return res.status(422).json({
+          errorMsg: '该用户不存在',
+          success: false
+        })
+      } else {
+        user.comparePassword(oldOne, function(err, isMatch) {
+          if (err) {
+            return console.log(err)
+          }
+          if (!isMatch) {
+            return res.status(403).json({
+              errorMsg: '原密码错误',
+              success: false,
+            })
+          }
+          user.password = newOne
+          return user.save().then(user => {
+            return res.json({
+              success: true
+            })
+          })
+        })
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
