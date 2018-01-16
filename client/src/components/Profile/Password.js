@@ -10,6 +10,8 @@ import {
   Error,
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
+import {Link} from 'react-router-dom'
+import {LinkWrap} from '../oauth/FormStyle'
 
 const WAIT_INTERVAL = 1000
 
@@ -73,7 +75,6 @@ class Password extends Component {
             type='password'
             helperText={<Error>{errors[field.name]}</Error>}
           />
-          {field.name === 'oldOne' ? <div>忘记密码</div> : null}
         </Row>
       )
     })
@@ -86,6 +87,7 @@ class Password extends Component {
           <ActionButton raised type="submit">
             确定
           </ActionButton>
+          <LinkWrap to='/reset-password'>忘记密码</LinkWrap>
         </Form>
       </Container>
     )
