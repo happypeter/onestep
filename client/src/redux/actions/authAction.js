@@ -95,7 +95,6 @@ export function oauthBinding(data, history) {
 
 export function logout(data) {
   return dispatch => {
-    dispatch({type: types.LOG_OUT})
     sessionStorage.removeItem('jwtToken')
     delete axios.defaults.headers.common['Authorization']
     dispatch(setCurrentUser({}))
@@ -208,6 +207,9 @@ export function resetPassword(data, history) {
       .then(res => {
         history.push('/login')
         dispatch(showNotification('密码重置成功，请登录'))
+        sessionStorage.removeItem('jwtToken')
+        delete axios.defaults.headers.common['Authorization']
+        dispatch(setCurrentUser({}))
       })
       .catch(error => {
         handleError(error, dispatch)
