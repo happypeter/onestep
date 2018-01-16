@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import TextField from 'material-ui/TextField'
-import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import {
   Container,
   Title,
@@ -10,10 +9,7 @@ import {
   Error,
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
-import {Link} from 'react-router-dom'
 import {LinkWrap} from '../oauth/FormStyle'
-
-const WAIT_INTERVAL = 1000
 
 class Password extends Component {
   state = {
@@ -56,7 +52,7 @@ class Password extends Component {
   }
 
   render() {
-    const {phoneNum, errors} = this.state
+    const {errors} = this.state
     const fields = [
       {label: '旧密码', name: 'oldOne'},
       {label: '新密码', name: 'newOne'},

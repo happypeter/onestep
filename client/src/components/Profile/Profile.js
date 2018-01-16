@@ -26,7 +26,7 @@ class Profile extends Component {
           <AvatarHero>
             <AvatarWrap>
               <img src={defaultAvatar} alt="nickname" />
-              <div>{currentUser.username}</div>
+              <Nickname>{currentUser.username}</Nickname>
               {details && details.total !== 0 ? <div>已在好奇猫为自己投资{details.total}元</div> : <div>还没有在好奇猫为自己投资</div>}
             </AvatarWrap>
           </AvatarHero>

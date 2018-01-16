@@ -44,7 +44,7 @@ export function signup(data, history) {
       .then(res => {
         const token = res.data.token
         sessionStorage.setItem('jwtToken', token)
-        axios.defaults.headers.common['Authorization'] = `${token}`
+        axios.defaults.headers.common['Authorization'] = `${token}`    
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('注册成功'))
         history.push('/user/profile')
@@ -99,7 +99,6 @@ export function logout(data) {
     delete axios.defaults.headers.common['Authorization']
     dispatch(setCurrentUser({}))
     dispatch(showNotification('退出成功'))
-
   }
 }
 

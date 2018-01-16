@@ -16,7 +16,7 @@ import {
 } from '../oauth/FormStyle'
 import keys from 'lodash.keys'
 import isEmpty from 'lodash.isempty'
-
+import {Redirect} from 'react-router-dom'
 const WAIT_INTERVAL = 1000
 
 class Signup extends Component {
@@ -103,6 +103,7 @@ class Signup extends Component {
   }
 
   render() {
+    if (this.props.isAuthenticated) return <Redirect to='/' />
     const {phoneNum, errors} = this.state
     const fields = [
       {label: '用户名', name: 'username'},

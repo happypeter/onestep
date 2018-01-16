@@ -10,7 +10,7 @@ import Notification from '../components/Notification/Notification'
 import {clearNotification} from '../redux/actions/notificationAction'
 
 const TopHeaderContainer = (props) => {
-  const {notification, clearNotification, logout, history} = props
+  const {notification, clearNotification} = props
   return (
     <div>
       <TopHeader {...props}/>

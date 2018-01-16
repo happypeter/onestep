@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProfile} from '../redux/actions/profileAction'
 import {getProfile} from '../redux/selectors/commonSelectors.js'
