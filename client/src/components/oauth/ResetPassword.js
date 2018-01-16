@@ -69,9 +69,8 @@ class ResetPassword extends Component {
       this.setState({errors: {...this.state.errors, ...errors}})
       return
     }
-    const {smsCode, password} = this.state
-    const phoneNum = this.props.auth.currentUser.phoneNum
-    this.props.resetPassword({phoneNum, smsCode, password})
+    const {smsCode, password, phoneNum, username} = this.state
+    this.props.resetPassword({phoneNum, smsCode, password, username}, this.props.history)
   }
 
   handleChange = (field, e) => {

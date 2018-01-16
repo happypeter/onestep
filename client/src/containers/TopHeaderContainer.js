@@ -10,15 +10,10 @@ import Notification from '../components/Notification/Notification'
 import {clearNotification} from '../redux/actions/notificationAction'
 
 const TopHeaderContainer = (props) => {
-  const tempIsAuthenticated = window.sessionStorage.getItem('user')
   const {notification, clearNotification, logout, history} = props
   return (
     <div>
-      <TopHeader
-        loggedIn={tempIsAuthenticated}
-        logout={logout}
-        history={history}
-      />
+      <TopHeader {...props}/>
       {notification.text ? (
         <Notification
           text={notification.text}
@@ -34,7 +29,7 @@ TopHeaderContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  currentUserInfo: getCurrentUser(state),
+  auth: getCurrentUser(state),
   notification: getNotification(state),
 })
 

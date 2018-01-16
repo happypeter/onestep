@@ -2,11 +2,12 @@ import axios from 'axios'
 import {showNotification} from './notificationAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
+import jwtDecode from 'jwt-decode'
 
-function setCurrentUserInfo(data) {
+export function setCurrentUser(user) {
   return {
     type: types.AUTH_USER,
-    userInfo: data,
+    user
   }
 }
 
@@ -18,18 +19,17 @@ function handleError(error, dispatch) {
   }
 }
 
-export function login(data) {
+export function login(data, history) {
   return dispatch => {
     axios
       .post(`${config.api}/login`, data)
       .then(res => {
         const token = res.data.token
-        const user = res.data.user
-        window.sessionStorage.setItem('jwtToken', token)
-        window.sessionStorage.setItem('user', user.phoneNum)
-
-        dispatch(setCurrentUserInfo(user))
+        sessionStorage.setItem('jwtToken', token)
+        axios.defaults.headers.common['Authorization'] = `${token}`
+        dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('登录成功'))
+        history.push('/user/profile')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -37,17 +37,17 @@ export function login(data) {
   }
 }
 
-export function signup(data) {
+export function signup(data, history) {
   return dispatch => {
     axios
       .post(`${config.api}/signup`, data)
       .then(res => {
         const token = res.data.token
-        const user = res.data.user
-        window.sessionStorage.setItem('jwtToken', token)
-        window.sessionStorage.setItem('user', user.phoneNum)
-        dispatch(setCurrentUserInfo(user))
+        sessionStorage.setItem('jwtToken', token)
+        axios.defaults.headers.common['Authorization'] = `${token}`
+        dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('注册成功'))
+        history.push('/user/profile')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -64,9 +64,11 @@ export function oauthWeChat(data, history) {
           dispatch({type: types.WECHAT_USER, user: res.data.user})
         } else {
           // 已经绑定则直接登录
-          window.sessionStorage.setItem('jwtToken', res.data.token)
-          window.sessionStorage.setItem('user', res.data.user.phoneNum)
-          dispatch(setCurrentUserInfo(res.data.user))
+          const token = res.data.token
+          sessionStorage.setItem('jwtToken', token)
+          axios.defaults.headers.common['Authorization'] = `${token}`
+          dispatch(setCurrentUser(jwtDecode(token)))
+          dispatch(showNotification('登录成功'))
           history.push('/user/profile')
         }
       })
@@ -80,9 +82,11 @@ export function oauthBinding(data, history) {
     axios
       .post(`${config.api}/oauth/binding`, data)
       .then(res => {
-        window.sessionStorage.setItem('jwtToken', res.data.token)
-        window.sessionStorage.setItem('user', res.data.user.phoneNum)
-        dispatch(setCurrentUserInfo(res.data.user))
+        const token = res.data.token
+        sessionStorage.setItem('jwtToken', token)
+        axios.defaults.headers.common['Authorization'] = `${token}`
+        dispatch(setCurrentUser(jwtDecode(token)))
+        dispatch(showNotification('登录成功'))
         history.push('/user/profile')
       })
       .catch(error => {})
@@ -92,9 +96,11 @@ export function oauthBinding(data, history) {
 export function logout(data) {
   return dispatch => {
     dispatch({type: types.LOG_OUT})
-    window.sessionStorage.removeItem('user')
-    window.sessionStorage.removeItem('jwtToken')
+    sessionStorage.removeItem('jwtToken')
+    delete axios.defaults.headers.common['Authorization']
+    dispatch(setCurrentUser({}))
     dispatch(showNotification('退出成功'))
+
   }
 }
 
@@ -195,19 +201,13 @@ export const checkEpisodeAuth = data => {
   }
 }
 
-export function resetPassword(data) {
+export function resetPassword(data, history) {
   return dispatch => {
     axios
-      .post(`${config.ap}/reset-password`, data)
+      .post(`${config.api}/reset-password`, data)
       .then(res => {
-        const token = res.data.token
-        const user = res.data.user
-        window.sessionStorage.setItem('jwtToken', token)
-        dispatch({
-          type: types.RESET_PASSWORD,
-          userInfo: user,
-        })
-        dispatch(showNotification('密码修改成功'))
+        history.push('/login')
+        dispatch(showNotification('密码重置成功，请登录'))
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -216,5 +216,14 @@ export function resetPassword(data) {
 }
 
 export function modifyPassword(data) {
-  return dispatch => {}
+  return dispatch => {
+    axios
+      .post(`${config.api}/modify-password`, data)
+      .then(res => {
+        dispatch(showNotification('密码修改成功'))
+      })
+      .catch(error => {
+        handleError(error, dispatch)
+      })
+  }
 }

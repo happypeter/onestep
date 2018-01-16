@@ -73,7 +73,7 @@ class Signup extends Component {
     }
     const data = {...this.state}
     delete data.errors
-    this.props.signup(data)
+    this.props.signup(data, this.props.history)
   }
 
   handleChange = (field, e) => {

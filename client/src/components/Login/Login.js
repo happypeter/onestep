@@ -36,7 +36,8 @@ class Login extends Component {
       this.setState({errors: {...this.errors, ...errors}})
       return
     }
-    this.props.login({account, password})
+
+    this.props.login({account, password}, this.props.history)
   }
 
   handleChange = (field, e) => {

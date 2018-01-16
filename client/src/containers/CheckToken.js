@@ -7,15 +7,6 @@ import {Redirect} from 'react-router-dom'
 
 export function requireAuthentication(Component) {
   class AuthenticatedComponent extends Component {
-    componentDidMount() {
-      this.checkAuth()
-    }
-
-    checkAuth() {
-      let token = window.sessionStorage.getItem('jwtToken')
-      this.props.checkToken(token)
-    }
-
     render() {
       return this.props.isAuthenticated ? (
         <Component {...this.props} />

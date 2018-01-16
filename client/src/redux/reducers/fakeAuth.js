@@ -11,19 +11,6 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case 'AUTH_USER':
       return {
-        // ...state,
-        isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
-      }
-    case 'SIGN_UP':
-      return {
-        // ...state,
-        isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
-      }
-    case 'RESET_PASSWORD':
-      return {
-        // ...state,
         isAuthenticated: !isEmpty(action.userInfo),
         currentUser: action.userInfo,
       }
@@ -32,12 +19,6 @@ export default (state = initialState, action = {}) => {
         // ...state,
         isAuthenticated: false,
         currentUser: {},
-      }
-    case 'FAKE_WECHATCODE_LOGIN':
-      return {
-        // ...state,
-        isAuthenticated: !isEmpty(action.userInfo),
-        currentUser: action.userInfo,
       }
     case 'TOKEN_IS_VALID':
       return {

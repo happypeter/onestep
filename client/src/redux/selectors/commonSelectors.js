@@ -3,8 +3,8 @@ export const getCourses = state => state.courses
 export const getCourse = state => state.course
 export const getEpisode = state => state.episode
 // auth
-export const getCurrentUser = state => state.fakeAuth
-export const getIsAuthenticated = state => state.fakeAuth.isAuthenticated
+export const getCurrentUser = state => state.auth
+export const getIsAuthenticated = state => state.auth.isAuthenticated
 export const getIsEpisodePaid = state => state.fakeAuth.isEpisodePaid
 export const getEpAuthStatus = state => state.fakeAuth.epAuthStatus
 

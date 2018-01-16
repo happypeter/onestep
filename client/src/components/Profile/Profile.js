@@ -1,38 +1,40 @@
-import React from 'react'
+import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
+import isEmpty from 'lodash.isempty'
 
-export default ({paidCourses, latestExpireDate, total, status, phoneNum}) => {
-  switch (status) {
-    case 'LOADING': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息请求中...</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
+class Profile extends Component {
+  componentDidMount() {
+    const {profile} = this.props
+    if (profile && isEmpty(profile.details)) {
+      this.props.fetchProfile()
     }
-    case 'SUCCESS': {
-      return (
-        <Wrap>
-          <TopHeader />
+  }
 
+  render() {
+    const {isFetching, details} = this.props.profile
+    const {currentUser} = this.props.auth
+    let pageContent
+    if (isFetching) {
+      pageContent = <ContentWrap>信息请求中...</ContentWrap>
+    } else {
+      pageContent = (
+        <div>
           <AvatarHero>
             <AvatarWrap>
               <img src={defaultAvatar} alt="nickname" />
-              <Nickname>{phoneNum}</Nickname>
+              <div>{currentUser.username}</div>
+              {details && details.total !== 0 ? <div>已在好奇猫为自己投资{details.total}元</div> : <div>还没有在好奇猫为自己投资</div>}
             </AvatarWrap>
           </AvatarHero>
-
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {paidCourses && paidCourses.length !== 0 ? (
+            {details && details.paidCourses && details.paidCourses.length !== 0 ? (
               <CourseListWrap>
-                {paidCourses.map((item, i) => (
+                {details.paidCourses.map((item, i) => (
                   <CourseCard
                     link={item.link}
                     key={item.key}
@@ -46,40 +48,28 @@ export default ({paidCourses, latestExpireDate, total, status, phoneNum}) => {
               <div>还没有购买过任何课程</div>
             )}
             <SubTitle>会员</SubTitle>
-            {latestExpireDate ? (
-              <MembershipMsg>会员截止日期，{latestExpireDate}</MembershipMsg>
+            {details && details.latestExpireDate ? (
+              <MembershipMsg>会员截止日期，{details.latestExpireDate}</MembershipMsg>
             ) : (
               <MembershipMsg>还不是好奇猫会员</MembershipMsg>
             )}
-            {/* {
-                (total !== 0)
-                ? (
-                  <div>已在好奇猫为自己投资{total}元</div>
-                )
-                : (
-                  <div>还没有在好奇猫为自己投资</div>
-                )
-              } */}
-          </ContentWrap>
 
-          <Footer />
-        </Wrap>
+          </ContentWrap>
+        </div>
       )
     }
-    case 'FAILURE': {
-      return (
-        <Wrap>
-          <TopHeader />
-          <ContentWrap>信息加载失败</ContentWrap>
-          <Footer />
-        </Wrap>
-      )
-    }
-    default: {
-      throw new Error('unexpected status ' + status)
-    }
+
+    return (
+      <Wrap>
+        <TopHeader />
+        {pageContent}
+        <Footer />
+      </Wrap>
+    )
   }
 }
+
+export default Profile
 
 const Wrap = styled.div`
   min-height: 100vh;

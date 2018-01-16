@@ -2,12 +2,6 @@ import axios from 'axios'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/profileActionTypes.js'
 
-function setUsername(data) {
-  return {
-    phoneNum: data,
-  }
-}
-
 export const fetchProfileStarted = () => ({
   type: types.FETCH_STARTED,
 })
@@ -22,12 +16,11 @@ export const fetchProfileFailed = error => ({
   error,
 })
 
-export function fetchProfile(data) {
+export function fetchProfile() {
   return dispatch => {
     dispatch(fetchProfileStarted())
-
     axios
-      .post(`${config.api + '/profile'}`, setUsername(data))
+      .get(`${config.api + '/profile'}`)
       .then(res => {
         dispatch(fetchProfileSuccess(res.data))
       })

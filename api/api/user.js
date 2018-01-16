@@ -54,12 +54,14 @@ exports.weChat = function(req, res, next) {
         .then(user => {
           //已经绑定
           if (user) {
+            const data = {
+              phoneNum: user.phoneNum,
+              username: user.username,
+              _id: user._id,
+              bindings: user.bindings,
+            }
             res.status(200).json({
-              token: generateToken({
-                _id: user._id,
-                phoneNum: user.phoneNum,
-              }),
-              user: {phoneNum: user.phoneNum},
+              token: generateToken(data),
               binding: true,
             })
           } else {
@@ -80,9 +82,7 @@ exports.binding = (req, res, next) => {
         let errors = []
         if (!user) {
           errors.push({errorMsg: '手机号不存在', field: 'phoneNum'})
-          return res
-            .status(403)
-            .json({success: false, errors})
+          return res.status(403).json({success: false, errors})
         }
         user.comparePassword(password, (err, isMatch) => {
           if (err) {
@@ -90,15 +90,18 @@ exports.binding = (req, res, next) => {
           }
           if (!isMatch) {
             errors.push({errorMsg: '手机号和密码不匹配', field: 'password'})
-            return res
-              .status(403)
-              .json({success: false, errors})
+            return res.status(403).json({success: false, errors})
           }
           user.bindings.push({via: 'wechat', nickname, headimgurl, unionid})
           return user.save().then(user => {
+            const data = {
+              phoneNum: user.phoneNum,
+              username: user.username,
+              _id: user._id,
+              bindings: user.bindings,
+            }
             res.status(200).json({
-              user: {phoneNum: user.phoneNum},
-              token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+              token: generateToken(data),
             })
           })
         })
@@ -130,9 +133,14 @@ exports.binding = (req, res, next) => {
         user
           .save()
           .then(user => {
+            const data = {
+              phoneNum: user.phoneNum,
+              username: user.username,
+              _id: user._id,
+              bindings: user.bindings,
+            }
             res.status(200).json({
-              user: {phoneNum: user.phoneNum},
-              token: generateToken({_id: user._id, phoneNum: user.phoneNum}),
+              token: generateToken(data),
             })
           })
           .catch(err => {
@@ -150,45 +158,48 @@ exports.signup = (req, res, next) => {
   Promise.all([
     User.findOne({username}).exec(),
     User.findOne({phoneNum}).exec(),
-    msg.check(phoneNum, smsCode)
   ])
     .then(results => {
       if (results[0]) {
         return res.status(403).json({
-          errorMsg: '用户名已被占用',
+          errorMsg: '该用户名已被使用',
           success: false,
         })
       }
-
       if (results[1]) {
         return res.status(403).json({
-          errorMsg: '手机号已被占用',
+          errorMsg: '该手机号已被使用',
           success: false,
         })
       }
-
-      if (!results[2]) {
-        return res.status(403).json({
-          errorMsg: '验证码错误',
-          success: false,
+      msg
+        .check(phoneNum, smsCode)
+        .then(code => {
+          if (code === smsCode) {
+            const user = new User()
+            user.username = username
+            user.phoneNum = phoneNum
+            user.password = password
+            return user.save().then(user => {
+              const data = {
+                phoneNum: user.phoneNum,
+                username: user.username,
+                _id: user._id,
+                bindings: user.bindings,
+              }
+              return res.status(200).json({
+                token: generateToken(data),
+                success: true,
+              })
+            })
+          }
         })
-      }
-
-      if (!results[0] && !results[1] && results[2] === smsCode) {
-        const user = new User()
-        user.username = username
-        user.phoneNum = phoneNum
-        user.password = password
-
-        user.save().then(user => {
-          return res.status(200).json({
-            user: {phoneNum: user.phoneNum},
-            token: generateToken({phoneNum: user.phoneNum}),
-            success: true,
+        .catch(error => {
+          return res.status(403).json({
+            errorMsg: error,
+            success: false,
           })
         })
-      }
-
     })
     .catch(error => {
       console.log(error)
@@ -196,88 +207,40 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  const {username, password, phoneNum, smsCode} = req.body
-
-  if (username) {
-    // 老用户过渡
-    msg
-      .check(phoneNum, smsCode)
-      .then(msg => {
-        console.log('smsCode: ' + msg)
-        User.findOne({username: username})
-          .then(user => {
-            if (!user) {
-              console.log("the user doesn't exist")
-              return res.status(403).json({
-                errorMsg: 'USER_DOESNOT_EXIST',
-                success: false,
-              })
-            } else {
-              if (user.phoneNum) {
-                console.log('该用户已绑定手机号' + user.phoneNum)
-                return res.status(403).json({
-                  errorMsg: 'PLEASE_USE_PHONE_NUM',
-                  success: false,
-                })
-              }
-              // update
-              user.phoneNum = phoneNum
-              user.password = password
-
-              user
-                .save()
-                .then(user => {
-                  console.log(username + ' updated: ' + phoneNum)
-                  return res.status(200).json({
-                    user: {phoneNum: user.phoneNum},
-                    token: generateToken({phoneNum: user.phoneNum}),
-                    success: true,
-                  })
-                })
-                .catch(err => {
-                  console.log(err)
-                })
-            }
-          })
-          .catch(next)
-      })
-      .catch(err => {
-        console.log(err)
+  const {password, account} = req.body
+  User.findOne({$or: [{phoneNum: account}, {username: account}]})
+    .then(user => {
+      if (!user) {
         return res.status(403).json({
-          errorMsg: err,
+          errorMsg: '账号不存在',
           success: false,
         })
-      })
-  } else {
-    // 手机号登录
-    User.findOne({phoneNum: phoneNum})
-      .then(user => {
-        if (!user) {
-          return res.status(403).json({
-            errorMsg: 'PHONE_NUM_DOESNOT_EXIST',
-            success: false,
-          })
-        } else {
-          user.comparePassword(password, function(err, isMatch) {
-            if (err) {
-              return console.log(err)
-            }
-            if (!isMatch) {
-              return res.status(403).json({
-                errorMsg: 'INVALID_PASSWORD',
-                success: false,
-              })
-            }
-            return res.json({
-              user: {phoneNum: user.phoneNum},
-              token: generateToken({phoneNum: user.phoneNum}),
-              success: true,
+      } else {
+        user.comparePassword(password, function(err, isMatch) {
+          if (err) {
+            return console.log(err)
+          }
+          if (!isMatch) {
+            return res.status(403).json({
+              errorMsg: '账号密码不匹配',
+              success: false,
             })
+          }
+          const data = {
+            phoneNum: user.phoneNum,
+            username: user.username,
+            _id: user._id,
+            bindings: user.bindings,
+          }
+
+          return res.json({
+            token: generateToken(data),
+            success: true,
           })
-        }
-      })
-      .catch(next)
-  }
+        })
+      }
+    })
+    .catch(next)
 }
 
 exports.checkToken = function(req, res) {
@@ -362,22 +325,19 @@ async function getEveryPaidCourses(courses) {
 
 // API
 exports.profile = (req, res) => {
-  const {phoneNum} = req.body
   let courses = []
   let total = 0
   let allExpireDateArr = []
   let paidCourses = []
 
-  User.findOne({phoneNum: phoneNum})
+  User.findOne({_id: req.userId})
     .populate('contracts')
     .then(async user => {
       if (!user) {
-        console.log('user is ' + user)
-        return res.status(403).json({
-          errorMsg: 'USER_DOESNOT_EXIST',
+        return res.status(422).json({
+          errorMsg: '该用户不存在',
           success: false,
         })
-        // throw new Error('user is ' + user)
       }
       const {admin} = user
 
@@ -407,7 +367,6 @@ exports.profile = (req, res) => {
         paidCourses,
         total,
         latestExpireDate,
-        admin,
       })
     })
     .catch(error => {
@@ -417,26 +376,52 @@ exports.profile = (req, res) => {
 
 // reset password
 exports.resetPassword = (req, res, next) => {
-  const {password, phoneNum, smsCode} = req.body
+  const {username, password, phoneNum, smsCode} = req.body
   msg
     .check(phoneNum, smsCode)
     .then(msg => {
-      User.findOne({phoneNum: phoneNum}).then(user => {
-        user.password = password
-        user.save().then(user => {
-          return res.status(200).json({
-            user: {phoneNum: user.phoneNum},
-            token: generateToken({phoneNum: user.phoneNum}),
-            success: true,
-          })
+      User.findOne({username, phoneNum})
+        .then(user => {
+          if (user) {
+            user.password = password
+            return user.save().then(user => {
+              return res.status(200).json({
+                success: true,
+              })
+            })
+          } else {
+            return User.findOne({username, phoneNum: {$exists: false}}).then(
+              user => {
+                if (user) {
+                  user.password = password
+                  user.phoneNum = phoneNum
+                  return user.save().then(user => {
+                    return res.status(200).json({
+                      success: true,
+                    })
+                  })
+                } else {
+                  return res.status(403).json({
+                    errorMsg: '账号不存在',
+                    success: false,
+                  })
+                }
+              },
+            )
+          }
         })
-      })
+        .catch(error => {
+          console.log(error)
+        })
     })
-    .catch(err => {
-      console.log(err)
+    .catch(error => {
       return res.status(403).json({
-        errorMsg: err,
+        errorMsg: error,
         success: false,
       })
     })
+}
+
+exports.password = (req, res, next) => {
+  const {oldOne, newOne} = req.body
 }

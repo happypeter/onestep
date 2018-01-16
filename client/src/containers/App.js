@@ -6,6 +6,9 @@ import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
 import cyan from 'material-ui/colors/cyan'
 import green from 'material-ui/colors/green'
 import red from 'material-ui/colors/red'
+import axios from 'axios'
+import jwtDecode from 'jwt-decode'
+import {setCurrentUser} from '../redux/actions/authAction'
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +23,20 @@ const theme = createMuiTheme({
     error: red,
   },
 })
+
+function setAuthorizationToken(token) {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `${token}`
+  } else {
+    delete axios.defaults.headers.common['Authorization']
+  }
+}
+const jwtToken = sessionStorage.jwtToken
+
+if (jwtToken) {
+  setAuthorizationToken(jwtToken)
+  store.dispatch(setCurrentUser(jwtDecode(jwtToken)))
+}
 
 class App extends Component {
   render() {

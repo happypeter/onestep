@@ -35,6 +35,7 @@ class TopHeader extends Component {
   }
 
   render() {
+    const {currentUser, isAuthenticated} = this.props.auth
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="signup">注册</ButtonLink>
@@ -48,7 +49,7 @@ class TopHeader extends Component {
           <div
             onMouseOver={this.handlePopoverOpen}
             onTouchStart={this.handlePopoverOpen}>
-            <Username>{this.props.loggedIn}</Username>
+            <Username>{currentUser.username}</Username>
           </div>
 
           <PopMenu
@@ -75,7 +76,7 @@ class TopHeader extends Component {
           />
           <ButtonLink to="/">好奇猫</ButtonLink>
         </HomeWrap>
-        {this.props.loggedIn ? LogoutButtons : LoginButtons}
+        {isAuthenticated ? LogoutButtons : LoginButtons}
       </TopHeaderWrap>
     )
   }
