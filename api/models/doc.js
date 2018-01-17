@@ -10,8 +10,3 @@ const DocSchema = new Schema(
 )
 
 module.exports = mongoose.model('Doc', DocSchema)
-
-// new Schema(
-//   {
-//     any: { type: String }
-//   }??

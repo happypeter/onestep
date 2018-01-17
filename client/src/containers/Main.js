@@ -45,12 +45,6 @@ const AsyncEpisode = Loadable({
   delay: 300,
 })
 
-const AsyncPay = Loadable({
-  loader: () => import('./PayContainer'),
-  loading: LoadingComponent,
-  delay: 300,
-})
-
 const AsyncNotFound = Loadable({
   loader: () => import('../components/common/NotFound'),
   loading: LoadingComponent,
@@ -65,7 +59,6 @@ class Main extends Component {
           <Route exact path="/" component={AsyncHome} />
           <Route path="/login" component={AsyncLogin} />
           <Route path="/signup" component={AsyncSignup} />
-          <Route path="/pay" component={AsyncPay} />
           <Route path="/oauth/callback" component={WeChatCallbackContainer} />
           <Route
             exact
