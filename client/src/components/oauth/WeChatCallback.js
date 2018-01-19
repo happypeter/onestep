@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import TopHeader from '../Header/TopHeader'
+import TopHeaderContainer from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import NewAccount from './NewAccount'
@@ -40,7 +40,7 @@ class WeChatCallBack extends Component {
     if (!Object.keys(user).length) return null
     return (
       <Wrap>
-        <TopHeader />
+        <TopHeaderContainer />
         <Content>
           {user && !this.state.existed ? (
             <NewAccount

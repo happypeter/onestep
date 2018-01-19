@@ -1,8 +1,7 @@
 const Course = require('../models/course')
 
-exports.getCourse = (req, res) => {
-  const {courseName} = req.body
-
+exports.single = (req, res) => {
+  const {courseName} = req.params
   Course.findOne({courseName: courseName})
     .then(item => {
       if (!item) {

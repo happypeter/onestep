@@ -14,4 +14,9 @@ module.exports = {
   weChatAppSecret: 'xxx',
   serviceAppID: 'xxx',
   serviceAppSecret: 'xxx',
+  // 微信商户号
+  mchId: '',
+  // 微信商户API密钥
+  mchKey: '',
+  wxNotifyUrl: '',
 }

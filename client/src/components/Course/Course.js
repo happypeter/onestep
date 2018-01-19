@@ -2,16 +2,12 @@ import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import Button from 'material-ui/Button'
 import EpisodeCatalogue from './EpisodeCatalogue'
 import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+import BuyCourse from './BuyCourse'
 
 class Course extends Component {
-  pay = price => {
-    this.props.pay(price)
-  }
-
   render() {
     let {
       name,
@@ -20,17 +16,15 @@ class Course extends Component {
       writing_to_who: writingToWho,
       learning_goal: learningGoal,
       price,
-      publishedAt,
-      vlink,
-      service,
       content,
+      _id,
     } = this.props.courseOptions
 
     let episode
     if (content) {
       episode = content.map((item, i) => (
         <EpisodeCatalogue
-          key={item.header}
+          key={i}
           header={item.header}
           section={item.section}
           courseName={courseName}
@@ -54,31 +48,22 @@ class Course extends Component {
 
         <MsgWrap>
           <MsgArea>
-            <CourseMsgIntro
-              title={'一句话简介'}
-              intro={intro}
-            />
-            <CourseMsgIntro
-              title={'适合观众'}
-              intro={writingToWho}
-            />
-            <CourseMsgIntro
-              title={'知识点'}
-              intro={learningGoal}
-            />
+            <CourseMsgIntro title={'一句话简介'} intro={intro} />
+            <CourseMsgIntro title={'适合观众'} intro={writingToWho} />
+            <CourseMsgIntro title={'知识点'} intro={learningGoal} />
           </MsgArea>
         </MsgWrap>
 
         <CatalogueHero>
-          <CatalogueWrap>{ episode }</CatalogueWrap>
-          <MsgBigCard>
-            <Price>{price}元</Price>
-            <RaisedButtonWrap raised onClick={() => this.pay(price)}>
-                购买本课程
-            </RaisedButtonWrap>
-          </MsgBigCard>
+          <CatalogueWrap>{episode}</CatalogueWrap>
         </CatalogueHero>
-
+        <BuyCourse
+          name={name}
+          price={price}
+          courseId={_id}
+          signContract={this.props.signContract}
+          checkContract={this.props.checkContract}
+        />
         <Footer />
       </Wrap>
     )
@@ -174,40 +159,4 @@ const Info = styled.div`
   margin: 0px auto;
   text-align: center;
   font-size: 2.5em;
-`
-
-const MsgBigCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 2em 2em 2em;
-  padding-bottom: 1em;
-  background-color: #FFFFFF;
-  p {
-    font-weight: 300;
-    font-size: 0.875em;
-    color: #212121;
-  }
-  @media (min-width: 1024px) {
-    width: 247px;
-    margin: 138px auto 131px auto;
-    p {
-      font-weight: 400;
-    }
-  }
-`
-
-const RaisedButtonWrap = styled(Button)`
-  && {
-    font-size: 16px;
-    color: #FFFFFF;
-    letter-spacing: 0;
-    margin: 1em 16%;
-    background-color: #00B4D0;
-  }
-`
-
-const Price = styled.div`
-  font-size: 30px;
-  margin: 0 30px;
 `

@@ -49,7 +49,7 @@ class TopHeader extends Component {
           <div
             onMouseOver={this.handlePopoverOpen}
             onTouchStart={this.handlePopoverOpen}>
-            <Username>{currentUser.username}</Username>
+            <Username>{currentUser ? currentUser.username : ''}</Username>
           </div>
 
           <PopMenu

@@ -44,7 +44,7 @@ export function signup(data, history) {
       .then(res => {
         const token = res.data.token
         sessionStorage.setItem('jwtToken', token)
-        axios.defaults.headers.common['Authorization'] = `${token}`    
+        axios.defaults.headers.common['Authorization'] = `${token}`
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('注册成功'))
         history.push('/user/profile')
@@ -72,7 +72,9 @@ export function oauthWeChat(data, history) {
           history.push('/user/profile')
         }
       })
-      .catch(error => {})
+      .catch(error => {
+        handleError(error, dispatch)
+      })
   }
 }
 
@@ -89,7 +91,9 @@ export function oauthBinding(data, history) {
         dispatch(showNotification('登录成功'))
         history.push('/user/profile')
       })
-      .catch(error => {})
+      .catch(error => {
+        handleError(error, dispatch)
+      })
   }
 }
 

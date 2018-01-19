@@ -8,20 +8,21 @@ import {
   ActionButton,
   Switch,
   Error,
+  LinkWrap,
 } from './FormStyle'
 
 class ExistedAccount extends Component {
   state = {
-    phoneNum: '',
+    account: '',
     password: '',
     errors: {},
   }
 
   validate = () => {
-    const {phoneNum, password} = this.state
+    const {account, password} = this.state
     const errors = {}
-    if (!phoneNum || !/^1[3|4|5|7|8][0-9]\d{8}$/.test(phoneNum)) {
-      errors.phoneNum = '手机号格式不正确'
+    if (!account) {
+      errors.account = '不能为空'
     }
     if (!password || password.length < 6) {
       errors.password = '密码长度不能小于6'
@@ -53,7 +54,7 @@ class ExistedAccount extends Component {
 
   render() {
     const {user} = this.props
-    const {phoneNum, password, errors} = this.state
+    const {account, password, errors} = this.state
 
     return (
       <Container>
@@ -63,11 +64,11 @@ class ExistedAccount extends Component {
           <div>{user.nickname}</div>
           <TextField
             style={{width: '100%'}}
-            value={phoneNum}
-            onChange={this.handleChange.bind(this, 'phoneNum')}
+            value={account}
+            onChange={this.handleChange.bind(this, 'account')}
             margin="dense"
-            label="手机号"
-            helperText={<Error>{errors.phoneNum}</Error>}
+            label='用户名或手机号'
+            helperText={<Error>{errors.account}</Error>}
           />
           <TextField
             style={{width: '100%'}}
@@ -79,6 +80,7 @@ class ExistedAccount extends Component {
             helperText={<Error>{errors.password}</Error>}
           />
           <ActionButton type="submit">完成注册</ActionButton>
+          <LinkWrap to='/reset-password'>忘记密码</LinkWrap>
         </Form>
         <Switch onClick={this.handleClick}>绑定新账号</Switch>
       </Container>

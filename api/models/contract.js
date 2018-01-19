@@ -3,11 +3,12 @@ const Schema = mongoose.Schema
 
 const ContractSchema = new Schema(
   {
-    type: { type: String },
-    startDate: { type: String },
-    expireDate: { type: String },
-    total: { type: Number },
-    courseId: [{ type: String }],
+    outTradeNo: String,  // 订单号
+    status: String,
+    startDate: Date,
+    expireDate: Date,
+    total: Number,
+    courseId: {type: Schema.Types.ObjectId, ref: 'Course'},
     userId: { type: Schema.Types.ObjectId, ref: 'User' }
   },
   {timestamps: true}

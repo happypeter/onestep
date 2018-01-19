@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCourse} from '../redux/actions/contentAction'
+import {fetchCourse, signContract, checkContract} from '../redux/actions/contentAction'
 import {getCourse} from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
@@ -13,32 +13,12 @@ const AsyncCourse = Loadable({
 
 class CourseContainer extends Component {
   componentWillMount() {
-    // fetch the course-data form server
+    // fetch the course-data from server
     let {courseName} = this.props.match.params
     this.props.fetchCourse({courseName})
   }
 
-  pay = price => {
-    this.props.history.push({pathname: '/pay', state: {price}})
-  }
-
   render() {
-    // console.log(this.props);
-    // 404 Redirect
-    let {courseName} = this.props.match.params
-    // console.log(courseName);
-
-    // let { catalogue } = this.props.courses
-    // const match = matchPath(this.props.location.pathname, {
-    //   path: this.props.match.path
-    // })
-    // console.log(this.props);
-    // if (!match.isExact) {
-    //   return <Redirect to={{ pathname: '/404' }} />
-    //   console.log(this.props.match.path);
-    //   console.log(this.props.location.pathname);
-    // }
-
     let {status, content: courseContent} = this.props.course
 
     switch (status) {
@@ -73,21 +53,16 @@ class CourseContainer extends Component {
         }
 
         return (
-          <div>
-            <AsyncCourse
-              courseOptions={courseContent}
-              videoJsOptions={CourseVideoJsOptions}
-              pay={this.pay}
-            />
-          </div>
+          <AsyncCourse
+            courseOptions={courseContent}
+            videoJsOptions={CourseVideoJsOptions}
+            signContract={this.props.signContract}
+            checkContract={this.props.checkContract}
+          />
         )
       }
       case 'FAILURE': {
-        return (
-          <div>
-            <div>信息加载失败</div>
-          </div>
-        )
+        return <div>信息加载失败</div>
       }
       default: {
         throw new Error('unexpected status ' + status)
@@ -100,4 +75,4 @@ const mapStateToProps = state => ({
   course: getCourse(state),
 })
 
-export default connect(mapStateToProps, {fetchCourse})(CourseContainer)
+export default connect(mapStateToProps, {fetchCourse, signContract, checkContract})(CourseContainer)
