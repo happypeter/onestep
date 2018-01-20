@@ -2,7 +2,7 @@ const express = require('express')
 const user = require('./api/user')
 const msg = require('./api/msg')
 const catalogue = require('./api/catalogue')
-const course = require('./api/course')
+const courses = require('./api/courses')
 const doc = require('./api/doc')
 const contracts = require('./api/contracts')
 const auth = require('./middlewares/auth')
@@ -25,7 +25,7 @@ router.post('/signupcode', user.smsCodeForSignup)
 
 // 课程展示接口
 router.get('/catalogue', catalogue.catalogue)
-router.get('/courses/:courseName', course.single)
+router.get('/courses/:courseName', courses.single)
 router.post('/episode', doc.getEpisode)
 
 // 支付

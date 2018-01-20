@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 import CourseCard from '../common/CourseCard'
 import styled from 'styled-components'
 
-export default ({courses, status}) => {
-  switch (status) {
-    case 'LOADING': {
-      return (
-        <div>
-          <Title>信息请求中...</Title>
-        </div>
-      )
+class CourseList extends Component {
+  componentDidMount() {
+    if (!this.props.courses.length ) {
+      this.props.fetchCourses()
     }
-    case 'SUCCESS': {
-      let catalogues = courses.map((item, i) => (
+  }
+
+  render() {
+    const {items, isFetching} = this.props.courses
+    if (isFetching) return <Title>信息请求中...</Title>
+    let courseList = items.map((item, i) => (
         <CourseCard
           key={item.key}
           link={item.link}
@@ -21,25 +21,17 @@ export default ({courses, status}) => {
           title={item.title}
         />
       ))
-      return (
-        <div>
-          <Title>最新发布</Title>
-          <CourseListWrap>{catalogues}</CourseListWrap>
-        </div>
-      )
-    }
-    case 'FAILURE': {
-      return (
-        <div>
-          <Title>信息加载失败</Title>
-        </div>
-      )
-    }
-    default: {
-      throw new Error('unexpected status ' + status)
-    }
+
+    return (
+      <div>
+        <Title>最新发布</Title>
+        <CourseListWrap>{courseList}</CourseListWrap>
+      </div>
+    )
   }
 }
+
+export default CourseList
 
 const Title = styled.div`
   margin: 0px auto;

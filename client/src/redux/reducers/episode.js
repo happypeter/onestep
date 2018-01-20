@@ -1,36 +1,20 @@
 const initialState = {
-  status: 'LOADING',
-  doc: '',
-  vlink: '',
-  title: '',
-  courseCatalogue: ''
+  isFetching: false,
+  item: {}
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'FETCH_STARTED': {
-      return {status: 'LOADING'}
+    case 'FETCH_EPISODE_STARTED': {
+      return {...state, isFetching: true}
     }
-    case 'FETCH_SUCCESS': {
+    case 'FETCH_EPISODE_SUCCESS': {
       return {
         ...state,
-        status: 'SUCCESS',
-        doc: action.res && action.res.doc,
-        vlink: action.res && action.res.vlink,
-        title: action.res && action.res.title,
-        name: action.res && action.res.name,
-        courseCatalogue: action.res && action.res.courseCatalogue
+        isFetching: false,
+        item: action.episode
       }
     }
-    case 'FETCH_FAILURE': {
-      if (action.error.response) {
-        console.log(action.error.response.data.errorMsg)
-      } else {
-        console.log(action.error)
-      }
-      return {status: 'FAILURE'}
-    }
-
     default:
       return state
   }

@@ -20,9 +20,9 @@ class Course extends Component {
       _id,
     } = this.props.courseOptions
 
-    let episode
+    let episodeList
     if (content) {
-      episode = content.map((item, i) => (
+      episodeList = content.map((item, i) => (
         <EpisodeCatalogue
           key={i}
           header={item.header}
@@ -31,7 +31,7 @@ class Course extends Component {
         />
       ))
     } else {
-      episode = <Info>加载中</Info>
+      episodeList = <Info>加载中</Info>
     }
 
     return (
@@ -55,7 +55,7 @@ class Course extends Component {
         </MsgWrap>
 
         <CatalogueHero>
-          <CatalogueWrap>{episode}</CatalogueWrap>
+          <CatalogueWrap>{episodeList}</CatalogueWrap>
         </CatalogueHero>
 
         {price > 0 ? (

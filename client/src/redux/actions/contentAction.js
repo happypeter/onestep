@@ -10,67 +10,45 @@ function handleError(error, dispatch) {
     console.log(error)
   }
 }
-export const fetchStarted = () => ({
-  type: types.FETCH_STARTED,
-})
 
-export const fetchSuccess = res => ({
-  type: types.FETCH_SUCCESS,
-  res,
-})
-
-export const fetchFailed = error => ({
-  type: types.FETCH_FAILURE,
-  error,
-})
-
-export function fetchCatalogue(data) {
+export function fetchCourses(data) {
   return dispatch => {
-    dispatch(fetchStarted())
-
+    dispatch({type: types.FETCH_COURSES_STARTED})
     axios
       .get(`${config.api}/catalogue`)
       .then(res => {
-        dispatch(fetchSuccess(res.data))
+        dispatch({type: types.FETCH_COURSES_SUCCESS, courses: res.data.courses})
       })
       .catch(error => {
-        dispatch(fetchFailed(error))
+        handleError(error, dispatch)
       })
   }
 }
 
 export function fetchCourse(data) {
   return dispatch => {
-    dispatch(fetchStarted())
-
+    dispatch({type: types.FETCH_COURSE_STARTED})
     axios
       .get(`${config.api}/courses/${data.courseName}`)
       .then(res => {
-        dispatch(fetchSuccess(res.data))
+        dispatch({type: types.FETCH_COURSE_SUCCESS, course: res.data.course})
       })
       .catch(error => {
-        if (error.response && error.response.status === 404) {
-          console.log('404')
-        }
-        dispatch(fetchFailed(error))
+        handleError(error, dispatch)
       })
   }
 }
 
 export function fetchEpisode(data) {
   return dispatch => {
-    dispatch(fetchStarted())
-
+    dispatch({type: types.FETCH_EPISODE_STARTED})
     axios
       .post(`${config.api + '/episode'}`, data)
       .then(res => {
-        dispatch(fetchSuccess(res.data))
+        dispatch({type: types.FETCH_EPISODE_SUCCESS, episode: res.data.episode})
       })
       .catch(error => {
-        if (error.response && error.response.status === 404) {
-          console.log('404')
-        }
-        dispatch(fetchFailed(error))
+        handleError(error, dispatch)
       })
   }
 }
