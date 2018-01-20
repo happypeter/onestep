@@ -57,13 +57,16 @@ class Course extends Component {
         <CatalogueHero>
           <CatalogueWrap>{episode}</CatalogueWrap>
         </CatalogueHero>
-        <BuyCourse
-          name={name}
-          price={price}
-          courseId={_id}
-          signContract={this.props.signContract}
-          checkContract={this.props.checkContract}
-        />
+
+        {price > 0 ? (
+          <BuyCourse
+            name={name}
+            price={price}
+            courseId={_id}
+            signContract={this.props.signContract}
+            checkContract={this.props.checkContract}
+          />
+        ) : null}
         <Footer />
       </Wrap>
     )

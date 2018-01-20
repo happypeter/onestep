@@ -7,7 +7,7 @@ const CourseSchema = new Schema(
     courseName: String,
     vlink: String,
     name: String,
-    price: String,
+    price: Number,
     intro: String,
     writing_to_who: String,
     learning_goal: String,
