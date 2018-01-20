@@ -1,5 +1,4 @@
 import courses from './courses'
-import fakeAuth from './fakeAuth'
 import auth from './auth'
 import profile from './profile'
 import notification from './notification'
@@ -12,7 +11,6 @@ import weChatUser from './weChatUser'
 const rootReducer = combineReducers({
   course,
   courses,
-  fakeAuth,
   auth,
   profile,
   notification,

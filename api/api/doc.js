@@ -2,14 +2,13 @@ const Doc = require('../models/doc')
 const Course = require('../models/course')
 
 exports.getEpisode = (req, res) => {
-  ({courseName, episodeName} = req.body)
+  const {courseName, episodeName} = req.query
   Promise.all([
     Doc.findOne({title: courseName}),
     Course.findOne({courseName: courseName}),
   ])
     .then(item => {
       if (!item[0]) {
-        console.log(`doc数据里没有这一项${item[0]}`)
         res.status(404).send('404: no such a course in markdown doc')
       }
       if (!item[1]) {
@@ -17,9 +16,7 @@ exports.getEpisode = (req, res) => {
       }
 
       let {vlink} = item[1]
-
       let {name} = item[1]
-
       let courseCatalogue = item[1].content
 
       let targetEpisode
@@ -39,16 +36,18 @@ exports.getEpisode = (req, res) => {
       for (let key of Object.keys(docJSON)) {
         if (key === `${episodeName}.md`) {
           let doc = docJSON[key]
-          return res.send({
-            doc,
-            vlink,
-            title,
-            name,
-            courseCatalogue
-          })
+          return res.status(200).json({
+            episode: {
+              doc,
+              vlink,
+              title,
+              name,
+              courseCatalogue
+           },
+           success: true
+         })
         }
       }
-      res.status(404).send('~404~')
     })
     .catch(err => {
       console.log(err)

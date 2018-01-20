@@ -26,7 +26,7 @@ router.post('/signupcode', user.smsCodeForSignup)
 // 课程展示接口
 router.get('/catalogue', catalogue.catalogue)
 router.get('/courses/:courseName', courses.single)
-router.post('/episode', doc.getEpisode)
+router.get('/episode', auth.user, doc.getEpisode)
 
 // 支付
 router.post('/contracts/new', auth.user, contracts.new)

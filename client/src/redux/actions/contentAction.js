@@ -43,7 +43,7 @@ export function fetchEpisode(data) {
   return dispatch => {
     dispatch({type: types.FETCH_EPISODE_STARTED})
     axios
-      .post(`${config.api + '/episode'}`, data)
+      .get(`${config.api}/episode`, {params: data})
       .then(res => {
         dispatch({type: types.FETCH_EPISODE_SUCCESS, episode: res.data.episode})
       })

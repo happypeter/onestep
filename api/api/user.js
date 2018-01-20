@@ -261,34 +261,21 @@ exports.checkToken = function(req, res) {
       if (err) {
         if (err.name === 'TokenExpiredError') {
           return res.status(401).json({
-            errorMsg: 'EXPIRED_TOKEN',
+            errorMsg: '认证码失效，请重新登录',
             success: false,
           })
         } else {
           return res.status(401).json({
-            errorMsg: 'INVALID_TOKEN',
+            errorMsg: '认证失败',
             success: false,
           })
         }
       } else {
-        if (decoded.phoneNum) {
-          req.phoneNum = decoded.phoneNum
-          return res.status(200).json({
-            message: 'VALID_TOKEN',
-            success: true,
-          })
-        } else {
-          return res.status(401).json({
-            errorMsg: 'INVALID_TOKEN',
-            success: false,
-          })
-        }
+        return res.status(200).json({
+          message: '认证成功',
+          success: true,
+        })
       }
-    })
-  } else {
-    return res.status(403).json({
-      errorMsg: 'TOKEN_NOT_FOUND',
-      success: false,
     })
   }
 }

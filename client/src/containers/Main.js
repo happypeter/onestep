@@ -5,7 +5,6 @@ import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
-import {requireEpisodeAuth} from './CheckEpisodeAuth'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 
@@ -74,7 +73,7 @@ class Main extends Component {
           <Route exact path="/:courseName" component={AsyncCourse} />
           <Route
             path="/:courseName/:episodeName"
-            component={requireAuthentication(requireEpisodeAuth(AsyncEpisode))}
+            component={requireAuthentication(AsyncEpisode)}
           />
           <Route component={AsyncNotFound} />
         </Switch>
