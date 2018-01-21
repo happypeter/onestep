@@ -19,4 +19,5 @@ module.exports = {
   // 微信商户API密钥
   mchKey: '',
   wxNotifyUrl: '',
+  docPath: ''
 }
