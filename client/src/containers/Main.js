@@ -7,6 +7,7 @@ import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
+import '../assets/global.css'
 
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
