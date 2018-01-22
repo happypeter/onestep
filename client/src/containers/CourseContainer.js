@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCourse, signContract, checkContract} from '../redux/actions/contentAction'
-import {getCourse} from '../redux/selectors/commonSelectors.js'
+import {getCourse, getProfile} from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
@@ -52,6 +52,7 @@ class CourseContainer extends Component {
         videoJsOptions={CourseVideoJsOptions}
         signContract={this.props.signContract}
         checkContract={this.props.checkContract}
+        profile={this.props.profile}
       />
     )
   }
@@ -59,6 +60,7 @@ class CourseContainer extends Component {
 
 const mapStateToProps = state => ({
   course: getCourse(state),
+  profile: getProfile(state)
 })
 
 export default connect(mapStateToProps, {fetchCourse, signContract, checkContract})(CourseContainer)

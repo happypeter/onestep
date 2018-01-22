@@ -110,6 +110,7 @@ exports.binding = (req, res, next) => {
         console.log('wechat binding error:', err)
       })
   } else {
+    // 绑定新账号
     const {username, phoneNum, password, smsCode} = req.body
     Promise.all([
       User.findOne({username}).exec(),
@@ -216,7 +217,7 @@ exports.signup = (req, res, next) => {
     })
 }
 
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   const {password, account} = req.body
   User.findOne({$or: [{phoneNum: account}, {username: account}]})
     .then(user => {
@@ -242,7 +243,6 @@ exports.login = (req, res, next) => {
             _id: user._id,
             bindings: user.bindings,
           }
-
           return res.json({
             token: generateToken(data),
             success: true,
@@ -250,7 +250,9 @@ exports.login = (req, res, next) => {
         })
       }
     })
-    .catch(next)
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 exports.checkToken = function(req, res) {

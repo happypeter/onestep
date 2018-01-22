@@ -4,18 +4,29 @@ import {Link} from 'react-router-dom'
 import ChapterIcon from '../../assets/ChapterIcon.svg'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
-export default ({header, section, courseName}) => (
+export default ({header, section, courseName, isAccessible}) => (
   <EpisodesWrap>
     <EpisodeChapter>
       <img src={ChapterIcon} alt={'ChapterIcon'} />
       <h1>{header}</h1>
     </EpisodeChapter>
-    {section.map(t => (
-      <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>
-        <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-        <EpisodeTitle>{t.title}</EpisodeTitle>
-      </EpisodeLink>
-    ))}
+    {section.map((t, index) => {
+      if (isAccessible) {
+        return (
+          <EpisodeLink key={index} to={`/${courseName}/${t.link}`}>
+            <EpImg src={EpisodeIcon} alt={'EpisodeIcon'} />
+            <EpisodeTitle>{t.title}</EpisodeTitle>
+          </EpisodeLink>
+        )
+      }
+      return (
+        <EpNoLink key={index}>
+          <EpImg src={EpisodeIcon} alt={'EpisodeIcon'} />
+          <EpisodeTitle>{t.title}</EpisodeTitle>
+        </EpNoLink>
+      )
+    }
+    )}
   </EpisodesWrap>
 )
 
@@ -58,12 +69,26 @@ const EpisodeLink = styled(Link)`
   border-bottom: 1px solid #D8D8D8;
   cursor: pointer;
   text-decoration: none;
-  img {
-    width: 19px;
-  }
   :hover {
     border-bottom: 1px solid #00bcd4;
   }
+  @media (min-width: 1024px) {
+    margin-left: 22px;
+    padding-right: 100px;
+    font-weight: 400;
+  }
+`
+
+const EpImg = styled.img`
+  width: 19px;
+`
+
+const EpNoLink = styled.div`
+  display: flex;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #D8D8D8;
+  text-decoration: none;
   @media (min-width: 1024px) {
     margin-left: 22px;
     padding-right: 100px;

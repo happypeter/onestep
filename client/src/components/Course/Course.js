@@ -6,10 +6,10 @@ import EpisodeCatalogue from './EpisodeCatalogue'
 import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
-
+import isEmpty from 'lodash.isempty'
 class Course extends Component {
   render() {
-    let {
+    const {
       name,
       courseName,
       intro,
@@ -20,6 +20,13 @@ class Course extends Component {
       _id,
     } = this.props.courseOptions
 
+    const {details} = this.props.profile
+    let isPaid = false
+    if (!isEmpty(details.paidCourses)) {
+      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === courseName)
+    }
+    const isAccessible = price === 0 || isPaid || details.isMember
+
     let episodeList
     if (content) {
       episodeList = content.map((item, i) => (
@@ -28,6 +35,7 @@ class Course extends Component {
           header={item.header}
           section={item.section}
           courseName={courseName}
+          isAccessible={isAccessible}
         />
       ))
     } else {
@@ -58,7 +66,7 @@ class Course extends Component {
           <CatalogueWrap>{episodeList}</CatalogueWrap>
         </CatalogueHero>
 
-        {price > 0 ? (
+        {!isAccessible ? (
           <BuyCourse
             name={name}
             price={price}
