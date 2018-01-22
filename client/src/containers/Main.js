@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-
 import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
@@ -8,9 +7,11 @@ import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 import '../assets/global.css'
+import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
+import cyan from 'material-ui/colors/cyan'
+import green from 'material-ui/colors/green'
+import red from 'material-ui/colors/red'
 
-import axios from 'axios'
-import jwtDecode from 'jwt-decode'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -55,51 +56,53 @@ const AsyncNotFound = Loadable({
 })
 
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      ...cyan,
+      A500: '#00BCD4',
+    },
+    secondary: {
+      ...green,
+      A400: '#00e677',
+    },
+    error: red,
+  },
+})
+
 
 class Main extends Component {
-  componentDidMount() {
-    function setAuthorizationToken(token) {
-      if (token) {
-        axios.defaults.headers.common['Authorization'] = `${token}`
-      } else {
-        delete axios.defaults.headers.common['Authorization']
-      }
-    }
-    const jwtToken = sessionStorage.jwtToken
 
-    if (jwtToken) {
-      setAuthorizationToken(jwtToken)
-      this.props.setCurrentUser(jwtDecode(jwtToken))
-    }
-  }
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={AsyncHome} />
-          <Route path="/login" component={AsyncLogin} />
-          <Route path="/signup" component={AsyncSignup} />
-          <Route path="/oauth/callback" component={WeChatCallbackContainer} />
-          <Route
-            exact
-            path="/user/profile"
-            component={requireAuthentication(AsyncProfile)}
-          />
-          <Route
-            exact
-            path="/settings"
-            component={requireAuthentication(ProfileSettings)}
-          />
-          <Route path="/reset-password" component={ResetPasswordContainer} />
-          <Route exact path="/:courseName" component={AsyncCourse} />
-          <Route
-            path="/:courseName/:episodeName"
-            component={requireAuthentication(AsyncEpisode)}
-          />
-          <Route component={AsyncNotFound} />
-        </Switch>
-      </Router>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={AsyncHome} />
+            <Route path="/login" component={AsyncLogin} />
+            <Route path="/signup" component={AsyncSignup} />
+            <Route path="/oauth/callback" component={WeChatCallbackContainer} />
+            <Route
+              exact
+              path="/user/profile"
+              component={requireAuthentication(AsyncProfile)}
+            />
+            <Route
+              exact
+              path="/settings"
+              component={requireAuthentication(ProfileSettings)}
+            />
+            <Route path="/reset-password" component={ResetPasswordContainer} />
+            <Route exact path="/:courseName" component={AsyncCourse} />
+            <Route
+              path="/:courseName/:episodeName"
+              component={requireAuthentication(AsyncEpisode)}
+            />
+            <Route component={AsyncNotFound} />
+          </Switch>
+        </Router>
+      </MuiThemeProvider>
     )
   }
 }
