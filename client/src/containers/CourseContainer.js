@@ -20,7 +20,7 @@ class CourseContainer extends Component {
   render() {
     let {isFetching, item: course} = this.props.course
     if (isFetching) return <LoadingComponent />
-    const couseUrl = `${course.vlink}/${
+    const courseUrl = `${course.vlink}/${
       course.cover_video ? course.cover_video : 'index'
     }.mp4`
 
@@ -29,7 +29,7 @@ class CourseContainer extends Component {
       controls: true,
       sources: [
         {
-          src: couseUrl,
+          src: courseUrl,
           type: 'video/mp4',
         },
       ],

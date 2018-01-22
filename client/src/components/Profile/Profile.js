@@ -21,23 +21,31 @@ class Profile extends Component {
     if (isFetching) {
       pageContent = <ContentWrap>信息请求中...</ContentWrap>
     } else {
+      let membershipList
+      if (details.memberships && details.memberships.length) {
+        membershipList = details.memberships.map((m, i) => {
+          return (
+            <div key={i}>已开通{m.duration}个月会员服务，开通日期{m.startDate}，截止日期{m.expireDate}</div>
+          )
+        })
+      }
       pageContent = (
         <div>
           <AvatarHero>
             <AvatarWrap>
               <img src={defaultAvatar} alt="nickname" />
               <Nickname>{currentUser.username}</Nickname>
-              {details && details.total !== 0 ? <div>已在好奇猫为自己投资{details.total}元</div> : <div>还没有在好奇猫为自己投资</div>}
+              {details.sum !== 0 ? <div>已在好奇猫为自己投资{details.sum}元</div> : <div>还没有在好奇猫为自己投资</div>}
             </AvatarWrap>
           </AvatarHero>
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {details && details.paidCourses && details.paidCourses.length !== 0 ? (
+            {details.paidCourses && details.paidCourses.length ? (
               <CourseListWrap>
                 {details.paidCourses.map((item, i) => (
                   <CourseCard
                     link={item.link}
-                    key={item.key}
+                    key={i}
                     publishedAt={item.publishedAt}
                     cover={item.cover}
                     title={item.title}
@@ -45,13 +53,14 @@ class Profile extends Component {
                 ))}
               </CourseListWrap>
             ) : (
-              <div>还没有购买过任何课程</div>
+              <div>还没有购买过课程</div>
             )}
             <SubTitle>会员</SubTitle>
-            {details && details.latestExpireDate ? (
-              <MembershipMsg>会员截止日期，{details.latestExpireDate}</MembershipMsg>
+
+            {details.isMember ? (
+              <MembershipMsg>{membershipList}</MembershipMsg>
             ) : (
-              <MembershipMsg>还不是好奇猫会员</MembershipMsg>
+              <MembershipMsg>开通会员</MembershipMsg>
             )}
 
           </ContentWrap>
@@ -149,7 +158,6 @@ const SubTitle = styled.div`
 `
 
 const MembershipMsg = styled.span`
-  color: #00bcd4;
   font-size: 1em;
   margin: 23px auto;
   @media (min-width: 1024px) {

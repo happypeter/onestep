@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 const msg = require('./msg')
 const axios = require('axios')
+const helper = require('./helper')
 
 const generateToken = function(user) {
   return jwt.sign(user, config.jwtSecret, {expiresIn: config.expiresIn})
@@ -11,10 +12,8 @@ const generateToken = function(user) {
 
 exports.smsCodeForSignup = (req, res) => {
   const {phoneNum} = req.body
-
   User.findOne({phoneNum: phoneNum}).then(doc => {
     if (doc) {
-      console.log('phoneNum already exists')
       return res.status(403).json({
         errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
         success: false,
@@ -280,92 +279,11 @@ exports.checkToken = function(req, res) {
   }
 }
 
-const chooseExpireDate = function(allExpireDateArr) {
-  let parsedDate = []
-  allExpireDateArr.forEach(date => {
-    parsedDate = [...parsedDate, Date.parse(date)]
-  })
-  const maxParsedDate = Math.max(...parsedDate)
-  let d = new Date()
-  d.setTime(maxParsedDate)
-  let latestExpireDate = JSON.stringify(d).substr(1, 10)
-
-  return latestExpireDate
-}
-
-// Profile Page API
-// 用于展示 profile 页的课程卡片
-function getPaidCourse(course) {
-  return Catalogue.findOne({link: `/${course}`})
-    .then(item => {
-      return item
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
-
-// 遍历获取每个...
-async function getEveryPaidCourses(courses) {
-  if (Object.prototype.toString.call(courses) !== '[object Array]') {
-    throw new Error('courses must be an array')
-  }
-
-  let paidCourses = []
-  for (let course of courses) {
-    let a = await getPaidCourse(course)
-
-    paidCourses.push(a)
-  }
-
-  return paidCourses
-}
-
 // API
 exports.profile = (req, res) => {
-  let courses = []
-  let total = 0
-  let allExpireDateArr = []
-  let paidCourses = []
-
-  User.findOne({_id: req.userId})
-    .populate('contracts')
-    .then(async user => {
-      if (!user) {
-        return res.status(422).json({
-          errorMsg: '该用户不存在',
-          success: false,
-        })
-      }
-      const {admin} = user
-
-      const contracts = user.contracts
-      // 区别处理每个订单
-      for (let contract of contracts) {
-        // all paid courses
-        courses = [...courses, ...contract.courseId]
-        // 获取已购买课程的信息
-        paidCourses = await getEveryPaidCourses(courses)
-
-        // total
-        total += contract.total
-
-        // collect all kinds of membership expireDate
-        if (contract.type === 'vip' || contract.type === 'member') {
-          allExpireDateArr = [...allExpireDateArr, contract.expireDate]
-        }
-      }
-
-      let latestExpireDate =
-        allExpireDateArr.length !== 0
-          ? chooseExpireDate(allExpireDateArr)
-          : null
-
-      return res.json({
-        paidCourses,
-        total,
-        latestExpireDate,
-      })
+  helper.currentUser(req.userId)
+    .then(data => {
+      res.status(200).json(data)
     })
     .catch(error => {
       console.log(error)
@@ -375,9 +293,9 @@ exports.profile = (req, res) => {
 // reset password
 exports.resetPassword = (req, res, next) => {
   const {username, password, phoneNum, smsCode} = req.body
-  // msg
-  //   .check(phoneNum, smsCode)
-  //   .then(msg => {
+  msg
+    .check(phoneNum, smsCode)
+    .then(msg => {
       User.findOne({username, phoneNum})
         .then(user => {
           if (user) {
@@ -411,13 +329,13 @@ exports.resetPassword = (req, res, next) => {
         .catch(error => {
           console.log(error)
         })
-    // })
-    // .catch(error => {
-    //   return res.status(403).json({
-    //     errorMsg: error,
-    //     success: false,
-    //   })
-    // })
+    })
+    .catch(error => {
+      return res.status(403).json({
+        errorMsg: error,
+        success: false,
+      })
+    })
 }
 
 exports.password = (req, res, next) => {

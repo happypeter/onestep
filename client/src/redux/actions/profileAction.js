@@ -1,19 +1,27 @@
 import axios from 'axios'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/profileActionTypes.js'
+import {showNotification} from './notificationAction'
+
+function handleError(error, dispatch) {
+  if (error.response) {
+    dispatch(showNotification(error.response.data.errorMsg))
+  } else {
+    console.log(error)
+  }
+}
 
 export const fetchProfileStarted = () => ({
-  type: types.FETCH_STARTED,
+  type: types.FETCH_PROFILE_STARTED,
 })
 
-export const fetchProfileSuccess = res => ({
-  type: types.FETCH_SUCCESS,
-  res,
+export const fetchProfileSuccess = data => ({
+  type: types.FETCH_PROFILE_SUCCESS,
+  data,
 })
 
 export const fetchProfileFailed = error => ({
-  type: types.FETCH_FAILURE,
-  error,
+  type: types.FETCH_PROFILE_FAILURE
 })
 
 export function fetchProfile() {
@@ -25,6 +33,7 @@ export function fetchProfile() {
         dispatch(fetchProfileSuccess(res.data))
       })
       .catch(error => {
+        handleError(error, dispatch)
         dispatch(fetchProfileFailed(error))
       })
   }

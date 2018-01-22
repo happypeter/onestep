@@ -5,13 +5,13 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'FETCH_STARTED': {
+    case 'FETCH_PROFILE_STARTED': {
       return {...state, isFetching: true}
     }
-    case 'FETCH_SUCCESS': {
+    case 'FETCH_PROFILE_SUCCESS': {
       return {...state, isFetching: false, details: action.data}
     }
-    case 'FETCH_FAILURE': {
+    case 'FETCH_PROFILE_FAILURE': {
       return {...state, isFetching: false}
     }
 

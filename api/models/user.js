@@ -8,8 +8,7 @@ const UserSchema = new Schema(
     password: {type: String},
     admin: {type: Boolean},
     phoneNum: {type: String, unique: true},
-    bindings: {type: Array},
-    contracts: [{type: Schema.Types.ObjectId, ref: 'Contract', _id: false}],
+    bindings: {type: Array}
   },
   {timestamps: true},
 )
