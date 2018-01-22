@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {showNotification} from './notificationAction'
+import {clearProfile} from './profileAction'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 import jwtDecode from 'jwt-decode'
@@ -103,6 +104,7 @@ export function logout(data) {
     delete axios.defaults.headers.common['Authorization']
     dispatch(setCurrentUser({}))
     dispatch(showNotification('退出成功'))
+    dispatch(clearProfile())
   }
 }
 

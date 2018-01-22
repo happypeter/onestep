@@ -14,7 +14,9 @@ export default (state = initialState, action = {}) => {
     case 'FETCH_PROFILE_FAILURE': {
       return {...state, isFetching: false}
     }
-
+    case 'CLEAR_PROFILE': {
+      return initialState
+    }
     default:
       return state
   }

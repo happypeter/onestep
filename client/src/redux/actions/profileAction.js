@@ -24,6 +24,10 @@ export const fetchProfileFailed = error => ({
   type: types.FETCH_PROFILE_FAILURE
 })
 
+export const clearProfile = () => ({
+  type: types.CLEAR_PROFILE
+})
+
 export function fetchProfile() {
   return dispatch => {
     dispatch(fetchProfileStarted())
