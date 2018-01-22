@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom'
 import App from './containers/App'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {injectGlobal} from 'styled-components'
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 injectGlobal`
   body {
-
     font-family: PingFangSC-Regular;
     p {
       font-family: -apple-system, BlinkMacSystemFont,
@@ -28,4 +29,8 @@ injectGlobal`
 
 injectTapEventPlugin()
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+, document.getElementById('root'))

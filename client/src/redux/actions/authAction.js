@@ -5,12 +5,10 @@ import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 import jwtDecode from 'jwt-decode'
 
-export function setCurrentUser(user) {
-  return {
-    type: types.AUTH_USER,
-    user
-  }
-}
+export const setCurrentUser = (user) => ({
+  type: types.AUTH_USER,
+  user
+})
 
 function handleError(error, dispatch) {
   if (error.response) {

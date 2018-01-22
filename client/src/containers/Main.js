@@ -8,6 +8,9 @@ import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 
+import axios from 'axios'
+import jwtDecode from 'jwt-decode'
+
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
   loading: LoadingComponent,
@@ -50,7 +53,25 @@ const AsyncNotFound = Loadable({
   delay: 300,
 })
 
+
+
 class Main extends Component {
+  componentDidMount() {
+    function setAuthorizationToken(token) {
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = `${token}`
+      } else {
+        delete axios.defaults.headers.common['Authorization']
+      }
+    }
+    const jwtToken = sessionStorage.jwtToken
+
+    if (jwtToken) {
+      setAuthorizationToken(jwtToken)
+      this.props.setCurrentUser(jwtDecode(jwtToken))
+    }
+  }
+
   render() {
     return (
       <Router>
