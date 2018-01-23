@@ -8,7 +8,8 @@ import {
 
 const LoginContainer = (props) => {
   if (props.isAuthenticated) {
-    return props.history.goBack()
+    props.history.goBack()
+    return null
   }
   return <Login {...props} />
 }
