@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import {requireAuthentication} from './CheckToken'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
@@ -11,7 +10,7 @@ import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
 import cyan from 'material-ui/colors/cyan'
 import green from 'material-ui/colors/green'
 import red from 'material-ui/colors/red'
-
+import { PrivateRoute } from '../utils/routerUtils'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -73,6 +72,7 @@ const theme = createMuiTheme({
 
 class Main extends Component {
   render() {
+    const {isAuthenticated} = this.props
     return (
       <MuiThemeProvider theme={theme}>
         <Router>
@@ -81,21 +81,23 @@ class Main extends Component {
             <Route path="/login" component={AsyncLogin} />
             <Route path="/signup" component={AsyncSignup} />
             <Route path="/oauth/callback" component={WeChatCallbackContainer} />
-            <Route
-              exact
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
               path="/user/profile"
-              component={requireAuthentication(AsyncProfile)}
+              component={AsyncProfile}
             />
-            <Route
-              exact
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
               path="/settings"
-              component={requireAuthentication(ProfileSettings)}
+              component={ProfileSettings}
             />
             <Route path="/reset-password" component={ResetPasswordContainer} />
             <Route exact path="/:courseName" component={AsyncCourse} />
-            <Route
+            <PrivateRoute
+              exact
+              isAuthenticated={isAuthenticated}
               path="/:courseName/:episodeName"
-              component={requireAuthentication(AsyncEpisode)}
+              component={AsyncEpisode}
             />
             <Route component={AsyncNotFound} />
           </Switch>

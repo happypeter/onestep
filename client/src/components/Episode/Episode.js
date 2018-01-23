@@ -18,7 +18,7 @@ export default ({videoJsOptions, episodeState: {doc, title, courseCatalogue, nam
           courseCatalogue
           ? courseCatalogue.map((item, i) => (
             <SideCatalogue
-              key={item.header}
+              key={i}
               header={item.header}
               section={item.section}
               courseName={courseName}

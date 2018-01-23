@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Redirect, matchPath} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchEpisode} from '../redux/actions/contentAction'
 import {getEpisode} from '../redux/selectors/commonSelectors.js'
@@ -19,26 +18,19 @@ class EpisodeContainer extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.history.location !== this.props.location) {
-      let params = this.props.history.location.pathname.split('/')
+    const {history, location, fetchEpisode} = this.props
+    if (history.location !== location) {
+      let params = history.location.pathname.split('/')
       const [ , courseName, episodeName] = params
-      this.props.fetchEpisode({courseName, episodeName})
+      fetchEpisode({courseName, episodeName})
     }
   }
 
   render() {
-    const {episode, match: {params: {episodeName}}} = this.props
     const {isFetching, item} = this.props.episode
-    // 404: /path/whatever
-    const match = matchPath(this.props.location.pathname, {
-      path: this.props.match.path,
-    })
-    if (!match.isExact) {
-      return <Redirect to={{pathname: '/404'}} />
-    }
     if (isFetching) return <LoadingComponent />
 
-    const {courseName} = this.props.match.params
+    const {episodeName, courseName} = this.props.match.params
     // VideoJsOptions for this Course
     const EpisodeVideoJsOptions = {
       autoplay: false,
