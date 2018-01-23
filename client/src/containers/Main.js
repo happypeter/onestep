@@ -76,11 +76,7 @@ class Main extends Component {
             />
             <Route path="/reset-password" component={ResetPasswordContainer} />
             <Route exact path="/:courseName" component={AsyncCourse} />
-            <PrivateRoute
-              exact
-              isAuthenticated={isAuthenticated}
-              path="/:courseName/:episodeName"
-              component={AsyncEpisode}
+            <Route exact path="/:courseName/:episodeName" component={AsyncEpisode}
             />
             <Route component={AsyncNotFound} />
           </Switch>
