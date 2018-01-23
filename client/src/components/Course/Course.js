@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
-import EpisodeCatalogue from './EpisodeCatalogue'
+import EpisodeItem from './EpisodeItem'
 import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
@@ -30,7 +30,7 @@ class Course extends Component {
     let episodeList
     if (content) {
       episodeList = content.map((item, i) => (
-        <EpisodeCatalogue
+        <EpisodeItem
           key={i}
           header={item.header}
           section={item.section}
