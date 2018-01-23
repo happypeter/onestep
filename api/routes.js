@@ -11,7 +11,6 @@ const router = express.Router()
 // 用户接口
 router.post('/signup', user.signup)
 router.post('/login', user.login)
-router.post('/auth', user.checkToken)
 router.post('/reset-password', user.resetPassword)
 router.post('/password', auth.user, user.password)
 router.post('/oauth/wechat', user.weChat)

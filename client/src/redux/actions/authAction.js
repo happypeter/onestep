@@ -106,19 +106,6 @@ export function logout(data) {
   }
 }
 
-export const checkToken = token => {
-  return dispatch => {
-    axios
-      .post(`${config.api}/auth`, {token})
-      .then(res => {
-        //TODO
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
-}
-
 export function resetPassword(data, history) {
   return dispatch => {
     axios

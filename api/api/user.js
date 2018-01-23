@@ -255,32 +255,6 @@ exports.login = (req, res) => {
     })
 }
 
-exports.checkToken = function(req, res) {
-  const token = req.body.token
-  if (token) {
-    jwt.verify(token, config.jwtSecret, (err, decoded) => {
-      if (err) {
-        if (err.name === 'TokenExpiredError') {
-          return res.status(401).json({
-            errorMsg: '认证码失效，请重新登录',
-            success: false,
-          })
-        } else {
-          return res.status(401).json({
-            errorMsg: '认证失败',
-            success: false,
-          })
-        }
-      } else {
-        return res.status(200).json({
-          message: '认证成功',
-          success: true,
-        })
-      }
-    })
-  }
-}
-
 // API
 exports.profile = (req, res) => {
   helper.currentUser(req.userId)

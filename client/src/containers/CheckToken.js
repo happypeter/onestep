@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getIsAuthenticated} from '../redux/selectors/commonSelectors.js'
-import PropTypes from 'prop-types'
 import {Redirect} from 'react-router-dom'
 
 export function requireAuthentication(Component) {
