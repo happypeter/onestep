@@ -5,12 +5,11 @@ import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
+import {PrivateRoute} from '../utils/routerUtils'
+
+import {MuiThemeProvider} from 'material-ui/styles'
+import {theme} from '../utils/muiTheme'
 import '../assets/global.css'
-import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
-import cyan from 'material-ui/colors/cyan'
-import green from 'material-ui/colors/green'
-import red from 'material-ui/colors/red'
-import { PrivateRoute } from '../utils/routerUtils'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -53,22 +52,6 @@ const AsyncNotFound = Loadable({
   loading: LoadingComponent,
   delay: 300,
 })
-
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      ...cyan,
-      A500: '#00BCD4',
-    },
-    secondary: {
-      ...green,
-      A400: '#00e677',
-    },
-    error: red,
-  },
-})
-
 
 class Main extends Component {
   render() {
