@@ -6,7 +6,12 @@ import {
   getIsAuthenticated,
 } from '../redux/selectors/commonSelectors.js'
 
-const LoginContainer = (props) => <Login {...props} />
+const LoginContainer = (props) => {
+  if (props.isAuthenticated) {
+    return props.history.goBack()
+  }
+  return <Login {...props} />
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state)

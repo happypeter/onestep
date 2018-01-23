@@ -14,7 +14,6 @@ import {
   LinkWrap,
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
-import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -47,7 +46,6 @@ class Login extends Component {
   }
 
   render() {
-    if (this.props.isAuthenticated) return <Redirect to='/' />
     const {account, password, errors} = this.state
     return (
       <Wrap>
