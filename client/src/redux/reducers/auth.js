@@ -2,7 +2,7 @@ import isEmpty from 'lodash.isempty'
 import * as types from '../../constants/actionTypes/authActionTypes'
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: sessionStorage.jwtToken,
   currentUser: {}
 }
 export default (state = initialState, action = {}) => {

@@ -8,7 +8,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     function setAuthorizationToken(token) {
       if (token) {
         axios.defaults.headers.common['Authorization'] = `${token}`
