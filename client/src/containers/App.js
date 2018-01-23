@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import Main from './Main'
-
 import {connect} from 'react-redux'
 import {setCurrentUser} from '../redux/actions/authAction'
-
+import {fetchProfile} from '../redux/actions/profileAction'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
-
 
 class App extends Component {
   componentDidMount() {
@@ -22,14 +20,13 @@ class App extends Component {
     if (jwtToken) {
       setAuthorizationToken(jwtToken)
       this.props.setCurrentUser(jwtDecode(jwtToken))
+      this.props.fetchProfile()
     }
   }
-  
+
   render() {
-    return (
-        <Main {...this.props} />
-    )
+    return <Main {...this.props} />
   }
 }
 
-export default connect(null, {setCurrentUser})(App)
+export default connect(null, {setCurrentUser, fetchProfile})(App)
