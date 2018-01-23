@@ -72,8 +72,6 @@ const theme = createMuiTheme({
 
 
 class Main extends Component {
-
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>

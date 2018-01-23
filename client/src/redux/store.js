@@ -3,6 +3,11 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/'
 import logger from 'redux-logger'
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger))
+let store
+if (process.env.NODE_ENV !== 'production') {
+  store = createStore(rootReducer,applyMiddleware(thunk, logger))
+} else {
+  store = createStore(rootReducer,applyMiddleware(thunk))
+}
 
 export default store
