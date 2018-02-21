@@ -5,9 +5,9 @@ import logger from 'redux-logger'
 
 let store
 if (process.env.NODE_ENV !== 'production') {
-  store = createStore(rootReducer,applyMiddleware(thunk, logger))
+  store = createStore(rootReducer, applyMiddleware(thunk, logger))
 } else {
-  store = createStore(rootReducer,applyMiddleware(thunk))
+  store = createStore(rootReducer, applyMiddleware(thunk))
 }
 
 export default store

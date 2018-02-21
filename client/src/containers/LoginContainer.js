@@ -1,14 +1,12 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
-import {login} from '../redux/actions/authAction'
-import {
-  getIsAuthenticated,
-} from '../redux/selectors/commonSelectors.js'
+import { login } from '../redux/actions/authAction'
+import { getIsAuthenticated } from '../redux/selectors/commonSelectors.js'
 
-const LoginContainer = (props) => {
+const LoginContainer = props => {
   if (props.isAuthenticated) {
-    props.history.goBack()
+    props.history.push('/user/profile')
     return null
   }
   return <Login {...props} />

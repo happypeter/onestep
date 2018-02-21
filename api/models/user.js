@@ -4,13 +4,21 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
   {
-    username: {type: String, unique: true},
-    password: {type: String},
-    admin: {type: Boolean},
-    phoneNum: {type: String, unique: true},
-    bindings: {type: Array}
+    username: { type: String, unique: true },
+    password: { type: String },
+    admin: { type: Boolean },
+    phoneNum: { type: String, unique: true },
+    bindings: [
+      {
+        _id: false,
+        via: String,
+        nickName: String,
+        headImgUrl: String,
+        unionId: String
+      }
+    ]
   },
-  {timestamps: true},
+  { timestamps: true }
 )
 
 UserSchema.pre('save', function(next) {

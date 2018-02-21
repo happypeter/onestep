@@ -12,7 +12,7 @@ module.exports = {
   timeLimit: 10,
   weChatAppId: 'xxx',
   weChatAppSecret: 'xxx',
-  serviceAppID: 'xxx',
+  serviceAppId: 'xxx',
   serviceAppSecret: 'xxx',
   // 微信商户号
   mchId: '',

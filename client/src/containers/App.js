@@ -17,11 +17,19 @@ class App extends Component {
       }
     }
     const jwtToken = sessionStorage.jwtToken
-
     if (jwtToken) {
-      setAuthorizationToken(jwtToken)
-      this.props.setCurrentUser(jwtDecode(jwtToken))
-      this.props.fetchProfile()
+      try {
+        const result = jwtDecode(jwtToken)
+        if (result) {
+          setAuthorizationToken(jwtToken)
+          this.props.setCurrentUser(result)
+          this.props.fetchProfile()
+        } else {
+          this.props.setCurrentUser({})
+        }
+      } catch (error) {
+        return
+      }
     }
   }
 
