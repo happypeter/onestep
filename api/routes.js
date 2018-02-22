@@ -8,7 +8,7 @@ const contracts = require('./api/contracts')
 const auth = require('./middlewares/auth')
 const router = express.Router()
 
-// 用户接口
+// 用户认证接口
 router.post('/signup', user.signup)
 router.post('/login', user.login)
 router.post('/reset-password', user.resetPassword)
@@ -27,7 +27,7 @@ router.get('/catalogue', catalogue.catalogue)
 router.get('/courses/:courseName', courses.single)
 router.get('/episode', doc.getEpisode)
 
-// 支付
+// 微信支付接口
 router.post('/contracts/new', auth.user, contracts.new)
 router.use('/wechat/payment/callback', contracts.notifyUrl)
 router.get('/contracts/:contractId/status', auth.user, contracts.status)
