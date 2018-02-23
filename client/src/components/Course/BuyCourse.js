@@ -27,7 +27,7 @@ class BuyCourse extends Component {
   state = {
     codeUrl: '',
     contractId: '',
-    showModal: false,
+    showModal: false
   }
 
   componentWillMount = () => {
@@ -40,7 +40,7 @@ class BuyCourse extends Component {
 
   timer = () => {
     clearInterval(this.timerId)
-    const {contractId} = this.state
+    const { contractId } = this.state
     this.timerId = setInterval(() => {
       this.props.checkContract(contractId).then(status => {
         if (status === '已支付') {
@@ -51,34 +51,42 @@ class BuyCourse extends Component {
   }
 
   openModal = () => {
-    this.setState({showModal: true});
+    this.setState({ showModal: true })
   }
 
   closeModal = () => {
     clearInterval(this.timerId)
-    this.setState({showModal: false});
+    this.setState({ showModal: false })
   }
 
   pay = () => {
     this.openModal()
-    const {name, courseId, price} = this.props
+    const { name, courseId, price } = this.props
     const data = {}
     data.name = name
     data.courseId = courseId
     data.total = price
 
-    this.props.signContract(data)
+    this.props
+      .signContract(data)
       .then(result => {
-        this.setState({
-          codeUrl: result.codeUrl,
-          contractId: result.contractId,
-        }, () => {this.timer()})
+        this.setState(
+          {
+            codeUrl: result.codeUrl,
+            contractId: result.contractId
+          },
+          () => {
+            this.timer()
+          }
+        )
       })
-      .catch(error => {console.log(error)})
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   render() {
-    const {price} = this.props
+    const { price } = this.props
     return (
       <div>
         <MsgBigCard>
@@ -92,16 +100,17 @@ class BuyCourse extends Component {
           style={customStyles}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          ariaHideApp={false}>
-            <Inner>
-              <Header>
-                <Title>购买课程</Title>
-                <Img src={closeImg} onClick={this.closeModal} alt='close' />
-              </Header>
-              <QRCode value={this.state.codeUrl} size={220} />
-              <Desc>微信扫描二维码完成支付</Desc>
-              <Fee>{price}元</Fee>
-            </Inner>
+          ariaHideApp={false}
+        >
+          <Inner>
+            <Header>
+              <Title>购买课程</Title>
+              <Img src={closeImg} onClick={this.closeModal} alt="close" />
+            </Header>
+            <QRCode value={this.state.codeUrl} size={220} />
+            <Desc>微信扫描二维码完成支付</Desc>
+            <Fee>{price}元</Fee>
+          </Inner>
         </Modal>
       </div>
     )

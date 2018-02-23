@@ -45,7 +45,7 @@ class Profile extends Component {
               <img src={avatar} alt="avatar" />
               <Nickname>{currentUser.username}</Nickname>
               {details.sum !== 0 ? (
-                <div>已在好奇猫为自己投资{details.sum}元</div>
+                <div>已在好奇猫为自己投资{details.sum.toFixed(2)}元</div>
               ) : (
                 <div>还没有在好奇猫为自己投资</div>
               )}

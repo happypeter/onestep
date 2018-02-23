@@ -21,7 +21,6 @@ export default class VideoPlayer extends React.Component {
   handleSpaceKeyDown = event => {
     if (event.which === 32) {
       event.preventDefault()
-
       if (this.player) {
         switch (this.player.state.state) {
           case 'playing':
@@ -47,17 +46,14 @@ export default class VideoPlayer extends React.Component {
     var that = this
     const setStateandFocusPlugin = function(options) {
       this.on('play', function(e) {
-        console.log('playback has started!')
-        // console.log(that)
         this.setState({
-          state: 'playing',
+          state: 'playing'
         })
       })
 
       this.on('pause', function(e) {
-        console.log('playback has paused')
         this.setState({
-          state: 'pause',
+          state: 'pause'
         })
       })
 
@@ -66,7 +62,6 @@ export default class VideoPlayer extends React.Component {
       })
 
       this.on('ended', function(e) {
-        console.log('this episode ends now!!!')
         // some code to navigate to next episode page
       })
     }
@@ -78,7 +73,8 @@ export default class VideoPlayer extends React.Component {
       <div
         data-vjs-player
         onKeyDown={this.handleSpaceKeyDown}
-        ref="videoPlayerRef">
+        ref="videoPlayerRef"
+      >
         <video
           ref={node => (this.videoNode = node)}
           className="video-js vjs-hqcat"

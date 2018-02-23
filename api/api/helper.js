@@ -2,13 +2,14 @@ const Catalogue = require('../models/catalogue')
 const Contract = require('../models/contract')
 const moment = require('moment')
 
-exports.currentUser = (userId) => {
-  let sum = 0, isMember = false
+exports.currentUser = userId => {
+  let sum = 0,
+    isMember = false
   let paidCourses = []
   let memberships = []
   return Promise.all([
     Catalogue.find().exec(),
-    Contract.find({userId: userId, status: '已支付'})
+    Contract.find({ userId: userId, status: '已支付' })
       .sort('createdAt')
       .populate('courseId', 'courseName')
       .exec()
@@ -17,14 +18,14 @@ exports.currentUser = (userId) => {
       const courses = results[0]
       const contracts = results[1]
 
-      for(let i = 0; i < contracts.length; i++) {
+      for (let i = 0; i < contracts.length; i++) {
         let item = contracts[i]
         if (item.courseId) {
-          const {courseName} = item.courseId
+          const { courseName } = item.courseId
           const course = courses.find(c => c.link.slice(1) === courseName)
-          paidCourses.push({...course._doc, total: item.total})
+          paidCourses.push({ ...course._doc, total: item.total })
         } else {
-          const {startDate, expireDate, total} = item
+          const { startDate, expireDate, total } = item
           const data = {}
           data.total = total
           const now = moment()

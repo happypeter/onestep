@@ -3,6 +3,7 @@ const Contract = require('../models/contract')
 const config = require('../config/config')
 const moment = require('moment')
 const { json2xml } = require('../weixin_pay/helper')
+const Catalogue = require('../models/catalogue')
 
 const { serviceAppId, mchId, mchKey } = config
 const wxpay = new WeixinPayment({
@@ -92,11 +93,22 @@ exports.notifyUrl = (req, res, next) => {
 }
 
 exports.status = (req, res, next) => {
-  Contract.findById({ _id: req.params.contractId })
-    .exec()
-    .then(c => {
-      if (!c) return
-      return res.status(200).json({ success: true, status: c.status })
+  Promise.all([
+    Contract.findById({ _id: req.params.contractId })
+      .populate('courseId', 'courseName')
+      .exec(),
+    Catalogue.find().exec()
+  ])
+    .then(result => {
+      if (!result.length) return
+      const course = result[1].find(
+        c => c.link.slice(1) === result[0].courseId.courseName
+      )
+      return res.status(200).json({
+        success: true,
+        status: result[0].status,
+        course: { ...course._doc, total: result[0].total }
+      })
     })
     .catch(error => {
       console.log(error)
