@@ -1,20 +1,22 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logoSimple from '../../assets/logoSimple.svg'
-import Menu, {MenuItem} from 'material-ui/Menu'
+import Menu, { MenuItem } from 'material-ui/Menu'
+import defaultAvatar from '../../assets/avatarIcon.svg'
+import isEmpty from 'lodash.isempty'
 
 class TopHeader extends Component {
   state = {
-    anchorEl: null,
+    anchorEl: null
   }
 
   handlePopoverOpen = e => {
-    this.setState({anchorEl: e.target})
+    this.setState({ anchorEl: e.target })
   }
 
   handlePopoverClose = () => {
-    this.setState({anchorEl: null})
+    this.setState({ anchorEl: null })
   }
 
   backToHome = () => {
@@ -34,33 +36,37 @@ class TopHeader extends Component {
   }
 
   render() {
-    const {currentUser, isAuthenticated} = this.props.auth
+    const { currentUser, isAuthenticated } = this.props.auth
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="signup">注册</ButtonLink>
         <ButtonLink to="/login">登录</ButtonLink>
       </SideButtonsWrap>
     )
-    const {anchorEl} = this.state
+    const { anchorEl } = this.state
+    let avatar = defaultAvatar
+    if (currentUser && !isEmpty(currentUser.bindings)) {
+      const weChat = currentUser.bindings.find(item => item.via === 'wechat')
+      avatar = weChat.headImgUrl
+    }
     const LogoutButtons = (
       <SideButtonsWrap>
-        <div>
-          <div
-            onMouseOver={this.handlePopoverOpen}
-            onTouchStart={this.handlePopoverOpen}>
-            <Username>{currentUser ? currentUser.username : ''}</Username>
-          </div>
-
-          <PopMenu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handlePopoverClose}>
-            <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
-            <MenuItem onClick={this.goToSettings}>设置</MenuItem>
-            <MenuItem onClick={this.logout}>退出</MenuItem>
-          </PopMenu>
-        </div>
+        <Avatar
+          src={avatar}
+          alt="avatar"
+          onMouseOver={this.handlePopoverOpen}
+          onTouchStart={this.handlePopoverOpen}
+        />
+        <PopMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handlePopoverClose}
+        >
+          {currentUser ? <MenuItem>{currentUser.username}</MenuItem> : null}
+          <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
+          <MenuItem onClick={this.goToSettings}>设置</MenuItem>
+          <MenuItem onClick={this.logout}>退出</MenuItem>
+        </PopMenu>
       </SideButtonsWrap>
     )
 
@@ -87,19 +93,26 @@ const TopHeaderWrap = styled.div`
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+`
+
+const HomeWrap = styled.div`
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   @media (min-width: 1024px) {
-    width: 1024px;
-    margin: 0 auto;
+    font-size: 1.56em;
   }
 `
 
 const SideButtonsWrap = styled.div`
   display: flex;
   flex-direction: flex-end;
-  padding: 1em;
-  @media (min-width: 1024px) {
-    padding: 1em 6em;
-  }
 `
 
 const ButtonLink = styled(Link)`
@@ -115,29 +128,11 @@ const ButtonLink = styled(Link)`
   }
 `
 
-const Username = styled.div`
-  font-size: 0.8em;
-  padding: 0.5em;
-  color: #212121;
-  line-height: 2;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-`
-
-const HomeWrap = styled.div`
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  margin-left: 1em;
-  cursor: pointer;
-  @media (min-width: 1024px) {
-    font-size: 1.56em;
-    margin-left: 4em;
-  }
+const Avatar = styled.img`
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 15px;
 `
 
 const PopMenu = styled(Menu)`
