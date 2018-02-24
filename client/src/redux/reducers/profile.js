@@ -16,10 +16,25 @@ export default (state = initialState, action = {}) => {
     }
     case 'ADD_PAID_COURSE': {
       const courses = [...state.details.paidCourses, action.course]
-      const sum = courses.reduce((sum, a) => sum + a.total, 0)
+      let sum = courses.reduce((sum, a) => sum + a.total, 0)
+      sum = state.details.memberships.reduce((sum, a) => sum + a.total, 0)
       return {
         ...state,
         details: { ...state.details, paidCourses: courses, sum }
+      }
+    }
+    case 'ACTIVATE_MEMBERSHIP': {
+      const memberships = [...state.details.memberships, action.member]
+      let sum = state.details.paidCourses.reduce((sum, a) => sum + a.total, 0)
+      sum = memberships.reduce((sum, a) => sum + a.total, 0)
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          memberships: memberships,
+          sum,
+          isMember: true
+        }
       }
     }
     case 'CLEAR_PROFILE': {

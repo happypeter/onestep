@@ -23,11 +23,12 @@ const customStyles = {
   }
 }
 
-class BuyCourse extends Component {
+class BuyMembership extends Component {
   state = {
     codeUrl: '',
     contractId: '',
-    showModal: false
+    showModal: false,
+    price: null
   }
 
   componentWillMount = () => {
@@ -42,7 +43,7 @@ class BuyCourse extends Component {
     clearInterval(this.timerId)
     const { contractId } = this.state
     this.timerId = setInterval(() => {
-      this.props.checkContract(contractId, 'course').then(status => {
+      this.props.checkContract(contractId, 'member').then(status => {
         if (status === '已支付') {
           this.closeModal()
         }
@@ -59,21 +60,18 @@ class BuyCourse extends Component {
     this.setState({ showModal: false })
   }
 
-  pay = () => {
+  pay = price => {
     this.openModal()
-    const { name, courseId, price } = this.props
     const data = {}
-    data.name = name
-    data.courseId = courseId
     data.total = price
-
     this.props
       .signContract(data)
       .then(result => {
         this.setState(
           {
             codeUrl: result.codeUrl,
-            contractId: result.contractId
+            contractId: result.contractId,
+            price
           },
           () => {
             this.timer()
@@ -86,14 +84,24 @@ class BuyCourse extends Component {
   }
 
   render() {
-    const { price } = this.props
+    const { price } = this.state
     return (
       <div>
         <MsgBigCard>
-          <Price>{price}元</Price>
-          <RaisedButtonWrap raised onClick={this.pay}>
-            购买本课程
-          </RaisedButtonWrap>
+          <div>
+            <div>
+              一个月42元{' '}
+              <RaisedButtonWrap raised onClick={this.pay.bind(this, 42)}>
+                购买
+              </RaisedButtonWrap>
+            </div>
+            <div>
+              三个月90元{' '}
+              <RaisedButtonWrap raised onClick={this.pay.bind(this, 90)}>
+                购买
+              </RaisedButtonWrap>
+            </div>
+          </div>
         </MsgBigCard>
         <Modal
           isOpen={this.state.showModal}
@@ -104,7 +112,7 @@ class BuyCourse extends Component {
         >
           <Inner>
             <Header>
-              <Title>购买课程</Title>
+              <Title>开通会员</Title>
               <Img src={closeImg} onClick={this.closeModal} alt="close" />
             </Header>
             <QRCode value={this.state.codeUrl} size={220} />
@@ -117,7 +125,7 @@ class BuyCourse extends Component {
   }
 }
 
-export default BuyCourse
+export default BuyMembership
 
 const Inner = styled.div`
   width: 300px;
@@ -180,11 +188,6 @@ const RaisedButtonWrap = styled(Button)`
     color: #ffffff;
     letter-spacing: 0;
     margin: 1em 16%;
-    background-color: #00b4d0;
+    background-color: #ff4081;
   }
-`
-
-const Price = styled.div`
-  font-size: 30px;
-  margin: 0 30px;
 `

@@ -72,14 +72,25 @@ export function signContract(data) {
   }
 }
 
-export function checkContract(contractId) {
+export function checkContract(contractId, type) {
   return dispatch => {
     return axios
-      .get(`${config.api}/contracts/${contractId}/status`)
+      .get(`${config.api}/contracts/${contractId}/status`, { params: { type } })
       .then(res => {
         if (res.data.status === '已支付') {
-          dispatch({ type: 'ADD_PAID_COURSE', course: res.data.course })
+          if (type === 'course') {
+            dispatch({
+              type: 'ADD_PAID_COURSE',
+              course: res.data.course
+            })
+          } else {
+            dispatch({
+              type: 'ACTIVATE_MEMBERSHIP',
+              member: res.data.member
+            })
+          }
         }
+
         return Promise.resolve(res.data.status)
       })
       .catch(error => {

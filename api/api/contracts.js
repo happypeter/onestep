@@ -12,16 +12,33 @@ const wxpay = new WeixinPayment({
   mch_key: mchKey
 })
 
+const membershipOneMonth = 42,
+  membershipThreeMonths = 90
 // 创建合同
 exports.new = (req, res, next) => {
   const contract = new Contract()
   let body = ''
   if (req.body.courseId) {
+    // 购买课程
     const { courseId, name } = req.body
     contract.courseId = req.body.courseId
     body = name
   } else {
-    // 会员服务
+    // 购买会员服务
+    const now = moment()
+    contract.startDate = moment(now).format('YYYY-MM-DD')
+    if (req.body.total === membershipThreeMonths) {
+      body = '购买三个月会员服务'
+      contract.expireDate = moment(now)
+        .add(3, 'month')
+        .format('YYYY-MM-DD')
+    }
+    if (req.body.total === membershipOneMonth) {
+      body = '购买一个月会员服务'
+      contract.expireDate = moment(now)
+        .add(1, 'month')
+        .format('YYYY-MM-DD')
+    }
   }
   contract.total = req.body.total
   contract.status = '未支付'
@@ -93,24 +110,54 @@ exports.notifyUrl = (req, res, next) => {
 }
 
 exports.status = (req, res, next) => {
-  Promise.all([
-    Contract.findById({ _id: req.params.contractId })
-      .populate('courseId', 'courseName')
-      .exec(),
-    Catalogue.find().exec()
-  ])
-    .then(result => {
-      if (!result.length) return
-      const course = result[1].find(
-        c => c.link.slice(1) === result[0].courseId.courseName
-      )
-      return res.status(200).json({
-        success: true,
-        status: result[0].status,
-        course: { ...course._doc, total: result[0].total }
+  const type = req.query.type
+  if (type === 'course') {
+    Promise.all([
+      Contract.findById({ _id: req.params.contractId })
+        .populate('courseId', 'courseName')
+        .exec(),
+      Catalogue.find().exec()
+    ])
+      .then(result => {
+        if (!result.length) return
+        const course = result[1].find(
+          c => c.link.slice(1) === result[0].courseId.courseName
+        )
+        return res.status(200).json({
+          success: true,
+          status: result[0].status,
+          course: { ...course._doc, total: result[0].total }
+        })
       })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  if (type === 'member') {
+    Contract.findById({ _id: req.params.contractId })
+      .exec()
+      .then(contract => {
+        if (!contract) return
+        const { startDate, expireDate, total } = contract
+        const now = moment()
+        const data = {}
+        data.total = total
+        if (now.isBefore(expireDate, 'day')) {
+          data.isExpired = false
+        } else {
+          data.isExpired = true
+        }
+        data.startDate = moment(startDate).format('YYYY-MM-DD')
+        data.expireDate = moment(expireDate).format('YYYY-MM-DD')
+        data.duration = moment(expireDate).diff(startDate, 'months')
+        return res.status(200).json({
+          success: true,
+          status: contract.status,
+          member: data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }

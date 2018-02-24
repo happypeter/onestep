@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 import isEmpty from 'lodash.isempty'
+import BuyMembership from './BuyMembership'
 
 class Profile extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class Profile extends Component {
   render() {
     const { isFetching, details } = this.props.profile
     const { currentUser } = this.props.auth
+    const { signContract, checkContract } = this.props
     let pageContent
     if (isFetching) {
       pageContent = <ContentWrap>信息请求中...</ContentWrap>
@@ -26,9 +28,8 @@ class Profile extends Component {
         membershipList = details.memberships.map((m, i) => {
           return (
             <div key={i}>
-              已开通{m.duration}个月会员服务，开通日期{m.startDate}，截止日期{
-                m.expireDate
-              }
+              已购买{m.duration}个月会员服务，购买日期 {m.startDate}，截止日期{' '}
+              {m.expireDate}
             </div>
           )
         })
@@ -73,7 +74,10 @@ class Profile extends Component {
             {details.isMember ? (
               <MembershipMsg>{membershipList}</MembershipMsg>
             ) : (
-              <MembershipMsg>开通会员</MembershipMsg>
+              <BuyMembership
+                signContract={signContract}
+                checkContract={checkContract}
+              />
             )}
           </ContentWrap>
         </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
 import isEmpty from 'lodash.isempty'
+
 class Course extends Component {
   render() {
     const {
@@ -17,10 +18,10 @@ class Course extends Component {
       learning_goal: learningGoal,
       price,
       content,
-      _id,
+      _id
     } = this.props.courseOptions
 
-    const {details} = this.props.profile
+    const { details } = this.props.profile
     let isPaid = false
     if (!isEmpty(details.paidCourses)) {
       isPaid = !!details.paidCourses.find(c => c.link.slice(1) === courseName)
