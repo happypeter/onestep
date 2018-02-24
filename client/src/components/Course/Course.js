@@ -52,36 +52,31 @@ class Course extends Component {
       <Wrap>
         <TopHeader />
 
-        <VideoWrap>
+        <Container>
           <CourseName>{name}</CourseName>
-          <Video>
-            <VideoTitle>课程简介</VideoTitle>
-            <VideoPlayer {...this.props.videoJsOptions} />
-          </Video>
-        </VideoWrap>
+          <VideoTitle>课程简介</VideoTitle>
+          <VideoPlayer {...this.props.videoJsOptions} />
 
-        <MsgWrap>
-          <MsgArea>
+          <Section>
             <CourseMsgIntro title={'一句话简介'} intro={intro} />
             <CourseMsgIntro title={'适合观众'} intro={writingToWho} />
             <CourseMsgIntro title={'知识点'} intro={learningGoal} />
-          </MsgArea>
-        </MsgWrap>
+          </Section>
 
-        <CatalogueHero>
-          <CatalogueWrap>{episodeList}</CatalogueWrap>
-        </CatalogueHero>
-        {!this.props.isAuthenticated ? (
-          <BuyCourseButton price={price} onClick={this.handleClick} />
-        ) : !isAccessible ? (
-          <BuyCourse
-            name={name}
-            price={price}
-            courseId={_id}
-            signContract={this.props.signContract}
-            checkContract={this.props.checkContract}
-          />
-        ) : null}
+          <Section>{episodeList}</Section>
+
+          {!this.props.isAuthenticated ? (
+            <BuyCourseButton price={price} onClick={this.handleClick} />
+          ) : !isAccessible ? (
+            <BuyCourse
+              name={name}
+              price={price}
+              courseId={_id}
+              signContract={this.props.signContract}
+              checkContract={this.props.checkContract}
+            />
+          ) : null}
+        </Container>
 
         <Footer />
       </Wrap>
@@ -96,86 +91,45 @@ const Wrap = styled.div`
   flex-direction: column;
 `
 
-const VideoWrap = styled.div`
-  @media (min-width: 1024px) {
-    box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
-  }
+const Container = styled.div`
+  padding: 0 16px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 `
 
 const CourseName = styled.div`
-  margin: 2em auto;
+  padding: 32px 0;
   color: #212121;
   text-align: center;
   font-size: 1.5em;
-  @media (min-width: 1024px) {
-    margin: 44px auto;
+  @media (min-width: 768px) {
+    padding: 48px 0;
     font-size: 2.5em;
   }
 `
 
 const VideoTitle = styled.div`
-  height: 1.5em;
-  line-height: 1.5em;
-  max-width: 100%;
+  padding: 8px;
   background-color: #00bcd4;
   color: #ffffff;
-  font-size: 0.5em;
-  padding-left: 12px;
-  @media (min-width: 1024px) {
-    height: 2.5em;
-    line-height: 2.5em;
-    max-width: 100%;
-    font-size: 1.25em;
-    padding-left: 12px;
+  font-size: 16px;
+  @media (min-width: 768px) {
+    padding: 12px;
+    font-size: 20px;
   }
 `
 
-const Video = styled.div`
-  margin: 0 2em;
-  @media (min-width: 1024px) {
-    margin: 0 23%;
-  }
-`
-
-const MsgWrap = styled.div`
-  flex-shrink: 0;
-  margin-top: 81px;
-  @media (min-width: 1024px) {
-    display: flex;
-    margin: 81px auto 0 auto;
-    width: 620px;
-  }
-`
-
-const MsgArea = styled.div`
-  margin-left: 2em;
+const Section = styled.div`
   width: 100%;
-  @media (min-width: 1024px) {
-    display: flex;
-    flex-direction: column;
-  }
-`
-
-const CatalogueHero = styled.div`
-  @media (min-width: 1024px) {
-    box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
-  }
-`
-
-const CatalogueWrap = styled.div`
-  margin: 0 2em 3em 2em;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    margin: 81px 23% 48px 23%;
+  max-width: 640px;
+  margin: 48px auto;
+  @media (min-width: 768px) {
+    margin: 64px auto;
   }
 `
 
 const Info = styled.div`
-  margin: 0px auto;
   text-align: center;
   font-size: 2.5em;
 `
