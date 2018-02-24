@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react'
 import Button from 'material-ui/Button'
 import Modal from 'react-modal'
 import closeImg from '../../assets/close.svg'
+import BuyCourseButton from './BuyCourseButton'
 
 const customStyles = {
   overlay: {
@@ -89,12 +90,7 @@ class BuyCourse extends Component {
     const { price } = this.props
     return (
       <div>
-        <MsgBigCard>
-          <Price>{price}元</Price>
-          <RaisedButtonWrap raised onClick={this.pay}>
-            购买本课程
-          </RaisedButtonWrap>
-        </MsgBigCard>
+        <BuyCourseButton onClick={this.pay} price={price} />
         <Modal
           isOpen={this.state.showModal}
           style={customStyles}
@@ -109,7 +105,7 @@ class BuyCourse extends Component {
             </Header>
             <QRCode value={this.state.codeUrl} size={220} />
             <Desc>微信扫描二维码完成支付</Desc>
-            <Fee>{price}元</Fee>
+            <Price>{price}元</Price>
           </Inner>
         </Modal>
       </div>
@@ -148,43 +144,7 @@ const Desc = styled.div`
   color: #999;
 `
 
-const Fee = styled.div`
+const Price = styled.div`
   font-size: 18px;
   color: #ff1744;
-`
-
-const MsgBigCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 2em 2em 2em;
-  padding-bottom: 1em;
-  background-color: #ffffff;
-  p {
-    font-weight: 300;
-    font-size: 0.875em;
-    color: #212121;
-  }
-  @media (min-width: 1024px) {
-    width: 247px;
-    margin: 138px auto 131px auto;
-    p {
-      font-weight: 400;
-    }
-  }
-`
-
-const RaisedButtonWrap = styled(Button)`
-  && {
-    font-size: 16px;
-    color: #ffffff;
-    letter-spacing: 0;
-    margin: 1em 16%;
-    background-color: #00b4d0;
-  }
-`
-
-const Price = styled.div`
-  font-size: 30px;
-  margin: 0 30px;
 `

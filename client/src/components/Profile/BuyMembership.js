@@ -164,30 +164,18 @@ const Fee = styled.div`
 const MsgBigCard = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
-  margin: 0 2em 2em 2em;
-  padding-bottom: 1em;
-  background-color: #ffffff;
-  p {
-    font-weight: 300;
-    font-size: 0.875em;
-    color: #212121;
-  }
-  @media (min-width: 1024px) {
-    width: 247px;
-    margin: 138px auto 131px auto;
-    p {
-      font-weight: 400;
-    }
-  }
+  justify-content: center;
+  align-items: center;
+  margin: 32px auto 56px;
+  max-width: 240px;
+  width: 100%;
 `
 
 const RaisedButtonWrap = styled(Button)`
   && {
-    font-size: 16px;
+    width: 100%;
+    font-size: 24px;
     color: #ffffff;
-    letter-spacing: 0;
-    margin: 1em 16%;
     background-color: #ff4081;
   }
 `

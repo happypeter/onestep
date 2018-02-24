@@ -7,8 +7,13 @@ import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
 import isEmpty from 'lodash.isempty'
+import BuyCourseButton from './BuyCourseButton'
 
 class Course extends Component {
+  handleClick = () => {
+    this.props.history.push('/login')
+  }
+
   render() {
     const {
       name,
@@ -19,7 +24,7 @@ class Course extends Component {
       price,
       content,
       _id
-    } = this.props.courseOptions
+    } = this.props.course.item
 
     const { details } = this.props.profile
     let isPaid = false
@@ -66,8 +71,9 @@ class Course extends Component {
         <CatalogueHero>
           <CatalogueWrap>{episodeList}</CatalogueWrap>
         </CatalogueHero>
-
-        {!isAccessible ? (
+        {!this.props.isAuthenticated ? (
+          <BuyCourseButton price={price} onClick={this.handleClick} />
+        ) : !isAccessible ? (
           <BuyCourse
             name={name}
             price={price}
@@ -76,6 +82,7 @@ class Course extends Component {
             checkContract={this.props.checkContract}
           />
         ) : null}
+
         <Footer />
       </Wrap>
     )

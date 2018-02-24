@@ -8,11 +8,8 @@ import isEmpty from 'lodash.isempty'
 import BuyMembership from './BuyMembership'
 
 class Profile extends Component {
-  componentDidMount() {
-    const { profile } = this.props
-    if (profile && isEmpty(profile.details)) {
-      this.props.fetchProfile()
-    }
+  componentWillMount() {
+    this.props.fetchProfile()
   }
 
   render() {
@@ -24,7 +21,7 @@ class Profile extends Component {
       pageContent = <ContentWrap>信息请求中...</ContentWrap>
     } else {
       let membershipList
-      if (details.memberships && details.memberships.length) {
+      if (!isEmpty(details.memberships)) {
         membershipList = details.memberships.map((m, i) => {
           return (
             <div key={i}>
@@ -45,7 +42,7 @@ class Profile extends Component {
             <AvatarWrap>
               <img src={avatar} alt="avatar" />
               <Nickname>{currentUser.username}</Nickname>
-              {details.sum !== 0 ? (
+              {details && details.sum > 0 ? (
                 <div>已在好奇猫为自己投资{details.sum.toFixed(2)}元</div>
               ) : (
                 <div>还没有在好奇猫为自己投资</div>
@@ -54,7 +51,7 @@ class Profile extends Component {
           </AvatarHero>
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {details.paidCourses && details.paidCourses.length ? (
+            {!isEmpty(details.paidCourses) ? (
               <CourseListWrap>
                 {details.paidCourses.map((item, i) => (
                   <CourseCard
