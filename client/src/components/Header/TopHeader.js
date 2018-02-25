@@ -71,30 +71,30 @@ class TopHeader extends Component {
     )
 
     return (
-      <TopHeaderWrap>
-        <HomeWrap>
-          <img
-            src={logoSimple}
-            alt="logo-simple"
-            width="35.35px"
-            onClick={this.backToHome}
-          />
-          <ButtonLink to="/">好奇猫</ButtonLink>
-        </HomeWrap>
-        {isAuthenticated ? LogoutButtons : LoginButtons}
-      </TopHeaderWrap>
+      <Wrap>
+        <TopHeaderWrap>
+          <HomeWrap onClick={this.backToHome}>
+            <img src={logoSimple} alt="logo-simple" width="35.35px" />
+            <span>好奇猫</span>
+          </HomeWrap>
+          {isAuthenticated ? LogoutButtons : LoginButtons}
+        </TopHeaderWrap>
+      </Wrap>
     )
   }
 }
 
 export default TopHeader
 
-const TopHeaderWrap = styled.div`
+const Wrap = styled.div`
   background-color: #ffffff;
+  border-bottom: 2px solid #00bcd4;
+`
+const TopHeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: 8px 16px;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
@@ -105,27 +105,23 @@ const HomeWrap = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     font-size: 1.56em;
   }
 `
 
 const SideButtonsWrap = styled.div`
   display: flex;
-  flex-direction: flex-end;
+  align-items: center;
 `
 
 const ButtonLink = styled(Link)`
-  font-size: 0.8em;
-  padding: 0.5em;
+  font-size: 1em;
+  padding-left: 24px;
   color: #212121;
-  line-height: 2;
+  font-weight: 500;
   transition: all 0.5s ease;
   text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
 `
 
 const Avatar = styled.img`
