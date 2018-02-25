@@ -87,6 +87,7 @@ class BuyCourse extends Component {
 
   render() {
     const { price } = this.props
+    const { codeUrl } = this.state
     return (
       <div>
         <BuyCourseButton onClick={this.pay} price={price} />
@@ -102,7 +103,7 @@ class BuyCourse extends Component {
               <Title>购买课程</Title>
               <Img src={closeImg} onClick={this.closeModal} alt="close" />
             </Header>
-            <QRCode value={this.state.codeUrl} size={220} />
+            {codeUrl ? <QRCode value={codeUrl} size={220} /> : <CodeImg />}
             <Desc>微信扫描二维码完成支付</Desc>
             <Price>{price}元</Price>
           </Inner>
@@ -146,4 +147,9 @@ const Desc = styled.div`
 const Price = styled.div`
   font-size: 18px;
   color: #ff1744;
+`
+
+const CodeImg = styled.div`
+  width: 220px;
+  height: 220px;
 `
