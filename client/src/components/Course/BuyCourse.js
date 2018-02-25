@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import QRCode from 'qrcode.react'
-import Button from 'material-ui/Button'
 import Modal from 'react-modal'
 import closeImg from '../../assets/close.svg'
 import BuyCourseButton from './BuyCourseButton'

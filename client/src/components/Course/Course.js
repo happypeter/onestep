@@ -94,7 +94,7 @@ const Wrap = styled.div`
 const Container = styled.div`
   padding: 0 16px;
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
 `
 

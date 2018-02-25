@@ -96,7 +96,7 @@ const TopHeaderWrap = styled.div`
   align-items: center;
   padding: 16px;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1000px;
   margin: 0 auto;
 `
 
