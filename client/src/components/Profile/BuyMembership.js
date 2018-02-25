@@ -64,6 +64,7 @@ class BuyMembership extends Component {
     this.openModal()
     const data = {}
     data.total = price
+    this.setState({ codeUrl: '', price: '' })
     this.props
       .signContract(data)
       .then(result => {
@@ -84,25 +85,25 @@ class BuyMembership extends Component {
   }
 
   render() {
-    const { price } = this.state
+    const { price, codeUrl } = this.state
     return (
       <div>
-        <MsgBigCard>
-          <div>
-            <div>
-              一个月42元{' '}
-              <RaisedButtonWrap raised onClick={this.pay.bind(this, 42)}>
-                购买
-              </RaisedButtonWrap>
-            </div>
-            <div>
-              三个月90元{' '}
-              <RaisedButtonWrap raised onClick={this.pay.bind(this, 90)}>
-                购买
-              </RaisedButtonWrap>
-            </div>
-          </div>
-        </MsgBigCard>
+        <MembershipWrap>
+          <Membership>
+            <Date>一个月</Date>
+            <Price>42元</Price>
+            <RaisedButtonWrap raised onClick={this.pay.bind(this, 42)}>
+              购买
+            </RaisedButtonWrap>
+          </Membership>
+          <Membership>
+            <Date>三个月</Date>
+            <Price>90元</Price>
+            <RaisedButtonWrap raised onClick={this.pay.bind(this, 90)}>
+              购买
+            </RaisedButtonWrap>
+          </Membership>
+        </MembershipWrap>
         <Modal
           isOpen={this.state.showModal}
           style={customStyles}
@@ -115,9 +116,15 @@ class BuyMembership extends Component {
               <Title>开通会员</Title>
               <Img src={closeImg} onClick={this.closeModal} alt="close" />
             </Header>
-            <QRCode value={this.state.codeUrl} size={220} />
-            <Desc>微信扫描二维码完成支付</Desc>
-            <Fee>{price}元</Fee>
+            {codeUrl ? (
+              <div>
+                <QRCode value={codeUrl} size={220} />
+                <Desc>微信扫描二维码完成支付</Desc>
+                <Fee>{price}元</Fee>
+              </div>
+            ) : (
+              <CodeImg />
+            )}
           </Inner>
         </Modal>
       </div>
@@ -161,21 +168,44 @@ const Fee = styled.div`
   color: #ff1744;
 `
 
-const MsgBigCard = styled.div`
+const MembershipWrap = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
   margin: 32px auto 56px;
-  max-width: 240px;
   width: 100%;
+  max-width: 630px;
+`
+
+const Membership = styled.div`
+  width: 200px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+`
+
+const Date = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+`
+
+const Price = styled.div`
+  padding: 24px;
+  color: #212121;
+  font-size: 32px;
 `
 
 const RaisedButtonWrap = styled(Button)`
   && {
     width: 100%;
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: 600;
     color: #ffffff;
     background-color: #ff4081;
   }
+`
+
+const CodeImg = styled.div`
+  width: 220px;
+  height: 220px;
 `

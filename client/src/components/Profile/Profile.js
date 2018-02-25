@@ -24,10 +24,10 @@ class Profile extends Component {
       if (!isEmpty(details.memberships)) {
         membershipList = details.memberships.map((m, i) => {
           return (
-            <div key={i}>
+            <Membership key={i}>
               已购买{m.duration}个月会员服务，购买日期 {m.startDate}，截止日期{' '}
               {m.expireDate}
-            </div>
+            </Membership>
           )
         })
       }
@@ -69,7 +69,7 @@ class Profile extends Component {
             <SubTitle>会员</SubTitle>
 
             {details.isMember ? (
-              <MembershipMsg>{membershipList}</MembershipMsg>
+              <Section>{membershipList}</Section>
             ) : (
               <BuyMembership
                 signContract={signContract}
@@ -159,12 +159,20 @@ const SubTitle = styled.div`
   }
 `
 
-const MembershipMsg = styled.span`
-  font-size: 1em;
-  margin: 23px auto;
-  @media (min-width: 1024px) {
-    margin: 47px auto;
-    padding-bottom: 40px;
+const Section = styled.div`
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 48px;
+`
+
+const Membership = styled.div`
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    border-bottom: none;
   }
 `
 
