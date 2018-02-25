@@ -25,8 +25,15 @@ class Profile extends Component {
         membershipList = details.memberships.map((m, i) => {
           return (
             <Membership key={i}>
-              已购买{m.duration}个月会员服务，购买日期 {m.startDate}，截止日期{' '}
-              {m.expireDate}
+              <Desc expired={`${m.isExpired}`}>
+                已购买{m.duration}个月会员服务，购买日期 {m.startDate}，截止日期{' '}
+                {m.expireDate}
+              </Desc>
+              {m.days && m.days < 8 ? (
+                <Tip>
+                  还有 <strong>{m.days}</strong> 天会员服务到期
+                </Tip>
+              ) : null}
             </Membership>
           )
         })
@@ -173,6 +180,17 @@ const Membership = styled.div`
   }
   &:last-child {
     border-bottom: none;
+  }
+`
+
+const Desc = styled.div`
+  color: ${props => (props.expired === 'true' ? '#757575' : '#212121')};
+`
+
+const Tip = styled.div`
+  color: #757575;
+  strong {
+    color: #ff1744;
   }
 `
 
