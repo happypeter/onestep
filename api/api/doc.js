@@ -5,14 +5,13 @@ const helper = require('./helper')
 const jwt = require('jsonwebtoken')
 
 function checkIfPaid(userId, course) {
-  return helper.currentUser(userId)
-    .then(details => {
-      let isPaid = false
-      if (details.paidCourses.length) {
-        isPaid = !!details.paidCourses.find(c => c.link.slice(1) === course)
-      }
-      return Promise.resolve(details.isMember || isPaid)
-    })
+  return helper.currentUser(userId).then(details => {
+    let isPaid = false
+    if (details.paidCourses.length) {
+      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === course)
+    }
+    return Promise.resolve(details.isMember || isPaid)
+  })
 }
 
 function checkAuth(token) {
@@ -30,12 +29,22 @@ function checkAuth(token) {
 }
 
 exports.getEpisode = (req, res) => {
-  const {courseName, episodeName} = req.query
-  Course.findOne({courseName: courseName})
+  const { courseName, episodeName } = req.query
+  Course.findOne({ courseName: courseName })
     .then(course => {
       if (!course) return
-      const {vlink, name, content: courseCatalogue} = course
+      const { vlink, name, content: courseCatalogue } = course
       const path = `${config.docPath}/${courseName}/doc/${episodeName}.md`
+      let title = ''
+      for (let i = 0; i < courseCatalogue.length; i++) {
+        let item = courseCatalogue[i]
+        const ep = item.section.find(el => el.link === episodeName)
+        if (ep) {
+          title = ep.title
+          break
+        }
+      }
+
       // 若是付费课程，则检查用户是否购买了课程
       if (course.price > 0) {
         const token = req.headers['authorization']
@@ -48,7 +57,7 @@ exports.getEpisode = (req, res) => {
               if (result) {
                 const doc = fs.readFileSync(path, 'utf8')
                 return res.status(200).json({
-                  episode: {doc, vlink, name, courseCatalogue},
+                  episode: { doc, vlink, name, title, courseCatalogue },
                   success: true
                 })
               }
@@ -64,7 +73,7 @@ exports.getEpisode = (req, res) => {
         // 免费课程
         const doc = fs.readFileSync(path, 'utf8')
         return res.status(200).json({
-          episode: {doc, vlink, name, courseCatalogue},
+          episode: { doc, vlink, name, title, courseCatalogue },
           success: true
         })
       }

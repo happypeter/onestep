@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
-export default ({ header, section, courseName }) => (
+export default ({ header, section, courseName, episodeName }) => (
   <div>
     {section.map(t => (
       <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>
-        <img src={EpisodeIcon} alt={'EpisodeIcon'} />
-        <EpisodeTitle>{t.title}</EpisodeTitle>
+        <img src={EpisodeIcon} alt="EpisodeIcon" />
+        <EpisodeTitle active={`${t.link === episodeName}`}>
+          {t.title}
+        </EpisodeTitle>
       </EpisodeLink>
     ))}
   </div>
@@ -35,4 +37,5 @@ const EpisodeTitle = styled.div`
   font-size: 14px;
   word-break: break-word;
   padding: 16px 0;
+  color: ${props => (props.active === 'true' ? '#00bcd4' : '#333')};
 `

@@ -58,6 +58,7 @@ class EpisodeContainer extends Component {
       <AsyncEpisode
         episodeState={item}
         courseName={courseName}
+        episodeName={episodeName}
         videoJsOptions={EpisodeVideoJsOptions}
       />
     )

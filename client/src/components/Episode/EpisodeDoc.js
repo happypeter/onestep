@@ -32,7 +32,7 @@ const Wrap = styled.div`
     margin-bottom: 16px;
     padding: 16px;
     overflow: auto;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.8;
     background-color: #f6f8fa;
   }

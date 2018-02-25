@@ -110,12 +110,11 @@ const CourseName = styled.div`
 `
 
 const VideoTitle = styled.div`
-  padding: 8px;
+  padding: 8px 16px;
   background-color: #00bcd4;
   color: #ffffff;
   font-size: 16px;
   @media (min-width: 768px) {
-    padding: 12px;
     font-size: 20px;
   }
 `

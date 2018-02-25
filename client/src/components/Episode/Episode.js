@@ -10,7 +10,8 @@ import EpisodeDoc from './EpisodeDoc'
 export default ({
   videoJsOptions,
   episodeState: { doc, title, courseCatalogue, name },
-  courseName
+  courseName,
+  episodeName
 }) => (
   <div>
     <TopHeader />
@@ -25,6 +26,7 @@ export default ({
                 header={item.header}
                 section={item.section}
                 courseName={courseName}
+                episodeName={episodeName}
               />
             ))
           : null}
@@ -78,12 +80,8 @@ const RightWrap = styled.div`
 `
 
 const VideoTitle = styled.div`
-  padding: 8px;
+  padding: 8px 16px;
   background-color: #00bcd4;
   color: #ffffff;
-  font-size: 16px;
-  @media (min-width: 768px) {
-    padding: 12px;
-    font-size: 20px;
-  }
+  font-size: 14px;
 `
