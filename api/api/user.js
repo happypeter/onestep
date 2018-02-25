@@ -192,51 +192,43 @@ exports.binding = (req, res) => {
 
 exports.signup = (req, res, next) => {
   const { username, password, phoneNum, smsCode } = req.body
-  Promise.all([
-    User.findOne({ username }).exec(),
-    User.findOne({ phoneNum }).exec()
-  ])
-    .then(results => {
-      if (results[0]) {
+  User.findOne({ username })
+    .exec()
+    .then(user => {
+      if (user) {
         return res.status(403).json({
           errorMsg: '该用户名已被使用',
           success: false
         })
       }
-      if (results[1]) {
+      return User.findOne({ phoneNum }).exec()
+    })
+    .then(user => {
+      if (user) {
         return res.status(403).json({
           errorMsg: '该手机号已被使用',
           success: false
         })
       }
-      msg
-        .check(phoneNum, smsCode)
-        .then(code => {
-          if (code === smsCode) {
-            const user = new User()
-            user.username = username
-            user.phoneNum = phoneNum
-            user.password = password
-            return user.save().then(user => {
-              const data = {
-                phoneNum: user.phoneNum,
-                username: user.username,
-                _id: user._id,
-                bindings: user.bindings
-              }
-              return res.status(200).json({
-                token: generateToken(data),
-                success: true
-              })
-            })
-          }
+      return msg.check(phoneNum, smsCode)
+    })
+    .then(code => {
+      const user = new User()
+      user.username = username
+      user.phoneNum = phoneNum
+      user.password = password
+      return user.save().then(user => {
+        const data = {
+          phoneNum: user.phoneNum,
+          username: user.username,
+          _id: user._id,
+          bindings: user.bindings
+        }
+        return res.status(200).json({
+          token: generateToken(data),
+          success: true
         })
-        .catch(error => {
-          return res.status(403).json({
-            errorMsg: error,
-            success: false
-          })
-        })
+      })
     })
     .catch(error => {
       console.log(error)
