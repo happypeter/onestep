@@ -3,6 +3,7 @@ const fs = require('fs')
 const config = require('../config/config')
 const helper = require('./helper')
 const jwt = require('jsonwebtoken')
+const User = require('../models/user')
 
 function checkIfPaid(userId, course) {
   return helper.currentUser(userId).then(details => {
@@ -51,14 +52,22 @@ exports.getEpisode = (req, res) => {
         if (token) {
           checkAuth(token)
             .then(userId => {
-              return checkIfPaid(userId, courseName)
+              return Promise.all([
+                User.findById({ _id: userId }).exec(),
+                checkIfPaid(userId, courseName)
+              ])
             })
             .then(result => {
-              if (result) {
+              if (result.length) {
                 const doc = fs.readFileSync(path, 'utf8')
                 return res.status(200).json({
                   episode: { doc, vlink, name, title, courseCatalogue },
                   success: true
+                })
+              } else {
+                return res.status(401).json({
+                  errorMsg: '您需购买课程才能观看！',
+                  success: false
                 })
               }
             })
@@ -68,6 +77,10 @@ exports.getEpisode = (req, res) => {
                 success: false
               })
             })
+        } else {
+          return res.status(401).json({
+            errorMsg: '您需登录且购买课程后才能观看！'
+          })
         }
       } else {
         // 免费课程

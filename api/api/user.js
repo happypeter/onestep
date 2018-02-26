@@ -70,6 +70,9 @@ exports.weChat = function(req, res, next) {
                 _id: user._id,
                 bindings: user.bindings
               }
+              if (user.admin) {
+                data.admin = user.admin
+              }
               res.status(200).json({
                 token: generateToken(data),
                 binding: true
@@ -173,6 +176,9 @@ const bindingExistedAccount = (req, res) => {
             _id: user._id,
             bindings: user.bindings
           }
+          if (user.admin) {
+            data.admin = user.admin
+          }
           res.status(200).json({ token: generateToken(data) })
         })
       })
@@ -260,6 +266,9 @@ exports.login = (req, res) => {
             username: user.username,
             _id: user._id,
             bindings: user.bindings
+          }
+          if (user.admin) {
+            data.admin = user.admin
           }
           return res.json({
             token: generateToken(data),

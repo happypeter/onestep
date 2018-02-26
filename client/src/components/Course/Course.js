@@ -31,7 +31,9 @@ class Course extends Component {
     if (!isEmpty(details.paidCourses)) {
       isPaid = !!details.paidCourses.find(c => c.link.slice(1) === courseName)
     }
-    const isAccessible = price === 0 || isPaid || details.isMember
+    const { isAuthenticated, currentUser } = this.props.auth
+    const isAdmin = isAuthenticated && currentUser.admin
+    const isAccessible = price === 0 || isPaid || details.isMember || isAdmin
 
     let episodeList
     if (content) {
@@ -65,7 +67,7 @@ class Course extends Component {
 
           <Section>{episodeList}</Section>
 
-          {!this.props.isAuthenticated ? (
+          {!isAuthenticated ? (
             <BuyCourseButton price={price} onClick={this.handleClick} />
           ) : !isAccessible ? (
             <BuyCourse
