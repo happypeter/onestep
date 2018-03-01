@@ -66,8 +66,9 @@ class Course extends Component {
           </Section>
 
           <Section>{episodeList}</Section>
-
-          {!isAuthenticated ? (
+          {price === 0 ? (
+            <BuyCourseButton />
+          ) : !isAuthenticated ? (
             <BuyCourseButton price={price} onClick={this.handleClick} />
           ) : !isAccessible ? (
             <BuyCourse

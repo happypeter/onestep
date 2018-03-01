@@ -8,14 +8,25 @@ class BuyCourseButton extends Component {
   }
 
   render() {
-    return (
-      <Wrap>
-        <Price>{this.props.price}元</Price>
-        <RaisedButton raised onClick={this.handleClick}>
-          购买课程
-        </RaisedButton>
-      </Wrap>
-    )
+    const { price } = this.props
+    let content
+    if (price) {
+      content = (
+        <Wrap>
+          <Price>{price}元</Price>
+          <RaisedButton raised onClick={this.handleClick}>
+            购买课程
+          </RaisedButton>
+        </Wrap>
+      )
+    } else {
+      content = (
+        <Wrap>
+          <RaisedButton raised>免费课程</RaisedButton>
+        </Wrap>
+      )
+    }
+    return content
   }
 }
 

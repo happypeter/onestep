@@ -88,7 +88,6 @@ export default TopHeader
 
 const Wrap = styled.div`
   background-color: #ffffff;
-  border-bottom: 2px solid #00bcd4;
 `
 const TopHeaderWrap = styled.div`
   display: flex;
