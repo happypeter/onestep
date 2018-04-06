@@ -20,16 +20,7 @@
     "xml2json": "^0.11.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
-    "precommit": "git add . && lint-staged"
-  },
-  "lint-staged": {
-    "linters": {
-      "*.js": [
-        "prettier --write --no-bracket-spacing --jsx-bracket-same-line --no-semi --trailing-comma all --single-quote",
-        "git add"
-      ]
-    }
+    "start": "nodemon index.js"
   },
   "devDependencies": {
     "lint-staged": "^6.0.0",

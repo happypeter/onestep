@@ -28,16 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "precommit": "git add . && lint-staged"
-  },
-  "lint-staged": {
-    "linters": {
-      "*.js": [
-        "prettier --write --no-bracket-spacing --jsx-bracket-same-line --no-semi --trailing-comma all --single-quote",
-        "git add"
-      ]
-    }
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "lint-staged": "^6.0.0",

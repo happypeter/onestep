@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import QRCode from 'qrcode.react'
+import Button from 'material-ui/Button'
 import Modal from 'react-modal'
 import closeImg from '../../assets/close.svg'
-import BuyCourseButton from './BuyCourseButton'
 
 const customStyles = {
   overlay: {
@@ -23,11 +23,12 @@ const customStyles = {
   }
 }
 
-class BuyCourse extends Component {
+class BuyMembership extends Component {
   state = {
     codeUrl: '',
     contractId: '',
-    showModal: false
+    showModal: false,
+    price: null
   }
 
   componentWillMount = () => {
@@ -42,7 +43,7 @@ class BuyCourse extends Component {
     clearInterval(this.timerId)
     const { contractId } = this.state
     this.timerId = setInterval(() => {
-      this.props.checkContract(contractId, 'course').then(status => {
+      this.props.checkContract(contractId, 'member').then(status => {
         if (status === '已支付') {
           this.closeModal()
         }
@@ -59,21 +60,19 @@ class BuyCourse extends Component {
     this.setState({ showModal: false })
   }
 
-  pay = () => {
+  pay = price => {
     this.openModal()
-    const { name, courseId, price } = this.props
     const data = {}
-    data.name = name
-    data.courseId = courseId
     data.total = price
-
+    this.setState({ codeUrl: '', price: '' })
     this.props
       .signContract(data)
       .then(result => {
         this.setState(
           {
             codeUrl: result.codeUrl,
-            contractId: result.contractId
+            contractId: result.contractId,
+            price
           },
           () => {
             this.timer()
@@ -86,11 +85,25 @@ class BuyCourse extends Component {
   }
 
   render() {
-    const { price } = this.props
-    const { codeUrl } = this.state
+    const { price, codeUrl } = this.state
     return (
       <div>
-        <BuyCourseButton onClick={this.pay} price={price} />
+        <MembershipWrap>
+          <Membership>
+            <Date>一个月</Date>
+            <Price>42元</Price>
+            <RaisedButtonWrap raised onClick={this.pay.bind(this, 42)}>
+              开通
+            </RaisedButtonWrap>
+          </Membership>
+          <Membership>
+            <Date>三个月</Date>
+            <Price>90元</Price>
+            <RaisedButtonWrap raised onClick={this.pay.bind(this, 90)}>
+              开通
+            </RaisedButtonWrap>
+          </Membership>
+        </MembershipWrap>
         <Modal
           isOpen={this.state.showModal}
           style={customStyles}
@@ -100,12 +113,18 @@ class BuyCourse extends Component {
         >
           <Inner>
             <Header>
-              <Title>购买课程</Title>
+              <Title>开通会员</Title>
               <Img src={closeImg} onClick={this.closeModal} alt="close" />
             </Header>
-            {codeUrl ? <QRCode value={codeUrl} size={220} /> : <CodeImg />}
-            <Desc>微信扫描二维码完成支付</Desc>
-            <Price>{price}元</Price>
+            {codeUrl ? (
+              <div>
+                <QRCode value={codeUrl} size={220} />
+                <Desc>微信扫描二维码完成支付</Desc>
+                <Fee>{price}元</Fee>
+              </div>
+            ) : (
+              <CodeImg />
+            )}
           </Inner>
         </Modal>
       </div>
@@ -113,7 +132,7 @@ class BuyCourse extends Component {
   }
 }
 
-export default BuyCourse
+export default BuyMembership
 
 const Inner = styled.div`
   width: 300px;
@@ -144,9 +163,46 @@ const Desc = styled.div`
   color: #999;
 `
 
-const Price = styled.div`
+const Fee = styled.div`
   font-size: 18px;
   color: #ff1744;
+`
+
+const MembershipWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 32px auto 56px;
+  width: 100%;
+  max-width: 630px;
+`
+
+const Membership = styled.div`
+  width: 200px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+`
+
+const Date = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+`
+
+const Price = styled.div`
+  padding: 24px;
+  color: #212121;
+  font-size: 32px;
+`
+
+const RaisedButtonWrap = styled(Button)`
+  && {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #ff4081;
+  }
 `
 
 const CodeImg = styled.div`

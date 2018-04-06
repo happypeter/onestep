@@ -2,45 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default () => (
-  <Hero>
-    <FooterWrap>
-      <WelcomeWrap>欢迎添加 Peter 的微信：happypeter1983</WelcomeWrap>
-      <ICPWrap>冀ICP备15007992号-3</ICPWrap>
-    </FooterWrap>
-  </Hero>
+  <Footer>
+    <Company>秦皇岛好奇猫网络科技有限公司</Company>
+    <ICP>冀ICP备15007992号-3</ICP>
+  </Footer>
 )
 
-const Hero = styled.div`
+const Footer = styled.div`
   background-color: #2a3745;
-`
-
-const FooterWrap = styled.div`
   color: #ffffff;
   text-align: center;
   font-weight: 300;
   padding: 48px 24px;
-  @media (min-width: 1024px) {
-    box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
-    height: 228px;
-  }
 `
 
-const WelcomeWrap = styled.div`
+const Company = styled.div`
   opacity: 0.85;
-  font-size: 0.4em;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-  }
+  font-size: 16px;
 `
 
-const ICPWrap = styled.div`
-  opacity: 0.57;
-  font-size: 0.5em;
-  margin-top: 10px;
-  @media (min-width: 1024px) {
-    font-size: 0.88em;
-    margin-top: 20px;
-  }
+const ICP = styled.div`
+  opacity: 0.6;
+  font-size: 14px;
+  margin-top: 16px;
 `

@@ -6,8 +6,6 @@
   top: 50%;
   margin-left: -1.5em;
   margin-top: -0.75em;
-  /*margin-left: -($big-play-width / 2);
-  margin-top: -($big-play-height / 2);*/
   border-color: rgb(0, 188, 212);
 }
 
@@ -24,7 +22,7 @@
 .vjs-hqcat .vjs-volume-level,
 .vjs-hqcat .vjs-play-progress,
 .vjs-hqcat .vjs-slider-bar {
-  background:rgb(0, 188, 212);
+  background: rgb(0, 188, 212);
 }
 
 /*控制栏字体*/
@@ -37,7 +35,7 @@
 }
 
 .vjs-hqcat li.vjs-selected {
-  background-color:rgb(0, 188, 212);
+  background-color: rgb(0, 188, 212);
 }
 
 .vjs-hqcat .vjs-playback-rate-value {
@@ -49,5 +47,20 @@
 .vjs-menu li.vjs-selected,
 .vjs-menu li.vjs-selected:focus,
 .vjs-menu li.vjs-selected:hover {
-  background-color: #2B333F;
-  color: rgb(0, 188, 212); }
+  background-color: #2b333f;
+  color: rgb(0, 188, 212);
+}
+
+/* 调整播放进度条滑块的位置 */
+.video-js .vjs-play-progress:before {
+  top: -0.7em;
+}
+/* 大播放按钮小图标垂直居中 */
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+  top: -5px;
+}
+/* 剩余播放时间文字垂直居中 */
+.video-js .vjs-control {
+  display: flex;
+  align-items: center;
+}

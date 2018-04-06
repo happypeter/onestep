@@ -6,9 +6,7 @@ import './videojs-hqcat.css'
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
     // instantiate video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      // console.log('onPlayerReady', this)
-    })
+    this.player = videojs(this.videoNode, this.props)
   }
 
   // destroy player on unmount
@@ -21,7 +19,6 @@ export default class VideoPlayer extends React.Component {
   handleSpaceKeyDown = event => {
     if (event.which === 32) {
       event.preventDefault()
-
       if (this.player) {
         switch (this.player.state.state) {
           case 'playing':
@@ -39,25 +36,19 @@ export default class VideoPlayer extends React.Component {
     }
   }
 
-  // wrap the player in a div with a `data-vjs-player` attribute
-  // so videojs won't create additional wrapper in the DOM
-  // see https://github.com/videojs/video.js/pull/3856
   render() {
     // write a plugin
     var that = this
     const setStateandFocusPlugin = function(options) {
       this.on('play', function(e) {
-        console.log('playback has started!')
-        // console.log(that)
         this.setState({
-          state: 'playing',
+          state: 'playing'
         })
       })
 
       this.on('pause', function(e) {
-        console.log('playback has paused')
         this.setState({
-          state: 'pause',
+          state: 'pause'
         })
       })
 
@@ -66,7 +57,6 @@ export default class VideoPlayer extends React.Component {
       })
 
       this.on('ended', function(e) {
-        console.log('this episode ends now!!!')
         // some code to navigate to next episode page
       })
     }
@@ -78,7 +68,8 @@ export default class VideoPlayer extends React.Component {
       <div
         data-vjs-player
         onKeyDown={this.handleSpaceKeyDown}
-        ref="videoPlayerRef">
+        ref="videoPlayerRef"
+      >
         <video
           ref={node => (this.videoNode = node)}
           className="video-js vjs-hqcat"

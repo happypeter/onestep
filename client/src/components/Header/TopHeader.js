@@ -1,20 +1,22 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logoSimple from '../../assets/logoSimple.svg'
-import Menu, {MenuItem} from 'material-ui/Menu'
+import Menu, { MenuItem } from 'material-ui/Menu'
+import defaultAvatar from '../../assets/avatarIcon.svg'
+import isEmpty from 'lodash.isempty'
 
 class TopHeader extends Component {
   state = {
-    anchorEl: null,
+    anchorEl: null
   }
 
   handlePopoverOpen = e => {
-    this.setState({anchorEl: e.target})
+    this.setState({ anchorEl: e.target })
   }
 
   handlePopoverClose = () => {
-    this.setState({anchorEl: null})
+    this.setState({ anchorEl: null })
   }
 
   backToHome = () => {
@@ -34,110 +36,98 @@ class TopHeader extends Component {
   }
 
   render() {
-    const {currentUser, isAuthenticated} = this.props.auth
+    const { currentUser, isAuthenticated } = this.props.auth
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="signup">注册</ButtonLink>
         <ButtonLink to="/login">登录</ButtonLink>
       </SideButtonsWrap>
     )
-    const {anchorEl} = this.state
+    const { anchorEl } = this.state
+    let avatar = defaultAvatar
+    if (currentUser && !isEmpty(currentUser.bindings)) {
+      const weChat = currentUser.bindings.find(item => item.via === 'wechat')
+      avatar = weChat.headImgUrl
+    }
     const LogoutButtons = (
       <SideButtonsWrap>
-        <div>
-          <div
-            onMouseOver={this.handlePopoverOpen}
-            onTouchStart={this.handlePopoverOpen}>
-            <Username>{currentUser ? currentUser.username : ''}</Username>
-          </div>
-
-          <PopMenu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handlePopoverClose}>
-            <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
-            <MenuItem onClick={this.goToSettings}>设置</MenuItem>
-            <MenuItem onClick={this.logout}>退出</MenuItem>
-          </PopMenu>
-        </div>
+        <Avatar
+          src={avatar}
+          alt="avatar"
+          onMouseOver={this.handlePopoverOpen}
+          onTouchStart={this.handlePopoverOpen}
+        />
+        <PopMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handlePopoverClose}
+        >
+          {currentUser ? <MenuItem>{currentUser.username}</MenuItem> : null}
+          <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
+          <MenuItem onClick={this.goToSettings}>设置</MenuItem>
+          <MenuItem onClick={this.logout}>退出</MenuItem>
+        </PopMenu>
       </SideButtonsWrap>
     )
 
     return (
-      <TopHeaderWrap>
-        <HomeWrap>
-          <img
-            src={logoSimple}
-            alt="logo-simple"
-            width="35.35px"
-            onClick={this.backToHome}
-          />
-          <ButtonLink to="/">好奇猫</ButtonLink>
-        </HomeWrap>
-        {isAuthenticated ? LogoutButtons : LoginButtons}
-      </TopHeaderWrap>
+      <Wrap>
+        <TopHeaderWrap>
+          <HomeWrap onClick={this.backToHome}>
+            <img src={logoSimple} alt="logo-simple" width="35.35px" />
+            <span>好奇猫</span>
+          </HomeWrap>
+          {isAuthenticated ? LogoutButtons : LoginButtons}
+        </TopHeaderWrap>
+      </Wrap>
     )
   }
 }
 
 export default TopHeader
 
-const TopHeaderWrap = styled.div`
+const Wrap = styled.div`
   background-color: #ffffff;
+`
+const TopHeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  @media (min-width: 1024px) {
-    width: 1024px;
-    margin: 0 auto;
-  }
-`
-
-const SideButtonsWrap = styled.div`
-  display: flex;
-  flex-direction: flex-end;
-  padding: 1em;
-  @media (min-width: 1024px) {
-    padding: 1em 6em;
-  }
-`
-
-const ButtonLink = styled(Link)`
-  font-size: 0.8em;
-  padding: 0.5em;
-  color: #212121;
-  line-height: 2;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-`
-
-const Username = styled.div`
-  font-size: 0.8em;
-  padding: 0.5em;
-  color: #212121;
-  line-height: 2;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  @media (min-width: 1024px) {
-    font-size: 1em;
-    padding: 0.5em;
-  }
+  align-items: center;
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 `
 
 const HomeWrap = styled.div`
   font-size: 1em;
   display: flex;
   align-items: center;
-  margin-left: 1em;
   cursor: pointer;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     font-size: 1.56em;
-    margin-left: 4em;
   }
+`
+
+const SideButtonsWrap = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const ButtonLink = styled(Link)`
+  font-size: 1em;
+  padding-left: 24px;
+  color: #212121;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  text-decoration: none;
+`
+
+const Avatar = styled.img`
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 15px;
 `
 
 const PopMenu = styled(Menu)`

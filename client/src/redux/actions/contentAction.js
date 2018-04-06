@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/contentActionTypes.js'
-import {showNotification} from './notificationAction'
+import { showNotification } from './notificationAction'
 
 function handleError(error, dispatch) {
   if (error.response) {
@@ -13,11 +13,14 @@ function handleError(error, dispatch) {
 
 export function fetchCourses(data) {
   return dispatch => {
-    dispatch({type: types.FETCH_COURSES_STARTED})
+    dispatch({ type: types.FETCH_COURSES_STARTED })
     axios
       .get(`${config.api}/catalogue`)
       .then(res => {
-        dispatch({type: types.FETCH_COURSES_SUCCESS, courses: res.data.courses})
+        dispatch({
+          type: types.FETCH_COURSES_SUCCESS,
+          courses: res.data.courses
+        })
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -27,11 +30,11 @@ export function fetchCourses(data) {
 
 export function fetchCourse(data) {
   return dispatch => {
-    dispatch({type: types.FETCH_COURSE_STARTED})
+    dispatch({ type: types.FETCH_COURSE_STARTED })
     axios
       .get(`${config.api}/courses/${data.courseName}`)
       .then(res => {
-        dispatch({type: types.FETCH_COURSE_SUCCESS, course: res.data.course})
+        dispatch({ type: types.FETCH_COURSE_SUCCESS, course: res.data.course })
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -41,11 +44,14 @@ export function fetchCourse(data) {
 
 export function fetchEpisode(data) {
   return dispatch => {
-    dispatch({type: types.FETCH_EPISODE_STARTED})
+    dispatch({ type: types.FETCH_EPISODE_STARTED })
     axios
-      .get(`${config.api}/episode`, {params: data})
+      .get(`${config.api}/episode`, { params: data })
       .then(res => {
-        dispatch({type: types.FETCH_EPISODE_SUCCESS, episode: res.data.episode})
+        dispatch({
+          type: types.FETCH_EPISODE_SUCCESS,
+          episode: res.data.episode
+        })
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -66,11 +72,25 @@ export function signContract(data) {
   }
 }
 
-export function checkContract(contractId) {
+export function checkContract(contractId, type) {
   return dispatch => {
     return axios
-      .get(`${config.api}/contracts/${contractId}/status`)
+      .get(`${config.api}/contracts/${contractId}/status`, { params: { type } })
       .then(res => {
+        if (res.data.status === '已支付') {
+          if (type === 'course') {
+            dispatch({
+              type: 'ADD_PAID_COURSE',
+              course: res.data.course
+            })
+          } else {
+            dispatch({
+              type: 'ACTIVATE_MEMBERSHIP',
+              member: res.data.member
+            })
+          }
+        }
+
         return Promise.resolve(res.data.status)
       })
       .catch(error => {

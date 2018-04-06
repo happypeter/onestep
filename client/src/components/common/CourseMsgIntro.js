@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default ({title, intro}) => (
+export default ({ title, intro }) => (
   <MsgIntro>
     <Title>{title}</Title>
     <Msg>{intro}</Msg>
@@ -9,28 +9,25 @@ export default ({title, intro}) => (
 )
 
 const MsgIntro = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin: 24px 0;
+  padding: 8px 0;
+  padding-left: 24px;
+  border-left: 6px solid #00bcd4;
+`
+
+const Title = styled.div`
+  margin-bottom: 24px;
+  font-size: 24px;
   color: #212121;
-  margin: 17px auto;
-  margin-left: 0;
-  margin-right: 10px;
-  padding: 0.5em 1em;
-  padding-left: 25px;
-  font-size: 1em;
-  border-left: 7px solid #00BCD4;
-  @media (min-width: 1024px) {
-    padding-right: 30px;
+  @media (min-width: 768px) {
+    font-size: 28px;
   }
 `
 
 const Msg = styled.div`
-  color: #212121;
-  font-size: 14px;
-`
-
-const Title = styled.div`
-  color: #212121;
-  margin-bottom: 21px;
-  font-size: 28px;
+  font-size: 16px;
+  color: #666;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `

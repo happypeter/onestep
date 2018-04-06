@@ -3,16 +3,16 @@ const fs = require('fs')
 const config = require('../config/config')
 const helper = require('./helper')
 const jwt = require('jsonwebtoken')
+const User = require('../models/user')
 
 function checkIfPaid(userId, course) {
-  return helper.currentUser(userId)
-    .then(details => {
-      let isPaid = false
-      if (details.paidCourses.length) {
-        isPaid = !!details.paidCourses.find(c => c.link.slice(1) === course)
-      }
-      return Promise.resolve(details.isMember || isPaid)
-    })
+  return helper.currentUser(userId).then(details => {
+    let isPaid = false
+    if (details.paidCourses.length) {
+      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === course)
+    }
+    return Promise.resolve(details.isMember || isPaid)
+  })
 }
 
 function checkAuth(token) {
@@ -30,26 +30,44 @@ function checkAuth(token) {
 }
 
 exports.getEpisode = (req, res) => {
-  const {courseName, episodeName} = req.query
-  Course.findOne({courseName: courseName})
+  const { courseName, episodeName } = req.query
+  Course.findOne({ courseName: courseName })
     .then(course => {
       if (!course) return
-      const {vlink, name, content: courseCatalogue} = course
+      const { vlink, name, content: courseCatalogue } = course
       const path = `${config.docPath}/${courseName}/doc/${episodeName}.md`
+      let title = ''
+      for (let i = 0; i < courseCatalogue.length; i++) {
+        let item = courseCatalogue[i]
+        const ep = item.section.find(el => el.link === episodeName)
+        if (ep) {
+          title = ep.title
+          break
+        }
+      }
+
       // 若是付费课程，则检查用户是否购买了课程
       if (course.price > 0) {
         const token = req.headers['authorization']
         if (token) {
           checkAuth(token)
             .then(userId => {
-              return checkIfPaid(userId, courseName)
+              return Promise.all([
+                User.findById({ _id: userId }).exec(),
+                checkIfPaid(userId, courseName)
+              ])
             })
             .then(result => {
-              if (result) {
+              if (result.length) {
                 const doc = fs.readFileSync(path, 'utf8')
                 return res.status(200).json({
-                  episode: {doc, vlink, name, courseCatalogue},
+                  episode: { doc, vlink, name, title, courseCatalogue },
                   success: true
+                })
+              } else {
+                return res.status(401).json({
+                  errorMsg: '您需购买课程才能观看！',
+                  success: false
                 })
               }
             })
@@ -59,12 +77,16 @@ exports.getEpisode = (req, res) => {
                 success: false
               })
             })
+        } else {
+          return res.status(401).json({
+            errorMsg: '您需登录且购买课程后才能观看！'
+          })
         }
       } else {
         // 免费课程
         const doc = fs.readFileSync(path, 'utf8')
         return res.status(200).json({
-          episode: {doc, vlink, name, courseCatalogue},
+          episode: { doc, vlink, name, title, courseCatalogue },
           success: true
         })
       }

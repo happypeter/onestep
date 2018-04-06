@@ -1,46 +1,64 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 import isEmpty from 'lodash.isempty'
+import BuyMembership from './BuyMembership'
 
 class Profile extends Component {
-  componentDidMount() {
-    const {profile} = this.props
-    if (profile && isEmpty(profile.details)) {
-      this.props.fetchProfile()
-    }
+  componentWillMount() {
+    this.props.fetchProfile()
   }
 
   render() {
-    const {isFetching, details} = this.props.profile
-    const {currentUser} = this.props.auth
+    const { isFetching, details } = this.props.profile
+    const { currentUser } = this.props.auth
+    const { signContract, checkContract } = this.props
     let pageContent
     if (isFetching) {
       pageContent = <ContentWrap>信息请求中...</ContentWrap>
     } else {
       let membershipList
-      if (details.memberships && details.memberships.length) {
+      if (!isEmpty(details.memberships)) {
         membershipList = details.memberships.map((m, i) => {
           return (
-            <div key={i}>已开通{m.duration}个月会员服务，开通日期{m.startDate}，截止日期{m.expireDate}</div>
+            <Membership key={i}>
+              <Desc expired={`${m.isExpired}`}>
+                已购买{m.duration}个月会员服务，购买日期 {m.startDate}，截止日期{' '}
+                {m.expireDate}
+              </Desc>
+              {m.days && m.days < 8 ? (
+                <Tip>
+                  还有 <strong>{m.days}</strong> 天会员服务到期
+                </Tip>
+              ) : null}
+            </Membership>
           )
         })
+      }
+      let avatar = defaultAvatar
+      if (currentUser && !isEmpty(currentUser.bindings)) {
+        const weChat = currentUser.bindings.find(item => item.via === 'wechat')
+        avatar = weChat.headImgUrl
       }
       pageContent = (
         <div>
           <AvatarHero>
             <AvatarWrap>
-              <img src={defaultAvatar} alt="nickname" />
+              <img src={avatar} alt="avatar" />
               <Nickname>{currentUser.username}</Nickname>
-              {details.sum !== 0 ? <div>已在好奇猫为自己投资{details.sum}元</div> : <div>还没有在好奇猫为自己投资</div>}
+              {details && details.sum > 0 ? (
+                <div>已在好奇猫为自己投资{details.sum.toFixed(2)}元</div>
+              ) : (
+                <div>还没有在好奇猫为自己投资</div>
+              )}
             </AvatarWrap>
           </AvatarHero>
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {details.paidCourses && details.paidCourses.length ? (
+            {!isEmpty(details.paidCourses) ? (
               <CourseListWrap>
                 {details.paidCourses.map((item, i) => (
                   <CourseCard
@@ -58,11 +76,13 @@ class Profile extends Component {
             <SubTitle>会员</SubTitle>
 
             {details.isMember ? (
-              <MembershipMsg>{membershipList}</MembershipMsg>
+              <Section>{membershipList}</Section>
             ) : (
-              <MembershipMsg>开通会员</MembershipMsg>
+              <BuyMembership
+                signContract={signContract}
+                checkContract={checkContract}
+              />
             )}
-
           </ContentWrap>
         </div>
       )
@@ -83,10 +103,8 @@ export default Profile
 const Wrap = styled.div`
   min-height: 100vh;
   background-color: #ffffff;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 `
 
 const AvatarHero = styled.div`
@@ -94,44 +112,35 @@ const AvatarHero = styled.div`
 `
 
 const AvatarWrap = styled.div`
-  background-color: #00bcd4;
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-grow: 0;
   img {
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 12px;
     display: block;
-    width: 103px;
-    height: 103px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 4px solid white;
   }
   @media (min-width: 1024px) {
-    width: 1024px;
-    margin: 0 auto;
-    height: 325px;
+    height: 300px;
     img {
-      margin-top: 48px;
-      margin-bottom: 21px;
-      width: 170px;
-      height: 170px;
+      width: 120px;
+      height: 120px;
     }
   }
 `
 
-const Nickname = styled.span`
-  font-size: 1em;
+const Nickname = styled.div`
+  padding: 16px 0;
+  font-size: 20px;
   color: #ffffff;
-  @media (min-width: 1024px) {
-    font-size: 2em;
-  }
 `
 
 const ContentWrap = styled.div`
   flex-grow: 1;
-  flex-shrink: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -157,12 +166,31 @@ const SubTitle = styled.div`
   }
 `
 
-const MembershipMsg = styled.span`
-  font-size: 1em;
-  margin: 23px auto;
-  @media (min-width: 1024px) {
-    margin: 47px auto;
-    padding-bottom: 40px;
+const Section = styled.div`
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 48px;
+`
+
+const Membership = styled.div`
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+`
+
+const Desc = styled.div`
+  color: ${props => (props.expired === 'true' ? '#757575' : '#212121')};
+`
+
+const Tip = styled.div`
+  color: #757575;
+  strong {
+    color: #ff1744;
   }
 `
 
