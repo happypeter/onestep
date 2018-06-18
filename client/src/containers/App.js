@@ -16,6 +16,7 @@ class App extends Component {
         delete axios.defaults.headers.common['Authorization']
       }
     }
+
     const jwtToken = sessionStorage.jwtToken
     if (jwtToken) {
       try {
