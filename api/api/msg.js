@@ -9,13 +9,15 @@ const secretAccessKey = config.secretAccessKey
 // const queueName = config.queueName
 
 // 初始化sms_client
-const smsClient = new SMSClient({accessKeyId, secretAccessKey})
+const smsClient = new SMSClient({ accessKeyId, secretAccessKey })
 
 // 发送短信
 exports.send = (req, res) => {
   const phoneNum = req.body.phoneNum
   // 六位随机验证码
-  const smsCode = Math.random().toString().slice(-6)
+  const smsCode = Math.random()
+    .toString()
+    .slice(-6)
   smsClient
     .sendSMS({
       PhoneNumbers: phoneNum,
@@ -24,8 +26,8 @@ exports.send = (req, res) => {
       TemplateParam: `{"code": "${smsCode}"}`,
     })
     .then(
-      function(smsRes) {
-        let {Code} = smsRes
+      smsRes => {
+        const { Code } = smsRes
         if (Code === 'OK') {
           return res.status(200).json({
             message: '已成功发送短信',
@@ -33,12 +35,11 @@ exports.send = (req, res) => {
           })
         }
       },
-      function(err) {
-        return res.status(403).json({
+      err =>
+        res.status(403).json({
           errorMsg: err,
           success: false,
         })
-      },
     )
     .catch(err => {
       console.log(err)
@@ -60,8 +61,8 @@ exports.check = (phoneNum, code) => {
         CurrentPage: '1',
       })
       .then(
-        function(res) {
-          const {Code, SmsSendDetailDTOs} = res
+        res => {
+          const { Code, SmsSendDetailDTOs } = res
           if (Code === 'OK') {
             // 处理发送详情内容
             const detail = SmsSendDetailDTOs.SmsSendDetailDTO[0]
@@ -71,12 +72,12 @@ exports.check = (phoneNum, code) => {
               if (!content || !pattern.exec(content)) {
                 reject('出错 请重新获取验证码')
               }
-              let realCode = pattern.exec(content)[0]
+              const realCode = pattern.exec(content)[0]
               if (realCode === code) {
-                let receiveTime = Date.parse(detail.ReceiveDate)
-                let now = Date.parse(new Date())
+                const receiveTime = Date.parse(detail.ReceiveDate)
+                const now = Date.parse(new Date())
                 // 一分钟60000ms
-                let difftime = (now - receiveTime) / 60000
+                const difftime = (now - receiveTime) / 60000
                 if (difftime <= config.timeLimit) {
                   resolve(code)
                 } else {
@@ -90,7 +91,7 @@ exports.check = (phoneNum, code) => {
             }
           }
         },
-        function(err) {
+        err => {
           console.log(err)
         }
       )
