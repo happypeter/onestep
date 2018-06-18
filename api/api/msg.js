@@ -70,7 +70,7 @@ exports.check = (phoneNum, code) => {
               const content = detail.Content
               const pattern = /\d{6}/
               if (!content || !pattern.exec(content)) {
-                reject('出错 请重新获取验证码')
+                reject(Error('出错 请重新获取验证码'))
               }
               const realCode = pattern.exec(content)[0]
               if (realCode === code) {
@@ -81,13 +81,13 @@ exports.check = (phoneNum, code) => {
                 if (difftime <= config.timeLimit) {
                   resolve(code)
                 } else {
-                  reject('验证码过期')
+                  reject(Error('验证码过期'))
                 }
               } else {
-                reject('验证码错误')
+                reject(Error('验证码错误'))
               }
             } else {
-              reject('验证码错误')
+              reject(Error('验证码错误'))
             }
           }
         },
