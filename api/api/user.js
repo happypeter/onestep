@@ -1,44 +1,35 @@
 const User = require('../models/user')
-const Catalogue = require('../models/catalogue')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 const msg = require('./msg')
 const axios = require('axios')
 const helper = require('./helper')
 
-const generateToken = function(user) {
-  return jwt.sign(user, config.jwtSecret, { expiresIn: config.expiresIn })
-}
+const generateToken = user => jwt.sign(user, config.jwtSecret, { expiresIn: config.expiresIn })
 
 exports.smsCodeForSignup = (req, res) => {
   const { phoneNum } = req.body
-  User.findOne({ phoneNum: phoneNum }).then(doc => {
+  User.findOne({ phoneNum }).then(doc => {
     if (doc) {
       return res.status(403).json({
         errorMsg: 'PHONE_NUM_ALREADY_EXISTS',
-        success: false
+        success: false,
       })
-    } else {
-      msg.send(req, res)
     }
+    msg.send(req, res)
   })
 }
 
 const weChatTokenApi = data => {
   const { code, userAgent } = data
   const {
-    weChatAppId,
-    weChatAppSecret,
-    serviceAppId,
-    serviceAppSecret
+    weChatAppId, weChatAppSecret, serviceAppId, serviceAppSecret,
   } = config
-  let params = { code, grant_type: 'authorization_code' }
+  const params = { code, grant_type: 'authorization_code' }
   params.appid = userAgent === 'PC' ? weChatAppId : serviceAppId
   params.secret = userAgent === 'PC' ? weChatAppSecret : serviceAppSecret
   const queryStr = Object.keys(params)
-    .map(key => {
-      return `${key}=${params[key]}`
-    })
+    .map(key => `${key}=${params[key]}`)
     .join('&')
 
   return `https://api.weixin.qq.com/sns/oauth2/access_token?${queryStr}`
@@ -50,7 +41,7 @@ const weChatUserInfoApi = data => {
   return `${url}?access_token=${access_token}&openid=${openid}&lang=zh_CN`
 }
 
-exports.weChat = function(req, res, next) {
+exports.weChat = (req, res) => {
   if (!req.body) return
   if (req.body && !req.body.code) return
   axios
@@ -62,20 +53,20 @@ exports.weChat = function(req, res, next) {
         return User.findOne({ 'bindings.unionId': res1.data.unionid })
           .exec()
           .then(user => {
-            //已经绑定
+            // 已经绑定
             if (user) {
               const data = {
                 phoneNum: user.phoneNum,
                 username: user.username,
                 _id: user._id,
-                bindings: user.bindings
+                bindings: user.bindings,
               }
               if (user.admin) {
                 data.admin = user.admin
               }
               res.status(200).json({
                 token: generateToken(data),
-                binding: true
+                binding: true,
               })
             } else {
               res.status(200).json({ user: res1.data, binding: false })
@@ -90,14 +81,16 @@ exports.weChat = function(req, res, next) {
 
 // 绑定新账号
 const bindingNewAccount = (req, res) => {
-  const { username, phoneNum, password, smsCode } = req.body
+  const {
+    username, phoneNum, password, smsCode,
+  } = req.body
   User.findOne({ username })
     .exec()
     .then(user => {
       if (user) {
         return res.status(403).json({
           errorMsg: '该用户名已被使用',
-          success: false
+          success: false,
         })
       }
       return User.findOne({ phoneNum }).exec()
@@ -106,12 +99,12 @@ const bindingNewAccount = (req, res) => {
       if (user) {
         return res.status(403).json({
           errorMsg: '该手机号已被使用',
-          success: false
+          success: false,
         })
       }
       return msg.check(phoneNum, smsCode)
     })
-    .then(code => {
+    .then(() => {
       const { nickname, headimgurl, unionid } = req.body.user
       const user = new User()
       user.username = username
@@ -121,7 +114,7 @@ const bindingNewAccount = (req, res) => {
         via: 'wechat',
         nickName: nickname,
         headImgUrl: headimgurl,
-        unionId: unionid
+        unionId: unionid,
       })
       return user.save()
     })
@@ -130,11 +123,11 @@ const bindingNewAccount = (req, res) => {
         phoneNum: user.phoneNum,
         username: user.username,
         _id: user._id,
-        bindings: user.bindings
+        bindings: user.bindings,
       }
       return res.status(200).json({
         token: generateToken(data),
-        success: true
+        success: true,
       })
     })
     .catch(error => {
@@ -151,7 +144,7 @@ const bindingExistedAccount = (req, res) => {
       if (!user) {
         return res.status(403).json({
           success: false,
-          errorMsg: '账号不存在'
+          errorMsg: '账号不存在',
         })
       }
       user.comparePassword(password, (err, isMatch) => {
@@ -159,22 +152,20 @@ const bindingExistedAccount = (req, res) => {
           return console.log(err)
         }
         if (!isMatch) {
-          return res
-            .status(403)
-            .json({ success: false, errorMsg: '账号密码不匹配' })
+          return res.status(403).json({ success: false, errorMsg: '账号密码不匹配' })
         }
         user.bindings.push({
           via: 'wechat',
           nickName: nickname,
           headImgUrl: headimgurl,
-          unionId: unionid
+          unionId: unionid,
         })
         return user.save().then(user => {
           const data = {
             phoneNum: user.phoneNum,
             username: user.username,
             _id: user._id,
-            bindings: user.bindings
+            bindings: user.bindings,
           }
           if (user.admin) {
             data.admin = user.admin
@@ -196,15 +187,17 @@ exports.binding = (req, res) => {
   }
 }
 
-exports.signup = (req, res, next) => {
-  const { username, password, phoneNum, smsCode } = req.body
+exports.signup = (req, res) => {
+  const {
+    username, password, phoneNum, smsCode,
+  } = req.body
   User.findOne({ username })
     .exec()
     .then(user => {
       if (user) {
         return res.status(403).json({
           errorMsg: '该用户名已被使用',
-          success: false
+          success: false,
         })
       }
       return User.findOne({ phoneNum }).exec()
@@ -213,12 +206,12 @@ exports.signup = (req, res, next) => {
       if (user) {
         return res.status(403).json({
           errorMsg: '该手机号已被使用',
-          success: false
+          success: false,
         })
       }
       return msg.check(phoneNum, smsCode)
     })
-    .then(code => {
+    .then(() => {
       const user = new User()
       user.username = username
       user.phoneNum = phoneNum
@@ -228,11 +221,11 @@ exports.signup = (req, res, next) => {
           phoneNum: user.phoneNum,
           username: user.username,
           _id: user._id,
-          bindings: user.bindings
+          bindings: user.bindings,
         }
         return res.status(200).json({
           token: generateToken(data),
-          success: true
+          success: true,
         })
       })
     })
@@ -248,34 +241,33 @@ exports.login = (req, res) => {
       if (!user) {
         return res.status(403).json({
           errorMsg: '账号不存在',
-          success: false
-        })
-      } else {
-        user.comparePassword(password, function(err, isMatch) {
-          if (err) {
-            return console.log(err)
-          }
-          if (!isMatch) {
-            return res.status(403).json({
-              errorMsg: '账号密码不匹配',
-              success: false
-            })
-          }
-          const data = {
-            phoneNum: user.phoneNum,
-            username: user.username,
-            _id: user._id,
-            bindings: user.bindings
-          }
-          if (user.admin) {
-            data.admin = user.admin
-          }
-          return res.json({
-            token: generateToken(data),
-            success: true
-          })
+          success: false,
         })
       }
+      user.comparePassword(password, (err, isMatch) => {
+        if (err) {
+          return console.log(err)
+        }
+        if (!isMatch) {
+          return res.status(403).json({
+            errorMsg: '账号密码不匹配',
+            success: false,
+          })
+        }
+        const data = {
+          phoneNum: user.phoneNum,
+          username: user.username,
+          _id: user._id,
+          bindings: user.bindings,
+        }
+        if (user.admin) {
+          data.admin = user.admin
+        }
+        return res.json({
+          token: generateToken(data),
+          success: true,
+        })
+      })
     })
     .catch(error => {
       console.log(error)
@@ -295,55 +287,55 @@ exports.profile = (req, res) => {
 }
 
 // reset password
-exports.resetPassword = (req, res, next) => {
-  const { username, password, phoneNum, smsCode } = req.body
+exports.resetPassword = (req, res) => {
+  const {
+    username, password, phoneNum, smsCode,
+  } = req.body
   msg
     .check(phoneNum, smsCode)
-    .then(msg => {
+    .then(() => {
       User.findOne({ username, phoneNum })
         .then(user => {
           if (user) {
             user.password = password
-            return user.save().then(user => {
-              return res.status(200).json({
-                success: true
+            return user.save().then(() =>
+              res.status(200).json({
+                success: true,
               })
-            })
-          } else {
-            return User.findOne({
-              username,
-              phoneNum: { $exists: false }
-            }).then(user => {
-              if (user) {
-                user.password = password
-                user.phoneNum = phoneNum
-                return user.save().then(user => {
-                  return res.status(200).json({
-                    success: true
-                  })
-                })
-              } else {
-                return res.status(403).json({
-                  errorMsg: '账号不存在',
-                  success: false
-                })
-              }
-            })
+            )
           }
+          return User.findOne({
+            username,
+            phoneNum: { $exists: false },
+          }).then(user => {
+            if (user) {
+              user.password = password
+              user.phoneNum = phoneNum
+              return user.save().then(() =>
+                res.status(200).json({
+                  success: true,
+                })
+              )
+            }
+            return res.status(403).json({
+              errorMsg: '账号不存在',
+              success: false,
+            })
+          })
         })
         .catch(error => {
           console.log(error)
         })
     })
-    .catch(error => {
-      return res.status(403).json({
+    .catch(error =>
+      res.status(403).json({
         errorMsg: error,
-        success: false
+        success: false,
       })
-    })
+    )
 }
 
-exports.password = (req, res, next) => {
+exports.password = (req, res) => {
   const { oldOne, newOne } = req.body
   User.findOne({ _id: req.userId })
     .exec()
@@ -351,27 +343,26 @@ exports.password = (req, res, next) => {
       if (!user) {
         return res.status(422).json({
           errorMsg: '该用户不存在',
-          success: false
-        })
-      } else {
-        user.comparePassword(oldOne, function(err, isMatch) {
-          if (err) {
-            return console.log(err)
-          }
-          if (!isMatch) {
-            return res.status(403).json({
-              errorMsg: '原密码错误',
-              success: false
-            })
-          }
-          user.password = newOne
-          return user.save().then(user => {
-            return res.json({
-              success: true
-            })
-          })
+          success: false,
         })
       }
+      user.comparePassword(oldOne, (err, isMatch) => {
+        if (err) {
+          return console.log(err)
+        }
+        if (!isMatch) {
+          return res.status(403).json({
+            errorMsg: '原密码错误',
+            success: false,
+          })
+        }
+        user.password = newOne
+        return user.save().then(() =>
+          res.json({
+            success: true,
+          })
+        )
+      })
     })
     .catch(error => {
       console.log(error)

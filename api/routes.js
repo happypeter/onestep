@@ -6,6 +6,7 @@ const courses = require('./api/courses')
 const doc = require('./api/doc')
 const contracts = require('./api/contracts')
 const auth = require('./middlewares/auth')
+
 const router = express.Router()
 
 // 用户认证接口

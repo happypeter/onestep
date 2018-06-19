@@ -1,18 +1,22 @@
 const express = require('express')
-const app = express()
 const logger = require('morgan')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiRouter = require('./routes')
 const config = require('./config/config')
 const mongoose = require('mongoose')
+
+const app = express()
 mongoose.Promise = global.Promise
-mongoose.connect(config.url, {
-  useMongoClient: true
-})
+mongoose.connect(
+  config.url,
+  {
+    useMongoClient: true,
+  }
+)
 const db = mongoose.connection
 db.on('error', console.log)
-db.once('open', function() {
+db.once('open', () => {
   require('./models/user')
   require('./models/contract')
   console.log('db connection success!')
@@ -28,7 +32,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', cors(), apiRouter)
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
   console.log(err.stack)
   res.status(err.status || 500)
   res.json({ success: false, errorMsg: err.message })

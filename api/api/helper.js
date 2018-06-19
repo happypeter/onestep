@@ -3,23 +3,23 @@ const Contract = require('../models/contract')
 const moment = require('moment')
 
 exports.currentUser = userId => {
-  let sum = 0,
-    isMember = false
-  let paidCourses = []
-  let memberships = []
+  let sum = 0
+  let isMember = false
+  const paidCourses = []
+  const memberships = []
   return Promise.all([
     Catalogue.find().exec(),
-    Contract.find({ userId: userId, status: '已支付' })
+    Contract.find({ userId, status: '已支付' })
       .sort('createdAt')
       .populate('courseId', 'courseName')
-      .exec()
+      .exec(),
   ])
     .then(results => {
       const courses = results[0]
       const contracts = results[1]
 
       for (let i = 0; i < contracts.length; i++) {
-        let item = contracts[i]
+        const item = contracts[i]
         if (item.courseId) {
           const { courseName } = item.courseId
           const course = courses.find(c => c.link.slice(1) === courseName)
@@ -41,14 +41,14 @@ exports.currentUser = userId => {
           data.duration = moment(expireDate).diff(startDate, 'months')
           memberships.push(data)
         }
-        sum = sum + item.total
+        sum += item.total
       }
 
       return Promise.resolve({
         paidCourses,
         sum,
         isMember,
-        memberships
+        memberships,
       })
     })
     .catch(error => {

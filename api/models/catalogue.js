@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const Schema = mongoose.Schema
 
 const CatalogueSchema = new Schema(
@@ -8,9 +9,9 @@ const CatalogueSchema = new Schema(
     title: { type: String },
     total: { type: String },
     link: { type: String },
-    publishedOn: { type: String }
+    publishedOn: { type: String },
   },
-  {timestamps: true}
+  { timestamps: true }
 )
 
 module.exports = mongoose.model('Catalogue', CatalogueSchema)

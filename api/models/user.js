@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
+
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
@@ -14,19 +15,19 @@ const UserSchema = new Schema(
         via: String,
         nickName: String,
         headImgUrl: String,
-        unionId: String
-      }
-    ]
+        unionId: String,
+      },
+    ],
   },
   { timestamps: true }
 )
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', next => {
   const user = this
   const SALT_FACTOR = 5
-  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
     if (err) return next(err)
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) return next(err)
       user.password = hash
       next()
@@ -34,8 +35,8 @@ UserSchema.pre('save', function(next) {
   })
 })
 
-UserSchema.methods.comparePassword = function(password, cb) {
-  bcrypt.compare(password, this.password, function(err, isMatch) {
+UserSchema.methods.comparePassword = (password, cb) => {
+  bcrypt.compare(password, this.password, (err, isMatch) => {
     if (err) {
       return cb(err)
     }

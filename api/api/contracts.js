@@ -9,19 +9,19 @@ const { serviceAppId, mchId, mchKey } = config
 const wxpay = new WeixinPayment({
   appid: serviceAppId,
   mch_id: mchId,
-  mch_key: mchKey
+  mch_key: mchKey,
 })
 
-const membershipOneMonth = 42,
-  membershipThreeMonths = 90
+const membershipOneMonth = 42
+const membershipThreeMonths = 90
 // 创建合同
-exports.new = (req, res, next) => {
+exports.new = (req, res) => {
   const contract = new Contract()
   let body = ''
   if (req.body.courseId) {
     // 购买课程
     const { courseId, name } = req.body
-    contract.courseId = req.body.courseId
+    contract.courseId = courseId
     body = name
   } else {
     // 购买会员服务
@@ -58,27 +58,25 @@ exports.new = (req, res, next) => {
         total_fee: Math.floor(req.body.total * 100),
         spbill_create_ip: config.spbillCreateIP,
         notify_url: config.wxNotifyUrl,
-        trade_type: 'NATIVE'
+        trade_type: 'NATIVE',
       }
 
       wxpay
         .getCodeUrl(payInfo)
-        .then(codeUrl => {
-          return res.status(200).json({ codeUrl, contractId: contract._id })
-        })
+        .then(codeUrl => res.status(200).json({ codeUrl, contractId: contract._id }))
         .catch(error => {
           console.log('payment error...', error)
         })
     })
-    .catch(error => {
-      return res.status(500).json({
+    .catch(() =>
+      res.status(500).json({
         errorMsg: '不能创建订单',
-        success: false
+        success: false,
       })
-    })
+    )
 }
 
-exports.notifyUrl = (req, res, next) => {
+exports.notifyUrl = (req, res) => {
   const result = req.body.xml
   const flag =
     result.return_code === 'SUCCESS' &&
@@ -88,45 +86,37 @@ exports.notifyUrl = (req, res, next) => {
     Contract.findOne({ outTradeNo: result.out_trade_no })
       .exec()
       .then(contract => {
-        if (
-          contract &&
-          Math.floor(contract.total * 100) === Number(result.total_fee)
-        ) {
+        if (contract && Math.floor(contract.total * 100) === Number(result.total_fee)) {
           if (contract.status === '未支付') {
             contract.status = '已支付'
-            constract.save()
+            contract.save()
           }
           return res.send(json2xml({ return_code: 'SUCCESS' }))
-        } else {
-          return res.send(json2xml({ return_code: 'FAIL' }))
         }
-      })
-      .catch(error => {
         return res.send(json2xml({ return_code: 'FAIL' }))
       })
+      .catch(() => res.send(json2xml({ return_code: 'FAIL' })))
   } else {
     return res.send(json2xml({ return_code: 'FAIL' }))
   }
 }
 
-exports.status = (req, res, next) => {
+exports.status = (req, res) => {
   const type = req.query.type
   if (type === 'course') {
     Promise.all([
       Contract.findById({ _id: req.params.contractId })
         .populate('courseId', 'courseName')
         .exec(),
-      Catalogue.find().exec()
+      Catalogue.find().exec(),
     ])
       .then(result => {
         if (!result.length) return
-        const course = result[1].find(
-          c => c.link.slice(1) === result[0].courseId.courseName
-        )
+        const course = result[1].find(c => c.link.slice(1) === result[0].courseId.courseName)
         return res.status(200).json({
           success: true,
           status: result[0].status,
-          course: { ...course._doc, total: result[0].total }
+          course: { ...course._doc, total: result[0].total },
         })
       })
       .catch(error => {
@@ -153,7 +143,7 @@ exports.status = (req, res, next) => {
         return res.status(200).json({
           success: true,
           status: contract.status,
-          member: data
+          member: data,
         })
       })
       .catch(error => {
