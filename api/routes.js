@@ -3,7 +3,7 @@ const user = require('./api/user')
 const msg = require('./api/msg')
 const catalogue = require('./api/catalogue')
 const courses = require('./api/courses')
-const doc = require('./api/doc')
+const doc = require('./api/episode')
 const contracts = require('./api/contracts')
 const auth = require('./middlewares/auth')
 

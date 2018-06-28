@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const DocSchema = new Schema(
+const EpisodeSchema = new Schema(
   {
     courseUid: String,
     uid: String,
@@ -11,4 +11,4 @@ const DocSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Doc', DocSchema)
+module.exports = mongoose.model('Episode', EpisodeSchema)
