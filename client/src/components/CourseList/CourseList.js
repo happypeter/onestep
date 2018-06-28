@@ -12,14 +12,8 @@ class CourseList extends Component {
   render() {
     const { items, isFetching } = this.props.courses
     if (isFetching) return <Title>信息请求中...</Title>
-    let courseList = items.map((item, i) => (
-      <CourseCard
-        key={item.key}
-        link={item.link}
-        publishedAt={item.publishedAt}
-        cover={item.cover}
-        title={item.title}
-      />
+    let courseList = items.map(item => (
+      <CourseCard key={item._id} uid={item.uid} title={item.title} />
     ))
 
     return (

@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export default ({link, publishedAt, cover, title}) => (
-  <CourseCard to={`${link}`}>
-    <span>{publishedAt && publishedAt.substr(0, 10)}</span>
-    <img src={`${cover}`} alt="cover" className="cover" />
+const getCoverLink = uid =>
+  `http://haoqicat-1253322599.costj.myqcloud.com/posters/${uid}.png`
+
+export default ({ uid, title }) => (
+  <CourseCard to={`/${uid}`}>
+    <img src={getCoverLink(uid)} alt="cover" className="cover" />
     <p>{title}</p>
   </CourseCard>
 )
