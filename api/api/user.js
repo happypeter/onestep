@@ -249,29 +249,25 @@ exports.login = (req, res) => {
           success: false,
         })
       }
-      user.comparePassword(password, (err, isMatch) => {
-        if (err) {
-          return console.log(err)
-        }
-        if (!isMatch) {
-          return res.status(403).json({
-            errorMsg: '账号密码不匹配',
-            success: false,
-          })
-        }
-        const data = {
-          phoneNum: user.phoneNum,
-          username: user.username,
-          _id: user._id,
-          bindings: user.bindings,
-        }
-        if (user.admin) {
-          data.admin = user.admin
-        }
-        return res.json({
-          token: generateToken(data),
-          success: true,
+      const isMatch = user.comparePassword(password)
+      if (!isMatch) {
+        return res.status(403).json({
+          errorMsg: '账号密码不匹配',
+          success: false,
         })
+      }
+      const data = {
+        phoneNum: user.phoneNum,
+        username: user.username,
+        _id: user._id,
+        bindings: user.bindings,
+      }
+      if (user.admin) {
+        data.admin = user.admin
+      }
+      return res.json({
+        token: generateToken(data),
+        success: true,
       })
     })
     .catch(error => {
