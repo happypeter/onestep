@@ -22,7 +22,7 @@
     "xml2json": "^0.11.0"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"nodemon index.js\" \"mongod --dbpath=./data\""
+    "start": "nodemon index.js"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",

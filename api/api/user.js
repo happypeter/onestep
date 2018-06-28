@@ -191,6 +191,7 @@ exports.signup = (req, res) => {
   const {
     username, password, phoneNum, smsCode,
   } = req.body
+
   User.findOne({ username })
     .exec()
     .then(user => {

@@ -22,17 +22,12 @@ const UserSchema = new Schema(
   { timestamps: true }
 )
 
-UserSchema.pre('save', next => {
-  const user = this
-  const SALT_FACTOR = 5
-  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
-    if (err) return next(err)
-    bcrypt.hash(user.password, salt, (err, hash) => {
-      if (err) return next(err)
-      user.password = hash
-      next()
-    })
-  })
+// eslint-disable-next-line
+UserSchema.pre('save', function(next) {
+  const salt = bcrypt.genSaltSync(10)
+  const hash = bcrypt.hashSync(this.password, salt)
+  this.password = hash
+  next()
 })
 
 UserSchema.methods.comparePassword = (password, cb) => {
