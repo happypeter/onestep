@@ -50,7 +50,7 @@ export function fetchEpisode(data) {
       .then(res => {
         dispatch({
           type: types.FETCH_EPISODE_SUCCESS,
-          episode: res.data.episode
+          episode: res.data
         })
       })
       .catch(error => {

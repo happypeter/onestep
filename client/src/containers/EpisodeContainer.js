@@ -11,6 +11,9 @@ const AsyncEpisode = Loadable({
   delay: 300
 })
 
+const getVLink = (courseUid, epUid) =>
+  `https://haoqicat-1253322599.costj.myqcloud.com/${courseUid}/${epUid}.mp4`
+
 class EpisodeContainer extends Component {
   componentDidMount() {
     const { courseName, episodeName } = this.props.match.params
@@ -32,12 +35,13 @@ class EpisodeContainer extends Component {
 
     const { episodeName, courseName } = this.props.match.params
     // VideoJsOptions for this Course
+
     const EpisodeVideoJsOptions = {
       autoplay: false,
       controls: true,
       sources: [
         {
-          src: `${item.vlink}/${episodeName}.mp4`,
+          src: getVLink(item.courseUid, item.uid),
           type: 'video/mp4'
         }
       ],
@@ -54,6 +58,7 @@ class EpisodeContainer extends Component {
       }
     }
 
+    console.log(EpisodeVideoJsOptions)
     return (
       <AsyncEpisode
         episodeState={item}
@@ -69,4 +74,7 @@ const mapStateToProps = state => ({
   episode: getEpisode(state)
 })
 
-export default connect(mapStateToProps, { fetchEpisode })(EpisodeContainer)
+export default connect(
+  mapStateToProps,
+  { fetchEpisode }
+)(EpisodeContainer)

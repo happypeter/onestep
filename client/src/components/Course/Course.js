@@ -17,7 +17,7 @@ class Course extends Component {
   render() {
     const {
       name,
-      courseName,
+      uid,
       intro,
       writing_to_who: writingToWho,
       learning_goal: learningGoal,
@@ -29,7 +29,7 @@ class Course extends Component {
     const { details } = this.props.profile
     let isPaid = false
     if (!isEmpty(details.paidCourses)) {
-      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === courseName)
+      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === uid)
     }
     const { isAuthenticated, currentUser } = this.props.auth
     const isAdmin = isAuthenticated && currentUser.admin
@@ -42,7 +42,7 @@ class Course extends Component {
           key={i}
           header={item.header}
           section={item.section}
-          courseName={courseName}
+          courseName={uid}
           isAccessible={isAccessible}
         />
       ))

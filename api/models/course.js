@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const CourseSchema = new Schema(
   {
     key: Number,
-    courseName: String,
+    uid: String,
     vlink: String,
     name: String,
     price: Number,
