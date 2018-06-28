@@ -232,6 +232,10 @@ exports.signup = (req, res) => {
     })
     .catch(error => {
       console.log(error)
+      res.status(403).json({
+        errorMsg: '验证失败请重试',
+        success: false,
+      })
     })
 }
 
