@@ -26,14 +26,11 @@ class Course extends Component {
       _id
     } = this.props.course.item
 
-    const { details } = this.props.profile
-    let isPaid = false
-    if (!isEmpty(details.paidCourses)) {
-      isPaid = !!details.paidCourses.find(c => c.link.slice(1) === uid)
-    }
     const { isAuthenticated, currentUser } = this.props.auth
-    const isAdmin = isAuthenticated && currentUser.admin
-    const isAccessible = price === 0 || isPaid || details.isMember || isAdmin
+
+    const isPaid = currentUser.paidCourses.includes(uid)
+    console.log(price, isPaid, currentUser.member)
+    const isAccessible = price === 0 || isPaid || currentUser.member
 
     let episodeList
     if (content) {
