@@ -6,7 +6,6 @@ import EpisodeItem from './EpisodeItem'
 import CourseMsgIntro from '../common/CourseMsgIntro'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
-import isEmpty from 'lodash.isempty'
 import BuyCourseButton from './BuyCourseButton'
 
 class Course extends Component {
