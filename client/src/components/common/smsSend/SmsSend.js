@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import Button from 'material-ui/Button'
+import React, { Component } from 'react'
+import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 
 class SmsSend extends Component {
@@ -35,13 +35,14 @@ class SmsSend extends Component {
   }
 
   render() {
-    const {smsSendState} = this.props
+    const { smsSendState } = this.props
     return (
       <div>
         <ShortButton
           raised={smsSendState.alreadySendMsg ? true : undefined}
           disabled={smsSendState.alreadySendMsg ? true : false}
-          onClick={this.sendMsg}>
+          onClick={this.sendMsg}
+        >
           {smsSendState.alreadySendMsg ? smsSendState.second : '发送'}
         </ShortButton>
       </div>

@@ -7,7 +7,7 @@ import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 import { PrivateRoute } from '../utils/routerUtils'
 
-import { MuiThemeProvider } from 'material-ui/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
 import { theme } from '../utils/muiTheme'
 
 const AsyncHome = Loadable({
