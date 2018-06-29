@@ -8,7 +8,8 @@ import {
 import {
   getCourse,
   getProfile,
-  getCurrentUser
+  getCurrentUser,
+  getPaidCourses
 } from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
@@ -57,7 +58,8 @@ class CourseContainer extends Component {
 const mapStateToProps = state => ({
   course: getCourse(state),
   profile: getProfile(state),
-  auth: getCurrentUser(state)
+  auth: getCurrentUser(state),
+  paidCourses: getPaidCourses(state)
 })
 
 export default connect(

@@ -26,8 +26,8 @@ class Course extends Component {
     } = this.props.course.item
 
     const { isAuthenticated, currentUser } = this.props.auth
-
-    const isPaid = currentUser.paidCourses.includes(uid)
+    const { paidCourses } = this.props
+    const isPaid = paidCourses.includes(uid)
     console.log(price, isPaid, currentUser.member)
     const isAccessible = price === 0 || isPaid || currentUser.member
 

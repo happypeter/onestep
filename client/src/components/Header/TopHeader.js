@@ -40,7 +40,7 @@ class TopHeader extends Component {
     const { currentUser, isAuthenticated } = this.props.auth
     const LoginButtons = (
       <SideButtonsWrap>
-        <ButtonLink to="signup">注册</ButtonLink>
+        <ButtonLink to="/signup">注册</ButtonLink>
         <ButtonLink to="/login">登录</ButtonLink>
       </SideButtonsWrap>
     )
@@ -63,7 +63,7 @@ class TopHeader extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handlePopoverClose}
         >
-          {currentUser ? <MenuItem>{currentUser.username}</MenuItem> : null}
+          {<MenuItem>{currentUser.username}</MenuItem>}
           <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
           <MenuItem onClick={this.goToSettings}>设置</MenuItem>
           <MenuItem onClick={this.logout}>退出</MenuItem>

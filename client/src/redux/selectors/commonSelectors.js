@@ -21,3 +21,9 @@ export const getCurrentCourseUid = state => {
 export const getCourseTocContent = state => {
   return state.course.item.content
 }
+
+export const getPaidCourses = state => {
+  const paidCourses =
+    state.auth && state.auth.currentUser && state.auth.currentUser.paidCourses
+  return paidCourses || []
+}
