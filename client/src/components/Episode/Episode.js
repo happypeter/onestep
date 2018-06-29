@@ -9,7 +9,7 @@ import EpisodeDoc from './EpisodeDoc'
 
 export default ({
   videoJsOptions,
-  episodeState: { doc, title, courseCatalogue, name },
+  episodeItem: { markdown, uid, courseCatalogue, courseUid },
   courseName,
   episodeName
 }) => (
@@ -18,7 +18,7 @@ export default ({
 
     <Container>
       <LeftWrap>
-        <CourseName to={`/${courseName}`}>{name}</CourseName>
+        <CourseName to={`/${courseName}`}>{courseUid}</CourseName>
         {courseCatalogue
           ? courseCatalogue.map((item, i) => (
               <SideCatalogue
@@ -34,11 +34,11 @@ export default ({
 
       <RightWrap>
         <div>
-          <VideoTitle>{title}</VideoTitle>
+          <VideoTitle>{uid}</VideoTitle>
           <VideoPlayer {...videoJsOptions} />
         </div>
 
-        <EpisodeDoc doc={doc} />
+        <EpisodeDoc doc={markdown} />
       </RightWrap>
     </Container>
 
