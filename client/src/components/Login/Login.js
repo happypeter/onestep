@@ -12,6 +12,7 @@ import {
   Error
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
+import BindPhoneNote from './BindPhoneNote'
 
 class Login extends Component {
   state = {
@@ -49,6 +50,7 @@ class Login extends Component {
       <Wrap>
         <TopHeader />
         <Content>
+          <BindPhoneNote />
           <Container>
             <Title>登录</Title>
             <Form onSubmit={this.handleSubmit}>
