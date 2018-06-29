@@ -6,7 +6,7 @@ import {
   checkContract
 } from '../redux/actions/contentAction'
 import {
-  getCourse,
+  getCurrentCourse,
   getProfile,
   getCurrentUser,
   getPaidCourses
@@ -27,7 +27,7 @@ class CourseContainer extends Component {
   }
 
   render() {
-    let { isFetching, item: course } = this.props.course
+    let { isFetching, info: course } = this.props.currentCourse
     if (isFetching) return <LoadingComponent />
     const courseUrl = `${course.vlink}/${
       course.cover_video ? course.cover_video : 'index'
@@ -56,7 +56,7 @@ class CourseContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  course: getCourse(state),
+  currentCourse: getCurrentCourse(state),
   profile: getProfile(state),
   auth: getCurrentUser(state),
   paidCourses: getPaidCourses(state)

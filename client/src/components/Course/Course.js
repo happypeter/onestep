@@ -23,7 +23,7 @@ class Course extends Component {
       price,
       content,
       _id
-    } = this.props.course.item
+    } = this.props.currentCourse.info
 
     const { isAuthenticated, currentUser } = this.props.auth
     const { paidCourses } = this.props
