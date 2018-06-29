@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signContract, checkContract } from '../redux/actions/contentAction'
-import { getProfile } from '../redux/selectors/commonSelectors.js'
+import {
+  getProfile,
+  getPaidCourses
+} from '../redux/selectors/commonSelectors.js'
 import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
@@ -16,7 +19,8 @@ const ProfileContainer = props => <AsyncProfile {...props} />
 
 const mapStateToProps = state => ({
   profile: getProfile(state),
-  auth: getCurrentUser(state)
+  auth: getCurrentUser(state),
+  paidCourses: getPaidCourses(state)
 })
 
 export default connect(

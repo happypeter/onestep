@@ -9,6 +9,7 @@ import BuyMembership from './BuyMembership'
 
 class Profile extends Component {
   render() {
+    const { paidCourses } = this.props
     const { isFetching, details } = this.props.profile
     const { currentUser } = this.props.auth
     const { signContract, checkContract } = this.props
@@ -54,9 +55,9 @@ class Profile extends Component {
           </AvatarHero>
           <ContentWrap>
             <SubTitle>课程</SubTitle>
-            {!isEmpty(details.paidCourses) ? (
+            {!!paidCourses ? (
               <CourseListWrap>
-                {details.paidCourses.map((item, i) => (
+                {paidCourses.map((item, i) => (
                   <CourseCard
                     link={item.link}
                     key={i}
