@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 const msg = require('./msg')
 const axios = require('axios')
-const helper = require('./helper')
+const Contract = require('../models/contract')
 
 const generateToken = user => jwt.sign(user, config.jwtSecret, { expiresIn: config.expiresIn })
 
@@ -239,53 +239,39 @@ exports.signup = (req, res) => {
     })
 }
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   const { password, account } = req.body
-  User.findOne({ $or: [{ phoneNum: account }, { username: account }] })
-    .then(user => {
-      if (!user) {
-        return res.status(403).json({
-          errorMsg: '账号不存在',
-          success: false,
-        })
-      }
-      const isMatch = user.comparePassword(password)
-      if (!isMatch) {
-        return res.status(403).json({
-          errorMsg: '账号密码不匹配',
-          success: false,
-        })
-      }
-      const data = {
-        phoneNum: user.phoneNum,
-        username: user.username,
-        _id: user._id,
-        bindings: user.bindings,
-      }
-      if (user.admin) {
-        data.admin = user.admin
-      }
-      return res.json({
-        token: generateToken(data),
-        success: true,
-      })
+  const user = await User.findOne({ $or: [{ phoneNum: account }, { username: account }] })
+  if (!user) {
+    return res.status(403).json({
+      errorMsg: '账号不存在',
+      success: false,
     })
-    .catch(error => {
-      console.log(error)
+  }
+  const isMatch = user.comparePassword(password)
+  if (!isMatch) {
+    return res.status(403).json({
+      errorMsg: '账号密码不匹配',
+      success: false,
     })
+  }
+
+  const contract = await Contract.findOne({ username: user.username })
+  const { member, paidCourses } = contract
+
+  const data = {
+    username: user.username,
+    _id: user._id,
+    member,
+    paidCourses,
+  }
+
+  return res.json({
+    token: generateToken(data),
+    success: true,
+  })
 }
 
-// API
-exports.profile = (req, res) => {
-  helper
-    .currentUser(req.userId)
-    .then(data => {
-      res.status(200).json(data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-}
 
 // reset password
 exports.resetPassword = (req, res) => {

@@ -17,8 +17,6 @@ router.post('/password', auth.user, user.password)
 router.post('/oauth/wechat', user.weChat)
 router.post('/oauth/binding', user.binding)
 
-router.get('/profile', auth.user, user.profile)
-
 // sms verification
 router.post('/msg', msg.send)
 router.post('/signupcode', user.smsCodeForSignup)
@@ -27,6 +25,8 @@ router.post('/signupcode', user.smsCodeForSignup)
 router.get('/catalogue', catalogue.catalogue)
 router.get('/courses/:courseName', courses.single)
 router.get('/episode', doc.getEpisode)
+
+// 观看权限
 
 // 微信支付接口
 router.post('/contracts/new', auth.user, contracts.new)

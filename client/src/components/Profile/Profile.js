@@ -8,10 +8,6 @@ import isEmpty from 'lodash.isempty'
 import BuyMembership from './BuyMembership'
 
 class Profile extends Component {
-  componentWillMount() {
-    this.props.fetchProfile()
-  }
-
   render() {
     const { isFetching, details } = this.props.profile
     const { currentUser } = this.props.auth

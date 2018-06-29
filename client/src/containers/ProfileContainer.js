@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchProfile } from '../redux/actions/profileAction'
 import { signContract, checkContract } from '../redux/actions/contentAction'
 import { getProfile } from '../redux/selectors/commonSelectors.js'
 import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
@@ -20,8 +19,10 @@ const mapStateToProps = state => ({
   auth: getCurrentUser(state)
 })
 
-export default connect(mapStateToProps, {
-  fetchProfile,
-  signContract,
-  checkContract
-})(ProfileContainer)
+export default connect(
+  mapStateToProps,
+  {
+    signContract,
+    checkContract
+  }
+)(ProfileContainer)

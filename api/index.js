@@ -32,10 +32,4 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', cors(), apiRouter)
 
-app.use((err, req, res) => {
-  console.log(err.stack)
-  res.status(err.status || 500)
-  res.json({ success: false, errorMsg: err.message })
-})
-
 app.listen(3001, () => console.log('running on port 3001...'))

@@ -8,7 +8,7 @@ export default (state = initialState, action = {}) => {
     case 'FETCH_PROFILE_STARTED': {
       return { ...state, isFetching: true }
     }
-    case 'FETCH_PROFILE_SUCCESS': {
+    case 'FETCH_RIGHTS_SUCCESS': {
       return { ...state, isFetching: false, details: action.data }
     }
     case 'FETCH_PROFILE_FAILURE': {
