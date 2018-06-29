@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import TextField from 'material-ui/TextField'
+import React, { Component } from 'react'
+import TextField from '@material-ui/core/TextField'
 import {
   Container,
   Title,
@@ -8,7 +8,7 @@ import {
   ActionButton,
   Switch,
   Row,
-  Error,
+  Error
 } from './FormStyle'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import keys from 'lodash.keys'
@@ -21,7 +21,7 @@ class NewAccount extends Component {
     phoneNum: '',
     password: '',
     smsCode: '',
-    errors: {},
+    errors: {}
   }
 
   componentWillMount = () => {
@@ -34,7 +34,7 @@ class NewAccount extends Component {
 
   clearTimers = () => {
     let items = keys(this.timers)
-    for(let i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       clearTimeout(this.timers[items[i]])
     }
 
@@ -42,7 +42,7 @@ class NewAccount extends Component {
   }
 
   validate = () => {
-    const {username, phoneNum, smsCode, password} = this.state
+    const { username, phoneNum, smsCode, password } = this.state
     const errors = {}
     if (!username) {
       errors.username = '用户名不能为空'
@@ -65,18 +65,18 @@ class NewAccount extends Component {
     //针对表单信息没有填写完整，就提交表单的情况
     const errors = this.validate()
     if (!isEmpty(errors)) {
-      this.setState({errors: {...this.state.errors, ...errors}})
+      this.setState({ errors: { ...this.state.errors, ...errors } })
       return
     }
 
-    const data = {...this.state, user: {...this.props.user}, existed: false}
+    const data = { ...this.state, user: { ...this.props.user }, existed: false }
     this.props.oauthBinding(data, this.props.history)
   }
 
   handleChange = (field, e) => {
     clearTimeout(this.timers[field])
     const value = e.target.value.trim()
-    this.setState({[field]: value})
+    this.setState({ [field]: value })
     this.timers[field] = setTimeout(() => {
       this.triggerChange(field, value)
     }, WAIT_INTERVAL)
@@ -96,7 +96,7 @@ class NewAccount extends Component {
     if (field === 'smsCode' && !value) {
       error = '验证码不能为空'
     }
-    this.setState({errors: {...this.state.errors, [field]: error}})
+    this.setState({ errors: { ...this.state.errors, [field]: error } })
   }
 
   handleClick = () => {
@@ -104,8 +104,8 @@ class NewAccount extends Component {
   }
 
   render() {
-    const {user} = this.props
-    const {username, phoneNum, smsCode, password, errors} = this.state
+    const { user } = this.props
+    const { username, phoneNum, smsCode, password, errors } = this.state
 
     return (
       <Container>
@@ -114,7 +114,7 @@ class NewAccount extends Component {
           <Image src={user.headimgurl} />
           <div>{user.nickname}</div>
           <TextField
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={username}
             onChange={this.handleChange.bind(this, 'username')}
             margin="dense"
@@ -122,7 +122,7 @@ class NewAccount extends Component {
             helperText={<Error>{errors.username}</Error>}
           />
           <TextField
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={phoneNum}
             onChange={this.handleChange.bind(this, 'phoneNum')}
             margin="dense"
@@ -131,7 +131,7 @@ class NewAccount extends Component {
           />
           <Row>
             <TextField
-              style={{flexGrow: 1}}
+              style={{ flexGrow: 1 }}
               value={smsCode}
               onChange={this.handleChange.bind(this, 'smsCode')}
               margin="dense"
@@ -145,7 +145,7 @@ class NewAccount extends Component {
             />
           </Row>
           <TextField
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={password}
             onChange={this.handleChange.bind(this, 'password')}
             margin="dense"

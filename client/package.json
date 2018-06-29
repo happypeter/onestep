@@ -9,7 +9,6 @@
     "jwt-decode": "^2.2.0",
     "lodash.isempty": "^4.4.0",
     "lodash.keys": "^4.2.0",
-    "material-ui": "^1.0.0-beta.22",
     "prop-types": "^15.6.0",
     "qrcode.react": "^0.7.2",
     "react": "^16.0.0",

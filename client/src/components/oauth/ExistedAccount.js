@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import TextField from 'material-ui/TextField'
+import React, { Component } from 'react'
+import TextField from '@material-ui/core/TextField'
 import {
   Container,
   Title,
@@ -8,18 +8,18 @@ import {
   ActionButton,
   Switch,
   Error,
-  LinkWrap,
+  LinkWrap
 } from './FormStyle'
 
 class ExistedAccount extends Component {
   state = {
     account: '',
     password: '',
-    errors: {},
+    errors: {}
   }
 
   validate = () => {
-    const {account, password} = this.state
+    const { account, password } = this.state
     const errors = {}
     if (!account) {
       errors.account = '不能为空'
@@ -35,16 +35,16 @@ class ExistedAccount extends Component {
     e.preventDefault()
     const errors = this.validate()
     if (Object.keys(errors).length) {
-      this.setState({errors: {...this.state.errors, ...errors}})
+      this.setState({ errors: { ...this.state.errors, ...errors } })
       return
     }
-    const data = {...this.state, user: {...this.props.user}, existed: true}
+    const data = { ...this.state, user: { ...this.props.user }, existed: true }
     this.props.oauthBinding(data, this.props.history)
   }
 
   handleChange = (field, e) => {
     this.setState({
-      [field]: e.target.value,
+      [field]: e.target.value
     })
   }
 
@@ -53,8 +53,8 @@ class ExistedAccount extends Component {
   }
 
   render() {
-    const {user} = this.props
-    const {account, password, errors} = this.state
+    const { user } = this.props
+    const { account, password, errors } = this.state
 
     return (
       <Container>
@@ -63,15 +63,15 @@ class ExistedAccount extends Component {
           <Image src={user.headimgurl} />
           <div>{user.nickname}</div>
           <TextField
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={account}
             onChange={this.handleChange.bind(this, 'account')}
             margin="dense"
-            label='用户名或手机号'
+            label="用户名或手机号"
             helperText={<Error>{errors.account}</Error>}
           />
           <TextField
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={password}
             onChange={this.handleChange.bind(this, 'password')}
             margin="dense"
@@ -80,7 +80,7 @@ class ExistedAccount extends Component {
             helperText={<Error>{errors.password}</Error>}
           />
           <ActionButton type="submit">完成注册</ActionButton>
-          <LinkWrap to='/reset-password'>忘记密码</LinkWrap>
+          <LinkWrap to="/reset-password">忘记密码</LinkWrap>
         </Form>
         <Switch onClick={this.handleClick}>绑定新账号</Switch>
       </Container>

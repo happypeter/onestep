@@ -47,7 +47,7 @@
   dependencies:
     recompose "^0.26.0 || ^0.27.0"
 
-"@types/jss@^9.3.0", "@types/jss@^9.5.3":
+"@types/jss@^9.5.3":
   version "9.5.3"
   resolved "http://registry.npm.taobao.org/@types/jss/download/@types/jss-9.5.3.tgz#0c106de3fe0b324cd4173fac7dab26c12cda624e"
   dependencies:
@@ -4965,39 +4965,6 @@ markdown-escapes@^1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/markdown-escapes/download/markdown-escapes-1.0.2.tgz#e639cbde7b99c841c0bacc8a07982873b46d2122"
 
-material-ui@^1.0.0-beta.22:
-  version "1.0.0-beta.47"
-  resolved "http://registry.npm.taobao.org/material-ui/download/material-ui-1.0.0-beta.47.tgz#5deb97dc3e694299992d3c3cacb44051f8bc2166"
-  dependencies:
-    "@babel/runtime" "^7.0.0-beta.42"
-    "@types/jss" "^9.3.0"
-    "@types/react-transition-group" "^2.0.8"
-    brcast "^3.0.1"
-    classnames "^2.2.5"
-    deepmerge "^2.0.1"
-    dom-helpers "^3.2.1"
-    hoist-non-react-statics "^2.5.0"
-    jss "^9.3.3"
-    jss-camel-case "^6.0.0"
-    jss-default-unit "^8.0.2"
-    jss-global "^3.0.0"
-    jss-nested "^6.0.1"
-    jss-props-sort "^6.0.0"
-    jss-vendor-prefixer "^7.0.0"
-    keycode "^2.1.9"
-    lodash "^4.2.0"
-    normalize-scroll-left "^0.1.2"
-    prop-types "^15.6.0"
-    react-event-listener "^0.5.1"
-    react-jss "^8.1.0"
-    react-lifecycles-compat "^3.0.0"
-    react-popper "^0.10.0"
-    react-scrollbar-size "^2.0.2"
-    react-transition-group "^2.2.1"
-    recompose "^0.26.0 || ^0.27.0"
-    scroll "^2.0.3"
-    warning "^3.0.0"
-
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "http://registry.npm.taobao.org/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -6371,15 +6338,6 @@ react-error-overlay@^1.0.10:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-event-listener@^0.5.1:
-  version "0.5.9"
-  resolved "http://registry.npm.taobao.org/react-event-listener/download/react-event-listener-0.5.9.tgz#c64e84f77156a682614835bdc1bc7ba00912df97"
-  dependencies:
-    "@babel/runtime" "^7.0.0-beta.42"
-    fbjs "^0.8.16"
-    prop-types "^15.6.0"
-    warning "^3.0.0"
-
 react-event-listener@^0.6.0:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/react-event-listener/download/react-event-listener-0.6.1.tgz#41c7a80a66b398c27dd511e22712b02f3d4eccca"
@@ -6510,15 +6468,6 @@ react-scripts@1.0.11:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "1.1.2"
-
-react-scrollbar-size@^2.0.2:
-  version "2.1.0"
-  resolved "http://registry.npm.taobao.org/react-scrollbar-size/download/react-scrollbar-size-2.1.0.tgz#105e797135cab92b1f9e16f00071db7f29f80754"
-  dependencies:
-    babel-runtime "^6.26.0"
-    prop-types "^15.6.0"
-    react-event-listener "^0.5.1"
-    stifle "^1.0.2"
 
 react-tap-event-plugin@^3.0.2:
   version "3.0.3"
@@ -7361,10 +7310,6 @@ static-extend@^0.1.1:
 statuses@~1.4.0:
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/statuses/download/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
-
-stifle@^1.0.2:
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/stifle/download/stifle-1.1.0.tgz#1680b5de9de04074164f4ac0fe7d34db6b6f7229"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import TextField from 'material-ui/TextField'
+import React, { Component } from 'react'
+import TextField from '@material-ui/core/TextField'
 import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
@@ -11,7 +11,7 @@ import {
   Form,
   ActionButton,
   Row,
-  Error,
+  Error
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
 import keys from 'lodash.keys'
@@ -23,7 +23,7 @@ class ResetPassword extends Component {
     phoneNum: '',
     smsCode: '',
     password: '',
-    errors: {},
+    errors: {}
   }
 
   componentWillMount = () => {
@@ -36,7 +36,7 @@ class ResetPassword extends Component {
 
   clearTimers = () => {
     let items = keys(this.timers)
-    for(let i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       clearTimeout(this.timers[items[i]])
     }
 
@@ -44,7 +44,7 @@ class ResetPassword extends Component {
   }
 
   validate = () => {
-    const {username, phoneNum, smsCode, password} = this.state
+    const { username, phoneNum, smsCode, password } = this.state
     const errors = {}
     if (!username) {
       errors.username = '用户名不能为空'
@@ -66,17 +66,20 @@ class ResetPassword extends Component {
     e.preventDefault()
     const errors = this.validate()
     if (!isEmpty(errors)) {
-      this.setState({errors: {...this.state.errors, ...errors}})
+      this.setState({ errors: { ...this.state.errors, ...errors } })
       return
     }
-    const {smsCode, password, phoneNum, username} = this.state
-    this.props.resetPassword({phoneNum, smsCode, password, username}, this.props.history)
+    const { smsCode, password, phoneNum, username } = this.state
+    this.props.resetPassword(
+      { phoneNum, smsCode, password, username },
+      this.props.history
+    )
   }
 
   handleChange = (field, e) => {
     clearTimeout(this.timers[field])
     const value = e.target.value.trim()
-    this.setState({[field]: value})
+    this.setState({ [field]: value })
     this.timers[field] = setTimeout(() => {
       this.triggerChange(field, value)
     }, WAIT_INTERVAL)
@@ -96,23 +99,23 @@ class ResetPassword extends Component {
     if (field === 'smsCode' && !value) {
       error = '验证码不能为空'
     }
-    this.setState({errors: {...this.state.errors, [field]: error}})
+    this.setState({ errors: { ...this.state.errors, [field]: error } })
   }
 
   render() {
-    const {phoneNum, errors} = this.state
+    const { phoneNum, errors } = this.state
     const fields = [
-      {label: '用户名', name: 'username'},
-      {label: '手机号', name: 'phoneNum'},
-      {label: '验证码', name: 'smsCode'},
-      {label: '密码', name: 'password'},
+      { label: '用户名', name: 'username' },
+      { label: '手机号', name: 'phoneNum' },
+      { label: '验证码', name: 'smsCode' },
+      { label: '密码', name: 'password' }
     ]
     const formItems = fields.map(field => {
       return (
         <Row key={field.name}>
           <TextField
             error={errors[field.name] ? true : false}
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             value={this.state[field.name]}
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"

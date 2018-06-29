@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logoSimple from '../../assets/logoSimple.svg'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import Menu, { MenuItem } from '@material-ui/core/Menu'
 import defaultAvatar from '../../assets/avatarIcon.svg'
 import isEmpty from 'lodash.isempty'
 

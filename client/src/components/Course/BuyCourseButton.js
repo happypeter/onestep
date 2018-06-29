@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Button from 'material-ui/Button'
+import Button from '@material-ui/core/Button'
 
 class BuyCourseButton extends Component {
   handleClick = () => {
