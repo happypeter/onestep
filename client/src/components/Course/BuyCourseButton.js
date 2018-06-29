@@ -14,15 +14,13 @@ class BuyCourseButton extends Component {
       content = (
         <Wrap>
           <Price>{price}元</Price>
-          <RaisedButton raised onClick={this.handleClick}>
-            购买课程
-          </RaisedButton>
+          <RaisedButton onClick={this.handleClick}>购买课程</RaisedButton>
         </Wrap>
       )
     } else {
       content = (
         <Wrap>
-          <RaisedButton raised>免费课程</RaisedButton>
+          <RaisedButton>免费课程</RaisedButton>
         </Wrap>
       )
     }
