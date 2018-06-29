@@ -187,56 +187,46 @@ exports.binding = (req, res) => {
   }
 }
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
   const {
     username, password, phoneNum, smsCode,
   } = req.body
 
-  User.findOne({ username })
-    .exec()
-    .then(user => {
-      if (user) {
-        return res.status(403).json({
-          errorMsg: '该用户名已被使用',
-          success: false,
-        })
-      }
-      return User.findOne({ phoneNum }).exec()
+  const userByName = await User.findOne({ username })
+  if (userByName) {
+    return res.status(403).json({
+      errorMsg: '该用户名已被使用',
+      success: false,
     })
-    .then(user => {
-      if (user) {
-        return res.status(403).json({
-          errorMsg: '该手机号已被使用',
-          success: false,
-        })
-      }
-      return msg.check(phoneNum, smsCode)
+  }
+      
+  const userByNum = await User.findOne({ phoneNum }).exec()
+  if (userByNum) {
+    return res.status(403).json({
+      errorMsg: '该手机号已被使用',
+      success: false,
     })
-    .then(() => {
-      const user = new User()
-      user.username = username
-      user.phoneNum = phoneNum
-      user.password = password
-      return user.save().then(user => {
-        const data = {
-          phoneNum: user.phoneNum,
-          username: user.username,
-          _id: user._id,
-          bindings: user.bindings,
-        }
-        return res.status(200).json({
-          token: generateToken(data),
-          success: true,
-        })
-      })
-    })
-    .catch(error => {
-      console.log(error)
-      res.status(403).json({
-        errorMsg: '验证失败请重试',
-        success: false,
-      })
-    })
+  }
+  // msg.check(phoneNum, smsCode)
+
+  const user = new User()
+  user.username = username
+  user.phoneNum = phoneNum
+  user.password = password
+  const userObj = user.save()
+  const contract = await Contract.findOne({ username: user.username })
+  const { member, paidCourses } = contract
+
+  const data = {
+    username: userObj.username,
+    _id: userObj._id,
+    member,
+    paidCourses,
+  }
+  return res.status(200).json({
+    token: generateToken(data),
+    success: true,
+  })
 }
 
 exports.login = async (req, res) => {
