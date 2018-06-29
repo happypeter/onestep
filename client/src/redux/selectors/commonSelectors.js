@@ -27,3 +27,12 @@ export const getPaidCourses = state => {
     state.auth && state.auth.currentUser && state.auth.currentUser.paidCourses
   return paidCourses || []
 }
+
+export const getDetailedPaidCourses = state => {
+  const allCourses = getCourse(state).all || []
+  const paid = getPaidCourses(state)
+  const detailedPaid = allCourses.filter(c => {
+    return paid.includes(c.uid)
+  })
+  return detailedPaid
+}

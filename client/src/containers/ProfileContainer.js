@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signContract, checkContract } from '../redux/actions/contentAction'
+import {
+  signContract,
+  checkContract,
+  fetchCourseIfNeeded
+} from '../redux/actions/contentAction'
 import {
   getProfile,
-  getPaidCourses
+  getDetailedPaidCourses
 } from '../redux/selectors/commonSelectors.js'
 import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
@@ -20,13 +24,15 @@ const ProfileContainer = props => <AsyncProfile {...props} />
 const mapStateToProps = state => ({
   profile: getProfile(state),
   auth: getCurrentUser(state),
-  paidCourses: getPaidCourses(state)
+  courses: getDetailedPaidCourses(state),
+  anyCourse: !!getDetailedPaidCourses(state).length
 })
 
 export default connect(
   mapStateToProps,
   {
     signContract,
-    checkContract
+    checkContract,
+    fetchCourseIfNeeded
   }
 )(ProfileContainer)
