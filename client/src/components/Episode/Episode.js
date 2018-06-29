@@ -6,10 +6,12 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import SideCatalogue from './SideCatalogue'
 import { Link } from 'react-router-dom'
 import EpisodeDoc from './EpisodeDoc'
+import PropTypes from 'prop-types'
 
-export default ({
+const Episode = ({
   videoJsOptions,
-  episodeItem: { markdown, uid, courseCatalogue, courseUid },
+  episodeItem: { markdown, uid, courseUid },
+  episodes,
   courseName,
   episodeName
 }) => (
@@ -19,17 +21,15 @@ export default ({
     <Container>
       <LeftWrap>
         <CourseName to={`/${courseName}`}>{courseUid}</CourseName>
-        {courseCatalogue
-          ? courseCatalogue.map((item, i) => (
-              <SideCatalogue
-                key={i}
-                header={item.header}
-                section={item.section}
-                courseName={courseName}
-                episodeName={episodeName}
-              />
-            ))
-          : null}
+        {episodes.map((item, i) => (
+          <SideCatalogue
+            key={i}
+            header={item.header}
+            section={item.section}
+            courseName={courseName}
+            episodeName={episodeName}
+          />
+        ))}
       </LeftWrap>
 
       <RightWrap>
@@ -46,6 +46,11 @@ export default ({
   </div>
 )
 
+Episode.propTypes = {
+  episodes: PropTypes.array.isRequired
+}
+
+export default Episode
 const Container = styled.div`
   display: flex;
   flex-direction: column;

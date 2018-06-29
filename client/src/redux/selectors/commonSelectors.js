@@ -14,3 +14,10 @@ export const getSmsSendState = state => state.smsSend
 export const getNotification = state => state.notification
 
 export const getProfile = state => state.profile
+
+export const getCurrentCourseUid = state => {
+  return state.course.item.uid
+}
+export const getCourseTocContent = state => {
+  return state.course.item.content
+}

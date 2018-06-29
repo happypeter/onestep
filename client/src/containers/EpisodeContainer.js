@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchEpisode } from '../redux/actions/contentAction'
-import { getEpisode } from '../redux/selectors/commonSelectors.js'
+import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
+
+import {
+  getEpisode,
+  getCourseTocContent
+} from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
 
@@ -18,6 +22,7 @@ class EpisodeContainer extends Component {
   componentDidMount() {
     const { courseName, episodeName } = this.props.match.params
     this.props.fetchEpisode({ courseName, episodeName })
+    this.props.fetchCourse({ courseName })
   }
 
   componentWillReceiveProps() {
@@ -54,12 +59,12 @@ class EpisodeContainer extends Component {
       }
     }
 
-    console.log(EpisodeVideoJsOptions)
     return (
       <AsyncEpisode
         episodeItem={item}
         courseName={courseName}
         episodeName={episodeName}
+        episodes={this.props.episodes}
         videoJsOptions={EpisodeVideoJsOptions}
       />
     )
@@ -67,10 +72,14 @@ class EpisodeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  episode: getEpisode(state)
+  episode: getEpisode(state),
+  episodes: getCourseTocContent(state)
 })
 
 export default connect(
   mapStateToProps,
-  { fetchEpisode }
+  {
+    fetchEpisode,
+    fetchCourse
+  }
 )(EpisodeContainer)
