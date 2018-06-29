@@ -92,14 +92,14 @@ class BuyMembership extends Component {
           <Membership>
             <Date>一个月</Date>
             <Price>42元</Price>
-            <RaisedButtonWrap raised onClick={this.pay.bind(this, 42)}>
+            <RaisedButtonWrap onClick={this.pay.bind(this, 42)}>
               开通
             </RaisedButtonWrap>
           </Membership>
           <Membership>
             <Date>三个月</Date>
             <Price>90元</Price>
-            <RaisedButtonWrap raised onClick={this.pay.bind(this, 90)}>
+            <RaisedButtonWrap onClick={this.pay.bind(this, 90)}>
               开通
             </RaisedButtonWrap>
           </Membership>

@@ -142,9 +142,7 @@ class ResetPassword extends Component {
             <Title>重置密码</Title>
             <Form onSubmit={this.handleSubmit}>
               {formItems}
-              <ActionButton raised type="submit">
-                确定
-              </ActionButton>
+              <ActionButton type="submit">确定</ActionButton>
             </Form>
           </Container>
         </Content>

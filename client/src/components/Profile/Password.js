@@ -80,9 +80,7 @@ class Password extends Component {
         <Title>修改密码</Title>
         <Form onSubmit={this.handleSubmit}>
           {formItems}
-          <ActionButton raised type="submit">
-            确定
-          </ActionButton>
+          <ActionButton type="submit">确定</ActionButton>
           <LinkWrap to="/reset-password">忘记密码</LinkWrap>
         </Form>
       </Container>

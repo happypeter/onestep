@@ -39,7 +39,6 @@ class SmsSend extends Component {
     return (
       <div>
         <ShortButton
-          raised={smsSendState.alreadySendMsg ? true : undefined}
           disabled={smsSendState.alreadySendMsg ? true : false}
           onClick={this.sendMsg}
         >
