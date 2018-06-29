@@ -24,7 +24,6 @@ const CourseSchema = new Schema(
         ],
       },
     ],
-    publishedOn: String,
   },
   { timestamps: true }
 )

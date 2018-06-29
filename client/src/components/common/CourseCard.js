@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const getCoverLink = uid =>
-  `http://haoqicat-1253322599.costj.myqcloud.com/posters/${uid}.png`
+  `https://haoqicat-1253322599.costj.myqcloud.com/posters/${uid}.png`
 
 export default ({ uid, title }) => (
   <CourseCard to={`/${uid}`}>
