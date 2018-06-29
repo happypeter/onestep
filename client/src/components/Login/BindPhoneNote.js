@@ -11,9 +11,9 @@ const styles = theme => ({
 
 const BindPhoneNote = ({ classes: s }) => (
   <div className={s.root}>
-    网站升级，请先到
+    由于网站升级，所有用户都需要先到
     <Link to="/signup">注册页面</Link>
-    上绑定手机并设置新的密码
+    上绑定手机并设置新的密码。老用户注意一定要用自己原来的用户名注册，这样以前购买过的课程会依旧可以观看
   </div>
 )
 
