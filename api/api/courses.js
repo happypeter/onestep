@@ -1,14 +1,17 @@
 const Course = require('../models/course')
 
-exports.single = (req, res) => {
+exports.single = async (req, res) => {
   const { courseName } = req.params
   const uid = courseName
-  Course.findOne({ uid })
-    .then(course => {
-      if (!course) return
-      res.status(200).json({ success: true, course })
+  try {
+    const course = await Course.findOne({ uid })
+    if (!course) throw Error('没有此课程')
+    res.status(200).json({ success: true, course })
+  } catch (err) {
+    console.log(err)
+    res.status(403).json({
+      errorMsg: err.message,
+      success: false,
     })
-    .catch(err => {
-      console.log(err)
-    })
+  }
 }
