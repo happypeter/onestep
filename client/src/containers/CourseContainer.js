@@ -47,10 +47,6 @@ class CourseContainer extends Component {
         volumePanel: {
           inline: false // vertical VolumeControl
         }
-      },
-      // Using A Plugin
-      plugins: {
-        setStateandFocusPlugin: true
       }
     }
 
@@ -64,8 +60,11 @@ const mapStateToProps = state => ({
   auth: getCurrentUser(state)
 })
 
-export default connect(mapStateToProps, {
-  fetchCourse,
-  signContract,
-  checkContract
-})(CourseContainer)
+export default connect(
+  mapStateToProps,
+  {
+    fetchCourse,
+    signContract,
+    checkContract
+  }
+)(CourseContainer)

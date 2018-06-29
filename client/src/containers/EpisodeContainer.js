@@ -51,10 +51,6 @@ class EpisodeContainer extends Component {
         volumePanel: {
           inline: false // vertical VolumeControl
         }
-      },
-      // Using A Plugin
-      plugins: {
-        setStateandFocusPlugin: true
       }
     }
 
