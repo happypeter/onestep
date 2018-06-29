@@ -4,15 +4,13 @@ import styled from 'styled-components'
 
 class CourseList extends Component {
   componentDidMount() {
-    if (!this.props.courses.length) {
-      this.props.fetchCourses()
-    }
+    this.props.fetchCourseIfNeeded()
   }
 
   render() {
-    const { items, isFetching } = this.props.courses
+    const { all, isFetching } = this.props.course
     if (isFetching) return <Title>信息请求中...</Title>
-    let courseList = items.map(item => (
+    let courseList = all.map(item => (
       <CourseCard key={item._id} uid={item.uid} title={item.title} />
     ))
 

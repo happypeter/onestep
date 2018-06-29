@@ -11,8 +11,10 @@ function handleError(error, dispatch) {
   }
 }
 
-export function fetchCourses(data) {
-  return dispatch => {
+export function fetchCourseIfNeeded(data) {
+  return (dispatch, getState) => {
+    console.log('ifneeded', getState())
+    if (getState().course.all.length !== 0) return
     dispatch({ type: types.FETCH_COURSES_STARTED })
     axios
       .get(`${config.api}/catalogue`)

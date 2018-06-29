@@ -1,20 +1,23 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {fetchCourses} from '../redux/actions/contentAction'
-import {getCourses} from '../redux/selectors/commonSelectors.js'
+import { connect } from 'react-redux'
+import { fetchCourseIfNeeded } from '../redux/actions/contentAction'
+import { getCourse } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
 
 const AsyncCourseList = Loadable({
   loader: () => import('../components/CourseList/CourseList'),
   loading: LoadingComponent,
-  delay: 300,
+  delay: 300
 })
 
-const CourseListContainer = (props) => <AsyncCourseList {...props} />
+const CourseListContainer = props => <AsyncCourseList {...props} />
 
 const mapStateToProps = state => ({
-  courses: getCourses(state),
+  course: getCourse(state)
 })
 
-export default connect(mapStateToProps, {fetchCourses})(CourseListContainer)
+export default connect(
+  mapStateToProps,
+  { fetchCourseIfNeeded }
+)(CourseListContainer)

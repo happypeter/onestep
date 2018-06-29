@@ -1,5 +1,5 @@
 // course
-export const getCourses = state => state.courses
+export const getCourse = state => state.course || {}
 export const getCurrentCourse = state => state.currentCourse
 export const getEpisode = state => state.episode
 
