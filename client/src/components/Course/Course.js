@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import EpisodeItem from './EpisodeItem'
@@ -24,11 +25,10 @@ class Course extends Component {
       _id
     } = this.props.currentCourse.info
 
-    const { isAuthenticated, currentUser } = this.props.auth
+    const { isAuthenticated, isMember } = this.props
     const { paidCourses } = this.props
     const isPaid = paidCourses.includes(uid)
-    console.log(price, isPaid, currentUser.member)
-    const isAccessible = price === 0 || isPaid || currentUser.member
+    const isAccessible = price === 0 || isPaid || isMember
 
     let episodeList
     if (content) {
@@ -78,6 +78,10 @@ class Course extends Component {
       </Wrap>
     )
   }
+}
+
+Course.propTypes = {
+  isMember: PropTypes.bool.isRequired
 }
 
 export default Course
