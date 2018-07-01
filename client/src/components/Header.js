@@ -16,7 +16,8 @@ class Header extends Component {
     this.setState({ anchorEl: e.target })
   }
 
-  handlePopoverClose = () => {
+  handleClick = path => {
+    this.props.goto(path)
     this.setState({ anchorEl: null })
   }
 
@@ -40,20 +41,21 @@ class Header extends Component {
 
     const LogoutButtons = (
       <SideButtonsWrap>
-        <UserIcon
-          onClick={this.handlePopoverOpen}
-          onTouchStart={this.handlePopoverOpen}
-        />
-        <PopMenu
+        <UserIcon onClick={this.handlePopoverOpen} />
+        <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handlePopoverClose}
         >
           {<MenuItem>{currentUser.username}</MenuItem>}
-          <MenuItem onClick={() => goto('/user/profile')}>个人中心</MenuItem>
-          <MenuItem onClick={() => goto('/settings')}>设置</MenuItem>
+          <MenuItem onClick={() => this.handleClick('/user/profile')}>
+            个人中心
+          </MenuItem>
+          <MenuItem onClick={() => this.handleClick('/settings')}>
+            设置
+          </MenuItem>
           <MenuItem onClick={this.logout}>退出</MenuItem>
-        </PopMenu>
+        </Menu>
       </SideButtonsWrap>
     )
 
@@ -112,16 +114,4 @@ const ButtonLink = styled(Link)`
   font-weight: 500;
   transition: all 0.5s ease;
   text-decoration: none;
-`
-
-const PopMenu = styled(Menu)`
-  && {
-    top: 40px;
-  }
-  ul {
-    padding: 0;
-  }
-  li {
-    padding-right: 3em;
-  }
 `
