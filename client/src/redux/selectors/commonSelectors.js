@@ -17,10 +17,10 @@ export const getNotification = state => state.notification
 export const getProfile = state => state.profile
 
 export const getCurrentCourseUid = state => {
-  return state.course.item.uid
+  return state.currentCourse.item.uid
 }
 export const getCourseTocContent = state => {
-  return state.course.item.content
+  return state.currentCourse.info.content
 }
 
 export const getPaidCourses = state => {

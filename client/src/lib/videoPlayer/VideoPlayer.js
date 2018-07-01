@@ -3,7 +3,7 @@ import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 import './videojs-hqcat.css'
 
-export default class VideoPlayer extends React.Component {
+class VideoPlayer extends React.Component {
   componentDidMount() {
     // instantiate video.js
     this.player = videojs(this.videoNode, this.props)
@@ -31,3 +31,5 @@ export default class VideoPlayer extends React.Component {
     )
   }
 }
+
+export default VideoPlayer

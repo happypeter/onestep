@@ -31,7 +31,6 @@ class Header extends Component {
 
   render() {
     const { currentUser, isAuthenticated, goto } = this.props
-    console.log('xxxx', this.props)
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="/signup">注册</ButtonLink>
