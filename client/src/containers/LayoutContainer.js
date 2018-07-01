@@ -37,10 +37,13 @@ const mapStateToProps = state => ({
   notification: getNotification(state)
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    logout,
-    clearNotification
-  }
-)(withRouter(LayoutContainer))
+// Connect can break router , the fix is withRouter: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      logout,
+      clearNotification
+    }
+  )(LayoutContainer)
+)
