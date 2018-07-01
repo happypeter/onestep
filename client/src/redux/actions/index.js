@@ -2,7 +2,7 @@ import { history } from '../../utils/routerUtils'
 import {
   SHOW_NOTIFICATION,
   CLEAR_NOTIFICATION
-} from '../../constants/actionTypes/notificationActionTypes.js'
+} from '../../constants/actionTypes/commonActionTypes.js'
 
 export const goto = path => dispatch => {
   history.push(path)
