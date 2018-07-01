@@ -1,4 +1,3 @@
-import isEmpty from 'lodash.isempty'
 import * as types from '../../constants/actionTypes/authActionTypes'
 
 const initialState = {
@@ -6,10 +5,10 @@ const initialState = {
   currentUser: {}
 }
 export default (state = initialState, action = {}) => {
-  switch(action.type) {
+  switch (action.type) {
     case types.AUTH_USER:
       return {
-        isAuthenticated: !isEmpty(action.user),
+        isAuthenticated: Object.keys(action.user).length !== 0,
         currentUser: action.user
       }
     default:
