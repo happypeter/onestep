@@ -12,7 +12,7 @@ export const getIsAuthenticated = state => state.auth.isAuthenticated
 export const getSmsSendState = state => state.smsSend
 
 // notification
-export const getNotification = state => state.notification
+export const getNotification = state => state.common.notification || ''
 
 export const getProfile = state => state.profile
 

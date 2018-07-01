@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/contentActionTypes.js'
-import { showNotification } from './notificationAction'
+import { showNotification } from './index'
 
 function handleError(error, dispatch) {
   if (error.response) {

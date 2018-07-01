@@ -8,25 +8,11 @@ import {
   getIsAuthenticated
 } from '../redux/selectors/commonSelectors'
 import PropTypes from 'prop-types'
-import { getNotification } from '../redux/selectors/commonSelectors.js'
-import Notification from '../components/Notification/Notification'
-import { clearNotification } from '../redux/actions/notificationAction'
+import { getNotification } from '../redux/selectors/commonSelectors'
+import { clearNotification } from '../redux/actions'
 import Layout from '../components/Layout'
 
-const LayoutContainer = props => {
-  const { notification, clearNotification } = props
-  return (
-    <div>
-      <Layout {...props} />
-      {notification.text ? (
-        <Notification
-          text={notification.text}
-          clearNotification={clearNotification}
-        />
-      ) : null}
-    </div>
-  )
-}
+const LayoutContainer = props => <Layout {...props} />
 
 LayoutContainer.propTypes = {
   logout: PropTypes.func.isRequired

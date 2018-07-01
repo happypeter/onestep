@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { showNotification } from './notificationAction'
+import { showNotification } from './index'
 import config from '../../config/config'
 import * as types from '../../constants/actionTypes/authActionTypes.js'
 import jwtDecode from 'jwt-decode'

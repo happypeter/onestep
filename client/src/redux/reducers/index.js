@@ -1,6 +1,6 @@
 import auth from './auth'
 import profile from './profile'
-import notification from './notification'
+import common from './common'
 import { combineReducers } from 'redux'
 import currentCourse from './currentCourse'
 import course from './course'
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   course,
   auth,
   profile,
-  notification,
+  common,
   episode,
   smsSend,
   weChatUser
