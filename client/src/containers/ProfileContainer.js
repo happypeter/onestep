@@ -9,7 +9,10 @@ import {
   getProfile,
   getDetailedPaidCourses
 } from '../redux/selectors/commonSelectors.js'
-import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
+import {
+  getCurrentUser,
+  getIsMember
+} from '../redux/selectors/commonSelectors.js'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 
@@ -25,7 +28,8 @@ const mapStateToProps = state => ({
   profile: getProfile(state),
   auth: getCurrentUser(state),
   courses: getDetailedPaidCourses(state),
-  anyCourse: !!getDetailedPaidCourses(state).length
+  anyCourse: !!getDetailedPaidCourses(state).length,
+  isMember: getIsMember(state)
 })
 
 export default connect(

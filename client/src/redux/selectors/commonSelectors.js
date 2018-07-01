@@ -36,3 +36,7 @@ export const getDetailedPaidCourses = state => {
   })
   return detailedPaid
 }
+
+export const getIsMember = state =>
+  (state.auth && state.auth.currentUser && state.auth.currentUser.member) ||
+  false

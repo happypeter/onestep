@@ -11,8 +11,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { courses, anyCourse } = this.props
-
+    const { courses, anyCourse, isMember } = this.props
     const pageContent = (
       <div>
         <ContentWrap>
@@ -31,7 +30,7 @@ class Profile extends Component {
             <div>还没有购买过课程</div>
           )}
 
-          <MemberShip isMember={false} />
+          <MemberShip isMember={isMember} />
         </ContentWrap>
       </div>
     )
