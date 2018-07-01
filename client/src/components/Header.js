@@ -6,6 +6,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import defaultAvatar from '../assets/avatarIcon.svg'
 import isEmpty from 'lodash.isempty'
+import PropTypes from 'prop-types'
 
 class Header extends Component {
   state = {
@@ -24,20 +25,12 @@ class Header extends Component {
     this.props.history.push('/')
   }
 
-  goToProfile = () => {
-    this.props.history.push('/user/profile')
-  }
-
-  goToSettings = () => {
-    this.props.history.push('/settings')
-  }
-
   logout = () => {
     this.props.logout()
   }
 
   render() {
-    const { currentUser, isAuthenticated } = this.props
+    const { currentUser, isAuthenticated, goto } = this.props
     console.log('xxxx', this.props)
     const LoginButtons = (
       <SideButtonsWrap>
@@ -65,8 +58,8 @@ class Header extends Component {
           onClose={this.handlePopoverClose}
         >
           {<MenuItem>{currentUser.username}</MenuItem>}
-          <MenuItem onClick={this.goToProfile}>个人中心</MenuItem>
-          <MenuItem onClick={this.goToSettings}>设置</MenuItem>
+          <MenuItem onClick={() => goto('/user/profile')}>个人中心</MenuItem>
+          <MenuItem onClick={() => goto('/settings')}>设置</MenuItem>
           <MenuItem onClick={this.logout}>退出</MenuItem>
         </PopMenu>
       </SideButtonsWrap>
@@ -84,6 +77,10 @@ class Header extends Component {
       </Wrap>
     )
   }
+}
+
+Header.propTypes = {
+  goto: PropTypes.func.isRequired
 }
 
 export default Header

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
-import { PrivateRoute } from '../utils/routerUtils'
+import { PrivateRoute, history } from '../utils/routerUtils'
 import withMui from '../utils/withMui'
 import Layout from '../containers/LayoutContainer'
 
@@ -55,7 +55,7 @@ class Main extends Component {
   render() {
     const { isAuthenticated } = this.props
     return (
-      <Router>
+      <Router history={history}>
         <Layout>
           <Switch>
             <Route exact path="/" component={AsyncHome} />
