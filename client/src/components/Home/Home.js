@@ -1,13 +1,11 @@
 import React from 'react'
 import CourseList from '../../containers/CourseListContainer'
-import Header from '../Header/Header'
 import styled from 'styled-components'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../common/Loading'
 
 export default () => (
   <HomeWrap>
-    <Header />
     <CourseList />
     <AsyncAboveFooter />
     <AsyncFooter />

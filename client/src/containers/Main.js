@@ -7,6 +7,7 @@ import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 import { PrivateRoute } from '../utils/routerUtils'
 import withMui from '../utils/withMui'
+import Layout from '../containers/LayoutContainer'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -55,30 +56,32 @@ class Main extends Component {
     const { isAuthenticated } = this.props
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" component={AsyncHome} />
-          <Route path="/login" component={AsyncLogin} />
-          <Route path="/signup" component={AsyncSignup} />
-          <Route path="/oauth/callback" component={WeChatCallbackContainer} />
-          <PrivateRoute
-            isAuthenticated={isAuthenticated}
-            path="/user/profile"
-            component={AsyncProfile}
-          />
-          <PrivateRoute
-            isAuthenticated={isAuthenticated}
-            path="/settings"
-            component={ProfileSettings}
-          />
-          <Route path="/reset-password" component={ResetPasswordContainer} />
-          <Route exact path="/:courseName" component={AsyncCourse} />
-          <Route
-            exact
-            path="/:courseName/:episodeName"
-            component={AsyncEpisode}
-          />
-          <Route component={AsyncNotFound} />
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={AsyncHome} />
+            <Route path="/login" component={AsyncLogin} />
+            <Route path="/signup" component={AsyncSignup} />
+            <Route path="/oauth/callback" component={WeChatCallbackContainer} />
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              path="/user/profile"
+              component={AsyncProfile}
+            />
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              path="/settings"
+              component={ProfileSettings}
+            />
+            <Route path="/reset-password" component={ResetPasswordContainer} />
+            <Route exact path="/:courseName" component={AsyncCourse} />
+            <Route
+              exact
+              path="/:courseName/:episodeName"
+              component={AsyncEpisode}
+            />
+            <Route component={AsyncNotFound} />
+          </Switch>
+        </Layout>
       </Router>
     )
   }
