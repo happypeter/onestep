@@ -1,9 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles'
 import catLogo from '../../assets/fatCat.svg'
 
-export default () => (
-  <Hero>
+const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.primary.main
+  }
+})
+
+const Slogan = ({ classes: s }) => (
+  <div className={s.root}>
     <SloganWrap>
       <TextWrap>
         <H1Wrap>为开发者而生</H1Wrap>
@@ -17,14 +24,12 @@ export default () => (
           懂你的视频资源站。
         </H3Wrap>
       </TextWrap>
-      <img src={catLogo} alt='haoqicat-logo' />
+      <img src={catLogo} alt="haoqicat-logo" />
     </SloganWrap>
-  </Hero>
+  </div>
 )
 
-const Hero = styled.div`
-  background-color: #00bcd4;
-`
+export default withStyles(styles)(Slogan)
 
 const SloganWrap = styled.div`
   margin-bottom: 40px;

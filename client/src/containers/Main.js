@@ -6,9 +6,7 @@ import ProfileSettings from './ProfileSettingsContainer'
 import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 import { PrivateRoute } from '../utils/routerUtils'
-
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import { theme } from '../utils/muiTheme'
+import withMui from '../utils/withMui'
 
 const AsyncHome = Loadable({
   loader: () => import('../components/Home/Home'),
@@ -56,36 +54,34 @@ class Main extends Component {
   render() {
     const { isAuthenticated } = this.props
     return (
-      <MuiThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={AsyncHome} />
-            <Route path="/login" component={AsyncLogin} />
-            <Route path="/signup" component={AsyncSignup} />
-            <Route path="/oauth/callback" component={WeChatCallbackContainer} />
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              path="/user/profile"
-              component={AsyncProfile}
-            />
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              path="/settings"
-              component={ProfileSettings}
-            />
-            <Route path="/reset-password" component={ResetPasswordContainer} />
-            <Route exact path="/:courseName" component={AsyncCourse} />
-            <Route
-              exact
-              path="/:courseName/:episodeName"
-              component={AsyncEpisode}
-            />
-            <Route component={AsyncNotFound} />
-          </Switch>
-        </Router>
-      </MuiThemeProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={AsyncHome} />
+          <Route path="/login" component={AsyncLogin} />
+          <Route path="/signup" component={AsyncSignup} />
+          <Route path="/oauth/callback" component={WeChatCallbackContainer} />
+          <PrivateRoute
+            isAuthenticated={isAuthenticated}
+            path="/user/profile"
+            component={AsyncProfile}
+          />
+          <PrivateRoute
+            isAuthenticated={isAuthenticated}
+            path="/settings"
+            component={ProfileSettings}
+          />
+          <Route path="/reset-password" component={ResetPasswordContainer} />
+          <Route exact path="/:courseName" component={AsyncCourse} />
+          <Route
+            exact
+            path="/:courseName/:episodeName"
+            component={AsyncEpisode}
+          />
+          <Route component={AsyncNotFound} />
+        </Switch>
+      </Router>
     )
   }
 }
 
-export default Main
+export default withMui(Main)
