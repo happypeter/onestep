@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import logoSimple from '../assets/logoSimple.svg'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import defaultAvatar from '../assets/avatarIcon.svg'
+import UserIcon from '@material-ui/icons/AccountCircle'
 import isEmpty from 'lodash.isempty'
 import PropTypes from 'prop-types'
 
@@ -38,17 +38,11 @@ class Header extends Component {
       </SideButtonsWrap>
     )
     const { anchorEl } = this.state
-    let avatar = defaultAvatar
-    if (currentUser && !isEmpty(currentUser.bindings)) {
-      const weChat = currentUser.bindings.find(item => item.via === 'wechat')
-      avatar = weChat.headImgUrl
-    }
+
     const LogoutButtons = (
       <SideButtonsWrap>
-        <Avatar
-          src={avatar}
-          alt="avatar"
-          onMouseOver={this.handlePopoverOpen}
+        <UserIcon
+          onClick={this.handlePopoverOpen}
           onTouchStart={this.handlePopoverOpen}
         />
         <PopMenu
