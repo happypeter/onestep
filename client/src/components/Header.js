@@ -5,7 +5,6 @@ import logoSimple from '../assets/logoSimple.svg'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import UserIcon from '@material-ui/icons/AccountCircle'
-import isEmpty from 'lodash.isempty'
 import PropTypes from 'prop-types'
 
 class Header extends Component {
@@ -113,13 +112,6 @@ const ButtonLink = styled(Link)`
   font-weight: 500;
   transition: all 0.5s ease;
   text-decoration: none;
-`
-
-const Avatar = styled.img`
-  width: 30px;
-  height: 30px;
-  display: block;
-  border-radius: 15px;
 `
 
 const PopMenu = styled(Menu)`

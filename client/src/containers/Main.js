@@ -3,7 +3,6 @@ import { Router, Switch, Route } from 'react-router'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import ProfileSettings from './ProfileSettingsContainer'
-import WeChatCallbackContainer from './WeChatCallbackContainer'
 import ResetPasswordContainer from './ResetPasswordContainer'
 import { PrivateRoute, history } from '../utils/routerUtils'
 import withMui from '../utils/withMui'
@@ -61,7 +60,6 @@ class Main extends Component {
             <Route exact path="/" component={AsyncHome} />
             <Route path="/login" component={AsyncLogin} />
             <Route path="/signup" component={AsyncSignup} />
-            <Route path="/oauth/callback" component={WeChatCallbackContainer} />
             <PrivateRoute
               isAuthenticated={isAuthenticated}
               path="/user/profile"
