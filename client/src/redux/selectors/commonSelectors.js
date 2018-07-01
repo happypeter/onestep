@@ -4,7 +4,8 @@ export const getCurrentCourse = state => state.currentCourse
 export const getEpisode = state => state.episode
 
 // auth
-export const getCurrentUser = state => state.auth
+export const getCurrentUser = state =>
+  (state.auth && state.auth.currentUser) || {}
 export const getIsAuthenticated = state => state.auth.isAuthenticated
 
 // smsSend

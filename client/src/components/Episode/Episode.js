@@ -1,5 +1,4 @@
 import React from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
@@ -16,8 +15,6 @@ const Episode = ({
   episodeName
 }) => (
   <div>
-    <TopHeader />
-
     <Container>
       <LeftWrap>
         <CourseName to={`/${courseName}`}>{courseUid}</CourseName>

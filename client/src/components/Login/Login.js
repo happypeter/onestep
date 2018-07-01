@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import TextField from '@material-ui/core/TextField'
 import {
@@ -48,7 +47,6 @@ class Login extends Component {
     const { account, password, errors } = this.state
     return (
       <Wrap>
-        <TopHeader />
         <Content>
           <BindPhoneNote />
           <Container>

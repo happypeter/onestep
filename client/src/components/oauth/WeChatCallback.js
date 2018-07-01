@@ -1,5 +1,4 @@
-import React, {Component} from 'react'
-import TopHeaderContainer from '../../containers/TopHeaderContainer'
+import React, { Component } from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import NewAccount from './NewAccount'
@@ -7,19 +6,19 @@ import ExistedAccount from './ExistedAccount'
 
 class WeChatCallBack extends Component {
   state = {
-    existed: false,
+    existed: false
   }
 
   componentWillMount = () => {
-    const {oauthWeChat, history} = this.props
+    const { oauthWeChat, history } = this.props
     const query = window.location.href.split('?')[1]
     if (query && query.split('&')) {
       const code = query.split('&')[0].slice(5)
       if (code) {
         if (!/MicroMessenger/i.test(window.navigator.userAgent)) {
-          oauthWeChat({code, userAgent: 'PC'}, history)
+          oauthWeChat({ code, userAgent: 'PC' }, history)
         } else {
-          oauthWeChat({code, userAgent: 'MicroMessenger'}, history)
+          oauthWeChat({ code, userAgent: 'MicroMessenger' }, history)
         }
       } else {
         history.go(-2)
@@ -31,16 +30,15 @@ class WeChatCallBack extends Component {
 
   handleClick = () => {
     this.setState({
-      existed: !this.state.existed,
+      existed: !this.state.existed
     })
   }
 
   render() {
-    const {user, oauthBinding, history} = this.props
+    const { user, oauthBinding, history } = this.props
     if (!Object.keys(user).length) return null
     return (
       <Wrap>
-        <TopHeaderContainer />
         <Content>
           {user && !this.state.existed ? (
             <NewAccount

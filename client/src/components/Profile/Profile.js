@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
@@ -37,7 +36,6 @@ class Profile extends Component {
 
     return (
       <Wrap>
-        <TopHeader />
         {pageContent}
         <Footer />
       </Wrap>

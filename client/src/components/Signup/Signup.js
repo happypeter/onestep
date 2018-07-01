@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import TextField from '@material-ui/core/TextField'
@@ -133,7 +132,6 @@ class Signup extends Component {
     })
     return (
       <Wrap>
-        <TopHeader />
         <Content>
           <Container>
             <Title>注册</Title>

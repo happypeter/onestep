@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import EpisodeItem from './EpisodeItem'
@@ -48,8 +47,6 @@ class Course extends Component {
 
     return (
       <Wrap>
-        <TopHeader />
-
         <Container>
           <CourseName>{name}</CourseName>
           <VideoTitle>课程简介</VideoTitle>

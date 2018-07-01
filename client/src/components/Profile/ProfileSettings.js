@@ -1,5 +1,4 @@
 import React from 'react'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import Loadable from 'react-loadable'
@@ -7,7 +6,6 @@ import LoadingComponent from '../common/Loading'
 
 export default () => (
   <Wrap>
-    <TopHeader />
     <Content>
       <AsyncResetPassword />
     </Content>
@@ -18,7 +16,7 @@ export default () => (
 const AsyncResetPassword = Loadable({
   loader: () => import('../../containers/PasswordContainer'),
   loading: LoadingComponent,
-  delay: 300,
+  delay: 300
 })
 
 const Wrap = styled.div`

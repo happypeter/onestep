@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
-import TopHeader from '../../containers/TopHeaderContainer'
 import Footer from '../Footer/Footer'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import {
@@ -136,7 +135,6 @@ class ResetPassword extends Component {
 
     return (
       <Wrap>
-        <TopHeader />
         <Content>
           <Container>
             <Title>重置密码</Title>
