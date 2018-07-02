@@ -104,23 +104,6 @@ export function logout(data) {
   }
 }
 
-export function resetPassword(data, history) {
-  return dispatch => {
-    axios
-      .post(`${config.api}/reset-password`, data)
-      .then(res => {
-        history.push('/login')
-        dispatch(showNotification('密码重置成功，请登录'))
-        sessionStorage.removeItem('jwtToken')
-        delete axios.defaults.headers.common['Authorization']
-        dispatch(setCurrentUser({}))
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
-}
-
 export function modifyPassword(data) {
   return dispatch => {
     axios

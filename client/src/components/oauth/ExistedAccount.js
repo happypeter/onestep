@@ -80,7 +80,6 @@ class ExistedAccount extends Component {
             helperText={<Error>{errors.password}</Error>}
           />
           <ActionButton type="submit">完成注册</ActionButton>
-          <LinkWrap to="/reset-password">忘记密码</LinkWrap>
         </Form>
         <Switch onClick={this.handleClick}>绑定新账号</Switch>
       </Container>

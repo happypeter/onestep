@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Router, Switch, Route } from 'react-router'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
-import ProfileSettings from './ProfileSettingsContainer'
-import ResetPasswordContainer from './ResetPasswordContainer'
 import { PrivateRoute, history } from '../utils/routerUtils'
 import withMui from '../utils/withMui'
 import Layout from '../containers/LayoutContainer'
@@ -65,12 +63,6 @@ class Main extends Component {
               path="/user/profile"
               component={AsyncProfile}
             />
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              path="/settings"
-              component={ProfileSettings}
-            />
-            <Route path="/reset-password" component={ResetPasswordContainer} />
             <Route exact path="/:courseName" component={AsyncCourse} />
             <Route
               exact

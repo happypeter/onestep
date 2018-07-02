@@ -48,12 +48,8 @@ class Header extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {<MenuItem>{currentUser.username}</MenuItem>}
           <MenuItem onClick={() => this.handleClick('/user/profile')}>
-            个人中心
-          </MenuItem>
-          <MenuItem onClick={() => this.handleClick('/settings')}>
-            设置
+            {currentUser.username}
           </MenuItem>
           <MenuItem onClick={this.logout}>退出</MenuItem>
         </Menu>
