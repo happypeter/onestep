@@ -1,12 +1,31 @@
 import React from 'react'
 import Header from './Header'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
+import Drawer from '@material-ui/core/Drawer'
 
-const Layout = ({ notification, children, clearNotification, ...props }) => {
+const styles = () => ({
+  root: {}
+})
+
+const Layout = ({
+  notification,
+  children,
+  clearNotification,
+  classes: s,
+  ...props
+}) => {
   return (
     <div>
       <Header {...props} />
+      <Drawer
+        ModalProps={{ BackdropProps: { invisible: true } }}
+        open
+        className={s.drawer}
+      >
+        hello draweer
+      </Drawer>
       <Snackbar
         anchorOrigin={{
           vertical: 'top',
@@ -29,4 +48,4 @@ Layout.propTypes = {
   clearNotification: PropTypes.func.isRequired
 }
 
-export default Layout
+export default withStyles(styles)(Layout)
