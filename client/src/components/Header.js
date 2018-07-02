@@ -21,16 +21,17 @@ class Header extends Component {
     this.setState({ anchorEl: null })
   }
 
-  backToHome = () => {
-    this.props.history.push('/')
+  handleClose = () => {
+    this.setState({ anchorEl: null })
   }
 
   logout = () => {
     this.props.logout()
+    this.setState({ anchorEl: null })
   }
 
   render() {
-    const { currentUser, isAuthenticated, goto } = this.props
+    const { currentUser, isAuthenticated } = this.props
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="/signup">注册</ButtonLink>
@@ -38,14 +39,14 @@ class Header extends Component {
       </SideButtonsWrap>
     )
     const { anchorEl } = this.state
-
+    console.log('anchorEl', anchorEl)
     const LogoutButtons = (
       <SideButtonsWrap>
         <UserIcon onClick={this.handlePopoverOpen} />
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.handlePopoverClose}
+          onClose={this.handleClose}
         >
           {<MenuItem>{currentUser.username}</MenuItem>}
           <MenuItem onClick={() => this.handleClick('/user/profile')}>
@@ -62,7 +63,7 @@ class Header extends Component {
     return (
       <Wrap>
         <HeaderWrap>
-          <HomeWrap onClick={this.backToHome}>
+          <HomeWrap onClick={() => this.handleClick('/')}>
             <img src={logoSimple} alt="logo-simple" width="35.35px" />
             <span>好奇猫</span>
           </HomeWrap>
