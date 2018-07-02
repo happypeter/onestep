@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import logoSimple from '../assets/logoSimple.svg'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import PropTypes from 'prop-types'
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
+
+// TODO: 仿照 gitbook 的用户体验，点按钮，抽屉中显示课程目录
 
 class Header extends Component {
   state = {
@@ -59,10 +62,9 @@ class Header extends Component {
     return (
       <Wrap>
         <HeaderWrap>
-          <HomeWrap onClick={() => this.handleClick('/')}>
-            <img src={logoSimple} alt="logo-simple" width="35.35px" />
-            <span>好奇猫</span>
-          </HomeWrap>
+          <IconButton>
+            <MenuIcon />
+          </IconButton>
           {isAuthenticated ? LogoutButtons : LoginButtons}
         </HeaderWrap>
       </Wrap>
