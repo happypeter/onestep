@@ -2,15 +2,33 @@ import React from 'react'
 import Header from './Header'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
 import TocList from '../containers/TocListContainer'
 import DrawerNav from './DrawerNav'
 import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 
-const styles = () => ({
-  main: {
-    marginLeft: DRAWER_WIDTH
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  content: {
+    marginLeft: -DRAWER_WIDTH,
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginLeft: 0
   },
   drawer: {
     position: 'relative',
@@ -30,7 +48,7 @@ const Layout = ({
   classes: s
 }) => {
   return (
-    <div>
+    <div className={s.root}>
       <Header
         currentUser={currentUser}
         goto={goto}
@@ -58,7 +76,13 @@ const Layout = ({
         message={notification}
         onClose={clearNotification}
       />
-      <div className={s.main}>{children}</div>
+      <div
+        className={classNames(s.content, {
+          [s.contentShift]: isSidebarOpen
+        })}
+      >
+        {children}
+      </div>
     </div>
   )
 }
