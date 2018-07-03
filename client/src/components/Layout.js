@@ -10,8 +10,12 @@ import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 
 const styles = () => ({
   main: {
-    border: '2px solid red',
     marginLeft: DRAWER_WIDTH
+  },
+  drawer: {
+    border: '2px solid red',
+    position: 'relative',
+    width: DRAWER_WIDTH
   }
 })
 
@@ -35,9 +39,12 @@ const Layout = ({
         isSidebarOpen={isSidebarOpen}
       />
       <Drawer
-        ModalProps={{ BackdropProps: { invisible: true } }}
-        open={isSidebarOpen}
-        className={s.drawer}
+        variant="persistent"
+        // open={isSidebarOpen}
+        open
+        classes={{
+          paper: s.drawer
+        }}
       >
         <DrawerNav toggleSidebar={toggleSidebar} goto={goto} />
         {isOnEpisodePage && <TocList />}
