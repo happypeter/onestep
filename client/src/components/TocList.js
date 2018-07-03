@@ -4,27 +4,35 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import PropTypes from 'prop-types'
 
-const ChaptList = ({ toc, toggleSidebar }) => {
-  return toc.map(t => (
-    <ListItem key={t.link} onClick={toggleSidebar}>
-      <ListItemText>{t.title}</ListItemText>
-    </ListItem>
-  ))
-}
-
 class TocList extends React.Component {
+  handleItemClick = path => {
+    this.props.toggleSidebar()
+    this.props.goto(path)
+  }
+
   render() {
-    const { toggleSidebar, episodes } = this.props
-    const tocList = episodes.map((t, i) => (
-      <ChaptList key={i} toc={t.section} toggleSidebar={toggleSidebar} />
-    ))
+    const { episodes, currentCourseUid } = this.props
+    const chaptList = toc => {
+      return toc.map(t => (
+        <ListItem
+          button
+          key={t.link}
+          onClick={() => this.handleItemClick(`/${currentCourseUid}/${t.link}`)}
+        >
+          <ListItemText>{t.title}</ListItemText>
+        </ListItem>
+      ))
+    }
+
+    const tocList = episodes.map(t => chaptList(t.section))
     return <List>{tocList}</List>
   }
 }
 
 TocList.propTypes = {
   toggleSidebar: PropTypes.func.isRequired,
-  episodes: PropTypes.array.isRequired
+  episodes: PropTypes.array.isRequired,
+  goto: PropTypes.func.isRequired
 }
 
 export default TocList

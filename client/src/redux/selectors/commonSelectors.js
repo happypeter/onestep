@@ -16,11 +16,17 @@ export const getNotification = state => state.common.notification || ''
 
 export const getProfile = state => state.profile
 
-export const getCurrentCourseUid = state => {
-  return state.currentCourse.item.uid
-}
 export const getCourseTocContent = state => {
   return state.currentCourse.info.content
+}
+
+export const getCurrentCourseUid = state => {
+  return (
+    (state.currentCourse &&
+      state.currentCourse.info &&
+      state.currentCourse.info.uid) ||
+    null
+  )
 }
 
 export const getPaidCourses = state => {
