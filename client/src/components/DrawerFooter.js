@@ -3,7 +3,6 @@ import UserIcon from '@material-ui/icons/AccountCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -51,7 +50,7 @@ class DrawerFooter extends React.Component {
     this.setState({ anchorEl: null })
   }
   render() {
-    const { currentUser, isAuthenticated, goto, classes: s } = this.props
+    const { currentUser, isAuthenticated, classes: s } = this.props
 
     const { anchorEl } = this.state
     const loggedInItem = (
@@ -91,7 +90,7 @@ class DrawerFooter extends React.Component {
       </div>
     )
 
-    const auth = (
+    return (
       <Toolbar className={s.userWrap}>
         <IconButton>
           <UserIcon
@@ -112,7 +111,6 @@ class DrawerFooter extends React.Component {
         </Menu>
       </Toolbar>
     )
-    return <div>{auth}</div>
   }
 }
 
