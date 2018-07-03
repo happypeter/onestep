@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import TocList from '../containers/TocListContainer'
 
 const styles = () => ({
   root: {}
@@ -29,11 +27,7 @@ const Layout = ({
         open={isSidebarOpen}
         className={s.drawer}
       >
-        <List>
-          <ListItem onClick={toggleSidebar}>
-            <ListItemText>text</ListItemText>
-          </ListItem>
-        </List>
+        <TocList />
       </Drawer>
       <Snackbar
         anchorOrigin={{
