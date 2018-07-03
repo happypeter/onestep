@@ -34,7 +34,7 @@ class Header extends Component {
   }
 
   render() {
-    const { currentUser, isAuthenticated } = this.props
+    const { currentUser, isAuthenticated, toggleSidebar } = this.props
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="/signup">注册</ButtonLink>
@@ -63,7 +63,7 @@ class Header extends Component {
       <Wrap>
         <HeaderWrap>
           <IconButton>
-            <MenuIcon />
+            <MenuIcon onClick={toggleSidebar} />
           </IconButton>
           {isAuthenticated ? LogoutButtons : LoginButtons}
         </HeaderWrap>
@@ -73,7 +73,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  goto: PropTypes.func.isRequired
+  goto: PropTypes.func.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 }
 
 export default Header
@@ -89,16 +90,6 @@ const HeaderWrap = styled.div`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-`
-
-const HomeWrap = styled.div`
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  @media (min-width: 768px) {
-    font-size: 1.56em;
-  }
 `
 
 const SideButtonsWrap = styled.div`

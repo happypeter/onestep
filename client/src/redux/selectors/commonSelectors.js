@@ -41,3 +41,6 @@ export const getDetailedPaidCourses = state => {
 export const getIsMember = state =>
   (state.auth && state.auth.currentUser && state.auth.currentUser.member) ||
   false
+
+export const getIsSidebarOpen = state =>
+  (state.common && state.common.isSidebarOpen) || false

@@ -5,11 +5,12 @@ import { logout } from '../redux/actions/authAction'
 import { goto } from '../redux/actions'
 import {
   getCurrentUser,
-  getIsAuthenticated
+  getIsAuthenticated,
+  getNotification,
+  getIsSidebarOpen
 } from '../redux/selectors/commonSelectors'
 import PropTypes from 'prop-types'
-import { getNotification } from '../redux/selectors/commonSelectors'
-import { clearNotification } from '../redux/actions'
+import { clearNotification, toggleSidebar } from '../redux/actions'
 import Layout from '../components/Layout'
 
 const LayoutContainer = props => <Layout {...props} />
@@ -21,7 +22,8 @@ LayoutContainer.propTypes = {
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
   isAuthenticated: getIsAuthenticated(state),
-  notification: getNotification(state)
+  notification: getNotification(state),
+  isSidebarOpen: getIsSidebarOpen(state)
 })
 
 // Connect can break router , the fix is withRouter: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
@@ -31,7 +33,8 @@ export default withRouter(
     {
       goto,
       logout,
-      clearNotification
+      clearNotification,
+      toggleSidebar
     }
   )(LayoutContainer)
 )
