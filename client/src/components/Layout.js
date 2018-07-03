@@ -19,6 +19,7 @@ const Layout = ({
   isSidebarOpen,
   goto,
   currentUser,
+  isOnEpisodePage,
   classes: s
 }) => {
   return (
@@ -34,7 +35,7 @@ const Layout = ({
         className={s.drawer}
       >
         <DrawerNav toggleSidebar={toggleSidebar} goto={goto} />
-        <TocList />
+        {isOnEpisodePage && <TocList />}
       </Drawer>
       <Snackbar
         anchorOrigin={{
@@ -57,7 +58,8 @@ Layout.propTypes = {
   notification: PropTypes.string.isRequired,
   clearNotification: PropTypes.func.isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
-  toggleSidebar: PropTypes.func.isRequired
+  toggleSidebar: PropTypes.func.isRequired,
+  isOnEpisodePage: PropTypes.bool.isRequired
 }
 
 export default withStyles(styles)(Layout)

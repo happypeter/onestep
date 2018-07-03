@@ -4,7 +4,9 @@ import {
   CLEAR_NOTIFICATION,
   OPEN_SIDEBAR,
   CLOSE_SIDEBAR,
-  GOTO
+  GOTO,
+  SET_ON_EPISODE_PAGE,
+  CLEAR_ON_EPISODE_PAGE
 } from '../../constants/actionTypes/commonActionTypes.js'
 import { getIsSidebarOpen } from '../selectors/commonSelectors'
 
@@ -29,4 +31,12 @@ export const toggleSidebar = () => (dispatch, getState) => {
   } else {
     dispatch({ type: CLOSE_SIDEBAR })
   }
+}
+
+export const setOnEpisodePage = () => dispatch => {
+  dispatch({ type: SET_ON_EPISODE_PAGE })
+}
+
+export const clearOnEpisodePage = () => dispatch => {
+  dispatch({ type: CLEAR_ON_EPISODE_PAGE })
 }

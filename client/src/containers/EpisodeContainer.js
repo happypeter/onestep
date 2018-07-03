@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
+import { setOnEpisodePage, clearOnEpisodePage } from '../redux/actions'
 
 import { getEpisode } from '../redux/selectors/commonSelectors.js'
 
@@ -56,6 +57,7 @@ class EpisodeContainer extends Component {
         episodeName={episodeName}
         episodes={this.props.episodes}
         videoJsOptions={EpisodeVideoJsOptions}
+        {...this.props}
       />
     )
   }
@@ -69,6 +71,8 @@ export default connect(
   mapStateToProps,
   {
     fetchEpisode,
-    fetchCourse
+    fetchCourse,
+    setOnEpisodePage,
+    clearOnEpisodePage
   }
 )(EpisodeContainer)

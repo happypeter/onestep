@@ -7,7 +7,8 @@ import {
   getCurrentUser,
   getIsAuthenticated,
   getNotification,
-  getIsSidebarOpen
+  getIsSidebarOpen,
+  getIsOnEpisodePage
 } from '../redux/selectors/commonSelectors'
 import PropTypes from 'prop-types'
 import { clearNotification, toggleSidebar } from '../redux/actions'
@@ -23,7 +24,8 @@ const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
   isAuthenticated: getIsAuthenticated(state),
   notification: getNotification(state),
-  isSidebarOpen: getIsSidebarOpen(state)
+  isSidebarOpen: getIsSidebarOpen(state),
+  isOnEpisodePage: getIsOnEpisodePage(state)
 })
 
 // Connect can break router , the fix is withRouter: https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md

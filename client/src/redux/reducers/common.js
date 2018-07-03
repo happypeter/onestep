@@ -3,7 +3,9 @@ import {
   SHOW_NOTIFICATION,
   CLEAR_NOTIFICATION,
   OPEN_SIDEBAR,
-  CLOSE_SIDEBAR
+  CLOSE_SIDEBAR,
+  SET_ON_EPISODE_PAGE,
+  CLEAR_ON_EPISODE_PAGE
 } from '../../constants/actionTypes/commonActionTypes.js'
 
 const notification = (state = '', action) => {
@@ -28,7 +30,19 @@ const isSidebarOpen = (state = false, action) => {
   }
 }
 
+const isOnEpisodePage = (state = false, action) => {
+  switch (action.type) {
+    case SET_ON_EPISODE_PAGE:
+      return true
+    case CLEAR_ON_EPISODE_PAGE:
+      return false
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   notification,
-  isSidebarOpen
+  isSidebarOpen,
+  isOnEpisodePage
 })

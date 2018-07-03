@@ -6,6 +6,14 @@ import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 
 class Episode extends React.Component {
+  componentDidMount() {
+    this.props.setOnEpisodePage()
+  }
+
+  componentWillUnmount() {
+    this.props.clearOnEpisodePage()
+  }
+
   render() {
     const {
       videoJsOptions,
@@ -31,7 +39,9 @@ class Episode extends React.Component {
 }
 
 Episode.propTypes = {
-  episodeItem: PropTypes.object.isRequired
+  episodeItem: PropTypes.object.isRequired,
+  clearOnEpisodePage: PropTypes.func.isRequired,
+  setOnEpisodePage: PropTypes.func.isRequired
 }
 
 export default Episode

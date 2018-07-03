@@ -50,3 +50,6 @@ export const getIsMember = state =>
 
 export const getIsSidebarOpen = state =>
   (state.common && state.common.isSidebarOpen) || false
+
+export const getIsOnEpisodePage = state =>
+  (state.common && state.common.isOnEpisodePage) || false
