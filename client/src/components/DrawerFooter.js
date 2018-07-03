@@ -98,7 +98,7 @@ class DrawerFooter extends React.Component {
             onClick={this.handlePopoverOpen}
           />
         </IconButton>
-        <Typography variant="title" c>
+        <Typography variant="title">
           {isAuthenticated ? ` Hello, ${currentUser.username}` : 'Good Day!'}
         </Typography>
         <Menu
