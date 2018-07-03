@@ -13,10 +13,6 @@ const Episode = ({
 }) => (
   <div>
     <Container>
-      <LeftWrap>
-        <CourseName to={`/${courseName}`}>{courseUid}</CourseName>
-      </LeftWrap>
-
       <RightWrap>
         <div>
           <VideoTitle>{uid}</VideoTitle>
@@ -46,20 +42,6 @@ const Container = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
   }
-`
-
-const LeftWrap = styled.div`
-  margin-bottom: 32px;
-  @media (min-width: 768px) {
-    width: 230px;
-    flex-shrink: 0;
-  }
-`
-
-const CourseName = styled(Link)`
-  font-size: 18px;
-  color: #00bcd4;
-  text-decoration: none;
 `
 
 const RightWrap = styled.div`
