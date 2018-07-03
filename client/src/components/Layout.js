@@ -6,8 +6,9 @@ import classNames from 'classnames'
 import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
 import TocList from '../containers/TocListContainer'
-import DrawerNav from './DrawerNav'
+import DrawerHeader from './DrawerHeader'
 import { DRAWER_WIDTH, DRAWER_WIDTH_XS } from '../constants/GlobalStyle'
+import DrawerFooter from '../containers/DrawerFooterContainer'
 
 const styles = theme => ({
   root: {
@@ -39,10 +40,16 @@ const styles = theme => ({
   },
   drawer: {
     position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
     width: DRAWER_WIDTH,
     [theme.breakpoints.down('md')]: {
       width: DRAWER_WIDTH_XS
     }
+  },
+  main: {
+    flexGrow: 1,
+    border: '2px solid red'
   }
 })
 
@@ -72,8 +79,10 @@ const Layout = ({
           paper: s.drawer
         }}
       >
-        <DrawerNav toggleSidebar={toggleSidebar} goto={goto} />
-        {isOnEpisodePage && <TocList />}
+        <DrawerHeader toggleSidebar={toggleSidebar} goto={goto} />
+        <div className={s.main}>{isOnEpisodePage && <TocList />}</div>
+
+        <DrawerFooter />
       </Drawer>
       <Snackbar
         anchorOrigin={{

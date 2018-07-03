@@ -19,7 +19,7 @@ const notification = (state = '', action) => {
   }
 }
 
-const isSidebarOpen = (state = false, action) => {
+const isSidebarOpen = (state = true, action) => {
   switch (action.type) {
     case OPEN_SIDEBAR:
       return true

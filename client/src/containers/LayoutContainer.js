@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { logout } from '../redux/actions/authAction'
 import { goto } from '../redux/actions'
 import {
   getCurrentUser,
@@ -34,7 +33,6 @@ export default withRouter(
     mapStateToProps,
     {
       goto,
-      logout,
       clearNotification,
       toggleSidebar
     }
