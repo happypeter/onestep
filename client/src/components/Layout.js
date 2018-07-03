@@ -49,7 +49,7 @@ const styles = theme => ({
   },
   main: {
     flexGrow: 1,
-    border: '2px solid red'
+    overflow: 'auto'
   }
 })
 
