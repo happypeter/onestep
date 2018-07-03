@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from '../Footer/Footer'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import TextField from '@material-ui/core/TextField'
 import { Form, ActionButton, Row, Error } from '../oauth/FormStyle'

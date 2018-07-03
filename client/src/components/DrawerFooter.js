@@ -1,8 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  btnWrap: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
+})
 
 class DrawerFooter extends React.Component {
   state = {
@@ -27,11 +38,19 @@ class DrawerFooter extends React.Component {
     this.setState({ anchorEl: null })
   }
   render() {
-    const { currentUser, isAuthenticated } = this.props
+    const { currentUser, isAuthenticated, goto, classes: s } = this.props
     const LoginButtons = (
-      <div>
-        <Link to="/signup">注册</Link>
-        <Link to="/login">登录</Link>
+      <div className={s.btnWrap}>
+        <Button
+          onClick={() => goto('/signup')}
+          variant="outlined"
+          color="primary"
+        >
+          注册
+        </Button>
+        <Button onClick={() => goto('/login')} variant="raised" color="primary">
+          登录
+        </Button>
       </div>
     )
     const { anchorEl } = this.state
@@ -50,8 +69,16 @@ class DrawerFooter extends React.Component {
         </Menu>
       </div>
     )
-    return <div>{isAuthenticated ? LogoutButtons : LoginButtons}</div>
+    return (
+      <Toolbar className={s.toolbar}>
+        {isAuthenticated ? LogoutButtons : LoginButtons}
+      </Toolbar>
+    )
   }
 }
 
-export default DrawerFooter
+DrawerFooter.propTypes = {
+  goto: PropTypes.func.isRequired
+}
+
+export default withStyles(styles)(DrawerFooter)
