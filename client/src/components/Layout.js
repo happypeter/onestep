@@ -11,10 +11,12 @@ import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    overflow: 'hidden'
   },
   content: {
     marginLeft: -DRAWER_WIDTH,
+    flexShrink: 0,
     height: '100vh',
     overflow: 'auto',
     flexGrow: 1,
@@ -26,11 +28,11 @@ const styles = theme => ({
     })
   },
   contentShift: {
+    marginLeft: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: 0
+    })
   },
   drawer: {
     position: 'relative',
