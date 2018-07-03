@@ -5,26 +5,30 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 
-const Episode = ({
-  videoJsOptions,
-  episodeItem: { markdown, uid, courseUid },
-  courseName
-}) => (
-  <div>
-    <Container>
-      <RightWrap>
-        <div>
-          <VideoTitle>{uid}</VideoTitle>
-          <VideoPlayer {...videoJsOptions} />
-        </div>
+class Episode extends React.Component {
+  render() {
+    const {
+      videoJsOptions,
+      episodeItem: { markdown, uid }
+    } = this.props
 
-        <EpisodeDoc doc={markdown} />
-      </RightWrap>
-    </Container>
+    return (
+      <div>
+        <Container>
+          <RightWrap>
+            <div>
+              <VideoTitle>{uid}</VideoTitle>
+              <VideoPlayer {...videoJsOptions} />
+            </div>
 
-    <Footer />
-  </div>
-)
+            <EpisodeDoc doc={markdown} />
+          </RightWrap>
+        </Container>
+        <Footer />
+      </div>
+    )
+  }
+}
 
 Episode.propTypes = {
   episodeItem: PropTypes.object.isRequired

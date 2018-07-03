@@ -3,15 +3,9 @@ import { connect } from 'react-redux'
 import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
 
 import { getEpisode } from '../redux/selectors/commonSelectors.js'
-import LoadingComponent from '../components/common/Loading'
-import Loadable from 'react-loadable'
-import { videoRepo } from '../config/config'
 
-const AsyncEpisode = Loadable({
-  loader: () => import('../components/Episode/Episode'),
-  loading: LoadingComponent,
-  delay: 300
-})
+import { videoRepo } from '../config/config'
+import Episode from '../components/Episode/Episode'
 
 const getVLink = (courseUid, epUid) => `${videoRepo}/${courseUid}/${epUid}.mp4`
 
@@ -32,8 +26,7 @@ class EpisodeContainer extends Component {
   }
 
   render() {
-    const { isFetching, item } = this.props.episode
-    if (isFetching) return <LoadingComponent />
+    const { item } = this.props.episode
 
     const { episodeName, courseName } = this.props.match.params
     // VideoJsOptions for this Course
@@ -57,7 +50,7 @@ class EpisodeContainer extends Component {
     }
 
     return (
-      <AsyncEpisode
+      <Episode
         episodeItem={item}
         courseName={courseName}
         episodeName={episodeName}

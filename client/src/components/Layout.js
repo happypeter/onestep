@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
 import TocList from '../containers/TocListContainer'
+import DrawerNav from './DrawerNav'
 
 const styles = () => ({
   root: {}
@@ -16,17 +17,23 @@ const Layout = ({
   clearNotification,
   toggleSidebar,
   isSidebarOpen,
-  classes: s,
-  ...props
+  goto,
+  currentUser,
+  classes: s
 }) => {
   return (
     <div>
-      <Header {...props} toggleSidebar={toggleSidebar} />
+      <Header
+        currentUser={currentUser}
+        goto={goto}
+        toggleSidebar={toggleSidebar}
+      />
       <Drawer
         ModalProps={{ BackdropProps: { invisible: true } }}
         open={isSidebarOpen}
         className={s.drawer}
       >
+        <DrawerNav toggleSidebar={toggleSidebar} goto={goto} />
         <TocList />
       </Drawer>
       <Snackbar
