@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
-export default ({ header, section, courseName, episodeName }) => (
+export default ({ section, courseName, episodeName }) => (
   <div>
     {section.map(t => (
       <EpisodeLink key={t.link} to={`/${courseName}/${t.link}`}>

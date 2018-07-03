@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
 
-import {
-  getEpisode,
-  getCourseTocContent
-} from '../redux/selectors/commonSelectors.js'
+import { getEpisode } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
 
@@ -72,8 +69,7 @@ class EpisodeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  episode: getEpisode(state),
-  episodes: getCourseTocContent(state)
+  episode: getEpisode(state)
 })
 
 export default connect(

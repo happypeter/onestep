@@ -42,7 +42,6 @@ class Header extends Component {
       </SideButtonsWrap>
     )
     const { anchorEl } = this.state
-    console.log('anchorEl', anchorEl)
     const LogoutButtons = (
       <SideButtonsWrap>
         <UserIcon onClick={this.handlePopoverOpen} />

@@ -2,7 +2,6 @@ import React from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
-import SideCatalogue from './SideCatalogue'
 import { Link } from 'react-router-dom'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
@@ -10,23 +9,12 @@ import PropTypes from 'prop-types'
 const Episode = ({
   videoJsOptions,
   episodeItem: { markdown, uid, courseUid },
-  episodes,
-  courseName,
-  episodeName
+  courseName
 }) => (
   <div>
     <Container>
       <LeftWrap>
         <CourseName to={`/${courseName}`}>{courseUid}</CourseName>
-        {episodes.map((item, i) => (
-          <SideCatalogue
-            key={i}
-            header={item.header}
-            section={item.section}
-            courseName={courseName}
-            episodeName={episodeName}
-          />
-        ))}
       </LeftWrap>
 
       <RightWrap>
@@ -44,7 +32,7 @@ const Episode = ({
 )
 
 Episode.propTypes = {
-  episodes: PropTypes.array.isRequired
+  episodeItem: PropTypes.object.isRequired
 }
 
 export default Episode
