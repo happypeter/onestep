@@ -30,18 +30,17 @@ export function fetchCourseIfNeeded(data) {
   }
 }
 
-export function fetchCourse(data) {
-  return dispatch => {
-    dispatch({ type: types.FETCH_COURSE_STARTED })
-    axios
-      .get(`${config.api}/courses/${data.courseName}`)
-      .then(res => {
-        dispatch({ type: types.FETCH_COURSE_SUCCESS, course: res.data.course })
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
+export const fetchCourse = courseName => dispatch => {
+  dispatch({ type: types.FETCH_COURSE_STARTED })
+  console.log('courseName...', courseName)
+  axios
+    .get(`${config.api}/courses/${courseName}`)
+    .then(res => {
+      dispatch({ type: types.FETCH_COURSE_SUCCESS, course: res.data.course })
+    })
+    .catch(error => {
+      handleError(error, dispatch)
+    })
 }
 
 export function fetchEpisode(data) {

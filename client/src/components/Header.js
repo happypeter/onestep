@@ -16,6 +16,7 @@ import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 const styles = theme => ({
   appBar: {
     position: 'absolute',
+    background: '#fff',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen

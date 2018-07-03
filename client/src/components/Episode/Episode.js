@@ -8,6 +8,8 @@ import PropTypes from 'prop-types'
 class Episode extends React.Component {
   componentDidMount() {
     this.props.setOnEpisodePage()
+    let { courseName } = this.props.match.params
+    this.props.fetchCourse(courseName)
   }
 
   componentWillUnmount() {

@@ -14,7 +14,7 @@ class EpisodeContainer extends Component {
   componentDidMount() {
     const { courseName, episodeName } = this.props.match.params
     this.props.fetchEpisode({ courseName, episodeName })
-    this.props.fetchCourse({ courseName })
+    this.props.fetchCourse(courseName)
   }
 
   componentWillReceiveProps() {
@@ -30,8 +30,8 @@ class EpisodeContainer extends Component {
     const { item } = this.props.episode
 
     const { episodeName, courseName } = this.props.match.params
-    // VideoJsOptions for this Course
 
+    // VideoJsOptions for this Course
     const EpisodeVideoJsOptions = {
       autoplay: false,
       controls: true,
@@ -55,7 +55,6 @@ class EpisodeContainer extends Component {
         episodeItem={item}
         courseName={courseName}
         episodeName={episodeName}
-        episodes={this.props.episodes}
         videoJsOptions={EpisodeVideoJsOptions}
         {...this.props}
       />

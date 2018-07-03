@@ -17,7 +17,7 @@ export const getNotification = state => state.common.notification || ''
 export const getProfile = state => state.profile
 
 export const getCourseTocContent = state => {
-  return state.currentCourse.info.content
+  return (state.currentCourse && state.currentCourse.info.content) || []
 }
 
 export const getCurrentCourseUid = state => {

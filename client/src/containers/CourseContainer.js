@@ -23,7 +23,7 @@ const AsyncCourse = Loadable({
 class CourseContainer extends Component {
   componentWillMount() {
     let { courseName } = this.props.match.params
-    this.props.fetchCourse({ courseName })
+    this.props.fetchCourse(courseName)
   }
 
   render() {
