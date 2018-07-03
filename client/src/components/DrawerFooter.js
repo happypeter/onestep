@@ -6,13 +6,21 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   btnWrap: {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between'
-  }
+  },
+  userWrap: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    color: theme.palette.primary.main
+  },
+  welcome: {}
 })
 
 class DrawerFooter extends React.Component {
@@ -55,8 +63,11 @@ class DrawerFooter extends React.Component {
     )
     const { anchorEl } = this.state
     const LogoutButtons = (
-      <div>
+      <div className={s.userWrap}>
         <UserIcon onClick={this.handlePopoverOpen} />
+        <Typography variant="title" className={s.welcome}>
+          Hello, {currentUser.username}
+        </Typography>
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}

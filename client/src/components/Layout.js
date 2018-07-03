@@ -86,8 +86,8 @@ const Layout = ({
       </Drawer>
       <Snackbar
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left'
+          vertical: 'bottom',
+          horizontal: 'right'
         }}
         variant="error"
         open={Boolean(notification)}

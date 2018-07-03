@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import MemberShip from './MemberShip'
@@ -34,12 +33,7 @@ class Profile extends Component {
       </div>
     )
 
-    return (
-      <Wrap>
-        {pageContent}
-        <Footer />
-      </Wrap>
-    )
+    return <Wrap>{pageContent}</Wrap>
   }
 }
 
