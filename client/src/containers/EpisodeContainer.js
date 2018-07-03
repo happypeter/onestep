@@ -5,6 +5,7 @@ import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
 import { getEpisode } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
+import { videoRepo } from '../config/config'
 
 const AsyncEpisode = Loadable({
   loader: () => import('../components/Episode/Episode'),
@@ -12,8 +13,7 @@ const AsyncEpisode = Loadable({
   delay: 300
 })
 
-const getVLink = (courseUid, epUid) =>
-  `https://haoqicat-1253322599.costj.myqcloud.com/${courseUid}/${epUid}.mp4`
+const getVLink = (courseUid, epUid) => `${videoRepo}/${courseUid}/${epUid}.mp4`
 
 class EpisodeContainer extends Component {
   componentDidMount() {

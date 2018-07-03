@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { videoRepo } from '../../config/config'
 
-const getCoverLink = uid =>
-  `https://haoqicat-1253322599.costj.myqcloud.com/posters/${uid}.png`
+const getCoverLink = uid => `${videoRepo}/posters/${uid}.png`
 
 export default ({ uid, title }) => (
   <CourseCard to={`/${uid}`}>

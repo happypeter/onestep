@@ -2,7 +2,6 @@ import React from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
-import { Link } from 'react-router-dom'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 
