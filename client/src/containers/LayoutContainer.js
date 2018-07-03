@@ -9,15 +9,10 @@ import {
   getIsSidebarOpen,
   getIsOnEpisodePage
 } from '../redux/selectors/commonSelectors'
-import PropTypes from 'prop-types'
 import { clearNotification, toggleSidebar } from '../redux/actions'
 import Layout from '../components/Layout'
 
 const LayoutContainer = props => <Layout {...props} />
-
-LayoutContainer.propTypes = {
-  logout: PropTypes.func.isRequired
-}
 
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),

@@ -19,7 +19,6 @@ export const Container = styled.div`
   margin: 32px auto;
   width: 100%;
   max-width: 390px;
-  box-shadow: 2px 2px 5px #888888;
 `
 
 export const Title = styled.div`

@@ -12,6 +12,7 @@ import {
 } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
 import BindPhoneNote from './BindPhoneNote'
+import Paper from '@material-ui/core/Paper'
 
 class Login extends Component {
   state = {
@@ -50,28 +51,30 @@ class Login extends Component {
         <Content>
           <BindPhoneNote />
           <Container>
-            <Title>登录</Title>
-            <Form onSubmit={this.handleSubmit}>
-              <TextField
-                style={{ width: '100%' }}
-                value={account}
-                onChange={this.handleChange.bind(this, 'account')}
-                margin="dense"
-                label="用户名或手机号"
-                helperText={<Error>{errors.account}</Error>}
-              />
+            <Paper>
+              <Title>登录</Title>
+              <Form onSubmit={this.handleSubmit}>
+                <TextField
+                  style={{ width: '100%' }}
+                  value={account}
+                  onChange={this.handleChange.bind(this, 'account')}
+                  margin="dense"
+                  label="用户名或手机号"
+                  helperText={<Error>{errors.account}</Error>}
+                />
 
-              <TextField
-                style={{ width: '100%' }}
-                value={password}
-                onChange={this.handleChange.bind(this, 'password')}
-                margin="dense"
-                label="密码"
-                type="password"
-                helperText={<Error>{errors.password}</Error>}
-              />
-              <ActionButton type="submit">登录</ActionButton>
-            </Form>
+                <TextField
+                  style={{ width: '100%' }}
+                  value={password}
+                  onChange={this.handleChange.bind(this, 'password')}
+                  margin="dense"
+                  label="密码"
+                  type="password"
+                  helperText={<Error>{errors.password}</Error>}
+                />
+                <ActionButton type="submit">登录</ActionButton>
+              </Form>
+            </Paper>
           </Container>
         </Content>
         <Footer />
