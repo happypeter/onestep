@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
+import Toobar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import classNames from 'classnames'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -88,10 +89,12 @@ class Header extends Component {
       <AppBar
         className={classNames(s.appBar, { [s.appBarShift]: isSidebarOpen })}
       >
-        <IconButton onClick={toggleSidebar}>
-          <MenuIcon />
-        </IconButton>
-        {isAuthenticated ? LogoutButtons : LoginButtons}
+        <Toobar>
+          <IconButton onClick={toggleSidebar}>
+            <MenuIcon />
+          </IconButton>
+          {isAuthenticated ? LogoutButtons : LoginButtons}
+        </Toobar>
       </AppBar>
     )
   }

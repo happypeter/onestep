@@ -15,6 +15,8 @@ const styles = theme => ({
   },
   content: {
     marginLeft: -DRAWER_WIDTH,
+    height: '100vh',
+    overflow: 'auto',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
