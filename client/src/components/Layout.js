@@ -6,9 +6,13 @@ import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
 import TocList from '../containers/TocListContainer'
 import DrawerNav from './DrawerNav'
+import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 
 const styles = () => ({
-  root: {}
+  main: {
+    border: '2px solid red',
+    marginLeft: DRAWER_WIDTH
+  }
 })
 
 const Layout = ({
@@ -28,6 +32,7 @@ const Layout = ({
         currentUser={currentUser}
         goto={goto}
         toggleSidebar={toggleSidebar}
+        isSidebarOpen={isSidebarOpen}
       />
       <Drawer
         ModalProps={{ BackdropProps: { invisible: true } }}
@@ -48,7 +53,7 @@ const Layout = ({
         message={notification}
         onClose={clearNotification}
       />
-      {children}
+      <div className={s.main}>{children}</div>
     </div>
   )
 }

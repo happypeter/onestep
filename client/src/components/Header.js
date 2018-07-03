@@ -3,10 +3,33 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import { withStyles } from '@material-ui/core/styles'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import PropTypes from 'prop-types'
+import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
+import classNames from 'classnames'
 import MenuIcon from '@material-ui/icons/Menu'
+import { DRAWER_WIDTH } from '../constants/GlobalStyle'
+
+const styles = theme => ({
+  appBar: {
+    position: 'absolute',
+    border: '2px solid green',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  appBarShift: {
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginLeft: DRAWER_WIDTH
+  }
+})
 
 class Header extends Component {
   state = {
@@ -32,7 +55,12 @@ class Header extends Component {
   }
 
   render() {
-    const { currentUser, isAuthenticated, toggleSidebar } = this.props
+    const {
+      currentUser,
+      isAuthenticated,
+      toggleSidebar,
+      classes: s
+    } = this.props
     const LoginButtons = (
       <SideButtonsWrap>
         <ButtonLink to="/signup">注册</ButtonLink>
@@ -57,37 +85,23 @@ class Header extends Component {
     )
 
     return (
-      <Wrap>
-        <HeaderWrap>
-          <IconButton onClick={toggleSidebar}>
-            <MenuIcon />
-          </IconButton>
-          {isAuthenticated ? LogoutButtons : LoginButtons}
-        </HeaderWrap>
-      </Wrap>
+      <AppBar className={classNames(s.appBar, s.appBarShift)}>
+        <IconButton onClick={toggleSidebar}>
+          <MenuIcon />
+        </IconButton>
+        {isAuthenticated ? LogoutButtons : LoginButtons}
+      </AppBar>
     )
   }
 }
 
 Header.propTypes = {
   goto: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired
+  toggleSidebar: PropTypes.func.isRequired,
+  isSidebarOpen: PropTypes.bool.isRequired
 }
 
-export default Header
-
-const Wrap = styled.div`
-  background-color: #ffffff;
-`
-const HeaderWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-`
+export default withStyles(styles)(Header)
 
 const SideButtonsWrap = styled.div`
   display: flex;
