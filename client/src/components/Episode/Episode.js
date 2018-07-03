@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 class Episode extends React.Component {
   componentDidMount() {
     const { width, openSidebar } = this.props
-    if (width === 'lg') {
+    if (width === 'lg' || width === 'xl') {
       openSidebar()
     }
     this.props.setOnEpisodePage()

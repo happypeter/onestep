@@ -7,7 +7,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
 import TocList from '../containers/TocListContainer'
 import DrawerNav from './DrawerNav'
-import { DRAWER_WIDTH } from '../constants/GlobalStyle'
+import { DRAWER_WIDTH, DRAWER_WIDTH_XS } from '../constants/GlobalStyle'
 
 const styles = theme => ({
   root: {
@@ -16,6 +16,9 @@ const styles = theme => ({
   },
   content: {
     marginLeft: -DRAWER_WIDTH,
+    [theme.breakpoints.down('md')]: {
+      marginLeft: -DRAWER_WIDTH_XS
+    },
     flexShrink: 0,
     height: '100vh',
     overflow: 'auto',
@@ -36,7 +39,10 @@ const styles = theme => ({
   },
   drawer: {
     position: 'relative',
-    width: DRAWER_WIDTH
+    width: DRAWER_WIDTH,
+    [theme.breakpoints.down('md')]: {
+      width: DRAWER_WIDTH_XS
+    }
   }
 })
 
