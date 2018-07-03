@@ -13,7 +13,6 @@ const styles = () => ({
     marginLeft: DRAWER_WIDTH
   },
   drawer: {
-    border: '2px solid red',
     position: 'relative',
     width: DRAWER_WIDTH
   }
@@ -40,8 +39,7 @@ const Layout = ({
       />
       <Drawer
         variant="persistent"
-        // open={isSidebarOpen}
-        open
+        open={isSidebarOpen}
         classes={{
           paper: s.drawer
         }}

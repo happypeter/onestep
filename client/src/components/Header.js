@@ -15,7 +15,6 @@ import { DRAWER_WIDTH } from '../constants/GlobalStyle'
 const styles = theme => ({
   appBar: {
     position: 'absolute',
-    border: '2px solid green',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -59,7 +58,8 @@ class Header extends Component {
       currentUser,
       isAuthenticated,
       toggleSidebar,
-      classes: s
+      classes: s,
+      isSidebarOpen
     } = this.props
     const LoginButtons = (
       <SideButtonsWrap>
@@ -85,7 +85,9 @@ class Header extends Component {
     )
 
     return (
-      <AppBar className={classNames(s.appBar, s.appBarShift)}>
+      <AppBar
+        className={classNames(s.appBar, { [s.appBarShift]: isSidebarOpen })}
+      >
         <IconButton onClick={toggleSidebar}>
           <MenuIcon />
         </IconButton>
