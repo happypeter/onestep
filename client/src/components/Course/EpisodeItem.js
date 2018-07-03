@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ChapterIcon from '../../assets/ChapterIcon.svg'
-import EpisodeIcon from '../../assets/EpisodeIcon.svg'
 
 export default ({ header, section, courseName, isAccessible }) => (
   <EpisodesWrap>
@@ -14,14 +13,12 @@ export default ({ header, section, courseName, isAccessible }) => (
       if (isAccessible) {
         return (
           <EpisodeLink key={index} to={`/${courseName}/${t.link}`}>
-            <EpImg src={EpisodeIcon} alt={'EpisodeIcon'} />
             <EpisodeTitle>{t.title}</EpisodeTitle>
           </EpisodeLink>
         )
       }
       return (
         <EpNoLink key={index}>
-          <EpImg src={EpisodeIcon} alt={'EpisodeIcon'} />
           <EpisodeTitle>{t.title}</EpisodeTitle>
         </EpNoLink>
       )
@@ -62,10 +59,6 @@ const EpisodeLink = styled(Link)`
   :hover {
     border-bottom: 1px solid #00bcd4;
   }
-`
-
-const EpImg = styled.img`
-  width: 20px;
 `
 
 const EpNoLink = styled.div`

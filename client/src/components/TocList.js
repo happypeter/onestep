@@ -2,6 +2,8 @@ import React from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import PlayerIcon from '@material-ui/icons/PlayArrow'
 import PropTypes from 'prop-types'
 
 class TocList extends React.Component {
@@ -19,6 +21,9 @@ class TocList extends React.Component {
           key={t.link}
           onClick={() => this.handleItemClick(`/${currentCourseUid}/${t.link}`)}
         >
+          <ListItemIcon>
+            <PlayerIcon />
+          </ListItemIcon>
           <ListItemText>{t.title}</ListItemText>
         </ListItem>
       ))
