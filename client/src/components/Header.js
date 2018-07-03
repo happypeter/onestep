@@ -8,8 +8,6 @@ import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
-// TODO: 仿照 gitbook 的用户体验，点按钮，抽屉中显示课程目录
-
 class Header extends Component {
   state = {
     anchorEl: null
@@ -61,8 +59,8 @@ class Header extends Component {
     return (
       <Wrap>
         <HeaderWrap>
-          <IconButton>
-            <MenuIcon onClick={toggleSidebar} />
+          <IconButton onClick={toggleSidebar}>
+            <MenuIcon />
           </IconButton>
           {isAuthenticated ? LogoutButtons : LoginButtons}
         </HeaderWrap>
