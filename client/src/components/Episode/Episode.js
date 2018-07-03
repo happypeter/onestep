@@ -2,13 +2,18 @@ import React from 'react'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+import withWidth from '@material-ui/core/withWidth'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 
 class Episode extends React.Component {
   componentDidMount() {
+    const { width, openSidebar } = this.props
+    if (width === 'lg') {
+      openSidebar()
+    }
     this.props.setOnEpisodePage()
-    let { courseName } = this.props.match.params
+    const { courseName } = this.props.match.params
     this.props.fetchCourse(courseName)
   }
 
@@ -43,10 +48,11 @@ class Episode extends React.Component {
 Episode.propTypes = {
   episodeItem: PropTypes.object.isRequired,
   clearOnEpisodePage: PropTypes.func.isRequired,
-  setOnEpisodePage: PropTypes.func.isRequired
+  setOnEpisodePage: PropTypes.func.isRequired,
+  openSidebar: PropTypes.func.isRequired
 }
 
-export default Episode
+export default withWidth()(Episode)
 const Container = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
-import { setOnEpisodePage, clearOnEpisodePage } from '../redux/actions'
+import {
+  setOnEpisodePage,
+  clearOnEpisodePage,
+  openSidebar
+} from '../redux/actions'
 
 import { getEpisode } from '../redux/selectors/commonSelectors.js'
 
@@ -72,6 +76,7 @@ export default connect(
     fetchEpisode,
     fetchCourse,
     setOnEpisodePage,
-    clearOnEpisodePage
+    clearOnEpisodePage,
+    openSidebar
   }
 )(EpisodeContainer)

@@ -33,6 +33,10 @@ export const toggleSidebar = () => (dispatch, getState) => {
   }
 }
 
+export const openSidebar = () => dispatch => {
+  dispatch({ type: OPEN_SIDEBAR })
+}
+
 export const setOnEpisodePage = () => dispatch => {
   dispatch({ type: SET_ON_EPISODE_PAGE })
 }
