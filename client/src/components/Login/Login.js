@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
-import { Content, Title, Form, ActionButton, Error } from '../oauth/FormStyle'
+import { Form, ActionButton, Error } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
-import Paper from '@material-ui/core/Paper'
 import Layout from '../AuthFormLayout'
 
 class Login extends Component {
@@ -38,34 +37,29 @@ class Login extends Component {
   render() {
     const { account, password, errors } = this.state
     return (
-      <Content>
-        <Layout notice>
-          <Paper>
-            <Title>登录</Title>
-            <Form onSubmit={this.handleSubmit}>
-              <TextField
-                style={{ width: '100%' }}
-                value={account}
-                onChange={this.handleChange.bind(this, 'account')}
-                margin="dense"
-                label="用户名或手机号"
-                helperText={<Error>{errors.account}</Error>}
-              />
+      <Layout title="login" notice>
+        <Form onSubmit={this.handleSubmit}>
+          <TextField
+            style={{ width: '100%' }}
+            value={account}
+            onChange={this.handleChange.bind(this, 'account')}
+            margin="dense"
+            label="用户名或手机号"
+            helperText={<Error>{errors.account}</Error>}
+          />
 
-              <TextField
-                style={{ width: '100%' }}
-                value={password}
-                onChange={this.handleChange.bind(this, 'password')}
-                margin="dense"
-                label="密码"
-                type="password"
-                helperText={<Error>{errors.password}</Error>}
-              />
-              <ActionButton type="submit">登录</ActionButton>
-            </Form>
-          </Paper>
-        </Layout>
-      </Content>
+          <TextField
+            style={{ width: '100%' }}
+            value={password}
+            onChange={this.handleChange.bind(this, 'password')}
+            margin="dense"
+            label="密码"
+            type="password"
+            helperText={<Error>{errors.password}</Error>}
+          />
+          <ActionButton type="submit">登录</ActionButton>
+        </Form>
+      </Layout>
     )
   }
 }
