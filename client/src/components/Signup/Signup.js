@@ -2,18 +2,11 @@ import React, { Component } from 'react'
 import Footer from '../Footer/Footer'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import TextField from '@material-ui/core/TextField'
-import {
-  Wrap,
-  Content,
-  Container,
-  Title,
-  Form,
-  ActionButton,
-  Row,
-  Error
-} from '../oauth/FormStyle'
+import { Form, ActionButton, Row, Error } from '../oauth/FormStyle'
 import keys from 'lodash.keys'
 import isEmpty from 'lodash.isempty'
+import Layout from '../AuthFormLayout'
+
 const WAIT_INTERVAL = 1000
 
 class Signup extends Component {
@@ -131,18 +124,12 @@ class Signup extends Component {
       )
     })
     return (
-      <Wrap>
-        <Content>
-          <Container>
-            <Title>注册</Title>
-            <Form onSubmit={this.handleSubmit}>
-              {formItems}
-              <ActionButton type="submit">注册</ActionButton>
-            </Form>
-          </Container>
-        </Content>
-        <Footer />
-      </Wrap>
+      <Layout title="signup">
+        <Form onSubmit={this.handleSubmit}>
+          {formItems}
+          <ActionButton type="submit">注册</ActionButton>
+        </Form>
+      </Layout>
     )
   }
 }
