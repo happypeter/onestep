@@ -9,7 +9,7 @@ import {
   getIsSidebarOpen,
   getIsOnEpisodePage
 } from '../redux/selectors/commonSelectors'
-import { clearNotification, toggleSidebar } from '../redux/actions'
+import { clearNotification, toggleDrawer } from '../redux/actions'
 import Layout from '../components/Layout/'
 
 const LayoutContainer = props => <Layout {...props} />
@@ -29,7 +29,7 @@ export default withRouter(
     {
       goto,
       clearNotification,
-      toggleSidebar
+      toggleDrawer
     }
   )(LayoutContainer)
 )

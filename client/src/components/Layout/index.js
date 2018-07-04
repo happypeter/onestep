@@ -57,7 +57,7 @@ const Layout = ({
   notification,
   children,
   clearNotification,
-  toggleSidebar,
+  toggleDrawer,
   isSidebarOpen,
   goto,
   currentUser,
@@ -69,7 +69,7 @@ const Layout = ({
       <Header
         currentUser={currentUser}
         goto={goto}
-        toggleSidebar={toggleSidebar}
+        toggleDrawer={toggleDrawer}
         isSidebarOpen={isSidebarOpen}
       />
       <Drawer
@@ -79,7 +79,7 @@ const Layout = ({
           paper: s.drawer
         }}
       >
-        <DrawerHeader toggleSidebar={toggleSidebar} goto={goto} />
+        <DrawerHeader toggleDrawer={toggleDrawer} goto={goto} />
         <div className={s.main}>{isOnEpisodePage && <TocList />}</div>
 
         <DrawerFooter />
@@ -111,7 +111,7 @@ Layout.propTypes = {
   notification: PropTypes.string.isRequired,
   clearNotification: PropTypes.func.isRequired,
   isSidebarOpen: PropTypes.bool.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
   isOnEpisodePage: PropTypes.bool.isRequired
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import TocList from '../components/Layout/TocList'
 import { connect } from 'react-redux'
-import { toggleSidebar, goto } from '../redux/actions'
+import { toggleDrawer, goto } from '../redux/actions'
 import {
   getCourseTocContent,
   getCurrentCourseUid
@@ -15,5 +15,5 @@ const mapStateToProps = state => ({
 })
 export default connect(
   mapStateToProps,
-  { toggleSidebar, goto }
+  { toggleDrawer, goto }
 )(TocListContainer)

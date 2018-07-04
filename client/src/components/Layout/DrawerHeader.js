@@ -15,7 +15,7 @@ const styles = theme => ({
 class DrawerHeader extends React.Component {
   handleClick = () => {
     this.props.goto('/')
-    this.props.toggleSidebar()
+    this.props.toggleDrawer()
   }
 
   render() {
@@ -30,7 +30,7 @@ class DrawerHeader extends React.Component {
 
 DrawerHeader.propTypes = {
   goto: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired
+  toggleDrawer: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(DrawerHeader)

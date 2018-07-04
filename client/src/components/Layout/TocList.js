@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 
 class TocList extends React.Component {
   handleItemClick = path => {
-    this.props.toggleSidebar()
+    this.props.toggleDrawer()
     this.props.goto(path)
   }
 
@@ -35,7 +35,7 @@ class TocList extends React.Component {
 }
 
 TocList.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
   episodes: PropTypes.array.isRequired,
   goto: PropTypes.func.isRequired
 }

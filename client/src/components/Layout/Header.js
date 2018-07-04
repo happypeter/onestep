@@ -40,14 +40,14 @@ const styles = theme => ({
 
 class Header extends Component {
   render() {
-    const { toggleSidebar, classes: s, isSidebarOpen } = this.props
+    const { toggleDrawer, classes: s, isSidebarOpen } = this.props
 
     return (
       <AppBar
         className={classNames(s.appBar, { [s.appBarShift]: isSidebarOpen })}
       >
         <Toobar className={s.toolbar}>
-          <IconButton onClick={toggleSidebar}>
+          <IconButton onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
         </Toobar>
@@ -58,7 +58,7 @@ class Header extends Component {
 
 Header.propTypes = {
   goto: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
   isSidebarOpen: PropTypes.bool.isRequired
 }
 
