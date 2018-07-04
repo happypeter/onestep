@@ -80,7 +80,8 @@ export const getCurrentCourseIntro = state => {
     (info && {
       writingToWho: info.writing_to_who,
       intro: info.intro,
-      learningGoal: info.learning_goal
+      learningGoal: info.learning_goal,
+      title: info.name
     }) ||
     {}
   )

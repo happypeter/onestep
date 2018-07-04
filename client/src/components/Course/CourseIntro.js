@@ -3,10 +3,11 @@ import { Typography } from '@material-ui/core'
 
 class CourseIntro extends React.Component {
   render() {
-    const { intro, learningGoal, writingToWho } = this.props.courseIntro
+    const { intro, learningGoal, writingToWho, title } = this.props.courseIntro
 
     return (
       <div>
+        <Typography variant="headline">{title}</Typography>
         <div>
           <Typography>一句话简介</Typography>
           {intro}

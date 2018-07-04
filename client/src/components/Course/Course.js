@@ -34,13 +34,10 @@ class Course extends Component {
     return (
       <Wrap>
         <Container>
-          <CourseName>{name}</CourseName>
-          <VideoTitle>课程简介</VideoTitle>
           <VideoPlayer {...this.props.videoJsOptions} />
-
           <CourseIntro />
-
           <EpisodeList />
+
           {price === 0 ? (
             <BuyCourseButton />
           ) : !isAuthenticated ? (
