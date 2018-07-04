@@ -6,6 +6,8 @@ import Toobar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import classNames from 'classnames'
 import MenuIcon from '@material-ui/icons/Menu'
+import { compose } from 'recompose'
+import withWidth from '@material-ui/core/withWidth'
 import { DRAWER_WIDTH, HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
@@ -33,13 +35,13 @@ const styles = theme => ({
 
 class Header extends Component {
   render() {
-    const { toggleDrawer, classes: s, isSidebarOpen } = this.props
-
+    const { toggleDrawer, classes: s, isSidebarOpen, width } = this.props
+    const disableGutters = width === 'xs' || width === 'sm'
     return (
       <AppBar
         className={classNames(s.appBar, { [s.appBarShift]: isSidebarOpen })}
       >
-        <Toobar className={s.toolbar}>
+        <Toobar disableGutters={disableGutters} className={s.toolbar}>
           <IconButton onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
@@ -55,4 +57,7 @@ Header.propTypes = {
   isSidebarOpen: PropTypes.bool.isRequired
 }
 
-export default withStyles(styles)(Header)
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(Header)
