@@ -51,6 +51,11 @@ class Episode extends React.Component {
     this.props.fetchEpisode({ courseUid, episodeUid })
   }
 
+  componentDidUpdate() {
+    const { courseUid, episodeUid } = this.props.match.params
+    this.props.fetchEpisode({ courseUid, episodeUid })
+  }
+
   componentWillUnmount() {
     this.props.clearOnEpisodePage()
   }
