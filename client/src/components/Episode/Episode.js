@@ -1,10 +1,19 @@
 import React from 'react'
 import Footer from '../Footer/Footer'
-import styled from 'styled-components'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import withWidth from '@material-ui/core/withWidth'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  root: {
+    border: '2px solid red',
+    width: 1000,
+    margin: '0 auto'
+  }
+})
 
 class Episode extends React.Component {
   componentDidMount() {
@@ -24,21 +33,20 @@ class Episode extends React.Component {
   render() {
     const {
       videoJsOptions,
-      episodeItem: { markdown, uid }
+      episodeItem: { markdown, uid },
+      classes: s
     } = this.props
 
     return (
       <div>
-        <Container>
-          <RightWrap>
-            <div>
-              <VideoTitle>{uid}</VideoTitle>
-              <VideoPlayer {...videoJsOptions} />
-            </div>
+        <div className={s.root}>
+          <div>
+            <div>{uid}</div>
+            <VideoPlayer {...videoJsOptions} />
+          </div>
 
-            <EpisodeDoc doc={markdown} />
-          </RightWrap>
-        </Container>
+          <EpisodeDoc doc={markdown} />
+        </div>
         <Footer />
       </div>
     )
@@ -52,29 +60,7 @@ Episode.propTypes = {
   openSidebar: PropTypes.func.isRequired
 }
 
-export default withWidth()(Episode)
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1000px;
-  margin: 32px auto;
-  padding: 0 16px;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`
-
-const RightWrap = styled.div`
-  @media (min-width: 768px) {
-    margin-left: 32px;
-    width: calc(100% - 262px);
-  }
-`
-
-const VideoTitle = styled.div`
-  padding: 8px 16px;
-  background-color: #00bcd4;
-  color: #ffffff;
-  font-size: 14px;
-`
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(Episode)
