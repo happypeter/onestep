@@ -11,6 +11,12 @@ import { Typography } from '@material-ui/core'
 const styles = theme => ({
   root: {
     width: 1000,
+    [theme.breakpoints.down('md')]: {
+      width: 800
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: 600
+    },
     margin: '0 auto',
     padding: theme.spacing.unit * 3
   },

@@ -6,11 +6,7 @@ import Toobar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import classNames from 'classnames'
 import MenuIcon from '@material-ui/icons/Menu'
-import {
-  DRAWER_WIDTH,
-  DRAWER_WIDTH_XS,
-  HEADER_HEIGHT
-} from '../../constants/GlobalStyle'
+import { DRAWER_WIDTH, HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
   appBar: {
@@ -31,10 +27,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: DRAWER_WIDTH,
-    [theme.breakpoints.down('md')]: {
-      width: `calc(100% - ${DRAWER_WIDTH_XS}px)`
-    }
+    marginLeft: DRAWER_WIDTH
   }
 })
 

@@ -25,25 +25,19 @@ class Course extends Component {
       _id
     } = this.props.currentCourse.info
 
-    const { isAuthenticated, isMember } = this.props
-    const { paidCourses } = this.props
+    const { isAuthenticated, isMember, paidCourses } = this.props
     const isPaid = paidCourses.includes(uid)
     const isAccessible = price === 0 || isPaid || isMember
 
-    let episodeList
-    if (content) {
-      episodeList = content.map((item, i) => (
-        <EpisodeItem
-          key={i}
-          header={item.header}
-          section={item.section}
-          courseName={uid}
-          isAccessible={isAccessible}
-        />
-      ))
-    } else {
-      episodeList = <Info>加载中</Info>
-    }
+    const episodeList = content.map((item, i) => (
+      <EpisodeItem
+        key={i}
+        header={item.header}
+        section={item.section}
+        courseName={uid}
+        isAccessible={isAccessible}
+      />
+    ))
 
     return (
       <Wrap>

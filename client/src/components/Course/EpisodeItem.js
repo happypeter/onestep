@@ -12,7 +12,7 @@ export default ({ header, section, courseName, isAccessible }) => (
     {section.map((t, index) => {
       if (isAccessible) {
         return (
-          <EpisodeLink key={index} to={`/${courseName}/${t.link}`}>
+          <EpisodeLink key={index} to={`/${courseName}/${t.uid}`}>
             <EpisodeTitle>{t.title}</EpisodeTitle>
           </EpisodeLink>
         )

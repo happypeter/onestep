@@ -9,5 +9,4 @@ export const PRIMARY_TEXT_COLOR = '#212121'
 export const SECONDARY_TEXT_COLOR = '#757575'
 export const DIVIDER_COLOR = '#BDBDBD'
 export const DRAWER_WIDTH = 320
-export const DRAWER_WIDTH_XS = 240
 export const HEADER_HEIGHT = 64

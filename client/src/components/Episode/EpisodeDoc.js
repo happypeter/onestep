@@ -10,7 +10,8 @@ const styles = theme => ({
     '& pre': {
       border: `4px solid ${theme.palette.primary.main}`,
       padding: theme.spacing.unit,
-      fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`
+      fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
+      overflow: 'auto'
     }
   }
 })
