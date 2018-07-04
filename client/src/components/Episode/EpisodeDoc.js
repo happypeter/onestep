@@ -1,48 +1,29 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
+import Paper from '@material-ui/core/Paper'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3,
+    '& pre': {
+      border: `4px solid ${theme.palette.primary.main}`,
+      padding: theme.spacing.unit,
+      fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`
+    }
+  }
+})
 
 class EpisodeDoc extends Component {
   render() {
+    const { classes: s, doc } = this.props
     return (
-      <Wrap>
-        <ReactMarkdown source={this.props.doc} />
-      </Wrap>
+      <Paper className={s.root}>
+        <ReactMarkdown source={doc} />
+      </Paper>
     )
   }
 }
 
-export default EpisodeDoc
-
-const Wrap = styled.div`
-  width: 100%;
-  padding: 16px;
-  margin: 32px 0;
-  border-top: 32px solid #00bcd4;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  transition: all 450ms ease;
-  color: #606060;
-  line-height: 1.8;
-  h1 {
-    font-size: 24px;
-    text-align: center;
-  }
-  pre {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    padding: 16px;
-    overflow: auto;
-    font-size: 14px;
-    line-height: 1.8;
-    background-color: #f6f8fa;
-  }
-  a {
-    color: #00bcd4;
-    text-decoration: none;
-  }
-  img {
-    display: block;
-    width: 100%;
-    padding: 16px;
-  }
-`
+export default withStyles(styles)(EpisodeDoc)

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import CssBaseline from '@material-ui/core/CssBaseline'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import { theme } from './muiTheme'
 
@@ -10,6 +10,7 @@ const withMui = Component => {
         <div>
           <MuiThemeProvider theme={theme}>
             <Component {...this.props} />
+            <CssBaseline />
           </MuiThemeProvider>
         </div>
       )
