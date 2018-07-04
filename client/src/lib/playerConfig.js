@@ -1,9 +1,9 @@
-export const courseVideoJsOptions = (vlink, coverVideo) => ({
+export const videoJsOptions = videoLink => ({
   autoplay: false,
   controls: true,
   sources: [
     {
-      src: `${vlink}/${coverVideo ? coverVideo : 'index'}.mp4`,
+      src: videoLink,
       type: 'video/mp4'
     }
   ],

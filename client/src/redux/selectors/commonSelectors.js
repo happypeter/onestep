@@ -98,3 +98,14 @@ export const getEpisodes = state => {
     []
   return toc
 }
+
+export const getCourseIntroVideoLink = state => {
+  const currentCourse = getCurrentCourse(state)
+  const { vlink, cover_video: coverVideo } = currentCourse.info
+  const videoLink =
+    (currentCourse.info &&
+      currentCourse.info.vlink &&
+      `${vlink}/${coverVideo ? coverVideo : 'index'}.mp4`) ||
+    ''
+  return videoLink
+}
