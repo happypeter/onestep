@@ -18,6 +18,7 @@ const Info = styled.div`
 
 export default props => {
   if (props.error) {
+    console.log('props.error', props.error)
     return (
       <Wrap>
         <Info>Error!</Info>

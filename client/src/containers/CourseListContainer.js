@@ -4,6 +4,7 @@ import { fetchCoursesIfNeeded } from '../redux/actions/contentAction'
 import { getCourses } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
+import { goto } from '../redux/actions'
 
 const AsyncCourseList = Loadable({
   loader: () => import('../components/CourseList/CourseList'),
@@ -19,5 +20,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCoursesIfNeeded }
+  { fetchCoursesIfNeeded, goto }
 )(CourseListContainer)

@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import CourseCard from '../common/CourseCard'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+
+const styles = theme => ({
+  root: {
+    width: 1200,
+    margin: '0 auto'
+  },
+  gridItem: {}
+})
 
 class CourseList extends Component {
   componentDidMount() {
@@ -9,36 +19,27 @@ class CourseList extends Component {
   }
 
   render() {
-    const { courses } = this.props
+    const { courses, classes: s, goto } = this.props
     let courseList = courses.map(item => (
-      <CourseCard key={item._id} uid={item.uid} title={item.title} />
+      <Grid className={s.gridItem} key={item.uid} item sm={6} lg={4} xl={3}>
+        <CourseCard uid={item.uid} title={item.title} goto={goto} />
+      </Grid>
     ))
 
     return (
-      <div>
-        <Title>最新发布</Title>
-        <CourseListWrap>{courseList}</CourseListWrap>
+      <div className={s.root}>
+        <Typography>最新发布</Typography>
+        <Grid container spacing={32} className={s.list}>
+          {courseList}
+        </Grid>
       </div>
     )
   }
 }
 
 CourseList.propTypes = {
-  courses: PropTypes.array.isRequired
+  courses: PropTypes.array.isRequired,
+  goto: PropTypes.func.isRequired
 }
 
-export default CourseList
-
-const Title = styled.div`
-  text-align: center;
-  font-size: 2.5em;
-`
-
-const CourseListWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 32px auto;
-`
+export default withStyles(styles)(CourseList)

@@ -1,53 +1,40 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
 import { videoRepo } from '../../config/config'
+import { Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 
 const getCoverLink = uid => `${videoRepo}/posters/${uid}.png`
 
-export default ({ uid, title }) => (
-  <CourseCard to={`/${uid}`}>
-    <img src={getCoverLink(uid)} alt="cover" className="cover" />
-    <p>{title}</p>
-  </CourseCard>
-)
-
-const CourseCard = styled(Link)`
-  margin: 1em;
-  width: 100%;
-  flex-grow: 0;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
-  background-color: white;
-  -webkit-transition: all 450ms ease;
-  transition: all 450ms ease;
-  text-align: left;
-  text-decoration: none;
-  color: rgb(76, 87, 101);
-
-  img {
-    width: 100%;
-    display: block;
+const styles = {
+  card: {
+    cursor: 'pointer'
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%'
   }
+}
 
-  p {
-    border-top: 1px solid rgb(226, 226, 226);
-    margin: 0;
-    padding: 15px;
-    font-size: 17px;
+class CourseCard extends React.Component {
+  render() {
+    const { uid, title, classes: s, goto } = this.props
+    return (
+      <Card onClick={() => goto(`/${uid}`)} className={s.card}>
+        <CardMedia image={getCoverLink(uid)} className={s.media} />
+        <CardContent>
+          <Typography>{title}</Typography>
+        </CardContent>
+      </Card>
+    )
   }
+}
 
-  span {
-    font-size: 14px;
-    padding: 5px 0 5px 15px;
-    display: inline-block;
-    font-weight: 200;
-  }
+CourseCard.propTypes = {
+  goto: PropTypes.func.isRequired
+}
 
-  @media (min-width: 600px) {
-    width: calc(50% - 4em);
-  }
-
-  @media (min-width: 1024px) {
-    width: calc(33.33333% - 2em);
-  }
-`
+export default withStyles(styles)(CourseCard)
