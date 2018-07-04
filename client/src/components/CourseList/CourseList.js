@@ -10,7 +10,10 @@ const styles = theme => ({
     width: 1200,
     margin: '0 auto'
   },
-  gridItem: {}
+  gridItem: {},
+  section: {
+    marginBottom: 24
+  }
 })
 
 class CourseList extends Component {
@@ -28,7 +31,10 @@ class CourseList extends Component {
 
     return (
       <div className={s.root}>
-        <Typography>最新发布</Typography>
+        <div className={s.section}>
+          <Typography variant="headline">最新发布</Typography>
+        </div>
+
         <Grid container spacing={32} className={s.list}>
           {courseList}
         </Grid>
