@@ -47,7 +47,7 @@ class TocList extends React.Component {
               className={classNames({
                 [s.itemActive]: currentEpisodeUid === t.uid
               })}
-              variant="body"
+              variant="body2"
             >
               {t.title}
             </Typography>

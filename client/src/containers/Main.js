@@ -66,7 +66,7 @@ class Main extends Component {
             <Route exact path="/:courseName" component={AsyncCourse} />
             <Route
               exact
-              path="/:courseName/:episodeName"
+              path="/:courseName/:episodeUid"
               component={AsyncEpisode}
             />
             <Route component={AsyncNotFound} />

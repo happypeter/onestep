@@ -1,7 +1,8 @@
+import { filterEpisodeFromCurrentCourse } from './selectorUtils'
 // course
 export const getCourse = state => state.course || {}
 export const getCurrentCourse = state => state.currentCourse
-export const getEpisode = state => state.episode
+export const getEpisode = state => state.episode || {}
 
 // auth
 export const getCurrentUser = state =>
@@ -56,3 +57,18 @@ export const getIsOnEpisodePage = state =>
 
 export const getCurrentEpisodeUid = state =>
   (state.episode && state.episode.item && state.episode.item.uid) || ''
+
+export const getCurrentEpisodeTitle = state => {
+  const currentCourse = getCurrentCourse(state)
+  const currentEpisodeUid = getCurrentEpisodeUid(state)
+
+  return (
+    (currentCourse.info &&
+      currentCourse.info.content &&
+      filterEpisodeFromCurrentCourse(
+        currentCourse.info.content,
+        currentEpisodeUid
+      ).title) ||
+    ''
+  )
+}

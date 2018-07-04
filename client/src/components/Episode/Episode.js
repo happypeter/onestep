@@ -1,11 +1,11 @@
 import React from 'react'
-import Footer from '../Footer/Footer'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import withWidth from '@material-ui/core/withWidth'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   root: {
@@ -33,21 +33,18 @@ class Episode extends React.Component {
   render() {
     const {
       videoJsOptions,
-      episodeItem: { markdown, uid },
-      classes: s
+      episodeItem: { markdown },
+      classes: s,
+      episodeTitle
     } = this.props
 
     return (
       <div>
         <div className={s.root}>
-          <div>
-            <div>{uid}</div>
-            <VideoPlayer {...videoJsOptions} />
-          </div>
-
+          <VideoPlayer {...videoJsOptions} />
+          <Typography variant="headline">{episodeTitle}</Typography>
           <EpisodeDoc doc={markdown} />
         </div>
-        <Footer />
       </div>
     )
   }
@@ -57,7 +54,8 @@ Episode.propTypes = {
   episodeItem: PropTypes.object.isRequired,
   clearOnEpisodePage: PropTypes.func.isRequired,
   setOnEpisodePage: PropTypes.func.isRequired,
-  openSidebar: PropTypes.func.isRequired
+  openSidebar: PropTypes.func.isRequired,
+  episodeTitle: PropTypes.string.isRequired
 }
 
 export default compose(

@@ -7,7 +7,10 @@ import {
   openSidebar
 } from '../redux/actions'
 
-import { getEpisode } from '../redux/selectors/commonSelectors.js'
+import {
+  getEpisode,
+  getCurrentEpisodeTitle
+} from '../redux/selectors/commonSelectors.js'
 
 import { videoRepo } from '../config/config'
 import Episode from '../components/Episode/Episode'
@@ -16,8 +19,8 @@ const getVLink = (courseUid, epUid) => `${videoRepo}/${courseUid}/${epUid}.mp4`
 
 class EpisodeContainer extends Component {
   componentDidMount() {
-    const { courseName, episodeName } = this.props.match.params
-    this.props.fetchEpisode({ courseName, episodeName })
+    const { courseName, episodeUid } = this.props.match.params
+    this.props.fetchEpisode({ courseName, episodeUid })
     this.props.fetchCourse(courseName)
   }
 
@@ -25,15 +28,15 @@ class EpisodeContainer extends Component {
     const { history, location, fetchEpisode } = this.props
     if (history.location !== location) {
       let params = history.location.pathname.split('/')
-      const [, courseName, episodeName] = params
-      fetchEpisode({ courseName, episodeName })
+      const [, courseName, episodeUid] = params
+      fetchEpisode({ courseName, episodeUid })
     }
   }
 
   render() {
     const { item } = this.props.episode
 
-    const { episodeName, courseName } = this.props.match.params
+    const { episodeUid, courseName } = this.props.match.params
 
     // VideoJsOptions for this Course
     const EpisodeVideoJsOptions = {
@@ -58,7 +61,7 @@ class EpisodeContainer extends Component {
       <Episode
         episodeItem={item}
         courseName={courseName}
-        episodeName={episodeName}
+        episodeUid={episodeUid}
         videoJsOptions={EpisodeVideoJsOptions}
         {...this.props}
       />
@@ -67,7 +70,8 @@ class EpisodeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  episode: getEpisode(state)
+  episode: getEpisode(state),
+  episodeTitle: getCurrentEpisodeTitle(state)
 })
 
 export default connect(
