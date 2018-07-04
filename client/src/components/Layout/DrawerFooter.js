@@ -54,7 +54,7 @@ class DrawerFooter extends React.Component {
 
     const { anchorEl } = this.state
     const loggedInItem = (
-      <div>
+      <React.Fragment>
         <MenuItem
           className={s.menuItem}
           onClick={() => this.handleClick('/user/profile')}
@@ -67,11 +67,11 @@ class DrawerFooter extends React.Component {
         <MenuItem className={s.menuItem} onClick={this.logout}>
           退出
         </MenuItem>
-      </div>
+      </React.Fragment>
     )
 
     const loggedOutItem = (
-      <div>
+      <React.Fragment>
         <MenuItem
           className={s.menuItem}
           onClick={() => this.handleClick('/login')}
@@ -87,7 +87,7 @@ class DrawerFooter extends React.Component {
         <MenuItem className={s.menuItem} onClick={() => this.handleClick('/')}>
           首页
         </MenuItem>
-      </div>
+      </React.Fragment>
     )
 
     return (
