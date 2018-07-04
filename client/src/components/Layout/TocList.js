@@ -6,6 +6,15 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import PlayerIcon from '@material-ui/icons/PlayArrow'
 import withWidth from '@material-ui/core/withWidth'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  itemActive: {
+    border: '2px solid red'
+  }
+})
 
 class TocList extends React.Component {
   handleItemClick = path => {
@@ -16,13 +25,21 @@ class TocList extends React.Component {
   }
 
   render() {
-    const { episodes, currentCourseUid } = this.props
+    const {
+      episodes,
+      currentCourseUid,
+      currentEpisodeUid,
+      classes: s
+    } = this.props
     const chaptList = toc => {
       return toc.map(t => (
         <ListItem
           button
-          key={t.link}
-          onClick={() => this.handleItemClick(`/${currentCourseUid}/${t.link}`)}
+          key={t.uid}
+          onClick={() => this.handleItemClick(`/${currentCourseUid}/${t.uid}`)}
+          className={classNames({
+            [s.itemActive]: currentEpisodeUid === t.uid
+          })}
         >
           <ListItemIcon>
             <PlayerIcon />
@@ -43,4 +60,7 @@ TocList.propTypes = {
   goto: PropTypes.func.isRequired
 }
 
-export default withWidth()(TocList)
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(TocList)

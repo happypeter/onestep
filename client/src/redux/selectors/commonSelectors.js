@@ -53,3 +53,6 @@ export const getIsSidebarOpen = state =>
 
 export const getIsOnEpisodePage = state =>
   (state.common && state.common.isOnEpisodePage) || false
+
+export const getCurrentEpisodeUid = state =>
+  (state.episode && state.episode.item && state.episode.item.uid) || ''
