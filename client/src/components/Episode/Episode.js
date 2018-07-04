@@ -4,14 +4,21 @@ import withWidth from '@material-ui/core/withWidth'
 import EpisodeDoc from './EpisodeDoc'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+import Paper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   root: {
-    border: '2px solid red',
     width: 1000,
-    margin: '0 auto'
+    margin: '0 auto',
+    padding: theme.spacing.unit * 3
+  },
+  player: {
+    padding: theme.spacing.unit * 3
+  },
+  videoMeta: {
+    paddingTop: theme.spacing.unit * 3
   }
 })
 
@@ -41,8 +48,12 @@ class Episode extends React.Component {
     return (
       <div>
         <div className={s.root}>
-          <VideoPlayer {...videoJsOptions} />
-          <Typography variant="headline">{episodeTitle}</Typography>
+          <Paper className={s.player}>
+            <VideoPlayer {...videoJsOptions} />
+            <Paper elevation={0} className={s.videoMeta}>
+              <Typography variant="headline">{episodeTitle}</Typography>
+            </Paper>
+          </Paper>
           <EpisodeDoc doc={markdown} />
         </div>
       </div>
