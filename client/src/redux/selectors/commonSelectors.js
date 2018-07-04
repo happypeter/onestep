@@ -26,7 +26,7 @@ export const getCurrentCourseUid = state => {
     (state.currentCourse &&
       state.currentCourse.info &&
       state.currentCourse.info.uid) ||
-    null
+    ''
   )
 }
 
@@ -90,8 +90,11 @@ export const getCurrentCourseIntro = state => {
 export const getEpisodes = state => {
   const { currentCourse } = state
   const info = currentCourse.info
-  const toc = info.content.reduce((list, el) => {
-    return [...list, ...el.section]
-  }, [])
+  const toc =
+    (info.content &&
+      info.content.reduce((list, el) => {
+        return [...list, ...el.section]
+      }, [])) ||
+    []
   return toc
 }

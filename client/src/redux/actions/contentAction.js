@@ -29,10 +29,11 @@ export function fetchCoursesIfNeeded(data) {
   }
 }
 
-export const fetchCurrentCourse = courseName => dispatch => {
+export const fetchCurrentCourse = courseUid => dispatch => {
+  console.log('fetchCurrrentCourse', courseUid)
   dispatch({ type: types.FETCH_COURSE_STARTED })
   axios
-    .get(`${config.api}/courses/${courseName}`)
+    .get(`${config.api}/courses/${courseUid}`)
     .then(res => {
       dispatch({
         type: types.FETCH_CURRENT_COURSE_SUCCESS,

@@ -2,7 +2,6 @@ import React from 'react'
 import { Typography, ListItemIcon } from '@material-ui/core'
 import { ListItem, ListItemText } from '@material-ui/core'
 import PlayerIcon from '@material-ui/icons/PlayArrow'
-import { goto } from '../../redux/actions'
 import PropTypes from 'prop-types'
 
 class EpisodeList extends React.Component {

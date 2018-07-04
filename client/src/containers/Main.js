@@ -63,10 +63,10 @@ class Main extends Component {
               path="/user/profile"
               component={AsyncProfile}
             />
-            <Route exact path="/:courseName" component={AsyncCourse} />
+            <Route exact path="/:courseUid" component={AsyncCourse} />
             <Route
               exact
-              path="/:courseName/:episodeUid"
+              path="/:courseUid/:episodeUid"
               component={AsyncEpisode}
             />
             <Route component={AsyncNotFound} />

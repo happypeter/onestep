@@ -22,24 +22,25 @@ const getVLink = (courseUid, epUid) => `${videoRepo}/${courseUid}/${epUid}.mp4`
 
 class EpisodeContainer extends Component {
   componentDidMount() {
-    const { courseName, episodeUid } = this.props.match.params
-    this.props.fetchEpisode({ courseName, episodeUid })
-    this.props.fetchCurrentCourse(courseName)
+    const { courseUid, episodeUid } = this.props.match.params
+    this.props.fetchEpisode({ courseUid, episodeUid })
+    console.log('episodeContainer......', courseUid)
+    this.props.fetchCurrentCourse(courseUid)
   }
 
   componentWillReceiveProps() {
     const { history, location, fetchEpisode } = this.props
     if (history.location !== location) {
       let params = history.location.pathname.split('/')
-      const [, courseName, episodeUid] = params
-      fetchEpisode({ courseName, episodeUid })
+      const [, courseUid, episodeUid] = params
+      fetchEpisode({ courseUid, episodeUid })
     }
   }
 
   render() {
     const { item } = this.props.episode
 
-    const { episodeUid, courseName } = this.props.match.params
+    const { episodeUid, courseUid } = this.props.match.params
 
     // VideoJsOptions for this Course
     const EpisodeVideoJsOptions = {
@@ -63,7 +64,7 @@ class EpisodeContainer extends Component {
     return (
       <Episode
         episodeItem={item}
-        courseName={courseName}
+        courseUid={courseUid}
         episodeUid={episodeUid}
         videoJsOptions={EpisodeVideoJsOptions}
         {...this.props}

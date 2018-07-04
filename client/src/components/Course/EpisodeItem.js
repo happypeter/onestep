@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ChapterIcon from '../../assets/ChapterIcon.svg'
 
-export default ({ header, section, courseName, isAccessible }) => (
+export default ({ header, section, courseUid, isAccessible }) => (
   <EpisodesWrap>
     <EpisodeChapter>
       <img src={ChapterIcon} alt={'ChapterIcon'} />
@@ -12,7 +12,7 @@ export default ({ header, section, courseName, isAccessible }) => (
     {section.map((t, index) => {
       if (isAccessible) {
         return (
-          <EpisodeLink key={index} to={`/${courseName}/${t.uid}`}>
+          <EpisodeLink key={index} to={`/${courseUid}/${t.uid}`}>
             <EpisodeTitle>{t.title}</EpisodeTitle>
           </EpisodeLink>
         )

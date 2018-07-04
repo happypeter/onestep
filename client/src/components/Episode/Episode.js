@@ -44,8 +44,8 @@ class Episode extends React.Component {
       openDrawer()
     }
     this.props.setOnEpisodePage()
-    const { courseName } = this.props.match.params
-    this.props.fetchCurrentCourse(courseName)
+    const { courseUid } = this.props.match.params
+    this.props.fetchCurrentCourse(courseUid)
   }
 
   componentWillUnmount() {
