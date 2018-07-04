@@ -120,5 +120,5 @@ export const getEpisodeVideoLink = state => {
 }
 
 export const getEpisodeMarkdown = state => {
-  return 'hello'
+  return state.episode.item.markdown || ''
 }
