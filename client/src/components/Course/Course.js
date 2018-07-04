@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import EpisodeItem from './EpisodeItem'
 import CourseIntro from '../../containers/CourseIntroContainer'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+import EpisodeList from '../../containers/EpisodeListContainer'
 import BuyCourse from './BuyCourse'
 import BuyCourseButton from './BuyCourseButton'
 
@@ -39,7 +40,7 @@ class Course extends Component {
 
           <CourseIntro />
 
-          <Section>{episodeList}</Section>
+          <EpisodeList />
           {price === 0 ? (
             <BuyCourseButton />
           ) : !isAuthenticated ? (

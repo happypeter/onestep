@@ -85,3 +85,8 @@ export const getCurrentCourseIntro = state => {
     {}
   )
 }
+
+export const getEpisodes = state => {
+  const { currentCourse } = state
+  return []
+}
