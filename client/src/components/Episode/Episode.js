@@ -7,6 +7,8 @@ import { compose } from 'recompose'
 import Paper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
+import { videoJsOptions } from '../../lib/playerConfig'
+import { videoRepo } from '../../config/config'
 
 const styles = theme => ({
   root: {
@@ -44,8 +46,9 @@ class Episode extends React.Component {
       openDrawer()
     }
     this.props.setOnEpisodePage()
-    const { courseUid } = this.props.match.params
+    const { courseUid, episodeUid } = this.props.match.params
     this.props.fetchCurrentCourse(courseUid)
+    this.props.fetchEpisode({ courseUid, episodeUid })
   }
 
   componentWillUnmount() {
@@ -53,18 +56,15 @@ class Episode extends React.Component {
   }
 
   render() {
-    const {
-      videoJsOptions,
-      episodeItem: { markdown },
-      classes: s,
-      episodeTitle
-    } = this.props
-
+    const { markdown, classes: s, episodeTitle } = this.props
+    const { videoLink } = this.props
     return (
       <div>
         <div className={s.root}>
           <Paper className={s.player}>
-            <VideoPlayer {...videoJsOptions} />
+            {videoLink && (
+              <VideoPlayer {...videoJsOptions(`${videoRepo}/${videoLink}`)} />
+            )}
             <Paper elevation={0} className={s.videoMeta}>
               <Typography variant="headline">{episodeTitle}</Typography>
             </Paper>
@@ -77,7 +77,7 @@ class Episode extends React.Component {
 }
 
 Episode.propTypes = {
-  episodeItem: PropTypes.object.isRequired,
+  markdown: PropTypes.string.isRequired,
   clearOnEpisodePage: PropTypes.func.isRequired,
   setOnEpisodePage: PropTypes.func.isRequired,
   openDrawer: PropTypes.func.isRequired,

@@ -46,6 +46,7 @@ export const fetchCurrentCourse = courseUid => dispatch => {
 }
 
 export function fetchEpisode(data) {
+  console.log('data......', data)
   return dispatch => {
     dispatch({ type: types.FETCH_EPISODE_STARTED })
     axios

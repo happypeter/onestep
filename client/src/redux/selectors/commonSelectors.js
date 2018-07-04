@@ -109,3 +109,16 @@ export const getCourseIntroVideoLink = state => {
     ''
   return videoLink
 }
+
+export const getEpisodeVideoLink = state => {
+  const courseUid = getCurrentCourseUid(state)
+  const episodeUid = getCurrentEpisodeUid(state)
+  if (courseUid !== '' && episodeUid !== '') {
+    return `${courseUid}/${episodeUid}.mp4`
+  }
+  return ''
+}
+
+export const getEpisodeMarkdown = state => {
+  return 'hello'
+}
