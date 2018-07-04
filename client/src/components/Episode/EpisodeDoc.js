@@ -7,6 +7,9 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 3,
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing.unit
+    },
     '& pre': {
       border: `4px solid ${theme.palette.primary.main}`,
       padding: theme.spacing.unit,
