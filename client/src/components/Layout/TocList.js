@@ -9,10 +9,11 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   itemActive: {
-    border: '2px solid red'
+    color: theme.palette.primary.main
   }
 })
 
@@ -37,14 +38,20 @@ class TocList extends React.Component {
           button
           key={t.uid}
           onClick={() => this.handleItemClick(`/${currentCourseUid}/${t.uid}`)}
-          className={classNames({
-            [s.itemActive]: currentEpisodeUid === t.uid
-          })}
         >
           <ListItemIcon>
             <PlayerIcon />
           </ListItemIcon>
-          <ListItemText>{t.title}</ListItemText>
+          <ListItemText>
+            <Typography
+              className={classNames({
+                [s.itemActive]: currentEpisodeUid === t.uid
+              })}
+              variant="body"
+            >
+              {t.title}
+            </Typography>
+          </ListItemText>
         </ListItem>
       ))
     }
