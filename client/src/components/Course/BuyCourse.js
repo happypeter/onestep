@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react'
 import Modal from 'react-modal'
 import closeImg from '../../assets/close.svg'
 import BuyCourseButton from './BuyCourseButton'
+import PropTypes from 'prop-types'
 
 const customStyles = {
   overlay: {
@@ -111,6 +112,10 @@ class BuyCourse extends Component {
       </div>
     )
   }
+}
+
+BuyCourse.propTypes = {
+  price: PropTypes.string.isRequired
 }
 
 export default BuyCourse

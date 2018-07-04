@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Footer from '../Footer/Footer'
 import styled from 'styled-components'
 import EpisodeItem from './EpisodeItem'
-import CourseMsgIntro from '../common/CourseMsgIntro'
+import CourseIntro from '../../containers/CourseIntroContainer'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import BuyCourse from './BuyCourse'
 import BuyCourseButton from './BuyCourseButton'
@@ -14,16 +14,7 @@ class Course extends Component {
   }
 
   render() {
-    const {
-      name,
-      uid,
-      intro,
-      writing_to_who: writingToWho,
-      learning_goal: learningGoal,
-      price,
-      content,
-      _id
-    } = this.props.currentCourse.info
+    const { name, uid, price, content, _id } = this.props.currentCourse.info
 
     const { isAuthenticated, isMember, paidCourses } = this.props
     const isPaid = paidCourses.includes(uid)
@@ -46,11 +37,7 @@ class Course extends Component {
           <VideoTitle>课程简介</VideoTitle>
           <VideoPlayer {...this.props.videoJsOptions} />
 
-          <Section>
-            <CourseMsgIntro title={'一句话简介'} intro={intro} />
-            <CourseMsgIntro title={'适合观众'} intro={writingToWho} />
-            <CourseMsgIntro title={'知识点'} intro={learningGoal} />
-          </Section>
+          <CourseIntro />
 
           <Section>{episodeList}</Section>
           {price === 0 ? (
@@ -75,7 +62,8 @@ class Course extends Component {
 }
 
 Course.propTypes = {
-  isMember: PropTypes.bool.isRequired
+  isMember: PropTypes.bool.isRequired,
+  price: PropTypes.string.isRequired
 }
 
 export default Course

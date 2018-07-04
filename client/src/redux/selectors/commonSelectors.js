@@ -72,3 +72,16 @@ export const getCurrentEpisodeTitle = state => {
     ''
   )
 }
+
+export const getCurrentCourseIntro = state => {
+  const { currentCourse } = state
+  const info = currentCourse.info
+  return (
+    (info && {
+      writingToWho: info.writing_to_who,
+      intro: info.intro,
+      learningGoal: info.learning_goal
+    }) ||
+    {}
+  )
+}

@@ -9,22 +9,15 @@ class BuyCourseButton extends Component {
 
   render() {
     const { price } = this.props
-    let content
-    if (price) {
-      content = (
-        <Wrap>
-          <Price>{price}元</Price>
-          <RaisedButton onClick={this.handleClick}>购买课程</RaisedButton>
-        </Wrap>
-      )
-    } else {
-      content = (
-        <Wrap>
-          <RaisedButton>免费课程</RaisedButton>
-        </Wrap>
-      )
-    }
-    return content
+    console.log('price', price)
+    return (
+      <Wrap>
+        {price && <Price>{price}元</Price>}
+        <Button variant="raised" color="secondary" onClick={this.handleClick}>
+          {price === '0' ? '免费' : '购买课程'}
+        </Button>
+      </Wrap>
+    )
   }
 }
 
@@ -44,13 +37,4 @@ const Price = styled.div`
   font-size: 32px;
   color: #212121;
   padding-bottom: 24px;
-`
-
-const RaisedButton = styled(Button)`
-  && {
-    width: 100%;
-    font-size: 24px;
-    color: #ffffff;
-    background-color: #ff4081;
-  }
 `
