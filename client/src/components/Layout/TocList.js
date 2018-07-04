@@ -4,12 +4,15 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import PlayerIcon from '@material-ui/icons/PlayArrow'
+import withWidth from '@material-ui/core/withWidth'
 import PropTypes from 'prop-types'
 
 class TocList extends React.Component {
   handleItemClick = path => {
-    this.props.toggleDrawer()
+    const { width } = this.props
     this.props.goto(path)
+    if (width === 'xl' || width === 'lg') return
+    this.props.toggleDrawer()
   }
 
   render() {
@@ -40,4 +43,4 @@ TocList.propTypes = {
   goto: PropTypes.func.isRequired
 }
 
-export default TocList
+export default withWidth()(TocList)
