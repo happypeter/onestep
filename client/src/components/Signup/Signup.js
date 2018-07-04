@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import { Form, ActionButton, Row, Error } from '../oauth/FormStyle'
 import keys from 'lodash.keys'
 import isEmpty from 'lodash.isempty'
-import Layout from '../AuthFormLayout'
+import Layout from '../shared/AuthFormLayout'
 
 const WAIT_INTERVAL = 1000
 

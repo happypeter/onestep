@@ -5,10 +5,10 @@ import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import Snackbar from '@material-ui/core/Snackbar'
 import Drawer from '@material-ui/core/Drawer'
-import TocList from '../containers/TocListContainer'
+import TocList from '../../containers/TocListContainer'
 import DrawerHeader from './DrawerHeader'
-import { DRAWER_WIDTH, DRAWER_WIDTH_XS } from '../constants/GlobalStyle'
-import DrawerFooter from '../containers/DrawerFooterContainer'
+import { DRAWER_WIDTH, DRAWER_WIDTH_XS } from '../../constants/GlobalStyle'
+import DrawerFooter from '../../containers/DrawerFooterContainer'
 
 const styles = theme => ({
   root: {

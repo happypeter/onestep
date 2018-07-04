@@ -1,5 +1,5 @@
 import React from 'react'
-import TocList from '../components/TocList'
+import TocList from '../components/Layout/TocList'
 import { connect } from 'react-redux'
 import { toggleSidebar, goto } from '../redux/actions'
 import {

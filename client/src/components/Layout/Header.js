@@ -10,7 +10,7 @@ import {
   DRAWER_WIDTH,
   DRAWER_WIDTH_XS,
   HEADER_HEIGHT
-} from '../constants/GlobalStyle'
+} from '../../constants/GlobalStyle'
 
 const styles = theme => ({
   appBar: {

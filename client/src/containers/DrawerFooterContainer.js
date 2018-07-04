@@ -1,5 +1,5 @@
 import React from 'react'
-import DrawerFooter from '../components/DrawerFooter'
+import DrawerFooter from '../components/Layout/DrawerFooter'
 import { connect } from 'react-redux'
 import {
   getCurrentUser,

@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import Toolbar from '@material-ui/core/Toolbar'
 import { withStyles } from '@material-ui/core/styles'
-import { HEADER_HEIGHT } from '../constants/GlobalStyle'
+import { HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
   paper: {

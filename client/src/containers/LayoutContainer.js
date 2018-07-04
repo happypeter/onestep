@@ -10,7 +10,7 @@ import {
   getIsOnEpisodePage
 } from '../redux/selectors/commonSelectors'
 import { clearNotification, toggleSidebar } from '../redux/actions'
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/'
 
 const LayoutContainer = props => <Layout {...props} />
 

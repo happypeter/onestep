@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
 import { Form, ActionButton, Error } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
-import Layout from '../AuthFormLayout'
+import Layout from '../shared/AuthFormLayout'
 
 class Login extends Component {
   state = {
