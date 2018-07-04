@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CourseCard from '../common/CourseCard'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 class CourseList extends Component {
   componentDidMount() {
@@ -8,9 +9,8 @@ class CourseList extends Component {
   }
 
   render() {
-    const { all, isFetching } = this.props.course
-    if (isFetching) return <Title>信息请求中...</Title>
-    let courseList = all.map(item => (
+    const { courses } = this.props
+    let courseList = courses.map(item => (
       <CourseCard key={item._id} uid={item.uid} title={item.title} />
     ))
 
@@ -21,6 +21,10 @@ class CourseList extends Component {
       </div>
     )
   }
+}
+
+CourseList.propTypes = {
+  courses: PropTypes.array.isRequired
 }
 
 export default CourseList

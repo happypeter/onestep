@@ -1,6 +1,6 @@
 import { filterEpisodeFromCurrentCourse } from './selectorUtils'
 // course
-export const getCourse = state => state.course || {}
+export const getCourses = state => state.course.all || []
 export const getCurrentCourse = state => state.currentCourse
 export const getEpisode = state => state.episode || {}
 
@@ -37,7 +37,7 @@ export const getPaidCourses = state => {
 }
 
 export const getDetailedPaidCourses = state => {
-  const allCourses = getCourse(state).all || []
+  const allCourses = getCourses(state) || []
   const paid = getPaidCourses(state)
   const detailedPaid = allCourses.filter(c => {
     return paid.includes(c.uid)
