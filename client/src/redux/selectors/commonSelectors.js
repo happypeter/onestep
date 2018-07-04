@@ -88,5 +88,9 @@ export const getCurrentCourseIntro = state => {
 
 export const getEpisodes = state => {
   const { currentCourse } = state
-  return []
+  const info = currentCourse.info
+  const toc = info.content.reduce((list, el) => {
+    return [...list, ...el.section]
+  }, [])
+  return toc
 }
