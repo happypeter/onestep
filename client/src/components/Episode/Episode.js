@@ -15,9 +15,10 @@ const styles = theme => ({
       width: 800
     },
     [theme.breakpoints.down('sm')]: {
-      width: 600
+      width: '100%'
     },
     margin: '0 auto',
+
     padding: theme.spacing.unit * 3
   },
   player: {

@@ -14,7 +14,9 @@ const styles = theme => ({
   root: {
     display: 'flex',
     overflow: 'hidden',
-    border: '2px solid red'
+    [theme.breakpoints.down('sm')]: {
+      position: 'relative'
+    }
   },
   content: {
     marginLeft: -DRAWER_WIDTH,
@@ -22,6 +24,14 @@ const styles = theme => ({
     flexShrink: 0,
     height: '100vh',
     overflow: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0
+    },
     backgroundColor: theme.palette.background.default,
     paddingTop: theme.spacing.unit * 8,
     transition: theme.transitions.create('margin', {
@@ -40,8 +50,7 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    width: DRAWER_WIDTH,
-    border: '2px solid green'
+    width: DRAWER_WIDTH
   },
   main: {
     flexGrow: 1,
