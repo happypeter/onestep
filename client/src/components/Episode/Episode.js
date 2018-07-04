@@ -14,18 +14,26 @@ const styles = theme => ({
     [theme.breakpoints.down('md')]: {
       width: 800
     },
-    [theme.breakpoints.down('sm')]: {
-      width: '100%'
-    },
+
     margin: '0 auto',
 
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      padding: 0
+    }
   },
   player: {
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing.unit
+    }
   },
   videoMeta: {
-    paddingTop: theme.spacing.unit * 3
+    paddingTop: theme.spacing.unit * 3,
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing.unit
+    }
   }
 })
 
