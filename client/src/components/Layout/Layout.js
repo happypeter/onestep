@@ -58,57 +58,68 @@ const styles = theme => ({
   }
 })
 
-const Layout = ({
-  notification,
-  children,
-  clearNotification,
-  toggleDrawer,
-  isSidebarOpen,
-  goto,
-  currentUser,
-  isOnEpisodePage,
-  classes: s
-}) => {
-  return (
-    <div className={s.root}>
-      <Header
-        currentUser={currentUser}
-        goto={goto}
-        toggleDrawer={toggleDrawer}
-        isSidebarOpen={isSidebarOpen}
-      />
-      <Drawer
-        variant="persistent"
-        open={isSidebarOpen}
-        classes={{
-          paper: s.drawer
-        }}
-      >
-        <DrawerHeader toggleDrawer={toggleDrawer} goto={goto} />
-        <div className={s.main}>{isOnEpisodePage && <TocList />}</div>
+class Layout extends React.Component {
+  componentDidMount() {
+    const { isOnEpisodePage } = this.props
+    if (isOnEpisodePage) {
+      this.props.openDrawer()
+    }
+  }
 
-        <DrawerFooter />
-      </Drawer>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right'
-        }}
-        variant="error"
-        open={Boolean(notification)}
-        autoHideDuration={3000}
-        message={notification}
-        onClose={clearNotification}
-      />
-      <div
-        className={classNames(s.content, {
-          [s.contentShift]: isSidebarOpen
-        })}
-      >
-        {children}
+  render() {
+    const {
+      notification,
+      children,
+      clearNotification,
+      toggleDrawer,
+      isSidebarOpen,
+      goto,
+      currentUser,
+      isOnEpisodePage,
+      classes: s
+    } = this.props
+
+    return (
+      <div className={s.root}>
+        <Header
+          currentUser={currentUser}
+          goto={goto}
+          toggleDrawer={toggleDrawer}
+          isSidebarOpen={isSidebarOpen}
+        />
+        <Drawer
+          variant="persistent"
+          open={isSidebarOpen}
+          classes={{
+            paper: s.drawer
+          }}
+        >
+          <DrawerHeader toggleDrawer={toggleDrawer} goto={goto} />
+          <div className={s.main}>{isOnEpisodePage && <TocList />}</div>
+
+          <DrawerFooter />
+        </Drawer>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right'
+          }}
+          variant="error"
+          open={Boolean(notification)}
+          autoHideDuration={3000}
+          message={notification}
+          onClose={clearNotification}
+        />
+        <div
+          className={classNames(s.content, {
+            [s.contentShift]: isSidebarOpen
+          })}
+        >
+          {children}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Layout.propTypes = {

@@ -39,9 +39,9 @@ const styles = theme => ({
 
 class Episode extends React.Component {
   componentDidMount() {
-    const { width, openSidebar } = this.props
+    const { width, openDrawer } = this.props
     if (width === 'lg' || width === 'xl') {
-      openSidebar()
+      openDrawer()
     }
     this.props.setOnEpisodePage()
     const { courseName } = this.props.match.params
@@ -80,7 +80,7 @@ Episode.propTypes = {
   episodeItem: PropTypes.object.isRequired,
   clearOnEpisodePage: PropTypes.func.isRequired,
   setOnEpisodePage: PropTypes.func.isRequired,
-  openSidebar: PropTypes.func.isRequired,
+  openDrawer: PropTypes.func.isRequired,
   episodeTitle: PropTypes.string.isRequired
 }
 

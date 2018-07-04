@@ -2,8 +2,8 @@ import { history } from '../../utils/routerUtils'
 import {
   SHOW_NOTIFICATION,
   CLEAR_NOTIFICATION,
-  OPEN_SIDEBAR,
-  CLOSE_SIDEBAR,
+  OPEN_DRAWER,
+  CLOSE_DRAWER,
   GOTO,
   SET_ON_EPISODE_PAGE,
   CLEAR_ON_EPISODE_PAGE
@@ -27,14 +27,14 @@ export function clearNotification() {
 export const toggleDrawer = () => (dispatch, getState) => {
   const isSidebarOPen = getIsSidebarOpen(getState())
   if (!isSidebarOPen) {
-    dispatch({ type: OPEN_SIDEBAR })
+    dispatch({ type: OPEN_DRAWER })
   } else {
-    dispatch({ type: CLOSE_SIDEBAR })
+    dispatch({ type: CLOSE_DRAWER })
   }
 }
 
-export const openSidebar = () => dispatch => {
-  dispatch({ type: OPEN_SIDEBAR })
+export const openDrawer = () => dispatch => {
+  dispatch({ type: OPEN_DRAWER })
 }
 
 export const setOnEpisodePage = () => dispatch => {

@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 import {
   SHOW_NOTIFICATION,
   CLEAR_NOTIFICATION,
-  OPEN_SIDEBAR,
-  CLOSE_SIDEBAR,
+  OPEN_DRAWER,
+  CLOSE_DRAWER,
   SET_ON_EPISODE_PAGE,
   CLEAR_ON_EPISODE_PAGE
 } from '../../constants/actionTypes/commonActionTypes.js'
@@ -21,9 +21,9 @@ const notification = (state = '', action) => {
 
 const isSidebarOpen = (state = false, action) => {
   switch (action.type) {
-    case OPEN_SIDEBAR:
+    case OPEN_DRAWER:
       return true
-    case CLOSE_SIDEBAR:
+    case CLOSE_DRAWER:
       return false
     default:
       return state

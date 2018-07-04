@@ -4,7 +4,7 @@ import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
 import {
   setOnEpisodePage,
   clearOnEpisodePage,
-  openSidebar
+  openDrawer
 } from '../redux/actions'
 
 import {
@@ -81,6 +81,6 @@ export default connect(
     fetchCourse,
     setOnEpisodePage,
     clearOnEpisodePage,
-    openSidebar
+    openDrawer
   }
 )(EpisodeContainer)
