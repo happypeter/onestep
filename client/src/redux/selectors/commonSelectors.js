@@ -50,7 +50,7 @@ export const getIsMember = state =>
   false
 
 export const getIsSidebarOpen = state =>
-  (state.common && state.common.isSidebarOpen) || false
+  (state.common && state.common.isDrawerOpen) || false
 
 export const getIsOnEpisodePage = state =>
   (state.common && state.common.isOnEpisodePage) || false

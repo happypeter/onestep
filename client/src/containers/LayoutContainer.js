@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
   isAuthenticated: getIsAuthenticated(state),
   notification: getNotification(state),
-  isSidebarOpen: getIsSidebarOpen(state),
+  isDrawerOpen: getIsSidebarOpen(state),
   isOnEpisodePage: getIsOnEpisodePage(state)
 })
 

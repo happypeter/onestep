@@ -35,11 +35,12 @@ const styles = theme => ({
 
 class Header extends Component {
   render() {
-    const { toggleDrawer, classes: s, isSidebarOpen, width } = this.props
+    const { toggleDrawer, classes: s, isDrawerOpen, width } = this.props
     const disableGutters = width === 'xs' || width === 'sm'
     return (
       <AppBar
-        className={classNames(s.appBar, { [s.appBarShift]: isSidebarOpen })}
+        className={classNames(s.appBar, { [s.appBarShift]: isDrawerOpen })}
+        elevation={0}
       >
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
           <IconButton onClick={toggleDrawer}>
@@ -54,7 +55,7 @@ class Header extends Component {
 Header.propTypes = {
   goto: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
-  isSidebarOpen: PropTypes.bool.isRequired
+  isDrawerOpen: PropTypes.bool.isRequired
 }
 
 export default compose(

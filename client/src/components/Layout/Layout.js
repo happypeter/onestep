@@ -59,20 +59,13 @@ const styles = theme => ({
 })
 
 class Layout extends React.Component {
-  componentDidMount() {
-    const { isOnEpisodePage } = this.props
-    if (isOnEpisodePage) {
-      this.props.openDrawer()
-    }
-  }
-
   render() {
     const {
       notification,
       children,
       clearNotification,
       toggleDrawer,
-      isSidebarOpen,
+      isDrawerOpen,
       goto,
       currentUser,
       isOnEpisodePage,
@@ -85,11 +78,11 @@ class Layout extends React.Component {
           currentUser={currentUser}
           goto={goto}
           toggleDrawer={toggleDrawer}
-          isSidebarOpen={isSidebarOpen}
+          isDrawerOpen={isDrawerOpen}
         />
         <Drawer
           variant="persistent"
-          open={isSidebarOpen}
+          open={isDrawerOpen}
           classes={{
             paper: s.drawer
           }}
@@ -112,7 +105,7 @@ class Layout extends React.Component {
         />
         <div
           className={classNames(s.content, {
-            [s.contentShift]: isSidebarOpen
+            [s.contentShift]: isDrawerOpen
           })}
         >
           {children}
@@ -126,7 +119,7 @@ Layout.propTypes = {
   currentUser: PropTypes.object.isRequired,
   notification: PropTypes.string.isRequired,
   clearNotification: PropTypes.func.isRequired,
-  isSidebarOpen: PropTypes.bool.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   isOnEpisodePage: PropTypes.bool.isRequired
 }

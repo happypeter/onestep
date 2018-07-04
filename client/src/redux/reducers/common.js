@@ -19,11 +19,13 @@ const notification = (state = '', action) => {
   }
 }
 
-const isSidebarOpen = (state = false, action) => {
+const isDrawerOpen = (state = false, action) => {
   switch (action.type) {
     case OPEN_DRAWER:
       return true
     case CLOSE_DRAWER:
+      return false
+    case CLEAR_ON_EPISODE_PAGE:
       return false
     default:
       return state
@@ -43,6 +45,6 @@ const isOnEpisodePage = (state = false, action) => {
 
 export default combineReducers({
   notification,
-  isSidebarOpen,
+  isDrawerOpen,
   isOnEpisodePage
 })

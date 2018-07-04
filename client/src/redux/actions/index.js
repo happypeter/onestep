@@ -25,8 +25,8 @@ export function clearNotification() {
 }
 
 export const toggleDrawer = () => (dispatch, getState) => {
-  const isSidebarOPen = getIsSidebarOpen(getState())
-  if (!isSidebarOPen) {
+  const isDrawerOpen = getIsSidebarOpen(getState())
+  if (!isDrawerOpen) {
     dispatch({ type: OPEN_DRAWER })
   } else {
     dispatch({ type: CLOSE_DRAWER })
