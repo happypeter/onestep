@@ -5,7 +5,7 @@ const isFetching = (state = false, action) => {
   switch (action.type) {
     case types.FETCH_COURSE_STARTED:
       return true
-    case types.FETCH_COURSE_SUCCESS:
+    case types.FETCH_CURRENT_COURSE_SUCCESS:
       return false
     default:
       return state
@@ -14,7 +14,7 @@ const isFetching = (state = false, action) => {
 
 const info = (state = {}, action) => {
   switch (action.type) {
-    case types.FETCH_COURSE_SUCCESS:
+    case types.FETCH_CURRENT_COURSE_SUCCESS:
       return action.course
     default:
       return state

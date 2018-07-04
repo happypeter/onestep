@@ -5,7 +5,7 @@ import MemberShip from './MemberShip'
 
 class Profile extends Component {
   componentDidMount() {
-    this.props.fetchCourseIfNeeded()
+    this.props.fetchCoursesIfNeeded()
   }
 
   render() {

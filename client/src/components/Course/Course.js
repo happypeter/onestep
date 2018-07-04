@@ -121,8 +121,3 @@ const Section = styled.div`
     margin: 64px auto;
   }
 `
-
-const Info = styled.div`
-  text-align: center;
-  font-size: 2.5em;
-`

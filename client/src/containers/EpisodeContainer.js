@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchEpisode, fetchCourse } from '../redux/actions/contentAction'
+import {
+  fetchEpisode,
+  fetchCurrentCourse
+} from '../redux/actions/contentAction'
 import {
   setOnEpisodePage,
   clearOnEpisodePage,
@@ -21,7 +24,7 @@ class EpisodeContainer extends Component {
   componentDidMount() {
     const { courseName, episodeUid } = this.props.match.params
     this.props.fetchEpisode({ courseName, episodeUid })
-    this.props.fetchCourse(courseName)
+    this.props.fetchCurrentCourse(courseName)
   }
 
   componentWillReceiveProps() {
@@ -78,7 +81,7 @@ export default connect(
   mapStateToProps,
   {
     fetchEpisode,
-    fetchCourse,
+    fetchCurrentCourse,
     setOnEpisodePage,
     clearOnEpisodePage,
     openDrawer

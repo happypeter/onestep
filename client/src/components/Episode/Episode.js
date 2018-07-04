@@ -45,7 +45,7 @@ class Episode extends React.Component {
     }
     this.props.setOnEpisodePage()
     const { courseName } = this.props.match.params
-    this.props.fetchCourse(courseName)
+    this.props.fetchCurrentCourse(courseName)
   }
 
   componentWillUnmount() {

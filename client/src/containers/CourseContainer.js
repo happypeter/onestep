@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  fetchCourse,
+  fetchCurrentCourse,
   signContract,
   checkContract
 } from '../redux/actions/contentAction'
@@ -23,7 +23,7 @@ const AsyncCourse = Loadable({
 class CourseContainer extends Component {
   componentWillMount() {
     let { courseName } = this.props.match.params
-    this.props.fetchCourse(courseName)
+    this.props.fetchCurrentCourse(courseName)
   }
 
   render() {
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    fetchCourse,
+    fetchCurrentCourse,
     signContract,
     checkContract
   }

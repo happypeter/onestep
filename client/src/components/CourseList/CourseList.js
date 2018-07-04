@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 class CourseList extends Component {
   componentDidMount() {
-    this.props.fetchCourseIfNeeded()
+    this.props.fetchCoursesIfNeeded()
   }
 
   render() {

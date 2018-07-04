@@ -11,9 +11,8 @@ function handleError(error, dispatch) {
   }
 }
 
-export function fetchCourseIfNeeded(data) {
+export function fetchCoursesIfNeeded(data) {
   return (dispatch, getState) => {
-    console.log('ifneeded', getState())
     if (getState().course.all.length !== 0) return
     dispatch({ type: types.FETCH_COURSES_STARTED })
     axios
@@ -30,13 +29,15 @@ export function fetchCourseIfNeeded(data) {
   }
 }
 
-export const fetchCourse = courseName => dispatch => {
+export const fetchCurrentCourse = courseName => dispatch => {
   dispatch({ type: types.FETCH_COURSE_STARTED })
-  console.log('courseName...', courseName)
   axios
     .get(`${config.api}/courses/${courseName}`)
     .then(res => {
-      dispatch({ type: types.FETCH_COURSE_SUCCESS, course: res.data.course })
+      dispatch({
+        type: types.FETCH_CURRENT_COURSE_SUCCESS,
+        course: res.data.course
+      })
     })
     .catch(error => {
       handleError(error, dispatch)
@@ -44,7 +45,6 @@ export const fetchCourse = courseName => dispatch => {
 }
 
 export function fetchEpisode(data) {
-  console.log('data.....', data)
   return dispatch => {
     dispatch({ type: types.FETCH_EPISODE_STARTED })
     axios

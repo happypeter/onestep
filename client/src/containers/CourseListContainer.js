@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchCourseIfNeeded } from '../redux/actions/contentAction'
+import { fetchCoursesIfNeeded } from '../redux/actions/contentAction'
 import { getCourse } from '../redux/selectors/commonSelectors.js'
 import LoadingComponent from '../components/common/Loading'
 import Loadable from 'react-loadable'
@@ -19,5 +19,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCourseIfNeeded }
+  { fetchCoursesIfNeeded }
 )(CourseListContainer)

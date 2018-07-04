@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   signContract,
   checkContract,
-  fetchCourseIfNeeded
+  fetchCoursesIfNeeded
 } from '../redux/actions/contentAction'
 import {
   getProfile,
@@ -37,6 +37,6 @@ export default connect(
   {
     signContract,
     checkContract,
-    fetchCourseIfNeeded
+    fetchCoursesIfNeeded
   }
 )(ProfileContainer)
