@@ -92,10 +92,9 @@ class DrawerFooter extends React.Component {
 
     return (
       <Toolbar className={s.userWrap}>
-        <IconButton>
+        <IconButton onClick={this.handlePopoverOpen}>
           <UserIcon
             className={classNames({ [s.userIconLoggedIn]: isAuthenticated })}
-            onClick={this.handlePopoverOpen}
           />
         </IconButton>
         <Typography variant="title">
