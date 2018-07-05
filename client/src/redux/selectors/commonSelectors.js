@@ -92,6 +92,11 @@ export const getCurrentCoursePrice = state => {
   return currentCourse.info.price || 0
 }
 
+export const getCurrentCourseName = state => {
+  const { currentCourse } = state
+  return currentCourse.info.name || ''
+}
+
 export const getEpisodes = state => {
   const { currentCourse } = state
   const info = currentCourse.info

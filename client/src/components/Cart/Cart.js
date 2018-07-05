@@ -2,7 +2,14 @@ import React from 'react'
 
 class Cart extends React.Component {
   render() {
-    return <div>price, courseName, courseUid</div>
+    const { price, courseName, uid } = this.props
+    return (
+      <div>
+        <div>{courseName}</div>
+        <div>{uid}</div>
+        <div>{price}</div>
+      </div>
+    )
   }
 }
 
