@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button'
 const styles = theme => ({
   hero: {
     position: 'relative',
-    height: 1000
+    height: 1000,
+    overflow: 'hidden'
   },
   bgShape: {
     position: 'absolute',
