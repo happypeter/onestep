@@ -1,7 +1,7 @@
 import React from 'react'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
-import './videojs-hqcat.css'
+// import './videojs-hqcat.css'
 
 class VideoPlayer extends React.Component {
   componentDidMount() {
@@ -23,10 +23,7 @@ class VideoPlayer extends React.Component {
         onKeyDown={this.handleSpaceKeyDown}
         ref="videoPlayerRef"
       >
-        <video
-          ref={node => (this.videoNode = node)}
-          className="video-js vjs-hqcat"
-        />
+        <video ref={node => (this.videoNode = node)} className="video-js" />
       </div>
     )
   }
