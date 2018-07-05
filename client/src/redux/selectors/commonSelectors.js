@@ -87,6 +87,11 @@ export const getCurrentCourseIntro = state => {
   )
 }
 
+export const getCurrentCoursePrice = state => {
+  const { currentCourse } = state
+  return currentCourse.info.price || 0
+}
+
 export const getEpisodes = state => {
   const { currentCourse } = state
   const info = currentCourse.info

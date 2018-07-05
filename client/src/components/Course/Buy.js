@@ -8,9 +8,13 @@ const styles = theme => ({
 
 class Buy extends React.Component {
   render() {
-    const { classes: s } = this.props
+    const { classes: s, price } = this.props
     return (
-      <div className={s.root}>Buy</div>
+      <div>
+        <div className={s.root}>Buy</div>
+
+        <div>{price}</div>
+      </div>
 
       // {price === 0 ? (
       //   <BuyCourseButton />
