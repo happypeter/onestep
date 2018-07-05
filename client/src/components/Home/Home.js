@@ -1,8 +1,9 @@
 import React from 'react'
 import CourseList from '../../containers/CourseListContainer'
 import Hero from './Hero'
+import MobileHero from './MobileHero'
 import { withStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
+import Hidden from '@material-ui/core/Hidden'
 
 const styles = theme => ({})
 
@@ -11,7 +12,12 @@ class Home extends React.Component {
     const { classes: s } = this.props
     return (
       <div>
-        <Hero />
+        <Hidden mdDown>
+          <Hero />
+        </Hidden>
+        <Hidden lgUp>
+          <MobileHero />
+        </Hidden>
         <CourseList />
       </div>
     )
