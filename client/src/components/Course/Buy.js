@@ -1,9 +1,16 @@
 import React from 'react'
 
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  root: {}
+})
+
 class Buy extends React.Component {
   render() {
+    const { classes: s } = this.props
     return (
-      <div>By</div>
+      <div className={s.root}>Buy</div>
 
       // {price === 0 ? (
       //   <BuyCourseButton />
@@ -22,4 +29,4 @@ class Buy extends React.Component {
   }
 }
 
-export default Buy
+export default withStyles(styles)(Buy)
