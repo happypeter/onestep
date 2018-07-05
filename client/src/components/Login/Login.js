@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
-import { Form, ActionButton, Error } from '../oauth/FormStyle'
+import { Error } from '../oauth/FormStyle'
 import isEmpty from 'lodash.isempty'
 import Layout from '../shared/AuthFormLayout'
+import Button from '@material-ui/core/Button'
 
 class Login extends Component {
   state = {
@@ -37,8 +38,8 @@ class Login extends Component {
   render() {
     const { account, password, errors } = this.state
     return (
-      <Layout title="login" notice>
-        <Form onSubmit={this.handleSubmit}>
+      <Layout title="登录" notice>
+        <div>
           <TextField
             style={{ width: '100%' }}
             value={account}
@@ -57,8 +58,14 @@ class Login extends Component {
             type="password"
             helperText={<Error>{errors.password}</Error>}
           />
-          <ActionButton type="submit">登录</ActionButton>
-        </Form>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={this.handleSubmit}
+          >
+            登录
+          </Button>
+        </div>
       </Layout>
     )
   }

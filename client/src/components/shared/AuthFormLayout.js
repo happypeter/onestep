@@ -12,12 +12,15 @@ const styles = theme => ({
     flexDirection: 'column'
   },
   titleWrap: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.paper,
     textAlign: 'center',
     padding: theme.spacing.unit * 3
   },
   title: {
-    color: 'white'
+    color: theme.palette.primary.main
+  },
+  items: {
+    padding: 16
   }
 })
 class AuthFormLayout extends React.Component {
@@ -26,14 +29,14 @@ class AuthFormLayout extends React.Component {
     return (
       <div>
         {notice && <BindPhoneNote />}
-        <div className={s.container}>
+        <Paper className={s.container}>
           <div className={s.titleWrap}>
             <Typography className={s.title} variant="title">
               {title}
             </Typography>
           </div>
-          <Paper>{children}</Paper>
-        </div>
+          <div className={s.items}>{children}</div>
+        </Paper>
       </div>
     )
   }

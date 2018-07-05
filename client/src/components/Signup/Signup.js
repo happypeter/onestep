@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
 import TextField from '@material-ui/core/TextField'
-import { Form, ActionButton, Row, Error } from '../oauth/FormStyle'
+import { Row, Error } from '../oauth/FormStyle'
+import Button from '@material-ui/core/Button'
 import keys from 'lodash.keys'
 import isEmpty from 'lodash.isempty'
 import Layout from '../shared/AuthFormLayout'
@@ -104,8 +105,8 @@ class Signup extends Component {
         <Row key={field.name}>
           <TextField
             error={errors[field.name] ? true : false}
-            style={{ width: '100%' }}
             value={this.state[field.name]}
+            fullWidth
             onChange={this.handleChange.bind(this, field.name)}
             margin="dense"
             label={field.label}
@@ -123,11 +124,17 @@ class Signup extends Component {
       )
     })
     return (
-      <Layout title="signup">
-        <Form onSubmit={this.handleSubmit}>
+      <Layout title="注册">
+        <div>
           {formItems}
-          <ActionButton type="submit">注册</ActionButton>
-        </Form>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleSubmit}
+          >
+            注册
+          </Button>
+        </div>
       </Layout>
     )
   }

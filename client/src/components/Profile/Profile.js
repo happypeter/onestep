@@ -10,15 +10,15 @@ import ListItemText from '@material-ui/core/ListItemText'
 const styles = theme => ({
   root: {
     paddingTop: theme.spacing.unit * 3,
-    maxWidth: 1000,
+    maxWidth: 400,
     margin: '0 auto'
   },
   section: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 2
   },
   sectionTitle: {
-    border: `2px solid ${theme.palette.primary.main}`,
+    border: `2px solid ${theme.palette.primary.light}`,
     marginBottom: theme.spacing.unit * 2,
     marginTop: theme.spacing.unit * 2,
     padding: theme.spacing.unit * 2,
