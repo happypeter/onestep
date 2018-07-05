@@ -10,6 +10,14 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: 700,
       margin: '0 auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1000,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 1400,
+      margin: '0 auto'
     }
   }
 })

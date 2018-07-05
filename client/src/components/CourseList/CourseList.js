@@ -8,17 +8,15 @@ import Grid from '@material-ui/core/Grid'
 const styles = theme => ({
   root: {
     width: '100%',
-    border: '3px solid green',
     margin: '0 auto'
   },
   list: {
     // border: '3px solid yellow'
   },
-  gridItem: {
-    border: '3px solid yellow'
-  },
+  gridItem: {},
   section: {
-    marginBottom: 24
+    marginBottom: theme.spacing.unit * 2,
+    textAlign: 'center'
   }
 })
 
@@ -37,7 +35,7 @@ class CourseList extends Component {
         xs={12}
         sm={6}
         lg={4}
-        xl={3}
+        xl={4}
       >
         <CourseCard uid={item.uid} title={item.title} goto={goto} />
       </Grid>

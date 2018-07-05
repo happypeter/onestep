@@ -9,15 +9,16 @@ import PropTypes from 'prop-types'
 
 const getCoverLink = uid => `${videoRepo}/posters/${uid}.png`
 
-const styles = {
+const styles = theme => ({
   card: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    margin: theme.spacing.unit
   },
   media: {
     height: 0,
     paddingTop: '56.25%'
   }
-}
+})
 
 class CourseCard extends React.Component {
   render() {
