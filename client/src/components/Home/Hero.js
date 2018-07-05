@@ -3,11 +3,16 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   hero: {
     position: 'relative',
-    height: 1000,
+    height: 600,
+    [theme.breakpoints.up('xl')]: {
+      height: 900
+    },
     overflow: 'hidden'
   },
   bgShape: {
@@ -65,7 +70,6 @@ const styles = theme => ({
     zIndex: 1000
   },
   textWrap: {
-    border: '2px solid red',
     display: 'flex',
     width: 400,
     flexDirection: 'column',
@@ -78,8 +82,10 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2
   },
   imgWrap: {
-    border: '2px solid green',
-    width: 800,
+    width: 550,
+    [theme.breakpoints.up('xl')]: {
+      width: 800
+    },
     '& img': {
       width: '100%'
     }
@@ -88,7 +94,7 @@ const styles = theme => ({
 
 class Hero extends React.Component {
   render() {
-    const { classes: s } = this.props
+    const { classes: s, goto } = this.props
     return (
       <div className={s.hero}>
         <div className={s.content}>
@@ -96,17 +102,22 @@ class Hero extends React.Component {
             <div className={s.text}>
               <Typography variant="display2">好奇猫编程视频站</Typography>
               <Typography className={s.subheading} variant="subheading">
-                Peter
-                的采坑实录，帮你节省自学时间。的采坑实录，帮你节省自学时间。
+                Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React
+                ， 后端 Express。
               </Typography>
-              <Button size="large" variant="raised" color="primary">
+              <Button
+                onClick={() => goto('/login')}
+                size="large"
+                variant="raised"
+                color="primary"
+              >
                 登录
               </Button>
             </div>
           </div>
-          <div className={s.imgWrap}>
+          <Paper className={s.imgWrap}>
             <img src="/dashboard.jpg" alt="db" />
-          </div>
+          </Paper>
         </div>
         <div className={s.bgShape} />
         <div className={s.bgCircle} />
@@ -114,6 +125,10 @@ class Hero extends React.Component {
       </div>
     )
   }
+}
+
+Hero.propTypes = {
+  goto: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Hero)

@@ -7,7 +7,7 @@ import withMui from '../utils/withMui'
 import Layout from '../containers/LayoutContainer'
 
 const AsyncHome = Loadable({
-  loader: () => import('../components/Home/Home'),
+  loader: () => import('../containers/HomeContainer'),
   loading: LoadingComponent,
   delay: 300
 })

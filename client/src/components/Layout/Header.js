@@ -37,10 +37,11 @@ class Header extends Component {
   render() {
     const { toggleDrawer, classes: s, isDrawerOpen, width } = this.props
     const disableGutters = width === 'xs' || width === 'sm'
+    const elevation = width === 'xs' || width === 'sm' ? 1 : 0
     return (
       <AppBar
         className={classNames(s.appBar, { [s.appBarShift]: isDrawerOpen })}
-        elevation={0}
+        elevation={elevation}
       >
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
           <IconButton onClick={toggleDrawer}>

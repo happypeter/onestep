@@ -1,9 +1,9 @@
 import React from 'react'
 import CourseList from '../../containers/CourseListContainer'
 import Hero from './Hero'
-import MobileHero from './MobileHero'
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   listWrap: {
@@ -24,14 +24,11 @@ const styles = theme => ({
 
 class Home extends React.Component {
   render() {
-    const { classes: s } = this.props
+    const { classes: s, goto } = this.props
     return (
       <div>
         <Hidden mdDown>
-          <Hero />
-        </Hidden>
-        <Hidden lgUp>
-          <MobileHero />
+          <Hero goto={goto} />
         </Hidden>
         <div className={s.listWrap}>
           <CourseList />
@@ -39,6 +36,10 @@ class Home extends React.Component {
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  goto: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Home)
