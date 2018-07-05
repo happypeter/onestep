@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import CourseCard from '../common/CourseCard'
 import MemberShip from './MemberShip'
+import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  root: {
+    paddingTop: theme.spacing.unit * 3
+  },
+  sectionTitle: {
+    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2
+  }
+})
 
 class Profile extends Component {
   componentDidMount() {
@@ -9,11 +21,13 @@ class Profile extends Component {
   }
 
   render() {
-    const { courses, anyCourse, isMember } = this.props
+    const { courses, anyCourse, isMember, goto, classes: s } = this.props
     const pageContent = (
-      <div>
+      <div className={s.root}>
         <ContentWrap>
-          <SubTitle>课程</SubTitle>
+          <div className={s.sectionTitle}>
+            <Typography variant="headline">购买的课程</Typography>
+          </div>
           {anyCourse ? (
             <CourseListWrap>
               {courses.map(course => (
@@ -21,6 +35,7 @@ class Profile extends Component {
                   key={course.uid}
                   uid={course.uid}
                   title={course.title}
+                  goto={goto}
                 />
               ))}
             </CourseListWrap>
@@ -28,6 +43,9 @@ class Profile extends Component {
             <div>还没有购买过课程</div>
           )}
 
+          <div className={s.sectionTitle}>
+            <Typography variant="headline">会员服务</Typography>
+          </div>
           <MemberShip isMember={isMember} />
         </ContentWrap>
       </div>
@@ -37,7 +55,7 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+export default withStyles(styles)(Profile)
 
 const Wrap = styled.div`
   min-height: 100vh;
@@ -55,21 +73,6 @@ const ContentWrap = styled.div`
     box-sizing: border-box;
     width: 1024px;
     margin: 0 auto;
-  }
-`
-
-const SubTitle = styled.div`
-  color: #212121;
-  width: 102px;
-  margin: 0px auto;
-  margin-top: 43px;
-  margin-bottom: 23px;
-  text-align: center;
-  font-size: 2em;
-  border-bottom: 7px solid #00bcd4;
-  @media (min-width: 1024px) {
-    margin-top: 87px;
-    margin-bottom: 47px;
   }
 `
 

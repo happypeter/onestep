@@ -9,6 +9,7 @@ import {
   getProfile,
   getDetailedPaidCourses
 } from '../redux/selectors/commonSelectors.js'
+import { goto } from '../redux/actions'
 import {
   getCurrentUser,
   getIsMember
@@ -37,6 +38,7 @@ export default connect(
   {
     signContract,
     checkContract,
-    fetchCoursesIfNeeded
+    fetchCoursesIfNeeded,
+    goto
   }
 )(ProfileContainer)
