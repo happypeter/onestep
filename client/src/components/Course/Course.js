@@ -13,6 +13,19 @@ const styles = theme => ({
   content: {
     paddingBottom: 32
   },
+  playerWrap: {
+    [theme.breakpoints.up('md')]: {
+      width: 800,
+      margin: '0 auto',
+      padding: '32px 0'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1000
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 1400
+    }
+  },
   section: {}
 })
 
@@ -27,7 +40,9 @@ class Course extends Component {
 
     return (
       <div>
-        {videoLink && <VideoPlayer {...videoJsOptions(videoLink)} />}
+        <div className={s.playerWrap}>
+          {videoLink && <VideoPlayer {...videoJsOptions(videoLink)} />}
+        </div>
         <Paper className={s.content}>
           <div className={s.section}>
             <CourseIntro />

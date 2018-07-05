@@ -3,10 +3,28 @@ import { Typography, ListItemIcon } from '@material-ui/core'
 import { ListItem, ListItemText } from '@material-ui/core'
 import PlayerIcon from '@material-ui/icons/PlayArrow'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  root: {
+    [theme.breakpoints.up('md')]: {
+      width: 800,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1000,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 1400,
+      margin: '0 auto'
+    }
+  }
+})
 
 class EpisodeList extends React.Component {
   render() {
-    const { episodes, courseUid, goto } = this.props
+    const { episodes, courseUid, goto, classes: s } = this.props
     const epList = episodes.map(t => (
       <ListItem
         key={t.uid}
@@ -21,7 +39,7 @@ class EpisodeList extends React.Component {
         </ListItemText>
       </ListItem>
     ))
-    return <div>{epList}</div>
+    return <div className={s.root}>{epList}</div>
   }
 }
 
@@ -31,4 +49,4 @@ EpisodeList.propTypes = {
   goto: PropTypes.func.isRequired
 }
 
-export default EpisodeList
+export default withStyles(styles)(EpisodeList)

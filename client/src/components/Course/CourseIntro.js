@@ -12,11 +12,24 @@ const styles = theme => ({
   root: {},
   mainIntro: {
     padding: theme.spacing.unit,
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing.unit * 2,
+    [theme.breakpoints.up('md')]: {
+      width: 800,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1000,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 1400,
+      margin: '0 auto'
+    }
   },
   section: {
     padding: theme.spacing.unit * 2,
-    paddingBottom: 0
+    paddingBottom: 0,
+    border: ` 3px solid ${theme.palette.primary.main}`
   },
   container: {
     [theme.breakpoints.up('md')]: {
@@ -37,7 +50,6 @@ const styles = theme => ({
     display: 'flex'
   },
   sectionWrapper: {
-    backgroundColor: '#ddd',
     padding: 8
   },
   gridItem: {
@@ -47,13 +59,13 @@ const styles = theme => ({
 
 const introSection = (s, text, title, icon) => (
   <Grid item xs={12} sm={12} md={6} lg={6} className={s.gridItem}>
-    <Paper className={s.section}>
+    <div className={s.section}>
       <Typography variant="caption">{text}</Typography>
       <Toolbar disableGutters className={s.sectionTitle}>
         {icon}
         <Typography variant="title">{title}</Typography>
       </Toolbar>
-    </Paper>
+    </div>
   </Grid>
 )
 
