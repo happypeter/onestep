@@ -27,23 +27,7 @@ class Buy extends React.Component {
     )
 
     const content = isFree ? '免费课程' : buyButton
-    return (
-      <div className={s.root}>{content}</div>
-
-      // {price === 0 ? (
-      //   <BuyCourseButton />
-      // ) : !isAuthenticated ? (
-      //   <BuyCourseButton price={price} onClick={this.handleClick} />
-      // ) : !isAccessible ? (
-      //   <BuyCourse
-      //     name={name}
-      //     price={price}
-      //     courseId={_id}
-      //     signContract={this.props.signContract}
-      //     checkContract={this.props.checkContract}
-      //   />
-      // ) : null}
-    )
+    return <div className={s.root}>{content}</div>
   }
 }
 
