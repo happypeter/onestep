@@ -3,7 +3,6 @@ import { Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import FaceIcon from '@material-ui/icons/Face'
 import ListIcon from '@material-ui/icons/List'
-import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import Toolbar from '@material-ui/core/Toolbar'
 import Grid from '@material-ui/core/Grid'
@@ -22,14 +21,14 @@ const styles = theme => ({
       margin: '0 auto'
     },
     [theme.breakpoints.up('xl')]: {
-      width: 1400,
+      width: 1100,
       margin: '0 auto'
     }
   },
   section: {
     padding: theme.spacing.unit * 2,
     paddingBottom: 0,
-    border: ` 3px solid ${theme.palette.primary.main}`
+    border: `2px solid ${theme.palette.primary.light}`
   },
   container: {
     [theme.breakpoints.up('md')]: {
@@ -41,7 +40,7 @@ const styles = theme => ({
       margin: '0 auto'
     },
     [theme.breakpoints.up('xl')]: {
-      width: 1400,
+      width: 1100,
       margin: '0 auto'
     }
   },

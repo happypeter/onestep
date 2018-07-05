@@ -16,7 +16,7 @@ const styles = theme => ({
       margin: '0 auto'
     },
     [theme.breakpoints.up('xl')]: {
-      width: 1400,
+      width: 1100,
       margin: '0 auto'
     }
   }

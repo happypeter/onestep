@@ -5,7 +5,8 @@ import { toggleDrawer, goto } from '../redux/actions'
 import {
   getCourseTocContent,
   getCurrentCourseUid,
-  getCurrentEpisodeUid
+  getCurrentEpisodeUid,
+  getCurrentCourseName
 } from '../redux/selectors/commonSelectors.js'
 
 const TocListContainer = props => <TocList {...props} />
@@ -13,7 +14,8 @@ const TocListContainer = props => <TocList {...props} />
 const mapStateToProps = state => ({
   episodes: getCourseTocContent(state),
   currentCourseUid: getCurrentCourseUid(state),
-  currentEpisodeUid: getCurrentEpisodeUid(state)
+  currentEpisodeUid: getCurrentEpisodeUid(state),
+  currentCourseName: getCurrentCourseName(state)
 })
 export default connect(
   mapStateToProps,

@@ -39,6 +39,7 @@ class DrawerFooter extends React.Component {
   handleClick = path => {
     this.props.goto(path)
     this.setState({ anchorEl: null })
+    this.props.toggleDrawer()
   }
 
   handleClose = () => {
@@ -114,7 +115,8 @@ class DrawerFooter extends React.Component {
 }
 
 DrawerFooter.propTypes = {
-  goto: PropTypes.func.isRequired
+  goto: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(DrawerFooter)

@@ -7,7 +7,7 @@ import {
 } from '../redux/selectors/commonSelectors'
 
 import { logout } from '../redux/actions/authAction'
-import { goto } from '../redux/actions'
+import { goto, toggleDrawer } from '../redux/actions'
 
 const DrawerFooterContainer = props => <DrawerFooter {...props} />
 
@@ -17,5 +17,5 @@ const mapStateToProps = state => ({
 })
 export default connect(
   mapStateToProps,
-  { logout, goto }
+  { logout, goto, toggleDrawer }
 )(DrawerFooterContainer)

@@ -29,6 +29,7 @@ class TocList extends React.Component {
     const {
       episodes,
       currentCourseUid,
+      currentCourseName,
       currentEpisodeUid,
       classes: s
     } = this.props
@@ -57,14 +58,26 @@ class TocList extends React.Component {
     }
 
     const tocList = episodes.map(t => chaptList(t.section))
-    return <List>{tocList}</List>
+    return (
+      <List>
+        <ListItem
+          button
+          onClick={() => this.handleItemClick(`/${currentCourseUid}`)}
+        >
+          <ListItemText>{currentCourseName}</ListItemText>
+        </ListItem>
+        {tocList}
+      </List>
+    )
   }
 }
 
 TocList.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
   episodes: PropTypes.array.isRequired,
-  goto: PropTypes.func.isRequired
+  goto: PropTypes.func.isRequired,
+  currentCourseUid: PropTypes.string.isRequired,
+  currentCourseName: PropTypes.string.isRequired
 }
 
 export default compose(

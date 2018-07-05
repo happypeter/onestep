@@ -11,10 +11,14 @@ const styles = theme => ({
       padding: theme.spacing.unit
     },
     '& pre': {
-      border: `4px solid ${theme.palette.primary.main}`,
+      border: `2px solid ${theme.palette.primary.light}`,
       padding: theme.spacing.unit,
       fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
       overflow: 'auto'
+    },
+    '& a': {
+      textDecoration: 'none',
+      color: theme.palette.primary.dark
     }
   }
 })

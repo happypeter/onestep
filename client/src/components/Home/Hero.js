@@ -61,7 +61,7 @@ const styles = theme => ({
     margin: '0 auto',
     justifyContent: 'space-between',
     [theme.breakpoints.up('xl')]: {
-      width: 1400,
+      width: 1100,
       marginLeft: -700
     },
     left: '50%',

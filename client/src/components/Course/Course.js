@@ -23,7 +23,7 @@ const styles = theme => ({
       width: 1000
     },
     [theme.breakpoints.up('xl')]: {
-      width: 1400
+      width: 1100
     }
   },
   section: {}
