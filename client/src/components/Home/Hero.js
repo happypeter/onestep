@@ -11,7 +11,7 @@ const styles = theme => ({
     position: 'relative',
     height: 600,
     [theme.breakpoints.up('xl')]: {
-      height: 900
+      height: 700
     },
     overflow: 'hidden'
   },
@@ -62,10 +62,10 @@ const styles = theme => ({
     justifyContent: 'space-between',
     [theme.breakpoints.up('xl')]: {
       width: 1100,
-      marginLeft: -700
+      marginLeft: -550
     },
     left: '50%',
-    top: 200,
+    top: 170,
     position: 'absolute',
     zIndex: 1000
   },
@@ -82,9 +82,9 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2
   },
   imgWrap: {
-    width: 550,
+    width: 450,
     [theme.breakpoints.up('xl')]: {
-      width: 800
+      width: 600
     },
     '& img': {
       width: '100%'

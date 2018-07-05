@@ -6,7 +6,8 @@ import {
   getCourseTocContent,
   getCurrentCourseUid,
   getCurrentEpisodeUid,
-  getCurrentCourseName
+  getCurrentCourseName,
+  getIsOnEpisodePage
 } from '../redux/selectors/commonSelectors.js'
 
 const TocListContainer = props => <TocList {...props} />
@@ -15,7 +16,8 @@ const mapStateToProps = state => ({
   episodes: getCourseTocContent(state),
   currentCourseUid: getCurrentCourseUid(state),
   currentEpisodeUid: getCurrentEpisodeUid(state),
-  currentCourseName: getCurrentCourseName(state)
+  currentCourseName: getCurrentCourseName(state),
+  isOnEpisodePage: getIsOnEpisodePage(state)
 })
 export default connect(
   mapStateToProps,

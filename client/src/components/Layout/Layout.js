@@ -54,7 +54,15 @@ const styles = theme => ({
   },
   main: {
     flexGrow: 1,
-    overflow: 'auto'
+    overflow: 'auto',
+    position: 'relative'
+  },
+  mainInner: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   }
 })
 
@@ -68,7 +76,6 @@ class Layout extends React.Component {
       isDrawerOpen,
       goto,
       currentUser,
-      isOnEpisodePage,
       classes: s
     } = this.props
 
@@ -88,8 +95,9 @@ class Layout extends React.Component {
           }}
         >
           <DrawerHeader toggleDrawer={toggleDrawer} goto={goto} />
-          <div className={s.main}>{isOnEpisodePage && <TocList />}</div>
-
+          <div className={s.main}>
+            <div className={s.mainInner}>{<TocList />}</div>
+          </div>
           <DrawerFooter />
         </Drawer>
         <Snackbar
@@ -120,8 +128,7 @@ Layout.propTypes = {
   notification: PropTypes.string.isRequired,
   clearNotification: PropTypes.func.isRequired,
   isDrawerOpen: PropTypes.bool.isRequired,
-  toggleDrawer: PropTypes.func.isRequired,
-  isOnEpisodePage: PropTypes.bool.isRequired
+  toggleDrawer: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Layout)

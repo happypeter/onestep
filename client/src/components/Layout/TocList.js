@@ -12,8 +12,20 @@ import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
+  root: {
+    border: '2px solid blue',
+    height: '100%'
+  },
   itemActive: {
     color: theme.palette.primary.main
+  },
+  nothingWrap: {
+    border: '2px solid red',
+    textAlign: 'center',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   }
 })
 
@@ -31,7 +43,8 @@ class TocList extends React.Component {
       currentCourseUid,
       currentCourseName,
       currentEpisodeUid,
-      classes: s
+      classes: s,
+      isOnEpisodePage
     } = this.props
     const chaptList = toc => {
       return toc.map(t => (
@@ -58,7 +71,7 @@ class TocList extends React.Component {
     }
 
     const tocList = episodes.map(t => chaptList(t.section))
-    return (
+    const list = (
       <List>
         <ListItem
           button
@@ -69,6 +82,14 @@ class TocList extends React.Component {
         {tocList}
       </List>
     )
+
+    const nothing = (
+      <div className={s.nothingWrap}>
+        <Typography>通常这里都是用来显示目录的</Typography>
+      </div>
+    )
+    const content = isOnEpisodePage ? list : nothing
+    return <div className={s.root}>{content}</div>
   }
 }
 
@@ -77,7 +98,8 @@ TocList.propTypes = {
   episodes: PropTypes.array.isRequired,
   goto: PropTypes.func.isRequired,
   currentCourseUid: PropTypes.string.isRequired,
-  currentCourseName: PropTypes.string.isRequired
+  currentCourseName: PropTypes.string.isRequired,
+  isOnEpisodePage: PropTypes.bool.isRequired
 }
 
 export default compose(
