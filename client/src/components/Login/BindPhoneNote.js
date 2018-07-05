@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    padding: 20
+    padding: 20,
+    backgroundColor: theme.palette.background.paper
   }
 })
 

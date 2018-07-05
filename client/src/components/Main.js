@@ -3,8 +3,18 @@ import { Router, Switch, Route } from 'react-router'
 import Loadable from 'react-loadable'
 import LoadingComponent from '../components/common/Loading'
 import { PrivateRoute, history } from '../utils/routerUtils'
+import { withStyles } from '@material-ui/core/styles'
 import withMui from '../utils/withMui'
 import Layout from '../containers/LayoutContainer'
+
+const styles = theme => ({
+  '@global': {
+    a: {
+      color: theme.palette.primary.dark,
+      textDecoration: 'none'
+    }
+  }
+})
 
 const AsyncHome = Loadable({
   loader: () => import('../containers/HomeContainer'),
@@ -84,4 +94,4 @@ class Main extends Component {
   }
 }
 
-export default withMui(Main)
+export default withMui(withStyles(styles)(Main))
