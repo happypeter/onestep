@@ -6,22 +6,21 @@ import BindPhoneNote from '../Login/BindPhoneNote'
 import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
   container: {
-    width: 300,
+    width: 340,
     margin: '30px auto',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    padding: 32
   },
   titleWrap: {
     backgroundColor: theme.palette.background.paper,
     textAlign: 'center',
-    padding: theme.spacing.unit * 3
+    marginBottom: 8
   },
   title: {
     color: theme.palette.primary.main
   },
-  items: {
-    padding: 16
-  }
+  items: {}
 })
 class AuthFormLayout extends React.Component {
   render() {
