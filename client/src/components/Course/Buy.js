@@ -14,13 +14,13 @@ const styles = theme => ({
 
 class Buy extends React.Component {
   render() {
-    const { classes: s, price } = this.props
+    const { classes: s, price, goto } = this.props
     const isFree = price === '0'
 
     const buyButton = (
       <div>
         <div className={s.priceTag}>{price}元</div>
-        <Button variant="raised" color="primary">
+        <Button onClick={() => goto('/cart')} variant="raised" color="primary">
           购买
         </Button>
       </div>

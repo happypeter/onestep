@@ -13,31 +13,37 @@ const AsyncHome = Loadable({
 })
 
 const AsyncSignup = Loadable({
-  loader: () => import('./SignupContainer'),
+  loader: () => import('../containers/SignupContainer'),
+  loading: LoadingComponent,
+  delay: 300
+})
+
+const AsyncCart = Loadable({
+  loader: () => import('../containers/CartContainer'),
   loading: LoadingComponent,
   delay: 300
 })
 
 const AsyncLogin = Loadable({
-  loader: () => import('./LoginContainer'),
+  loader: () => import('../containers/LoginContainer'),
   loading: LoadingComponent,
   delay: 300
 })
 
 const AsyncProfile = Loadable({
-  loader: () => import('./ProfileContainer'),
+  loader: () => import('../containers/ProfileContainer'),
   loading: LoadingComponent,
   delay: 300
 })
 
 const AsyncCourse = Loadable({
-  loader: () => import('./CourseContainer'),
+  loader: () => import('../containers/CourseContainer'),
   loading: LoadingComponent,
   delay: 300
 })
 
 const AsyncEpisode = Loadable({
-  loader: () => import('./EpisodeContainer'),
+  loader: () => import('../containers/EpisodeContainer'),
   loading: LoadingComponent,
   delay: 300
 })
@@ -58,6 +64,7 @@ class Main extends Component {
             <Route exact path="/" component={AsyncHome} />
             <Route path="/login" component={AsyncLogin} />
             <Route path="/signup" component={AsyncSignup} />
+            <Route path="/cart" component={AsyncCart} />
             <PrivateRoute
               isAuthenticated={isAuthenticated}
               path="/user/profile"

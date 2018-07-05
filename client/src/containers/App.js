@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Main from './Main'
+import Main from '../components/Main'
 import { connect } from 'react-redux'
 import { setCurrentUser } from '../redux/actions/authAction'
 import { getIsAuthenticated } from '../redux/selectors/commonSelectors'
