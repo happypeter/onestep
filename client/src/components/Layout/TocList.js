@@ -13,19 +13,17 @@ import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   root: {
-    border: '2px solid blue',
     height: '100%'
   },
   itemActive: {
     color: theme.palette.primary.main
   },
   nothingWrap: {
-    border: '2px solid red',
     textAlign: 'center',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    justifyContent: 'center'
   }
 })
 
@@ -85,7 +83,7 @@ class TocList extends React.Component {
 
     const nothing = (
       <div className={s.nothingWrap}>
-        <Typography>通常这里都是用来显示目录的</Typography>
+        <Typography>这里用来显示目录的</Typography>
       </div>
     )
     const content = isOnEpisodePage ? list : nothing

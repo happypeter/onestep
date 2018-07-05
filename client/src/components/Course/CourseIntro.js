@@ -62,7 +62,7 @@ const introSection = (s, text, title, icon) => (
       <Typography variant="caption">{text}</Typography>
       <Toolbar disableGutters className={s.sectionTitle}>
         {icon}
-        <Typography variant="title">{title}</Typography>
+        <Typography variant="subheading">{title}</Typography>
       </Toolbar>
     </div>
   </Grid>
