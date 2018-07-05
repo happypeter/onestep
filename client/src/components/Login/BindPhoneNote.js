@@ -8,8 +8,7 @@ const styles = theme => ({
   root: {
     textAlign: 'center',
     padding: 20,
-    backgroundColor: theme.palette.background.paper,
-    border: `2px solid ${theme.palette.primary.light} `
+    backgroundColor: theme.palette.background.paper
   },
   icon: {
     fill: theme.palette.primary.main

@@ -20,14 +20,18 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary.main
   },
-  items: {}
+  items: {},
+  note: {
+    width: 340,
+    margin: `32px auto`
+  }
 })
 class AuthFormLayout extends React.Component {
   render() {
     const { children, classes: s, notice, title } = this.props
     return (
       <div>
-        {notice && <BindPhoneNote />}
+        <Paper className={s.note}>{notice && <BindPhoneNote />}</Paper>
         <Paper className={s.container}>
           <div className={s.titleWrap}>
             <Typography className={s.title} variant="title">
