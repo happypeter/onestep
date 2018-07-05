@@ -5,6 +5,18 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import EpisodeList from '../../containers/EpisodeListContainer'
 import Buy from '../../containers/BuyContainer'
 import { videoJsOptions } from '../../lib/playerConfig'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+
+const styles = theme => ({
+  root: {},
+  content: {
+    padding: theme.spacing.unit
+  },
+  section: {
+    marginBottom: theme.spacing.unit
+  }
+})
 
 class Course extends Component {
   componentDidMount() {
@@ -13,13 +25,22 @@ class Course extends Component {
   }
 
   render() {
-    const { videoLink } = this.props
+    const { videoLink, classes: s } = this.props
+
     return (
       <div>
         {videoLink && <VideoPlayer {...videoJsOptions(videoLink)} />}
-        <CourseIntro />
-        <EpisodeList />
-        <Buy />
+        <Paper className={s.content}>
+          <div className={s.section}>
+            <CourseIntro />
+          </div>
+          <div className={s.section}>
+            <EpisodeList />
+          </div>
+          <div className={s.section}>
+            <Buy />
+          </div>
+        </Paper>
       </div>
     )
   }
@@ -30,4 +51,4 @@ Course.propTypes = {
   videoLink: PropTypes.string.isRequired
 }
 
-export default Course
+export default withStyles(styles)(Course)

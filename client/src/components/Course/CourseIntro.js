@@ -1,28 +1,47 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+
+import PropTypes from 'prop-types'
+
+const styles = theme => ({
+  root: {},
+  section: {
+    marginTop: theme.spacing.unit * 2
+  },
+  sectionTitle: {
+    marginBottom: theme.spacing.unit
+  }
+})
 
 class CourseIntro extends React.Component {
   render() {
-    const { intro, learningGoal, writingToWho, title } = this.props.courseIntro
+    const { courseIntro, classes: s } = this.props
+    const { intro, learningGoal, writingToWho, title } = courseIntro
 
     return (
-      <div>
+      <div className={s.root}>
         <Typography variant="headline">{title}</Typography>
-        <div>
-          <Typography>一句话简介</Typography>
-          {intro}
+        <Typography variant="caption">{intro}</Typography>
+        <div className={s.section}>
+          <Typography className={s.sectionTitle} variant="title">
+            适合观众
+          </Typography>
+          <Typography variant="caption">{learningGoal}</Typography>
         </div>
-        <div>
-          <Typography>适合观众</Typography>
-          {learningGoal}
-        </div>
-        <div>
-          <Typography>'知识点</Typography>
-          {writingToWho}
+        <div className={s.section}>
+          <Typography className={s.sectionTitle} variant="title">
+            知识点
+          </Typography>
+          <Typography variant="caption">{writingToWho}</Typography>
         </div>
       </div>
     )
   }
 }
 
-export default CourseIntro
+CourseIntro.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(CourseIntro)
