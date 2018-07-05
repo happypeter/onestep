@@ -128,7 +128,8 @@ class Signup extends Component {
         <div>
           {formItems}
           <Button
-            variant="outlined"
+            variant="raised"
+            fullWidth
             color="primary"
             onClick={this.handleSubmit}
           >

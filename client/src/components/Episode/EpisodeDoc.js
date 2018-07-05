@@ -6,6 +6,9 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
+    fontFamily: `'Helvetica Neue',Helvetica,Arial,Sans-serif`,
+    lineHeight: 1.9,
+    fontSize: 16,
     padding: theme.spacing.unit * 3,
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing.unit

@@ -60,7 +60,8 @@ class Login extends Component {
           />
           <Button
             color="primary"
-            variant="outlined"
+            variant="raised"
+            fullWidth
             onClick={this.handleSubmit}
           >
             登录
