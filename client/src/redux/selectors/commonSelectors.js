@@ -89,7 +89,7 @@ export const getCurrentCourseIntro = state => {
 
 export const getCurrentCoursePrice = state => {
   const { currentCourse } = state
-  return currentCourse.info.price || 0
+  return currentCourse.info.price || '0'
 }
 
 export const getCurrentCourseName = state => {

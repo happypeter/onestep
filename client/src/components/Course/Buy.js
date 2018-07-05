@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,10 @@ class Buy extends React.Component {
     const content = isFree ? '免费课程' : buyButton
     return <div className={s.root}>{content}</div>
   }
+}
+
+Buy.propTypes = {
+  price: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(Buy)
