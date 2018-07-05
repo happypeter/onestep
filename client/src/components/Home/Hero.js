@@ -2,6 +2,7 @@ import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   hero: {
@@ -49,24 +50,34 @@ const styles = theme => ({
   },
   content: {
     display: 'flex',
-    width: 1600,
+    width: 1400,
     margin: '0 auto',
     justifyContent: 'space-between',
-    marginLeft: -800,
+    marginLeft: -700,
     left: '50%',
     top: 200,
     position: 'absolute',
     zIndex: 1000
   },
-  textArea: {
+  textWrap: {
     border: '2px solid red',
     display: 'flex',
+    width: 400,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItem: 'center'
   },
-  text: {
-    border: '2px solid red'
+  text: {},
+  subheading: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  },
+  imgWrap: {
+    border: '2px solid green',
+    width: 800,
+    '& img': {
+      width: '100%'
+    }
   }
 })
 
@@ -76,19 +87,21 @@ class Hero extends React.Component {
     return (
       <div className={s.hero}>
         <div className={s.content}>
-          <div className={s.textArea}>
+          <div className={s.textWrap}>
             <div className={s.text}>
-              <Typography variant="headline">好奇猫</Typography>
-              <Typography variant="caption">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                necessitatibus quae veritatis fugit odio nemo exercitationem
-                adipisci libero magnam nisi. Vel repellendus eos, ipsum libero
-                deleniti ab odio eveniet, ad vitae enim sint! Quibusdam magnam
-                obcaecati commodi! Sint, quae nihil.
+              <Typography variant="display2">好奇猫编程视频站</Typography>
+              <Typography className={s.subheading} variant="subheading">
+                Peter
+                的采坑实录，帮你节省自学时间。的采坑实录，帮你节省自学时间。
               </Typography>
+              <Button size="large" variant="raised" color="primary">
+                登录
+              </Button>
             </div>
           </div>
-          <img src="/dashboard.jpg" alt="db" />
+          <div className={s.imgWrap}>
+            <img src="/dashboard.jpg" alt="db" />
+          </div>
         </div>
         <div className={s.bgShape} />
         <div className={s.bgCircle} />
