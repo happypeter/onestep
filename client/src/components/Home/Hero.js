@@ -50,10 +50,14 @@ const styles = theme => ({
   },
   content: {
     display: 'flex',
-    width: 1400,
+    width: 1000,
+    marginLeft: -500,
     margin: '0 auto',
     justifyContent: 'space-between',
-    marginLeft: -700,
+    [theme.breakpoints.up('xl')]: {
+      width: 1400,
+      marginLeft: -700
+    },
     left: '50%',
     top: 200,
     position: 'absolute',

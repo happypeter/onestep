@@ -5,7 +5,14 @@ import MobileHero from './MobileHero'
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 
-const styles = theme => ({})
+const styles = theme => ({
+  listWrap: {
+    [theme.breakpoints.up('md')]: {
+      width: 700,
+      margin: '0 auto'
+    }
+  }
+})
 
 class Home extends React.Component {
   render() {
@@ -18,7 +25,9 @@ class Home extends React.Component {
         <Hidden lgUp>
           <MobileHero />
         </Hidden>
-        <CourseList />
+        <div className={s.listWrap}>
+          <CourseList />
+        </div>
       </div>
     )
   }
