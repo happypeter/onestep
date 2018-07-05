@@ -5,28 +5,57 @@ import FaceIcon from '@material-ui/icons/Face'
 import ListIcon from '@material-ui/icons/List'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
+import Toolbar from '@material-ui/core/Toolbar'
+import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
   root: {},
+  mainIntro: {
+    padding: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 2
+  },
   section: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    width: '49%',
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
+    paddingBottom: 0
+  },
+  container: {
+    [theme.breakpoints.up('md')]: {
+      width: 800,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 1000,
+      margin: '0 auto'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 1400,
+      margin: '0 auto'
+    }
   },
   sectionTitle: {
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing.unit,
+    display: 'flex'
   },
   sectionWrapper: {
-    marginTop: theme.spacing.unit * 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    border: '1px solid red',
     backgroundColor: '#ddd',
-    backgroundImage: `linear-gradient()`
+    padding: 8
+  },
+  gridItem: {
+    padding: theme.spacing.unit * 2
   }
 })
+
+const introSection = (s, text, title, icon) => (
+  <Grid item xs={12} sm={12} md={6} lg={6} className={s.gridItem}>
+    <Paper className={s.section}>
+      <Typography variant="caption">{text}</Typography>
+      <Toolbar disableGutters className={s.sectionTitle}>
+        {icon}
+        <Typography variant="title">{title}</Typography>
+      </Toolbar>
+    </Paper>
+  </Grid>
+)
 
 class CourseIntro extends React.Component {
   render() {
@@ -35,23 +64,16 @@ class CourseIntro extends React.Component {
 
     return (
       <div className={s.root}>
-        <Typography variant="headline">{title}</Typography>
-        <Typography variant="caption">{intro}</Typography>
+        <div className={s.mainIntro}>
+          <Typography variant="headline">{title}</Typography>
+          <Typography variant="caption">{intro}</Typography>
+        </div>
+
         <div className={s.sectionWrapper}>
-          <Paper className={s.section}>
-            <Typography variant="caption">{learningGoal}</Typography>
-            <FaceIcon />
-            <Typography className={s.sectionTitle} variant="title">
-              适合观众
-            </Typography>
-          </Paper>
-          <Paper className={s.section}>
-            <Typography variant="caption">{writingToWho}</Typography>
-            <ListIcon />
-            <Typography className={s.sectionTitle} variant="title">
-              知识点
-            </Typography>
-          </Paper>
+          <Grid container className={s.container} spacing={16}>
+            {introSection(s, writingToWho, '适合观众', <FaceIcon />)}
+            {introSection(s, learningGoal, '知识点', <ListIcon />)}
+          </Grid>
         </div>
       </div>
     )

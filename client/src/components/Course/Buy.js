@@ -16,7 +16,7 @@ const styles = theme => ({
 class Buy extends React.Component {
   render() {
     const { classes: s, price, goto } = this.props
-    const isFree = price === '0'
+    const isFree = price === 0
 
     const buyButton = (
       <div>
@@ -33,7 +33,7 @@ class Buy extends React.Component {
 }
 
 Buy.propTypes = {
-  price: PropTypes.string.isRequired
+  price: PropTypes.number.isRequired
 }
 
 export default withStyles(styles)(Buy)

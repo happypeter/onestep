@@ -11,11 +11,9 @@ import Paper from '@material-ui/core/Paper'
 const styles = theme => ({
   root: {},
   content: {
-    padding: theme.spacing.unit
+    paddingBottom: 32
   },
-  section: {
-    marginBottom: theme.spacing.unit
-  }
+  section: {}
 })
 
 class Course extends Component {
