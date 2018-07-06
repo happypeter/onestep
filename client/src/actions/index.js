@@ -1,4 +1,4 @@
-import { getIsAuthenticated } from '../selectors'
+import { getIsAuthenticated, getIsDrawerOpen } from '../selectors'
 import * as types from '../constants/ActionTypes'
 import history from '../utils/routerUtils'
 
@@ -12,5 +12,14 @@ export const checkAuth = () => (dispatch, getState) => {
   if (!isAuthenticated) {
     history.push('/')
     dispatch({ type: types.ALERT })
+  }
+}
+
+export const toggleDrawer = () => (dispatch, getState) => {
+  const isDrawerOpen = getIsDrawerOpen(getState())
+  if (!isDrawerOpen) {
+    dispatch({ type: types.OPEN_DRAWER })
+  } else {
+    dispatch({ type: types.CLOSE_DRAWER })
   }
 }
