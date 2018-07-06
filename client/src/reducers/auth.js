@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux'
-import auth from './auth'
+import * as types from '../constants/ActionTypes'
 
-const isOpen = (state = false, action) => {
+const isAuthenticated = (state = false, action = {}) => {
   switch (action.type) {
-    case 'OPEN_IT':
+    case types.AUTH_USER:
       return true
     default:
       return state
   }
 }
-
 export default combineReducers({
-  isOpen,
-  auth,
+  isAuthenticated,
 })

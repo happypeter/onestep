@@ -14,6 +14,14 @@ export default {
       component: 'src/containers/HomeContainer',
     },
     {
+      path: '/profile',
+      component: 'src/containers/ProfileContainer',
+    },
+    {
+      path: '/login',
+      component: 'src/containers/LoginContainer',
+    },
+    {
       is404: true,
       component: 'src/containers/404',
     },

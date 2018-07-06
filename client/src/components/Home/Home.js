@@ -1,22 +1,27 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-static'
 import PropTypes from 'prop-types'
+import history from '../../utils/routerUtils'
 
 class Home extends React.Component {
-  componentDidMount () {
-    this.props.openIt()
+  handleClick = path => {
+    this.props.goto(path)
   }
 
   render () {
     return (
       <div>
-        <Button>Hello</Button>
+        <Button variant="raised" onClick={() => history.push('/hello')}>
+          Login
+        </Button>
+        <Link to="/login">login</Link>
       </div>
     )
   }
 }
 
 Home.propTypes = {
-  openIt: PropTypes.func.isRequired,
+  goto: PropTypes.func.isRequired,
 }
 export default Home
