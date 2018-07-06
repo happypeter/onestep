@@ -16,8 +16,13 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.0.0-beta.21",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
-    "react-static": "^5.9.7"
+    "react-static": "^5.9.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",
