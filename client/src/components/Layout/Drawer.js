@@ -3,6 +3,7 @@ import Drawer from '@material-ui/core/Drawer'
 import { withStyles } from '@material-ui/core/styles'
 
 import DrawerHeader from './DrawerHeader'
+import DrawerFooter from '../../containers/DrawerFooterContainer'
 
 const styles = () => ({
   drawer: {
@@ -10,7 +11,6 @@ const styles = () => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    border: '2px solid red',
   },
   main: {
     flexGrow: 1,
@@ -42,6 +42,7 @@ class MyDrawer extends React.Component {
         <div className={s.main}>
           <div className={s.mainInner}>Main TOC</div>
         </div>
+        <DrawerFooter />
       </Drawer>
     )
   }

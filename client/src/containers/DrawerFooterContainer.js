@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import DrawerFooter from '../components/Layout/DrawerFooter'
-import { getCurrentUser, getIsAuthenticated } from '../redux/selectors/commonSelectors'
-
-import { logout } from '../redux/actions/authAction'
-import { goto, toggleDrawer } from '../redux/actions'
+import { getCurrentUser, getIsAuthenticated } from '../selectors/'
+import { logout } from '../actions/authActions'
+import { goto, toggleDrawer } from '../actions'
 
 const DrawerFooterContainer = props => <DrawerFooter {...props} />
 
