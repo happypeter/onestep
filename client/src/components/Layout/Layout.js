@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import Drawer from '../../containers/DrawerContainer'
-import { DRAWER_WIDTH } from '../../constants/GlobalStyle'
+import classNames from 'classnames'
 
+import { DRAWER_WIDTH } from '../../constants/GlobalStyle'
+import Drawer from '../../containers/DrawerContainer'
 import Header from './Header'
 
 const styles = theme => ({
@@ -42,23 +43,8 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawer: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
+  drawerWrap: {
     width: DRAWER_WIDTH,
-  },
-  main: {
-    flexGrow: 1,
-    overflow: 'auto',
-    position: 'relative',
-  },
-  mainInner: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
 })
 
@@ -76,8 +62,16 @@ class Layout extends React.Component {
           toggleDrawer={toggleDrawer}
           isDrawerOpen={isDrawerOpen}
         />
-        <Drawer />
-        <div>{children}</div>
+        <div className={s.drawerWrap}>
+          <Drawer />
+        </div>
+        <div
+          className={classNames(s.content, {
+            [s.contentShift]: isDrawerOpen,
+          })}
+        >
+          {children}
+        </div>
       </div>
     )
   }
