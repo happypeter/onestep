@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import Drawer from '../../containers/DrawerContainer'
 import { DRAWER_WIDTH } from '../../constants/GlobalStyle'
 
 import Header from './Header'
@@ -75,7 +76,7 @@ class Layout extends React.Component {
           toggleDrawer={toggleDrawer}
           isDrawerOpen={isDrawerOpen}
         />
-
+        <Drawer />
         <div>{children}</div>
       </div>
     )
