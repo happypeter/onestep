@@ -10,24 +10,24 @@ const styles = () => ({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    width: '100%',
+    width: '100%'
   },
   main: {
     flexGrow: 1,
     overflow: 'auto',
-    position: 'relative',
+    position: 'relative'
   },
   mainInner: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-  },
+    bottom: 0
+  }
 })
 
 class MyDrawer extends React.Component {
-  render () {
+  render() {
     const { isDrawerOpen, classes: s } = this.props
 
     return (
@@ -35,7 +35,7 @@ class MyDrawer extends React.Component {
         variant="persistent"
         open={isDrawerOpen}
         classes={{
-          paper: s.drawer,
+          paper: s.drawer
         }}
       >
         <DrawerHeader />

@@ -16,28 +16,26 @@ const styles = theme => ({
     background: '#fff',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   toolbar: {
-    height: HEADER_HEIGHT,
+    height: HEADER_HEIGHT
   },
   appBarShift: {
     width: `calc(100% - ${DRAWER_WIDTH}px)`,
 
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: DRAWER_WIDTH,
-  },
+    marginLeft: DRAWER_WIDTH
+  }
 })
 
 class Header extends Component {
-  render () {
-    const {
-      toggleDrawer, classes: s, isDrawerOpen, width,
-    } = this.props
+  render() {
+    const { toggleDrawer, classes: s, isDrawerOpen, width } = this.props
     const disableGutters = width === 'xs' || width === 'sm'
     const elevation = width === 'xs' || width === 'sm' ? 1 : 0
     return (
@@ -57,7 +55,7 @@ class Header extends Component {
 
 Header.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
-  isDrawerOpen: PropTypes.bool.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired
 }
 
 export default compose(
