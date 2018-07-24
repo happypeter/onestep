@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { compose } from 'recompose'
 import withWidth from '@material-ui/core/withWidth'
 import { DRAWER_WIDTH, HEADER_HEIGHT } from '../../constants/GlobalStyle'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   appBar: {
@@ -20,7 +21,9 @@ const styles = theme => ({
     })
   },
   toolbar: {
-    height: HEADER_HEIGHT
+    height: HEADER_HEIGHT,
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   appBarShift: {
     width: `calc(100% - ${DRAWER_WIDTH}px)`,
@@ -40,13 +43,19 @@ class Header extends Component {
     const elevation = width === 'xs' || width === 'sm' ? 1 : 0
     return (
       <AppBar
-        className={classNames(s.appBar, { [s.appBarShift]: isDrawerOpen })}
+        className={classNames(s.appBar, {
+          [s.appBarShift]: isDrawerOpen
+        })}
         elevation={elevation}
       >
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
           <IconButton onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
+          <div>
+            <Button href="/login">登录</Button>
+            <Button href="/signup">注册</Button>
+          </div>
         </Toobar>
       </AppBar>
     )

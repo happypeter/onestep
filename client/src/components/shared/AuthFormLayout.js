@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import BindPhoneNote from '../Login/BindPhoneNote'
 
 const styles = theme => ({
   container: {
@@ -21,19 +20,14 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary.main
   },
-  items: {},
-  note: {
-    width: 340,
-    margin: `32px auto`
-  }
+  items: {}
 })
 
 class AuthFormLayout extends React.Component {
   render() {
-    const { children, classes: s, notice, title } = this.props
+    const { children, classes: s, title } = this.props
     return (
       <div>
-        <Paper className={s.note}>{notice && <BindPhoneNote />}</Paper>
         <Paper className={s.container}>
           <div className={s.titleWrap}>
             <Typography className={s.title} variant="title">

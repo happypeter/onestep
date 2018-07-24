@@ -78,15 +78,5 @@ export default {
         </Html>
       )
     }
-  },
-  webpack: (config, { stage }) => {
-    if (stage === 'prod') {
-      // eslint-disable-next-line
-      config.entry = ['babel-polyfill', config.entry]
-    } else if (stage === 'dev') {
-      // eslint-disable-next-line
-      config.entry = ['babel-polyfill', ...config.entry]
-    }
-    return config
   }
 }

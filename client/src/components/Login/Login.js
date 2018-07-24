@@ -38,7 +38,7 @@ class Login extends Component {
   render() {
     const { account, password, errors } = this.state
     return (
-      <Layout title="登录" notice>
+      <Layout title="登录">
         <div>
           <TextField
             style={{ width: '100%' }}
