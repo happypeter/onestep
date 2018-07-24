@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { goto, toggleDrawer } from '../actions'
-import { getIsDrawerOpen, getIsDrawerFirstLoad } from '../selectors'
+import { goto, toggleDrawer } from '../redux/actions'
+import {
+  getIsDrawerOpen,
+  getIsDrawerFirstLoad
+} from '../redux/selectors/commonSelectors'
 
 import Layout from '../components/Layout/Layout'
 

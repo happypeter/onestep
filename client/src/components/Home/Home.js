@@ -9,19 +9,19 @@ class Home extends React.Component {
     this.props.goto(path)
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <Button variant="raised" onClick={() => history.push('/hello')}>
+        <Button variant="raised" onClick={() => history.push('/signup')}>
           Login
         </Button>
-        <Link to="/login">login</Link>
+        <Link to="/signup">login</Link>
       </div>
     )
   }
 }
 
 Home.propTypes = {
-  goto: PropTypes.func.isRequired,
+  goto: PropTypes.func.isRequired
 }
 export default Home
