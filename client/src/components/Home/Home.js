@@ -15,7 +15,7 @@ class Home extends React.Component {
         <Button variant="raised" onClick={() => history.push('/signup')}>
           Login
         </Button>
-        <Link to="/signup">login</Link>
+        <Link to="/login">login</Link>
       </div>
     )
   }
