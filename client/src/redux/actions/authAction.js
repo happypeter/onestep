@@ -22,12 +22,14 @@ export function login(data, history) {
     axios
       .post(`${config.api}/login`, data)
       .then(res => {
-        const token = res.data.token
-        sessionStorage.setItem('jwtToken', token)
-        axios.defaults.headers.common['Authorization'] = `${token}`
-        dispatch(setCurrentUser(jwtDecode(token)))
-        dispatch(showNotification('登录成功'))
-        history.push('/user/profile')
+        if (typeof window !== 'undefined') {
+          const token = res.data.token
+          sessionStorage.setItem('jwtToken', token)
+          axios.defaults.headers.common['Authorization'] = `${token}`
+          dispatch(setCurrentUser(jwtDecode(token)))
+          dispatch(showNotification('登录成功'))
+          history.push('/user/profile')
+        }
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -40,12 +42,14 @@ export function signup(data, history) {
     axios
       .post(`${config.api}/signup`, data)
       .then(res => {
-        const token = res.data.token
-        sessionStorage.setItem('jwtToken', token)
-        axios.defaults.headers.common['Authorization'] = `${token}`
-        dispatch(setCurrentUser(jwtDecode(token)))
-        dispatch(showNotification('注册成功'))
-        history.push('/user/profile')
+        if (typeof window !== 'undefined') {
+          const token = res.data.token
+          sessionStorage.setItem('jwtToken', token)
+          axios.defaults.headers.common['Authorization'] = `${token}`
+          dispatch(setCurrentUser(jwtDecode(token)))
+          dispatch(showNotification('注册成功'))
+          history.push('/user/profile')
+        }
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -62,12 +66,14 @@ export function oauthWeChat(data, history) {
           dispatch({ type: types.WECHAT_USER, user: res.data.user })
         } else {
           // 已经绑定则直接登录
-          const token = res.data.token
-          sessionStorage.setItem('jwtToken', token)
-          axios.defaults.headers.common['Authorization'] = `${token}`
-          dispatch(setCurrentUser(jwtDecode(token)))
-          dispatch(showNotification('登录成功'))
-          history.push('/user/profile')
+          if (typeof window !== 'undefined') {
+            const token = res.data.token
+            sessionStorage.setItem('jwtToken', token)
+            axios.defaults.headers.common['Authorization'] = `${token}`
+            dispatch(setCurrentUser(jwtDecode(token)))
+            dispatch(showNotification('登录成功'))
+            history.push('/user/profile')
+          }
         }
       })
       .catch(error => {
@@ -82,12 +88,14 @@ export function oauthBinding(data, history) {
     axios
       .post(`${config.api}/oauth/binding`, data)
       .then(res => {
-        const token = res.data.token
-        sessionStorage.setItem('jwtToken', token)
-        axios.defaults.headers.common['Authorization'] = `${token}`
-        dispatch(setCurrentUser(jwtDecode(token)))
-        dispatch(showNotification('登录成功'))
-        history.push('/user/profile')
+        if (typeof window !== 'undefined') {
+          const token = res.data.token
+          sessionStorage.setItem('jwtToken', token)
+          axios.defaults.headers.common['Authorization'] = `${token}`
+          dispatch(setCurrentUser(jwtDecode(token)))
+          dispatch(showNotification('登录成功'))
+          history.push('/user/profile')
+        }
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -97,10 +105,12 @@ export function oauthBinding(data, history) {
 
 export function logout(data) {
   return dispatch => {
-    sessionStorage.removeItem('jwtToken')
-    delete axios.defaults.headers.common['Authorization']
-    dispatch(setCurrentUser({}))
-    dispatch(showNotification('退出成功'))
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('jwtToken')
+      delete axios.defaults.headers.common['Authorization']
+      dispatch(setCurrentUser({}))
+      dispatch(showNotification('退出成功'))
+    }
   }
 }
 

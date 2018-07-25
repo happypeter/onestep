@@ -27,16 +27,14 @@ class AuthFormLayout extends React.Component {
   render() {
     const { children, classes: s, title } = this.props
     return (
-      <div>
-        <Paper className={s.container}>
-          <div className={s.titleWrap}>
-            <Typography className={s.title} variant="title">
-              {title}
-            </Typography>
-          </div>
-          <div className={s.items}>{children}</div>
-        </Paper>
-      </div>
+      <Paper className={s.container}>
+        <div className={s.titleWrap}>
+          <Typography className={s.title} variant="title">
+            {title}
+          </Typography>
+        </div>
+        <div className={s.items}>{children}</div>
+      </Paper>
     )
   }
 }

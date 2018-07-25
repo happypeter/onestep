@@ -32,6 +32,15 @@ const isDrawerOpen = (state = false, action) => {
   }
 }
 
+const isDrawerFirstLoad = (state = true, action) => {
+  switch (action.type) {
+    case OPEN_DRAWER:
+      return false
+    default:
+      return state
+  }
+}
+
 const isOnEpisodePage = (state = false, action) => {
   switch (action.type) {
     case SET_ON_EPISODE_PAGE:
@@ -46,5 +55,6 @@ const isOnEpisodePage = (state = false, action) => {
 export default combineReducers({
   notification,
   isDrawerOpen,
+  isDrawerFirstLoad,
   isOnEpisodePage
 })

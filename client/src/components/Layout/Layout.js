@@ -78,7 +78,8 @@ class Layout extends React.Component {
       isDrawerFirstLoad,
       goto,
       currentUser,
-      classes: s
+      classes: s,
+      history
     } = this.props
 
     return (
@@ -88,6 +89,7 @@ class Layout extends React.Component {
           goto={goto}
           toggleDrawer={toggleDrawer}
           isDrawerOpen={isDrawerOpen}
+          history={history}
         />
 
         <div className={s.drawerWrap}>
@@ -108,6 +110,7 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   isDrawerOpen: PropTypes.bool.isRequired,
+  isDrawerFirstLoad: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired
 }
 

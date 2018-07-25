@@ -3,7 +3,7 @@ import Routes from 'react-static-routes'
 import Layout from '../containers/LayoutContainer'
 
 class Main extends Component {
-  render () {
+  render() {
     return (
       <Layout>
         <Routes />

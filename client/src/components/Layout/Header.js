@@ -38,7 +38,13 @@ const styles = theme => ({
 
 class Header extends Component {
   render() {
-    const { toggleDrawer, classes: s, isDrawerOpen, width } = this.props
+    const {
+      toggleDrawer,
+      classes: s,
+      isDrawerOpen,
+      width,
+      history
+    } = this.props
     const disableGutters = width === 'xs' || width === 'sm'
     const elevation = width === 'xs' || width === 'sm' ? 1 : 0
     return (
@@ -53,8 +59,8 @@ class Header extends Component {
             <MenuIcon />
           </IconButton>
           <div>
-            <Button href="/login">登录</Button>
-            <Button href="/signup">注册</Button>
+            <Button onClick={() => history.push('/login')}>登录</Button>
+            <Button onClick={() => history.push('/signup')}>注册</Button>
           </div>
         </Toobar>
       </AppBar>
