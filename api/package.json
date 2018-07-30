@@ -1,0 +1,33 @@
+{
+  "name": "haoqicat-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.2",
+    "axios": "^0.16.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.16.1",
+    "concurrently": "^3.5.1",
+    "cors": "^2.8.1",
+    "eslint-config-react-tools": "^1.2.5",
+    "express": "^4.14.1",
+    "json2xml": "^0.1.3",
+    "jsonwebtoken": "^8.1.0",
+    "moment": "^2.20.1",
+    "mongoose": "^4.12.5",
+    "morgan": "^1.8.2",
+    "xml2json": "^0.11.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "lint-staged": "^6.0.0",
+    "nodemon": "^1.11.0"
+  }
+}

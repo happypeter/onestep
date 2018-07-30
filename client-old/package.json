@@ -1,0 +1,38 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^1.3.0",
+    "@material-ui/icons": "^1.1.0",
+    "axios": "^0.17.0",
+    "jwt-decode": "^2.2.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.keys": "^4.2.0",
+    "prop-types": "^15.6.0",
+    "qrcode.react": "^0.7.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-loadable": "^5.3.1",
+    "react-markdown": "^3.0.2",
+    "react-modal": "^3.1.11",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.11",
+    "react-tap-event-plugin": "^3.0.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "lint-staged": "^6.0.0",
+    "video.js": "^6.4.0"
+  }
+}
