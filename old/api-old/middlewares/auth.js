@@ -7,9 +7,7 @@ exports.user = (req, res, next) => {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err) {
         if (err.name === 'TokenExpiredError') {
-          return res
-            .status(401)
-            .json({ errorMsg: '认证码失效，请重新登录', success: false })
+          return res.status(401).json({ errorMsg: '认证码失效，请重新登录', success: false })
         }
         return res.status(401).json({ errorMsg: '认证失败', success: false })
       }
@@ -17,9 +15,9 @@ exports.user = (req, res, next) => {
       next()
     })
   } else {
-    return res.status(403).json({
+    res.status(403).json({
       errorMsg: '请提供认证码',
-      success: false
+      success: false,
     })
   }
 }

@@ -11,12 +11,14 @@ mongoose.Promise = global.Promise
 mongoose.connect(
   config.url,
   {
-    useMongoClient: true
+    useMongoClient: true,
   }
 )
 const db = mongoose.connection
 db.on('error', console.log)
 db.once('open', () => {
+  require('./models/user')
+  require('./models/contract')
   console.log('db connection success!')
 })
 

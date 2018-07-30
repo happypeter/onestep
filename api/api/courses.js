@@ -1,18 +1,13 @@
-const Course = require('../models/course')
+const fs = require('fs')
+const path = require('path')
 
 exports.single = async (req, res) => {
-  const { courseName } = req.params
-  const uid = courseName
+  const dirPath = path.join(process.env.HOME, 'coin-haoqi/data')
   try {
-    const course = await Course.findOne({ uid })
-    console.log('course', course)
-    if (!course) throw Error('没有此课程')
-    res.status(200).json({ success: true, course })
+    const data = fs.readFileSync(`${dirPath}/index.json`)
+    const course = JSON.parse(data)
+    res.json({ success: true, course })
   } catch (err) {
-    console.log(err)
-    res.status(403).json({
-      errorMsg: err.message,
-      success: false,
-    })
+    console.log('course info err...', err)
   }
 }
