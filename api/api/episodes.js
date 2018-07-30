@@ -7,7 +7,7 @@ exports.getEpisode = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.userId })
     if (user && user.coin && user.coin > 0) {
-      const dirPath = path.join(process.env.HOME, 'coin-haoqi/data/doc')
+      const dirPath = path.join(process.env.HOME, 'petercoin')
       const doc = fs.readFileSync(`${dirPath}/${link}.md`, 'utf8')
       res.json({ success: true, doc })
     } else {
