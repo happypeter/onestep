@@ -27,40 +27,19 @@ const styles = theme => ({
   root: {
     display: 'flex',
     overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
-      position: 'relative'
-    }
+    position: 'relative',
+    height: '100vh'
   },
   content: {
     marginLeft: -DRAWER_WIDTH,
     flexGrow: 1,
     flexShrink: 0,
-    height: '100vh',
-    overflow: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0
-    },
     backgroundColor: theme.palette.background.default,
     paddingTop: theme.spacing.unit * 8,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
-  },
-  contentShift: {
-    marginLeft: 0,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  drawerWrap: {
-    width: DRAWER_WIDTH
   }
 })
 
@@ -71,47 +50,18 @@ class Layout extends React.Component {
   }
 
   render() {
-    const {
-      children,
-      toggleDrawer,
-      isDrawerOpen,
-      isDrawerFirstLoad,
-      goto,
-      currentUser,
-      classes: s,
-      history
-    } = this.props
+    const { children, goto, currentUser, classes: s, history } = this.props
 
     return (
       <div className={s.root}>
-        <Header
-          currentUser={currentUser}
-          goto={goto}
-          toggleDrawer={toggleDrawer}
-          isDrawerOpen={isDrawerOpen}
-          history={history}
-        />
+        <Header currentUser={currentUser} goto={goto} history={history} />
 
-        <div className={s.drawerWrap}>
-          {isDrawerFirstLoad ? null : <Drawer />}
-        </div>
-
-        <div
-          className={classNames(s.content, {
-            [s.contentShift]: isDrawerOpen
-          })}
-        >
-          {children}
-        </div>
+        <div className={classNames(s.content)}>{children}</div>
       </div>
     )
   }
 }
 
-Layout.propTypes = {
-  isDrawerOpen: PropTypes.bool.isRequired,
-  isDrawerFirstLoad: PropTypes.bool.isRequired,
-  toggleDrawer: PropTypes.func.isRequired
-}
+Layout.propTypes = {}
 
 export default withStyles(styles)(Layout)

@@ -3,9 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toobar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
 import classNames from 'classnames'
-import MenuIcon from '@material-ui/icons/Menu'
 import { compose } from 'recompose'
 import withWidth from '@material-ui/core/withWidth'
 import { DRAWER_WIDTH, HEADER_HEIGHT } from '../../constants/GlobalStyle'
@@ -55,9 +53,6 @@ class Header extends Component {
         elevation={elevation}
       >
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
-          <IconButton onClick={toggleDrawer}>
-            <MenuIcon />
-          </IconButton>
           <div>
             <Button onClick={() => history.push('/login')}>登录</Button>
             <Button onClick={() => history.push('/signup')}>注册</Button>
@@ -66,11 +61,6 @@ class Header extends Component {
       </AppBar>
     )
   }
-}
-
-Header.propTypes = {
-  toggleDrawer: PropTypes.func.isRequired,
-  isDrawerOpen: PropTypes.bool.isRequired
 }
 
 export default compose(
