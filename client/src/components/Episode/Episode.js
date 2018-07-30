@@ -29,7 +29,7 @@ class Episode extends Component {
       isMember && (
         <div className={s.root}>
           <div>
-            <Link to="/course">{'<'} Back</Link>
+            <Link to="/coin">{'<'} Back</Link>
           </div>
           <div>
             <EpisodeDoc doc={markdown} />

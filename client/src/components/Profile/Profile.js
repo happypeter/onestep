@@ -24,7 +24,7 @@ class Profile extends Component {
         <Paper className={s.section}>
           <div>饺子数量: {isMember ? currentUser.coin : 0}</div>
         </Paper>
-        <Link to="/course">查看课程</Link>
+        <Link to="/coin">查看课程</Link>
       </div>
     )
 

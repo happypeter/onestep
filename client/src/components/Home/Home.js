@@ -17,7 +17,7 @@ class Home extends React.Component {
     const { classes: s } = this.props
     return (
       <div className={s.root}>
-        <Link to="/course">课程页面</Link>
+        <Link to="/coin">课程页面</Link>
       </div>
     )
   }

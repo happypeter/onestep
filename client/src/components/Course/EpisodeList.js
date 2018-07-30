@@ -17,7 +17,7 @@ class EpisodeList extends Component {
       <ListItem
         key={t.link}
         button={isMember ? true : false}
-        onClick={isMember ? () => goto(`/course/post/${t.link}`) : null}
+        onClick={isMember ? () => goto(`/coin/${t.link}`) : null}
       >
         <ListItemIcon>
           <PlayerIcon />

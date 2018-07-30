@@ -27,13 +27,13 @@ export default {
         component: 'src/containers/ProfileContainer'
       },
       {
-        path: '/course',
+        path: '/coin',
         component: 'src/containers/CourseContainer',
         getData: () => ({
           posts
         }),
         children: posts.map(post => ({
-          path: `post/${post.link}`,
+          path: `${post.link}`,
           component: 'src/containers/EpisodeContainer',
           getData: () => ({
             post
