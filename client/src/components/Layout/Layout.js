@@ -1,67 +1,60 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import Snackbar from '@material-ui/core/Snackbar'
 import classNames from 'classnames'
-import universal from 'react-universal-component'
-import { DRAWER_WIDTH } from '../../constants/GlobalStyle'
 import Header from './Header'
 
-const Failed = () => (
-  <div style={{ color: 'red' }}>
-    <h1>Failed to load the Drawer!</h1>
-  </div>
-)
-
-const Loading = () => (
-  <div style={{ color: '#00bcd4' }}>
-    <h1>Loading this Drawer...</h1>
-  </div>
-)
-
-const Drawer = universal(import('../../containers/DrawerContainer'), {
-  loading: Loading,
-  error: Failed
-})
-
 const styles = theme => ({
-  root: {
-    display: 'flex',
-    overflow: 'hidden',
-    position: 'relative',
-    height: '100vh'
-  },
+  root: {},
   content: {
-    marginLeft: -DRAWER_WIDTH,
-    flexGrow: 1,
-    flexShrink: 0,
     backgroundColor: theme.palette.background.default,
-    paddingTop: theme.spacing.unit * 8,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+    paddingTop: theme.spacing.unit * 8
   }
 })
 
 class Layout extends React.Component {
   componentDidMount() {
-    // 预加载 Drawer 组件
-    Drawer.preload()
+    const { isAuthenticated, currentUser, getProfile } = this.props
+    if (isAuthenticated && !currentUser.coin) {
+      getProfile()
+    }
   }
 
   render() {
-    const { children, goto, currentUser, classes: s, history } = this.props
+    const {
+      notification,
+      clearNotification,
+      children,
+      goto,
+      isAuthenticated,
+      currentUser,
+      classes: s,
+      logOut
+    } = this.props
 
     return (
       <div className={s.root}>
-        <Header currentUser={currentUser} goto={goto} history={history} />
-
+        <Header
+          isAuthenticated={isAuthenticated}
+          currentUser={currentUser}
+          goto={goto}
+          logOut={logOut}
+        />
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right'
+          }}
+          variant="error"
+          open={Boolean(notification)}
+          autoHideDuration={3000}
+          message={notification}
+          onClose={clearNotification}
+        />
         <div className={classNames(s.content)}>{children}</div>
       </div>
     )
   }
 }
-
-Layout.propTypes = {}
 
 export default withStyles(styles)(Layout)

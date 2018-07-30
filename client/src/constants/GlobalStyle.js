@@ -10,3 +10,5 @@ export const SECONDARY_TEXT_COLOR = '#757575'
 export const DIVIDER_COLOR = '#BDBDBD'
 export const DRAWER_WIDTH = 320
 export const HEADER_HEIGHT = 64
+export const ERROR_COLOR = '#ff1744'
+export const MAX_WIDTH = 900

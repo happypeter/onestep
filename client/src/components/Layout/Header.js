@@ -1,62 +1,87 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toobar from '@material-ui/core/Toolbar'
-import classNames from 'classnames'
 import { compose } from 'recompose'
 import withWidth from '@material-ui/core/withWidth'
-import { DRAWER_WIDTH, HEADER_HEIGHT } from '../../constants/GlobalStyle'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import { HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
-  appBar: {
-    position: 'absolute',
-    background: '#fff',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
+  appBar: {},
   toolbar: {
     height: HEADER_HEIGHT,
     display: 'flex',
     justifyContent: 'space-between'
-  },
-  appBarShift: {
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: DRAWER_WIDTH
   }
 })
 
 class Header extends Component {
+  state = {
+    anchorEl: null
+  }
+
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget })
+  }
+
+  handleClose = () => {
+    this.setState({ anchorEl: null })
+  }
+
+  goToProfile = () => {
+    this.props.goto('/profile')
+    this.handleClose()
+  }
+
+  logOut = () => {
+    this.props.logOut()
+    this.handleClose()
+  }
+
   render() {
-    const {
-      toggleDrawer,
-      classes: s,
-      isDrawerOpen,
-      width,
-      history
-    } = this.props
+    const { classes: s, width, isAuthenticated, currentUser, goto } = this.props
     const disableGutters = width === 'xs' || width === 'sm'
     const elevation = width === 'xs' || width === 'sm' ? 1 : 0
+    const { anchorEl } = this.state
+    const open = Boolean(anchorEl)
     return (
-      <AppBar
-        className={classNames(s.appBar, {
-          [s.appBarShift]: isDrawerOpen
-        })}
-        elevation={elevation}
-      >
+      <AppBar className={s.appBar} elevation={elevation}>
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
-          <div>
-            <Button onClick={() => history.push('/login')}>登录</Button>
-            <Button onClick={() => history.push('/signup')}>注册</Button>
-          </div>
+          <Button onClick={() => goto('/')}>首页</Button>
+          {isAuthenticated ? (
+            <div>
+              <IconButton
+                aria-owns={open ? 'menu-appbar' : null}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                <MenuItem>{currentUser.userName}</MenuItem>
+                <MenuItem onClick={this.goToProfile}>我的页面</MenuItem>
+                <MenuItem onClick={this.logOut}>退出</MenuItem>
+              </Menu>
+            </div>
+          ) : (
+            <div>
+              <Button onClick={() => goto('/login')}>登录</Button>
+              <Button onClick={() => goto('/signup')}>注册</Button>
+            </div>
+          )}
         </Toobar>
       </AppBar>
     )

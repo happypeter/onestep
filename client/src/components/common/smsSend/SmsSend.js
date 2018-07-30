@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import styled from 'styled-components'
 
 class SmsSend extends Component {
   timerId = null
@@ -24,12 +23,7 @@ class SmsSend extends Component {
 
   sendMsg = () => {
     if (!this.props.phoneNumIsValid) return
-    // action
-    if (this.props.checkUserExist) {
-      this.props.sendMsgforSignup(this.props.phoneNum)
-    } else {
-      this.props.sendMsg(this.props.phoneNum)
-    }
+    this.props.sendMsgforSignup(this.props.phoneNum)
     clearInterval(this.timerId)
     this.timer()
   }
@@ -48,12 +42,3 @@ class SmsSend extends Component {
 }
 
 export default SmsSend
-
-const ShortButton = styled(Button)`
-  && {
-    color: #00bcd4;
-    font-size: 1em;
-    height: 100%;
-    line-height: 100%;
-  }
-`

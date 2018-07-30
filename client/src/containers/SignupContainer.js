@@ -6,7 +6,7 @@ import { getIsAuthenticated } from '../redux/selectors/commonSelectors.js'
 
 const SignupContainer = props => {
   if (props.isAuthenticated) {
-    props.history.push('/user/profile')
+    props.history.push('/profile')
     return null
   }
   return <Signup {...props} />
@@ -16,6 +16,9 @@ const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state)
 })
 
-export default connect(mapStateToProps, {
-  signup
-})(SignupContainer)
+export default connect(
+  mapStateToProps,
+  {
+    signup
+  }
+)(SignupContainer)

@@ -5,34 +5,55 @@ import {
   MuiThemeProvider,
   createGenerateClassName
 } from '@material-ui/core/styles'
+import axios from 'axios'
 import theme from './src/theme'
+import config from './src/config/config'
 
 export default {
   getSiteData: () => ({
-    title: 'React Static'
+    title: '好奇猫'
   }),
-  getRoutes: async () => [
-    {
-      path: '/',
-      component: 'src/containers/HomeContainer'
-    },
-    {
-      path: '/profile',
-      component: 'src/containers/ProfileContainer'
-    },
-    {
-      path: '/login',
-      component: 'src/containers/LoginContainer'
-    },
-    {
-      path: '/signup',
-      component: 'src/containers/SignupContainer'
-    },
-    {
-      is404: true,
-      component: 'src/containers/404'
-    }
-  ],
+  getRoutes: async () => {
+    const res = await axios.get(`${config.api}/course`)
+    const { course: posts } = res.data
+
+    return [
+      {
+        path: '/',
+        component: 'src/containers/HomeContainer'
+      },
+      {
+        path: '/profile',
+        component: 'src/containers/ProfileContainer'
+      },
+      {
+        path: '/course',
+        component: 'src/containers/CourseContainer',
+        getData: () => ({
+          posts
+        }),
+        children: posts.map(post => ({
+          path: `post/${post.link}`,
+          component: 'src/containers/EpisodeContainer',
+          getData: () => ({
+            post
+          })
+        }))
+      },
+      {
+        path: '/login',
+        component: 'src/containers/LoginContainer'
+      },
+      {
+        path: '/signup',
+        component: 'src/containers/SignupContainer'
+      },
+      {
+        is404: true,
+        component: 'src/containers/404'
+      }
+    ]
+  },
   renderToHtml: (render, Comp, meta) => {
     // Create a sheetsRegistry instance.
     const sheetsRegistry = new SheetsRegistry()
@@ -68,8 +89,8 @@ export default {
             />
             <title>好奇猫</title>
             <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-            <meta name="description" content="React 好奇猫" />
-            <meta name="keywords" content="React " />
+            <meta name="description" content="好奇猫" />
+            <meta name="keywords" content="btc" />
           </Head>
           <Body>
             {children}

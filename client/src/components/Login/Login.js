@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import isEmpty from 'lodash.isempty'
-import { Error } from '../oauth/FormStyle'
 import Layout from '../shared/AuthFormLayout'
+import { ERROR_COLOR } from '../../constants/GlobalStyle'
+
+const styles = theme => ({
+  error: { color: ERROR_COLOR }
+})
 
 class Login extends Component {
   state = {
@@ -27,7 +32,7 @@ class Login extends Component {
       return
     }
 
-    this.props.login({ account, password }, this.props.history)
+    this.props.login({ account, password })
   }
 
   handleChange = (field, e) => {
@@ -37,6 +42,7 @@ class Login extends Component {
 
   render() {
     const { account, password, errors } = this.state
+    const { classes: s } = this.props
     return (
       <Layout title="登录">
         <div>
@@ -45,8 +51,8 @@ class Login extends Component {
             value={account}
             onChange={this.handleChange.bind(this, 'account')}
             margin="dense"
-            label="用户名或手机号"
-            helperText={<Error>{errors.account}</Error>}
+            label="手机号"
+            helperText={<span className={s.error}>{errors.account}</span>}
           />
 
           <TextField
@@ -56,7 +62,7 @@ class Login extends Component {
             margin="dense"
             label="密码"
             type="password"
-            helperText={<Error>{errors.password}</Error>}
+            helperText={<span className={s.error}>{errors.account}</span>}
           />
           <Button
             color="primary"
@@ -72,4 +78,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default withStyles(styles)(Login)

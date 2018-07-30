@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
 import isEmpty from 'lodash.isempty'
 import SmsSendContainer from '../common/smsSend/SmsSendContainer'
-import { Row, Error } from '../oauth/FormStyle'
 import Layout from '../shared/AuthFormLayout'
+import { ERROR_COLOR } from '../../constants/GlobalStyle'
 
 const WAIT_INTERVAL = 1000
+const styles = theme => ({
+  row: {
+    display: 'flex',
+    width: '100%'
+  },
+  error: {
+    color: ERROR_COLOR
+  }
+})
 
 class Signup extends Component {
   state = {
-    username: '',
+    userName: '',
     phoneNum: '',
     password: '',
     smsCode: '',
     errors: {}
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.timers = {}
   }
 
@@ -35,10 +45,10 @@ class Signup extends Component {
   }
 
   validate = () => {
-    const { username, phoneNum, smsCode, password } = this.state
+    const { userName, phoneNum, smsCode, password } = this.state
     const errors = {}
-    if (!username) {
-      errors.username = '用户名不能为空'
+    if (!userName) {
+      errors.userName = '用户名不能为空'
     }
     if (!phoneNum || !/^1[3|4|5|7|8][0-9]\d{8}$/.test(phoneNum)) {
       errors.phoneNum = '手机号格式不正确'
@@ -62,7 +72,7 @@ class Signup extends Component {
     }
     const data = { ...this.state }
     delete data.errors
-    this.props.signup(data, this.props.history)
+    this.props.signup(data)
   }
 
   handleChange = (field, e) => {
@@ -76,7 +86,7 @@ class Signup extends Component {
 
   triggerChange = (field, value) => {
     let error = ''
-    if (field === 'username' && !value) {
+    if (field === 'userName' && !value) {
       error = '用户名不能为空'
     }
     if (field === 'phoneNum' && !/^1[3|4|5|7|8][0-9]\d{8}$/.test(value)) {
@@ -93,15 +103,16 @@ class Signup extends Component {
 
   render() {
     const { phoneNum, errors } = this.state
+    const { classes: s } = this.props
     const fields = [
-      { label: '用户名', name: 'username' },
+      { label: '用户名', name: 'userName' },
       { label: '手机号', name: 'phoneNum' },
       { label: '验证码', name: 'smsCode' },
       { label: '密码', name: 'password' }
     ]
     const formItems = fields.map(field => {
       return (
-        <Row key={field.name}>
+        <div key={field.name} className={s.row}>
           <TextField
             error={errors[field.name] ? true : false}
             value={this.state[field.name]}
@@ -110,16 +121,15 @@ class Signup extends Component {
             margin="dense"
             label={field.label}
             type={field.name === 'password' ? 'password' : null}
-            helperText={<Error>{errors[field.name]}</Error>}
+            helperText={<span className={s.error}>{errors[field.name]}</span>}
           />
           {field.name === 'smsCode' ? (
             <SmsSendContainer
               phoneNumIsValid={phoneNum && !errors.phoneNum}
               phoneNum={phoneNum}
-              checkUserExist={false}
             />
           ) : null}
-        </Row>
+        </div>
       )
     })
     return (
@@ -140,4 +150,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup
+export default withStyles(styles)(Signup)

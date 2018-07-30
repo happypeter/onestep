@@ -40,8 +40,7 @@ class AuthFormLayout extends React.Component {
 }
 
 AuthFormLayout.propTypes = {
-  children: PropTypes.object.isRequired,
-  notice: PropTypes.bool
+  children: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(AuthFormLayout)

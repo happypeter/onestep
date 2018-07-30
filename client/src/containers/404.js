@@ -1,8 +1,9 @@
-import React from 'react'
-//
+import React, { Component } from 'react'
 
-export default () => (
-  <div>
-    <h1>404 - Oh no's! We couldn't find that page :(</h1>
-  </div>
-)
+class PageNotFound extends Component {
+  render() {
+    return <div>404 page</div>
+  }
+}
+
+export default PageNotFound

@@ -1,6 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Login from '../components/Login/Login'
+import { getIsAuthenticated } from '../redux/selectors/commonSelectors'
+import { login } from '../redux/actions/authAction'
 
-const LoginContainer = props => <Login {...props} />
+const LoginContainer = props => {
+  if (props.isAuthenticated) {
+    props.history.push('/profile')
+    return null
+  }
+  return <Login {...props} />
+}
 
-export default LoginContainer
+const mapStateToProps = state => ({
+  isAuthenticated: getIsAuthenticated(state)
+})
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(LoginContainer)

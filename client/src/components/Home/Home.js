@@ -1,27 +1,26 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import { Link } from 'react-static'
-import PropTypes from 'prop-types'
-import history from '../../utils/routerUtils'
+import { withStyles } from '@material-ui/core/styles'
+import { MAX_WIDTH } from '../../constants/GlobalStyle'
+
+const styles = theme => ({
+  root: {
+    padding: theme.spacing.unit * 2,
+    width: '100%',
+    maxWidth: MAX_WIDTH,
+    margin: '24px auto'
+  }
+})
 
 class Home extends React.Component {
-  handleClick = path => {
-    this.props.goto(path)
-  }
-
   render() {
+    const { classes: s } = this.props
     return (
-      <div>
-        <Button variant="raised" onClick={() => history.push('/signup')}>
-          Login
-        </Button>
-        <Link to="/login">login</Link>
+      <div className={s.root}>
+        <Link to="/course">课程页面</Link>
       </div>
     )
   }
 }
 
-Home.propTypes = {
-  goto: PropTypes.func.isRequired
-}
-export default Home
+export default withStyles(styles)(Home)

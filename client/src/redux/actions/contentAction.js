@@ -11,93 +11,27 @@ function handleError(error, dispatch) {
   }
 }
 
-export function fetchCoursesIfNeeded(data) {
-  return (dispatch, getState) => {
-    if (getState().course.all.length !== 0) return
-    dispatch({ type: types.FETCH_COURSES_STARTED })
-    axios
-      .get(`${config.api}/catalogue`)
-      .then(res => {
-        dispatch({
-          type: types.FETCH_COURSES_SUCCESS,
-          courses: res.data.courses
-        })
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
-}
-
-export const fetchCurrentCourse = courseUid => dispatch => {
-  console.log('fetchCurrrentCourse', courseUid)
-  dispatch({ type: types.FETCH_COURSE_STARTED })
-  axios
-    .get(`${config.api}/courses/${courseUid}`)
-    .then(res => {
-      dispatch({
-        type: types.FETCH_CURRENT_COURSE_SUCCESS,
-        course: res.data.course
-      })
-    })
-    .catch(error => {
-      handleError(error, dispatch)
-    })
-}
-
 export function fetchEpisode(data) {
   return dispatch => {
     dispatch({ type: types.FETCH_EPISODE_STARTED })
-    axios
-      .get(`${config.api}/episode`, { params: data })
-      .then(res => {
-        dispatch({
-          type: types.FETCH_EPISODE_SUCCESS,
-          episode: res.data
+
+    if (typeof window !== 'undefined') {
+      axios
+        .get(`${config.api}/episode`, {
+          params: data,
+          headers: { Authorization: sessionStorage.jwtToken }
         })
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
-}
-
-export function signContract(data) {
-  return dispatch => {
-    return axios
-      .post(`${config.api}/contracts/new`, data)
-      .then(res => {
-        return Promise.resolve(res.data)
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
-  }
-}
-
-export function checkContract(contractId, type) {
-  return dispatch => {
-    return axios
-      .get(`${config.api}/contracts/${contractId}/status`, { params: { type } })
-      .then(res => {
-        if (res.data.status === '已支付') {
-          if (type === 'course') {
+        .then(res => {
+          if (res.data && res.data.success === true) {
             dispatch({
-              type: 'ADD_PAID_COURSE',
-              course: res.data.course
-            })
-          } else {
-            dispatch({
-              type: 'ACTIVATE_MEMBERSHIP',
-              member: res.data.member
+              type: types.FETCH_EPISODE_SUCCESS,
+              doc: res.data.doc
             })
           }
-        }
-
-        return Promise.resolve(res.data.status)
-      })
-      .catch(error => {
-        handleError(error, dispatch)
-      })
+        })
+        .catch(error => {
+          handleError(error, dispatch)
+        })
+    }
   }
 }

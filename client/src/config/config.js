@@ -1,5 +1,5 @@
-module.exports = {
-  api: 'http://localhost:3001',
+export default {
+  api: 'http://192.168.1.102:3001',
   // sms
   smsTimeLimit: 60
 }
