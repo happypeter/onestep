@@ -15,6 +15,11 @@ const styles = theme => ({
   content: {
     paddingBottom: 32
   },
+  title: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginBottom: 24
+  },
   section: {}
 })
 
@@ -24,6 +29,7 @@ class Course extends Component {
 
     return (
       <div className={s.root}>
+        <div className={s.title}>一币一别墅</div>
         <Paper className={s.content}>
           <div className={s.section}>
             <EpisodeList posts={posts} />
