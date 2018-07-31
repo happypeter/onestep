@@ -22,6 +22,7 @@ class Profile extends Component {
     const pageContent = (
       <div className={s.root}>
         <Paper className={s.section}>
+          <div>用户ID: {currentUser.uid}</div>
           <div>饺子数量: {isMember ? currentUser.coin : 0}</div>
         </Paper>
         <Link to="/coin">查看课程</Link>

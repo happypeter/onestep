@@ -9,7 +9,8 @@ const UserSchema = new Schema(
     phoneNum: { type: String, unique: true },
     password: { type: String },
     admin: Boolean,
-    coin: Number
+    coin: Number,
+    uid: String
   },
   { timestamps: true }
 )

@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
+
 const config = require('../config/config')
 const msg = require('./msg')
 
@@ -41,12 +42,17 @@ exports.signup = async (req, res) => {
         success: false
       })
     }
-    const user = new User({ userName, phoneNum, password })
+    const count = await User.count()
+    const str = (count + 1).toString()
+    const uid = str.length < 6 ? '000000'.slice(0, 6 - str.length) + str : str
+
+    const user = new User({ userName, phoneNum, password, uid })
     const doc = await user.save()
     const data = {
       _id: doc._id,
       phoneNum,
-      userName
+      userName,
+      uid: doc.uid
     }
     return res.status(200).json({
       token: generateToken(data),
@@ -54,6 +60,10 @@ exports.signup = async (req, res) => {
     })
   } catch (err) {
     console.log('sign up err...', err)
+    return res.status(200).json({
+      errorMsg: '注册失败，请稍后再试',
+      success: false
+    })
   }
 }
 
@@ -81,7 +91,8 @@ exports.login = async (req, res) => {
       userName: user.userName,
       phoneNum: user.phoneNum,
       coin: user.coin,
-      _id: user._id
+      _id: user._id,
+      uid: user.uid
     }
 
     return res.json({
@@ -90,6 +101,10 @@ exports.login = async (req, res) => {
     })
   } catch (err) {
     console.log('login err...', err)
+    return res.status(200).json({
+      errorMsg: '登录失败，请稍后再试',
+      success: false
+    })
   }
 }
 
