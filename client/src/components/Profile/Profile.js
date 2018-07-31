@@ -23,7 +23,7 @@ class Profile extends Component {
       <div className={s.root}>
         <Paper className={s.section}>
           <div>
-            用户ID: {currentUser && currentUser.uid ? currentUser.uid : ''}
+            UID: {currentUser && currentUser.uid ? currentUser.uid : ''}
           </div>
           <div>饺子数量: {isMember ? currentUser.coin : 0}</div>
         </Paper>
