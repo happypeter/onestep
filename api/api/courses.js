@@ -1,8 +1,10 @@
 const fs = require('fs')
 const path = require('path')
+const config = require('../config/config')
 
 exports.single = async (req, res) => {
-  const dirPath = path.join(process.env.HOME, 'petercoin')
+  const dirPath = path.join(process.env.HOME, config.docPath)
+
   try {
     const data = fs.readFileSync(`${dirPath}/index.json`)
     const course = JSON.parse(data)

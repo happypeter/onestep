@@ -9,5 +9,6 @@ module.exports = {
   queueName: 'xxx',
   TemplateCode: 'xxx',
   SignName: 'xxx',
-  timeLimit: 10
+  timeLimit: 10,
+  docPath: 'xxx'
 }
