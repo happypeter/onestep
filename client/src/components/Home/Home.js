@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-static'
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 import Hero from './Hero'
+import CourseList from '../../containers/CourseListContainer'
 
 const styles = theme => ({
   root: {
@@ -31,13 +31,19 @@ const styles = theme => ({
 class Home extends React.Component {
   render() {
     const { classes: s, goto } = this.props
+    const courses = [
+      {
+        uid: 'coin',
+        title: '一币一别墅'
+      }
+    ]
     return (
       <div>
         <Hidden mdDown>
           <Hero goto={goto} />
         </Hidden>
         <div className={s.listWrap}>
-          <Link to="/coin">一币一别墅</Link>
+          <CourseList courses={courses} />
         </div>
       </div>
     )
