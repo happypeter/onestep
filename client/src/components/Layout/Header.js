@@ -12,7 +12,7 @@ import Menu from '@material-ui/core/Menu'
 import { HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
-  appBar: {},
+  appBar: { backgroundColor: '#fff' },
   toolbar: {
     height: HEADER_HEIGHT,
     display: 'flex',
