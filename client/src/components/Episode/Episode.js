@@ -23,19 +23,24 @@ class Episode extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { post, fetchEpisode, isMember } = this.props
+    if (isMember && isMember !== prevProps.isMember) {
+      fetchEpisode({ link: post.link })
+    }
+  }
+
   render() {
-    const { markdown, classes: s, post, isMember } = this.props
+    const { markdown, classes: s, isMember } = this.props
     return (
-      isMember && (
-        <div className={s.root}>
-          <div>
-            <Link to="/coin">{'<'} Back</Link>
-          </div>
-          <div>
-            <EpisodeDoc doc={markdown} />
-          </div>
+      <div className={s.root}>
+        <div>
+          <Link to="/coin">{'<'} Back</Link>
         </div>
-      )
+        <div>
+          {isMember ? <EpisodeDoc doc={markdown} /> : <div>请购买后阅读</div>}
+        </div>
+      </div>
     )
   }
 }
