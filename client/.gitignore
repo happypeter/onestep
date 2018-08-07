@@ -20,3 +20,4 @@ yarn-debug.log*
 yarn-error.log*
 data
 src/config/config.js
+build.sh

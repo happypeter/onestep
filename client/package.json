@@ -25,7 +25,8 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "video.js": "^7.1.0"
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",

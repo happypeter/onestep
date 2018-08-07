@@ -4,13 +4,12 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 4,
     fontFamily: `'Helvetica Neue',Helvetica,Arial,Sans-serif`,
     lineHeight: 1.9,
     fontSize: 16,
-    padding: theme.spacing.unit * 3,
-    [theme.breakpoints.down('md')]: {
-      padding: theme.spacing.unit
+    '& h2': {
+      fontSize: 20
     },
     '& pre': {
       border: `2px solid ${theme.palette.primary.light}`,

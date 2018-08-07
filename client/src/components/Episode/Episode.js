@@ -3,8 +3,12 @@ import EpisodeDoc from './EpisodeDoc'
 import { compose } from 'recompose'
 import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 import { withRouteData, Link } from 'react-static'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
+import { videoJsOptions } from '../../lib/playerConfig'
+import { videoRepo } from '../../config/config'
+import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 const styles = theme => ({
   root: {
@@ -12,6 +16,12 @@ const styles = theme => ({
     width: '100%',
     maxWidth: MAX_WIDTH,
     margin: '24px auto'
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 600,
+    textAlign: 'center',
+    marginBottom: 32
   }
 })
 
@@ -31,15 +41,26 @@ class Episode extends Component {
   }
 
   render() {
-    const { markdown, classes: s, isMember } = this.props
+    const { markdown, classes: s, isMember, post } = this.props
     return (
       <div className={s.root}>
         <div>
-          <Link to="/coin">{'<'} Back</Link>
+          {isMember ? (
+            <div>
+              <div className={s.title}>{post.title}</div>
+              <VideoPlayer
+                {...videoJsOptions(`${videoRepo}/coin/${post.link}.mp4`)}
+              />
+              <EpisodeDoc doc={markdown} />
+            </div>
+          ) : (
+            <div>请购买后阅读</div>
+          )}
         </div>
-        <div>
-          {isMember ? <EpisodeDoc doc={markdown} /> : <div>请购买后阅读</div>}
-        </div>
+
+        <Button color="primary" variant="contained" component={Link} to="/coin">
+          返回
+        </Button>
       </div>
     )
   }

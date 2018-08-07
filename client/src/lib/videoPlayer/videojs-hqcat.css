@@ -1,0 +1,56 @@
+/*居中按钮*/
+.vjs-hqcat .vjs-big-play-button {
+  height: 1.5em;
+  width: 3em;
+  left: 50%;
+  top: 50%;
+  margin-left: -1.5em;
+  margin-top: -0.75em;
+  border-color: rgb(0, 188, 212);
+}
+
+/*颜色*/
+.vjs-hqcat.video-js {
+  color: rgb(0, 188, 212);
+}
+
+.vjs-hqcat:hover .vjs-big-play-button,
+.vjs-hqcat .vjs-big-play-button:focus {
+  border-color: rgb(0, 188, 212);
+}
+
+.vjs-hqcat .vjs-volume-level,
+.vjs-hqcat .vjs-play-progress,
+.vjs-hqcat .vjs-slider-bar {
+  background: rgb(0, 188, 212);
+}
+
+/*控制栏字体*/
+.vjs-hqcat .vjs-control-bar {
+  font-size: small;
+}
+
+.vjs-hqcat li.vjs-selected {
+  background-color: rgb(0, 188, 212);
+}
+
+.vjs-hqcat .vjs-playback-rate-value {
+  font-size: small;
+  line-height: 3em;
+}
+
+/*完善倍速选择器样式*/
+.vjs-menu li {
+  font-size: 1em;
+  padding: 0.5em 0;
+}
+.vjs-menu li.vjs-selected,
+.vjs-menu li.vjs-selected:focus,
+.vjs-menu li.vjs-selected:hover {
+  background-color: #2b333f;
+  color: rgb(0, 188, 212);
+}
+
+.vjs-hqcat .vjs-volume-bar.vjs-slider-vertical {
+  height: 6em;
+}
