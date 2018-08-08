@@ -11,7 +11,7 @@ const styles = theme => ({
     margin: '0 auto'
   },
   list: {
-    // border: '3px solid yellow'
+    border: '1px solid red'
   },
   gridItem: {},
   section: {
@@ -27,6 +27,7 @@ class CourseList extends Component {
 
   render() {
     const { courses, classes: s, goto } = this.props
+
     let courseList = courses.map(item => (
       <Grid
         className={s.gridItem}
@@ -47,9 +48,7 @@ class CourseList extends Component {
           <Typography variant="headline">最新发布</Typography>
         </div>
 
-        <Grid container spacing={32} className={s.list}>
-          {courseList}
-        </Grid>
+        <Grid container>{courseList}</Grid>
       </div>
     )
   }

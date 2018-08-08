@@ -12,7 +12,7 @@ const getCoverLink = uid => `${videoRepo}/posters/${uid}.png`
 const styles = theme => ({
   card: {
     cursor: 'pointer',
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit * 2
   },
   media: {
     height: 0,
