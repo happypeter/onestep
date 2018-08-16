@@ -2,14 +2,24 @@ const fs = require('fs')
 const path = require('path')
 const config = require('../config/config')
 
-exports.single = async (req, res) => {
-  const dirPath = path.join(process.env.HOME, config.docPath)
-
-  try {
-    const data = fs.readFileSync(`${dirPath}/index.json`)
-    const course = JSON.parse(data)
-    res.json({ success: true, course })
-  } catch (err) {
-    console.log('course info err...', err)
+function getCourseToc(course) {
+  const dirPath = path.join(process.env.HOME, `/${course}`)
+  const content = fs.readFileSync(`${dirPath}/SUMMARY.md`, 'utf-8')
+  const lines = content.split('\n')
+  let toc = []
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
+    const reg = /^\*\s+\[(.*)\]\((.*)\)$/
+    if (reg.test(line)) {
+      const title = line.replace(reg, '$1')
+      const link = line.replace(reg, '$2').slice(0, -3)
+      toc.push({ title, link })
+    }
   }
+  return toc
+}
+
+exports.single = (req, res) => {
+  const course = getCourseToc(config.docPath)
+  res.json({ success: true, course })
 }
