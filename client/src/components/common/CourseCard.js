@@ -16,7 +16,8 @@ const styles = theme => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%'
+    paddingTop: '56.25%',
+    borderBottom: '1px solid #ececec'
   }
 })
 
@@ -25,7 +26,7 @@ class CourseCard extends React.Component {
     const { uid, title, classes: s, goto } = this.props
     return (
       <Card onClick={() => goto(`/${uid}`)} className={s.card}>
-        <CardMedia image={getCoverLink(uid)} className={s.media} />
+        <CardMedia image="/petercoin.svg" className={s.media} />
         <CardContent>
           <Typography>{title}</Typography>
         </CardContent>

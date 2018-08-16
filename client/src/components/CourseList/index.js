@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 const styles = theme => ({
   root: {
     width: '100%',
-    margin: '0 auto'
+    margin: '32px auto'
   },
   list: {
     border: '1px solid red'
