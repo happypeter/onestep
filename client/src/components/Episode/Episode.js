@@ -48,9 +48,9 @@ class Episode extends Component {
           {isMember ? (
             <div>
               <div className={s.title}>{post.title}</div>
-              <VideoPlayer
+              {/* <VideoPlayer
                 {...videoJsOptions(`${videoRepo}/coin/${post.link}.mp4`)}
-              />
+              /> */}
               <EpisodeDoc doc={markdown} />
             </div>
           ) : (

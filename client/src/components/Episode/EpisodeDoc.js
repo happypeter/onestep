@@ -16,6 +16,10 @@ const styles = theme => ({
       padding: theme.spacing.unit,
       fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
       overflow: 'auto'
+    },
+    '& a': {
+      color: '#00bcd4',
+      fontStyle: 'normal'
     }
   }
 })
