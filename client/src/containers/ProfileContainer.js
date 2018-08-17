@@ -7,12 +7,20 @@ import {
   getIsMember
 } from '../redux/selectors/commonSelectors.js'
 import Profile from '../components/Profile/Profile'
+import { getIsAuthenticated } from '../redux/selectors/commonSelectors'
 
-const ProfileContainer = props => <Profile {...props} />
+const ProfileContainer = props => {
+  if (!props.isAuthenticated) {
+    props.history.push('/')
+    return null
+  }
+  return <Profile {...props} />
+}
 
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
-  isMember: getIsMember(state)
+  isMember: getIsMember(state),
+  isAuthenticated: getIsAuthenticated(state)
 })
 
 export default withRouter(

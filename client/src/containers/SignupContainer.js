@@ -6,7 +6,7 @@ import { getIsAuthenticated } from '../redux/selectors/commonSelectors.js'
 
 const SignupContainer = props => {
   if (props.isAuthenticated) {
-    props.history.push('/profile')
+    props.history.push('/')
     return null
   }
   return <Signup {...props} />

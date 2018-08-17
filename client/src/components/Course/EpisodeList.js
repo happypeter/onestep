@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import {
-  Typography,
-  ListItemIcon,
-  ListItem,
-  ListItemText,
-  Tooltip
-} from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Tooltip from '@material-ui/core/Tooltip'
 import PlayerIcon from '@material-ui/icons/PlayArrow'
 import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   root: {
@@ -18,6 +18,11 @@ const styles = theme => ({
       cursor: 'pointer',
       textDecoration: 'underline'
     }
+  },
+  button: {
+    display: 'block',
+    width: 200,
+    margin: '32px auto'
   }
 })
 
@@ -39,14 +44,23 @@ class EpisodeList extends Component {
           {isMember ? (
             <Typography>{t.title}</Typography>
           ) : (
-            <Tooltip title="请先登录" placement="left-start">
+            <Tooltip title="请登录，购买后再阅读" placement="left-start">
               <Typography>{t.title}</Typography>
             </Tooltip>
           )}
         </ListItemText>
       </ListItem>
     ))
-    return <div className={s.root}>{postList}</div>
+    return (
+      <Paper className={s.root}>
+        {postList}
+        {!isMember && (
+          <Button color="primary" variant="contained" className={s.button}>
+            购买60元
+          </Button>
+        )}
+      </Paper>
+    )
   }
 }
 

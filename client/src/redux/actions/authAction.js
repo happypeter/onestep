@@ -29,7 +29,7 @@ export function login(data) {
         }
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('登录成功'))
-        history.push('/profile')
+        history.push('/')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -48,7 +48,7 @@ export function signup(data) {
         }
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('注册成功'))
-        history.push('/profile')
+        history.push('/')
       })
       .catch(error => {
         handleError(error, dispatch)
@@ -56,7 +56,7 @@ export function signup(data) {
   }
 }
 
-export function logOut(data) {
+export function logOut() {
   return dispatch => {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('jwtToken')

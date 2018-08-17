@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import EpisodeList from '../../containers/EpisodeListContainer'
 import { withRouteData } from 'react-static'
+import EpisodeList from '../../containers/EpisodeListContainer'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
@@ -19,22 +18,16 @@ const styles = theme => ({
     textAlign: 'center',
     fontSize: 18,
     marginBottom: 24
-  },
-  section: {}
+  }
 })
 
 class Course extends Component {
   render() {
     const { classes: s, posts } = this.props
-
     return (
       <div className={s.root}>
         <div className={s.title}>一币一别墅</div>
-        <Paper className={s.content}>
-          <div className={s.section}>
-            <EpisodeList posts={posts} />
-          </div>
-        </Paper>
+        <EpisodeList posts={posts} />
       </div>
     )
   }

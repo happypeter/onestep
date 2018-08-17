@@ -6,7 +6,7 @@ import { login } from '../redux/actions/authAction'
 
 const LoginContainer = props => {
   if (props.isAuthenticated) {
-    props.history.push('/profile')
+    props.history.push('/')
     return null
   }
   return <Login {...props} />
