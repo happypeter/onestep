@@ -43,7 +43,7 @@ class Home extends React.Component {
           <Hero goto={goto} />
         </Hidden>
         <div className={s.listWrap}>
-          <CourseList courses={courses} />
+          <CourseList courses={courses} title="最新发布" />
         </div>
       </div>
     )

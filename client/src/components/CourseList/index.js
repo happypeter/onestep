@@ -26,7 +26,7 @@ class CourseList extends Component {
   }
 
   render() {
-    const { courses, classes: s, goto } = this.props
+    const { courses, classes: s, goto, title } = this.props
 
     let courseList = courses.map(item => (
       <Grid
@@ -45,7 +45,7 @@ class CourseList extends Component {
     return (
       <div className={s.root}>
         <div className={s.section}>
-          <Typography variant="headline">最新发布</Typography>
+          <Typography variant="headline">{title}</Typography>
         </div>
 
         <Grid container>{courseList}</Grid>
