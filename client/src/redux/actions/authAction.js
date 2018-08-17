@@ -25,7 +25,7 @@ export function login(data) {
       .then(res => {
         const token = res.data.token
         if (typeof window !== 'undefined') {
-          sessionStorage.setItem('jwtToken', token)
+          localStorage.setItem('jwtToken', token)
         }
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('登录成功'))
@@ -44,7 +44,7 @@ export function signup(data) {
       .then(res => {
         const token = res.data.token
         if (typeof window !== 'undefined') {
-          sessionStorage.setItem('jwtToken', token)
+          localStorage.setItem('jwtToken', token)
         }
         dispatch(setCurrentUser(jwtDecode(token)))
         dispatch(showNotification('注册成功'))
@@ -59,7 +59,7 @@ export function signup(data) {
 export function logOut() {
   return dispatch => {
     if (typeof window !== 'undefined') {
-      sessionStorage.removeItem('jwtToken')
+      localStorage.removeItem('jwtToken')
     }
     dispatch(setCurrentUser({}))
     history.push('/')
@@ -72,7 +72,7 @@ export function getProfile() {
     if (typeof window !== 'undefined') {
       axios
         .get(`${config.api}/profile`, {
-          headers: { Authorization: sessionStorage.jwtToken }
+          headers: { Authorization: localStorage.jwtToken }
         })
         .then(res => {
           if (res.data && res.data.success === true) {

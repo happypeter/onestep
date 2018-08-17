@@ -19,7 +19,7 @@ export function fetchEpisode(data) {
       axios
         .get(`${config.api}/episode`, {
           params: data,
-          headers: { Authorization: sessionStorage.jwtToken }
+          headers: { Authorization: localStorage.jwtToken }
         })
         .then(res => {
           if (res.data && res.data.success === true) {

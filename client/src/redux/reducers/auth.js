@@ -5,10 +5,8 @@ import jwtDecode from 'jwt-decode'
 let initialState = {}
 if (typeof window !== 'undefined') {
   initialState = {
-    isAuthenticated: sessionStorage.jwtToken ? true : false,
-    currentUser: sessionStorage.jwtToken
-      ? jwtDecode(sessionStorage.jwtToken)
-      : {}
+    isAuthenticated: localStorage.jwtToken ? true : false,
+    currentUser: localStorage.jwtToken ? jwtDecode(localStorage.jwtToken) : {}
   }
 }
 
