@@ -50,6 +50,10 @@ export default {
         component: 'src/containers/SignupContainer'
       },
       {
+        path: '/steps',
+        component: 'src/containers/StepsContainer'
+      },
+      {
         is404: true,
         component: 'src/containers/404'
       }

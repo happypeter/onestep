@@ -27,7 +27,7 @@ class Course extends Component {
     return (
       <div className={s.root}>
         <div className={s.title}>一币一别墅</div>
-        <EpisodeList posts={posts} />
+        <EpisodeList posts={posts} name="一币一别墅" price={60} />
       </div>
     )
   }

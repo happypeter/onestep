@@ -8,6 +8,7 @@ import PlayerIcon from '@material-ui/icons/PlayArrow'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-static'
 
 const styles = theme => ({
   root: {
@@ -22,13 +23,14 @@ const styles = theme => ({
   button: {
     display: 'block',
     width: 200,
-    margin: '32px auto'
+    margin: '32px auto',
+    textAlign: 'center'
   }
 })
 
 class EpisodeList extends Component {
   render() {
-    const { posts, goto, classes: s, isMember } = this.props
+    const { posts, goto, classes: s, isMember, name, price } = this.props
     const postList = posts.map(t => (
       <ListItem
         key={t.link}
@@ -55,7 +57,13 @@ class EpisodeList extends Component {
       <Paper className={s.root}>
         {postList}
         {!isMember && (
-          <Button color="primary" variant="contained" className={s.button}>
+          <Button
+            color="primary"
+            variant="contained"
+            className={s.button}
+            component={Link}
+            to={`/steps?course=${name}&price=${price}`}
+          >
             购买60元
           </Button>
         )}
