@@ -50,7 +50,6 @@ exports.signup = async (req, res) => {
     const doc = await user.save()
     const data = {
       _id: doc._id,
-      phoneNum,
       userName,
       uid: doc.uid
     }
@@ -89,10 +88,13 @@ exports.login = async (req, res) => {
     }
     const data = {
       userName: user.userName,
-      phoneNum: user.phoneNum,
       coin: user.coin,
       _id: user._id,
       uid: user.uid
+    }
+
+    if (user.admin) {
+      data.admin = user.admin
     }
 
     return res.json({

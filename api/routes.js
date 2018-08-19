@@ -16,6 +16,7 @@ router.post('/smscode', users.sendSmsCode)
 
 // 课程展示接口
 router.get('/course', courses.single)
+router.post('/open', auth.admin, courses.open)
 router.get('/episode', auth.user, episodes.getEpisode)
 
 module.exports = router

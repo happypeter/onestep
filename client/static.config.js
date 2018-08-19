@@ -54,6 +54,10 @@ export default {
         component: 'src/containers/StepsContainer'
       },
       {
+        path: '/open',
+        component: 'src/containers/OpenContainer'
+      },
+      {
         is404: true,
         component: 'src/containers/404'
       }

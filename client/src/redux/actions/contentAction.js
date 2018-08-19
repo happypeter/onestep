@@ -35,3 +35,22 @@ export function fetchEpisode(data) {
     }
   }
 }
+
+export function open(data) {
+  return dispatch => {
+    if (typeof window !== 'undefined') {
+      axios
+        .post(`${config.api}/open`, data, {
+          headers: { Authorization: localStorage.jwtToken }
+        })
+        .then(res => {
+          if (res.data && res.data.success === true) {
+            alert('阅读权限已开通')
+          }
+        })
+        .catch(error => {
+          handleError(error, dispatch)
+        })
+    }
+  }
+}

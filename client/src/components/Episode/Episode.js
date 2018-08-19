@@ -3,7 +3,6 @@ import EpisodeDoc from './EpisodeDoc'
 import { compose } from 'recompose'
 import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { withRouteData, Link } from 'react-static'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 import { videoJsOptions } from '../../lib/playerConfig'
@@ -57,10 +56,6 @@ class Episode extends Component {
             <div>请购买后阅读</div>
           )}
         </div>
-
-        <Button color="primary" variant="contained" component={Link} to="/coin">
-          返回
-        </Button>
       </div>
     )
   }
