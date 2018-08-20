@@ -27,7 +27,9 @@ class Profile extends Component {
           </div>
           <div>饺子数量: {isMember ? currentUser.coin : 0}</div>
         </div>
-        <CourseList courses={courses} title="已购买的课程" />
+        {isMember ? (
+          <CourseList courses={courses} title="已购买的课程" />
+        ) : null}
       </div>
     )
 
