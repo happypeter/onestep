@@ -9,7 +9,6 @@ exports.getEpisode = async (req, res) => {
     const user = await User.findById({ _id: req.userId })
     if (user && user.coin && user.coin > 0) {
       const dirPath = path.join(process.env.HOME, config.docPath)
-
       const doc = fs.readFileSync(`${dirPath}/${link}.md`, 'utf8')
       res.json({ success: true, doc })
     } else {

@@ -4,8 +4,8 @@ const config = require('../config/config')
 const User = require('../models/user')
 
 function getCourseToc(course) {
-  const dirPath = path.join(process.env.HOME, `/${course}`)
-  const content = fs.readFileSync(`${dirPath}/SUMMARY.md`, 'utf-8')
+  const dirPath = path.join(process.env.HOME, config.docPath)
+  const content = fs.readFileSync(`${dirPath}/SUMMARY.md`, 'utf8')
   const lines = content.split('\n')
   let toc = []
   for (let i = 0; i < lines.length; i++) {
