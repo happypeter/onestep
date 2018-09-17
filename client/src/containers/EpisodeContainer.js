@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouteData } from 'react-static'
 import { fetchEpisode } from '../redux/actions/contentAction'
 import Episode from '../components/Episode/Episode'
 import {
@@ -29,4 +30,4 @@ export default connect(
     goto,
     fetchEpisode
   }
-)(EpisodeContainer)
+)(withRouteData(EpisodeContainer))

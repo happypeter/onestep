@@ -30,20 +30,14 @@ const styles = theme => ({
 
 class Home extends React.Component {
   render() {
-    const { classes: s, goto } = this.props
-    const courses = [
-      {
-        uid: 'coin',
-        title: '一币一别墅'
-      }
-    ]
+    const { classes: s, goto, courses } = this.props
     return (
       <div>
         <Hidden mdDown>
           <Hero goto={goto} />
         </Hidden>
         <div className={s.listWrap}>
-          <CourseList courses={courses} title="最新发布" />
+          <CourseList courses={courses.published} title="最新发布" />
         </div>
       </div>
     )

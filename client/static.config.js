@@ -5,42 +5,49 @@ import {
   MuiThemeProvider,
   createGenerateClassName
 } from '@material-ui/core/styles'
-import axios from 'axios'
+import fs from 'fs'
 import theme from './src/theme'
 import config from './src/config/config'
 
+const docRepo = config.docRepo
 export default {
   siteRoot: config.siteRoot,
   getSiteData: () => ({
     title: '好奇猫'
   }),
   getRoutes: async () => {
-    const res = await axios.get(`${config.api}/course`)
-    const { course: posts } = res.data
-
+    const courses = JSON.parse(fs.readFileSync(`${docRepo}/index.json`, 'utf8'))
     return [
       {
         path: '/',
-        component: 'src/containers/HomeContainer'
+        component: 'src/containers/HomeContainer',
+        getData: () => ({ courses })
       },
       {
         path: '/profile',
         component: 'src/containers/ProfileContainer'
       },
-      {
-        path: '/coin',
-        component: 'src/containers/CourseContainer',
-        getData: () => ({
-          posts
-        }),
-        children: posts.map(post => ({
-          path: `${post.link}`,
-          component: 'src/containers/EpisodeContainer',
-          getData: () => ({
-            post
-          })
-        }))
-      },
+      ...courses.published.map(course => {
+        const toc = JSON.parse(
+          fs.readFileSync(`${docRepo}/${course.link.slice(1)}/doc/index.json`),
+          'utf8'
+        )
+        const posts = toc.content.reduce((sum, part) => {
+          return sum.concat(part.section)
+        }, [])
+        return {
+          path: course.link,
+          component: 'src/containers/CourseContainer',
+          getData: () => ({ cid: course.link.slice(1), toc, posts }),
+          children: posts.map(post => ({
+            path: post.link,
+            component: `src/containers/EpisodeContainer`,
+            getData: () => ({
+              post
+            })
+          }))
+        }
+      }),
       {
         path: '/login',
         component: 'src/containers/LoginContainer'

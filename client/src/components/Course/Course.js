@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { withRouteData } from 'react-static'
+
 import EpisodeList from '../../containers/EpisodeListContainer'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 
@@ -23,14 +23,14 @@ const styles = theme => ({
 
 class Course extends Component {
   render() {
-    const { classes: s, posts } = this.props
+    const { classes: s, posts, toc, cid } = this.props
     return (
       <div className={s.root}>
-        <div className={s.title}>一币一别墅</div>
-        <EpisodeList posts={posts} name="一币一别墅" price={60} />
+        <div className={s.title}>{toc.name}</div>
+        <EpisodeList posts={posts} name={toc.name} price={60} cid={cid} />
       </div>
     )
   }
 }
 
-export default withRouteData(withStyles(styles)(Course))
+export default withStyles(styles)(Course)

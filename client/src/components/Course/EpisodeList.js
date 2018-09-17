@@ -30,12 +30,12 @@ const styles = theme => ({
 
 class EpisodeList extends Component {
   render() {
-    const { posts, goto, classes: s, isMember, name, price } = this.props
+    const { posts, goto, classes: s, isMember, name, price, cid } = this.props
     const postList = posts.map(t => (
       <ListItem
         key={t.link}
         onClick={
-          isMember ? () => goto(`/coin/${t.link}`) : () => goto('/login')
+          isMember ? () => goto(`${cid}/${t.link}`) : () => goto('/login')
         }
       >
         <ListItemIcon>

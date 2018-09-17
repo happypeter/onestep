@@ -21,24 +21,20 @@ const styles = theme => ({
 })
 
 class CourseList extends Component {
-  componentDidMount() {
-    // this.props.fetchCoursesIfNeeded()
-  }
-
   render() {
     const { courses, classes: s, goto, title } = this.props
 
     let courseList = courses.map(item => (
       <Grid
         className={s.gridItem}
-        key={item.uid}
+        key={item.link}
         item
         xs={12}
         sm={6}
         lg={4}
         xl={4}
       >
-        <CourseCard uid={item.uid} title={item.title} goto={goto} />
+        <CourseCard course={item} goto={goto} />
       </Grid>
     ))
 
