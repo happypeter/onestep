@@ -29,7 +29,7 @@ export default {
       },
       ...courses.published.map(course => {
         const toc = JSON.parse(
-          fs.readFileSync(`${docRepo}/${course.link.slice(1)}/doc/index.json`),
+          fs.readFileSync(`${docRepo}${course.link}/doc/index.json`),
           'utf8'
         )
         const posts = toc.content.reduce((sum, part) => {
@@ -39,13 +39,25 @@ export default {
           path: course.link,
           component: 'src/containers/CourseContainer',
           getData: () => ({ cid: course.link.slice(1), toc, posts }),
-          children: posts.map(post => ({
-            path: post.link,
-            component: `src/containers/EpisodeContainer`,
-            getData: () => ({
-              post
-            })
-          }))
+          children: posts.map(post => {
+            const markdown =
+              post.link === '#'
+                ? ''
+                : fs.readFileSync(
+                    `${docRepo}${course.link}/doc/${post.link}.md`,
+                    'utf8'
+                  )
+            return {
+              path: post.link,
+              component: `src/containers/EpisodeContainer`,
+              getData: () => ({
+                post,
+                posts,
+                markdown,
+                price: toc.price
+              })
+            }
+          })
         }
       }),
       {

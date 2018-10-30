@@ -13,7 +13,7 @@ const styles = theme => ({
   root: {
     padding: theme.spacing.unit * 2,
     width: '100%',
-    maxWidth: MAX_WIDTH,
+    maxWidth: 680,
     margin: '24px auto'
   },
   title: {
@@ -25,26 +25,12 @@ const styles = theme => ({
 })
 
 class Episode extends Component {
-  componentDidMount() {
-    const { fetchEpisode, post, isMember } = this.props
-    if (isMember) {
-      fetchEpisode({ link: post.link })
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { post, fetchEpisode, isMember } = this.props
-    if (isMember && isMember !== prevProps.isMember) {
-      fetchEpisode({ link: post.link })
-    }
-  }
-
   render() {
-    const { markdown, classes: s, isMember, post } = this.props
+    const { markdown, classes: s, isMember, post, price } = this.props
     return (
       <div className={s.root}>
         <div>
-          {isMember ? (
+          {price === '0' || isMember ? (
             <div>
               <div className={s.title}>{post.title}</div>
               {/* <VideoPlayer

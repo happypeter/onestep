@@ -35,7 +35,9 @@ class EpisodeList extends Component {
       <ListItem
         key={t.link}
         onClick={
-          isMember ? () => goto(`${cid}/${t.link}`) : () => goto('/login')
+          price === '0' || isMember
+            ? () => goto(`${cid}/${t.link}`)
+            : () => goto('/login')
         }
       >
         <ListItemIcon>
@@ -43,7 +45,7 @@ class EpisodeList extends Component {
         </ListItemIcon>
 
         <ListItemText className={s.listItemText}>
-          {isMember ? (
+          {price === '0' || isMember ? (
             <Typography>{t.title}</Typography>
           ) : (
             <Tooltip title="请登录，购买后再阅读" placement="left-start">
@@ -56,7 +58,7 @@ class EpisodeList extends Component {
     return (
       <Paper className={s.root}>
         {postList}
-        {!isMember && (
+        {(price !== '0' || isMember) && (
           <Button
             color="primary"
             variant="contained"
@@ -64,7 +66,7 @@ class EpisodeList extends Component {
             component={Link}
             to={`/steps?course=${name}&price=${price}`}
           >
-            购买60元
+            {price}元
           </Button>
         )}
       </Paper>
