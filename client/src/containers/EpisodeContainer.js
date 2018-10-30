@@ -11,10 +11,6 @@ import {
 import { goto } from '../redux/actions'
 
 const EpisodeContainer = props => {
-  if (!props.isAuthenticated) {
-    props.history.push('/coin')
-    return null
-  }
   return <Episode {...props} />
 }
 
