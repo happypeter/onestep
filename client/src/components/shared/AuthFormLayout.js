@@ -29,7 +29,7 @@ class AuthFormLayout extends React.Component {
     return (
       <Paper className={s.container}>
         <div className={s.titleWrap}>
-          <Typography className={s.title} variant="title">
+          <Typography className={s.title} variant="h6">
             {title}
           </Typography>
         </div>

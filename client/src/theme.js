@@ -4,6 +4,9 @@ import pink from '@material-ui/core/colors/pink'
 import red from '@material-ui/core/colors/red'
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true
+  },
   props: {
     // Name of the component ⚛️
     MuiButtonBase: {

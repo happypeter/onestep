@@ -4,12 +4,13 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import { Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
-import { videoRepo } from '../../config/config'
-
-const getCoverLink = uid => `${videoRepo}/posters/${uid}.png`
+import { Link } from 'react-static'
 
 const styles = theme => ({
+  link: {
+    display: 'block',
+    textDecoration: 'none'
+  },
   card: {
     cursor: 'pointer',
     margin: theme.spacing.unit * 2
@@ -21,22 +22,17 @@ const styles = theme => ({
   }
 })
 
-class CourseCard extends React.Component {
-  render() {
-    const { course, classes: s, goto } = this.props
-    return (
-      <Card onClick={() => goto(`${course.link}`)} className={s.card}>
+const CourseCard = ({ classes: s, course }) => {
+  return (
+    <Link to={course.link} className={s.link}>
+      <Card className={s.card}>
         {/* <CardMedia image={course.cover} className={s.media} /> */}
         <CardContent>
           <Typography>{course.title}</Typography>
         </CardContent>
       </Card>
-    )
-  }
-}
-
-CourseCard.propTypes = {
-  goto: PropTypes.func.isRequired
+    </Link>
+  )
 }
 
 export default withStyles(styles)(CourseCard)

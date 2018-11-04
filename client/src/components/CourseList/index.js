@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CourseCard from '../common/CourseCard'
-import PropTypes from 'prop-types'
 import { Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -13,46 +12,28 @@ const styles = theme => ({
   list: {
     border: '1px solid red'
   },
-  gridItem: {},
   section: {
     marginBottom: theme.spacing.unit * 2,
     textAlign: 'center'
   }
 })
 
-class CourseList extends Component {
-  render() {
-    const { courses, classes: s, goto, title } = this.props
+const CourseList = ({ classes: s, courses, title }) => {
+  const courseList = courses.map(item => (
+    <Grid key={item.link} item xs={12} sm={6} lg={4} xl={4}>
+      <CourseCard course={item} />
+    </Grid>
+  ))
 
-    let courseList = courses.map(item => (
-      <Grid
-        className={s.gridItem}
-        key={item.link}
-        item
-        xs={12}
-        sm={6}
-        lg={4}
-        xl={4}
-      >
-        <CourseCard course={item} goto={goto} />
-      </Grid>
-    ))
-
-    return (
-      <div className={s.root}>
-        <div className={s.section}>
-          <Typography variant="headline">{title}</Typography>
-        </div>
-
-        <Grid container>{courseList}</Grid>
+  return (
+    <div className={s.root}>
+      <div className={s.section}>
+        <Typography variant="h5">{title}</Typography>
       </div>
-    )
-  }
-}
 
-CourseList.propTypes = {
-  courses: PropTypes.array.isRequired,
-  goto: PropTypes.func.isRequired
+      <Grid container>{courseList}</Grid>
+    </div>
+  )
 }
 
 export default withStyles(styles)(CourseList)

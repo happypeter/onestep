@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
-import PropTypes from 'prop-types'
+import { Link } from 'react-static'
 import dashboardImg from '../../assets/images/dashboard.jpg'
 
 const styles = theme => ({
@@ -76,8 +76,10 @@ const styles = theme => ({
     justifyContent: 'space-around',
     alignItem: 'center'
   },
-  text: {},
-  subheading: {
+  h4: {
+    opacity: 0.7
+  },
+  subtitle1: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
   },
@@ -92,43 +94,39 @@ const styles = theme => ({
   }
 })
 
-class Hero extends React.Component {
-  render() {
-    const { classes: s, goto } = this.props
-    return (
-      <div className={s.hero}>
-        <div className={s.content}>
-          <div className={s.textWrap}>
-            <div className={s.text}>
-              <Typography variant="display2">好奇猫编程视频站</Typography>
-              <Typography className={s.subheading} variant="subheading">
-                Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React
-                ， 后端 Express。
-              </Typography>
-              <Button
-                onClick={() => goto('/login')}
-                size="large"
-                variant="raised"
-                color="primary"
-              >
-                登录
-              </Button>
-            </div>
+const Hero = ({ classes: s }) => {
+  return (
+    <div className={s.hero}>
+      <div className={s.content}>
+        <div className={s.textWrap}>
+          <div>
+            <Typography className={s.h4} variant="h4">
+              好奇猫编程视频站
+            </Typography>
+            <Typography className={s.subtitle1} variant="subtitle1">
+              Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React ，
+              后端 Express。
+            </Typography>
+            <Button
+              size="large"
+              variant="raised"
+              color="primary"
+              component={Link}
+              to="/login"
+            >
+              登录
+            </Button>
           </div>
-          <Paper className={s.imgWrap}>
-            <img src={dashboardImg} alt="db" />
-          </Paper>
         </div>
-        <div className={s.bgShape} />
-        <div className={s.bgCircle} />
-        <div className={s.bgCircleTwo} />
+        <Paper className={s.imgWrap}>
+          <img src={dashboardImg} alt="dashboard" />
+        </Paper>
       </div>
-    )
-  }
-}
-
-Hero.propTypes = {
-  goto: PropTypes.func.isRequired
+      <div className={s.bgShape} />
+      <div className={s.bgCircle} />
+      <div className={s.bgCircleTwo} />
+    </div>
+  )
 }
 
 export default withStyles(styles)(Hero)
