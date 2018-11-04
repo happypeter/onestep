@@ -26,7 +26,7 @@ class CourseCard extends React.Component {
     const { course, classes: s, goto } = this.props
     return (
       <Card onClick={() => goto(`${course.link}`)} className={s.card}>
-        <CardMedia image={course.cover} className={s.media} />
+        {/* <CardMedia image={course.cover} className={s.media} /> */}
         <CardContent>
           <Typography>{course.title}</Typography>
         </CardContent>

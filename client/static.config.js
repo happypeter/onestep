@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { SheetsRegistry } from 'react-jss/lib/jss'
 import JssProvider from 'react-jss/lib/JssProvider'
+import { SheetsRegistry } from 'jss'
 import {
   MuiThemeProvider,
   createGenerateClassName
@@ -118,7 +118,10 @@ export default {
             <title>好奇猫</title>
             <link rel="shortcut icon" type="image/png" href="/favicon.png" />
             <meta name="description" content="好奇猫" />
-            <meta name="keywords" content="btc" />
+            <meta
+              name="keywords"
+              content="full-stack react nodejs expressjs git btc"
+            />
           </Head>
           <Body>
             {children}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { withStyles } from '@material-ui/core/styles'
+const md = require('markdown-it')()
 
 const styles = theme => ({
   root: {
@@ -27,10 +27,9 @@ const styles = theme => ({
 class EpisodeDoc extends Component {
   render() {
     const { classes: s, doc } = this.props
+    const result = md.render(doc)
     return (
-      <div className={s.root}>
-        <ReactMarkdown source={doc} />
-      </div>
+      <div dangerouslySetInnerHTML={{ __html: result }} className={s.root} />
     )
   }
 }
