@@ -42,21 +42,31 @@ exports.signup = async (req, res) => {
         success: false
       })
     }
-    const count = await User.count()
-    const str = (count + 1).toString()
-    const uid = str.length < 6 ? '000000'.slice(0, 6 - str.length) + str : str
-
-    const user = new User({ userName, phoneNum, password, uid })
-    const doc = await user.save()
-    const data = {
-      _id: doc._id,
-      userName,
-      uid: doc.uid
+    let count = await User.count()
+    count += 1
+    let flag = true
+    while (flag) {
+      const str = count.toString()
+      let uid = str.length < 6 ? '000000'.slice(0, 6 - str.length) + str : str
+      const user = new User({ userName, phoneNum, password, uid })
+      try {
+        const doc = await user.save()
+        return res.json({
+          token: generateToken({
+            _id: doc._id,
+            userName,
+            uid
+          }),
+          success: true
+        })
+      } catch (err) {
+        flag = err.code && err.code === 11000
+        if (flag) {
+          count += 1
+        }
+        console.log('save user err...', err.message)
+      }
     }
-    return res.status(200).json({
-      token: generateToken(data),
-      success: true
-    })
   } catch (err) {
     console.log('sign up err...', err)
     return res.status(200).json({
