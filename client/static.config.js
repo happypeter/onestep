@@ -25,7 +25,8 @@ export default {
       },
       {
         path: '/profile',
-        component: 'src/containers/ProfileContainer'
+        component: 'src/containers/ProfileContainer',
+        getData: () => ({ courses: courses.published })
       },
       ...courses.published.map(course => {
         const toc = JSON.parse(
@@ -61,26 +62,11 @@ export default {
           })
         }
       }),
-      {
-        path: '/login',
-        component: 'src/containers/LoginContainer'
-      },
-      {
-        path: '/signup',
-        component: 'src/containers/SignupContainer'
-      },
-      {
-        path: '/steps',
-        component: 'src/containers/StepsContainer'
-      },
-      {
-        path: '/open',
-        component: 'src/containers/OpenContainer'
-      },
-      {
-        is404: true,
-        component: 'src/containers/404'
-      }
+      { path: '/login', component: 'src/containers/LoginContainer' },
+      { path: '/signup', component: 'src/containers/SignupContainer' },
+      { path: '/steps', component: 'src/containers/StepsContainer' },
+      { path: '/open', component: 'src/containers/OpenContainer' },
+      { is404: true, component: 'src/containers/404' }
     ]
   },
   renderToHtml: (render, Comp, meta) => {

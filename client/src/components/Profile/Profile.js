@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import CourseList from '../../containers/CourseListContainer'
+import CourseList from '../../components/CourseList'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
@@ -15,26 +15,27 @@ const styles = theme => ({
   }
 })
 
-class Profile extends Component {
-  render() {
-    const { isMember, classes: s, currentUser } = this.props
-    const courses = [{ uid: 'coin', title: '一币一别墅' }]
-    const pageContent = (
-      <div className={s.root}>
-        <div className={s.section}>
-          <div>
-            UID: {currentUser && currentUser.uid ? currentUser.uid : ''}
-          </div>
-          <div>饺子数量: {isMember ? currentUser.coin : 0}</div>
-        </div>
-        {isMember ? (
-          <CourseList courses={courses} title="已购买的课程" />
+const Profile = ({ classes: s, currentUser, paidCourses, courses }) => {
+  const matchedCourses = courses.filter(c =>
+    paidCourses.includes(c.link.slice(1))
+  )
+  const pageContent = (
+    <div className={s.root}>
+      <div className={s.section}>
+        {currentUser && currentUser.uid ? (
+          <div>UID: {currentUser.uid}</div>
+        ) : null}
+        {currentUser && currentUser.coin ? (
+          <div>饺子数量: {currentUser.coin}</div>
         ) : null}
       </div>
-    )
+      {paidCourses.length && (
+        <CourseList courses={matchedCourses} title="已购买的课程" />
+      )}
+    </div>
+  )
 
-    return <div className={s.root}>{pageContent}</div>
-  }
+  return <div className={s.root}>{pageContent}</div>
 }
 
 export default withStyles(styles)(Profile)

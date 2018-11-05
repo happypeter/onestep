@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 import Hero from './Hero'
-import CourseList from '../../containers/CourseListContainer'
+import CourseList from '../../components/CourseList'
 
 const styles = theme => ({
   root: {

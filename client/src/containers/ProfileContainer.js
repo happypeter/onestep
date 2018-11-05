@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { goto } from '../redux/actions'
-import {
-  getCurrentUser,
-  getIsMember
-} from '../redux/selectors/commonSelectors.js'
+import { withRouteData } from 'react-static'
+import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import Profile from '../components/Profile/Profile'
-import { getIsAuthenticated } from '../redux/selectors/commonSelectors'
+import {
+  getIsAuthenticated,
+  getPaidCourses
+} from '../redux/selectors/commonSelectors'
 
 const ProfileContainer = props => {
   if (!props.isAuthenticated) {
@@ -19,13 +18,8 @@ const ProfileContainer = props => {
 
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
-  isMember: getIsMember(state),
+  paidCourses: getPaidCourses(state),
   isAuthenticated: getIsAuthenticated(state)
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { goto }
-  )(ProfileContainer)
-)
+export default connect(mapStateToProps)(withRouteData(ProfileContainer))
