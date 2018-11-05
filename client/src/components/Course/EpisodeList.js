@@ -11,33 +11,38 @@ import { Link } from 'react-static'
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 1
+    padding: theme.spacing.unit
+  },
+  paper: {
+    margin: `${theme.spacing.unit * 2}px 0`
   }
 })
 
 const EpisodeList = ({ classes: s, posts, cid, isAccessible }) => {
   const postList = posts.map(t => (
-    <ListItem
-      key={t.link}
-      component={Link}
-      to={isAccessible ? `${cid}/${t.link}` : '/login'}
-    >
-      <ListItemIcon>
-        <PlayerIcon />
-      </ListItemIcon>
+    <Paper className={s.paper} elevation={1}>
+      <ListItem
+        key={t.link}
+        component={Link}
+        to={isAccessible ? `${cid}/${t.link}` : '/login'}
+      >
+        <ListItemIcon>
+          <PlayerIcon />
+        </ListItemIcon>
 
-      <ListItemText>
-        {isAccessible ? (
-          <Typography>{t.title}</Typography>
-        ) : (
-          <Tooltip title="请登录，购买后再阅读" placement="left-start">
+        <ListItemText>
+          {isAccessible ? (
             <Typography>{t.title}</Typography>
-          </Tooltip>
-        )}
-      </ListItemText>
-    </ListItem>
+          ) : (
+            <Tooltip title="请登录，购买后再阅读" placement="left-start">
+              <Typography>{t.title}</Typography>
+            </Tooltip>
+          )}
+        </ListItemText>
+      </ListItem>
+    </Paper>
   ))
-  return <Paper className={s.root}>{postList}</Paper>
+  return <div className={s.root}>{postList}</div>
 }
 
 export default withStyles(styles)(EpisodeList)
