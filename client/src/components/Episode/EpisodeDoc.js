@@ -8,6 +8,9 @@ const styles = theme => ({
     fontFamily: `'Helvetica Neue',Helvetica,Arial,Sans-serif`,
     lineHeight: 1.9,
     fontSize: 16,
+    '& h1': {
+      display: 'none'
+    },
     '& h2': {
       fontSize: 20
     },
