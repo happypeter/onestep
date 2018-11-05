@@ -13,6 +13,7 @@ if (typeof window !== 'undefined') {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case types.AUTH_USER:
+      console.log('action.user....', action.user)
       return {
         isAuthenticated: !isEmpty(action.user),
         currentUser: action.user

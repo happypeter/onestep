@@ -137,7 +137,7 @@ class Signup extends Component {
         <div>
           {formItems}
           <Button
-            variant="raised"
+            variant="contained"
             fullWidth
             color="primary"
             onClick={this.handleSubmit}

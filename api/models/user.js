@@ -10,7 +10,8 @@ const UserSchema = new Schema(
     password: { type: String },
     admin: Boolean,
     coin: Number,
-    uid: { type: String, unique: true }
+    uid: { type: String, unique: true },
+    paidCourses: Array
   },
   { timestamps: true }
 )

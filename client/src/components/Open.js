@@ -56,7 +56,7 @@ class Open extends Component {
         />
         <Button
           color="primary"
-          variant="raised"
+          variant="contained"
           fullWidth
           onClick={this.handleSubmit}
           className={s.button}

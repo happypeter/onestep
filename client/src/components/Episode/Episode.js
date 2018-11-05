@@ -25,11 +25,21 @@ const styles = theme => ({
 
 class Episode extends Component {
   render() {
-    const { markdown, classes: s, isMember, post, price } = this.props
+    const {
+      markdown,
+      classes: s,
+      isAuthenticated,
+      paidCourses,
+      post,
+      price,
+      cid
+    } = this.props
+    const isAccessible =
+      price === '0' || (isAuthenticated && paidCourses.includes(cid))
     return (
       <div className={s.root}>
         <div>
-          {price === '0' || isMember ? (
+          {isAccessible ? (
             <div>
               <div className={s.title}>{post.title}</div>
               {/* <VideoPlayer

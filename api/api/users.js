@@ -96,11 +96,13 @@ exports.login = async (req, res) => {
         success: false
       })
     }
+
     const data = {
       userName: user.userName,
       coin: user.coin,
       _id: user._id,
-      uid: user.uid
+      uid: user.uid,
+      paidCourses: user.paidCourses
     }
 
     if (user.admin) {
@@ -122,11 +124,10 @@ exports.login = async (req, res) => {
 
 exports.profile = async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.userId })
-    const coin = user.coin
-    if (coin && coin > 0) {
-      return res.json({ success: true, coin })
-    }
+    const user = await User.findById({ _id: req.userId }).select(
+      'coin paidCourses'
+    )
+    res.json(user)
   } catch (err) {
     console.log('get profile err...', err)
   }

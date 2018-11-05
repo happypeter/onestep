@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-
-import EpisodeList from '../../containers/EpisodeListContainer'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-static'
+import EpisodeList from './EpisodeList'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
@@ -21,21 +22,32 @@ const styles = theme => ({
   }
 })
 
-class Course extends Component {
-  render() {
-    const { classes: s, posts, toc, cid } = this.props
-    return (
-      <div className={s.root}>
-        <div className={s.title}>{toc.name}</div>
-        <EpisodeList
-          posts={posts}
-          name={toc.name}
-          price={toc.price}
-          cid={cid}
-        />
-      </div>
-    )
-  }
+const Course = props => {
+  const { classes: s, toc, posts, cid, paidCourses, isAuthenticated } = props
+  const isAccessible =
+    toc.price === '0' || (isAuthenticated && paidCourses.includes(cid))
+  return (
+    <div className={s.root}>
+      <div className={s.title}>{toc.name}</div>
+      <EpisodeList
+        posts={posts}
+        cid={cid}
+        price={toc.price}
+        isAccessible={isAccessible}
+      />
+      {!isAccessible && (
+        <Button
+          color="primary"
+          variant="contained"
+          className={s.button}
+          component={Link}
+          to={`/steps?course=${toc.name}&price=${toc.price}`}
+        >
+          {toc.price}元
+        </Button>
+      )}
+    </div>
+  )
 }
 
 export default withStyles(styles)(Course)

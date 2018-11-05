@@ -51,6 +51,7 @@ export default {
               path: post.link,
               component: `src/containers/EpisodeContainer`,
               getData: () => ({
+                cid: course.link.slice(1),
                 post,
                 posts,
                 markdown,

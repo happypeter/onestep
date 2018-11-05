@@ -109,7 +109,7 @@ const Hero = ({ classes: s }) => {
             </Typography>
             <Button
               size="large"
-              variant="raised"
+              variant="contained"
               color="primary"
               component={Link}
               to="/login"

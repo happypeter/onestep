@@ -5,6 +5,10 @@ export const getIsMember = state => {
   const user = state.auth.currentUser
   return (user && user.coin && user.coin > 0) || false
 }
+export const getPaidCourses = state => {
+  const user = state.auth.currentUser
+  return user.paidCourses || []
+}
 export const getIsAdmin = state => {
   const user = state.auth.currentUser
   return (user && user.admin) || false
