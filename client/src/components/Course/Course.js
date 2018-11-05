@@ -19,6 +19,12 @@ const styles = theme => ({
     textAlign: 'center',
     fontSize: 18,
     marginBottom: 24
+  },
+  button: {
+    textAlign: 'center',
+    display: 'block',
+    width: 160,
+    margin: '32px auto'
   }
 })
 
