@@ -12,9 +12,9 @@ import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 const styles = theme => ({
   hero: {
-    paddingTop: '2vw',
-    paddingBottom: '2vw',
-    background: `linear-gradient(60deg,#008bd6,#3ecfe6)`
+    paddingTop: 40,
+    paddingBottom: 40,
+    background: `linear-gradient(60deg,#0097a7,#00bcd4)`
   },
   cTitle: {
     color: `rgba(255, 255, 255, 0.8)`,
@@ -43,15 +43,26 @@ const styles = theme => ({
   },
   container: {
     maxWidth: 1280,
-    margin: '0 auto'
+    margin: '0 auto',
+    width: '100%',
+    padding: '0 16px'
   },
   root: {
     display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row'
+    },
     backgroundColor: '#f8fafc'
   },
   sidebar: {
-    marginTop: theme.spacing.unit * 5,
+    marginTop: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing.unit * 5
+    },
     marginRight: theme.spacing.unit * 5,
+    minWidth: 180,
+    flexShrink: 0,
     '&>a': {
       display: 'block',
       fontSize: 14,
@@ -59,11 +70,23 @@ const styles = theme => ({
       paddingBottom: theme.spacing.unit * 2,
       color: '#738a94',
       transition: `all .3s ease`,
-      fontWeight: 500
+      fontWeight: 500,
+      '&:hover': {
+        color: '#0097a7'
+      },
+      '&.active': {
+        color: '#00bcd4'
+      }
     }
   },
   content: {
-    padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 8}px`,
+    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px`,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing.unit * 4
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 8}px`
+    },
     width: '100%',
     maxWidth: 760,
     margin: '0 auto',
@@ -106,9 +129,9 @@ class Episode extends Component {
         {isAccessible ? (
           <div className={classNames(s.root, s.container)}>
             <div className={s.sidebar}>
-              {posts.map(post => (
-                <Link to={`${post.link}`} key={post.link}>
-                  {post.title}
+              {posts.map(item => (
+                <Link to={`/${cid}/${item.link}`} key={item.link}>
+                  {item.title}
                 </Link>
               ))}
             </div>

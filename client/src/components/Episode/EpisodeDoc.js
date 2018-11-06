@@ -25,6 +25,21 @@ const styles = theme => ({
     '& a': {
       color: '#00bcd4',
       fontStyle: 'normal'
+    },
+    '& blockquote': {
+      margin: '32px 0',
+      padding: `0 ${theme.spacing.unit * 4}px`,
+      borderLeft: '4px solid #00bcd4',
+      borderRadius: 3,
+      backgroundColor: '#fff',
+      fontSize: 16
+    },
+    '& ul': {
+      paddingLeft: '1.3em',
+      '& li p': {
+        marginTop: 0,
+        marginBottom: 0
+      }
     }
   }
 })
