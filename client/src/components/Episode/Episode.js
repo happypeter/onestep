@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { videoJsOptions } from '../../lib/playerConfig'
 import { videoRepo } from '../../config/config'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
+import Navigation from './Navigation'
 
 const styles = theme => ({
   hero: {
@@ -87,9 +88,9 @@ const styles = theme => ({
       overflow: 'unset',
       transition: 'none',
       marginTop: theme.spacing.unit * 5,
-      marginRight: theme.spacing.unit * 5
+      marginRight: theme.spacing.unit * 5,
+      width: 260
     },
-    minWidth: 180,
     flexShrink: 0,
     '&>a': {
       display: 'block',
@@ -196,12 +197,19 @@ class Episode extends Component {
                 </Link>
               ))}
             </div>
-            <div className={s.content}>
-              <div className={s.title}>{post.title}</div>
-              <VideoPlayer
-                {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
+            <div>
+              <div className={s.content}>
+                <div className={s.title}>{post.title}</div>
+                <VideoPlayer
+                  {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
+                />
+                <EpisodeDoc doc={markdown} />
+              </div>
+              <Navigation
+                episodes={posts}
+                episodeId={post.link}
+                courseId={cid}
               />
-              <EpisodeDoc doc={markdown} />
             </div>
           </div>
         ) : (
