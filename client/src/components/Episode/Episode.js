@@ -83,6 +83,9 @@ const styles = theme => ({
     transition: 'all .5s ease',
     overflowY: 'auto',
     [theme.breakpoints.up('sm')]: {
+      maxHeight: 'unset',
+      overflow: 'unset',
+      transition: 'none',
       marginTop: theme.spacing.unit * 5,
       marginRight: theme.spacing.unit * 5
     },
