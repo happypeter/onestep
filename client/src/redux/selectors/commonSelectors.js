@@ -7,7 +7,7 @@ export const getIsMember = state => {
 }
 export const getPaidCourses = state => {
   const user = state.auth.currentUser
-  return user.paidCourses || []
+  return (user && user.paidCourses) || []
 }
 export const getIsAdmin = state => {
   const user = state.auth.currentUser

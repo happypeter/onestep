@@ -33,21 +33,20 @@ export default {
           fs.readFileSync(`${docRepo}${course.link}/doc/index.json`),
           'utf8'
         )
-        const posts = toc.content.reduce((sum, part) => {
-          return sum.concat(part.section)
-        }, [])
+        const posts = toc.content
+          .reduce((sum, part) => {
+            return sum.concat(part.section)
+          }, [])
+          .filter(post => post.link !== '#')
         return {
           path: course.link,
           component: 'src/containers/CourseContainer',
           getData: () => ({ cid: course.link.slice(1), toc, posts }),
           children: posts.map(post => {
-            const markdown =
-              post.link === '#'
-                ? ''
-                : fs.readFileSync(
-                    `${docRepo}${course.link}/doc/${post.link}.md`,
-                    'utf8'
-                  )
+            const markdown = fs.readFileSync(
+              `${docRepo}${course.link}/doc/${post.link}.md`,
+              'utf8'
+            )
             return {
               path: post.link,
               component: `src/containers/EpisodeContainer`,

@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'react-static'
 import EpisodeList from './EpisodeList'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
+import { videoJsOptions } from '../../lib/playerConfig'
+import { videoRepo } from '../../config/config'
+import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 
 const styles = theme => ({
   root: {
@@ -35,6 +38,13 @@ const Course = props => {
   return (
     <div className={s.root}>
       <div className={s.title}>{toc.name}</div>
+      <VideoPlayer
+        {...videoJsOptions(
+          `${videoRepo}/${cid}/${
+            toc.cover_video ? toc.cover_video : 'index'
+          }.mp4`
+        )}
+      />
       <EpisodeList
         posts={posts}
         cid={cid}

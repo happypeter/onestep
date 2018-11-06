@@ -35,16 +35,16 @@ class Episode extends Component {
       cid
     } = this.props
     const isAccessible =
-      price === '0' || (isAuthenticated && paidCourses.includes(cid))
+      (price && price === '0') || (isAuthenticated && paidCourses.includes(cid))
     return (
       <div className={s.root}>
         <div>
           {isAccessible ? (
             <div>
               <div className={s.title}>{post.title}</div>
-              {/* <VideoPlayer
-                {...videoJsOptions(`${videoRepo}/coin/${post.link}.mp4`)}
-              /> */}
+              <VideoPlayer
+                {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
+              />
               <EpisodeDoc doc={markdown} />
             </div>
           ) : (

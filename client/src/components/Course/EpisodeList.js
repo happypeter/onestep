@@ -20,11 +20,10 @@ const styles = theme => ({
 
 const EpisodeList = ({ classes: s, posts, cid, isAccessible }) => {
   const postList = posts.map(t => (
-    <Paper className={s.paper} elevation={1}>
+    <Paper className={s.paper} elevation={1} key={t.link}>
       <ListItem
-        key={t.link}
         component={Link}
-        to={isAccessible ? `${cid}/${t.link}` : '/login'}
+        to={isAccessible ? `/${cid}/${t.link}` : '/login'}
       >
         <ListItemIcon>
           <PlayerIcon />
@@ -34,7 +33,7 @@ const EpisodeList = ({ classes: s, posts, cid, isAccessible }) => {
           {isAccessible ? (
             <Typography>{t.title}</Typography>
           ) : (
-            <Tooltip title="请登录，购买后再阅读" placement="left-start">
+            <Tooltip title="请购买后再阅读" placement="left-start">
               <Typography>{t.title}</Typography>
             </Tooltip>
           )}
