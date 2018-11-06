@@ -6,8 +6,9 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 4,
     fontFamily: `'Helvetica Neue',Helvetica,Arial,Sans-serif`,
-    lineHeight: 1.9,
+    lineHeight: 2.2,
     fontSize: 16,
+    color: '#343f44',
     '& h1': {
       display: 'none'
     },
@@ -18,7 +19,8 @@ const styles = theme => ({
       border: `2px solid ${theme.palette.primary.light}`,
       padding: theme.spacing.unit,
       fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
-      overflow: 'auto'
+      overflow: 'auto',
+      lineHeight: 1.8
     },
     '& a': {
       color: '#00bcd4',

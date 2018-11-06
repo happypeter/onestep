@@ -52,6 +52,7 @@ export default {
               component: `src/containers/EpisodeContainer`,
               getData: () => ({
                 cid: course.link.slice(1),
+                title: course.title,
                 post,
                 posts,
                 markdown,
