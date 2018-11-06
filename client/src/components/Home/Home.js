@@ -30,11 +30,11 @@ const styles = theme => ({
 
 class Home extends React.Component {
   render() {
-    const { classes: s, goto, courses } = this.props
+    const { classes: s, courses, isAuthenticated } = this.props
     return (
       <div>
         <Hidden mdDown>
-          <Hero goto={goto} />
+          <Hero isAuthenticated={isAuthenticated} />
         </Hidden>
         <div className={s.listWrap}>
           <CourseList courses={courses.published} title="最新发布" />

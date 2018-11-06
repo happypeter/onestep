@@ -94,7 +94,7 @@ const styles = theme => ({
   }
 })
 
-const Hero = ({ classes: s }) => {
+const Hero = ({ classes: s, isAuthenticated }) => {
   return (
     <div className={s.hero}>
       <div className={s.content}>
@@ -107,15 +107,17 @@ const Hero = ({ classes: s }) => {
               Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React ，
               后端 Express。
             </Typography>
-            <Button
-              size="large"
-              variant="contained"
-              color="primary"
-              component={Link}
-              to="/login"
-            >
-              登录
-            </Button>
+            {!isAuthenticated && (
+              <Button
+                size="large"
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="/login"
+              >
+                登录
+              </Button>
+            )}
           </div>
         </div>
         <Paper className={s.imgWrap}>
