@@ -13,11 +13,16 @@ const styles = theme => ({
       display: 'none'
     },
     '& h2': {
+      marginTop: 32,
+      fontSize: 22
+    },
+    '& h3': {
+      marginTop: 32,
       fontSize: 20
     },
     '& pre': {
       border: `2px solid ${theme.palette.primary.light}`,
-      padding: theme.spacing.unit,
+      padding: theme.spacing.unit * 2,
       fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
       overflow: 'auto',
       lineHeight: 1.8
@@ -40,6 +45,10 @@ const styles = theme => ({
         marginTop: 0,
         marginBottom: 0
       }
+    },
+    '& p': {
+      wordBreak: 'break-word',
+      fontSize: 16
     }
   }
 })
