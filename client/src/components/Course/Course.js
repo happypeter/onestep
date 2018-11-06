@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-static'
 import EpisodeList from './EpisodeList'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
@@ -20,14 +21,42 @@ const styles = theme => ({
   },
   title: {
     textAlign: 'center',
-    fontSize: 18,
-    marginBottom: 24
+    fontSize: 24,
+    marginBottom: theme.spacing.unit * 6,
+    fontWeight: 600,
+    position: 'relative',
+    '&:before': {
+      content: '""',
+      width: 48,
+      height: 4,
+      backgroundColor: '#00bcd4',
+      position: 'absolute',
+      bottom: -16,
+      left: '50%',
+      marginLeft: -24
+    }
   },
   button: {
     textAlign: 'center',
     display: 'block',
     width: 160,
     margin: '32px auto'
+  },
+  header: {
+    paddingTop: theme.spacing.unit * 5,
+    fontSize: 18,
+    fontWeight: 600,
+    '&:before': {
+      content: '""',
+      border: '2px solid #00bcd4',
+      marginRight: theme.spacing.unit
+    }
+  },
+  intro: {
+    marginTop: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3,
+    fontSize: 14,
+    backgroundColor: '#fff'
   }
 })
 
@@ -45,6 +74,11 @@ const Course = props => {
           }.mp4`
         )}
       />
+      <div className={s.header}>课程简介</div>
+      <div className={s.intro}>
+        <Typography>{toc.intro}</Typography>
+      </div>
+      <div className={s.header}>课程内容</div>
       <EpisodeList
         posts={posts}
         cid={cid}

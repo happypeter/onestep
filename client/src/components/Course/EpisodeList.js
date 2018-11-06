@@ -11,7 +11,7 @@ import { Link } from 'react-static'
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit
+    marginTop: theme.spacing.unit * 3
   },
   paper: {
     margin: `${theme.spacing.unit * 2}px 0`
@@ -20,7 +20,7 @@ const styles = theme => ({
 
 const EpisodeList = ({ classes: s, posts, cid, isAccessible }) => {
   const postList = posts.map(t => (
-    <Paper className={s.paper} elevation={1} key={t.link}>
+    <Paper className={s.paper} elevation={0} key={t.link}>
       <ListItem
         component={Link}
         to={isAccessible ? `/${cid}/${t.link}` : '/login'}
