@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-const md = require('markdown-it')()
+const md = require('markdown-it')({ linkify: true })
 
 const styles = theme => ({
   root: {
