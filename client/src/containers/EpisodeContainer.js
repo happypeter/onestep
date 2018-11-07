@@ -10,6 +10,15 @@ import {
 } from '../redux/selectors/commonSelectors'
 
 const EpisodeContainer = props => {
+  const { isAuthenticated, paidCourses, cid, price } = props
+  const isAccessible =
+    (price && price === '0') || (isAuthenticated && paidCourses.includes(cid))
+
+  if (!isAccessible) {
+    props.history.push('/')
+    return null
+  }
+
   return <Episode {...props} />
 }
 

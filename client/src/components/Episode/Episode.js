@@ -27,8 +27,11 @@ const styles = theme => ({
   },
   button: {
     color: '#ffffff',
-    width: 24,
     flexShrink: 0,
+    width: 24,
+    '&:hover': {
+      backgroundColor: 'unset'
+    },
     [theme.breakpoints.up('sm')]: {
       display: 'none'
     }
@@ -145,20 +148,7 @@ class Episode extends Component {
   }
 
   render() {
-    const {
-      markdown,
-      classes: s,
-      isAuthenticated,
-      paidCourses,
-      post,
-      posts,
-      price,
-      cid,
-      title
-    } = this.props
-
-    const isAccessible =
-      (price && price === '0') || (isAuthenticated && paidCourses.includes(cid))
+    const { markdown, classes: s, post, posts, cid, title } = this.props
 
     const { open } = this.state
 
@@ -174,44 +164,34 @@ class Episode extends Component {
             </div>
             <IconButton
               className={s.button}
-              disableRipple
+              disableRipple={true}
               onClick={this.toggleSidebar}
             >
               <MenuIcon />
             </IconButton>
           </div>
         </div>
-        {isAccessible ? (
-          <div className={classNames(s.root, s.container)}>
-            <div
-              className={
-                open ? classNames(s.sidebar, s.sidebarOpen) : s.sidebar
-              }
-            >
-              {posts.map(item => (
-                <Link to={`/${cid}/${item.link}`} key={item.link}>
-                  {item.title}
-                </Link>
-              ))}
-            </div>
-            <div>
-              <div className={s.content}>
-                <div className={s.title}>{post.title}</div>
-                <VideoPlayer
-                  {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
-                />
-                <EpisodeDoc doc={markdown} />
-              </div>
-              <Navigation
-                episodes={posts}
-                episodeId={post.link}
-                courseId={cid}
-              />
-            </div>
+        <div className={classNames(s.root, s.container)}>
+          <div
+            className={open ? classNames(s.sidebar, s.sidebarOpen) : s.sidebar}
+          >
+            {posts.map(item => (
+              <Link to={`/${cid}/${item.link}`} key={item.link}>
+                {item.title}
+              </Link>
+            ))}
           </div>
-        ) : (
-          <div>请购买后阅读</div>
-        )}
+          <div>
+            <div className={s.content}>
+              <div className={s.title}>{post.title}</div>
+              <VideoPlayer
+                {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
+              />
+              <EpisodeDoc doc={markdown} />
+            </div>
+            <Navigation episodes={posts} episodeId={post.link} courseId={cid} />
+          </div>
+        </div>
       </div>
     )
   }
