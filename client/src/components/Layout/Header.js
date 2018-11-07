@@ -18,6 +18,10 @@ const styles = theme => ({
     height: HEADER_HEIGHT,
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  logo: {
+    marginLeft: 16,
+    width: 36
   }
 })
 
@@ -53,9 +57,10 @@ class Header extends Component {
     return (
       <AppBar className={s.appBar} elevation={elevation}>
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
-          <Button component={Link} to="/">
-            首页
-          </Button>
+          <Link to="/">
+            <img src="/logo.svg" className={s.logo} />
+          </Link>
+
           {isAuthenticated ? (
             <div>
               <IconButton
