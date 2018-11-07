@@ -70,7 +70,7 @@ class Steps extends Component {
               <Link to="/signup" className={s.link}>
                 注册
               </Link>
-              后获得的 UID 发送给 happypeter 就行了
+              使用的手机号发送给 happypeter 就行了
             </div>
           </div>
         </div>
