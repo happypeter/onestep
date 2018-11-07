@@ -18,6 +18,7 @@ router.post('/smscode', users.sendSmsCode)
 router.get('/course', courses.single)
 router.post('/open', auth.admin, courses.open)
 router.post('/vip', auth.admin, users.vip)
+router.post('/buy', auth.admin, courses.buy)
 router.get('/episode', auth.user, episodes.getEpisode)
 
 module.exports = router

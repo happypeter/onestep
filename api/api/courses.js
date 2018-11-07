@@ -32,6 +32,17 @@ exports.open = async (req, res) => {
     res.json({ success: true })
   } catch (err) {
     console.log('open access right err...', err)
-    res.status(400).json({ success: false })
+  }
+}
+
+exports.buy = async (req, res) => {
+  const { phoneNum, course } = req.body
+  try {
+    const user = await User.findOne({ phoneNum })
+    user.paidCourses = [...user.paidCourses, course]
+    await user.save()
+    res.json({ success: true })
+  } catch (err) {
+    console.log('buy course err...', err)
   }
 }

@@ -59,7 +59,7 @@ export function openCourse(data) {
   return dispatch => {
     if (typeof window !== 'undefined') {
       axios
-        .post(`${config.api}/open`, data, {
+        .post(`${config.api}/buy`, data, {
           headers: { Authorization: localStorage.jwtToken }
         })
         .then(res => {
