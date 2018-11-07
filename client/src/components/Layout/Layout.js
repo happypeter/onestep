@@ -12,13 +12,6 @@ const styles = theme => ({
 })
 
 class Layout extends React.Component {
-  componentDidMount() {
-    const { isAuthenticated, currentUser, getProfile } = this.props
-    if (isAuthenticated && !currentUser.coin) {
-      getProfile()
-    }
-  }
-
   render() {
     const {
       notification,
