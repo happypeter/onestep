@@ -12,10 +12,14 @@ const styles = theme => ({
   section: {
     padding: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
+  },
+  notice: {
+    padding: theme.spacing.unit * 2,
+    fontSize: 16
   }
 })
 
-const Profile = ({ classes: s, currentUser, paidCourses, courses }) => {
+const Profile = ({ classes: s, currentUser, paidCourses, courses, isVip }) => {
   const matchedCourses = courses.filter(c =>
     paidCourses.includes(c.link.slice(1))
   )
@@ -34,9 +38,14 @@ const Profile = ({ classes: s, currentUser, paidCourses, courses }) => {
           <div>饺子数量: {currentUser.coin}</div>
         ) : null}
       </div>
-      {paidCourses.length && (
-        <CourseList courses={matchedCourses} title="已购买的课程" />
+      {isVip && (
+        <div className={s.notice}>
+          好奇猫老用户，感谢您之前购买过好奇猫上的课程，因为网站改版，造成您之前的账号不能访问，为了表示歉意，给您开通VIP权限，您可以观看目前好奇猫上发布的所有付费课程
+        </div>
       )}
+      {paidCourses.length > 0 ? (
+        <CourseList courses={matchedCourses} title="已购买的课程" />
+      ) : null}
     </div>
   )
 

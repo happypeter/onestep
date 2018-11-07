@@ -5,7 +5,8 @@ import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import Profile from '../components/Profile/Profile'
 import {
   getIsAuthenticated,
-  getPaidCourses
+  getPaidCourses,
+  getIsVip
 } from '../redux/selectors/commonSelectors'
 
 const ProfileContainer = props => {
@@ -19,7 +20,8 @@ const ProfileContainer = props => {
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state),
   paidCourses: getPaidCourses(state),
-  isAuthenticated: getIsAuthenticated(state)
+  isAuthenticated: getIsAuthenticated(state),
+  isVip: getIsVip(state)
 })
 
 export default connect(mapStateToProps)(withRouteData(ProfileContainer))
