@@ -26,7 +26,7 @@ const CourseCard = ({ classes: s, course }) => {
   return (
     <Link to={course.link} className={s.link}>
       <Card className={s.card}>
-        {/* <CardMedia image={course.cover} className={s.media} /> */}
+        <CardMedia image={course.cover} className={s.media} />
         <CardContent>
           <Typography>{course.title}</Typography>
         </CardContent>
