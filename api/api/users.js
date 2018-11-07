@@ -55,6 +55,7 @@ exports.signup = async (req, res) => {
           token: generateToken({
             _id: doc._id,
             userName,
+            phoneNum,
             uid
           }),
           success: true
@@ -102,6 +103,7 @@ exports.login = async (req, res) => {
       coin: user.coin,
       _id: user._id,
       uid: user.uid,
+      phoneNum: user.phoneNum,
       paidCourses: user.paidCourses
     }
 

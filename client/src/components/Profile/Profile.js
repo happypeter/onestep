@@ -22,9 +22,14 @@ const Profile = ({ classes: s, currentUser, paidCourses, courses }) => {
   const pageContent = (
     <div className={s.root}>
       <div className={s.section}>
-        {currentUser && currentUser.uid ? (
-          <div>UID: {currentUser.uid}</div>
+        {currentUser && currentUser.userName ? (
+          <div>用户名: {currentUser.userName}</div>
         ) : null}
+
+        {currentUser && currentUser.phoneNum ? (
+          <div>手机号: {currentUser.phoneNum}</div>
+        ) : null}
+
         {currentUser && currentUser.coin ? (
           <div>饺子数量: {currentUser.coin}</div>
         ) : null}
