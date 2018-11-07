@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import EpisodeDoc from './EpisodeDoc'
-import { compose } from 'recompose'
-import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
-import { withRouteData } from 'react-static'
 import { Link } from 'react-static'
 import classNames from 'classnames'
 import IconButton from '@material-ui/core/IconButton'
@@ -12,6 +8,7 @@ import { videoJsOptions } from '../../lib/playerConfig'
 import { videoRepo } from '../../config/config'
 import VideoPlayer from '../../lib/videoPlayer/VideoPlayer'
 import Navigation from './Navigation'
+import EpisodeDoc from './EpisodeDoc'
 
 const styles = theme => ({
   hero: {
@@ -220,9 +217,4 @@ class Episode extends Component {
   }
 }
 
-const WrapperEpisode = compose(
-  withStyles(styles),
-  withWidth()
-)(Episode)
-
-export default withRouteData(WrapperEpisode)
+export default withStyles(styles)(Episode)

@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
+import { Link } from 'react-static'
 import { HEADER_HEIGHT } from '../../constants/GlobalStyle'
 
 const styles = theme => ({
@@ -52,7 +53,9 @@ class Header extends Component {
     return (
       <AppBar className={s.appBar} elevation={elevation}>
         <Toobar disableGutters={disableGutters} className={s.toolbar}>
-          <Button onClick={() => goto('/')}>首页</Button>
+          <Button component={Link} to="/">
+            首页
+          </Button>
           {isAuthenticated ? (
             <div>
               <IconButton

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 const md = require('markdown-it')()
 
@@ -53,14 +53,9 @@ const styles = theme => ({
   }
 })
 
-class EpisodeDoc extends Component {
-  render() {
-    const { classes: s, doc } = this.props
-    const result = md.render(doc)
-    return (
-      <div dangerouslySetInnerHTML={{ __html: result }} className={s.root} />
-    )
-  }
+const EpisodeDoc = ({ classes: s, doc }) => {
+  const result = md.render(doc)
+  return <div dangerouslySetInnerHTML={{ __html: result }} className={s.root} />
 }
 
 export default withStyles(styles)(EpisodeDoc)

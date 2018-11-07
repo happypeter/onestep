@@ -1,11 +1,10 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
-import classNames from 'classnames'
 import Header from './Header'
 
 const styles = theme => ({
-  root: {},
+  root: { backgroundColor: '#f8fafc' },
   content: {
     backgroundColor: theme.palette.background.default,
     paddingTop: theme.spacing.unit * 8
@@ -51,7 +50,7 @@ class Layout extends React.Component {
           message={notification}
           onClose={clearNotification}
         />
-        <div className={classNames(s.content)}>{children}</div>
+        <div className={s.content}>{children}</div>
       </div>
     )
   }

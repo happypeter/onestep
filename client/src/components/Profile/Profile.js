@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import CourseList from '../../components/CourseList'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
