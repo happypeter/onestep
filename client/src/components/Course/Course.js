@@ -61,9 +61,17 @@ const styles = theme => ({
 })
 
 const Course = props => {
-  const { classes: s, toc, posts, cid, paidCourses, isAuthenticated } = props
+  const {
+    classes: s,
+    toc,
+    posts,
+    cid,
+    paidCourses,
+    isAuthenticated,
+    isVip
+  } = props
   const isAccessible =
-    toc.price === '0' || (isAuthenticated && paidCourses.includes(cid))
+    toc.price === '0' || isVip || (isAuthenticated && paidCourses.includes(cid))
   return (
     <div className={s.root}>
       <div className={s.title}>{toc.name}</div>

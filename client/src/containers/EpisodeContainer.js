@@ -6,13 +6,16 @@ import Episode from '../components/Episode/Episode'
 import {
   getEpisodeMarkdown,
   getPaidCourses,
-  getIsAuthenticated
+  getIsAuthenticated,
+  getIsVip
 } from '../redux/selectors/commonSelectors'
 
 const EpisodeContainer = props => {
-  const { isAuthenticated, paidCourses, cid, price } = props
+  const { isAuthenticated, paidCourses, cid, price, isVip } = props
   const isAccessible =
-    (price && price === '0') || (isAuthenticated && paidCourses.includes(cid))
+    (price && price === '0') ||
+    isVip ||
+    (isAuthenticated && paidCourses.includes(cid))
 
   if (!isAccessible) {
     props.history.push('/')
@@ -25,7 +28,8 @@ const EpisodeContainer = props => {
 const mapStateToProps = state => ({
   markdown: getEpisodeMarkdown(state),
   paidCourses: getPaidCourses(state),
-  isAuthenticated: getIsAuthenticated(state)
+  isAuthenticated: getIsAuthenticated(state),
+  isVip: getIsVip(state)
 })
 
 export default connect(

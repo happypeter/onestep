@@ -13,6 +13,10 @@ export const getIsAdmin = state => {
   const user = state.auth.currentUser
   return (user && user.admin) || false
 }
+export const getIsVip = state => {
+  const user = state.auth.currentUser
+  return (user && user.vip) || false
+}
 // smsSend
 export const getSmsSendState = state => state.smsSend
 

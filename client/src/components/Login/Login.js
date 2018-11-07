@@ -50,11 +50,11 @@ class Login extends Component {
     const { classes: s } = this.props
     return (
       <Layout title="登录">
-        <div className={s.notice}>
-          好奇猫老用户：请您重新注册账号再登录本站。若您之前购买过课程，请把注册使用的手机号发给
-          Peter，之后给您开通课程观看权限。
-        </div>
         <div>
+          <div className={s.notice}>
+            好奇猫老用户：请您重新注册账号再登录本站。若您之前购买过课程，请把注册使用的手机号发给
+            Peter，之后给您开通课程观看权限。
+          </div>
           <TextField
             style={{ width: '100%' }}
             value={account}
