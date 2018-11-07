@@ -66,6 +66,7 @@ export default {
       { path: '/signup', component: 'src/containers/SignupContainer' },
       { path: '/steps', component: 'src/containers/StepsContainer' },
       { path: '/open', component: 'src/containers/OpenContainer' },
+      { path: '/vip', component: 'src/containers/VipContainer' },
       { is404: true, component: 'src/containers/404' }
     ]
   },

@@ -45,7 +45,45 @@ export function open(data) {
         })
         .then(res => {
           if (res.data && res.data.success === true) {
-            alert('阅读权限已开通')
+            dispatch(showNotification('课程权限已开通'))
+          }
+        })
+        .catch(error => {
+          handleError(error, dispatch)
+        })
+    }
+  }
+}
+
+export function openCourse(data) {
+  return dispatch => {
+    if (typeof window !== 'undefined') {
+      axios
+        .post(`${config.api}/open`, data, {
+          headers: { Authorization: localStorage.jwtToken }
+        })
+        .then(res => {
+          if (res.data && res.data.success === true) {
+            dispatch(showNotification('课程权限已开通'))
+          }
+        })
+        .catch(error => {
+          handleError(error, dispatch)
+        })
+    }
+  }
+}
+
+export function openVip(data) {
+  return dispatch => {
+    if (typeof window !== 'undefined') {
+      axios
+        .post(`${config.api}/vip`, data, {
+          headers: { Authorization: localStorage.jwtToken }
+        })
+        .then(res => {
+          if (res.data && res.data.success === true) {
+            dispatch(showNotification('课程权限已开通'))
           }
         })
         .catch(error => {

@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Open from '../components/Open'
+import Vip from '../components/Vip'
 import {
   getIsAuthenticated,
   getIsAdmin
 } from '../redux/selectors/commonSelectors'
-import { open } from '../redux/actions/contentAction'
+import { openVip } from '../redux/actions/contentAction'
 
-const OpenContainer = props => {
+const VipContainer = props => {
   const { isAuthenticated, isAdmin } = props
   if (isAuthenticated && isAdmin) {
-    return <Open {...props} />
+    return <Vip {...props} />
   }
   props.history.push('/')
   return null
@@ -23,5 +23,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { open }
-)(OpenContainer)
+  { openVip }
+)(VipContainer)

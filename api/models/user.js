@@ -11,7 +11,8 @@ const UserSchema = new Schema(
     admin: Boolean,
     coin: Number,
     uid: { type: String, unique: true },
-    paidCourses: Array
+    paidCourses: Array,
+    vip: Boolean
   },
   { timestamps: true }
 )

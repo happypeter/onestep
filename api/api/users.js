@@ -107,8 +107,16 @@ exports.login = async (req, res) => {
       paidCourses: user.paidCourses
     }
 
+    if (user.paidCourses.length) {
+      data.paidCourses = user.paidCourses
+    }
+
     if (user.admin) {
       data.admin = user.admin
+    }
+
+    if (user.vip) {
+      data.vip = user.vip
     }
 
     return res.json({
@@ -132,5 +140,16 @@ exports.profile = async (req, res) => {
     res.json(user)
   } catch (err) {
     console.log('get profile err...', err)
+  }
+}
+
+exports.vip = async (req, res) => {
+  try {
+    const user = await User.findOne({ phoneNum: req.body.phoneNum })
+    user.vip = true
+    await user.save()
+    res.json({ success: true })
+  } catch (err) {
+    console.log('open vip err...', err)
   }
 }
