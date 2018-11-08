@@ -30,4 +30,4 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', cors(), apiRouter)
 
-app.listen(3001, () => console.log('running on port 3001...'))
+app.listen(config.port, () => console.log(`running on port ${config.port}...`))

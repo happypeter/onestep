@@ -10,5 +10,6 @@ module.exports = {
   TemplateCode: 'xxx',
   SignName: 'xxx',
   timeLimit: 10,
-  docPath: 'xxx'
+  docPath: 'xxx',
+  port: 3001
 }
