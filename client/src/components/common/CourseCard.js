@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%',
+    paddingTop: '50%',
     borderBottom: '1px solid #ececec'
   }
 })
