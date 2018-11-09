@@ -11,7 +11,6 @@ import config from './src/config/config'
 
 const docRepo = config.docRepo
 export default {
-  siteRoot: config.siteRoot,
   getSiteData: () => ({
     title: '好奇猫'
   }),
