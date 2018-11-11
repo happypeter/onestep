@@ -3,5 +3,6 @@ module.exports = {
   // sms
   smsTimeLimit: 60,
   videoRepo: 'xxx',
-  docRepo: 'xxx'
+  docRepo: 'xxx',
+  weichat: 'xxx'
 }
