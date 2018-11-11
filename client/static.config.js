@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import JssProvider from 'react-jss/lib/JssProvider'
-import { SheetsRegistry } from 'jss'
+import { JssProvider, SheetsRegistry } from 'react-jss'
 import {
   MuiThemeProvider,
   createGenerateClassName
