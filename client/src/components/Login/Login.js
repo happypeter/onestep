@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import isEmpty from 'lodash.isempty'
 import Layout from '../shared/AuthFormLayout'
 import { ERROR_COLOR } from '../../constants/GlobalStyle'
-import config from '../../config'
+import config from '../../config/config'
 
 const styles = theme => ({
   error: { color: ERROR_COLOR },
