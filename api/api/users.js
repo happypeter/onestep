@@ -145,9 +145,8 @@ exports.profile = async (req, res) => {
 
 exports.vip = async (req, res) => {
   try {
-    const user = await User.findOne({ phoneNum: req.body.phoneNum })
-    user.vip = true
-    await user.save()
+    // The update() will not trigger the pre save() hook
+    await User.update({ phoneNum: req.body.phoneNum }, { $set: { vip: true } })
     res.json({ success: true })
   } catch (err) {
     console.log('open vip err...', err)
