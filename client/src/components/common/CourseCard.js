@@ -19,12 +19,23 @@ const styles = theme => ({
     height: 0,
     paddingTop: '50%',
     borderBottom: '1px solid #ececec'
+  },
+  date: {
+    textAlign: 'center',
+    backgroundColor: '#cdcdcd',
+    padding: ' 2px 0',
+    width: 74,
+    color: '#fff',
+    fontSize: 12,
+    margin: '0 auto',
+    borderRadius: 2
   }
 })
 
 const CourseCard = ({ classes: s, course }) => {
   return (
     <Link to={course.link} className={s.link}>
+      <div className={s.date}>{course.date}</div>
       <Card className={s.card}>
         <CardMedia image={course.cover} className={s.media} />
         <CardContent>

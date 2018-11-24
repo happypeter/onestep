@@ -13,7 +13,7 @@ const styles = theme => ({
     border: '1px solid red'
   },
   section: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 4,
     textAlign: 'center'
   }
 })
