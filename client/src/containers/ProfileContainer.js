@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouteData } from 'react-static'
-import { getCurrentUser } from '../redux/selectors/commonSelectors.js'
 import Profile from '../components/Profile/Profile'
 import {
+  getCurrentUser,
   getIsAuthenticated,
   getPaidCourses,
   getIsVip

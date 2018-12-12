@@ -134,10 +134,11 @@ exports.login = async (req, res) => {
 
 exports.profile = async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.userId }).select(
-      'coin paidCourses'
+    const user = await User.findById(
+      { _id: req.userId },
+      '-_id coin paidCourses vip'
     )
-    res.json(user)
+    res.json({ success: true, user })
   } catch (err) {
     console.log('get profile err...', err)
   }

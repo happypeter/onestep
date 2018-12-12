@@ -76,7 +76,7 @@ export function getProfile() {
         })
         .then(res => {
           if (res.data && res.data.success === true) {
-            dispatch({ type: types.UPDATE_USER_COIN, coin: res.data.coin })
+            dispatch({ type: types.UPDATE_USER_INFO, user: res.data.user })
           }
         })
         .catch(error => {

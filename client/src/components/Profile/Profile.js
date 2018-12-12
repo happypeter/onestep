@@ -25,6 +25,12 @@ const Profile = ({ classes: s, currentUser, paidCourses, courses, isVip }) => {
   )
   const pageContent = (
     <div className={s.root}>
+      {isVip && (
+        <div className={s.notice}>
+          您现在已经是VIP会员了，可以观看目前好奇猫上发布的所有付费课程。
+        </div>
+      )}
+
       <div className={s.section}>
         {currentUser && currentUser.userName ? (
           <div>用户名: {currentUser.userName}</div>
@@ -38,11 +44,7 @@ const Profile = ({ classes: s, currentUser, paidCourses, courses, isVip }) => {
           <div>饺子数量: {currentUser.coin}</div>
         ) : null}
       </div>
-      {isVip && (
-        <div className={s.notice}>
-          好奇猫老用户，感谢您之前购买过好奇猫上的课程，因为网站改版，造成您之前的账号不能访问，为了表示歉意，给您开通VIP权限，您可以观看目前好奇猫上发布的所有付费课程
-        </div>
-      )}
+
       {paidCourses.length > 0 ? (
         <CourseList courses={matchedCourses} title="已购买的课程" />
       ) : null}

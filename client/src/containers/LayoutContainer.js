@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { goto } from '../redux/actions'
@@ -11,7 +11,17 @@ import {
 import { logOut, checkAuth, getProfile } from '../redux/actions/authAction'
 import { clearNotification } from '../redux/actions/index'
 
-const LayoutContainer = props => <Layout {...props} />
+class LayoutContainer extends Component {
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.getProfile()
+    }
+  }
+
+  render() {
+    return <Layout {...this.props} />
+  }
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
@@ -19,8 +29,6 @@ const mapStateToProps = state => ({
   notification: getNotification(state)
 })
 
-// Connect can break router , the fix is withRouter:
-// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
 export default withRouter(
   connect(
     mapStateToProps,

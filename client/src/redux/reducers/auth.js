@@ -17,10 +17,13 @@ export default (state = initialState, action = {}) => {
         isAuthenticated: !isEmpty(action.user),
         currentUser: action.user
       }
-    case types.UPDATE_USER_COIN:
+    case types.UPDATE_USER_INFO:
       return {
         ...state,
-        currentUser: { ...state.currentUser, coin: action.coin }
+        currentUser: {
+          ...state.currentUser,
+          ...action.user
+        }
       }
     default:
       return state
