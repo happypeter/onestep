@@ -48,7 +48,10 @@ const styles = theme => ({
     },
     '& p': {
       wordBreak: 'break-word',
-      fontSize: 16
+      fontSize: 16,
+      '& img': {
+        width: '100%'
+      }
     }
   }
 })
