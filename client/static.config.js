@@ -26,7 +26,7 @@ export default {
         component: 'src/containers/ProfileContainer',
         getData: () => ({ courses: courses.published })
       },
-      ...courses.published.map(course => {
+      ...[...courses.published, ...courses.unpublished].map(course => {
         const toc = JSON.parse(
           fs.readFileSync(`${docRepo}${course.link}/doc/index.json`),
           'utf8'
