@@ -1,6 +1,21 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-const md = require('markdown-it')({ linkify: true })
+import Prism from 'prismjs'
+import 'prismjs/components/prism-javascript'
+import '../../assets/themes/prism.css'
+
+const md = require('markdown-it')({
+  linkify: true,
+  highlight: function(str, language) {
+    const lang = language || 'javascript'
+    if (lang) {
+      try {
+        return Prism.highlight(str, Prism.languages[lang], lang)
+      } catch (__) {}
+    }
+    return ''
+  }
+})
 
 const styles = theme => ({
   root: {
