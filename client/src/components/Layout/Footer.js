@@ -9,8 +9,9 @@ const styles = theme => ({
     width: '100%'
   },
   logo: {
-    marginLeft: 16,
-    width: 36
+    width: 36,
+    margin: '0 auto',
+    display: 'block'
   }
 })
 
