@@ -15,22 +15,22 @@ const styles = theme => ({
     margin: '24px auto'
   },
   listWrap: {
+    width: '100%',
+    margin: '0 auto',
+    padding: '24px 16px',
     [theme.breakpoints.up('md')]: {
-      width: 700,
-      margin: '0 auto'
+      width: 700
     },
     [theme.breakpoints.up('lg')]: {
-      width: 1000,
-      margin: '0 auto'
+      width: 1000
     },
     [theme.breakpoints.up('xl')]: {
-      width: 1100,
-      margin: '0 auto'
+      width: 1100
     }
   },
   actions: {
-    textAlign: 'center',
-    marginBottom: 64
+    padding: '0 16px 64px',
+    textAlign: 'center'
   },
   button: {
     width: '100%',
