@@ -2,6 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
 import Header from './Header'
+import Footer from './Footer'
 
 const styles = theme => ({
   root: { backgroundColor: '#f8fafc' },
@@ -44,6 +45,7 @@ class Layout extends React.Component {
           onClose={clearNotification}
         />
         <div className={s.content}>{children}</div>
+        <Footer />
       </div>
     )
   }

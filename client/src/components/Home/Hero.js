@@ -113,9 +113,9 @@ const Hero = ({ classes: s, isAuthenticated }) => {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/login"
+                to="/signup"
               >
-                登录
+                注册
               </Button>
             )}
           </div>
