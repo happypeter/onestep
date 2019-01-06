@@ -34,7 +34,9 @@ const styles = theme => ({
   },
   button: {
     width: '100%',
-    maxWidth: 320
+    maxWidth: 480,
+    padding: 16,
+    boxShadow: 'unset'
   },
   login: {
     display: 'block',
