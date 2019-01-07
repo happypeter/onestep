@@ -1,6 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Hidden from '@material-ui/core/Hidden'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-static'
 import { MAX_WIDTH } from '../../constants/GlobalStyle'
@@ -52,9 +51,7 @@ class Home extends React.Component {
     const { classes: s, courses, isAuthenticated } = this.props
     return (
       <div>
-        <Hidden mdDown>
-          <Hero isAuthenticated={isAuthenticated} />
-        </Hidden>
+        <Hero isAuthenticated={isAuthenticated} />
         <div className={s.listWrap}>
           <CourseList courses={courses.published} title="最新发布" />
         </div>
