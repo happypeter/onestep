@@ -47,15 +47,13 @@ const CourseCard = ({ classes: s, course }) => {
     <Grid item xs={12} sm={6} lg={4} xl={4}>
       <Link to={course.link} className={s.link}>
         <Card className={s.card}>
-          <CardActionArea className={s.action}>
-            <CardMedia
-              image={course.cover}
-              className={s.media}
-              component="img"
-              title={course.id}
-            />
-            <div className={s.title}>{course.title}</div>
-          </CardActionArea>
+          <CardMedia
+            image={course.cover}
+            className={s.media}
+            component="img"
+            title={course.id}
+          />
+          <div className={s.title}>{course.title}</div>
         </Card>
       </Link>
       <div className={s.date}>
