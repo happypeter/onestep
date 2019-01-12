@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import CourseCard from '../common/CourseCard'
+import React from 'react'
 import { Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import CourseCard from '../common/CourseCard'
 
 const styles = theme => ({
   root: {
