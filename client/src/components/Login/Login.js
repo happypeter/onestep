@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button'
 import isEmpty from 'lodash.isempty'
 import Layout from '../shared/AuthFormLayout'
 import { ERROR_COLOR } from '../../constants/GlobalStyle'
-import config from '../../config/config'
 
 const styles = theme => ({
   error: { color: ERROR_COLOR },
@@ -52,10 +51,6 @@ class Login extends Component {
     return (
       <Layout title="登录">
         <div>
-          <div className={s.notice}>
-            好奇猫老用户：因网站改版，需要您重新注册账号才能登录本站。若您之前购买过课程，请把注册使用的手机号发给
-            Billie(微信号：{config.wechat})，之后给您开通课程观看权限。
-          </div>
           <TextField
             style={{ width: '100%' }}
             value={account}
