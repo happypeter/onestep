@@ -77,9 +77,9 @@ const Course = props => {
       <div className={s.title}>{toc.name}</div>
       <VideoPlayer
         {...videoJsOptions(
-          `${videoRepo}/${cid}/${
-            toc.cover_video ? toc.cover_video : 'index'
-          }.mp4`
+          `${videoRepo}/${
+            cid === 'happypeter-js-kingdom' ? 'js-kingdom' : cid
+          }/${toc.cover_video ? toc.cover_video : 'index'}.mp4`
         )}
       />
       <div className={s.header}>课程简介</div>

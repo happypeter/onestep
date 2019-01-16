@@ -185,7 +185,11 @@ class Episode extends Component {
             <div className={s.content}>
               <div className={s.title}>{post.title}</div>
               <VideoPlayer
-                {...videoJsOptions(`${videoRepo}/${cid}/${post.link}.mp4`)}
+                {...videoJsOptions(
+                  `${videoRepo}/${
+                    cid === 'happypeter-js-kingdom' ? 'js-kingdom' : cid
+                  }/${post.link}.mp4`
+                )}
               />
               <EpisodeDoc doc={markdown} />
             </div>
