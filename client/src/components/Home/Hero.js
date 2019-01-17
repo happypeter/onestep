@@ -71,7 +71,7 @@ const styles = theme => ({
   }
 })
 
-const Hero = ({ classes: s, isAuthenticated }) => {
+const Hero = ({ classes: s }) => {
   return (
     <div className={s.hero}>
       <div className={s.content}>
@@ -81,16 +81,6 @@ const Hero = ({ classes: s, isAuthenticated }) => {
             Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React ，
             后端 Express。
           </div>
-          {!isAuthenticated && (
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to="/signup"
-            >
-              注册
-            </Button>
-          )}
         </div>
         <img
           src="https://img.haoqicat.com/2018103102.jpg"

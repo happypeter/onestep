@@ -2,13 +2,17 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Snackbar from '@material-ui/core/Snackbar'
 import Header from './Header'
-import Footer from './Footer'
 
 const styles = theme => ({
   root: { backgroundColor: '#f8fafc' },
   content: {
     backgroundColor: theme.palette.background.default,
     paddingTop: theme.spacing.unit * 8
+  },
+  footer: {
+    backgroundColor: '#ececec',
+    padding: theme.spacing.unit * 6,
+    width: '100%'
   }
 })
 
@@ -34,10 +38,7 @@ class Layout extends React.Component {
           logOut={logOut}
         />
         <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right'
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           variant="error"
           open={Boolean(notification)}
           autoHideDuration={3000}
@@ -45,7 +46,7 @@ class Layout extends React.Component {
           onClose={clearNotification}
         />
         <div className={s.content}>{children}</div>
-        <Footer />
+        <div className={s.footer} />
       </div>
     )
   }

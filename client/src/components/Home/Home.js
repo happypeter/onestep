@@ -51,7 +51,7 @@ class Home extends React.Component {
     const { classes: s, courses, isAuthenticated } = this.props
     return (
       <div>
-        <Hero isAuthenticated={isAuthenticated} />
+        <Hero />
         <div className={s.listWrap}>
           <CourseList courses={courses.published} title="最新发布" />
         </div>
