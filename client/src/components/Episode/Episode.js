@@ -112,6 +112,10 @@ const styles = theme => ({
     maxHeight: 480,
     transition: 'all .8s ease'
   },
+  main: {
+    flexGrow: 1,
+    maxWidth: 760
+  },
   content: {
     padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px`,
     [theme.breakpoints.up('sm')]: {
@@ -121,7 +125,6 @@ const styles = theme => ({
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 8}px`
     },
     width: '100%',
-    maxWidth: 760,
     margin: '0 auto',
     backgroundColor: '#fff',
     boxShadow: `0 0 5px rgba(0,0,0,.02), 0 5px 22px -8px rgba(0, 0, 0, .1)`
@@ -181,7 +184,7 @@ class Episode extends Component {
               </Link>
             ))}
           </div>
-          <div>
+          <div className={s.main}>
             <div className={s.content}>
               <div className={s.title}>{post.title}</div>
               <VideoPlayer
