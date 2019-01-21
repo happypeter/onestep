@@ -151,7 +151,15 @@ class Episode extends Component {
   }
 
   render() {
-    const { markdown, classes: s, post, posts, cid, title } = this.props
+    const {
+      markdown,
+      classes: s,
+      post,
+      posts,
+      cid,
+      courseAlias,
+      title
+    } = this.props
 
     const { open } = this.state
 
@@ -189,9 +197,9 @@ class Episode extends Component {
               <div className={s.title}>{post.title}</div>
               <VideoPlayer
                 {...videoJsOptions(
-                  `${videoRepo}/${
-                    cid === 'happypeter-js-kingdom' ? 'js-kingdom' : cid
-                  }/${post.link}.mp4`
+                  `${videoRepo}/${courseAlias ? courseAlias : cid}/${
+                    post.link
+                  }.mp4`
                 )}
               />
               <EpisodeDoc doc={markdown} />

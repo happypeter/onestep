@@ -65,6 +65,7 @@ const Course = props => {
     classes: s,
     toc,
     posts,
+    courseAlias,
     cid,
     paidCourses,
     isAuthenticated,
@@ -77,9 +78,9 @@ const Course = props => {
       <div className={s.title}>{toc.name}</div>
       <VideoPlayer
         {...videoJsOptions(
-          `${videoRepo}/${
-            cid === 'happypeter-js-kingdom' ? 'js-kingdom' : cid
-          }/${toc.cover_video ? toc.cover_video : 'index'}.mp4`
+          `${videoRepo}/${courseAlias ? courseAlias : cid}/${
+            toc.cover_video ? toc.cover_video : 'index'
+          }.mp4`
         )}
       />
       <div className={s.header}>课程简介</div>

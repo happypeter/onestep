@@ -37,26 +37,34 @@ export default {
             return sum.concat(part.section)
           }, [])
           .filter(post => post.link !== '#')
+        const data = { cid: course.link.slice(1), toc, posts }
+        if (course.alias) {
+          data.courseAlias = course.alias
+        }
         return {
           path: course.link,
           component: 'src/containers/CourseContainer',
-          getData: () => ({ cid: course.link.slice(1), toc, posts }),
+          getData: () => data,
           children: posts.map(post => {
             const markdown = fs.readFileSync(
               `${docRepo}${course.link}/doc/${post.link}.md`,
               'utf8'
             )
+            const data = {
+              cid: course.link.slice(1),
+              title: course.title,
+              post,
+              posts,
+              markdown,
+              price: toc.price
+            }
+            if (course.alias) {
+              data.courseAlias = course.alias
+            }
             return {
               path: post.link,
               component: `src/containers/EpisodeContainer`,
-              getData: () => ({
-                cid: course.link.slice(1),
-                title: course.title,
-                post,
-                posts,
-                markdown,
-                price: toc.price
-              })
+              getData: () => data
             }
           })
         }
