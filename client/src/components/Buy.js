@@ -46,14 +46,14 @@ class Buy extends Component {
           style={{ width: '100%' }}
           onChange={this.handlePhoneNumChange}
           margin="dense"
-          label="Phone"
+          label="手机号"
           value={phoneNum}
         />
         <TextField
           style={{ width: '100%' }}
           onChange={this.handleCourseChange}
           margin="dense"
-          label="Course"
+          label="课程名"
           value={course}
         />
         <Button
