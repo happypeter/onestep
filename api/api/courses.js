@@ -29,7 +29,7 @@ exports.buy = async (req, res) => {
   const { phoneNum, course } = req.body
   try {
     const user = await User.findOne({ phoneNum })
-    user.paidCourses = [...user.paidCourses, course]
+    user.paidCourses = [...new Set([...user.paidCourses, course])]
     await user.save()
     res.json({ success: true })
   } catch (err) {
