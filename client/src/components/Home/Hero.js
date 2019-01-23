@@ -1,7 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import { Link } from 'react-static'
 
 const styles = theme => ({
   hero: {
@@ -76,10 +74,10 @@ const Hero = ({ classes: s }) => {
     <div className={s.hero}>
       <div className={s.content}>
         <div className={s.textWrap}>
-          <div className={s.header}>好奇猫编程视频站</div>
+          <div className={s.header}>好奇猫学院</div>
           <div className={s.subtitle}>
-            Peter 的踩坑实录，帮你节省自学时间。关注大前端方向，前端 React ，
-            后端 Express。
+            有温度的视频教程，Peter
+            的采坑实录，有心帮你节省自学时间。关注区块链和大前端。
           </div>
         </div>
         <img
