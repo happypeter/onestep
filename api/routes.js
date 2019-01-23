@@ -16,7 +16,6 @@ router.post('/smscode', users.sendSmsCode)
 
 // 课程展示接口
 router.get('/course', courses.single)
-router.post('/open', auth.admin, courses.open)
 router.post('/vip', auth.admin, users.vip)
 router.post('/buy', auth.admin, courses.buy)
 router.get('/episode', auth.user, episodes.getEpisode)

@@ -25,16 +25,6 @@ exports.single = (req, res) => {
   res.json({ success: true, course })
 }
 
-exports.open = async (req, res) => {
-  const { uid, coin } = req.body
-  try {
-    await User.update({ uid }, { $set: { coin } })
-    res.json({ success: true })
-  } catch (err) {
-    console.log('open access right err...', err)
-  }
-}
-
 exports.buy = async (req, res) => {
   const { phoneNum, course } = req.body
   try {
