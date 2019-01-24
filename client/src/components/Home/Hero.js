@@ -77,7 +77,7 @@ const Hero = ({ classes: s }) => {
           <div className={s.header}>好奇猫学院</div>
           <div className={s.subtitle}>
             有温度的视频教程，Peter
-            的采坑实录，有心帮你节省自学时间。关注区块链和大前端。
+            的采坑实录，用心帮你节省自学时间。关注区块链和大前端。
           </div>
         </div>
         <img
