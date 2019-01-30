@@ -5,7 +5,7 @@ const config = require('../config/config')
 const msg = require('./msg')
 
 const generateToken = data => {
-  return jwt.sign(data, config.jwtSecret, { expiresIn: config.expiresIn })
+  return jwt.sign(data, config.jwtSecret)
 }
 
 exports.sendSmsCode = async (req, res) => {
