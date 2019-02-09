@@ -24,15 +24,3 @@ exports.single = (req, res) => {
   const course = getCourseToc(config.docPath)
   res.json({ success: true, course })
 }
-
-exports.buy = async (req, res) => {
-  const { phoneNum, course } = req.body
-  try {
-    const user = await User.findOne({ phoneNum })
-    user.paidCourses = [...new Set([...user.paidCourses, course])]
-    await user.save()
-    res.json({ success: true })
-  } catch (err) {
-    console.log('buy course err...', err)
-  }
-}
