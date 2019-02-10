@@ -4,5 +4,3 @@ seeds
 test.js
 config.js
 db
-admin.js
-admin_routes.js
