@@ -11,5 +11,6 @@ module.exports = {
   SignName: 'xxx',
   timeLimit: 10,
   docPath: 'xxx',
-  port: 3001
+  port: 3001,
+  adminRouter: 'xxx'
 }
