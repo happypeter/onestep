@@ -3,8 +3,8 @@ import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import config from '../config/config'
+import MenuItem from '@material-ui/core/MenuItem'
+import { courses } from '../../data/courses'
 
 const styles = theme => ({
   root: {
@@ -30,12 +30,10 @@ class Buy extends Component {
     this.props.openCourse({ phoneNum, course })
   }
 
-  handlePhoneNumChange = e => {
-    this.setState({ phoneNum: e.target.value })
-  }
-
-  handleCourseChange = e => {
-    this.setState({ course: e.target.value })
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    })
   }
 
   render() {
@@ -47,18 +45,28 @@ class Buy extends Component {
 
         <TextField
           style={{ width: '100%' }}
-          onChange={this.handlePhoneNumChange}
-          margin="dense"
+          onChange={this.handleChange('phoneNum')}
           label="手机号"
           value={phoneNum}
+          margin="normal"
         />
+
         <TextField
           style={{ width: '100%' }}
-          onChange={this.handleCourseChange}
-          margin="dense"
+          select
           label="课程名"
+          className={s.textField}
           value={course}
-        />
+          onChange={this.handleChange('course')}
+          margin="normal"
+        >
+          {courses.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <Button
           color="primary"
           variant="contained"
