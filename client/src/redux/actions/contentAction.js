@@ -36,25 +36,6 @@ export function fetchEpisode(data) {
   }
 }
 
-export function openCourse(data) {
-  return dispatch => {
-    if (typeof window !== 'undefined') {
-      axios
-        .post(`${config.api}/buy`, data, {
-          headers: { Authorization: localStorage.jwtToken }
-        })
-        .then(res => {
-          if (res.data && res.data.success === true) {
-            dispatch(showNotification('课程权限已开通'))
-          }
-        })
-        .catch(error => {
-          handleError(error, dispatch)
-        })
-    }
-  }
-}
-
 export function openVip(data) {
   return dispatch => {
     if (typeof window !== 'undefined') {

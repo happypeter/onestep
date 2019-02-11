@@ -72,7 +72,6 @@ export default {
       { path: '/login', component: 'src/containers/LoginContainer' },
       { path: '/signup', component: 'src/containers/SignupContainer' },
       { path: '/steps', component: 'src/containers/StepsContainer' },
-      { path: '/buy', component: 'src/containers/BuyContainer' },
       { path: '/vip', component: 'src/containers/VipContainer' },
       { is404: true, component: 'src/containers/404' }
     ]
