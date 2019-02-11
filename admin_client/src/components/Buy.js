@@ -37,7 +37,7 @@ class Buy extends Component {
   }
 
   render() {
-    const { classes: s, notification } = this.props
+    const { classes: s } = this.props
     const { phoneNum, course } = this.state
     return (
       <Paper className={s.root}>
@@ -77,9 +77,9 @@ class Buy extends Component {
           提交
         </Button>
 
-        {notification.text ? (
+        {/* {notification.text ? (
           <div className={s.notice}>{notification.text}</div>
-        ) : null}
+        ) : null} */}
       </Paper>
     )
   }

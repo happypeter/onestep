@@ -5,11 +5,7 @@ import { openCourse } from '../redux/actionCreators'
 
 const BuyContainer = props => <Buy {...props} />
 
-const mapStateToProps = state => ({
-  notification: state.notification
-})
-
 export default connect(
-  mapStateToProps,
+  null,
   { openCourse }
 )(BuyContainer)

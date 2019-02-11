@@ -2,6 +2,7 @@ import axios from 'axios'
 import config from '../../config/config'
 
 const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION'
+const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION'
 
 function handleError(error, dispatch) {
   if (error.response) {
@@ -32,5 +33,12 @@ export function openCourse(data) {
           handleError(error, dispatch)
         })
     }
+  }
+}
+
+export function clearNotification() {
+  console.log('i action creator')
+  return {
+    type: CLEAR_NOTIFICATION
   }
 }
