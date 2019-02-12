@@ -1,7 +1,7 @@
 import React from 'react'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
-// import './videojs-hqcat.css'
+import './videojs-hqcat.css'
 
 // 没有下面的 updateCount 相关的代码
 // 每次切换新视频的时候，vidoejs 就不能加载新视频

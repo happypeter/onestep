@@ -34,11 +34,24 @@
   background-color: rgb(0, 188, 212);
 }
 
-.vjs-hqcat .vjs-playback-rate-value {
-  font-size: small;
-  line-height: 3em;
+/*播放倍速样式*/
+.vjs-hqcat .vjs-playback-rate .vjs-playback-rate-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
 }
 
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before,
+.vjs-button > .vjs-icon-placeholder:before,
+.video-js .vjs-modal-dialog,
+.vjs-modal-dialog .vjs-modal-dialog-content {
+  position: unset;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 /*完善倍速选择器样式*/
 .vjs-menu li {
   font-size: 1em;
