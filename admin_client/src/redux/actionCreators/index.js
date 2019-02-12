@@ -3,6 +3,7 @@ import config from '../../config/config'
 
 const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION'
 const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION'
+const SHOW_USER_COUNT = 'SHOW_USER_COUNT'
 
 function handleError(error, dispatch) {
   if (error.response) {
@@ -16,6 +17,12 @@ function showNotification(text) {
   return {
     type: SHOW_NOTIFICATION,
     payload: text
+  }
+}
+
+export function clearNotification() {
+  return {
+    type: CLEAR_NOTIFICATION
   }
 }
 
@@ -36,9 +43,26 @@ export function openCourse(data) {
   }
 }
 
-export function clearNotification() {
-  console.log('i action creator')
+function showUserCount(count) {
   return {
-    type: CLEAR_NOTIFICATION
+    type: SHOW_USER_COUNT,
+    payload: count
+  }
+}
+
+export function getUsers() {
+  return dispatch => {
+    if (typeof window !== 'undefined') {
+      axios
+        .get(`${config.api}/${config.adminRouter}/users`)
+        .then(res => {
+          if (res.data && res.data.success === true) {
+            dispatch(showUserCount(res.data.count))
+          }
+        })
+        .catch(error => {
+          handleError(error, dispatch)
+        })
+    }
   }
 }

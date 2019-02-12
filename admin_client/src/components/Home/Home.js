@@ -26,13 +26,16 @@ const styles = theme => ({
 })
 
 class Home extends React.Component {
+  componentDidMount() {
+    const { count, getUsers } = this.props
+    if (!count) {
+      getUsers()
+    }
+  }
+
   render() {
-    const { classes: s } = this.props
-    return (
-      <div>
-        <div className={s.listWrap}>Home Page</div>
-      </div>
-    )
+    const { classes: s, count } = this.props
+    return <div className={s.listWrap}>总人数：{count}</div>
   }
 }
 

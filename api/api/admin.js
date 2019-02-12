@@ -11,3 +11,12 @@ exports.open = async (req, res) => {
     console.log('buy course err...', err)
   }
 }
+
+exports.users = async (req, res) => {
+  try {
+    const count = await User.find({}).count()
+    res.json({ success: true, count })
+  } catch (err) {
+    console.log('get user count err...', err)
+  }
+}
