@@ -1,5 +1,4 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
 
 const Footer = () => (
   <div
@@ -19,4 +18,4 @@ const Footer = () => (
   </div>
 )
 
-export default withStyles(styles)(Footer)
+export default Footer
