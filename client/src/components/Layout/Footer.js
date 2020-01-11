@@ -1,22 +1,19 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = theme => ({
-  root: {
-    backgroundColor: '#ececec',
-    padding: theme.spacing.unit * 6,
-    width: '100%',
-    textAlign: 'center'
-  },
-  link: {
-    color: '#00bcd4',
-    textDecoration: 'none'
-  }
-})
-
-const Footer = ({ classes: s }) => (
-  <div className={s.root}>
-    <a href="http://www.beian.miit.gov.cn/" className={s.link}>
+const Footer = () => (
+  <div
+    style={{
+      backgroundColor: '#ececec',
+      padding: 48,
+      width: '100%',
+      textAlign: 'center'
+    }}
+  >
+    <a
+      href="http://www.beian.miit.gov.cn/"
+      style={{ color: '#00bcd4', textDecoration: 'none' }}
+    >
       冀ICP备15007992号-3
     </a>
   </div>
