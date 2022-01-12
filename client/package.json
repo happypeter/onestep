@@ -15,7 +15,7 @@
     "axios": "^0.16.2",
     "jwt-decode": "^2.2.0",
     "lodash.isempty": "^4.4.0",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "prismjs": "^1.15.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
